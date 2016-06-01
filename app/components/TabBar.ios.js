@@ -28,7 +28,9 @@ class TabBar extends React.Component {
             Actions.study();
           }}
           >
-          <View style={styles.tabContent}><Text>Study Tab</Text></View>
+          <View style={styles.container}>
+            <Text style={styles.title}>Study Tab</Text>
+          </View>
         </Icon.TabBarItem>
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'practice'}
@@ -40,11 +42,11 @@ class TabBar extends React.Component {
             Actions.practice();
           }}
           >
-          <View style={styles.tabContent}><Text>Assess Tab</Text></View>
+          <View />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'mock'}
-          title="Mock Practice"
+          title="Mock"
           iconName="ios-timer-outline"
           selectedIconName="ios-timer"
           onPress={() => {
@@ -52,11 +54,11 @@ class TabBar extends React.Component {
             Actions.mock();
           }}
           >
-          <View style={styles.tabContent}><Text>Progress Tab</Text></View>
+          <View />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'progress'}
-          title="My Progress"
+          title="Progress"
           iconName="ios-trending-up-outline"
           selectedIconName="ios-trending-up"
           onPress={() => {
@@ -64,11 +66,11 @@ class TabBar extends React.Component {
             Actions.progress();
           }}
           >
-          <View style={styles.tabContent}><Text>Progress Tab</Text></View>
+          <View />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'profile'}
-          title="My Profile"
+          title="Profile"
           iconName="ios-contact-outline"
           selectedIconName="ios-contact"
           onPress={() => {
@@ -76,7 +78,7 @@ class TabBar extends React.Component {
             Actions.profile();
           }}
           >
-          <View style={styles.tabContent}><Text>Profile Tab</Text></View>
+          <View />
         </Icon.TabBarItem>
       </TabBarIOS>
     );

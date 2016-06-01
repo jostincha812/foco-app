@@ -12,7 +12,8 @@ export default styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "600"
   },
-  navigator: {
-    flex: 1
-  }
+  subtitle: {
+    fontSize: 16,
+    fontWeight: "200"
+  },
 });

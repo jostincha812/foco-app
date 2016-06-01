@@ -7,11 +7,11 @@ import styles from '../styles'
 class StudyHome extends React.Component {
   render() {
     const gotoSection = () => Actions.studySection({section: 'france'});
-
+    console.log('here');
     return (
       <View style={styles.container}>
-        <Text style={styles.title} onPress={gotoSection}>
-          Study
+        <Text style={styles.subtitle} onPress={gotoSection}>
+          Study Home
         </Text>
       </View>
     );
