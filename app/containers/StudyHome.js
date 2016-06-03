@@ -7,7 +7,7 @@ import styles from '../styles'
 class StudyHome extends React.Component {
   render() {
     const gotoStudySection = () => {
-      Actions.study({section: 'france'});
+      Actions.study_1({section: 'france'});
       console.log('study::france');
     }
 

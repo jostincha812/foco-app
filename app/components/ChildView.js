@@ -9,7 +9,7 @@ class ChildView extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          Mock Exam
+          Child View
         </Text>
       </View>
     );

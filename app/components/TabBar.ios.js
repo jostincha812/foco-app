@@ -19,6 +19,11 @@ class TabBar extends React.Component {
   }
 
   render() {
+    const gotoStudySection = () => {
+      Actions.study_1({section: 'france'});
+      console.log('study::france');
+    }
+
     return (
       <TabBarIOS barTintColor={theme.NAVBG} tintColor={theme.PRIMARY}>
         <Icon.TabBarItem
@@ -29,9 +34,12 @@ class TabBar extends React.Component {
           onPress={() => {
             this.setState({ selectedTab: 'study' });
             Actions.study();
-          }}
-          >
-          <StudyHome />
+          }}>
+          <View style={styles.container}>
+            <Text style={styles.title} onPress={gotoStudySection}>
+              Study Home {this.props.section}
+            </Text>
+          </View>
         </Icon.TabBarItem>
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'practice'}
@@ -60,8 +68,8 @@ class TabBar extends React.Component {
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'progress'}
           title="Progress"
-          iconName="ios-trending-up-outline"
-          selectedIconName="ios-trending-up"
+          iconName="ios-stats-outline"
+          selectedIconName="ios-stats"
           onPress={() => {
             this.setState({ selectedTab: 'progress' });
             Actions.progress();

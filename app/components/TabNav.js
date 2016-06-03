@@ -31,6 +31,12 @@ class TabNav extends React.Component {
   }
 
   render() {
+    const gotoStudySection = () => {
+      Actions.study_1({section: 'france'});
+      console.log('--- study::france ---');
+      console.log(this.props);
+    }
+
     return (
       <TabNavigator>
         <TabNavigator.Item
@@ -44,7 +50,11 @@ class TabNav extends React.Component {
             this.setState({ selectedTab: 'study' });
             Actions.study();
           }}>
-          <View />
+          <View style={styles.container}>
+            <Text style={styles.title} onPress={gotoStudySection}>
+              Study Home
+            </Text>
+          </View>
         </TabNavigator.Item>
 
         <TabNavigator.Item
