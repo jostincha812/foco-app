@@ -52,8 +52,8 @@ class TabNav extends React.Component {
           title="Practice"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => this.tabIcon("paper",false)}
-          renderSelectedIcon={() => this.tabIcon("paper",true)}
+          renderIcon={() => this.tabIcon("list-box",false)}
+          renderSelectedIcon={() => this.tabIcon("list-box",true)}
           onPress={() => {
             this.setState({ selectedTab: 'practice' });
             Actions.practice();
@@ -66,8 +66,8 @@ class TabNav extends React.Component {
           title="Mock"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => this.tabIcon("timer",false)}
-          renderSelectedIcon={() => this.tabIcon("timer",true)}
+          renderIcon={() => this.tabIcon("stopwatch",false)}
+          renderSelectedIcon={() => this.tabIcon("stopwatch",true)}
           onPress={() => {
             this.setState({ selectedTab: 'mock' });
             Actions.mock();
@@ -80,8 +80,8 @@ class TabNav extends React.Component {
           title="My Progress"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => this.tabIcon("trending-up",false)}
-          renderSelectedIcon={() => this.tabIcon("trending-up",true)}
+          renderIcon={() => this.tabIcon("stats",false)}
+          renderSelectedIcon={() => this.tabIcon("stats",true)}
           onPress={() => {
             this.setState({ selectedTab: 'progress' });
             Actions.progress();
