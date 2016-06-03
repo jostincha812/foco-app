@@ -28,6 +28,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BEFEB71512CD461D829975D0 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48ACC64052CF49C5AE4EBAE4 /* EvilIcons.ttf */; };
 		C09C160971BF4D6E9E6AE6B9 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D31C462C46C04ED2A52B18BB /* libRNVectorIcons.a */; };
+		E795F9871D01676C0046FDB9 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E795F9861D01676C0046FDB9 /* Ionicons.ttf */; };
 		EA9ECBE8BF3C417795F2D49F /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C840EFC28EC4ABDB3575FC1 /* MaterialIcons.ttf */; };
 		FEC9B0A0005D4B828CB84F4F /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C2E4E8D34B45D5AE7A1F5C /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
@@ -149,6 +150,7 @@
 		B911824CB3DF430AB8F0B9CC /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		B9C2E4E8D34B45D5AE7A1F5C /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		D31C462C46C04ED2A52B18BB /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		E795F9861D01676C0046FDB9 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		FB19FEC8FC9B4110B986B31C /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -335,6 +337,7 @@
 		854E66AA7A4B4474AA2B6B3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E795F9861D01676C0046FDB9 /* Ionicons.ttf */,
 				B911824CB3DF430AB8F0B9CC /* Entypo.ttf */,
 				48ACC64052CF49C5AE4EBAE4 /* EvilIcons.ttf */,
 				B9C2E4E8D34B45D5AE7A1F5C /* FontAwesome.ttf */,
@@ -565,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E795F9871D01676C0046FDB9 /* Ionicons.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7056E51DBFF9442A9F3C7C77 /* Entypo.ttf in Resources */,
