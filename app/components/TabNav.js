@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, Platform } from 'react';
 import { View, Text, Image, StyleSheet} from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -19,18 +19,18 @@ class TabNav extends React.Component {
     };
   }
 
-  render() {
-    const studyIcon = <Icon name="ios-book-outline" size={C.ICON_SIZE} color={theme.INACTIVE} />;
-    const studyFilledIcon = <Icon name="ios-book" size={C.ICON_SIZE} color={theme.PRIMARY} />;
-    const practiceIcon = <Icon name="ios-paper-outline" size={C.ICON_SIZE} color={theme.INACTIVE} />;
-    const practiceFilledIcon = <Icon name="ios-paper" size={C.ICON_SIZE} color={theme.PRIMARY} />;
-    const mockIcon = <Icon name="ios-timer-outline" size={C.ICON_SIZE} color={theme.INACTIVE} />;
-    const mockFilledIcon = <Icon name="ios-timer" size={C.ICON_SIZE} color={theme.PRIMARY} />;
-    const progressIcon = <Icon name="ios-trending-up-outline" size={C.ICON_SIZE} color={theme.INACTIVE} />;
-    const progressFilledIcon = <Icon name="ios-trending-up" size={C.ICON_SIZE} color={theme.PRIMARY} />;
-    const profileIcon = <Icon name="ios-contact-outline" size={C.ICON_SIZE} color={theme.INACTIVE} />;
-    const profileFilledIcon = <Icon name="ios-contact" size={C.ICON_SIZE} color={theme.PRIMARY} />;
+  tabIcon(name, filled) {
+    var os = "ios-";
+    var outline = filled? "" : "-outline";
+    // if (Platform.OS === 'android') {
+    //   os = "md-"
+    //   outline = "";
+    // }
+    var s = os + name + outline;
+    return <Icon name={s} size={C.TAB_ICON_SIZE} style={filled? styles.tabIconSelected : styles.tabIcon} />;
+  }
 
+  render() {
     return (
       <TabNavigator>
         <TabNavigator.Item
@@ -38,8 +38,8 @@ class TabNav extends React.Component {
           title="Study"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => studyIcon}
-          renderSelectedIcon={() => studyFilledIcon}
+          renderIcon={() => this.tabIcon("book",false)}
+          renderSelectedIcon={() => this.tabIcon("book",true)}
           onPress={() => {
             this.setState({ selectedTab: 'study' });
             Actions.study();
@@ -52,8 +52,8 @@ class TabNav extends React.Component {
           title="Practice"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => practiceIcon}
-          renderSelectedIcon={() => practiceFilledIcon}
+          renderIcon={() => this.tabIcon("paper",false)}
+          renderSelectedIcon={() => this.tabIcon("paper",true)}
           onPress={() => {
             this.setState({ selectedTab: 'practice' });
             Actions.practice();
@@ -66,8 +66,8 @@ class TabNav extends React.Component {
           title="Mock"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => mockIcon}
-          renderSelectedIcon={() => mockFilledIcon}
+          renderIcon={() => this.tabIcon("timer",false)}
+          renderSelectedIcon={() => this.tabIcon("timer",true)}
           onPress={() => {
             this.setState({ selectedTab: 'mock' });
             Actions.mock();
@@ -80,8 +80,8 @@ class TabNav extends React.Component {
           title="My Progress"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => progressIcon}
-          renderSelectedIcon={() => progressFilledIcon}
+          renderIcon={() => this.tabIcon("trending-up",false)}
+          renderSelectedIcon={() => this.tabIcon("trending-up",true)}
           onPress={() => {
             this.setState({ selectedTab: 'progress' });
             Actions.progress();
@@ -94,8 +94,8 @@ class TabNav extends React.Component {
           title="My Profile"
           titleStyle={styles.tabTitle}
           selectedTitleStyle={styles.tabTitleSelected}
-          renderIcon={() => profileIcon}
-          renderSelectedIcon={() => profileFilledIcon}
+          renderIcon={() => this.tabIcon("contact",false)}
+          renderSelectedIcon={() => this.tabIcon("contact",true)}
           onPress={() => {
             this.setState({ selectedTab: 'profile' });
             Actions.profile();

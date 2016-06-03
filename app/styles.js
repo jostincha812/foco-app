@@ -24,8 +24,15 @@ export default styles = StyleSheet.create({
   },
   tabTitleSelected: {
     color: "#D35400",
+  },
+  tabIcon: {
+    color: "#AAA",
+    paddingBottom:1
+  },
+  tabIconSelected: {
+    color: "#D35400",
+    paddingBottom:1
   }
-
 });
 
 const theme = {
