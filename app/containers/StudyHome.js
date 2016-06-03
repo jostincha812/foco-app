@@ -8,7 +8,7 @@ class StudyHome extends React.Component {
   render() {
     const gotoStudySection = () => {
       Actions.study({section: 'france'});
-      console.log('Study::france');
+      console.log('study::france');
     }
 
     return (
