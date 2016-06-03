@@ -1,2 +1,7 @@
-export const LEVEL_2 = 'LEVEL_2';
-export const LEVEL_3 = 'LEVEL_3';
+const C = {
+  WSET_2: 'WSET_2',
+  WSET_3: 'WSET_3',
+  ICON_SIZE: 28,
+}
+
+export default C;

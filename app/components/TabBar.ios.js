@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet, TabBarIOS} from 'react-native';
+import { View, Text, TabBarIOS} from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import styles, { theme } from '../styles';
+import StudyHome from '../containers/StudyHome';
 
 const propTypes = {
   selectedTab: PropTypes.string
@@ -17,7 +20,7 @@ class TabBar extends React.Component {
 
   render() {
     return (
-      <TabBarIOS>
+      <TabBarIOS barTintColor={theme.NAVBG} tintColor={theme.PRIMARY}>
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'study'}
           title="Study"
@@ -28,9 +31,7 @@ class TabBar extends React.Component {
             Actions.study();
           }}
           >
-          <View style={styles.container}>
-            <Text style={styles.title}>Study Tab</Text>
-          </View>
+          <StudyHome />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'practice'}
