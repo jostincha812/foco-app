@@ -10,27 +10,29 @@ const { JumpToAction } = NavigationReducer.TabsReducer;
 import C from '../../constants';
 import styles from '../../styles';
 
-// import Feed from '../Feed';
+import StudyHome from '../StudyTab';
+import PracticeHome from '../PracticeTab';
+import MockHome from '../MockTab';
+import ProgressHome from '../ProgressTab';
+import ProfileHome from '../ProfileTab';
 
 class ApplicationTabs extends Component {
 	_renderTabContent(tab) {
-		var s = "";
 		switch (tab.key) {
-			case 'study': s = 'book'; break;
-			case 'practice': s = 'paper'; break;
-			case 'mock': s = 'timer'; break;
-			case 'progress': s = 'stats'; break;
-			case 'profile': s = 'contact'; break;
+			case 'study': return <StudyHome />;
+			case 'practice': return <PracticeHome />;
+			case 'mock': return <MockHome />;
+			case 'progress': return <ProgressHome />;
+			case 'profile': return <ProfileHome />;
 			default:
-				s = 'help';
+				return (
+					<View style={[styles.container]} >
+						<Text style={styles.title}>
+							Undefined
+						</Text>
+					</View>
+				);
 		}
-		return (
-			<View style={[styles.container]} >
-				<Text style={styles.title}>
-					{s}
-				</Text>
-			</View>
-		);
 	}
 
 	_tabIcon(tab, filled) {
