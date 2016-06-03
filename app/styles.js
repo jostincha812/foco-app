@@ -20,6 +20,7 @@ export default styles = StyleSheet.create({
   },
   tabTitle: {
     color: "#AAA",
+    height: 0
   },
   tabTitleSelected: {
     color: "#D35400",
