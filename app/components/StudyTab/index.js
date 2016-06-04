@@ -15,12 +15,12 @@ import SectionDetails from './SectionDetails';
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
-class StudyHome extends Component {
+class StudyTab extends Component {
 	render() {
 		return (
 			<View />
 		);
-		
+
 		return (
 			<NavigationCardStack
 				direction={'horizontal'}
@@ -136,7 +136,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
-		navigation: state.get('study')
+		navigation: state.get('studyNavigation')
 	};
 }
 
@@ -148,4 +148,4 @@ export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatc
 			}));
 		}
 	});
-})(StudyHome);
+})(StudyTab);

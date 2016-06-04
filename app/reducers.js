@@ -2,7 +2,7 @@ import { combineReducers } from 'redux-immutable';
 
 import globalNavigation from './components/GlobalNavigation/reducer';
 import tabsNavigation from './components/ApplicationTabs/reducer';
-// import studyNavigation from './components/StudyTab/reducer';
+import studyNavigation from './components/StudyTab/reducer';
 
 const scopeNavigationReducer = (reducer, scopeName) => {
   return (state, action) => {
@@ -17,7 +17,7 @@ const scopeNavigationReducer = (reducer, scopeName) => {
 const applicationReducers = {
   globalNavigation: scopeNavigationReducer(globalNavigation, 'global'),
   tabsNavigation: scopeNavigationReducer(tabsNavigation, 'tabs'),
-  // studyNavigation: scopeNavigationReducer(studyNavigation, 'study')
+  studyNavigation: scopeNavigationReducer(studyNavigation, 'study')
 };
 
 export default function createReducer() {

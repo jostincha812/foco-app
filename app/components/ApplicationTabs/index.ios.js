@@ -10,7 +10,7 @@ const { JumpToAction } = NavigationReducer.TabsReducer;
 import C from '../../constants';
 import styles from '../../styles';
 
-// import StudyHome from '../StudyTab';
+import StudyTab from '../StudyTab';
 import PracticeHome from '../PracticeTab';
 import MockHome from '../MockTab';
 import ProgressHome from '../ProgressTab';
@@ -19,7 +19,7 @@ import ProfileHome from '../ProfileTab';
 class ApplicationTabs extends Component {
 	_renderTabContent(tab) {
 		switch (tab.key) {
-			case 'study': return <View />;
+			case 'study': return <StudyTab />;
 			case 'practice': return <PracticeHome />;
 			case 'mock': return <MockHome />;
 			case 'progress': return <ProgressHome />;
@@ -36,8 +36,7 @@ class ApplicationTabs extends Component {
 	}
 
 	_tabIcon(tab, filled) {
-		var s = 'help';
-
+		var s = '';
 		switch (tab.key) {
 			case 'study': s = 'book'; break;
 			case 'practice': s = 'paper'; break;
@@ -91,9 +90,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-	console.log(state);
 	return {
-		// needs to be the same key as reducers.js
+		// needs to be the same key as nav reducer defined in reducers.js
 		navigation: state.get('tabsNavigation')
 	};
 }
