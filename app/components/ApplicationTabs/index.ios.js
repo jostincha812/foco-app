@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Text, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import TabNavigator from 'react-native-tab-navigator';
 
 const { Reducer: NavigationReducer } = NavigationExperimental;
@@ -51,21 +51,19 @@ class ApplicationTabs extends Component {
 		s = "ios-" + s + (filled?"":"-outline");
 		// android
 		// s = "md-" + s;
-		console.log("icon=",s);
-
-		return <Icon name={s} size={C.TAB_ICON_SIZE} style={filled? styles.tabIconSelected : styles.tabIcon} />;
+		return i = <Icon name={s} size={C.TAB_ICON_SIZE} style={filled? styles.tabIconSelected : styles.tabIcon} />;
 	}
 
 	render() {
 		const children = this.props.navigation.children.map( (tab, i) => {
-			// renderIcon={() => this._tabIcon(tab,false)}
-			// renderSelectedIcon={() => this._tabIcon(tab,true)}
 			return (
 				<TabNavigator.Item
 						key={tab.key}
 						title={tab.title}
 						titleStyle={styles.tabTitle}
 						selectedTitleStyle={styles.tabTitleSelected}
+						renderIcon={() => this._tabIcon(tab,false)}
+						renderSelectedIcon={() => this._tabIcon(tab,true)}
 						onPress={
 							() => this.props.onNavigate(JumpToAction(i))
 						}

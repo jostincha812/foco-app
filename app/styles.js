@@ -40,7 +40,7 @@ export default styles = StyleSheet.create({
   },
   tabTitle: {
     color: theme.NAVCOLOR,
-    // height: 0
+    height: 0
   },
   tabTitleSelected: {
     color: "#D35400",
