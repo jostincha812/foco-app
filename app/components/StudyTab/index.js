@@ -5,7 +5,7 @@
 */
 
 import React, { Component } from 'react';
-import { View, Platform, NavigationExperimental, TouchableHighlight, Image } from 'react-native';
+import { View, Text, Platform, NavigationExperimental, TouchableHighlight, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from '../../styles';
@@ -17,10 +17,6 @@ const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
 class StudyTab extends Component {
 	render() {
-		return (
-			<View />
-		);
-
 		return (
 			<NavigationCardStack
 				direction={'horizontal'}
@@ -35,7 +31,7 @@ class StudyTab extends Component {
 
 	_renderHeader(props) {
 		const showHeader = props.scene.navigationState.title &&
-			(Platform.OS === 'ios' || props.scene.navigationState.key === 'details');
+			(Platform.OS === 'ios' || props.scene.navigationState.key === 'sections');
 
 		if (showHeader) {
 			return (
@@ -70,7 +66,7 @@ class StudyTab extends Component {
 	}
 
 	_renderRightComponent(props) {
-		if (props.scene.navigationState.key === 'sectionsList') {
+		if (props.scene.navigationState.key === 'sections') {
 			return (
 				<TouchableHighlight
 					style={styles.buttonContainer}
@@ -86,11 +82,13 @@ class StudyTab extends Component {
 	}
 
 	_renderScene(props) {
-		if (props.scene.navigationState.key === 'sectionsList') {
+		console.log("StudyTab::_renderScene::",props.scene.navigationState.key);
+		if (props.scene.navigationState.key === 'sections') {
 			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			return (
-				<View style={{ marginTop }}>
-					<Items onSelectItem={this._onSelectItem.bind(this)} />
+				<View style={[marginTop , styles.container]}>
+					<Text>Sections scene</Text>
+					<Sections onSelectItem={this._onSelectItem.bind(this)} />
 				</View>
 			);
 		}
@@ -98,7 +96,7 @@ class StudyTab extends Component {
 		if (props.scene.navigationState.key === 'sectionDetails') {
 			return (
 				<View style={{ marginTop: NavigationHeader.HEIGHT }}>
-					<ItemDetails />
+					<SectionDetails />
 				</View>
 			);
 		}
