@@ -9,7 +9,7 @@ class SectionDetails extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          Details View
+          {this.props.section.description}
         </Text>
       </View>
     );

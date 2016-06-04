@@ -66,60 +66,66 @@ class StudyTab extends Component {
 	}
 
 	_renderRightComponent(props) {
-		if (props.scene.navigationState.key === 'sections') {
-			return (
-				<TouchableHighlight
-					style={styles.buttonContainer}
-					onPress={this._onAddItem.bind(this)}>
-					<Image
-						style={styles.button}
-						source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}} />
-				</TouchableHighlight>
-			);
-		}
-
 		return null;
 	}
+	// // // sample code -- not used
+	// _renderRightComponent(props) {
+	// 	if (props.scene.navigationState.key === 'sections') {
+	// 		return (
+	// 			<TouchableHighlight
+	// 				style={styles.buttonContainer}
+	// 				onPress={this._onAddItem.bind(this)}>
+	// 				<Image
+	// 					style={styles.button}
+	// 					source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}} />
+	// 			</TouchableHighlight>
+	// 		);
+	// 	}
+	//
+	// 	return null;
+	// }
 
 	_renderScene(props) {
 		console.log("StudyTab::_renderScene::",props.scene.navigationState.key);
 		if (props.scene.navigationState.key === 'sections') {
 			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			return (
-				<View style={[marginTop , styles.container]}>
-					<Text>Sections scene</Text>
+				<View style={[{marginTop: marginTop} , styles.container]}>
 					<Sections onSelectItem={this._onSelectItem.bind(this)} />
 				</View>
 			);
 		}
 
 		if (props.scene.navigationState.key === 'sectionDetails') {
+			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			return (
-				<View style={{ marginTop: NavigationHeader.HEIGHT }}>
-					<SectionDetails />
+				<View style={{ marginTop: marginTop }}>
+					<SectionDetails section={props.scene.navigationState.section} />
 				</View>
 			);
 		}
 	}
 
-	_onAddItem() {
-		this.props.onNavigate({
-			type: 'push',
-			scope: 'global',
-			route: {
-				key: 'new',
-				title: 'Main Screen',
-				showBackButton: true
-			}
-		});
-	}
+	// // sample code -- not used
+	// _onAddItem() {
+	// 	this.props.onNavigate({
+	// 		type: 'push',
+	// 		scope: 'global',
+	// 		route: {
+	// 			key: 'new',
+	// 			title: 'Main Screen',
+	// 			showBackButton: true
+	// 		}
+	// 	});
+	// }
 
-	_onSelectItem() {
+	_onSelectItem(data) {
 		this.props.onNavigate({
 			type: 'push',
 			route: {
 				key: 'sectionDetails',
-				title: 'Section details',
+				title: data.title,
+				section: data,
 				showBackButton: true
 			}
 		});
