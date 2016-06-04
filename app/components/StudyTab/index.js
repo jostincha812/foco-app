@@ -5,7 +5,7 @@
 */
 
 import React, { Component } from 'react';
-import { View, Text, Platform, NavigationExperimental, TouchableHighlight, Image } from 'react-native';
+import { View, Platform, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from '../../styles';

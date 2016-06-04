@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, NavigationExperimental } from 'react-native';
+import { NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TabNavigator from 'react-native-tab-navigator';

@@ -1,6 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { View, Text, ScrollView, TouchableHighlight } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../../styles';
@@ -18,12 +17,13 @@ class Sections extends React.Component {
 			<View style={styles.cell} key={s.key}>
 				<TouchableHighlight onPress={() => this.props.onSelectItem(s)}>
           <View>
-							<Text style={styles.title} numberOfLines={2}>
-								{s.title}
-							</Text>
-							<Text numberOfLines={1}>
-								{s.description}
-							</Text>
+            {s.icon}
+						<Text style={styles.title} numberOfLines={2}>
+							{s.title}
+						</Text>
+						<Text numberOfLines={1}>
+							{s.description}
+						</Text>
           </View>
 				</TouchableHighlight>
 			</View>

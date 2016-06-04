@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, NavigationExperimental } from 'react-native';
+import { View, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 
