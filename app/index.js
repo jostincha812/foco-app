@@ -3,15 +3,15 @@ import { View } from 'react-native';
 import { Router, Scene, Reducer, TabNavigator } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import ScrollTabBar from './app/components/ScrollTabBar';
-import TabBar from './app/components/TabBar';
-import TabNav from './app/components/TabNav';
-import ChildView from './app/components/ChildView';
-import StudyHome from './app/containers/StudyHome';
-import PracticeHome from './app/containers/PracticeHome';
-import MockHome from './app/containers/MockHome';
-import ProgressHome from './app/containers/ProgressHome';
-import ProfileHome from './app/containers/ProfileHome';
+import ScrollTabBar from './components/ScrollTabBar';
+import TabBar from './components/TabBar';
+import TabNav from './components/TabNav';
+import ChildView from './components/ChildView';
+import StudyHome from './components/StudyHome';
+import PracticeHome from './components/PracticeHome';
+import MockHome from './components/MockHome';
+import ProgressHome from './components/ProgressHome';
+import ProfileHome from './components/ProfileHome';
 
 const reducerCreate = params=>{
     const defaultReducer = Reducer(params);

@@ -7,6 +7,12 @@ import TabNavigator from 'react-native-tab-navigator';
 import styles, { theme } from '../styles';
 import C from '../constants';
 
+import StudyHome from './StudyHome';
+import PracticeHome from './PracticeHome';
+import MockHome from './MockHome';
+import ProgressHome from './ProgressHome';
+import ProfileHome from './ProfileHome'
+
 const propTypes = {
   selectedTab: PropTypes.string
 };
@@ -50,11 +56,7 @@ class TabNav extends React.Component {
             this.setState({ selectedTab: 'study' });
             Actions.study();
           }}>
-          <View style={styles.container}>
-            <Text style={styles.title} onPress={gotoStudySection}>
-              Study Home
-            </Text>
-          </View>
+          <StudyHome style={styles.container} />
         </TabNavigator.Item>
 
         <TabNavigator.Item

@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles, { theme } from '../styles';
-import StudyHome from '../containers/StudyHome';
+import StudyHome from '../components/StudyHome';
 
 const propTypes = {
   selectedTab: PropTypes.string
