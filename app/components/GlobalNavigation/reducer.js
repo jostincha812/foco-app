@@ -20,7 +20,7 @@ const globalNavigation = NavigationReducer.StackReducer({
 		index: 0,
 		children: [
 			{
-				key: 'applicationTabs',
+				key: 'tabs',
 				index: 0
 			},
 		],

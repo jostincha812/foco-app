@@ -32,7 +32,7 @@ class GlobalNavigation extends Component {
 	}
 
 	_renderScene(props) {
-		if (props.scene.navigationState.key === 'applicationTabs') {
+		if (props.scene.navigationState.key === 'tabs') {
 			return (
 				<View style={styles.navContainer}>
 					<ApplicationTabs />
@@ -68,6 +68,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
+		// needs to be the same key as reducers.js
 		navigation: state.get('globalNavigation')
 	};
 }

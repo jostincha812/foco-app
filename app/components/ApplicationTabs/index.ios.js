@@ -10,7 +10,7 @@ const { JumpToAction } = NavigationReducer.TabsReducer;
 import C from '../../constants';
 import styles from '../../styles';
 
-import StudyHome from '../StudyTab';
+// import StudyHome from '../StudyTab';
 import PracticeHome from '../PracticeTab';
 import MockHome from '../MockTab';
 import ProgressHome from '../ProgressTab';
@@ -19,7 +19,7 @@ import ProfileHome from '../ProfileTab';
 class ApplicationTabs extends Component {
 	_renderTabContent(tab) {
 		switch (tab.key) {
-			case 'study': return <StudyHome />;
+			case 'study': return <View />;
 			case 'practice': return <PracticeHome />;
 			case 'mock': return <MockHome />;
 			case 'progress': return <ProgressHome />;
@@ -58,7 +58,6 @@ class ApplicationTabs extends Component {
 	}
 
 	render() {
-		// renderSelectedIcon={() => this._tabIcon(tab,true)}
 		const children = this.props.navigation.children.map( (tab, i) => {
 			// renderIcon={() => this._tabIcon(tab,false)}
 			// renderSelectedIcon={() => this._tabIcon(tab,true)}
@@ -92,8 +91,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+	console.log(state);
 	return {
-		navigation: state.get('tabs')
+		// needs to be the same key as reducers.js
+		navigation: state.get('tabsNavigation')
 	};
 }
 
