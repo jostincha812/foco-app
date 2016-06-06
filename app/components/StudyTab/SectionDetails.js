@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 
 import styles from '../../styles';
 
 class SectionDetails extends React.Component {
   render() {
+    const s = this.props.data;
+
+    const act = {
+      key: 'mcActivity',
+      title: 'test ' + s.title,
+    }
+
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
-          {this.props.section.description}
-        </Text>
+        <TouchableHighlight onPress={() => this.props.onSelectActivity(act)}>
+          <Text style={[styles.card, styles.title]}>
+            {s.description}
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }

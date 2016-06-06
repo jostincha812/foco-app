@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import styles, { theme } from '../../styles';
 import Sections from './Sections';
 import SectionDetails from './SectionDetails';
+import MCActivity from './MCActivity';
 
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
@@ -86,9 +87,9 @@ class StudyTab extends Component {
 	// }
 
 	_renderScene(props) {
-		console.log("StudyTab::_renderScene::",props.scene.navigationState.key);
+		const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
+
 		if (props.scene.navigationState.key === 'sections') {
-			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			return (
 				<View style={[{marginTop: marginTop} , styles.container]}>
 					<Sections onSelectItem={this._onSelectItem.bind(this)} />
@@ -97,10 +98,17 @@ class StudyTab extends Component {
 		}
 
 		if (props.scene.navigationState.key === 'sectionDetails') {
-			const marginTop = Platform.OS === 'ios' ? NavigationHeader.HEIGHT : 0;
 			return (
 				<View style={{ marginTop: marginTop }}>
-					<SectionDetails section={props.scene.navigationState.section} />
+					<SectionDetails onSelectActivity={this._onSelectActivity.bind(this)} data={props.scene.navigationState.data} />
+				</View>
+			);
+		}
+
+		if (props.scene.navigationState.key === 'mcActivity') {
+			return (
+				<View style={{ marginTop: marginTop }}>
+					<MCActivity data={props.scene.navigationState.data} />
 				</View>
 			);
 		}
@@ -125,7 +133,19 @@ class StudyTab extends Component {
 			route: {
 				key: 'sectionDetails',
 				title: data.title,
-				section: data,
+				data: data,
+				showBackButton: true
+			}
+		});
+	}
+
+	_onSelectActivity(data) {
+		this.props.onNavigate({
+			type: 'push',
+			route: {
+				key: 'mcActivity',
+				title: data.title,
+				data: data,
 				showBackButton: true
 			}
 		});
