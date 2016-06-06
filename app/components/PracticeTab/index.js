@@ -6,7 +6,7 @@ import styles from '../../styles'
 class PracticeHome extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.page}>
         <Text style={styles.title}>
           Practice Home
         </Text>

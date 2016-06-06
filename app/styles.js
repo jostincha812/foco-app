@@ -1,4 +1,4 @@
-import { StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 
 // http://www.flatuicolorpicker.com/
 
@@ -10,6 +10,8 @@ const theme = {
   NAVBG: "#EEEEEE",       // gray - gallery
   NAVCOLOR: "#AAA",
   INACTIVE: "#AAA",
+  BORDER: "#CDCDCD",
+  CARDBG: "#FFF",
 }
 
 export default styles = StyleSheet.create({
@@ -27,8 +29,24 @@ export default styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  page: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  card: {
+    margin: 12,
+    marginBottom: 0,
+    padding: 24,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: theme.BORDER,
+    backgroundColor: theme.CARDBG,
+    shadowColor: theme.INACTIVE,
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    shadowOffset: {width: 2, height: 4},
   },
   title: {
     fontSize: 22,

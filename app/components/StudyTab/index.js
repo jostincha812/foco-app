@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { View, Platform, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 
-import styles from '../../styles';
+import styles, { theme } from '../../styles';
 import Sections from './Sections';
 import SectionDetails from './SectionDetails';
 

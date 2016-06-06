@@ -14,7 +14,7 @@ const data = [
 class Sections extends React.Component {
   render() {
     const sections = (s) => (
-			<View style={styles.cell} key={s.key}>
+			<View style={styles.card} key={s.key}>
 				<TouchableHighlight onPress={() => this.props.onSelectItem(s)}>
           <View>
             {s.icon}
@@ -29,7 +29,7 @@ class Sections extends React.Component {
 			</View>
 		);
 		return (
-			<ScrollView automaticallyAdjustContentInsets={true}>
+			<ScrollView style={styles.container} automaticallyAdjustContentInsets={true}>
 				{data.map(sections)}
 			</ScrollView>
 		);

@@ -34,3 +34,6 @@ DerivedData
 # Carthage/Checkouts
 
 Carthage/Build
+
+# Buck
+buck-out
