@@ -97,7 +97,7 @@ class StudyTab extends Component {
 					<ScrollView style={styles.container} automaticallyAdjustContentInsets={true}>
 						{StudySections.map((s) => {
 							return (
-								<Section data={s} onSelectItem={this._onSelectItem.bind(this)} />
+								<Section data={s} onSelectItem={this._onSelectItem.bind(this)} key={s.key} />
 							);
 						}
 						)}

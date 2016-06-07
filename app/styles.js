@@ -38,7 +38,8 @@ export default styles = StyleSheet.create({
   },
   card: {
     margin: 12,
-    marginBottom: 0,
+    marginTop: 6,
+    marginBottom: 6,
     padding: 24,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: theme.BORDER,

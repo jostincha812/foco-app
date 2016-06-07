@@ -9,7 +9,7 @@ const StudySections = [
   { key:'es_pt', title:'Spain & Portugal', chapters:'32 - 33', extras:'(excludes Port)' },
   { key:'na', title:'North America', chapters:'34 - 38' },
   { key:'sa', title:'South America', chapters:'39 - 41' },
-  { key:'ap', title:'Australia & New Zealand', chapters:'39 - 41' },
+  { key:'ap', title:'Australia & New Zealand', chapters:'43 - 44' },
   { key:'other', title:'Other Regions', chapters:'25, 26, 42' },
   { key:'sp_ft', title:'Sparkling & Fortified', chapters:'45 - 50' },
   { key:'spirits', title:'Spirits', chapters:'51 - 59' },
