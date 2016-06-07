@@ -1,4 +1,7 @@
 const StudySections = [
+  { key:'viniculture', title:'Grapes & Wine Making', chapters:'1 - 7' },
+  { key:'consumer', title:'Food & Wine', chapters:'8 - 10' },
+  { key:'law', title:'Wine Laws', chapters:'11 - 12' },
   { key:'fr1', title:'France I', chapters:'13 - 17' },
   { key:'fr2', title:'France II', chapters:'18 - 22' },
   { key:'de_at', title:'Germany & Austria', chapters:'23 - 24'},
@@ -8,9 +11,8 @@ const StudySections = [
   { key:'sa', title:'South America', chapters:'39 - 41' },
   { key:'ap', title:'Australia & New Zealand', chapters:'39 - 41' },
   { key:'other', title:'Other Regions', chapters:'25, 26, 42' },
-  { key:'law', title:'Wine Laws', chapters:'11 - 12' },
-  { key:'viniculture', title:'Grapes & Wine Making', chapters:'1 - 7' },
-  { key:'consumer', title:'Food & Wine', chapters:'8 - 10' },
+  { key:'sp_ft', title:'Sparkling & Fortified', chapters:'45 - 50' },
+  { key:'spirits', title:'Spirits', chapters:'51 - 59' },
 ];
 
 export default StudySections;
