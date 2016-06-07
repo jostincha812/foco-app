@@ -5,13 +5,15 @@
 */
 
 import React, { Component } from 'react';
-import { View, Platform, NavigationExperimental } from 'react-native';
+import { View, ScrollView, Platform, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles, { theme } from '../../styles';
-import Sections from './Sections';
+import Section from './Section';
 import SectionDetails from './SectionDetails';
 import MCActivity from './MCActivity';
+
+import StudySections from '../../data/StudySections';
 
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
@@ -92,7 +94,14 @@ class StudyTab extends Component {
 		if (props.scene.navigationState.key === 'sections') {
 			return (
 				<View style={[{marginTop: marginTop} , styles.container]}>
-					<Sections onSelectItem={this._onSelectItem.bind(this)} />
+					<ScrollView style={styles.container} automaticallyAdjustContentInsets={true}>
+						{StudySections.map((s) => {
+							return (
+								<Section data={s} onSelectItem={this._onSelectItem.bind(this)} />
+							);
+						}
+						)}
+					</ScrollView>
 				</View>
 			);
 		}
