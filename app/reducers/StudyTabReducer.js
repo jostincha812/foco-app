@@ -2,6 +2,12 @@ import ReactNative from 'react-native';
 const { ListView, NavigationExperimental } = ReactNative;
 const { Reducer: NavigationReducer } = NavigationExperimental;
 
+// TODO remove
+import sectionsData from '../data/SectionsData';
+const dataSource = new ListView.DataSource({
+	rowHasChanged: (row1, row2) => row1 !== row2,
+});
+
 const studyNavigation = NavigationReducer.StackReducer({
 	getPushedReducerForAction: (action) => {
 		if (action.type === 'push') {
@@ -18,9 +24,7 @@ const studyNavigation = NavigationReducer.StackReducer({
 				title: 'Study'
 			},
 		],
-		dataSource: new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2,
-    }),
+		dataSource: dataSource.cloneWithRows(sectionsData),
 	},
 });
 

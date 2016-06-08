@@ -13,9 +13,6 @@ import SectionsList from './SectionsList';
 import SectionDetails from './SectionDetails';
 import MCActivity from './MCActivity';
 
-// TODO remove
-import sectionsData from '../../data/SectionsData';
-
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
@@ -155,10 +152,6 @@ class StudyTab extends Component {
 	}
 }
 
-const dataSource = new ListView.DataSource({
-	rowHasChanged: (r1, r2) => r1 !== r2,
-});
-
 function mapDispatchToProps(dispatch) {
 	return {
 		dispatch
@@ -168,7 +161,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 	return {
 		navigation: state.get('studyNavigation'),
-		dataSource: dataSource.cloneWithRows(sectionsData),
+		dataSource: state.get('studyNavigation').dataSource,
 	};
 }
 
