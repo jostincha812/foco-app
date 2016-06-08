@@ -95,7 +95,7 @@ class StudyTab extends Component {
 		if (props.scene.navigationState.key === 'sections') {
 			return (
 				<View style={[{marginTop: marginTop} , styles.container]}>
-					<SectionsList dataSource={props.scene.dataSource} onSelectItem={this._onSelectItem.bind(this)} />
+					<SectionsList dataSource={this.props.dataSource} onSelectItem={this._onSelectItem.bind(this)} />
 				</View>
 			);
 		}
