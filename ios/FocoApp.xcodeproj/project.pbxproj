@@ -23,6 +23,8 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		31DD937DA5574E838337A191 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 364BC037E73842D88F9B0598 /* Zocial.ttf */; };
 		43451FFC4DBC4DFCB9239635 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51CA7D4B296B4A09AE558147 /* Octicons.ttf */; };
+		4FB1EC2F1D07D60A000FAE1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1EC2E1D07D60A000FAE1D /* GoogleService-Info.plist */; };
+		4FB1EC301D07D60A000FAE1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1EC2E1D07D60A000FAE1D /* GoogleService-Info.plist */; };
 		7056E51DBFF9442A9F3C7C77 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B911824CB3DF430AB8F0B9CC /* Entypo.ttf */; };
 		71BFA6B8EEC14480945541C9 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C284F27E71843F7AC24182A /* Foundation.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -143,6 +145,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		364BC037E73842D88F9B0598 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		48ACC64052CF49C5AE4EBAE4 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		4FB1EC2E1D07D60A000FAE1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		51CA7D4B296B4A09AE558147 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -259,6 +262,7 @@
 		13B07FAE1A68108700A75B9A /* FocoApp */ = {
 			isa = PBXGroup;
 			children = (
+				4FB1EC2E1D07D60A000FAE1D /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -561,6 +565,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB1EC301D07D60A000FAE1D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +581,7 @@
 				FEC9B0A0005D4B828CB84F4F /* FontAwesome.ttf in Resources */,
 				71BFA6B8EEC14480945541C9 /* Foundation.ttf in Resources */,
 				EA9ECBE8BF3C417795F2D49F /* MaterialIcons.ttf in Resources */,
+				4FB1EC2F1D07D60A000FAE1D /* GoogleService-Info.plist in Resources */,
 				43451FFC4DBC4DFCB9239635 /* Octicons.ttf in Resources */,
 				31DD937DA5574E838337A191 /* Zocial.ttf in Resources */,
 			);

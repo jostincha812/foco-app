@@ -1,5 +1,5 @@
 import ReactNative from 'react-native';
-const { NavigationExperimental } = ReactNative;
+const { ListView, NavigationExperimental } = ReactNative;
 const { Reducer: NavigationReducer } = NavigationExperimental;
 
 const studyNavigation = NavigationReducer.StackReducer({
@@ -18,6 +18,9 @@ const studyNavigation = NavigationReducer.StackReducer({
 				title: 'Study'
 			},
 		],
+		dataSource: new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    }),
 	},
 });
 

@@ -5,7 +5,7 @@
 */
 
 import React, { Component } from 'react';
-import { View, ScrollView, Platform, NavigationExperimental } from 'react-native';
+import { View, ListView, Platform, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles, { theme } from '../../styles';
@@ -95,7 +95,7 @@ class StudyTab extends Component {
 		if (props.scene.navigationState.key === 'sections') {
 			return (
 				<View style={[{marginTop: marginTop} , styles.container]}>
-					<SectionsList data={sectionsData} onSelectItem={this._onSelectItem.bind(this)} />
+					<SectionsList dataSource={props.scene.dataSource} onSelectItem={this._onSelectItem.bind(this)} />
 				</View>
 			);
 		}
@@ -155,6 +155,10 @@ class StudyTab extends Component {
 	}
 }
 
+const dataSource = new ListView.DataSource({
+	rowHasChanged: (r1, r2) => r1 !== r2,
+});
+
 function mapDispatchToProps(dispatch) {
 	return {
 		dispatch
@@ -163,7 +167,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
-		navigation: state.get('studyNavigation')
+		navigation: state.get('studyNavigation'),
+		dataSource: dataSource.cloneWithRows(sectionsData),
 	};
 }
 
