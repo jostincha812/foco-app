@@ -1,4 +1,4 @@
-const StudySections = [
+const sections = [
   { key:'viniculture', title:'Grapes & Wine Making', chapters:'1 - 7' },
   { key:'consumer', title:'Food & Wine', chapters:'8 - 10' },
   { key:'law', title:'Wine Laws', chapters:'11 - 12' },
@@ -15,4 +15,4 @@ const StudySections = [
   { key:'spirits', title:'Spirits', chapters:'51 - 59' },
 ];
 
-export default StudySections;
+export default sections;

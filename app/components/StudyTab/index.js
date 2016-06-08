@@ -9,11 +9,12 @@ import { View, ScrollView, Platform, NavigationExperimental } from 'react-native
 import { connect } from 'react-redux';
 
 import styles, { theme } from '../../styles';
-import Section from './Section';
+import SectionsList from './SectionsList';
 import SectionDetails from './SectionDetails';
 import MCActivity from './MCActivity';
 
-import StudySections from '../../data/StudySections';
+// TODO remove
+import sectionsData from '../../data/SectionsData';
 
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
@@ -94,21 +95,14 @@ class StudyTab extends Component {
 		if (props.scene.navigationState.key === 'sections') {
 			return (
 				<View style={[{marginTop: marginTop} , styles.container]}>
-					<ScrollView style={styles.container} automaticallyAdjustContentInsets={true}>
-						{StudySections.map((s) => {
-							return (
-								<Section data={s} onSelectItem={this._onSelectItem.bind(this)} key={s.key} />
-							);
-						}
-						)}
-					</ScrollView>
+					<SectionsList data={sectionsData} onSelectItem={this._onSelectItem.bind(this)} />
 				</View>
 			);
 		}
 
 		if (props.scene.navigationState.key === 'sectionDetails') {
 			return (
-				<View style={{ marginTop: marginTop }}>
+				<View style={[{marginTop: marginTop} , styles.container]}>
 					<SectionDetails onSelectActivity={this._onSelectActivity.bind(this)} data={props.scene.navigationState.data} />
 				</View>
 			);
@@ -116,7 +110,7 @@ class StudyTab extends Component {
 
 		if (props.scene.navigationState.key === 'mcActivity') {
 			return (
-				<View style={{ marginTop: marginTop }}>
+				<View style={[{marginTop: marginTop} , styles.container]}>
 					<MCActivity data={props.scene.navigationState.data} />
 				</View>
 			);

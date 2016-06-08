@@ -16,7 +16,7 @@ class SectionDetails extends React.Component {
       <View style={styles.container}>
         <TouchableHighlight onPress={() => this.props.onSelectActivity(act)}>
           <Text style={[styles.card, styles.title]}>
-            {s.description}
+            Chapters {s.chapters} {s.extras}
           </Text>
         </TouchableHighlight>
       </View>
