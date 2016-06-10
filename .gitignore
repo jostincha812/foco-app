@@ -36,4 +36,4 @@ DerivedData
 Carthage/Build
 
 # Buck
-buck-out
+buck-out/
