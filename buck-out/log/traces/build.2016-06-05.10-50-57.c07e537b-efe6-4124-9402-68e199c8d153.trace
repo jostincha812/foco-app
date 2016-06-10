@@ -1,1 +1,0 @@
-[{"cat":"buck","name":"process_name","ph":"M","pid":0,"tid":0,"ts":0,"args":{"name":"buck"}},{"cat":"buck","name":"quickstart","ph":"B","pid":0,"tid":1,"ts":12204200207,"args":{"command_args":"--type ios --dest-dir ."}},{"cat":"buck","name":"quickstart","ph":"E","pid":0,"tid":1,"ts":12207277771,"args":{"command_args":"--type ios --dest-dir .","daemon":"false"}}]

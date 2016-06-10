@@ -1,3 +1,0 @@
-[2016-06-09 22:41:05.413][info ][command:null][tid:01][com.facebook.buck.cli.HangMonitor] HangMonitorAutoStart
-[2016-06-09 22:41:06.857][info ][command:null][tid:01][com.facebook.buck.cli.Main] not enabling process killing on nailgun exit: unknown OS Mac OS X
-[2016-06-09 22:41:07.701][debug][command:null][tid:15][com.martiansoftware.nailgun.NGSession] Waiting for first client to connect
