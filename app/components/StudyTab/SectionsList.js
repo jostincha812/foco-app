@@ -7,16 +7,15 @@ import Section from './Section';
 class SectionsList extends React.Component {
   render() {
     const ds = this.props.dataSource;
-    const onSelectItem = this.props.onSelectItem;
     return (
       <ListView style={styles.container} dataSource={ds} renderRow={this._renderItem.bind(this)} />
     )
   }
 
-// onSelectItem={onSelectItem}
   _renderItem(s) {
+    const onSelectItem = this.props.onSelectItem;
     return (
-      <Section data={s} key={s.key} />
+      <Section data={s} key={s.key} onSelectItem={onSelectItem} />
     );
   }
 }
