@@ -13,10 +13,17 @@ import SectionsList from './SectionsList';
 import SectionDetails from './SectionDetails';
 import MCActivity from './MCActivity';
 
+import { wset3Ref } from '../../configFirebase';
+
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
 class StudyTab extends Component {
+	constructor(props) {
+		super(props);
+		this.appFb = wset3Ref;
+	}
+
 	render() {
 		return (
 			<NavigationCardStack
@@ -128,6 +135,12 @@ class StudyTab extends Component {
 	// }
 
 	_onSelectItem(data) {
+		// this.appFb.child('sections').push({
+		// 	key: data.key,
+		// 	title: data.title,
+		// 	chapters: data.chapters,
+		// });
+
 		this.props.onNavigate({
 			type: 'push',
 			route: {
