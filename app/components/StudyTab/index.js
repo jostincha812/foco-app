@@ -39,7 +39,7 @@ class StudyTab extends Component {
 
 	_renderHeader(props) {
 		const showHeader = props.scene.navigationState.title &&
-			(Platform.OS === 'ios' || props.scene.navigationState.key === 'sections');
+			(Platform.OS === 'ios');
 
 		if (showHeader) {
 			return (
