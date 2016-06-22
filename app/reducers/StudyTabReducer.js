@@ -8,7 +8,7 @@ const dataSource = new ListView.DataSource({
 	rowHasChanged: (row1, row2) => row1 !== row2,
 });
 
-const studyNavigation = NavigationReducer.StackReducer({
+export default studyNavigation = NavigationReducer.StackReducer({
 	getPushedReducerForAction: (action) => {
 		if (action.type === 'push') {
 			return (state) => (state || action.route);
@@ -27,11 +27,3 @@ const studyNavigation = NavigationReducer.StackReducer({
 		dataSource: dataSource.cloneWithRows(sectionsData),
 	},
 });
-
-module.exports = (state, action) => {
-	if (action.scope && action.scope !== 'study') {
-		return state;
-	} else {
-		return studyNavigation(state, action);
-	}
-};
