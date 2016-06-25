@@ -8,12 +8,12 @@ import React, { Component } from 'react';
 import { View, ListView, Platform, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
 
-import styles, { theme } from '../../styles';
-import SectionsList from './SectionsList';
-import SectionDetails from './SectionDetails';
-import MCActivity from './MCActivity';
+import styles, { theme } from '../styles';
+import SectionsList from '../components/SectionsList';
+import SectionDetails from '../components/SectionDetails';
+import MCActivity from '../components/MCActivity';
 
-import { wset3Ref } from '../../configFirebase';
+import { wset3Ref } from '../configFirebase';
 
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
@@ -173,8 +173,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
-		navigation: state.get('studyNavigation'),
-		dataSource: state.get('studyNavigation').dataSource,
+		navigation: state.get('studyTab'),
+		dataSource: state.get('studyTab').dataSource,
 	};
 }
 

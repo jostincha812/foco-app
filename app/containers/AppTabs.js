@@ -7,16 +7,16 @@ import TabNavigator from 'react-native-tab-navigator';
 const { Reducer: NavigationReducer } = NavigationExperimental;
 const { JumpToAction } = NavigationReducer.TabsReducer;
 
-import C from '../../constants';
-import styles from '../../styles';
+import C from '../constants';
+import styles from '../styles';
 
-import StudyTab from '../StudyTab';
-import PracticeHome from '../PracticeTab';
-import MockHome from '../MockTab';
-import ProgressHome from '../ProgressTab';
-import ProfileHome from '../ProfileTab';
+import StudyTab from './StudyTab';
+import PracticeHome from '../components/PracticeTab';
+import MockHome from '../components/MockTab';
+import ProgressHome from '../components/ProgressTab';
+import ProfileHome from '../components/ProfileTab';
 
-class ApplicationTabs extends Component {
+class AppTabs extends Component {
 	_renderTabContent(tab) {
 		switch (tab.key) {
 			case 'study': return <StudyTab />;
@@ -86,14 +86,12 @@ function mapDispatchToProps(dispatch) {
 		dispatch
 	};
 }
-
 function mapStateToProps(state) {
 	return {
 		// needs to be the same key as nav reducer defined in reducers.js
-		navigation: state.get('tabsNavigation')
+		navigation: state.get('appTabs')
 	};
 }
-
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
 	return Object.assign({}, ownProps, stateProps, dispatchProps, {
 		onNavigate: (action) => {
@@ -102,4 +100,4 @@ export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatc
 			}));
 		}
 	});
-})(ApplicationTabs);
+})(AppTabs);

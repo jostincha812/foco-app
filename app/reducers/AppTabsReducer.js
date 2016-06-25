@@ -10,8 +10,8 @@ const tabs = [
   { key: 'profile', title: 'My Profile' }
 ];
 
-export default tabsNavigation = NavigationReducer.TabsReducer({
-	key: 'tabs',
+export default AppTabsReducer = NavigationReducer.TabsReducer({
+	key: 'apptabs',
 	initialIndex: 0,
 	tabReducers: tabs.map(t => (lastRoute) => lastRoute || t),
 });

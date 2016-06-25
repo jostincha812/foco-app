@@ -1,19 +1,14 @@
-/*
- *
- * GlobalNavigation
- *
- */
-
-import React, { Component } from 'react';
+import React from 'react';
 import { View, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
+
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 
-import styles from '../../styles';
-import ApplicationTabs from '../ApplicationTabs';
-// import Tour from '../Tour';
+import styles from '../styles';
+import AppTabs from './AppTabs';
+// import Tour from './Tour';
 
-class GlobalNavigation extends Component {
+class GlobalNavigation extends React.Component {
 	render() {
 		return (
 			<NavigationCardStack
@@ -35,7 +30,7 @@ class GlobalNavigation extends Component {
 		if (props.scene.navigationState.key === 'tabs') {
 			return (
 				<View style={styles.navContainer}>
-					<ApplicationTabs />
+					<AppTabs />
 				</View>
 			);
 		}
@@ -65,14 +60,12 @@ function mapDispatchToProps(dispatch) {
 		dispatch
 	};
 }
-
 function mapStateToProps(state) {
 	return {
 		// needs to be the same key as reducers.js
 		navigation: state.get('globalNavigation')
 	};
 }
-
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
 	return Object.assign({}, dispatchProps, stateProps, {
 		onNavigate: (action) => {

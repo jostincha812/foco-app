@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, ListView, TouchableHighlight } from 'react-native';
 
-import styles from '../../styles';
+import styles from '../styles';
 import Section from './Section';
 
 class SectionsList extends React.Component {
