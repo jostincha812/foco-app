@@ -8,7 +8,7 @@ const dataSource = new ListView.DataSource({
 	rowHasChanged: (row1, row2) => row1 !== row2,
 });
 
-export default studyNavigation = NavigationReducer.StackReducer({
+export default StudyTabReducer = NavigationReducer.StackReducer({
 	getPushedReducerForAction: (action) => {
 		if (action.type === 'push') {
 			return (state) => (state || action.route);

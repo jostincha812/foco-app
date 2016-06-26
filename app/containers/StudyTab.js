@@ -170,14 +170,12 @@ function mapDispatchToProps(dispatch) {
 		dispatch
 	};
 }
-
 function mapStateToProps(state) {
 	return {
 		navigation: state.get('studyTab'),
 		dataSource: state.get('studyTab').dataSource,
 	};
 }
-
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
 	return Object.assign({}, ownProps, stateProps, dispatchProps, {
 		onNavigate: (action) => {

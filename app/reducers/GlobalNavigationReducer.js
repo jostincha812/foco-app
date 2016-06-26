@@ -8,7 +8,7 @@ import ReactNative from 'react-native';
 const { NavigationExperimental } = ReactNative;
 const { Reducer: NavigationReducer } = NavigationExperimental;
 
-export default globalNavigation = NavigationReducer.StackReducer({
+export default globalNavigationReducer = NavigationReducer.StackReducer({
 	getPushedReducerForAction: (action) => {
 		if (action.type === 'push') {
 			return (state) => (state || action.route);
