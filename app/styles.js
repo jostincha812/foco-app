@@ -59,6 +59,11 @@ export default styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
+  listContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    paddingBottom: G.SMALLER,
+  },
   page: {
     flex: 1,
     flexDirection: 'row',
@@ -112,4 +117,6 @@ export default styles = StyleSheet.create({
 
 export {
   T,
+  F,
+  G,
 }

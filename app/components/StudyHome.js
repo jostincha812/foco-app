@@ -3,20 +3,32 @@ import { View, ListView } from 'react-native';
 
 import styles from '../styles';
 import sections from '../data/SectionsData';
-import SectionsList from './SectionsList';
+import Section from './Section';
 
 const dataSource = new ListView.DataSource({
   rowHasChanged: (row1, row2) => row1 !== row2,
 });
 
 export default class StudyHome extends React.Component {
+  constructor(props) {
+    super(props);
+    this._renderItem = this._renderItem.bind(this);
+  }
+
   render() {
-    const st = this.props.style;
+    const mt = this.props.marginTop;
     const ds = dataSource.cloneWithRows(sections);
     return (
-      <View style={[st, styles.container]}>
-        <SectionsList {...this.props} dataSource={ds} />
+      <View style={[{marginTop:mt}, styles.listContainer]}>
+        <ListView dataSource={ds} renderRow={this._renderItem} />
       </View>
     )
+  }
+
+  _renderItem(i) {
+    const onSelectItem = this.props.onSelectItem;
+    return (
+      <Section data={i} id={i.id} onSelectItem={() => onSelectItem(i)} />
+    );
   }
 }

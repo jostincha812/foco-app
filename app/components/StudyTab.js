@@ -49,14 +49,14 @@ export default class StudyTab extends React.Component {
 		// render your scene based on the route (navigationState)
 		if (navigationState.key === C.STUDY_HOME) {
 			return (
-				<StudyHome style={st} onSelectItem={this._handleSelectSection} />
+				<StudyHome marginTop={mt} onSelectItem={this._handleSelectSection} />
 			);
 		}
 
 		if (navigationState.key === C.STUDY_SECTION) {
 			const d = navigationState.data;
 			return (
-				<StudySection data={d} onSelectItem={this._handleSelectFlashCardsDeck} />
+				<StudySection marginTop={0} data={d} onSelectItem={this._handleSelectFlashCardsDeck} />
 			);
 		}
 
