@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, ListView } from 'react-native';
 
-import Section from './Section';
+import CardsDeck from './CardsDeck';
 
-export default class SectionsList extends React.Component {
+export default class CardsList extends React.Component {
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
@@ -19,7 +19,7 @@ export default class SectionsList extends React.Component {
   _renderItem(i) {
     const onSelectItem = this.props.onSelectItem;
     return (
-      <Section data={i} id={i.id} onSelectItem={() => onSelectItem(i)} />
+      <CardsDeck data={i} onSelectItem={() => onSelectItem(i)} />
     );
   }
 }

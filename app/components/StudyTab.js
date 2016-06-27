@@ -4,8 +4,9 @@ const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationE
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
 import C from '../constants';
+import { T } from '../styles';
 import StudyHome from './StudyHome';
-import SectionDetails from './SectionDetails';
+import StudySection from './StudySection';
 
 export default class StudyTab extends React.Component {
 	constructor(props) {
@@ -16,7 +17,7 @@ export default class StudyTab extends React.Component {
 		this._renderLeftComponent = this._renderLeftComponent.bind(this);
 		this._renderRightComponent = this._renderRightComponent.bind(this);
 		this._handleSelectSection = this._handleSelectSection.bind(this);
-		this._handleSelectCardsDeck = this._handleSelectCardsDeck.bind(this);
+		this._handleSelectFlashCardsDeck = this._handleSelectFlashCardsDeck.bind(this);
 		this._handleBackAction = this._handleBackAction.bind(this);
 		this._handleNavigate = this._handleNavigate.bind(this);
 	}
@@ -55,7 +56,7 @@ export default class StudyTab extends React.Component {
 		if (navigationState.key === C.STUDY_SECTION) {
 			const d = navigationState.data;
 			return (
-				<SectionDetails style={st} data={d} onSelectItem={this._handleSelectCardsDeck} />
+				<StudySection data={d} onSelectItem={this._handleSelectFlashCardsDeck} />
 			);
 		}
 
@@ -64,13 +65,16 @@ export default class StudyTab extends React.Component {
 	};
 
 	_renderHeader(props) {
-		const showHeader = props.scene.navigationState.title &&
-			(Platform.OS === 'ios');
+		const { navigationState } = props.scene;
+
+		const showHeader = navigationState.title && (Platform.OS === 'ios');
+		const headerBgColor = (navigationState.key === C.STUDY_HOME) ? T.NAVBG : T.NONE;
 
 		if (showHeader) {
 			return (
 				<NavigationHeader
 					{...props}
+					style={{backgroundColor:headerBgColor}}
 					renderTitleComponent={this._renderTitleComponent}
 					renderLeftComponent={this._renderLeftComponent}
 					renderRightComponent={this._renderRightComponent}
@@ -81,11 +85,16 @@ export default class StudyTab extends React.Component {
 	}
 
 	_renderTitleComponent(props) {
-		return (
-			<NavigationHeader.Title>
-				{props.scene.navigationState.title}
-			</NavigationHeader.Title>
-		);
+		const { navigationState } = props.scene;
+
+		if (navigationState.key === C.STUDY_HOME) {
+			return (
+				<NavigationHeader.Title>
+					{props.scene.navigationState.title}
+				</NavigationHeader.Title>
+			);
+		}
+		return null;
 	}
 
 	_renderLeftComponent({ scene }) {
@@ -105,8 +114,8 @@ export default class StudyTab extends React.Component {
 		this.props.pushRoute(C.STUDY_SECTION, data);
 	}
 
-	_handleSelectCardsDeck() {
-
+	_handleSelectFlashCardsDeck(data) {
+		this.props.pushRoute(C.STUDY_FLASHCARDS, data);
 	}
 
 	_handleBackAction() {

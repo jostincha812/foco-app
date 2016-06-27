@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native'
 
 // http://www.flatuicolorpicker.com/
 
-const theme = {
+const T = {
+  NONE: "transparent",
   PRIMARY: "#333",
   ACCENT_1: "#D35400",     // orange - burnt orange
   ACCENT_2: "#3A539B",      // blue - chambray
@@ -12,6 +13,34 @@ const theme = {
   INACTIVE: "#AAA",
   BORDER: "#CDCDCD",
   CARDBG: "#FFF",
+}
+
+const F = {
+  HERO: 72,
+  LARGEST: 36,
+  LARGER: 24,
+  NORMAL: 16,
+  SMALLER: 12,
+  SMALLEST: 8,
+  BOLD: "600",
+  NORMAL: "200",
+  THIN: "100",
+}
+
+const G = {
+  NONE: 0,
+  LARGEST: 24,
+  LARGER: 16,
+  NORMAL: 12,
+  SMALLER: 8,
+  SMALLEST: 4,
+}
+
+const shadow = {
+  shadowColor: T.INACTIVE,
+  shadowOpacity: 0.3,
+  shadowRadius: 2,
+  shadowOffset: {width: 2, height: 4},
 }
 
 export default styles = StyleSheet.create({
@@ -24,7 +53,7 @@ export default styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: theme.NAVBG,
+    backgroundColor: T.NAVBG,
   },
   container: {
     flex: 1,
@@ -37,43 +66,50 @@ export default styles = StyleSheet.create({
     alignItems: 'center'
   },
   card: {
-    margin: 12,
-    marginTop: 6,
-    marginBottom: 6,
-    padding: 24,
+    margin: G.NORMAL,
+    marginTop: G.SMALLER,
+    marginBottom: G.SMALLEST,
+    padding: G.LARGEST,
+    backgroundColor: T.CARDBG,
+    borderColor: T.BORDER,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: theme.BORDER,
-    backgroundColor: theme.CARDBG,
-    shadowColor: theme.INACTIVE,
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    shadowOffset: {width: 2, height: 4},
+    ...shadow
+  },
+  cover: {
+    height: 240,
+    margin: G.NONE,
+    marginBottom: G.LARGE,
+    padding: G.LARGEST,
+    backgroundColor: T.CARDBG,
+    borderColor: T.BORDER,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    ...shadow
   },
   title: {
-    fontSize: 22,
-    fontWeight: "600"
+    fontSize: F.LARGER,
+    fontWeight: F.BOLD
   },
   subtitle: {
-    fontSize: 16,
-    fontWeight: "200"
+    fontSize: G.NORMAL,
+    fontWeight: F.THIN
   },
   tabTitle: {
-    color: theme.NAVCOLOR,
+    color: T.NAVCOLOR,
     height: 0
   },
   tabTitleSelected: {
-    color: "#D35400",
+    color: T.ACCENT_1,
   },
   tabIcon: {
-    color: theme.NAVCOLOR,
+    color: T.NAVCOLOR,
     paddingBottom:1
   },
   tabIconSelected: {
-    color: theme.ACCENT_1,
+    color: T.ACCENT_1,
     paddingBottom:1
   }
 });
 
 export {
-  theme,
+  T,
 }

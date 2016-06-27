@@ -2,8 +2,8 @@ import React from 'react';
 import { View, ListView } from 'react-native';
 
 import styles from '../styles';
-import SectionsList from './SectionsList';
 import sections from '../data/SectionsData';
+import SectionsList from './SectionsList';
 
 const dataSource = new ListView.DataSource({
   rowHasChanged: (row1, row2) => row1 !== row2,
