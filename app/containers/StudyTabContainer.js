@@ -10,11 +10,31 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    pushRoute: route => dispatch(push(route)),
+    // dispatch,
+    pushRoute: (route,data) => dispatch(Object.assign(push(route),{data})),
     popRoute: () => dispatch(pop()),
   };
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(StudyTab);
+export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
+	return Object.assign({}, ownProps, stateProps, dispatchProps, {
+    // pushRoute: (route,data) => {
+    //   dispatchProps.dispatch(Object.assign(push(route), {
+    //     scope: stateProps.navigation.key,
+    //     data: data,
+    //   }));
+    // },
+    // popRoute: () => {
+    //   dispatch(pop())
+    // },
+		// onNavigate: (action) => {
+		// 	dispatchProps.dispatch(Object.assign(action, {
+		// 		scope: action.scope || stateProps.navigation.key
+		// 	}));
+		// }
+	});
+})(StudyTab);
+//
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(StudyTab);

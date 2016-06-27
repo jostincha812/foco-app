@@ -1,13 +1,13 @@
-import { PUSH_ROUTE, POP_ROUTE } from '../constants';
+import C from '../constants';
 
 export function push(route) {
   return {
-    type: PUSH_ROUTE,
-    payload: route,
+    type: C.PUSH_ROUTE,
+    key: route
   };
 }
 export function pop() {
   return {
-    type: POP_ROUTE,
+    type: C.POP_ROUTE,
   };
 }

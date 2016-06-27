@@ -9,7 +9,7 @@ export default class SectionDetails extends React.Component {
     const st = this.props.style;
 
     return (
-      <View style={styles.container}>
+      <View style={[st, styles.container]}>
         <TouchableHighlight onPress={() => this.props.onSelectCardsDeck(s)}>
           <Text style={[styles.card, styles.title]}>
             Chapters {s.chapters} {s.extras}
