@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform, BackAndroid, NavigationExperimental, View, Text } from 'react-native';
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
+const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
 import C from '../constants';
 import StudyHome from './StudyHome';
@@ -29,7 +30,7 @@ export default class StudyTab extends React.Component {
 	render() {
 		return (
 			<NavigationCardStack
-				direction='vertical'
+				direction='horizontal'
 				navigationState={this.props.navigation}
 				onNavigate={this._handleNavigate}
 				renderScene={this._renderScene}
@@ -46,9 +47,8 @@ export default class StudyTab extends React.Component {
 
 		// render your scene based on the route (navigationState)
 		if (navigationState.key === C.STUDY_HOME) {
-			const ds = this.props.dataSource;
 			return (
-				<StudyHome style={st} dataSource={ds} onSelectItem={this._handleSelectSection} />
+				<StudyHome style={st} onSelectItem={this._handleSelectSection} />
 			);
 		}
 

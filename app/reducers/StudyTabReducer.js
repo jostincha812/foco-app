@@ -1,12 +1,4 @@
-import { ListView } from 'react-native';
-
 import C from '../constants';
-import sections from '../data/SectionsData';
-
-const dataSource = new ListView.DataSource({
-  rowHasChanged: (row1, row2) => row1 !== row2,
-});
-
 
 // Note that we’ll need to name the key of the route array as `routes`
 // instead of `children` in next version of React Native.
@@ -19,7 +11,6 @@ const initialState = {
       title: 'Study Home',
     },
   ],
-  dataSource: dataSource.cloneWithRows(sections),
 };
 export default (state = initialState, action) => {
   const {
@@ -35,8 +26,9 @@ export default (state = initialState, action) => {
           ...children,
           {
             key: action.key,
-						title: action.title,
+						title: action.data.title,
 						data: action.data,
+						showBackButton: true,
           },
         ],
         index: index + 1,
