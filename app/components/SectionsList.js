@@ -16,10 +16,10 @@ export default class SectionsList extends React.Component {
     )
   }
 
-  _renderItem(s) {
+  _renderItem(i) {
     const onSelectItem = this.props.onSelectItem;
     return (
-      <Section data={s} id={s.id} onSelectItem={() => onSelectItem(s)} />
+      <Section data={i} id={i.id} onSelectItem={() => onSelectItem(i)} />
     );
   }
 }

@@ -17,7 +17,7 @@ const scopeNavigationReducer = (reducer, scopeName) => {
 const applicationReducers = {
   globalNavigation: scopeNavigationReducer(globalNavigation, 'global'),
   appTabs: scopeNavigationReducer(appTabsNavigation, 'apptabs'),
-  studyTab: scopeNavigationReducer(studyTabNavigation, 'study')
+  studyTab: scopeNavigationReducer(studyTabNavigation, 'studytab')
 };
 
 export default function createReducer() {

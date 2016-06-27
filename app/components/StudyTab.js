@@ -120,7 +120,6 @@ export default class StudyTab extends React.Component {
 	_handleNavigate(action) {
 		switch (action && action.type) {
 		case 'push':
-			// does this get used?
 			this.props.pushRoute(action.route);
 			return true;
 		case 'back':

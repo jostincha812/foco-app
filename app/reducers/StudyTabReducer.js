@@ -4,7 +4,7 @@ import C from '../constants';
 // instead of `children` in next version of React Native.
 const initialState = {
   index: 0,
-  key: 'study',
+  key: 'studytab',
   children: [
     {
       key: C.STUDY_HOME,
