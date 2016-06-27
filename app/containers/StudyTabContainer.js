@@ -5,7 +5,7 @@ import { push, pop } from '../actions/NavigationActions';
 function mapStateToProps(state) {
   return {
     navigation: state.get('studyTab'),
-    dataSource: state.get('studyTab').dataSource,
+    // dataSource: state.get('studyTab').dataSource,
   };
 }
 function mapDispatchToProps(dispatch) {

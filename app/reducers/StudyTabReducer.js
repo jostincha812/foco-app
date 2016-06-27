@@ -27,8 +27,8 @@ export default (state = initialState, action) => {
           {
             key: action.key,
 						title: action.data.title,
-						data: action.data,
 						showBackButton: true,
+						data: {...action.data},
           },
         ],
         index: index + 1,
