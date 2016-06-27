@@ -43,16 +43,12 @@ class GlobalNavigation extends React.Component {
 		// 	);
 		// }
 	}
-
-	_renderTitleComponent(props) {
-		return null;
-	}
-
-	_onCloseNewItem() {
-		this.props.onNavigate({
-			type: 'BackAction'
-		});
-	}
+	//
+	// _onCloseNewItem() {
+	// 	this.props.onNavigate({
+	// 		type: 'BackAction'
+	// 	});
+	// }
 }
 
 function mapDispatchToProps(dispatch) {
