@@ -16,6 +16,7 @@ export default class StudySection extends React.Component {
   }
 
   render() {
+    // TODO data contains section info and list of card decks for section
     const d = this.props.data;
     const mt = this.props.marginTop;
     const onSelectItem = this.props.onSelectItem;

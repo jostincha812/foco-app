@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, BackAndroid, NavigationExperimental, View, Text } from 'react-native';
+import { Platform, BackAndroid, NavigationExperimental } from 'react-native';
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 
@@ -7,6 +7,7 @@ import C from '../constants';
 import { T } from '../styles';
 import StudyHome from './StudyHome';
 import StudySection from './StudySection';
+import FlashCardsDeck from './FlashCardsDeck';
 
 export default class StudyTab extends React.Component {
 	constructor(props) {
@@ -54,6 +55,7 @@ export default class StudyTab extends React.Component {
 		}
 
 		if (navigationState.key === C.STUDY_SECTION) {
+			// TODO data contains section info and list of card decks for section
 			const d = navigationState.data;
 			return (
 				<StudySection marginTop={0} data={d} onSelectItem={this._handleSelectFlashCardsDeck} />
@@ -61,6 +63,11 @@ export default class StudyTab extends React.Component {
 		}
 
 		if (navigationState.key === C.STUDY_FLASHCARDS) {
+			// TODO data contains deck info and list of cards
+			const d = navigationState.data;
+			return (
+				<FlashCardsDeck marginTop={0} data={d} />
+			)
 		}
 	};
 
