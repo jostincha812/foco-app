@@ -4,10 +4,12 @@ import { View, Text, TouchableHighlight } from 'react-native';
 import styles from '../styles';
 import FlashCard from './FlashCard';
 
+import { flashcards } from '../data/TestData';
+
 export default class FlashCardDeck extends React.Component {
   constructor(props) {
     super(props);
-    this._renderCard = this._renderCard.bind(this);
+    this._renderCards = this._renderCards.bind(this);
   }
 
   render() {
@@ -17,24 +19,26 @@ export default class FlashCardDeck extends React.Component {
 
     return (
       <View style={[{marginTop:mt}, styles.listContainer]}>
-        <TouchableHighlight onPress={() => onSelectItem(d)}>
-          <View style={[styles.cover,{justifyContent:'flex-end'}]}>
-            <Text style={styles.title}>
-              {d.title}
-            </Text>
-            <Text>
-              {d.cardsInDeck} cards
-            </Text>
-          </View>
-        </TouchableHighlight>
+        <View style={[styles.cover,{justifyContent:'flex-end'}]}>
+          <Text style={styles.title}>
+            {d.title}
+          </Text>
+          <Text>
+            {d.cardsInDeck} cards
+          </Text>
+        </View>
+        {this._renderCards(flashcards)}
       </View>
     );
   }
 
-  _renderCard(i) {
-    const onSelectItem = this.props.onSelectItem;
+  _renderCards(cards) {
     return (
-      <CardsDeck data={i} onSelectItem={() => onSelectItem(i)} />
+      Object.values(cards).map( i => {
+        return (
+          <FlashCard data={i} />
+        )
+      })
     );
   }
 }

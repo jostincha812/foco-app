@@ -8,7 +8,7 @@ export default class Section extends React.Component {
   render() {
     const d = this.props.data;
     return (
-      <View style={styles.card} key={d.key}>
+      <View style={styles.card} key={d.id}>
 				<TouchableHighlight onPress={() => this.props.onSelectItem(d)}>
           <View>
 						<Text style={styles.title} numberOfLines={2}>

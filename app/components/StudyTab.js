@@ -18,7 +18,7 @@ export default class StudyTab extends React.Component {
 		this._renderLeftComponent = this._renderLeftComponent.bind(this);
 		this._renderRightComponent = this._renderRightComponent.bind(this);
 		this._handleSelectSection = this._handleSelectSection.bind(this);
-		this._handleSelectFlashCardsDeck = this._handleSelectFlashCardsDeck.bind(this);
+		this._handleSelectCardsDeck = this._handleSelectCardsDeck.bind(this);
 		this._handleBackAction = this._handleBackAction.bind(this);
 		this._handleNavigate = this._handleNavigate.bind(this);
 	}
@@ -58,13 +58,15 @@ export default class StudyTab extends React.Component {
 			// TODO data contains section info and list of card decks for section
 			const d = navigationState.data;
 			return (
-				<StudySection marginTop={0} data={d} onSelectItem={this._handleSelectFlashCardsDeck} />
+				<StudySection marginTop={0} data={d} onSelectItem={this._handleSelectCardsDeck} />
 			);
 		}
 
 		if (navigationState.key === C.STUDY_FLASHCARDS) {
 			// TODO data contains deck info and list of cards
 			const d = navigationState.data;
+			console.log(d);
+			console.log(navigationState.data);
 			return (
 				<FlashCardsDeck marginTop={0} data={d} />
 			)
@@ -121,7 +123,7 @@ export default class StudyTab extends React.Component {
 		this.props.pushRoute(C.STUDY_SECTION, data);
 	}
 
-	_handleSelectFlashCardsDeck(data) {
+	_handleSelectCardsDeck(data) {
 		this.props.pushRoute(C.STUDY_FLASHCARDS, data);
 	}
 

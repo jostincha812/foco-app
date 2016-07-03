@@ -19,7 +19,7 @@ export default class FlashCard extends React.Component {
     return (
       <View style={styles.card}>
 				<TouchableHighlight onPress={this._flipCard}>
-          {_this.renderCard()}
+          {this._renderCard()}
 				</TouchableHighlight>
 			</View>
 		);

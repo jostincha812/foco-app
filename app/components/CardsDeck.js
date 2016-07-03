@@ -11,7 +11,7 @@ export default class CardsDeck extends React.Component {
 				<TouchableHighlight onPress={() => this.props.onSelectItem(d)}>
           <View>
 						<Text style={styles.title} numberOfLines={2}>
-							{d.title}
+							{d.id}:{d.title}
 						</Text>
 						<Text numberOfLines={1}>
 							Cards in deck {d.cardsInDeck}
