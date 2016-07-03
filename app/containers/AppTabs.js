@@ -11,10 +11,11 @@ import C from '../constants';
 import styles from '../styles';
 
 import StudyTab from './StudyTabContainer';
-import PracticeHome from '../components/PracticeTab';
-import MockHome from '../components/MockTab';
-import ProgressHome from '../components/ProgressTab';
-import ProfileHome from '../components/ProfileTab';
+import PracticeHome from './PracticeTabContainer';
+import MockHome from './MockTabContainer';
+import ProgressHome from './ProgressTabContainer';
+import ProfileHome from './ProfileTabContainer';
+import PlaceholderContainer from './PlaceholderContainer';
 
 class AppTabs extends Component {
 	_renderTabContent(tab) {
@@ -25,13 +26,7 @@ class AppTabs extends Component {
 			case 'progress': return <ProgressHome />;
 			case 'profile': return <ProfileHome />;
 			default:
-				return (
-					<View style={[styles.container]} >
-						<Text style={styles.title}>
-							Undefined
-						</Text>
-					</View>
-				);
+				return <PlaceholderContainer />;
 		}
 	}
 

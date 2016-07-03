@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
-import styles from '../../styles'
+import styles from '../styles'
 
-class PracticeHome extends React.Component {
+class ProfileHome extends React.Component {
   render() {
     return (
       <View style={styles.page}>
         <Text style={styles.title}>
-          Practice Home
+          Profile Home
         </Text>
       </View>
     );
   }
 }
 
-export default PracticeHome;
+export default ProfileHome;
