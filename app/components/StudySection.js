@@ -21,8 +21,10 @@ export default class StudySection extends React.Component {
     const d = this.props.data;
     const mt = this.props.marginTop;
     const onSelectItem = this.props.onSelectItem;
-    // TODO figure out how to put id into card decks data
-    const ds = dataSource.cloneWithRows(carddecks);
+
+    // map id into card decks data
+    const decks = Object.entries(carddecks).map(entry => {return {id:entry[0], ...entry[1]}});
+    const ds = dataSource.cloneWithRows(decks);
 
     return (
       <View style={[{marginTop:mt}, styles.listContainer]}>
