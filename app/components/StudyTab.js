@@ -65,8 +65,6 @@ export default class StudyTab extends React.Component {
 		if (navigationState.key === C.STUDY_FLASHCARDS) {
 			// TODO data contains deck info and list of cards
 			const d = navigationState.data;
-			console.log(d);
-			console.log(navigationState.data);
 			return (
 				<FlashCardsDeck marginTop={0} data={d} />
 			)
