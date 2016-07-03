@@ -14,12 +14,9 @@ const scopeNavigationReducer = (reducer, scopeName) => {
   };
 };
 
-const applicationReducers = {
+const rootReducer = combineReducers({
   globalNavigation: scopeNavigationReducer(globalNavigation, 'global'),
   appTabs: scopeNavigationReducer(appTabsNavigation, 'apptabs'),
   studyTab: scopeNavigationReducer(studyTabNavigation, 'studytab')
-};
-
-export default function createReducer() {
-  return combineReducers(applicationReducers);
-}
+})
+export default rootReducer;

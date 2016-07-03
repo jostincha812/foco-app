@@ -1,8 +1,10 @@
 const C = {
+  // CONFIG state consts
   WSET_2: 'WSET_2',
   WSET_3: 'WSET_3',
   TAB_ICON_SIZE: 32,
 
+  // NAVIGATION state consts
   PUSH_ROUTE: 'PUSH_ROUTE',
   POP_ROUTE: 'POP_ROUTE',
 
@@ -10,8 +12,12 @@ const C = {
   STUDY_SECTION: 'STUDY_SECTION',
   STUDY_FLASHCARDS: 'STUDY_FLASHCARDS',
 
-  SIDE_FRONT: 'SIDE_FRONT',
-  SIDE_BACK: 'SIDE_BACK'
+  CARD_FRONT: 'CARD_FRONT',
+  CARD_BACK: 'CARD_BACK',
+
+  // USER state consts
+
+  // NETWORK state consts
 }
 
 export default C;

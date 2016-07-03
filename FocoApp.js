@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux';
 
 import App from './app/app';
-import configureStore from './app/configStore';
-import configureFirebase from './app/configFirebase';
-
-const store = configureStore();
+import store from './app/store';
+import { configFirebase } from './app/firebase';
 
 class FocoApp extends Component {
   constructor(props) {
     super(props);
-    configureFirebase();
+    configFirebase();
   }
 
   render() {
