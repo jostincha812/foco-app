@@ -16,6 +16,7 @@ export default class FlashCardDeck extends React.Component {
     // TODO data contains deck info and list of cards
     const d = this.props.data;
     const mt = this.props.marginTop;
+    const cards = Object.entries(flashcards).map(entry => {return {id:entry[0], ...entry[1]}});
 
     return (
       <View style={[{marginTop:mt}, styles.listContainer]}>
@@ -27,7 +28,7 @@ export default class FlashCardDeck extends React.Component {
             {d.cardsInDeck} cards
           </Text>
         </View>
-        {this._renderCards(flashcards)}
+        {this._renderCards(cards)}
       </View>
     );
   }
@@ -36,7 +37,7 @@ export default class FlashCardDeck extends React.Component {
     return (
       Object.values(cards).map( i => {
         return (
-          <FlashCard data={i} />
+          <FlashCard key={i.id} data={i} />
         )
       })
     );
