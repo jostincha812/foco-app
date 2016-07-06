@@ -6,7 +6,7 @@ const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 import C from '../constants';
 import { T } from '../styles';
 import StudyHome from './StudyHome';
-import StudySection from './StudySection';
+import SectionDetails from '../containers/SectionDetailsContainer';
 import FlashCardsDeck from './FlashCardsDeck';
 
 export default class StudyTab extends React.Component {
@@ -18,7 +18,7 @@ export default class StudyTab extends React.Component {
 		this._renderLeftComponent = this._renderLeftComponent.bind(this);
 		this._renderRightComponent = this._renderRightComponent.bind(this);
 		this._handleSelectSection = this._handleSelectSection.bind(this);
-		this._handleSelectCardsDeck = this._handleSelectCardsDeck.bind(this);
+		this._handleSelectCarddeck = this._handleSelectCarddeck.bind(this);
 		this._handleBackAction = this._handleBackAction.bind(this);
 		this._handleNavigate = this._handleNavigate.bind(this);
 	}
@@ -55,15 +55,13 @@ export default class StudyTab extends React.Component {
 		}
 
 		if (navigationState.key === C.STUDY_SECTION) {
-			// TODO data contains section info and list of card decks for section
 			const d = navigationState.data;
 			return (
-				<StudySection marginTop={0} data={d} onSelectItem={this._handleSelectCardsDeck} />
+				<SectionDetails marginTop={0} section={d} onSelectItem={this._handleSelectCarddeck} />
 			);
 		}
 
 		if (navigationState.key === C.STUDY_FLASHCARDS) {
-			// TODO data contains deck info and list of cards
 			const d = navigationState.data;
 			return (
 				<FlashCardsDeck marginTop={0} data={d} />
@@ -117,12 +115,12 @@ export default class StudyTab extends React.Component {
 		return null;
 	}
 
-	_handleSelectSection(data) {
-		this.props.pushRoute(C.STUDY_SECTION, data);
+	_handleSelectSection(section) {
+		this.props.pushRoute(C.STUDY_SECTION, section);
 	}
 
-	_handleSelectCardsDeck(data) {
-		this.props.pushRoute(C.STUDY_FLASHCARDS, data);
+	_handleSelectCarddeck(deck) {
+		this.props.pushRoute(C.STUDY_FLASHCARDS, deck);
 	}
 
 	_handleBackAction() {
@@ -136,7 +134,8 @@ export default class StudyTab extends React.Component {
 	_handleNavigate(action) {
 		switch (action && action.type) {
 		case 'push':
-			this.props.pushRoute(action.route);
+			// does not appear to be used by anything
+			// this.props.pushRoute(action.route);
 			return true;
 		case 'back':
 		case 'pop':

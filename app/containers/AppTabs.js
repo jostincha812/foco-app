@@ -84,7 +84,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 	return {
 		// needs to be the same key as nav reducer defined in reducers.js
-		navigation: state.get('appTabs')
+		navigation: state.get(C.S_APPTABS_NAV)
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {

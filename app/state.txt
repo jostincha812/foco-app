@@ -1,0 +1,53 @@
+FocoApp state tree
+------------------
+
+navigation:   (UI state)
+    index: <Integer>
+    children: [
+      {
+        key: <Constant>
+        title: <String>
+        showBackButton: <Boolean>
+        backTitle: <String>
+        data: <Object>
+      }
+      ...
+    ]
+
+studytab:   (UI state)
+    selectedSection: <idString>
+    selectedCarddeck: <idString>
+    sections:
+      isFetching: <Boolean>
+      didInvalidate: <Boolean>
+      lastUpdated: <Integer>
+      items: [ <idString>, ...]
+    carddecks:
+      isFetching: <Boolean>
+      didInvalidate: <Boolean>
+      lastUpdated: <Integer>
+      items: [ <idString>, ...]
+    entities:
+      sections:
+        <idString>:
+            id: <idString>
+            title: <String>
+            isLocked: <Boolean>
+            chapters: [ <Integer>, ...]
+        ...
+      carddecks:
+        <idString>:
+            id: <idString>
+            title: <String>
+            flashcards: [ <idString>, ...]
+      flashcards:
+        <idString>
+            id: <idString>
+            title: <String>
+            front: <String>
+            back: <String>
+            frontImage: <String>
+            backImage: <String>
+            frontImageLocation: <Constant>
+            backImageLocation: <Constant>
+            isFavorited: <Boolean>

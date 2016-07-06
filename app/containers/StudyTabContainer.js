@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
+
+import C from '../constants';
 import StudyTab from '../components/StudyTab';
 import { push, pop } from '../actions/NavigationActions';
+import { selectSection } from '../actions/StudyTabActions';
 
 function mapStateToProps(state) {
   return {
-    navigation: state.get('studyTab'),
+    navigation: state.get(C.S_STUDYTAB_NAV),
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -17,6 +20,7 @@ export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatc
     pushRoute: (route,data) => {
       dispatchProps.dispatch(Object.assign(push(route), {
         scope: stateProps.navigation.key,
+        title: data.title,
         data: data,
       }));
     },

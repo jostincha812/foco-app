@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 
+import C from '../constants';
 import styles from '../styles';
 import AppTabs from './AppTabs';
 // import Tour from './Tour';
@@ -59,7 +60,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 	return {
 		// needs to be the same key as reducers.js
-		navigation: state.get('globalNavigation')
+		navigation: state.get(C.S_GLOBAL_NAV)
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
