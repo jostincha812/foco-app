@@ -2,12 +2,16 @@ import React from 'react';
 import { Platform, BackAndroid, NavigationExperimental } from 'react-native';
 const { Header: NavigationHeader, CardStack: NavigationCardStack } = NavigationExperimental;
 const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
+import { connect } from 'react-redux';
 
 import C from '../constants';
+import { push, pop } from '../actions/NavigationActions';
+import { selectSection } from '../actions/StudyTabActions';
+
 import { T } from '../styles';
-import StudyHome from './StudyHome';
-import SectionDetails from '../containers/SectionDetails';
-import FlashCardsDeck from './FlashCardsDeck';
+import StudyHome from '../components/StudyHome';
+import SectionDetails from './SectionDetails';
+import FlashCardsDeck from '../components/FlashCardsDeck';
 
 export default class StudyTab extends React.Component {
 	constructor(props) {
@@ -145,3 +149,30 @@ export default class StudyTab extends React.Component {
 		}
 	};
 }
+
+function mapStateToProps(state) {
+  return {
+    navigation: state.get(C.S_STUDYTAB_NAV),
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
+	return Object.assign({}, ownProps, stateProps, dispatchProps, {
+    pushRoute: (route,data) => {
+      dispatchProps.dispatch(Object.assign(push(route), {
+        scope: stateProps.navigation.key,
+        title: data.title,
+        data: data,
+      }));
+    },
+    popRoute: () => {
+      dispatchProps.dispatch(Object.assign(pop(), {
+        scope: stateProps.navigation.key,
+      }));
+    },
+	});
+})(StudyTab);
