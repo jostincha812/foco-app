@@ -10,7 +10,7 @@ const { JumpToAction } = NavigationReducer.TabsReducer;
 import C from '../constants';
 import styles from '../styles';
 
-import StudyTab from './StudyTabContainer';
+import StudyTab from './StudyTab';
 import PracticeHome from './PracticeTabContainer';
 import MockHome from './MockTabContainer';
 import ProgressHome from './ProgressTabContainer';
