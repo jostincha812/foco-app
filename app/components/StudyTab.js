@@ -6,7 +6,7 @@ const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
 import C from '../constants';
 import { T } from '../styles';
 import StudyHome from './StudyHome';
-import SectionDetails from '../containers/SectionDetailsContainer';
+import SectionDetails from '../containers/SectionDetails';
 import FlashCardsDeck from './FlashCardsDeck';
 
 export default class StudyTab extends React.Component {
