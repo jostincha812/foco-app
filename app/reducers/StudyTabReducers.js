@@ -5,13 +5,28 @@ export default StudyTabNavigationReducer;
 
 const initialState = {
   key: C.S_STUDYTAB,
-  isFetching: false,
-  didInvalidate: false,
-  decks: [],
+  selectedSection: "",
+  selectedCarddeck: "",
+
+  sections: {
+    isFetching: false,
+    didInvalidate: true,
+    lastUpdated: 0,
+    items: []
+  },
+
+  carddecksForSection: [],
+  flashcardsForDeck: [],
+
+  entities: {
+    sections: {},
+    carddecks: {},
+    flashcards: {},
+  }
 };
-function decks(state = initialState, action) {
+export function decksReducer(state, action) {
   switch (action.type) {
-    case C.INVALIDATE_SECTION:
+    case C.INVALIDATE_SECTION_DECKS:
       return Object.assign({}, state, {
         didInvalidate: true
       })
@@ -24,7 +39,7 @@ function decks(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        items: action.decks,
+        items: action.carddecks,
         lastUpdated: action.receivedAt
       })
     default:
@@ -33,11 +48,14 @@ function decks(state = initialState, action) {
 }
 export function StudyTabReducer(state = initialState, action) {
   switch (action.type) {
-    case C.INVALIDATE_SECTION:
+    case C.INVALIDATE_SECTION_DECKS:
     case C.RECEIVE_SECTION_DECKS:
     case C.REQUEST_SECTION_DECKS:
+      const sectionId = action.section.id;
       return Object.assign({}, state, {
-        [action.section]: decks(state[action.section], action)
+        carddecksForSection: {
+          [sectionId]: decksReducer(state.carddecksForSection[sectionId], action)
+        }
       })
     default:
       return state

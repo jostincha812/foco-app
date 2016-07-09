@@ -43,16 +43,21 @@ export default class SectionDetails extends React.Component {
   // }
 
   render() {
-    const { section, decks, isFetching, lastUpdated } = this.props
+    const { section, carddecksForSection } = this.props
 
     const d = this.props.section;
+    const carddecks = carddecksForSection[d.id];
     const mt = this.props.marginTop;
     const onSelectItem = this.props.onSelectItem;
+    var isLoading = false;
+    var ds = dataSource;
 
     // map id into card decks data
-    if (!isFetching) {
-      const items = Object.entries(decks).map(entry => {return {id:entry[0], ...entry[1]}});
-      const ds = dataSource.cloneWithRows(items);
+    if (carddecks && !carddecks.didInvalidate && !carddecks.isFetching) {
+      const items = Object.entries(carddecks.items).map(entry => {return {id:entry[0], ...entry[1]}});
+      ds = dataSource.cloneWithRows(items);
+    } else {
+      isLoading = true;
     }
 
     return (
@@ -63,10 +68,10 @@ export default class SectionDetails extends React.Component {
           </Text>
         </View>
 
-        {isFetching && decks.length === 0 &&
+        {isLoading &&
           <Text>Loading...</Text>
         }
-        {!isFetching && decks.length > 0 &&
+        {!isLoading &&
           <ListView dataSource={ds} renderRow={this._renderItem} />
         }
       </View>
@@ -84,7 +89,8 @@ export default class SectionDetails extends React.Component {
 function mapStateToProps(state) {
   return {
     navigation: state.get(C.S_STUDYTAB_NAV),
-    ...state.get(C.S_STUDYTAB),
+    carddecksForSection: state.get(C.S_STUDYTAB).carddecksForSection,
+    entities: state.get(C.S_STUDYTAB).entities,
   };
 }
 function mapDispatchToProps(dispatch) {

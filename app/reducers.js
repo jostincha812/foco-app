@@ -16,9 +16,9 @@ const scopeNavigationReducer = (reducer, scopeName) => {
 };
 
 const rootReducer = combineReducers({
-  S_GLOBAL_NAV: scopeNavigationReducer(GlobalNavigation, C.S_GLOBAL_NAV),
-  S_APPTABS_NAV: scopeNavigationReducer(AppTabsNavigation, C.S_APPTABS_NAV),
-  S_STUDYTAB_NAV: scopeNavigationReducer(StudyTabNavigation, C.S_STUDYTAB_NAV),
-  S_STUDYTAB: scopeNavigationReducer(StudyTabReducer, C.S_STUDYTAB),
+  STATE_GLOBAL_NAV: scopeNavigationReducer(GlobalNavigation, C.S_GLOBAL_NAV),
+  STATE_APPTABS_NAV: scopeNavigationReducer(AppTabsNavigation, C.S_APPTABS_NAV),
+  STATE_STUDYTAB_NAV: scopeNavigationReducer(StudyTabNavigation, C.S_STUDYTAB_NAV),
+  STATE_STUDYTAB: scopeNavigationReducer(StudyTabReducer, C.S_STUDYTAB),
 })
 export default rootReducer;
