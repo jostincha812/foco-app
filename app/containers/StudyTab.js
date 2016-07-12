@@ -9,7 +9,7 @@ import { push, pop } from '../actions/NavigationActions';
 import { selectSection } from '../actions/StudyTabActions';
 
 import { T } from '../styles';
-import StudyHome from '../components/StudyHome';
+import SectionsList from '../components/SectionsList';
 import SectionDetails from './SectionDetails';
 import FlashcardsViewer from './FlashcardsViewer';
 
@@ -54,7 +54,7 @@ export default class StudyTab extends React.Component {
 		// render your scene based on the route (navigationState)
 		if (navigationState.key === C.STUDY_HOME) {
 			return (
-				<StudyHome marginTop={mt} onSelectItem={this._handleSelectSection} />
+				<SectionsList marginTop={mt} onSelectItem={this._handleSelectSection} />
 			);
 		}
 
