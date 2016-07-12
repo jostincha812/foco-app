@@ -11,7 +11,7 @@ import { selectSection } from '../actions/StudyTabActions';
 import { T } from '../styles';
 import StudyHome from '../components/StudyHome';
 import SectionDetails from './SectionDetails';
-import FlashCardsDeck from '../components/FlashCardsDeck';
+import FlashcardsViewer from './FlashcardsViewer';
 
 export default class StudyTab extends React.Component {
 	constructor(props) {
@@ -68,7 +68,7 @@ export default class StudyTab extends React.Component {
 		if (navigationState.key === C.STUDY_FLASHCARDS) {
 			const d = navigationState.data;
 			return (
-				<FlashCardsDeck marginTop={0} data={d} />
+				<FlashcardsViewer marginTop={0} carddeck={d} />
 			)
 		}
 	};

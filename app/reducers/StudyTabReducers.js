@@ -15,8 +15,8 @@ const initialState = {
     items: []
   },
 
-  carddecksForSection: [],
-  flashcardsForDeck: [],
+  carddecksForSection: {},
+  flashcardsForDeck: {},
 
   entities: {
     sections: {},

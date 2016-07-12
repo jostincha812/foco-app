@@ -12,7 +12,7 @@ const dataSource = new ListView.DataSource({
   rowHasChanged: (row1, row2) => row1 !== row2,
 });
 
-export default class SectionDetails extends React.Component {
+class SectionDetails extends React.Component {
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
@@ -29,18 +29,6 @@ export default class SectionDetails extends React.Component {
       this.props.fetchDecksForSection(section)
     }
   }
-  //
-  // handleChange(nextSubreddit) {
-  //   this.props.dispatch(selectSubreddit(nextSubreddit))
-  // }
-  //
-  // handleRefreshClick(e) {
-  //   e.preventDefault()
-  //
-  //   const { dispatch, selectedSubreddit } = this.props
-  //   dispatch(invalidateSubreddit(selectedSubreddit))
-  //   dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  // }
 
   render() {
     const { section, carddecksForSection } = this.props
