@@ -16,7 +16,7 @@ class FlashcardsViewer extends React.Component {
 
   componentDidMount() {
     const { carddeck } = this.props
-    this.props.fetchFlashcardsForDeck(carddeck)
+    this.props.fetchFlashcardsForCarddeck(carddeck)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -84,7 +84,7 @@ function mapDispatchToProps(dispatch) {
 }
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
 	return Object.assign({}, ownProps, stateProps, dispatchProps, {
-    fetchFlashcardsForDeck: (carddeck) => {
+    fetchFlashcardsForCarddeck: (carddeck) => {
       dispatchProps.dispatch(Object.assign(fetchFlashcardsIfNeeded(carddeck), {
         scope: stateProps.navigation.key,
       }))
