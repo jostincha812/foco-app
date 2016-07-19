@@ -22,14 +22,14 @@ studytab:   (UI state)
       didInvalidate: <Boolean>
       lastUpdated: <Integer>
       items: [ <idString>, ...]
-    carddecksForSection:
-      <idString>:
+    carddecksBySection:
+      <idString>:   (sectionId)
         isFetching: <Boolean>
         didInvalidate: <Boolean>
         lastUpdated: <Integer>
         items: [ <idString>, ...]
-    flashcardsForDeck:
-      <idString>:
+    flashcardsByCarddeck:
+      <idString>:   (carddeckId)
         isFetching: <Boolean>
         didInvalidate: <Boolean>
         lastUpdated: <Integer>

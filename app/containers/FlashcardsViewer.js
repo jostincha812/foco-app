@@ -22,15 +22,15 @@ class FlashcardsViewer extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.carddeck !== this.props.carddeck) {
       const { carddeck } = nextProps
-      this.props.fetchFlashcardsForDeck(carddeck)
+      this.props.flashcardsByCarddeck(carddeck)
     }
   }
 
   render() {
-    const { carddeck, flashcardsForDeck } = this.props
+    const { carddeck, flashcardsByCarddeck } = this.props
 
     const d = this.props.carddeck;
-    const flashcards = flashcardsForDeck[d.id];
+    const flashcards = flashcardsByCarddeck[d.id];
     const mt = this.props.marginTop;
     var isLoading = false;
 
@@ -73,7 +73,7 @@ class FlashcardsViewer extends React.Component {
 function mapStateToProps(state) {
   return {
     navigation: state.get(C.S_STUDYTAB_NAV),
-    flashcardsForDeck: state.get(C.S_STUDYTAB).flashcardsForDeck,
+    flashcardsByCarddeck: state.get(C.S_STUDYTAB).flashcardsByCarddeck,
     entities: state.get(C.S_STUDYTAB).entities,
   };
 }

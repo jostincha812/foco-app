@@ -15,8 +15,8 @@ const initialState = {
     items: []
   },
 
-  carddecksForSection: {},
-  flashcardsForDeck: {},
+  carddecksBySection: {},
+  flashcardsByCarddeck: {},
 
   entities: {
     sections: {},
@@ -24,7 +24,7 @@ const initialState = {
     flashcards: {},
   }
 };
-function decksReducer(state, action) {
+function carddecksReducer(state, action) {
   switch (action.type) {
     case C.INVALIDATE_SECTION_DECKS:
       return Object.assign({}, state, {
@@ -77,8 +77,8 @@ export function StudyTabReducer(state = initialState, action) {
     case C.REQUEST_SECTION_DECKS:
       const sectionId = action.section.id;
       return Object.assign({}, state, {
-        carddecksForSection: {
-          [sectionId]: decksReducer(state.carddecksForSection[sectionId], action)
+        carddecksBySection: {
+          [sectionId]: carddecksReducer(state.carddecksBySection[sectionId], action)
         }
       })
     case C.INVALIDATE_DECK_CARDS:
@@ -86,8 +86,8 @@ export function StudyTabReducer(state = initialState, action) {
     case C.REQUEST_DECK_CARDS:
       const deckId = action.carddeck.id;
       return Object.assign({}, state, {
-        flashcardsForDeck: {
-          [deckId]: flashcardsReducer(state.flashcardsForDeck[deckId], action)
+        flashcardsByCarddeck: {
+          [deckId]: flashcardsReducer(state.flashcardsByCarddeck[deckId], action)
         }
       })
     default:

@@ -31,10 +31,10 @@ class SectionDetails extends React.Component {
   }
 
   render() {
-    const { section, carddecksForSection } = this.props
+    const { section, carddecksBySection } = this.props
 
     const d = this.props.section;
-    const carddecks = carddecksForSection[d.id];
+    const carddecks = carddecksBySection[d.id];
     const mt = this.props.marginTop;
     const onSelectItem = this.props.onSelectItem;
     var isLoading = false;
@@ -77,7 +77,7 @@ class SectionDetails extends React.Component {
 function mapStateToProps(state) {
   return {
     navigation: state.get(C.S_STUDYTAB_NAV),
-    carddecksForSection: state.get(C.S_STUDYTAB).carddecksForSection,
+    carddecksBySection: state.get(C.S_STUDYTAB).carddecksBySection,
     entities: state.get(C.S_STUDYTAB).entities,
   };
 }

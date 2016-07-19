@@ -1,5 +1,6 @@
+import firebase from 'firebase';
+
 import C from '../constants';
-import { push } from './NavigationActions';
 
 import { carddecks, flashcards } from '../data/TestData';
 
@@ -29,7 +30,7 @@ function fetchDecks(section) {
   }
 }
 function shouldFetchDecks(state, section) {
-  const decksState = state.carddecksForSection[section.id];
+  const decksState = state.carddecksBySection[section.id];
   if (!decksState) {
     return true
   } else if (decksState.isFetching) {
@@ -73,7 +74,7 @@ function fetchFlashcards(carddeck) {
   }
 }
 function shouldFetchFlashcards(state, carddeck) {
-  const cardsState = state.flashcardsForDeck[carddeck.id];
+  const cardsState = state.flashcardsByCarddeck[carddeck.id];
   if (!cardsState) {
     return true
   } else if (cardsState.isFetching) {
