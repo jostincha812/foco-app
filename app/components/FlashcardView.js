@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import C from '../constants';
 import styles from '../styles';
 
-export default class FlashCard extends React.Component {
+export default class FlashcardView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import C from '../constants';
 import styles from '../styles';
-import FlashCard from '../components/FlashCard';
+import FlashcardView from '../components/FlashcardView';
 
 import { fetchFlashcardsIfNeeded } from '../actions/StudyTabActions';
 
@@ -65,7 +65,7 @@ class FlashcardsViewer extends React.Component {
 
   _renderItem(i) {
     return (
-      <FlashCard key={i.id} data={i} />
+      <FlashcardView key={i.id} data={i} />
     );
   }
 }

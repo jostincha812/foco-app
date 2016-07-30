@@ -1,18 +1,7 @@
 import firebase from 'firebase';
 
-// const wset3Ref = new Firebase("https://focoapp.firebaseio.com/wset3");
-// const wset2Ref = new Firebase("https://focoapp.firebaseio.com/wset2");
-// const usersRef = new Firebase("https://focoapp.firebaseio.com/users");
-//
-// export default F = {
-//   wset2: wset2Ref,
-//   wset3: wset3Ref,
-//   users: usersRef
-// }
-
-export function configFirebase() {
-  // TODO re-enable Firebase v3.0 initialization code
-  // Initialize Firebase
+function configFirebase() {
+  // Firebase v3.0 initialization code
   var config = {
     apiKey: "AIzaSyCNyxhOk_7jKwrDC4jbVqmzjwxmb2VbSXs",
     authDomain: "focoapp.firebaseapp.com",
@@ -20,4 +9,13 @@ export function configFirebase() {
     storageBucket: "focoapp.appspot.com",
   };
   firebase.initializeApp(config);
+}
+
+function userCarddecks(user, section) {
+  return (`users/section_carddecks/${user.id}/${user.level}/${section.id}`)
+}
+
+module.exports = {
+  configFirebase,
+  userCarddecks
 }

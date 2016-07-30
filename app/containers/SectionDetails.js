@@ -6,7 +6,7 @@ import { fetchDecksIfNeeded } from '../actions/StudyTabActions';
 
 import C from '../constants';
 import styles from '../styles';
-import CardsDeck from '../components/CardsDeck';
+import CarddeckView from '../components/CarddeckView';
 
 const dataSource = new ListView.DataSource({
   rowHasChanged: (row1, row2) => row1 !== row2,
@@ -69,7 +69,7 @@ class SectionDetails extends React.Component {
   _renderItem(d) {
     const onSelectItem = this.props.onSelectItem;
     return (
-      <CardsDeck data={d} onSelectItem={() => onSelectItem(d)} />
+      <CarddeckView data={d} onSelectItem={() => onSelectItem(d)} />
     );
   }
 }

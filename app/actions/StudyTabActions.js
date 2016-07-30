@@ -1,8 +1,11 @@
 import firebase from 'firebase';
 
+import { userCarddecks } from '../firebase';
+
 import C from '../constants';
 
 import { carddecks, flashcards } from '../data/TestData';
+import { currentUser } from '../data/User';
 
 // --- Cardsdeck actions ---//
 function requestDecks(section) {
@@ -23,10 +26,11 @@ function fetchDecks(section) {
   return dispatch => {
     dispatch(requestDecks(section));
 
-    // TODO replace with call to Firebase
-    return fetch(`http://www.reddit.com/r/Showerthoughts.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receiveDecks(section, carddecks)))
+    // fetch user decks from Firebase
+    const loc = userCarddecks(currentUser, section);
+    firebase.database().ref(loc).on('value', function(snapshot) {
+      dispatch(receiveDecks(section, snapshot.val()))
+    });
   }
 }
 function shouldFetchDecks(state, section) {
