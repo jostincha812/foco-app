@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import { userCarddecks } from '../firebase';
+import { fbUserCarddecksLoc, fbFlashcardsLoc } from '../firebase';
 
 import C from '../constants';
 
@@ -27,7 +27,7 @@ function fetchDecks(section) {
     dispatch(requestDecks(section));
 
     // fetch user decks from Firebase
-    const loc = userCarddecks(currentUser, section);
+    const loc = fbUserCarddecksLoc(currentUser, section);
     firebase.database().ref(loc).on('value', function(snapshot) {
       dispatch(receiveDecks(section, snapshot.val()))
     });
@@ -72,6 +72,7 @@ function fetchFlashcards(carddeck) {
     dispatch(requestFlashcards(carddeck));
 
     // TODO replace with call to Firebase
+    console.log(carddeck);
     return fetch(`http://www.reddit.com/r/Showerthoughts.json`)
       .then(response => response.json())
       .then(json => dispatch(receiveFlashcards(carddeck, flashcards)))

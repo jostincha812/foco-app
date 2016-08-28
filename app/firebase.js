@@ -11,11 +11,15 @@ function configFirebase() {
   firebase.initializeApp(config);
 }
 
-function userCarddecks(user, section) {
+function fbUserCarddecksLoc(user, section) {
   return (`users/section_carddecks/${user.id}/${user.level}/${section.id}`)
+}
+function fbFlashcardsLoc() {
+  return (`flashcards/`);
 }
 
 module.exports = {
   configFirebase,
-  userCarddecks
+  fbUserCarddecksLoc,
+  fbFlashcardsLoc
 }
