@@ -12,7 +12,7 @@ export default class User {
   }
 }
 
-const currentUser = new User('013', 'lovince','lovince@gmail.com','wset3');
+const currentUser = new User('013', 'lovince','lovince@gmail.com','WSET3');
 
 module.exports = {
   currentUser

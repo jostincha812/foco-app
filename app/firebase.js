@@ -12,7 +12,7 @@ function configFirebase() {
 }
 
 function fbUserCarddecksLoc(user, section) {
-  return (`users/section_carddecks/${user.id}/${user.level}/${section.id}`)
+  return (`users/${user.id}/section_carddecks/${user.level}/${section.id}`)
 }
 function fbFlashcardsLoc() {
   return (`flashcards/`);
