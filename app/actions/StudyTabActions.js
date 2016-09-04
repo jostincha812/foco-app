@@ -4,7 +4,6 @@ import { fbUserCarddecksRef, fbFlashcardsRef } from '../firebase';
 
 import C from '../constants';
 
-import { carddecks, flashcards } from '../data/TestData';
 import { currentUser } from '../data/User';
 
 // --- Cardsdeck actions ---//
@@ -27,7 +26,7 @@ function fetchDecks(section) {
     dispatch(requestDecks(section));
 
     // fetch user decks for section from Firebase
-    fbUserCarddecksRef(currentUser, section).on('value', function(snapshot) {
+    fbUserCarddecksRef(currentUser.id, section.id).on('value', function(snapshot) {
       dispatch(receiveDecks(section, snapshot.val()))
     });
   }
@@ -70,12 +69,28 @@ function fetchFlashcards(carddeck) {
   return dispatch => {
     dispatch(requestFlashcards(carddeck));
 
-    // TODO replace with call to Firebase
-    console.log(carddeck);
-    return fetch(`http://www.reddit.com/r/Showerthoughts.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receiveFlashcards(carddeck, flashcards)))
+    var promises = [];
+    var flashcards = {};
+
+    // retrieve each flashcard from firebase
+    carddeck.flashcards.forEach(function(flashcardId) {
+      promises.push(fbFlashcardsRef(flashcardId).once('value').then(function(snapshot) {
+        flashcards[snapshot.key] = snapshot.val();
+      }));
+    });
+
+    // wait for all promises to complete before dispatching recieveFlashcards action
+    Promise.all(promises).then(function() {
+      dispatch(receiveFlashcards(carddeck, flashcards))
+    });
   }
+  //
+  //   // TODO replace with call to Firebase
+  //   console.log(carddeck);
+  //   return fetch(`http://www.reddit.com/r/Showerthoughts.json`)
+  //     .then(response => response.json())
+  //     .then(json => dispatch(receiveFlashcards(carddeck, flashcards)))
+  // }
 }
 function shouldFetchFlashcards(state, carddeck) {
   const cardsState = state.flashcardsByCarddeck[carddeck.id];

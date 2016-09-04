@@ -11,13 +11,13 @@ function configFirebase() {
   firebase.initializeApp(config);
 }
 
-function fbUserCarddecksRef(user, section) {
-  const loc = `/user_carddecks/${user.id}/`;
-  return firebase.database().ref(loc).orderByChild('section').equalTo(section.id);
+function fbUserCarddecksRef(userId, sectionId) {
+  const loc = `/user_carddecks/${userId}/`;
+  return firebase.database().ref(loc).orderByChild('section').equalTo(sectionId);
 }
-function fbFlashcardsRef() {
-  const loc = `/flashcards/`;
-  return firebase.database().ref(loc).orderByKey();
+function fbFlashcardsRef(flashcardId) {
+  const loc = `/flashcards/${flashcardId}`;
+  return firebase.database().ref(loc);
 }
 
 module.exports = {
