@@ -75,7 +75,9 @@ function fetchFlashcards(carddeck) {
     // retrieve each flashcard from firebase
     carddeck.flashcards.forEach(function(flashcardId) {
       promises.push(fbFlashcardsRef(flashcardId).once('value').then(function(snapshot) {
-        flashcards[snapshot.key] = snapshot.val();
+        if (snapshot.val()) {
+          flashcards[snapshot.key] = snapshot.val();
+        }
       }));
     });
 

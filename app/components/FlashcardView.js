@@ -16,6 +16,10 @@ export default class FlashcardView extends React.Component {
   }
 
   render() {
+    if (!this.props.data) {
+      return null
+    }
+    
     return (
       <View style={styles.card}>
 				<TouchableHighlight onPress={this._flipCard}>
