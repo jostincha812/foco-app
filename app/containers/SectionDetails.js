@@ -42,7 +42,10 @@ class SectionDetails extends React.Component {
 
     // map id into card decks data
     if (carddecks && !carddecks.didInvalidate && !carddecks.isFetching) {
-      const items = Object.entries(carddecks.items).map(entry => {return {id:entry[0], ...entry[1]}});
+      var items = [];
+      if (carddecks.items) {
+        items = Object.entries(carddecks.items).map(entry => {return {id:entry[0], ...entry[1]}});
+      }
       ds = dataSource.cloneWithRows(items);
     } else {
       isLoading = true;

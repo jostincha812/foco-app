@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import { fbUserCarddecksLoc, fbFlashcardsLoc } from '../firebase';
+import { fbUserCarddecksRef, fbFlashcardsRef } from '../firebase';
 
 import C from '../constants';
 
@@ -26,9 +26,8 @@ function fetchDecks(section) {
   return dispatch => {
     dispatch(requestDecks(section));
 
-    // fetch user decks from Firebase
-    const loc = fbUserCarddecksLoc(currentUser, section);
-    firebase.database().ref(loc).on('value', function(snapshot) {
+    // fetch user decks for section from Firebase
+    fbUserCarddecksRef(currentUser, section).on('value', function(snapshot) {
       dispatch(receiveDecks(section, snapshot.val()))
     });
   }

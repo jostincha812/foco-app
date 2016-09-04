@@ -3,23 +3,25 @@ import firebase from 'firebase';
 function configFirebase() {
   // Firebase v3.0 initialization code
   var config = {
-    apiKey: "AIzaSyCNyxhOk_7jKwrDC4jbVqmzjwxmb2VbSXs",
-    authDomain: "focoapp.firebaseapp.com",
-    databaseURL: "https://focoapp.firebaseio.com",
-    storageBucket: "focoapp.appspot.com",
+    apiKey: 'AIzaSyCNyxhOk_7jKwrDC4jbVqmzjwxmb2VbSXs',
+    authDomain: 'focoapp.firebaseapp.com',
+    databaseURL: 'https://focoapp.firebaseio.com',
+    storageBucket: 'focoapp.appspot.com',
   };
   firebase.initializeApp(config);
 }
 
-function fbUserCarddecksLoc(user, section) {
-  return (`users/${user.id}/section_carddecks/${user.level}/${section.id}`)
+function fbUserCarddecksRef(user, section) {
+  const loc = `/user_carddecks/${user.id}/`;
+  return firebase.database().ref(loc).orderByChild('section').equalTo(section.id);
 }
-function fbFlashcardsLoc() {
-  return (`flashcards/`);
+function fbFlashcardsRef() {
+  const loc = `/flashcards/`;
+  return firebase.database().ref(loc).orderByKey();
 }
 
 module.exports = {
   configFirebase,
-  fbUserCarddecksLoc,
-  fbFlashcardsLoc
+  fbUserCarddecksRef,
+  fbFlashcardsRef
 }
