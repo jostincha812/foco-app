@@ -63,7 +63,7 @@ class SectionDetails extends React.Component {
           <Text>Loading...</Text>
         }
         {!isLoading &&
-          <ListView dataSource={ds} renderRow={this._renderItem} />
+          <ListView enableEmptySections={true} dataSource={ds} renderRow={this._renderItem} />
         }
       </View>
     );
