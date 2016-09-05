@@ -1,10 +1,9 @@
-import firebase from 'firebase';
-
-import { fbUserCarddecksRef, fbFlashcardsRef } from '../firebase';
+import * as firebase from 'firebase';
 
 import C from '../constants';
+import { fbUserCarddecksRef, fbFlashcardsRef } from '../firebase';
 
-import { currentUser } from '../data/User';
+// import { currentUser } from '../data/User';
 
 // --- Cardsdeck actions ---//
 function requestDecks(section) {
@@ -25,8 +24,10 @@ function fetchDecks(section) {
   return dispatch => {
     dispatch(requestDecks(section));
 
+    const currentUser = firebase.auth().currentUser;
+
     // fetch user decks for section from Firebase
-    fbUserCarddecksRef(currentUser.id, section.id).on('value', function(snapshot) {
+    fbUserCarddecksRef(currentUser.uid, section.id).on('value', function(snapshot) {
       dispatch(receiveDecks(section, snapshot.val()))
     });
   }

@@ -1,14 +1,14 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
+// Firebase v3.0 initialization code
 function configFirebase() {
-  // Firebase v3.0 initialization code
-  var config = {
-    apiKey: 'AIzaSyCNyxhOk_7jKwrDC4jbVqmzjwxmb2VbSXs',
-    authDomain: 'focoapp.firebaseapp.com',
-    databaseURL: 'https://focoapp.firebaseio.com',
-    storageBucket: 'focoapp.appspot.com',
+  const firebaseConfig = {
+    apiKey: "AIzaSyBh7Np4J9iIpnNRR49jOawMzVD-3gEEybg",
+    authDomain: "focoapp.firebaseapp.com",
+    databaseURL: "https://focoapp.firebaseio.com",
+    storageBucket: "project-4367012475013528568.appspot.com",
   };
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseConfig);
 }
 
 function fbUserCarddecksRef(userId, sectionId) {

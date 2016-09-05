@@ -22,7 +22,7 @@ export default globalNavigationReducer = NavigationReducer.StackReducer({
 		index: 0,
 		children: [
 			{
-				key: 'tabs',
+				key: C.G_APPTABS,
 				index: 0
 			},
 		],

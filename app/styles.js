@@ -55,6 +55,11 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: T.NAVBG,
   },
+  tourContainer: {
+    flex:1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
     flexDirection: 'column',

@@ -1,15 +1,33 @@
 import React from 'react';
 import { View, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
+import * as firebase from 'firebase';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 
 import C from '../constants';
+import { push } from '../actions/NavigationActions';
 import styles from '../styles';
 import AppTabs from './AppTabs';
-// import Tour from './Tour';
+import Tour from './Tour';
 
 class GlobalNavigation extends React.Component {
+	constructor(props) {
+    super(props);
+
+	  firebase.auth().onAuthStateChanged(function(user) {
+		  if (user) {
+		    // User signed in.
+		    console.log(`Signed in as ${user.email}`);
+				props.onNavigate(push(C.G_APPTABS));
+		  } else {
+		    // No user is signed in.
+		    console.log(`Signed out`);
+				props.onNavigate(pop());
+		  }
+		});
+  }
+
 	render() {
 		return (
 			<NavigationCardStack
@@ -28,28 +46,18 @@ class GlobalNavigation extends React.Component {
 	}
 
 	_renderScene(props) {
-		if (props.scene.navigationState.key === 'tabs') {
+		if (props.scene.navigationState.key === C.G_TOUR) {
 			return (
-				<View style={styles.navContainer}>
-					<AppTabs />
-				</View>
+					<Tour style={styles.navContainer} />
 			);
 		}
 
-		// if (props.scene.navigationState.key === 'tour') {
-		// 	return (
-		// 		<View style={{flex: 1}}>
-		// 			<Tour onClose={this._onCloseNewItem.bind(this)} />
-		// 		</View>
-		// 	);
-		// }
+		if (props.scene.navigationState.key === C.G_APPTABS) {
+			return (
+				<AppTabs style={styles.navContainer} />
+			);
+		}
 	}
-	//
-	// _onCloseNewItem() {
-	// 	this.props.onNavigate({
-	// 		type: 'BackAction'
-	// 	});
-	// }
 }
 
 function mapDispatchToProps(dispatch) {
