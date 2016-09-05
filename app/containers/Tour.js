@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TextInput, TouchableHighlight } from 'react-native';
 import * as firebase from 'firebase';
 
+import C from '../constants';
 import styles from '../styles';
 
 class TourContainer extends React.Component {
@@ -61,4 +63,25 @@ class TourContainer extends React.Component {
   }
 }
 
-export default TourContainer;
+function mapDispatchToProps(dispatch) {
+	return {
+		dispatch
+	};
+}
+function mapStateToProps(state) {
+	return {
+		// needs to be the same key as reducers.js
+		navigation: state.get(C.S_GLOBAL_NAV)
+	};
+}
+export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
+	return Object.assign({}, dispatchProps, stateProps, {
+		onNavigate: (action) => {
+			dispatchProps.dispatch(
+				Object.assign(action, {
+					scope: stateProps.navigation.key
+				})
+			);
+		}
+	});
+})(TourContainer);

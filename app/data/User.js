@@ -1,27 +1,35 @@
-// import * as firebase from 'firebase';
-//
-// export default currentUser = firebase.auth().currentUser;
-    // this.username = username;
-    // this.level = level;
-    //
-    // // "@context": ["http://schema.org", {
-    // //   "gender": {"@id": "schema:gender", "@type": "@vocab"}
-    // // }]
-    // // http://schema.org/Person
-    // this.type = 'Person';
-    // this.email = email;
-    // this.name = '';
-    // this.givenName = '';
-    // this.familyName = '';
-    // this.gender = '';
-    //   // http://schema.org/Male
-    //   // http://schema.org/Female
-    // this.jobTitle = '';
-    // this.image = '';
-    //   // http://schema.org/URL
-//
-// const currentUser = new User('013', 'lovince','lovince@gmail.com','WSET3');
-//
-// module.exports = {
-//   currentUser
-// }
+export default class User {
+  constructor(fbUser) {
+    if (fbUser == null) {
+      return null;
+    }
+
+    // load from fb User
+    this._fbUser = fbUser;
+    this.uid = fbUser.uid;
+    this.email = fbUser.email;
+    this.displayName = fbUser.displayName;
+    this.image = fbUser.photoURL;
+      // http://schema.org/URL
+
+    // load from fb database
+    this.username = '';
+    this.gender = '';
+    this.appConfig = {
+      level: '',
+      hasCarddecks: false,
+    };
+  }
+
+  // "@context": ["http://schema.org", {
+  //   "gender": {"@id": "schema:gender", "@type": "@vocab"}
+  // }]
+  // this.type = 'Person';
+    // http://schema.org/Person
+  // this.gender = '';
+    // http://schema.org/Male
+    // http://schema.org/Female
+  // this.givenName = '';
+  // this.familyName = '';
+  // this.jobTitle = '';
+}
