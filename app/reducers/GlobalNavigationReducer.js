@@ -12,8 +12,8 @@ import C from '../constants';
 
 export default globalNavigationReducer = NavigationReducer.StackReducer({
 	getPushedReducerForAction: (action) => {
-		if (action.type === 'push') {
-			return (state) => (state || action.route);
+		if (action.type === C.PUSH_ROUTE) {
+			return (state) => (state || action);
 		}
 		return null;
 	},

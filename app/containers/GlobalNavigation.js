@@ -14,16 +14,19 @@ import Tour from './Tour';
 class GlobalNavigation extends React.Component {
 	constructor(props) {
     super(props);
+		this._handleNavigate = this._handleNavigate.bind(this);
+		this._renderScene = this._renderScene.bind(this);
+		this._renderHeader = this._renderHeader.bind(this);
 
 	  firebase.auth().onAuthStateChanged(function(user) {
 		  if (user) {
 		    // User signed in.
 		    console.log(`Signed in as ${user.email}`);
-				props.onNavigate(push(C.G_APPTABS));
+				props.pushRoute(C.G_APPTABS);
 		  } else {
 		    // No user is signed in.
 		    console.log(`Signed out`);
-				props.onNavigate(pop());
+				props.popRoute();
 		  }
 		});
   }
@@ -33,9 +36,9 @@ class GlobalNavigation extends React.Component {
 			<NavigationCardStack
 				direction={'vertical'}
 				navigationState={this.props.navigation}
-				onNavigate={this.props.onNavigate}
-				renderScene={this._renderScene.bind(this)}
-				renderOverlay={this._renderHeader.bind(this)}
+				onNavigate={this._handleNavigate}
+				renderScene={this._renderScene}
+				renderOverlay={this._renderHeader}
 				style={styles.main}
 			/>
 		);
@@ -58,6 +61,20 @@ class GlobalNavigation extends React.Component {
 			);
 		}
 	}
+
+	_handleNavigate(action) {
+		switch (action && action.type) {
+		case 'push':
+			// does not appear to be used by anything
+			// this.props.pushRoute(action.route);
+			return true;
+		case 'back':
+		case 'pop':
+			return this._handleBackAction();
+		default:
+			return false;
+		}
+	};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -72,13 +89,16 @@ function mapStateToProps(state) {
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
-	return Object.assign({}, dispatchProps, stateProps, {
-		onNavigate: (action) => {
-			dispatchProps.dispatch(
-				Object.assign(action, {
-					scope: stateProps.navigation.key
-				})
-			);
-		}
+	return Object.assign({}, ownProps, stateProps, dispatchProps, {
+    pushRoute: (route,data) => {
+      dispatchProps.dispatch(Object.assign(push(route), {
+        scope: stateProps.navigation.key,
+      }));
+    },
+    popRoute: () => {
+      dispatchProps.dispatch(Object.assign(pop(), {
+        scope: stateProps.navigation.key,
+      }));
+    },
 	});
 })(GlobalNavigation);
