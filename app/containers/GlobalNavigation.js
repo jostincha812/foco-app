@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import * as firebase from 'firebase';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
+const { StateUtils: NavigationStateUtils } = NavigationExperimental;
 
 import C from '../constants';
-import { push } from '../actions/NavigationActions';
+import { push, pop } from '../actions/NavigationActions';
 import styles from '../styles';
 import AppTabs from './AppTabs';
 import Tour from './Tour';
@@ -34,7 +35,7 @@ class GlobalNavigation extends React.Component {
 	render() {
 		return (
 			<NavigationCardStack
-				direction={'vertical'}
+				direction={'horizontal'}
 				navigationState={this.props.navigation}
 				onNavigate={this._handleNavigate}
 				renderScene={this._renderScene}
@@ -65,12 +66,12 @@ class GlobalNavigation extends React.Component {
 	_handleNavigate(action) {
 		switch (action && action.type) {
 		case 'push':
-			// does not appear to be used by anything
-			// this.props.pushRoute(action.route);
-			return true;
+			this.props.pushRoute(action.route);
+			return;
 		case 'back':
 		case 'pop':
-			return this._handleBackAction();
+			this.props.popRoute();
+			return;
 		default:
 			return false;
 		}
@@ -90,7 +91,7 @@ function mapStateToProps(state) {
 }
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
 	return Object.assign({}, ownProps, stateProps, dispatchProps, {
-    pushRoute: (route,data) => {
+    pushRoute: (route) => {
       dispatchProps.dispatch(Object.assign(push(route), {
         scope: stateProps.navigation.key,
       }));

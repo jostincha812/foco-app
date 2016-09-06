@@ -11,8 +11,8 @@ const C = {
   TAB_ICON_SIZE: 32,
 
   // NAVIGATION state consts
-  PUSH_ROUTE: 'PUSH_ROUTE',
-  POP_ROUTE: 'POP_ROUTE',
+  PUSH_ROUTE: 'push',
+  POP_ROUTE: 'back',
 
   G_TOUR: 'G_TOUR',
   G_APPTABS: 'G_APPTABS',
