@@ -16,6 +16,7 @@ import MockHome from './MockTabContainer';
 import ProgressHome from './ProgressTabContainer';
 import ProfileHome from './ProfileTabContainer';
 import PlaceholderContainer from './PlaceholderContainer';
+import FlashcardCreator from './FlashcardCreator';
 
 class AppTabs extends Component {
 	_renderTabContent(tab) {
@@ -25,6 +26,7 @@ class AppTabs extends Component {
 			case 'mock': return <MockHome />;
 			case 'progress': return <ProgressHome />;
 			case 'profile': return <ProfileHome />;
+			case 'flashcardCreator': return <FlashcardCreator />;
 			default:
 				return <PlaceholderContainer />;
 		}
@@ -38,6 +40,7 @@ class AppTabs extends Component {
 			case 'mock': s = 'timer'; break;
 			case 'progress': s = 'stats'; break;
 			case 'profile': s = 'contact'; break;
+			case 'flashcardCreator': s = 'create'; break;
 			default:
 				s = 'help';
 		}

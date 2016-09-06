@@ -17,7 +17,7 @@ class TourContainer extends React.Component {
     return (
       <View style={styles.tourContainer}>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={[{height:40}, styles.stackedInput]}
           onChangeText={(text) => this.setState({email: text})}
           placeholder='email'
           keyboardType='email-address'
@@ -28,7 +28,7 @@ class TourContainer extends React.Component {
           value={this.state.email}
         />
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={[{height:40}, styles.stackedInput]}
           onChangeText={(text) => this.setState({password: text})}
           placeholder='password'
           keyboardType='default'

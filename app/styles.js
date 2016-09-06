@@ -59,6 +59,8 @@ export default styles = StyleSheet.create({
     flex:1,
     flexDirection: 'column',
     justifyContent: 'center',
+    paddingLeft: G.NORMAL,
+    paddingRight: G.NORMAL,
   },
   container: {
     flex: 1,
@@ -71,9 +73,9 @@ export default styles = StyleSheet.create({
   },
   page: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    flexDirection: 'column',
+    paddingLeft: G.NORMAL,
+    paddingRight: G.NORMAL,
   },
   card: {
     margin: G.NORMAL,
@@ -94,6 +96,13 @@ export default styles = StyleSheet.create({
     borderColor: T.BORDER,
     borderBottomWidth: StyleSheet.hairlineWidth,
     ...shadow
+  },
+  stackedInput: {
+    borderColor: T.BORDER,
+    borderWidth: 1,
+    marginBottom: G.NORMAL,
+    paddingLeft: G.SMALLEST,
+    paddingRight: G.SMALLEST,
   },
   title: {
     fontSize: F.LARGER,

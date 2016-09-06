@@ -7,10 +7,11 @@ import C from '../constants';
 const tabs = [
 	{ key: 'study', title: 'Study' },
 	{ key: 'practice', title: 'Practice' },
-	{ key: 'mock', title: 'Mock' },
+	{ key: 'flashcardCreator', title: 'Flashcards' },
   { key: 'progress', title: 'My Progress' },
   { key: 'profile', title: 'My Profile' }
 ];
+// { key: 'mock', title: 'Mock' },
 
 export default AppTabsReducer = NavigationReducer.TabsReducer({
 	key: C.S_APPTABS_NAV,

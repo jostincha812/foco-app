@@ -19,9 +19,22 @@ function fbFlashcardsRef(flashcardId) {
   const loc = `/flashcards/${flashcardId}`;
   return firebase.database().ref(loc);
 }
+function fbFlashcardRef() {
+  return firebase.database().ref('/flashcards');
+}
+function fbFlashcardTagsRef(flashcardId) {
+  const loc = `/flashcards_tags/${flashcardId}`;
+  return firebase.database().ref(loc);
+}
+function fbRef() {
+  return firebase.database().ref();
+}
 
 module.exports = {
   configFirebase,
+  fbRef,
   fbUserCarddecksRef,
-  fbFlashcardsRef
+  fbFlashcardsRef,
+  fbFlashcardRef,
+  fbFlashcardTagsRef
 }
