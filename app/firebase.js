@@ -23,7 +23,7 @@ function fbFlashcardRef() {
   return firebase.database().ref('/flashcards');
 }
 function fbFlashcardTagsRef(flashcardId) {
-  const loc = `/flashcards_tags/${flashcardId}`;
+  const loc = `/flashcard_tags/${flashcardId}`;
   return firebase.database().ref(loc);
 }
 function fbRef() {
