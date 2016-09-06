@@ -42,6 +42,7 @@ class FlashcardCreator extends React.Component {
           value={this.state.front}
           multiline={true}
           numberOfLines={4}
+          returnKeyType='next'
           placeholder='front of card'
           placeholderTextColor='gray'
         />
@@ -51,6 +52,7 @@ class FlashcardCreator extends React.Component {
           value={this.state.back}
           multiline={true}
           numberOfLines={4}
+          returnKeyType='next'
           placeholder='back of card'
           placeholderTextColor='gray'
         />
@@ -58,6 +60,7 @@ class FlashcardCreator extends React.Component {
           style={[{height:40}, styles.stackedInput]}
           onChangeText={(text) => this.setState({chapter:text})}
           value={this.state.chapter}
+          returnKeyType='next'
           placeholder='0'
           placeholderTextColor='gray'
         />
@@ -67,6 +70,7 @@ class FlashcardCreator extends React.Component {
           value={this.state.tags}
           multiline={true}
           numberOfLines={2}
+          returnKeyType='next'
           autoCapitalize='none'
           autoCorrect={false}
           placeholder='tags'
@@ -101,7 +105,7 @@ class FlashcardCreator extends React.Component {
 
     const fcRef = fbFlashcardRef().push(flashcard);
     fbFlashcardTagsRef(fcRef.key).set(tags);
-    this.state = initialState;
+    this.setState(initialState);
   }
 }
 export default FlashcardCreator;
