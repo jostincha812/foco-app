@@ -5,6 +5,7 @@ import { View, Text, TextInput, TouchableHighlight } from 'react-native';
 
 import styles from '../styles';
 import { fbFlashcardRef, fbFlashcardTagsRef } from '../firebase';
+import { T, tagLabels, tagForLabel } from '../data/Tags';
 
 const initialState = {
   front: '',
@@ -19,6 +20,7 @@ class FlashcardCreator extends React.Component {
 		super(props);
     this._onPressButton = this._onPressButton.bind(this);
     this.state = initialState;
+    this.tagLabels = tagLabels();
   }
   componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', this._handleBackAction);

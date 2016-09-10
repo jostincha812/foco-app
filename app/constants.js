@@ -6,8 +6,8 @@ const C = {
   S_STUDYTAB: 'STATE_STUDYTAB',
 
   // CONFIG state consts
-  WSET_2: 'WSET_2',
-  WSET_3: 'WSET_3',
+  WSET2: 'WSET2',
+  WSET3: 'WSET3',
   TAB_ICON_SIZE: 32,
 
   // NAVIGATION state consts
