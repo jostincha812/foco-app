@@ -1,7 +1,9 @@
 import React, { PropTypes, Component } from 'react';
+import { View, Text, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { Platform, BackAndroid, NavigationExperimental } from 'react-native';
 const { Header: NavigationHeader } = NavigationExperimental;
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+
+import Autocomplete from 'react-native-autocomplete-input';
 
 import styles from '../styles';
 import { fbFlashcardRef, fbFlashcardTagsRef } from '../firebase';
@@ -13,6 +15,7 @@ const initialState = {
   chapter: null,
   level: 'WSET3',
   tags: '',
+  query: '',
 }
 
 class FlashcardCreator extends React.Component {
@@ -20,7 +23,7 @@ class FlashcardCreator extends React.Component {
 		super(props);
     this._onPressButton = this._onPressButton.bind(this);
     this.state = initialState;
-    this.tagLabels = tagLabels();
+    this.state.tagLabels = tagLabels();
   }
   componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', this._handleBackAction);
@@ -29,9 +32,21 @@ class FlashcardCreator extends React.Component {
     BackAndroid.removeEventListener('hardwareBackPress', this._handleBackAction);
   }
 
+  _filterTags(query) {
+    if (query === '') {
+      return [];
+    }
+
+    const { tagLabels } = this.state;
+    const regex = new RegExp(`${query.trim()}`, 'i');
+    return tagLabels.filter(label => label.search(regex) >= 0);
+  }
+
   render() {
     // const mt = Platform.OS === 'ios' ? NavigationHeader.statusBarHeight : 0;
     const mt = Platform.OS === 'ios' ? 20 : 0;
+    const { query } = this.state;
+    const filteredTags = this._filterTags(query);
 
     return (
       <View style={[{marginTop:mt}, styles.page]}>
@@ -57,6 +72,22 @@ class FlashcardCreator extends React.Component {
           returnKeyType='next'
           placeholder='back of card'
           placeholderTextColor='gray'
+        />
+        <Autocomplete
+          autoCapitalize="none"
+          autoCorrect={false}
+          containerStyle={styles.autocompleteContainer}
+          inputContainerStyle={styles.autocompleteInputContainer}
+          style={styles.autocompleteInputStyle}
+          listStyle={styles.autocompleteListStyle}
+          data={filteredTags}
+          defaultValue={query}
+          onChangeText={text => this.setState({query: text})}
+          renderItem={data => (
+            <TouchableOpacity onPress={() => this.setState({query: data})}>
+              <Text style={styles.autocompleteItemStyle}>{data}</Text>
+            </TouchableOpacity>
+          )}
         />
         <TextInput
           style={[{height:40}, styles.stackedInput]}

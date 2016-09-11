@@ -126,6 +126,22 @@ export default styles = StyleSheet.create({
   tabIconSelected: {
     color: T.ACCENT_1,
     paddingBottom:1
+  },
+  autocompleteContainer: {
+    margin: G.NONE,
+  },
+  autocompleteInputContainer: {
+    margin: G.NONE,
+  },
+  autocompleteInputStyle: {
+    margin: G.NONE,
+  },
+  autocompleteListStyle: {
+    margin: G.NONE,
+    padding: G.SMALLER,
+  },
+  autocompleteItemStyle: {
+    fontSize: F.LARGER,
   }
 });
 
