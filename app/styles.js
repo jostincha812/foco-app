@@ -139,6 +139,7 @@ export default styles = StyleSheet.create({
   autocompleteListStyle: {
     margin: G.NONE,
     padding: G.SMALLER,
+    paddingTop: G.NONE,
   },
   autocompleteItemStyle: {
     fontSize: F.LARGER,

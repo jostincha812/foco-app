@@ -109,16 +109,24 @@ function tagLabels() {
   var labels = [];
   Object.keys(tagLabelsMap).map((k,i) => {
     labels = labels.concat(tagLabelsMap[k]);
-  })
+  });
 
   return labels;
 }
 
 function tagForLabel(label) {
-  switch (label) {
-    default:
-      return `${T.UNKNOWN}_${label}`;
+  var tag = T.UNKNOWN;
+  Object.keys(tagLabelsMap).map((k,i) => {
+    if (tagLabelsMap[k].includes(label)) {
+      tag = T[k];
+    };
+  });
+
+  if (tag == T.UNKNOWN) {
+    return `${T.UNKNOWN}_${label.replace(' ','_')}`;
   }
+
+  return tag;
 }
 
 module.exports = {

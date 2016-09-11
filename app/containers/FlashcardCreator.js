@@ -39,7 +39,19 @@ class FlashcardCreator extends React.Component {
 
     const { tagLabels } = this.state;
     const regex = new RegExp(`${query.trim()}`, 'i');
-    return tagLabels.filter(label => label.search(regex) >= 0);
+    const labels = tagLabels.filter(label => label.search(regex) >= 0);
+    if (labels.length > 0) {
+      return labels;
+    } else {
+      // unknown labels
+      return [query];
+    }
+  }
+
+  _addTag(label) {
+    const tag = tagForLabel(label);
+    this.setState({tags: `${this.state.tags} ${tag}`.trim()});
+    this.setState({query: ''});
   }
 
   render() {
@@ -73,6 +85,14 @@ class FlashcardCreator extends React.Component {
           placeholder='back of card'
           placeholderTextColor='gray'
         />
+        <TextInput
+          style={[{height:40}, styles.stackedInput]}
+          onChangeText={(text) => this.setState({chapter:text})}
+          value={this.state.chapter}
+          returnKeyType='next'
+          placeholder='0'
+          placeholderTextColor='gray'
+        />
         <Autocomplete
           autoCapitalize="none"
           autoCorrect={false}
@@ -84,18 +104,10 @@ class FlashcardCreator extends React.Component {
           defaultValue={query}
           onChangeText={text => this.setState({query: text})}
           renderItem={data => (
-            <TouchableOpacity onPress={() => this.setState({query: data})}>
+            <TouchableOpacity onPress={() => this._addTag(data)}>
               <Text style={styles.autocompleteItemStyle}>{data}</Text>
             </TouchableOpacity>
           )}
-        />
-        <TextInput
-          style={[{height:40}, styles.stackedInput]}
-          onChangeText={(text) => this.setState({chapter:text})}
-          value={this.state.chapter}
-          returnKeyType='next'
-          placeholder='0'
-          placeholderTextColor='gray'
         />
         <TextInput
           style={[{height:80}, styles.stackedInput]}
@@ -134,7 +146,7 @@ class FlashcardCreator extends React.Component {
 
     var tags = {};
     tags[this.state.level] = true;
-    this.state.tags.split(' ').map((t) => {tags[t.trim()] = true});
+    this.state.tags.trim().split(' ').map((t) => {tags[t.trim()] = true});
 
     const fcRef = fbFlashcardRef().push(flashcard);
     fbFlashcardTagsRef(fcRef.key).set(tags);
