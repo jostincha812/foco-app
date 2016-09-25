@@ -23,7 +23,7 @@ const F = {
   SMALLER: 12,
   SMALLEST: 8,
   BOLD: "600",
-  NORMAL: "200",
+  REGULAR: "200",
   THIN: "100",
 }
 
@@ -87,6 +87,16 @@ export default styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     ...shadow
   },
+  flashcard: {
+    margin: G.LARGEST,
+    marginTop: G.LARGEST * 2,
+    marginBottom: G.LARGEST * 2,
+    padding: G.LARGEST,
+    backgroundColor: T.CARDBG,
+    borderColor: T.BORDER,
+    borderWidth: StyleSheet.hairlineWidth,
+    ...shadow
+  },
   cover: {
     height: 240,
     margin: G.NONE,
@@ -143,6 +153,26 @@ export default styles = StyleSheet.create({
   },
   autocompleteItemStyle: {
     fontSize: F.LARGER,
+  },
+  heading1: {
+    fontSize: F.LARGER,
+    fontWeight: F.REGULAR,
+  },
+  heading2: {
+    fontSize: F.LARGER,
+    fontWeight: F.THIN,
+  },
+  heading3: {
+    fontSize: F.NORMAL,
+    fontWeight: F.REGULAR,
+  },
+  heading4: {
+    fontSize: F.SMALLER,
+    fontWeight: F.THIN,
+  },
+  heading5: {
+    fontSize: F.SMALLER,
+    fontWeight: F.THIN,
   }
 });
 
