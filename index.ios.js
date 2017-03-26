@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import FocoApp from './app';
+import FocoApp from './FocoApp';
 
 AppRegistry.registerComponent('FocoApp', () => FocoApp);
