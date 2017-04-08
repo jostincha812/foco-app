@@ -6,12 +6,11 @@ import {
   Button
 } from 'react-native';
 
-import N from '../navigation/N';
+import C from '../C';
 
 export default class SearchHome extends React.Component {
   static navigationOptions = {
-    // Nav options can be defined as a function of the navigation prop:
-    title: ({ state }) => `Search`
+    title: ({ state }) => `Search`,
   };
   render() {
     const { navigate } = this.props.navigation;
@@ -21,7 +20,7 @@ export default class SearchHome extends React.Component {
     return (
       <View>
         <Button
-          onPress={() => navigate(N.NAV_SEARCH_RESULTS, { query: query })}
+          onPress={() => navigate(C.NAV_SEARCH_RESULTS, { query: query })}
           title={`Search`}
         />
       </View>

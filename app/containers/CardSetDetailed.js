@@ -6,10 +6,11 @@ import {
   Button
 } from 'react-native';
 
+import S from '../styles/styles';
+
 export default class CardSetDetailed extends React.Component {
   static navigationOptions = {
-    // Nav options can be defined as a function of the navigation prop:
-//    title: ({ state }) => `CardSetDetailed`
+    title: ({ state }) => `Detailed card set with a very long set name`,
   };
   render() {
     const { params } = this.props.navigation.state;

@@ -6,12 +6,11 @@ import {
   Button
 } from 'react-native';
 
-import N from '../navigation/N';
+import C from '../C';
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
-    // Nav options can be defined as a function of the navigation prop:
-    title: ({ state }) => `Profile`
+    title: ({ state }) => `Profile`,
   };
   render() {
     const { navigate } = this.props.navigation;
@@ -22,7 +21,7 @@ export default class ProfileScreen extends React.Component {
         {/* <Text>Username: {params.username}</Text> */}
         <Text>Username</Text>
         <Button
-          onPress={() => navigate(N.NAV_PROFILE_DETAILED)}
+          onPress={() => navigate(C.NAV_PROFILE_DETAILED)}
           title={`More`}
         />
       </View>

@@ -8,8 +8,7 @@ import {
 
 export default class SearchResults extends React.Component {
   static navigationOptions = {
-    // Nav options can be defined as a function of the navigation prop:
-    title: ({ state }) => `${state.params.query}`
+    title: ({ state }) => `Search Results`,
   };
   render() {
     const { params } = this.props.navigation.state;

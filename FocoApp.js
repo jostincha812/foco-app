@@ -1,6 +1,7 @@
 // configure redux / firebase / etc.
 import React from 'react';
 
-import RootContainer from './app/navigation/RootContainer';
+// import SimpleRootContainer from './app/navigation/SimpleRootContainer';
+import TabRootContainer from './app/navigation/TabRootContainer';
 
-export default RootContainer;
+export default TabRootContainer;

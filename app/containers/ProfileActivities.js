@@ -6,10 +6,11 @@ import {
   Button
 } from 'react-native';
 
+import T from '../T';
+
 export default class ProfileActivities extends React.Component {
   static navigationOptions = {
-    // Nav options can be defined as a function of the navigation prop:
-    title: ({ state }) => `User Activities`
+    title: ({ state }) => `Profile`,
   };
   render() {
     const { params } = this.props.navigation.state;

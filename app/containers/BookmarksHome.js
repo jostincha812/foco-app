@@ -1,23 +1,25 @@
 import React from 'react';
 import { TabNavigator } from 'react-navigation';
-
 import {
-  StyleSheet,
   Text,
   View,
-  Button
 } from 'react-native';
+
+import S from '../styles/styles';
 
 export default class BookmarksHome extends React.Component {
   static navigationOptions = {
-    // Nav options can be defined as a function of the navigation prop:
-    title: ({ state }) => `Bookmark?`
+    title: ({ state }) => `Bookmarked`,
   };
   render() {
     const { params } = this.props.navigation.state;
 
     return (
-        <Text>Bookmarked</Text>
+      <View style={S.container}>
+        <View style={S.card}>
+          <Text>//empty</Text>
+        </View>
+      </View>
     );
   }
 }
