@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import T from '../T.js';
@@ -8,7 +9,9 @@ const AppIcon = (name, options) => {
   let color = options.tintColor ? options.tintColor : T.color;
   let focused = options.focused ? options.focused : false;
   return (
+    // <View style={{borderColor:'#666', borderWidth:0.5, width:size+1, height:size+1}}>
       <Icon name={name} size={size} color={color} />
+    // </View>
   )
 };
 
@@ -60,6 +63,7 @@ export default {
   share: (options = {}) => AppIcon('share', options),
 
   // app icons
+  help: (options = {}) => AppIcon('help', options),
   new: (options = {}) => AppIcon('new-box', options),
   image: (options = {}) => AppIcon('image', options),
   warning: (options = {}) => AppIcon('alert-circle', options),
@@ -67,6 +71,7 @@ export default {
   settings: (options = {}) => AppIcon('settings', options),
   grid: (options = {}) => AppIcon('view-grid', options),
   list: (options = {}) => AppIcon('view-headline', options),
-  widgets: (options = {}) => AppIcon('widgets', options),
+  // widgets: (options = {}) => AppIcon('widgets', options),
+  tune: (options = {}) => AppIcon('tune', options),
 
 }

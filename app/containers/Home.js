@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { ScrollView, StatusBar } from 'react-native';
 
 import C from '../C';
 import S from '../styles/styles';
@@ -15,13 +15,13 @@ export default class Home extends React.Component {
     const options = 'Siri';
 
     return (
-      <View style={S.container}>
+      <ScrollView style={S.container}>
         <StatusBar
           backgroundColor="blue"
           barStyle="light-content"
         />
         <IconsPreview />
-      </View>
+      </ScrollView>
     );
   }
 }

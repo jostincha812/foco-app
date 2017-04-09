@@ -13,24 +13,14 @@ export const spacing = {
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
+    overflow: 'scroll',
     backgroundColor: T.containerBackgroundColor,
     paddingBottom: spacing.xsmall,
   },
-  card: {
-    backgroundColor: T.contentBackgroundColor,
-    borderColor: T.contentBorderColor,
-    borderWidth: 0.5,
-    borderRadius: 0,
-    shadowColor: T.shadowColor,
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3,
-    },
-    padding: 8,
-    margin: spacing.none,
-    marginTop: spacing.xsmall,
+  flexRowWrapped: {
+    flexDirection: 'row',
+    flexWrap:'wrap',
+    alignItems:'flex-start'
   },
 });
 
