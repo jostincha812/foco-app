@@ -13,16 +13,13 @@ export const spacing = {
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    overflow: 'scroll',
     backgroundColor: T.containerBackgroundColor,
     paddingBottom: spacing.xsmall,
   },
   centeredContent: {
     flex: 1,
-    flexGrow: 1,
-    alignItems:'center',
     justifyContent: 'center',
-    backgroundColor: '#af0caf'
+    alignItems: 'center',
   },
   flexRowWrapped: {
     flexDirection: 'row',

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import C from '../C';
 import S from '../styles/styles';
 import Card from '../components/Card';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 import { fetchAirlinesData } from '../actions/airlinesActions';
 
@@ -33,16 +34,18 @@ class Home extends React.Component {
     const { navigate } = this.props.navigation;
     const props = this.props;
 
+    if (props.airlinesData.isFetching) {
+      return (
+        <LoadingIndicator />
+      )
+    }
+
     return (
       <ScrollView style={S.container}>
         <StatusBar
           backgroundColor="blue"
           barStyle="light-content"
         />
-        {
-          props.airlinesData.isFetching &&
-          <Text style={S.centeredContent}>Loading</Text>
-        }
         {
           props.airlinesData.data.length ? this.renderAirlines(props.airlinesData.data) : null
         }

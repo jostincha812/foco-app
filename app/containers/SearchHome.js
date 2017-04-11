@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
+import { ScrollView, View, Button } from 'react-native';
 
 import C from '../C';
+import S from '../styles/styles';
 
 export default class SearchHome extends React.Component {
   static navigationOptions = {
@@ -18,12 +14,14 @@ export default class SearchHome extends React.Component {
     const query = 'q=viniculture+france+winestyle';
 
     return (
-      <View>
+      <ScrollView
+        style={S.container}
+        contentContainerStyle={S.centeredContent}>
         <Button
           onPress={() => navigate(C.NAV_SEARCH_RESULTS, { query: query })}
           title={`Search`}
         />
-      </View>
+      </ScrollView>
     );
   }
 }

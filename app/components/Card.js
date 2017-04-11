@@ -8,16 +8,21 @@ import { spacing } from '../styles/styles';
 export default class VPQCard extends React.Component {
   render() {
     const props = this.props;
-    const propsStyle = props.style ? props.style : {};
+    const containerStyle = props.containerStyle ? props.containerStyle : {};
+    const innerStyle = props.innerStyle ? props.innerStyle : {};
     return (
       <Card
         title={props.title}
         titleStyle={{marginBottom:spacing.xsmall, textAlign:'left'}}
         dividerStyle={{marginBottom:spacing.xsmall}}
-        containerStyle={[styles.card, propsStyle]}>
-        {props.children}
+        containerStyle={[styles.card, containerStyle]}>
+        <View style={innerStyle}>
+          {props.children}
+        </View>
       </Card>
     )
+
+    // --- no dependency version ---//
     // return (
     //   <View style={[styles.card, {flexDirection:'column'}]}>
     //     {props.title && (

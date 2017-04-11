@@ -10,7 +10,7 @@ export default class IconsPreview extends React.Component {
   render() {
     return (
       <View>
-        <Card title='Foco Icons' style={S.flexRowWrapped}>
+        <Card title='Foco Icons' innerStyle={S.flexRowWrapped}>
           { I.home({tintColor: T.accentColor}) }
           { I.homeOutline({tintColor: T.accentColor2}) }
           { I.search() }
@@ -30,7 +30,7 @@ export default class IconsPreview extends React.Component {
           { I.cloud() }
         </Card>
 
-        <Card title='User Actions' style={S.flexRowWrapped}>
+        <Card title='User Actions' innerStyle={S.flexRowWrapped}>
           { I.favorite() }
           { I.favoriteOutline() }
           { I.star() }
@@ -53,7 +53,7 @@ export default class IconsPreview extends React.Component {
           { I.timer() }
         </Card>
 
-        <Card title='App Icons' style={S.flexRowWrapped}>
+        <Card title='App Icons' innerStyle={S.flexRowWrapped}>
           { I.menu() }
           { I.help() }
           { I.new() }
