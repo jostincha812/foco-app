@@ -1,12 +1,14 @@
 import React from 'react';
 import { ScrollView, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
+import { fetchFlashcards } from '../actions/flashcardsActions';
 
 import C from '../C';
 import S from '../styles/styles';
 
 import IconsPreview from '../components/IconsPreview';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   static navigationOptions = {
     title: ({ state }) => `Home`,
   };
@@ -25,3 +27,20 @@ export default class Home extends React.Component {
     );
   }
 }
+
+function mapStateToProps (state) {
+  return {
+    flashcards: state.flashcards
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchFlashcards: () => dispatch(fetchFlashcards())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)

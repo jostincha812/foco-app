@@ -20,5 +20,5 @@ export default FocoTheme = {
   fontSize: 12,
   fontWeight: '300',
   titleFontWeight: '600',
-  titleFontSize: 16,
+  titleFontSize: 14,
 }
