@@ -11,7 +11,7 @@ export default class SearchHome extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
-    const query = 'q=viniculture+france+winestyle';
+    const query = 'q=param1+param23';
 
     return (
       <ScrollView

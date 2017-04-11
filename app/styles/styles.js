@@ -31,12 +31,13 @@ export default styles = StyleSheet.create({
 export const navigationStyles = {
   header: {
     backTitle: null,
+    tintColor: T.inverseTextColor,
     titleStyle: {
       fontWeight: T.titleFontWeight,
       color: T.inverseTextColor,
     },
     style: {
       backgroundColor: T.activeColor,
-    }
+    },
   },
 };
