@@ -17,6 +17,13 @@ export default styles = StyleSheet.create({
     backgroundColor: T.containerBackgroundColor,
     paddingBottom: spacing.xsmall,
   },
+  centeredContent: {
+    flex: 1,
+    flexGrow: 1,
+    alignItems:'center',
+    justifyContent: 'center',
+    backgroundColor: '#af0caf'
+  },
   flexRowWrapped: {
     flexDirection: 'row',
     flexWrap:'wrap',

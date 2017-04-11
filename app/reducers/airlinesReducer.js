@@ -8,19 +8,19 @@ const initialState = {
 
 export default function flashcardsReducer (state = initialState, action) {
   switch (action.type) {
-    case C.FETCH_FLASHCARDS_PENDING:
+    case C.FETCH_AIRLINES_DATA_PENDING:
       return {
         ...state,
         data: [],
         isFetching: true
       }
-    case C.FETCH_FLASHCARDS_FULFILLED:
+    case C.FETCH_AIRLINES_DATA_FULFILLED:
       return {
         ...state,
         isFetching: false,
-        data: action.data
+        data: action.payload
       }
-    case C.FETCH_FLASHCARDS_REJECTED:
+    case C.FETCH_AIRLINES_DATA_REJECTED:
       return {
         ...state,
         isFetching: false,

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import flashcardsReducer from './flashcardsReducer'
+import airlinesReducer from './airlinesReducer'
 
 const rootReducer = combineReducers({
-  flashcardsReducer
+  airlinesData: airlinesReducer
 })
 
 export default rootReducer;

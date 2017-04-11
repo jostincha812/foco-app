@@ -1,25 +1,43 @@
 import React from 'react';
-import { TabNavigator } from 'react-navigation';
-import {
-  Text,
-  View,
-} from 'react-native';
+import { ScrollView, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 
+import C from '../C';
 import S from '../styles/styles';
 
-export default class BookmarksHome extends React.Component {
+import IconsPreview from '../components/IconsPreview';
+
+class BookmarksHome extends React.Component {
   static navigationOptions = {
-    title: ({ state }) => `Bookmarked`,
+    title: ({ state }) => `Icons Preview`,
   };
   render() {
-    const { params } = this.props.navigation.state;
+    const { navigate } = this.props.navigation;
+    const options = 'some options';
 
     return (
-      <View style={S.container}>
-        <View style={S.card}>
-          <Text>//empty</Text>
-        </View>
-      </View>
+      <ScrollView style={S.container}>
+        <StatusBar
+          backgroundColor="blue"
+          barStyle="light-content"
+        />
+        <IconsPreview />
+      </ScrollView>
     );
   }
 }
+
+function mapStateToProps (state) {
+  return {
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BookmarksHome)

@@ -1,20 +1,37 @@
 import React from 'react';
-import { ScrollView, StatusBar } from 'react-native';
+import { ScrollView, StatusBar, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchFlashcards } from '../actions/flashcardsActions';
 
 import C from '../C';
 import S from '../styles/styles';
+import Card from '../components/Card';
 
-import IconsPreview from '../components/IconsPreview';
+import { fetchAirlinesData } from '../actions/airlinesActions';
 
 class Home extends React.Component {
   static navigationOptions = {
     title: ({ state }) => `Home`,
   };
+
+  componentDidMount() {
+    this.props.fetchAirlinesData();
+  }
+
+  renderAirlines(data) {
+    return (
+      data.map((airline, i) => {
+        return (
+          <Card title={airline.name} key={airline.id}>
+            <Text>IATA: {airline.id}</Text>
+          </Card>
+        )
+      })
+    )
+  }
+
   render() {
     const { navigate } = this.props.navigation;
-    const options = 'Siri';
+    const props = this.props;
 
     return (
       <ScrollView style={S.container}>
@@ -22,7 +39,13 @@ class Home extends React.Component {
           backgroundColor="blue"
           barStyle="light-content"
         />
-        <IconsPreview />
+        {
+          props.airlinesData.isFetching &&
+          <Text style={S.centeredContent}>Loading</Text>
+        }
+        {
+          props.airlinesData.data.length ? this.renderAirlines(props.airlinesData.data) : null
+        }
       </ScrollView>
     );
   }
@@ -30,13 +53,13 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    flashcards: state.flashcards
+    airlinesData: state.airlinesData
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchFlashcards: () => dispatch(fetchFlashcards())
+    fetchAirlinesData: () => dispatch(fetchAirlinesData())
   }
 }
 

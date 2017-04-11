@@ -1,27 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Divider } from 'react-native-elements';
+import { Card, Divider } from 'react-native-elements';
 
 import T from '../T';
 import { spacing } from '../styles/styles';
 
-export default class Card extends React.Component {
+export default class VPQCard extends React.Component {
   render() {
     const props = this.props;
     const propsStyle = props.style ? props.style : {};
     return (
-      <View style={[styles.card, {flexDirection:'column'}]}>
-        {props.title && (
-          <View style={{marginBottom:spacing.xsmall}}>
-            <Text style={styles.cardTitle}>{props.title}</Text>
-            <Divider />
-          </View>
-        )}
-        <View style={propsStyle}>
-          {props.children}
-        </View>
-      </View>
-    );
+      <Card
+        title={props.title}
+        titleStyle={{marginBottom:spacing.xsmall, textAlign:'left'}}
+        dividerStyle={{marginBottom:spacing.xsmall}}
+        containerStyle={[styles.card, propsStyle]}>
+        {props.children}
+      </Card>
+    )
+    // return (
+    //   <View style={[styles.card, {flexDirection:'column'}]}>
+    //     {props.title && (
+    //       <View style={{marginBottom:spacing.xsmall}}>
+    //         <Text style={styles.cardTitle}>{props.title}</Text>
+    //         <Divider />
+    //       </View>
+    //     )}
+    //     <View style={propsStyle}>
+    //       {props.children}
+    //     </View>
+    //   </View>
+    // );
   }
 }
 
