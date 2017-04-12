@@ -12,11 +12,10 @@ export default class UserActivitiesList extends React.Component {
     const data = this.props.data;
     return (
       <View>
-        { data.map((a, i) => {
-          console.log (a);
+        { Object.keys(data).map((k, i) => {
           return (
-            <Card title={a.title} key={a.id}>
-              <TagsList tags={a.tags} />
+            <Card title={data[k].title} key={k}>
+              <TagsList tags={data[k].tags} />
             </Card>
           )
         }) }

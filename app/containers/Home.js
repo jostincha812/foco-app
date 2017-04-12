@@ -30,7 +30,7 @@ class Home extends React.Component {
     return (
       <ScrollView style={S.container}>
         <StatusBar barStyle="light-content" />
-        { props.activitiesData.data.length ?
+        { props.activitiesData.data ?
           <UserActivitiesList data={props.activitiesData.data} /> : null
         }
       </ScrollView>

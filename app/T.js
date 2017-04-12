@@ -1,12 +1,12 @@
 export default FocoTheme = {
-  // colors
-  color: '#444',
-  activeColor: '#2980b9',
-  inactiveColor: '#ccc',
-  accentColor: '#d35400',
-  accentColor2: '#59a0d9',
-  textColor: '#444',
-  inactiveTextColor: '#666',
+  // colors - http://www.material-ui.com/#/customization/colors
+  color: '#424242',         // grey 800
+  activeColor: '#0277BD',   // light blue 800
+  inactiveColor: '#BDBDBD', // grey 400
+  accentColor: '#EF6C00',   // orange 900
+  accentColor2: '#64B5F6',  // blue 300
+  textColor: '#424242',     // grey 800
+  inactiveTextColor: '#757575',  // grey 600
   inverseTextColor: '#fff',
   shadowColor: '#aaa',
 

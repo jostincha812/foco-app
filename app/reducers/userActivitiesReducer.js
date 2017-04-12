@@ -1,6 +1,6 @@
 import C from '../C'
 const initialState = {
-  data: [],
+  data: null,
   dataFetched: false,
   isFetching: false,
   error: false
@@ -11,7 +11,7 @@ export default function flashcardsReducer (state = initialState, action) {
     case C.FETCH_USER_ACTIVITIES_PENDING:
       return {
         ...state,
-        data: [],
+        data: null,
         isFetching: true
       }
     case C.FETCH_USER_ACTIVITIES_FULFILLED:
