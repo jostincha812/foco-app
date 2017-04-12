@@ -13,6 +13,8 @@ export default FocoTheme = {
   containerBackgroundColor: '#f5f5f5',
   contentBackgroundColor: '#fff',
   contentBorderColor: '#e9e9e9',
+  translucentBlackColor: '#00000066',
+  translucentWhiteColor: '#ffffff66',
 
   iconSize: 28,
   smallIconSize: 16,

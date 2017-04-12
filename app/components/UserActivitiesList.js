@@ -3,9 +3,8 @@ import { View, Text } from 'react-native';
 
 import T from '../T';
 import S from '../styles/styles';
-import I from '../components/Icons';
-import Card from '../components/Card';
-import TagsList from '../components/TagsList';
+
+import UserActivityCard from './UserActivityCard';
 
 export default class UserActivitiesList extends React.Component {
   render() {
@@ -14,9 +13,7 @@ export default class UserActivitiesList extends React.Component {
       <View>
         { Object.keys(data).map((k, i) => {
           return (
-            <Card title={data[k].title} key={k}>
-              <TagsList tags={data[k].tags} />
-            </Card>
+            <UserActivityCard key={k} data={data[k]} />
           )
         }) }
       </View>

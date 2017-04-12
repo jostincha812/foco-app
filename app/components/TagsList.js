@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import C from '../C';
 import T from '../T';
 import S, { spacing } from '../styles/styles';
 import Pill from '../components/Pill';
@@ -8,12 +9,17 @@ import Pill from '../components/Pill';
 export default class UserActivitiesList extends React.Component {
   render() {
     const tags = this.props.tags;
+    const theme = this.props.theme;
+    const more = this.props.more;
+
     return (
       <View style={{flexDirection:'row', alignItems:'center'}}>
         { tags.map((t, i) => {
             if (i < 3) {
               return (
-                <Pill style={{marginRight:spacing.xsmall}}
+                <Pill
+                  theme={theme}
+                  style={{marginRight:spacing.xsmall}}
                   key={t}
                   label={t}
                 />
@@ -22,9 +28,11 @@ export default class UserActivitiesList extends React.Component {
         }) }
 
         { (tags.length > 3) &&
-          <Text style={{fontSize:T.smallFontSize, fontWeight:T.boldedFontWeight, color:T.accentColor2}}>
-            +{tags.length-3} more
-          </Text>
+          <Pill
+            theme={more}
+            key='TAGS_LIST_MORE'
+            label={`+ ${tags.length-3} more`}
+          />
         }
 
       </View>

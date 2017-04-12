@@ -5,7 +5,7 @@ export const spacing = {
   standard: 16,
   small: 8,
   xsmall: 4,
-  large: 16,
+  large: 24,
   xlarge: 32,
   none: 0,
 }
@@ -23,9 +23,18 @@ export default styles = StyleSheet.create({
   },
   flexRowWrapped: {
     flexDirection: 'row',
-    flexWrap:'wrap',
-    alignItems:'flex-start'
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
   },
+  titleBanner: {
+    fontSize: T.titleFontSize,
+    fontWeight: T.titleFontWeight,
+    color: T.inverseTextColor,
+    // backgroundColor: T.translucentBlackColor,
+    paddingTop: spacing.xsmall,
+    paddingBottom: spacing.xsmall,
+    marginBottom: spacing.small,
+  }
 });
 
 export const navigationStyles = {
