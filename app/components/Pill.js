@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     paddingLeft: spacing.small,
     paddingRight: spacing.small,
     borderRadius: spacing.standard,
-    backgroundColor: T.activeColor,
+    backgroundColor: T.accentColor2,
   },
   pillText: {
     fontSize: T.smallFontSize,

@@ -4,7 +4,7 @@ export default FocoTheme = {
   activeColor: '#2980b9',
   inactiveColor: '#ccc',
   accentColor: '#d35400',
-  accentColor2: '#34495e',
+  accentColor2: '#59a0d9',
   textColor: '#444',
   inactiveTextColor: '#666',
   inverseTextColor: '#fff',
