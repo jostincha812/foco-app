@@ -5,6 +5,7 @@ import T from '../T';
 import S from '../styles/styles';
 import I from '../components/Icons';
 import Card from '../components/Card';
+import TagsList from '../components/TagsList';
 
 export default class UserActivitiesList extends React.Component {
   render() {
@@ -15,9 +16,7 @@ export default class UserActivitiesList extends React.Component {
           console.log (a);
           return (
             <Card title={a.title} key={a.id}>
-              <Text>
-                {a.tags}
-              </Text>
+              <TagsList tags={a.tags} />
             </Card>
           )
         }) }

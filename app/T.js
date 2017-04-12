@@ -6,6 +6,7 @@ export default FocoTheme = {
   accentColor: '#d35400',
   accentColor2: '#34495e',
   textColor: '#444',
+  inactiveTextColor: '#666',
   inverseTextColor: '#fff',
   shadowColor: '#aaa',
 
@@ -17,8 +18,12 @@ export default FocoTheme = {
   smallIconSize: 16,
   largeIconSize: 48,
 
-  fontSize: 12,
+  xsmallFontSize: 7,
+  smallFontSize: 10,
+  fontSize: 14,
+  titleFontSize: 18,
+
   fontWeight: '300',
-  titleFontWeight: '600',
-  titleFontSize: 14,
+  boldedFontWeight: '500',
+  titleFontWeight: '700',
 }
