@@ -15,7 +15,7 @@ export default class UserActivityCard extends React.Component {
         <Text style={S.titleBanner}>
           {data.title}
         </Text>
-        <TagsList tags={data.tags} theme={C.THEME_ACCENT1} more={C.THEME_ACCENT2} />
+        <TagsList max={3} tags={data.tags} theme={C.THEME_ACCENT1} more={C.THEME_ACCENT2} />
       </Card>
     );
   }
