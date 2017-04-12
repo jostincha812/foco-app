@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import airlinesReducer from './airlinesReducer'
+import userActivitiesReducer from './userActivitiesReducer'
 
 const rootReducer = combineReducers({
-  airlinesData: airlinesReducer
+  activitiesData: userActivitiesReducer
 })
 
 export default rootReducer;

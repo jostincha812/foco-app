@@ -2,12 +2,11 @@ import React from 'react';
 import { ScrollView, StatusBar, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import C from '../C';
 import S from '../styles/styles';
-import Card from '../components/Card';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-import { fetchAirlinesData } from '../actions/airlinesActions';
+import { fetchUserActivities } from '../actions/userActivitiesActions';
+import UserActivitiesList from '../components/UserActivitiesList';
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -15,26 +14,14 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchAirlinesData();
-  }
-
-  renderAirlines(data) {
-    return (
-      data.map((airline, i) => {
-        return (
-          <Card title={airline.name} key={airline.id}>
-            <Text>IATA: {airline.id}</Text>
-          </Card>
-        )
-      })
-    )
+    this.props.fetchUserActivities();
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     const props = this.props;
 
-    if (props.airlinesData.isFetching) {
+    if (props.activitiesData.isFetching) {
       return (
         <LoadingIndicator />
       )
@@ -42,12 +29,9 @@ class Home extends React.Component {
 
     return (
       <ScrollView style={S.container}>
-        <StatusBar
-          backgroundColor="blue"
-          barStyle="light-content"
-        />
-        {
-          props.airlinesData.data.length ? this.renderAirlines(props.airlinesData.data) : null
+        <StatusBar barStyle="light-content" />
+        { props.activitiesData.data.length ?
+          <UserActivitiesList data={props.activitiesData.data} /> : null
         }
       </ScrollView>
     );
@@ -56,13 +40,13 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    airlinesData: state.airlinesData
+    activitiesData: state.activitiesData
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchAirlinesData: () => dispatch(fetchAirlinesData())
+    fetchUserActivities: () => dispatch(fetchUserActivities())
   }
 }
 
