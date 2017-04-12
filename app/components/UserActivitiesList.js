@@ -10,16 +10,18 @@ export default class UserActivitiesList extends React.Component {
   render() {
     const data = this.props.data;
     return (
-      data.map((a, i) => {
-        console.log (a);
-        console.log (
-          <Card title={a.title} key={a.id}>
-            <Text>
-              {a.tags}
-            </Text>
-          </Card>
-        )
-      })
+      <View>
+        { data.map((a, i) => {
+          console.log (a);
+          return (
+            <Card title={a.title} key={a.id}>
+              <Text>
+                {a.tags}
+              </Text>
+            </Card>
+          )
+        }) }
+      </View>
     );
   }
 }
