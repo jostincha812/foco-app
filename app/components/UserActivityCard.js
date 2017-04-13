@@ -6,13 +6,17 @@ import T from '../T';
 import S, { spacing } from '../styles/styles';
 import Card from '../components/Card';
 import TagsList from '../components/TagsList';
+import Icons from '../components/Icons';
 
 export default class UserActivityCard extends React.Component {
   render() {
     const data = this.props.data;
     return (
       <Card containerStyle={styles.activityCard}>
-        <Text style={S.titleBanner}>
+        <View style={{position:'absolute', top:-spacing.standard+2, right:0}}>
+          {Icons.bookmarkOutline({tintColor: T.inverseColor})}
+        </View>
+        <Text style={[S.titleBanner, {marginRight:spacing.standard*2}]}>
           {data.title}
         </Text>
         <TagsList max={3} tags={data.tags} theme={C.THEME_ACCENT1} more={C.THEME_ACCENT2} />
@@ -28,5 +32,6 @@ const styles = StyleSheet.create({
     marginRight: spacing.small,
     height: 140,
     backgroundColor: T.accentColor2,
+    overflow: 'hidden',
   }
 });

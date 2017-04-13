@@ -28,11 +28,9 @@ export default styles = StyleSheet.create({
   },
   titleBanner: {
     fontSize: T.titleFontSize,
-    fontWeight: T.titleFontWeight,
+    fontWeight: T.fontWeight,
     color: T.inverseTextColor,
-    // backgroundColor: T.translucentBlackColor,
-    paddingTop: spacing.xsmall,
-    paddingBottom: spacing.xsmall,
+    // backgroundColor: T.translucentWhiteColor,
     marginBottom: spacing.small,
   }
 });
