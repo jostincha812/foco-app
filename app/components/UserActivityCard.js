@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
     marginTop: spacing.small,
     marginLeft: spacing.small,
     marginRight: spacing.small,
+    borderRadius: 3,
     height: 140,
     backgroundColor: T.accentColor2,
-    overflow: 'hidden',
+    // overflow: 'hidden',
   }
 })

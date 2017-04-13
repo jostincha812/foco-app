@@ -11,7 +11,7 @@ export default FocoTheme = {
   inverseTextColor: '#fff',
   shadowColor: '#aaa',
 
-  containerBackgroundColor: '#f5f5f5',
+  containerBackgroundColor: '#fff',
   contentBackgroundColor: '#fff',
   contentBorderColor: '#e9e9e9',
   translucentBlackColor: '#00000066',
