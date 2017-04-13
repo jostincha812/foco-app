@@ -13,7 +13,6 @@ export default class IconToggle extends React.Component {
     this.onToggle = this.onToggle.bind(this)
   }
 
-
   componentWillMount() {
     this.state.toggled = this.props.toggled ? true : false
   }
