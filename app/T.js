@@ -4,7 +4,7 @@ export default FocoTheme = {
   activeColor: '#0277BD',   // light blue 800
   inactiveColor: '#BDBDBD', // grey 400
   accentColor: '#EF6C00',   // orange 900
-  accentColor2: '#64B5F6',  // blue 300
+  accentColor2: '#42A5F5',  // blue 400
   textColor: '#424242',     // grey 800
   inverseColor: '#fff',
   inactiveTextColor: '#757575',  // grey 600

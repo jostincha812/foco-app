@@ -6,7 +6,7 @@ import T from '../T'
 import S, { spacing } from '../styles/styles'
 import Card from '../components/Card'
 import TagsList from '../components/TagsList'
-import BookmarkedToggle from '../components/BookmarkedToggle'
+import IconToggle from '../components/IconToggle'
 
 export default class UserActivityCard extends React.Component {
   constructor(props) {
@@ -22,16 +22,18 @@ export default class UserActivityCard extends React.Component {
     const data = this.props.data
     return (
       <Card containerStyle={styles.activityCard}>
-        <BookmarkedToggle
+        <IconToggle
           style={{position:'absolute', top:-spacing.standard+2, right:0}}
+          name={C.TOGGLE_BOOKMARK}
           color={T.inverseColor}
-          bookmarked={data.bookmarked}
+          toggled={data.bookmarked}
           onToggle={this.onToggle}
         />
         <Text style={[S.titleBanner, {marginRight:spacing.standard*2}]}>
           {data.title}
         </Text>
-        <TagsList max={3} tags={data.tags} theme={C.THEME_ACCENT1} more={C.THEME_ACCENT2} />
+
+        <TagsList max={3} tags={data.tags} theme={C.THEME_NORMAL} more={C.THEME_ACCENT2} />
       </Card>
     )
   }
@@ -45,6 +47,5 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     height: 140,
     backgroundColor: T.accentColor2,
-    // overflow: 'hidden',
   }
 })

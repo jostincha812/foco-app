@@ -41,8 +41,8 @@ export default class IconsPreview extends React.Component {
           { I.commentOutline() }
           { I.commentAdd() }
           { I.commentMore() }
-          { I.locked() }
-          { I.unlocked() }
+          { I.lock() }
+          { I.unlock() }
           { I.add() }
           { I.addOutline() }
           { I.remove() }
