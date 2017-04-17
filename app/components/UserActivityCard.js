@@ -33,6 +33,20 @@ export default class UserActivityCard extends React.Component {
           {data.title}
         </Text>
 
+        <View style={{marginTop:spacing.standard, marginBottom:spacing.standard, flexDirection:'row', alignItems:'flex-end'}}>
+          <Text style={[styles.text, styles.large]}>
+            {data.numViewed}
+          </Text>
+          <Text style={[styles.text, {bottom:8}]}> / </Text>
+          <Text style={[styles.text, styles.large]}>
+            {data.numTotal}
+          </Text>
+          <View style={[{bottom:8, marginLeft:4, flexDirection:'column'}]}>
+            <Text style={[styles.text]}>cards</Text>
+            <Text style={[styles.text]}>viewed</Text>
+          </View>
+        </View>
+
         <TagsList max={3} tags={data.tags} theme={C.THEME_NORMAL} more={C.THEME_ACCENT2} />
       </Card>
     )
@@ -45,7 +59,14 @@ const styles = StyleSheet.create({
     marginLeft: spacing.small,
     marginRight: spacing.small,
     borderRadius: 3,
-    height: 140,
     backgroundColor: T.accentColor2,
+  },
+  text: {
+    fontWeight: T.fontWeight,
+    fontSize: T.fontSize*1.5,
+    color: T.inverseTextColor
+  },
+  large: {
+    fontSize:T.fontSize*3,
   }
 })
