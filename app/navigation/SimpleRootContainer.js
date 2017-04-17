@@ -2,20 +2,27 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
 import T from '../T';
+import { navigationStyles } from '../styles/styles';
 
-import HomeStack from './HomeStack';
-import SearchStack from './SearchStack';
-import BookmarksStack from './BookmarksStack';
-import ProfileStack from './ProfileStack';
+import Home from '../containers/Home';
+import IconsHome from '../containers/IconsHome';
+import ProfileHome from '../containers/ProfileHome';
 
 const StackRootContainer = StackNavigator({
-  Home: { screen: HomeStack },
-  Search: { screen: SearchStack },
-  Bookmarks: { screen: BookmarksStack },
-  Profile: { screen: ProfileStack },
+  Home: { screen: Home },
+  Icons: { screen: IconsHome },
+  Profile: { screen: ProfileHome },
 }, {
   swipeEnabled: false,
   animationEnabled: false,
+  navigationOptions: {
+    header: navigationStyles.header,
+    tabBar: ({ state, setParams }) => ({
+      icon: ({ focused, tintColor }) => (
+        I.home({ focused, tintColor })
+      ),
+    }),
+  }
 });
 
 export default StackRootContainer;

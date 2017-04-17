@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import S from '../styles/styles';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-import { fetchUserProfile } from '../actions/UserProfileActions';
+import { fetchUserActivities } from '../actions/userActivitiesActions';
+import UserActivitiesList from '../components/UserActivitiesList';
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -13,14 +14,14 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchUserProfile();
+    this.props.fetchUserActivities();
   }
 
   render() {
     // const { navigate } = this.props.navigation;
     const props = this.props;
 
-    if (props.userProfileData.isFetching) {
+    if (props.activitiesData.isFetching) {
       return (
         <LoadingIndicator />
       )
@@ -29,8 +30,8 @@ class Home extends React.Component {
     return (
       <ScrollView style={S.container}>
         <StatusBar barStyle="light-content" />
-        { props.userProfileData.data ?
-          <ScrollView data={props.userProfileData.data} /> : null
+        { props.activitiesData.data ?
+          <UserActivitiesList data={props.activitiesData.data} /> : null
         }
       </ScrollView>
     );
@@ -39,13 +40,13 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    userProfileData: state.userProfileData
+    activitiesData: state.activitiesData
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchUserProfile: () => dispatch(fetchUserProfile())
+    fetchUserActivities: () => dispatch(fetchUserActivities())
   }
 }
 

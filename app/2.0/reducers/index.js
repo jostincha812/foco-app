@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import UserProfileReducer from './UserProfileReducer'
+import userActivitiesReducer from './userActivitiesReducer'
 
 const rootReducer = combineReducers({
-  userProfileData: UserProfileReducer
+  activitiesData: userActivitiesReducer
 })
 
 export default rootReducer;
