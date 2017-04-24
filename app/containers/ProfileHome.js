@@ -7,10 +7,13 @@ import {
 } from 'react-native';
 
 import C from '../C';
+import Icons from '../components/Icons'
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: ({ state }) => `Profile`,
+    drawerLabel: `Profile`,
+    drawerIcon: ({ tintColor }) => Icons.profile({ tintColor }),
   };
   render() {
     const { navigate } = this.props.navigation;

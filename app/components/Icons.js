@@ -30,7 +30,8 @@ export default {
   timer: (options = {}) => AppIcon('timer', options),
 
   multipleChoice: (options = {}) => AppIcon('format-list-bulleted', options),
-  flashcards: (options = {}) => AppIcon('cards-outline', options),
+  cards: (options = {}) => AppIcon('cards', options),
+  cardsOutline: (options = {}) => AppIcon('cards-outline', options),
   shortAnswers: (options = {}) => AppIcon('file-document', options),
   reports: (options = {}) => AppIcon('file-chart', options),
 
@@ -63,6 +64,9 @@ export default {
   edit: (options = {}) => AppIcon('pencil', options),
   delete: (options = {}) => AppIcon('delete', options),
   share: (options = {}) => AppIcon('share', options),
+  check: (options = {}) => AppIcon('check', options),
+  checkOutline: (options = {}) => AppIcon('check-circle-outline', options),
+  archive: (options = {}) => AppIcon('archive', options),
 
   // app icons
   help: (options = {}) => AppIcon('help', options),
@@ -75,5 +79,13 @@ export default {
   list: (options = {}) => AppIcon('view-headline', options),
   // widgets: (options = {}) => AppIcon('widgets', options),
   tune: (options = {}) => AppIcon('tune', options),
+  inbox: (options = {}) => AppIcon('inbox', options),
+  new: (options = {}) => AppIcon('new-box', options),
 
+  // Drawer icons
+  drawerAll: (options = {}) => AppIcon('cards', options),
+  drawerNew: (options = {}) => AppIcon('inbox', options),
+  drawerStarred: (options = {}) => AppIcon('star', options),
+  drawerSaved: (options = {}) => AppIcon('playlist-check', options),
+  drawerDiscarded: (options = {}) => AppIcon('playlist-remove', options),
 }
