@@ -13,6 +13,10 @@ STACK[C.NAV_PROFILE_HOME] = { screen: ProfileHome }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: {
+    drawer: {
+      label: 'Profile',
+      icon: ({ focused, tintColor }) => Icons.profile({ focused, tintColor }),
+    },
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
       ...navigationStyles.header,

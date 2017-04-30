@@ -9,9 +9,7 @@ const AppIcon = (name, options) => {
   let color = options.tintColor ? options.tintColor : T.color;
   let focused = options.focused ? options.focused : false;
   return (
-    // <View style={{borderColor:'#666', borderWidth:0.5, width:size+1, height:size+1}}>
-      <Icon name={name} size={size} color={color} />
-    // </View>
+    <Icon name={name} size={size} color={color} />
   )
 };
 

@@ -1,33 +1,22 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
+import React from 'react'
+import { ScrollView, StatusBar, Text, Button } from 'react-native'
 
-import C from '../C';
-import Icons from '../components/Icons'
+import S, { spacing } from '../styles/styles'
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: ({ state }) => `Profile`,
-    drawerLabel: `Profile`,
-    drawerIcon: ({ tintColor }) => Icons.profile({ tintColor }),
-  };
+  }
+
   render() {
-    const { navigate } = this.props.navigation;
-    const { params } = this.props.navigation.state;
+    const { navigate } = this.props.navigation
+    const { params } = this.props.navigation.state
 
     return (
-      <View>
-        {/* <Text>Username: {params.username}</Text> */}
-        <Text>Username</Text>
-        <Button
-          onPress={() => navigate(C.NAV_PROFILE_DETAILED)}
-          title={`More`}
-        />
-      </View>
-    );
+      <ScrollView style={S.container}>
+        <StatusBar barStyle="light-content" />
+        <Text>Username: {params ? params.username : 'err'}</Text>
+      </ScrollView>
+    )
   }
 }

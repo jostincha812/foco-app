@@ -2,8 +2,7 @@ import React from 'react'
 import { View, ScrollView, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
-import S, { navigationStyles, spacing } from '../styles/styles'
-import Icons from '../components/Icons'
+import S, { spacing } from '../styles/styles'
 import LoadingIndicator from '../components/LoadingIndicator'
 
 import { fetchUserProfile } from '../actions/UserProfileActions'
@@ -13,8 +12,6 @@ class Home extends React.Component {
   // const {user} = state.params
   static navigationOptions = {
     title: `Home`,
-    drawerLabel: `Home`,
-    drawerIcon: ({ tintColor }) => Icons.home({ tintColor }),
   }
 
   componentDidMount() {
@@ -26,7 +23,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props.navigation
+    const { navigate } = this.props.navigation
     const props = this.props
 
     if (props.userProfileData.isFetching) {

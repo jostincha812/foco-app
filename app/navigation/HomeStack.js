@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Image } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
@@ -13,6 +13,10 @@ STACK[C.NAV_HOME] = { screen: Home }
 
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: {
+    drawer: {
+      label: 'Home',
+      icon: ({ focused, tintColor }) => Icons.home({ focused, tintColor }),
+    },
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
       ...navigationStyles.header,
