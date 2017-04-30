@@ -23,7 +23,7 @@ class DrawerContainer extends React.Component {
       >
         <View style={{height: 160, backgroundColor: T.activeColor, justifyContent:'flex-end'}}>
           <Text style={{padding: spacing.standard, fontSize: T.titleFontSize, fontWeight: T.titleFontWeight, color: T.inverseTextColor}}>
-            Profile Card?
+            Drawer Header
           </Text>
         </View>
 

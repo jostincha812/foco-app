@@ -6,12 +6,12 @@ import C from '../C'
 import { spacing, navigationStyles } from '../styles/styles'
 
 import Icons from '../components/Icons'
-import Home from '../containers/Home'
+import ProfileHome from '../containers/ProfileHome'
 
 const STACK = {}
-STACK[C.NAV_HOME] = { screen: Home }
+STACK[C.NAV_PROFILE_HOME] = { screen: ProfileHome }
 
-const HomeStack = StackNavigator(STACK, {
+const ProfileStack = StackNavigator(STACK, {
   navigationOptions: {
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
@@ -26,10 +26,10 @@ const HomeStack = StackNavigator(STACK, {
     }),
     tabBar: ({ state, setParams }) => ({
       icon: ({ focused, tintColor }) => (
-        Icons.home({ focused, tintColor })
+        Icons.profile({ focused, tintColor })
       ),
-    }),
-  }
+    })
+  },
 })
 
-export default HomeStack
+export default ProfileStack

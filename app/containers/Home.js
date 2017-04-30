@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StatusBar, TouchableOpacity } from 'react-native'
+import { View, ScrollView, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
 import S, { navigationStyles, spacing } from '../styles/styles'
@@ -15,16 +15,6 @@ class Home extends React.Component {
     title: `Home`,
     drawerLabel: `Home`,
     drawerIcon: ({ tintColor }) => Icons.home({ tintColor }),
-    header: (navigation, defaultHeader) => ({
-      ...defaultHeader,
-      left: (
-        <TouchableOpacity
-          style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-          onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: navigationStyles.header.tintColor})}
-        </TouchableOpacity>
-      ),
-    }),
   }
 
   componentDidMount() {
@@ -49,7 +39,7 @@ class Home extends React.Component {
       <ScrollView style={S.container}>
         <StatusBar barStyle="light-content" />
         { props.userProfileData.data ?
-          <ScrollView data={props.userProfileData.data} /> : null
+          <View data={props.userProfileData.data} /> : null
         }
       </ScrollView>
     );

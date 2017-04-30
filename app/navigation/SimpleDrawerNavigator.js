@@ -8,16 +8,20 @@ import { navigationStyles } from '../styles/styles'
 import DrawerContainer from '../containers/DrawerContainer'
 
 import HomeStack from './HomeStack'
+import ProfileStack from './ProfileStack'
 import IconsHome from '../containers/IconsHome'
-import ProfileHome from '../containers/ProfileHome'
 
 const SimpleDrawerNavigator = DrawerNavigator({
   HomeStack: { screen: HomeStack },
-  ProfileHome: { screen: ProfileHome },
+  ProfileStack: { screen: ProfileStack },
 }, {
   swipeEnabled: false,
   animationEnabled: false,
-  contentComponent: props => <DrawerContainer><DrawerView.Items {...props} /></DrawerContainer>
+  contentComponent: props => (
+    <DrawerContainer>
+      <DrawerView.Items {...props} />
+    </DrawerContainer>  
+  )
 });
 
 export default SimpleDrawerNavigator
