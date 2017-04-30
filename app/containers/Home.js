@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import S, { navigationStyles } from '../styles/styles'
+import S, { navigationStyles, spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
 
@@ -18,7 +18,9 @@ class Home extends React.Component {
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
       left: (
-        <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen') }>
+        <TouchableOpacity
+          style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
+          onPress={() => navigation.navigate('DrawerOpen') }>
           {Icons.menu({tintColor: navigationStyles.header.tintColor})}
         </TouchableOpacity>
       ),
