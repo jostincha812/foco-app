@@ -79,6 +79,8 @@ export default {
   tune: (options = {}) => AppIcon('tune', options),
   inbox: (options = {}) => AppIcon('inbox', options),
   new: (options = {}) => AppIcon('new-box', options),
+  back: (options = {}) => AppIcon('chevron-left', options),
+  forward: (options = {}) => AppIcon('chevron-right', options),
 
   // Drawer icons
   drawerAll: (options = {}) => AppIcon('cards', options),

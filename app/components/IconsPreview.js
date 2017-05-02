@@ -21,7 +21,7 @@ export default class IconsPreview extends React.Component {
           { I.analytics() }
           { I.timer() }
           { I.multipleChoice() }
-          { I.flashcards() }
+          { I.cards() }
           { I.shortAnswers() }
           { I.reports() }
           { I.currencyUSD() }
@@ -58,6 +58,8 @@ export default class IconsPreview extends React.Component {
           { I.help() }
           { I.new() }
           { I.image() }
+          { I.back() }
+          { I.forward() }
           { I.warning() }
           { I.settings() }
           { I.grid() }

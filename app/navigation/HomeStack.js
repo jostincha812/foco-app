@@ -7,9 +7,11 @@ import { spacing, navigationStyles } from '../styles/styles'
 
 import Icons from '../components/Icons'
 import Home from '../containers/Home'
+import IconsHome from '../containers/IconsHome'
 
 const STACK = {}
 STACK[C.NAV_HOME] = { screen: Home }
+STACK[C.NAV_ICONS_PREVIEW] = { screen: IconsHome }
 
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: {

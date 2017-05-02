@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, ScrollView, StatusBar } from 'react-native'
+import { View, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import S, { spacing } from '../styles/styles'
+import C from '../C'
+import S, { navigationStyles, spacing } from '../styles/styles'
+import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
 
 import { fetchUserProfile } from '../actions/UserProfileActions'
@@ -12,6 +14,23 @@ class Home extends React.Component {
   // const {user} = state.params
   static navigationOptions = {
     title: `Home`,
+    header: (navigation, defaultHeader) => ({
+      ...defaultHeader,
+      left: (
+        <TouchableOpacity
+          style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
+          onPress={() => navigation.navigate('DrawerOpen') }>
+          {Icons.menu({tintColor: navigationStyles.header.tintColor})}
+        </TouchableOpacity>
+      ),
+      right: (
+        <TouchableOpacity
+          style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
+          onPress={() => navigation.navigate(C.NAV_ICONS_PREVIEW) }>
+          {Icons.grid({tintColor: navigationStyles.header.tintColor})}
+        </TouchableOpacity>
+      )
+    })
   }
 
   componentDidMount() {
