@@ -7,6 +7,8 @@ import S, { navigationStyles, spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
 
+import Flashcard from '../components/Flashcard'
+
 import { fetchUserProfile } from '../actions/UserProfileActions'
 
 class Home extends React.Component {
@@ -57,6 +59,7 @@ class Home extends React.Component {
         { props.userProfileData.data ?
           <View data={props.userProfileData.data} /> : null
         }
+        <Flashcard />
       </ScrollView>
     );
   }
