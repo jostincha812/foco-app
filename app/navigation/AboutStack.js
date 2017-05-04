@@ -6,17 +6,15 @@ import C from '../C'
 import { spacing, navigationStyles } from '../styles/styles'
 
 import Icons from '../components/Icons'
-import Home from '../containers/Home'
-import SecondLevelScreen from '../containers/SecondLevelScreen'
+import IconsHome from '../containers/IconsHome'
 
 const STACK = {}
-STACK[C.NAV_HOME] = { screen: Home }
-STACK[C.NAV_SECOND_SCREEN] = { screen: SecondLevelScreen }
+STACK[C.NAV_ABOUT_APP_ICONS] = { screen: IconsHome }
 
-const HomeStack = StackNavigator(STACK, {
+const AboutStack = StackNavigator(STACK, {
   navigationOptions: {
     drawer: {
-      label: 'Home',
+      label: 'App Info',
       icon: ({ focused, tintColor }) => Icons.home({ focused, tintColor }),
     },
     header: (navigation, defaultHeader) => ({
@@ -32,10 +30,10 @@ const HomeStack = StackNavigator(STACK, {
     }),
     tabBar: ({ state, setParams }) => ({
       icon: ({ focused, tintColor }) => (
-        Icons.home({ focused, tintColor })
+        Icons.about({ focused, tintColor })
       ),
     }),
   }
 })
 
-export default HomeStack
+export default AboutStack

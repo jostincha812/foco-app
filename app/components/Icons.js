@@ -67,6 +67,7 @@ export default {
   archive: (options = {}) => AppIcon('archive', options),
 
   // app icons
+  about: (options = {}) => AppIcon('information', options),
   help: (options = {}) => AppIcon('help', options),
   new: (options = {}) => AppIcon('new-box', options),
   image: (options = {}) => AppIcon('image', options),

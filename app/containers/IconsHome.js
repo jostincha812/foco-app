@@ -8,7 +8,7 @@ import Icons from '../components/Icons'
 
 import IconsPreview from '../components/IconsPreview';
 
-class BookmarksHome extends React.Component {
+class IconsHome extends React.Component {
   static navigationOptions = {
     title: ({ state }) => `Icons Preview`,
     header: (navigation, defaultHeader) => ({
@@ -16,16 +16,15 @@ class BookmarksHome extends React.Component {
       left: (
         <TouchableOpacity
           style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-          onPress={() => navigation.goBack() }>
-          {Icons.back({tintColor: navigationStyles.header.tintColor})}
+          onPress={() => navigation.navigate('DrawerOpen') }>
+          {Icons.menu({tintColor: navigationStyles.header.tintColor})}
         </TouchableOpacity>
       ),
     }),
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-    const options = 'some options';
+    const navigation = this.props.navigation;
 
     return (
       <ScrollView style={S.container}>
@@ -52,4 +51,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BookmarksHome)
+)(IconsHome)

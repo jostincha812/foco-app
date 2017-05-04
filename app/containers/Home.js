@@ -28,8 +28,8 @@ class Home extends React.Component {
       right: (
         <TouchableOpacity
           style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
-          onPress={() => navigation.navigate(C.NAV_ICONS_PREVIEW) }>
-          {Icons.grid({tintColor: navigationStyles.header.tintColor})}
+          onPress={() => navigation.navigate(C.NAV_SECOND_SCREEN) }>
+          {Icons.forward({tintColor: navigationStyles.header.tintColor})}
         </TouchableOpacity>
       )
     })
@@ -44,7 +44,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation
+    const navigation = this.props.navigation
     const props = this.props
 
     if (props.userProfileData.isFetching) {
