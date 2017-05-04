@@ -1,6 +1,8 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity, Text, Button } from 'react-native'
+import { ScrollView, TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
+
+import FlipCard from 'react-native-flip-card'
 
 import C from '../C'
 import S, { navigationStyles, spacing } from '../styles/styles'
@@ -27,15 +29,28 @@ class SecondLevelScreen extends React.Component {
 
     return (
       <ScrollView style={S.container}>
-        <Text>
-          Second Level
-        </Text>
 
-        <Button
-          style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
-          onPress={() => navigation.navigate(C.NAV_ABOUT_APP_ICONS) }
-          title='Icons Preview'
-        />
+        <FlipCard
+          style={{margin:40, padding:30, alignSelf:'center'}}
+          friction={10}
+          perspective={1000}
+          flipHorizontal={true}
+          flipVertical={false}
+          flip={false}
+          clickable={true}
+          alignHeight={true}
+          alignWidth={true}
+          onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
+        >
+          {/* Face Side */}
+          <View style={{width:200}}>
+            <Text>Wider front side</Text>
+          </View>
+          {/* Back Side */}
+          <View style={{height:300}}>
+            <Text>Taller back side</Text>
+          </View>
+        </FlipCard>
 
       </ScrollView>
     )
