@@ -32,7 +32,20 @@ export default styles = StyleSheet.create({
     color: T.inverseTextColor,
     // backgroundColor: T.translucentWhiteColor,
     marginBottom: spacing.small,
-  }
+  },
+  card: {
+    borderColor: T.contentBorderColor,
+    backgroundColor: T.contentBackgroundColor,
+  },
+  rounded: {
+    borderRadius: spacing.small,
+  },
+  roundedSmall: {
+    borderRadius: spacing.xsmall,
+  },
+  roundedLarge: {
+    borderRadius: spacing.standard,
+  },
 });
 
 export const navigationStyles = {
@@ -45,6 +58,7 @@ export const navigationStyles = {
     },
     style: {
       backgroundColor: T.activeColor,
+      borderBottomWidth: 0,
     },
   },
 };

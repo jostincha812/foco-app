@@ -11,7 +11,7 @@ export default FocoTheme = {
   inverseTextColor: '#fff',
   shadowColor: '#aaa',
 
-  containerBackgroundColor: '#fff',
+  containerBackgroundColor: '#0277BD',
   contentBackgroundColor: '#fff',
   contentBorderColor: '#e9e9e9',
   translucentBlackColor: '#00000066',
@@ -21,12 +21,12 @@ export default FocoTheme = {
   smallIconSize: 16,
   largeIconSize: 48,
 
-  xsmallFontSize: 7,
-  smallFontSize: 10,
-  fontSize: 14,
-  titleFontSize: 18,
+  xsmallFontSize: 10,
+  smallFontSize: 12,
+  fontSize: 16,
+  titleFontSize: 20,
 
-  fontWeight: '300',
+  fontWeight: '200',
   boldedFontWeight: '500',
   titleFontWeight: '700',
 }

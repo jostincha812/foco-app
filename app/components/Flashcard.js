@@ -1,6 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
-import Markdown from 'react-native-simple-markdown'
+import { MarkdownView } from 'react-native-markdown-view'
+import FlipCard from 'react-native-flip-card'
 
 import C from '../C'
 import T from '../T'
@@ -9,43 +10,58 @@ import Icons from '../components/Icons'
 
 export default class Flashcard extends React.Component {
   render() {
+    const props = this.props
     return (
-      <Markdown styles={FlashcardMdStyles}>
-        #Markdown in react-native is so cool! {'\n\n'}
+      <FlipCard
+        style={[S.rounded, styles.container, props.style]}
+        friction={10}
+        perspective={-1000}
+        flipHorizontal={true}
+        flipVertical={false}
+        flip={false}
+        clickable={true}
+        alignHeight={true}
+        alignWidth={true}
+        onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
+      >
+        <View style={{flex:1,flexDirection:'column',justifyContent:'center'}}>
+          <MarkdownView styles={styles.markdown}>
+            {props.front}
+          </MarkdownView>
+        </View>
 
-        You can **emphasize** what you want, or just _suggest it_ 😏…{'\n'}
-
-        You can even [**link your website**](http://carlito.ninja) or if you prefer: [email somebody](mailto:email@somebody.com){'\n'}
-
-        Spice it up with some GIFs 💃:
-
-        ![Some GIF](https://media.giphy.com/media/dkGhBWE3SyzXW/giphy.gif){'\n'}
-
-        And even add a cool video 😎!{'\n'}
-
-        [![A cool video from YT](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](http://www.youtube.com/watch?v=dQw4w9WgXcQ)
-
-        [![Another one from Vimeo](https://i.vimeocdn.com/video/399486266_640.jpg)](https://vimeo.com/57580368)
-      </Markdown>
+        <View style={{flex:1,flexDirection:'column',justifyContent:'center'}}>
+          <MarkdownView styles={styles.markdown}>
+            {props.back}
+          </MarkdownView>
+        </View>
+      </FlipCard>
     )
   }
 }
 
-const FlashcardMdStyles = {
-  heading1: {
-    color: T.textColor,
-    fontSize: T.titleFontSize,
-    fontWeight: T.titleFontWeight,
+const styles = {
+  container: {
+    margin: spacing.large,
+    padding: spacing.standard,
+    alignSelf: 'center',
+    backgroundColor: T.contentBackgroundColor,
+    borderColor: T.contentBorderColor,
   },
-  link: {
-    color: T.accentColor2,
-  },
-  mailTo: {
-    color: T.accentColor2,
-  },
-  text: {
-    color: T.textColor,
-    // fontSize: T.fontSize,
-    // fontWeight: T.fontWeight,
-  },
+  markdown: {
+    paragraph: {
+      fontSize: T.fontSize,
+      fontWeight: T.fontWeight,
+    },
+    link: {
+      color: T.accentColor2,
+    },
+    heading1: {
+      fontSize: T.titleFontSize,
+      fontWeight: T.titleFontWeight,
+    },
+    heading2: {
+      fontSize: T.titleFontSize-2,
+    },
+  }
 }
