@@ -3,7 +3,8 @@ import { View, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import C from '../C'
-import S, { navigationStyles, spacing } from '../styles/styles'
+import T from '../T'
+import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
 
@@ -20,14 +21,14 @@ class Home extends React.Component {
         <TouchableOpacity
           style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
           onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: navigationStyles.header.tintColor})}
+          {Icons.menu({tintColor: S.header.tintColor})}
         </TouchableOpacity>
       ),
       right: (
         <TouchableOpacity
           style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
           onPress={() => navigation.navigate(C.NAV_SECOND_SCREEN) }>
-          {Icons.forward({tintColor: navigationStyles.header.tintColor})}
+          {Icons.forward({tintColor: S.header.tintColor})}
         </TouchableOpacity>
       )
     })
@@ -53,7 +54,7 @@ class Home extends React.Component {
 
     return (
       <ScrollView style={S.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle={S.statusBarStyle} />
         { props.userProfileData.data ?
           <View data={props.userProfileData.data} /> : null
         }

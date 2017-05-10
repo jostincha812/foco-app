@@ -3,7 +3,7 @@ import { ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import C from '../C';
-import S, { navigationStyles, spacing } from '../styles/styles';
+import S, { spacing } from '../styles/styles';
 import Icons from '../components/Icons'
 
 import IconsPreview from '../components/IconsPreview';
@@ -17,7 +17,7 @@ class IconsHome extends React.Component {
         <TouchableOpacity
           style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
           onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: navigationStyles.header.tintColor})}
+          {Icons.menu({tintColor: S.header.tintColor})}
         </TouchableOpacity>
       ),
     }),
@@ -28,10 +28,7 @@ class IconsHome extends React.Component {
 
     return (
       <ScrollView style={S.container}>
-        <StatusBar
-          backgroundColor="blue"
-          barStyle="light-content"
-        />
+        <StatusBar barStyle={S.statusBarStyle} />
         <IconsPreview />
       </ScrollView>
     );

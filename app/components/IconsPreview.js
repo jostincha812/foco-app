@@ -51,6 +51,10 @@ export default class IconsPreview extends React.Component {
           { I.delete() }
           { I.share() }
           { I.timer() }
+          { I.yesCircled() }
+          { I.yesCircledOutline() }
+          { I.noCircled() }
+          { I.noCircledOutline() }
         </Card>
 
         <Card title='App Icons' innerStyle={S.flexRowWrapped}>

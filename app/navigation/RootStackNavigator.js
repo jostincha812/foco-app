@@ -1,9 +1,6 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import T from '../T'
-import { navigationStyles } from '../styles/styles'
-
 import Home from '../containers/Home'
 import IconsHome from '../containers/IconsHome'
 import ProfileHome from '../containers/ProfileHome'
@@ -16,7 +13,7 @@ const RootStackNavigator = StackNavigator({
   swipeEnabled: false,
   animationEnabled: false,
   navigationOptions: {
-    header: navigationStyles.header,
+    header: S.header,
   }
 })
 

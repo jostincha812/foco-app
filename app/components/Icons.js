@@ -65,6 +65,10 @@ export default {
   check: (options = {}) => AppIcon('check', options),
   checkOutline: (options = {}) => AppIcon('check-circle-outline', options),
   archive: (options = {}) => AppIcon('archive', options),
+  yesCircled: (options = {}) => AppIcon('checkbox-marked-circle', options),
+  yesCircledOutline: (options = {}) => AppIcon('checkbox-marked-circle-outline', options),
+  noCircled: (options = {}) => AppIcon('close-circle', options),
+  noCircledOutline: (options = {}) => AppIcon('close-circle-outline', options),
 
   // app icons
   about: (options = {}) => AppIcon('information', options),

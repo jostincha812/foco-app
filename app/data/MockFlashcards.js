@@ -10,15 +10,15 @@ export default Flashcards = {
   "-KdPIirar5fkRABJUc8t" : {
     "back" : "- __high acidity__ \n- __low alcohol__ \n- mainly produced in __Chablis__, a few villages in __Côte d'Or__, and __Côte Chalonnaise__ ",
     "chapter" : "16",
-    "front" : "Describe __Bourgogne Aligoté AC__ \n(5 points)",
+    "front" : "Describe __Bourgogne Aligoté AC__ \n_(5 points)_",
     "level" : "WSET3",
     "page" : "89",
     "status" : "active"
   },
   "-KdPRkds2JO8g8nlWG_Y" : {
-    "back" : "Approx. __1/3__ of all wine production in __Burgundy__ is from __Commune ACs__ such as *Chablis* or *Gevrey-Chambertin.*",
+    "back" : "Approx. *1/3* of all wine production in __Burgundy__ is from __Commune ACs__ such as *Chablis* or *Gevrey-Chambertin*.",
     "chapter" : "16",
-    "front" : "What percentage of __Burgundy__ wine production is by*communal* or*village* appellations?",
+    "front" : "What percentage of __Burgundy__ wine production is by *communal* or *village* appellations?",
     "level" : "WSET3",
     "page" : "89",
     "status" : "active"

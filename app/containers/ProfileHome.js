@@ -14,7 +14,7 @@ export default class ProfileScreen extends React.Component {
 
     return (
       <ScrollView style={S.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle={S.statusBarStyle} />
         <Text>Username: {params ? params.username : 'err'}</Text>
       </ScrollView>
     )

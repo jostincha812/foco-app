@@ -1,10 +1,10 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity, View, Text } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
-import FlipCard from 'react-native-flip-card'
 
 import C from '../C'
-import S, { navigationStyles, spacing } from '../styles/styles'
+import T from '../T'
+import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 
 import Flashcard from '../components/Flashcard'
@@ -19,7 +19,7 @@ class SecondLevelScreen extends React.Component {
         <TouchableOpacity
           style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
           onPress={() => navigation.goBack() }>
-          {Icons.back({tintColor: navigationStyles.header.tintColor})}
+          {Icons.back({tintColor: S.header.tintColor})}
         </TouchableOpacity>
       ),
     }),
@@ -29,15 +29,28 @@ class SecondLevelScreen extends React.Component {
     const navigation = this.props.navigation
     const options = 'some options'
 
-    const f = MockFlashcards['-KdPHHMWCGadVmqB4heI']
+    const keys = Object.keys(MockFlashcards)
+    const f = MockFlashcards[keys[5]]
+
+    const spacer={flex:0.5, opacity:0, backgroundColor:'#fff'}
 
     return (
-      <ScrollView style={S.container}>
-        <Flashcard
-          front={f.front}
-          back={f.back}
-        />
-      </ScrollView>
+      <View style={S.container}>
+        <View style={spacer} />
+        <View style={{flex:7, alignItems:'center'}}>
+            <Flashcard
+              style={{width: '85%'}}
+              front={f.front}
+              back={f.back}
+            />
+        </View>
+        <View style={spacer} />
+        <View style={{flex:2.5, flexDirection:'row', justifyContent:'space-around'}}>
+          {Icons.noCircledOutline({size:T.largeIconSize*2, tintColor:T.noColor})}
+          {Icons.yesCircledOutline({size:T.largeIconSize*2, tintColor:T.yesColor})}
+        </View>
+        <View style={spacer} />
+      </View>
     )
   }
 }

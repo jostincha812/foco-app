@@ -11,9 +11,10 @@ import Icons from '../components/Icons'
 export default class Flashcard extends React.Component {
   render() {
     const props = this.props
+
     return (
       <FlipCard
-        style={[S.rounded, styles.container, props.style]}
+        style={[styles.container, props.style]}
         friction={10}
         perspective={-1000}
         flipHorizontal={true}
@@ -24,13 +25,13 @@ export default class Flashcard extends React.Component {
         alignWidth={true}
         onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
       >
-        <View style={{flex:1,flexDirection:'column',justifyContent:'center'}}>
+        <View style={styles.inner}>
           <MarkdownView styles={styles.markdown}>
             {props.front}
           </MarkdownView>
         </View>
 
-        <View style={{flex:1,flexDirection:'column',justifyContent:'center'}}>
+        <View style={styles.inner}>
           <MarkdownView styles={styles.markdown}>
             {props.back}
           </MarkdownView>
@@ -42,11 +43,17 @@ export default class Flashcard extends React.Component {
 
 const styles = {
   container: {
-    margin: spacing.large,
+    ...S.rounded,
+    ...S.card,
     padding: spacing.standard,
-    alignSelf: 'center',
-    backgroundColor: T.contentBackgroundColor,
-    borderColor: T.contentBorderColor,
+    paddingLeft: spacing.large,
+    paddingRight: spacing.large,
+  },
+  inner: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    overflow: 'scroll',
   },
   markdown: {
     paragraph: {

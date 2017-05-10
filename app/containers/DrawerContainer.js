@@ -21,7 +21,7 @@ class DrawerContainer extends React.Component {
         bounces={false}
         contentContainerStyle={{minHeight: this.height || heightOfDeviceScreen}}
       >
-        <View style={{height: 160, backgroundColor: T.activeColor, justifyContent:'flex-end'}}>
+        <View style={{height: 160, backgroundColor: T.headerBackgroundColor, justifyContent:'flex-end'}}>
           <Text style={{padding: spacing.standard, fontSize: T.titleFontSize, fontWeight: T.titleFontWeight, color: T.inverseTextColor}}>
             Drawer Header
           </Text>

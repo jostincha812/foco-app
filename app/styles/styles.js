@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import T from '../T';
+import { StyleSheet } from 'react-native'
+import T from '../T'
 
 export const spacing = {
   standard: 16,
@@ -10,7 +10,7 @@ export const spacing = {
   none: 0,
 }
 
-export default styles = StyleSheet.create({
+export default styles = {
   container: {
     flex: 1,
     backgroundColor: T.containerBackgroundColor,
@@ -26,13 +26,6 @@ export default styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start'
   },
-  titleBanner: {
-    fontSize: T.titleFontSize,
-    fontWeight: T.fontWeight,
-    color: T.inverseTextColor,
-    // backgroundColor: T.translucentWhiteColor,
-    marginBottom: spacing.small,
-  },
   card: {
     borderColor: T.contentBorderColor,
     backgroundColor: T.contentBackgroundColor,
@@ -46,19 +39,26 @@ export default styles = StyleSheet.create({
   roundedLarge: {
     borderRadius: spacing.standard,
   },
-});
 
-export const navigationStyles = {
+  // navigation header styles
+  statusBarStyle: 'light-content',
   header: {
     backTitle: null,
-    tintColor: T.inverseTextColor,
+    tintColor: T.headerTintColor,
     titleStyle: {
       fontWeight: T.titleFontWeight,
-      color: T.inverseTextColor,
+      color: T.headerTintColor,
     },
     style: {
-      backgroundColor: T.activeColor,
+      backgroundColor: T.headerBackgroundColor,
       borderBottomWidth: 0,
     },
   },
-};
+  // titleBanner: {
+  //   fontSize: T.titleFontSize,
+  //   fontWeight: T.fontWeight,
+  //   color: T.inverseTextColor,
+  //   // backgroundColor: T.translucentWhiteColor,
+  //   marginBottom: spacing.small,
+  // },
+}
