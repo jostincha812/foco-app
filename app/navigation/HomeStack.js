@@ -7,11 +7,11 @@ import S, { spacing } from '../styles/styles'
 
 import Icons from '../components/Icons'
 import Home from '../containers/Home'
-import SecondLevelScreen from '../containers/SecondLevelScreen'
+import FlashcardsViewer from '../containers/FlashcardsViewer'
 
 const STACK = {}
 STACK[C.NAV_HOME] = { screen: Home }
-STACK[C.NAV_SECOND_SCREEN] = { screen: SecondLevelScreen }
+STACK[C.NAV_FLASHCARDS_VIEWER] = { screen: FlashcardsViewer }
 
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: {
