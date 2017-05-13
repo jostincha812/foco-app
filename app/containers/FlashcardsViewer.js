@@ -26,6 +26,12 @@ class FlashcardsViewer extends React.Component {
     }),
   }
 
+  constructor(props) {
+    super(props)
+    this.onYesNoAction = this.onYesNoAction.bind(this)
+    this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
+  }
+
   onYesNoAction(action) {
     const user = this.props.user
     const flashcard = this.props.flashcard
@@ -46,6 +52,17 @@ class FlashcardsViewer extends React.Component {
     })
   }
 
+  onBookmarkToggle(isBookmarked) {
+    const user = this.props.user
+    const flashcard = this.props.flashcard
+    this.props.updateUserFlashcardPreference({
+      user: user,
+      flashcard: flashcard,
+      key: C.KEY_PREF_BOOKMARKED,
+      val: isBookmarked
+    })
+  }
+
   render() {
     const navigation = this.props.navigation
 
@@ -60,8 +77,8 @@ class FlashcardsViewer extends React.Component {
         <View style={{flex:7, alignItems:'center'}}>
             <Flashcard
               style={{width: '85%'}}
-              front={f.data.front}
-              back={f.data.back}
+              data={f.data}
+              onBookmarkToggle={this.onBookmarkToggle}
             />
         </View>
         <View style={spacer} />

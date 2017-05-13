@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { MarkdownView } from 'react-native-markdown-view'
 import FlipCard from 'react-native-flip-card'
 
@@ -9,8 +9,24 @@ import S, { navigationStyles, spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 
 export default class Flashcard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isBookmarked: false,
+    }
+
+    this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
+  }
+
+  onBookmarkToggle() {
+    const newBookmarkedState = !this.state.isBookmarked
+    this.setState({isBookmarked: newBookmarkedState})
+    this.props.onBookmarkToggle(newBookmarkedState)
+  }
+
   render() {
     const props = this.props
+    const data = this.props.data
 
     return (
       <FlipCard
@@ -23,17 +39,23 @@ export default class Flashcard extends React.Component {
         clickable={true}
         alignHeight={true}
         alignWidth={true}
-        onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
+        // onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
       >
         <View style={styles.inner}>
+          <TouchableOpacity
+            style={{position:'absolute', top:-spacing.standard-6, right: 0}}
+            onPress={this.onBookmarkToggle}
+          >
+            { this.state.isBookmarked ? Icons.bookmark() : Icons.bookmarkOutline() }
+          </TouchableOpacity>
           <MarkdownView styles={styles.markdown}>
-            {props.front}
+            {data.front}
           </MarkdownView>
         </View>
 
         <View style={styles.inner}>
           <MarkdownView styles={styles.markdown}>
-            {props.back}
+            {data.back}
           </MarkdownView>
         </View>
       </FlipCard>
@@ -48,12 +70,13 @@ const styles = {
     padding: spacing.standard,
     paddingLeft: spacing.large,
     paddingRight: spacing.large,
+    overflow: 'hidden',
   },
   inner: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    overflow: 'scroll',
+    overflow: 'visible',
   },
   markdown: {
     paragraph: {
