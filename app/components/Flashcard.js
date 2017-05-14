@@ -6,7 +6,8 @@ import FlipCard from 'react-native-flip-card'
 import C from '../C'
 import T from '../T'
 import S, { navigationStyles, spacing } from '../styles/styles'
-import Icons from '../components/Icons'
+import Icons from './Icons'
+import TagsList from './TagsList'
 
 export default class Flashcard extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ export default class Flashcard extends React.Component {
   render() {
     const props = this.props
     const data = this.props.data
+    const tags = this.props.tags
 
     return (
       <FlipCard
@@ -54,9 +56,18 @@ export default class Flashcard extends React.Component {
         </View>
 
         <View style={styles.inner}>
+          <TouchableOpacity
+            style={{position:'absolute', top:-spacing.standard-6, right: 0}}
+            onPress={this.onBookmarkToggle}
+          >
+            { this.state.isBookmarked ? Icons.bookmark() : Icons.bookmarkOutline() }
+          </TouchableOpacity>
           <MarkdownView styles={styles.markdown}>
             {data.back}
           </MarkdownView>
+          <TagsList
+            tags={tags}
+          />
         </View>
       </FlipCard>
     )

@@ -8,7 +8,7 @@ import Pill from '../components/Pill';
 
 export default class UserActivitiesList extends React.Component {
   render() {
-    const tags = this.props.tags;
+    const tags = this.props.tags ? this.props.tags : [];
     const theme = this.props.theme;
     const more = this.props.more;
     const max = this.props.max ? this.props.max : 3;

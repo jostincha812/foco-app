@@ -9,7 +9,9 @@ import Icons from '../components/Icons'
 
 import { updateUserFlashcardPreference } from '../actions/FlashcardActions'
 import Flashcard from '../components/Flashcard'
+
 import MockFlashcards from '../data/MockFlashcards'
+import MockFlashcardsTags from '../data/MockFlashcardsTags'
 
 class FlashcardsViewer extends React.Component {
   static navigationOptions = {
@@ -78,6 +80,7 @@ class FlashcardsViewer extends React.Component {
             <Flashcard
               style={{width: '85%'}}
               data={f.data}
+              tags={f.tags}
               onBookmarkToggle={this.onBookmarkToggle}
             />
         </View>
@@ -103,7 +106,7 @@ class FlashcardsViewer extends React.Component {
 function mapStateToProps (state) {
   // TODO: remove mock data
   const keys = Object.keys(MockFlashcards)
-  const key = keys[5]
+  const key = keys[7]
 
   return {
     // TODO: remove mock data
@@ -113,7 +116,8 @@ function mapStateToProps (state) {
     },
     flashcard: {
       id: key,
-      data: MockFlashcards[key]
+      data: MockFlashcards[key],
+      tags: Object.keys(MockFlashcardsTags[key]),
     },
   }
 }
