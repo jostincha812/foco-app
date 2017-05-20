@@ -12,7 +12,7 @@ export default FlashcardsAPI = {
   },
 
   getFlashcard: (key) => {
-    return MockFlashcards[key]
+    return {id:key, ...MockFlashcards[key]}
   },
 
   getFlashcardTags: (key) => {

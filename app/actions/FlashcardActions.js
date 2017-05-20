@@ -6,14 +6,12 @@ export function fetchFlashcard(key) {
   return {
     type: C.FETCH_FLASHCARD,
     payload: new Promise(resolve => {
-      console.log(`fetching Flashcard(${key})`)
       resolve(api.flashcards.getFlashcard(key))
     })
   }
 }
 
 export function fetchFlashcards(keys) {
-  console.log(`fetching Flashcards(${keys})`)
   const promises = []
   keys.map(key => {
     promises.push(new Promise(resolve => resolve(api.flashcards.getFlashcard(key))))

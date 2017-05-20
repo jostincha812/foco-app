@@ -29,7 +29,7 @@ class FlashcardsViewer extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { ready: false }
+    this.state = { ready: false, index: 0 }
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
   }
@@ -37,17 +37,21 @@ class FlashcardsViewer extends React.Component {
   componentWillMount() {
     if (this.props.navigation) {
       const s = this.props.navigation.state.params.set
-      this.setState({set: s})
-      // s.flashcardsKeys.map(key => {
-      //   this.props.getFlashcard(key)
-      // })
+      const u = {
+        id: '12345',
+        username: 'lovince',
+      }
+
+      // this.setState({set: s, user: u})
+      this.props.flashcardsSet = s
+      this.props.user = u
       this.props.getFlashcards(s.flashcardsKeys)
     }
   }
 
   onYesNoAction(action) {
     const user = this.props.user
-    const flashcard = this.props.flashcard
+    const flashcard = this.props.flashcards[this.state.index]
 
     let keepVal = false
     if (action.type === C.ACTION_YES) {
@@ -67,7 +71,7 @@ class FlashcardsViewer extends React.Component {
 
   onBookmarkToggle(isBookmarked) {
     const user = this.props.user
-    const flashcard = this.props.flashcard
+    const flashcard = this.props.flashcards[this.state.index]
     this.props.updateUserFlashcardPreference({
       user: user,
       flashcard: flashcard,
@@ -78,22 +82,24 @@ class FlashcardsViewer extends React.Component {
 
   render() {
     const navigation = this.props.navigation
-
-    const f = this.props.flashcard
+    const flashcards = this.props.flashcards
     const u = this.props.user
-
     const spacer={flex:0.5, opacity:0, backgroundColor:'#fff'}
 
     return (
       <View style={S.container}>
         <View style={spacer} />
         <View style={{flex:7, alignItems:'center'}}>
-            <Flashcard
-              style={{width: '85%'}}
-              data={f.data}
-              tags={f.tags}
-              onBookmarkToggle={this.onBookmarkToggle}
-            />
+          { flashcards && flashcards.map(f =>
+              <Flashcard
+                style={{width: '85%'}}
+                key={f.id}
+                data={f}
+                tags={f.tags}
+                onBookmarkToggle={this.onBookmarkToggle}
+              />
+            )
+          }
         </View>
         <View style={spacer} />
         <View style={{height:T.largeIconSize*2.5, flexDirection:'row', justifyContent:'space-around'}}>
@@ -115,22 +121,8 @@ class FlashcardsViewer extends React.Component {
 }
 
 function mapStateToProps (state) {
-  // TODO: remove mock data
-  const key = api.flashcards.getFlashcardKeys()[9]
-  const f = api.flashcards.getFlashcard(key)
-  const tags = api.flashcards.getFlashcardTags(key)
-  const user = {
-    id: '12345',
-    username: 'lovince',
-  }
-
   return {
-    user: user,
-    flashcard: {
-      id: key,
-      data: f,
-      tags: tags,
-    },
+    flashcards: state.flashcardsData.data
   }
 }
 
