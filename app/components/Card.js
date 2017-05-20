@@ -1,16 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Card, Divider } from 'react-native-elements';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Card, Divider } from 'react-native-elements'
 
-import T from '../T';
-import { spacing } from '../styles/styles';
+import T from '../T'
+import { spacing } from '../styles/styles'
 
 export default class VPQCard extends React.Component {
   render() {
-    const props = this.props;
-    const containerStyle = props.containerStyle ? props.containerStyle : {};
-    const innerStyle = props.innerStyle ? props.innerStyle : {};
-    return (
+    const props = this.props
+    const containerStyle = props.containerStyle ? props.containerStyle : {}
+    const innerStyle = props.innerStyle ? props.innerStyle : {}
+
+    const card = (
       <Card
         title={props.title}
         titleStyle={{marginBottom:spacing.xsmall, textAlign:'left'}}
@@ -21,6 +22,17 @@ export default class VPQCard extends React.Component {
         </View>
       </Card>
     )
+
+    const onPress = this.props.onPress
+    if (onPress) {
+      return (
+        <TouchableOpacity onPress={onPress}>
+          {card}
+        </TouchableOpacity>
+      )
+    } else {
+      return card
+    }
 
     // --- no dependency version ---//
     // return (
@@ -60,4 +72,4 @@ const styles = StyleSheet.create({
     fontWeight: T.titleFontWeight,
     fontSize: T.titleFontSize,
   }
-});
+})

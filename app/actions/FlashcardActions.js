@@ -1,9 +1,27 @@
 import C from '../C'
 
-export function fetchFlashcard() {
+import api from '../data/api'
+
+export function fetchFlashcard(key) {
   return {
     type: C.FETCH_FLASHCARD,
-    payload: () => {}
+    payload: new Promise(resolve => {
+      console.log(`fetching Flashcard(${key})`)
+      resolve(api.flashcards.getFlashcard(key))
+    })
+  }
+}
+
+export function fetchFlashcards(keys) {
+  console.log(`fetching Flashcards(${keys})`)
+  const promises = []
+  keys.map(key => {
+    promises.push(new Promise(resolve => resolve(api.flashcards.getFlashcard(key))))
+  })
+  console.log(promises)
+  return {
+    type: C.FETCH_FLASHCARDS,
+    payload: Promise.all(promises)
   }
 }
 
@@ -14,7 +32,6 @@ export function updateUserFlashcardPreference({ user, flashcard, key, val }) {
       setTimeout(
         () => resolve(`[${user.id} :: ${flashcard.id}] ${key}=${val}`)
         , 1000)
-    }
-    )
+    })
   }
 }

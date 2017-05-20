@@ -7,11 +7,10 @@ import T from '../T'
 import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 
-import { updateUserFlashcardPreference } from '../actions/FlashcardActions'
-import Flashcard from '../components/Flashcard'
+import api from '../data/api'
 
-import MockFlashcards from '../data/MockFlashcards'
-import MockFlashcardsTags from '../data/MockFlashcardsTags'
+import { fetchFlashcards, updateUserFlashcardPreference } from '../actions/FlashcardActions'
+import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
   static navigationOptions = {
@@ -30,8 +29,20 @@ class FlashcardsViewer extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = { ready: false }
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
+  }
+
+  componentWillMount() {
+    if (this.props.navigation) {
+      const s = this.props.navigation.state.params.set
+      this.setState({set: s})
+      // s.flashcardsKeys.map(key => {
+      //   this.props.getFlashcard(key)
+      // })
+      this.props.getFlashcards(s.flashcardsKeys)
+    }
   }
 
   onYesNoAction(action) {
@@ -105,25 +116,27 @@ class FlashcardsViewer extends React.Component {
 
 function mapStateToProps (state) {
   // TODO: remove mock data
-  const keys = Object.keys(MockFlashcards)
-  const key = keys[7]
+  const key = api.flashcards.getFlashcardKeys()[9]
+  const f = api.flashcards.getFlashcard(key)
+  const tags = api.flashcards.getFlashcardTags(key)
+  const user = {
+    id: '12345',
+    username: 'lovince',
+  }
 
   return {
-    // TODO: remove mock data
-    user: {
-      id: '12345',
-      username: 'lovince',
-    },
+    user: user,
     flashcard: {
       id: key,
-      data: MockFlashcards[key],
-      tags: Object.keys(MockFlashcardsTags[key]),
+      data: f,
+      tags: tags,
     },
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
+    getFlashcards: (keys) => dispatch(fetchFlashcards(keys)),
     updateUserFlashcardPreference: (options) => dispatch(updateUserFlashcardPreference(options))
   }
 }

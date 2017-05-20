@@ -1,17 +1,15 @@
-import MockUserActivities from './MockUserActivities';
-import MockFlashcards from './MockFlashcards';
-import MockFlashcardsTags from './MockFlashcardsTags';
+import FlashcardsAPI from './FlashcardsAPI'
+import FlashcardSetsAPI from './FlashcardSetsAPI'
 
-const data = {
-  userActivites: MockUserActivities,
-  flashcards: MockFlashcards,
-  flashcardsTags: MockFlashcardsTags,
+export default api = {
+  flashcards: FlashcardsAPI,
+  flashcardSets: FlashcardSetsAPI
 }
 
-export default (key) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      return resolve(data[key])
-    }, Math.floor(Math.random() * 3000))
-  })
-}
+// export default (key) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       return resolve(data[key])
+//     }, Math.floor(Math.random() * 3000))
+//   })
+// }

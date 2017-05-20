@@ -30,13 +30,33 @@ export default function FlashcardReducer (state = initialState, action) {
         fetchError: true
       }
 
+    case C.FETCH_FLASHCARDS_PENDING:
+      return {
+        ...state,
+        data: null,
+        isFetching: true,
+        fetchError: false,
+      }
+    case C.FETCH_FLASHCARDS_FULFILLED:
+      return {
+        ...state,
+        isFetching: false,
+        data: action.payload
+      }
+    case C.FETCH_FLASHCARDS_REJECTED:
+      return {
+        ...state,
+        isFetching: false,
+        fetchError: true
+      }
+
     case C.UPDATE_USER_FLASHCARD_PREFERENCE_PENDING:
-    return {
-      ...state,
-      data: null,
-      isStoring: true,
-      storeError: false,
-    }
+      return {
+        ...state,
+        data: null,
+        isStoring: true,
+        storeError: false,
+      }
     case C.UPDATE_USER_FLASHCARD_PREFERENCE_FULFILLED:
       return {
         ...state,

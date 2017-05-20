@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import C from '../C'
@@ -7,8 +7,11 @@ import T from '../T'
 import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
+import Card from '../components/Card'
 
 import { fetchUserProfile } from '../actions/UserProfileActions'
+
+import FlashcardSetsAPI from '../data/FlashcardSetsAPI'
 
 class Home extends React.Component {
   // const {state, setParams, navigate} = navigation
@@ -46,6 +49,10 @@ class Home extends React.Component {
     const navigation = this.props.navigation
     const props = this.props
 
+    // TODO remove mock data
+    const key = FlashcardSetsAPI.getFlashcardSets()[0]
+    const set = FlashcardSetsAPI.getFlashcardSet(key)
+
     if (props.userProfileData.isFetching) {
       return (
         <LoadingIndicator />
@@ -58,6 +65,13 @@ class Home extends React.Component {
         { props.userProfileData.data ?
           <View data={props.userProfileData.data} /> : null
         }
+        <Card
+          title={set.title}
+          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {set: set})}>
+          <Text>
+            {set.tags}
+          </Text>
+        </Card>
       </ScrollView>
     );
   }
