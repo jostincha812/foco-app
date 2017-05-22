@@ -7,16 +7,8 @@ export default FlashcardsAPI = {
     return keys
   },
 
-  getFlashcardKeysWithTags: (tags) => {
-
-  },
-
   getFlashcard: (key) => {
     return {id:key, ...MockFlashcards[key]}
-  },
-
-  getFlashcardTags: (key) => {
-    return Object.keys(MockFlashcardsTags[key])
   },
 
   updateFlashcard: (key, data) => {
@@ -32,5 +24,4 @@ export default FlashcardsAPI = {
     MockFlashcards[key] = f
     return f
   },
-
 }

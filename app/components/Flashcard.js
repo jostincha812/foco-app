@@ -20,9 +20,10 @@ export default class Flashcard extends React.Component {
   }
 
   onBookmarkToggle() {
+    const id = this.props.data.id
     const newBookmarkedState = !this.state.isBookmarked
     this.setState({isBookmarked: newBookmarkedState})
-    this.props.onBookmarkToggle(newBookmarkedState)
+    this.props.onBookmarkToggle(newBookmarkedState, id)
   }
 
   render() {

@@ -11,7 +11,7 @@ import Card from '../components/Card'
 
 import { fetchUserProfile } from '../actions/UserProfileActions'
 
-import FlashcardSetsAPI from '../data/FlashcardSetsAPI'
+import api from '../data/api'
 
 class Home extends React.Component {
   // const {state, setParams, navigate} = navigation
@@ -50,10 +50,14 @@ class Home extends React.Component {
     const props = this.props
 
     // TODO remove mock data
-    const key = FlashcardSetsAPI.getFlashcardSets()[0]
-    const set = FlashcardSetsAPI.getFlashcardSet(key)
+    const key = api.flashcardSets.getFlashcardSets()[0]
+    const set = api.flashcardSets.getFlashcardSet(key)
+    const user = {
+      id: '12345',
+      username: 'lovince',
+    }
 
-    if (props.userProfileData.isFetching) {
+    if (props.userProfile.isFetching) {
       return (
         <LoadingIndicator />
       )
@@ -62,12 +66,12 @@ class Home extends React.Component {
     return (
       <ScrollView style={S.container}>
         <StatusBar barStyle={S.statusBarStyle} />
-        { props.userProfileData.data ?
-          <View data={props.userProfileData.data} /> : null
+        { props.userProfile.data ?
+          <View data={props.userProfile.data} /> : null
         }
         <Card
           title={set.title}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {set: set})}>
+          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, keys:set.flashcardsKeys})}>
           <Text>
             {set.tags}
           </Text>
@@ -79,7 +83,7 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    userProfileData: state.userProfileData
+    userProfile: state.userProfile
   }
 }
 

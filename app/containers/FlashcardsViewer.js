@@ -9,7 +9,7 @@ import Icons from '../components/Icons'
 
 import api from '../data/api'
 
-import { fetchFlashcards, updateUserFlashcardPreference } from '../actions/FlashcardActions'
+import { fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
 import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
@@ -29,28 +29,23 @@ class FlashcardsViewer extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { ready: false, index: 0 }
+    this.state = {}
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
   }
 
   componentWillMount() {
     if (this.props.navigation) {
-      const s = this.props.navigation.state.params.set
-      const u = {
-        id: '12345',
-        username: 'lovince',
-      }
+      const keys = this.props.navigation.state.params.keys
+      const user = this.props.navigation.state.params.user
 
-      // this.setState({set: s, user: u})
-      this.props.flashcardsSet = s
-      this.props.user = u
-      this.props.getFlashcards(s.flashcardsKeys)
+      this.setState({keys, user})
+      this.props.getFlashcards(keys)
     }
   }
 
   onYesNoAction(action) {
-    const user = this.props.user
+    const user = this.state.user
     const flashcard = this.props.flashcards[this.state.index]
 
     let keepVal = false
@@ -58,10 +53,10 @@ class FlashcardsViewer extends React.Component {
       keepVal = true
     }
     if (action.type === C.ACTION_NO) {
-      // do nothing
+      // do nothing, keepVal = false
     }
 
-    this.props.updateUserFlashcardPreference({
+    this.props.updateUserFlashcardPref({
       user: user,
       flashcard: flashcard,
       key: C.KEY_PREF_KEEP,
@@ -69,10 +64,10 @@ class FlashcardsViewer extends React.Component {
     })
   }
 
-  onBookmarkToggle(isBookmarked) {
-    const user = this.props.user
-    const flashcard = this.props.flashcards[this.state.index]
-    this.props.updateUserFlashcardPreference({
+  onBookmarkToggle(isBookmarked, id) {
+    const user = this.state.user
+    const flashcard = this.props.flashcards[id]
+    this.props.updateUserFlashcardPref({
       user: user,
       flashcard: flashcard,
       key: C.KEY_PREF_BOOKMARKED,
@@ -81,21 +76,22 @@ class FlashcardsViewer extends React.Component {
   }
 
   render() {
-    const navigation = this.props.navigation
-    const flashcards = this.props.flashcards
-    const u = this.props.user
     const spacer={flex:0.5, opacity:0, backgroundColor:'#fff'}
+
+    const ready = this.props.ready
+    const flashcards = this.props.flashcards
+    const flashcardTags = this.props.flashcardTags
 
     return (
       <View style={S.container}>
         <View style={spacer} />
         <View style={{flex:7, alignItems:'center'}}>
-          { flashcards && flashcards.map(f =>
+          { ready && Object.keys(flashcards).map(k =>
               <Flashcard
                 style={{width: '85%'}}
-                key={f.id}
-                data={f}
-                tags={f.tags}
+                key={k}
+                data={flashcards[k]}
+                tags={flashcardTags[k]}
                 onBookmarkToggle={this.onBookmarkToggle}
               />
             )
@@ -114,22 +110,33 @@ class FlashcardsViewer extends React.Component {
             {Icons.yesCircledOutline({size:T.largeIconSize*2, tintColor:T.yesColor})}
           </TouchableOpacity>
         </View>
-        {/* <View style={spacer} /> */}
       </View>
     )
   }
 }
 
 function mapStateToProps (state) {
+  const flashcards = {}
+  const flashcardTags = {}
+  const userFlashcardPrefs = {}
+
+  // TODO remove debug messages
+  // console.log('mapStateToProps')
+  // if (state.flashcards.isReady) {
+  //   console.log(state.flashcards.data)
+  // }
   return {
-    flashcards: state.flashcardsData.data
+    ready: state.flashcards.isReady,
+    flashcards: state.flashcards.data,
+    flashcardTags,
+    userFlashcardPrefs: state.userFlashcardPrefs.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     getFlashcards: (keys) => dispatch(fetchFlashcards(keys)),
-    updateUserFlashcardPreference: (options) => dispatch(updateUserFlashcardPreference(options))
+    updateUserFlashcardPref: (options) => dispatch(updateUserFlashcardPref(options))
   }
 }
 

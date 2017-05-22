@@ -1,10 +1,18 @@
-import FlashcardsAPI from './FlashcardsAPI'
-import FlashcardSetsAPI from './FlashcardSetsAPI'
+import MockFlashcardsAPI from './MockFlashcardsAPI'
+import MockFlashcardSetsAPI from './MockFlashcardSetsAPI'
+import MockUserFlashcardPrefsAPI from './MockUserFlashcardPrefsAPI'
 
-export default api = {
-  flashcards: FlashcardsAPI,
-  flashcardSets: FlashcardSetsAPI
+const mockAPI = {
+  flashcards: MockFlashcardsAPI,
+  flashcardSets: MockFlashcardSetsAPI,
+  userFlashcardPrefs: MockUserFlashcardPrefsAPI,
 }
+
+const fbAPI = {
+
+}
+
+export default mockAPI
 
 // export default (key) => {
 //   return new Promise((resolve, reject) => {

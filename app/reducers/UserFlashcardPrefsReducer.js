@@ -7,9 +7,9 @@ const initialState = {
   error: false,
 }
 
-export default function FlashcardReducer (state = initialState, action) {
+export default function UserFlashcardPrefsReducer (state = initialState, action) {
   switch (action.type) {
-    case C.FETCH_FLASHCARD_PENDING:
+    case C.FETCH_USER_FLASHCARD_PREFS_PENDING:
       return {
         ...state,
         data: {},
@@ -17,60 +17,38 @@ export default function FlashcardReducer (state = initialState, action) {
         isReady: false,
         error: false,
       }
-    case C.FETCH_FLASHCARD_FULFILLED:
-      return {
-        ...state,
-        isFetching: false,
-        isReady: true,
-        data: action.payload
-      }
-    case C.FETCH_FLASHCARD_REJECTED:
-      return {
-        ...state,
-        isFetching: false,
-        error: true
-      }
-
-    case C.FETCH_FLASHCARDS_PENDING:
-      return {
-        ...state,
-        data: {},
-        isFetching: true,
-        isReady: false,
-        error: false,
-      }
-    case C.FETCH_FLASHCARDS_FULFILLED:
+    case C.FETCH_USER_FLASHCARD_PREFS_FULFILLED:
       // convert array from Promises.all() back to json object
-      const flashcards = {}
+      const prefs = {}
       action.payload.map(f => {
-        flashcards[f.id] = f
+        prefs[f.id] = f
       })
       return {
         ...state,
         isFetching: false,
         isReady: true,
-        data: flashcards
+        data: prefs
       }
-    case C.FETCH_FLASHCARDS_REJECTED:
+    case C.FETCH_USER_FLASHCARD_PREFS_REJECTED:
       return {
         ...state,
         isFetching: false,
         error: true
       }
 
-    case C.UPDATE_USER_FLASHCARD_PREFERENCE_PENDING:
+    case C.UPDATE_USER_FLASHCARD_PREFS_PENDING:
       return {
         ...state,
         isStoring: true,
         isFetching: false,
         error: false,
       }
-    case C.UPDATE_USER_FLASHCARD_PREFERENCE_FULFILLED:
+    case C.UPDATE_USER_FLASHCARD_PREFS_FULFILLED:
       return {
         ...state,
         isStoring: false,
       }
-    case C.UPDATE_USER_FLASHCARD_PREFERENCE_REJECTED:
+    case C.UPDATE_USER_FLASHCARD_PREFS_REJECTED:
       return {
         ...state,
         isStoring: false,

@@ -16,20 +16,19 @@ export function fetchFlashcards(keys) {
   keys.map(key => {
     promises.push(new Promise(resolve => resolve(api.flashcards.getFlashcard(key))))
   })
-  console.log(promises)
   return {
     type: C.FETCH_FLASHCARDS,
     payload: Promise.all(promises)
   }
 }
 
-export function updateUserFlashcardPreference({ user, flashcard, key, val }) {
+export function updateUserFlashcardPref({ user, flashcard, key, val }) {
+  const pref = {}
+  pref[key] = val
   return {
-    type: C.UPDATE_USER_FLASHCARD_PREFERENCE,
+    type: C.UPDATE_USER_FLASHCARD_PREFS,
     payload: new Promise(resolve => {
-      setTimeout(
-        () => resolve(`[${user.id} :: ${flashcard.id}] ${key}=${val}`)
-        , 1000)
+      resolve(api.userFlashcardPrefs.updateUserFlashcardPrefs(user.id, flashcard.id, pref))
     })
   }
 }
