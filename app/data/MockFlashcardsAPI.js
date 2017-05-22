@@ -1,5 +1,4 @@
-import MockFlashcards from './MockFlashcards'
-import MockFlashcardsTags from './MockFlashcardsTags'
+import MockFlashcards from './mock/MockFlashcards'
 
 export default FlashcardsAPI = {
   getFlashcardKeys: () => {
