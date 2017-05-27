@@ -9,16 +9,40 @@ export function fetchFlashcard(key) {
       resolve(api.flashcards.getFlashcard(key))
     })
   }
+  // return dispatch => {
+  //   return dispatch({
+  //     type: C.FETCH_FLASHCARD,
+  //     payload: new Promise(resolve => {
+  //       resolve(api.flashcards.getFlashcard(key))
+  //     })
+  //   }).then(({value, action}) => {
+  //     console.log(value)
+  //     console.log(action)
+  //     return new Promise(resolve => {
+  //       resolve(value)
+  //     })
+  //   })
+  // }
 }
 
 export function fetchFlashcards(keys) {
   const promises = []
   keys.map(key => {
     promises.push(new Promise(resolve => resolve(api.flashcards.getFlashcard(key))))
+    // promises.push(fetchFlashcard(key))
   })
   return {
     type: C.FETCH_FLASHCARDS,
     payload: Promise.all(promises)
+  }
+}
+
+export function fetchUserFlashcardPrefs(user) {
+  return {
+    type: C.FETCH_USER_FLASHCARD_PREFS,
+    payload: new Promise(resolve => {
+      resolve(api.userFlashcardPrefs.getUserFlashcardPrefs(user.id))
+    })
   }
 }
 

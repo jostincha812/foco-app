@@ -1,4 +1,5 @@
 import MockFlashcards from './mock/MockFlashcards'
+import MockFlashcardTagsAPI from './MockFlashcardTagsAPI'
 
 export default FlashcardsAPI = {
   getFlashcardKeys: () => {
@@ -7,7 +8,8 @@ export default FlashcardsAPI = {
   },
 
   getFlashcard: (key) => {
-    return {id:key, ...MockFlashcards[key]}
+    const tags = MockFlashcardTagsAPI.getFlashcardTags(key)
+    return {id:key, ...MockFlashcards[key], tags}
   },
 
   updateFlashcard: (key, data) => {

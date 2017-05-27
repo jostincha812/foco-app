@@ -18,16 +18,16 @@ export default function UserFlashcardPrefsReducer (state = initialState, action)
         error: false,
       }
     case C.FETCH_USER_FLASHCARD_PREFS_FULFILLED:
-      // convert array from Promises.all() back to json object
-      const prefs = {}
-      action.payload.map(f => {
-        prefs[f.id] = f
-      })
+      // // convert array from Promises.all() back to json object
+      // const prefs = {}
+      // action.payload.map(f => {
+      //   prefs[f.id] = f
+      // })
       return {
         ...state,
         isFetching: false,
         isReady: true,
-        data: prefs
+        data: action.payload
       }
     case C.FETCH_USER_FLASHCARD_PREFS_REJECTED:
       return {

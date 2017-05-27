@@ -10,6 +10,7 @@ import Icons from '../components/Icons'
 import api from '../data/api'
 
 import { fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
+import { fetchUserFlashcardPrefs } from '../actions/FlashcardActions'
 import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
@@ -41,6 +42,7 @@ class FlashcardsViewer extends React.Component {
 
       this.setState({keys, user})
       this.props.getFlashcards(keys)
+      this.props.getUserFlashcardPrefs(user)
     }
   }
 
@@ -57,7 +59,7 @@ class FlashcardsViewer extends React.Component {
     }
 
     this.props.updateUserFlashcardPref({
-      user: user,
+      user,
       flashcard: flashcard,
       key: C.KEY_PREF_KEEP,
       val: keepVal
@@ -68,7 +70,7 @@ class FlashcardsViewer extends React.Component {
     const user = this.state.user
     const flashcard = this.props.flashcards[id]
     this.props.updateUserFlashcardPref({
-      user: user,
+      user,
       flashcard: flashcard,
       key: C.KEY_PREF_BOOKMARKED,
       val: isBookmarked
@@ -80,7 +82,7 @@ class FlashcardsViewer extends React.Component {
 
     const ready = this.props.ready
     const flashcards = this.props.flashcards
-    const flashcardTags = this.props.flashcardTags
+    const prefs = this.props.userFlashcardPrefs
 
     return (
       <View style={S.container}>
@@ -91,7 +93,7 @@ class FlashcardsViewer extends React.Component {
                 style={{width: '85%'}}
                 key={k}
                 data={flashcards[k]}
-                tags={flashcardTags[k]}
+                prefs={prefs[k]}
                 onBookmarkToggle={this.onBookmarkToggle}
               />
             )
@@ -117,7 +119,6 @@ class FlashcardsViewer extends React.Component {
 
 function mapStateToProps (state) {
   const flashcards = {}
-  const flashcardTags = {}
   const userFlashcardPrefs = {}
 
   // TODO remove debug messages
@@ -128,7 +129,6 @@ function mapStateToProps (state) {
   return {
     ready: state.flashcards.isReady,
     flashcards: state.flashcards.data,
-    flashcardTags,
     userFlashcardPrefs: state.userFlashcardPrefs.data,
   }
 }
@@ -136,6 +136,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     getFlashcards: (keys) => dispatch(fetchFlashcards(keys)),
+    getUserFlashcardPrefs: (user) => dispatch(fetchUserFlashcardPrefs(user)),
     updateUserFlashcardPref: (options) => dispatch(updateUserFlashcardPref(options))
   }
 }

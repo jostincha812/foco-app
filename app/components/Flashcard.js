@@ -19,6 +19,13 @@ export default class Flashcard extends React.Component {
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
   }
 
+  componentWillMount() {
+    const prefs = this.props.prefs
+    if (prefs) {
+      this.setState({isBookmarked: prefs.isBookmarked})
+    }
+  }
+
   onBookmarkToggle() {
     const id = this.props.data.id
     const newBookmarkedState = !this.state.isBookmarked
@@ -29,7 +36,8 @@ export default class Flashcard extends React.Component {
   render() {
     const props = this.props
     const data = this.props.data
-    const tags = this.props.tags
+    const tags = data.tags
+    const prefs = this.props.prefs
 
     return (
       <FlipCard

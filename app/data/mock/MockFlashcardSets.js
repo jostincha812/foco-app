@@ -1,7 +1,7 @@
 export default FlashcardSets = {
   "12345": {
     title: "French grape growing and terroir",
-    flashcardsKeys: ["-KdPHHMWCGadVmqB4heI", "-KdPIirar5fkRABJUc8t", "-KdPRkds2JO8g8nlWG_Y", "-KdPTXowNztc-UsL6eAl"],
+    flashcardsKeys: ["-KdPHHMWCGadVmqB4heI"],
     tags: ["fr", "viniculture", "terroir"],
   },
   "abcdefg": {

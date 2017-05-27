@@ -8,7 +8,7 @@ const mockAPI = {
   userFlashcardPrefs: MockUserFlashcardPrefsAPI,
 }
 
-const fbAPI = {
+const firebaseAPI = {
 
 }
 
