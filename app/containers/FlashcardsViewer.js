@@ -41,8 +41,8 @@ class FlashcardsViewer extends React.Component {
       const user = this.props.navigation.state.params.user
 
       this.setState({keys, user})
-      this.props.getFlashcards(keys)
-      this.props.getUserFlashcardPrefs(user)
+      this.props.fetchFlashcards(user.id, keys)
+      // this.props.fetchUserFlashcardPrefs(user)
     }
   }
 
@@ -135,8 +135,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getFlashcards: (keys) => dispatch(fetchFlashcards(keys)),
-    getUserFlashcardPrefs: (user) => dispatch(fetchUserFlashcardPrefs(user)),
+    fetchFlashcards: (userId, keys) => dispatch(fetchFlashcards(userId, keys)),
+    fetchUserFlashcardPrefs: (user) => dispatch(fetchUserFlashcardPrefs(user)),
     updateUserFlashcardPref: (options) => dispatch(updateUserFlashcardPref(options))
   }
 }

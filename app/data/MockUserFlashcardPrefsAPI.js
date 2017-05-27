@@ -1,11 +1,12 @@
 const MockUserFlashcardPerfs = {}
 
 export default UserFlashcardPrefsAPI = {
-  getUserFlashcardPrefs: (userId) => {
+  getUserFlashcardPrefs: (userId, flashcardId) => {
     if (!MockUserFlashcardPerfs[userId]) {
       MockUserFlashcardPerfs[userId] = {}
     }
-    return MockUserFlashcardPerfs[userId]
+    console.log(MockUserFlashcardPerfs[userId])
+    return MockUserFlashcardPerfs[userId][flashcardId]
   },
 
   updateUserFlashcardPrefs: (userId, flashcardId, prefs) => {

@@ -25,10 +25,13 @@ export function fetchFlashcard(key) {
   // }
 }
 
-export function fetchFlashcards(keys) {
+export function fetchFlashcards(userId, keys) {
   const promises = []
   keys.map(key => {
-    promises.push(new Promise(resolve => resolve(api.flashcards.getFlashcard(key))))
+    promises.push(api.flashcards.getFlashcard(key))
+    // promises.push(new Promise(resolve => resolve(api.flashcards.getFlashcard(key))).then(
+    //   new Promise(resolve => resolve(api.userFlashcardPrefs.getUserFlashcardPrefs(userId, key)))
+    // ))
     // promises.push(fetchFlashcard(key))
   })
   return {
