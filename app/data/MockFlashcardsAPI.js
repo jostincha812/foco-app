@@ -20,11 +20,14 @@ export default FlashcardsAPI = {
         resolve({...result, tags})
       })
     }).then(result => {
-      // TODO convert UserFlashcardPrefs API to return promises
-      return new Promise(resolve => {
-        const prefs = MockUserFlashcardPrefsAPI.getUserFlashcardPrefs(userId, key)
-        resolve({...result, prefs})
+      return MockUserFlashcardPrefsAPI.getUserFlashcardPrefs(userId, key).then(prefs => {
+        return {...result, prefs}
       })
+      // TODO convert UserFlashcardPrefs API to return promises
+      // return new Promise(resolve => {
+      //   const prefs = MockUserFlashcardPrefsAPI.getUserFlashcardPrefs(userId, key)
+      //   resolve({...result, prefs})
+      // })
     })
   },
 

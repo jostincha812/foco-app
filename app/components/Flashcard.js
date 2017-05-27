@@ -21,8 +21,9 @@ export default class Flashcard extends React.Component {
 
   componentWillMount() {
     const prefs = this.props.prefs
+    console.log(prefs)
     if (prefs) {
-      this.setState({isBookmarked: prefs.isBookmarked})
+      this.setState({isBookmarked: prefs[C.KEY_PREF_BOOKMARKED]})
     }
   }
 

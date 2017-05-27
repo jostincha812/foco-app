@@ -93,7 +93,7 @@ class FlashcardsViewer extends React.Component {
                 style={{width: '85%'}}
                 key={k}
                 data={flashcards[k]}
-                prefs={prefs[k]}
+                prefs={flashcards[k].prefs}
                 onBookmarkToggle={this.onBookmarkToggle}
               />
             )
