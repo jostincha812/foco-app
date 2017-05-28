@@ -10,7 +10,6 @@ import Icons from '../components/Icons'
 import api from '../data/api'
 
 import { fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
-import { fetchUserFlashcardPrefs } from '../actions/FlashcardActions'
 import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
@@ -37,44 +36,57 @@ class FlashcardsViewer extends React.Component {
 
   componentWillMount() {
     if (this.props.navigation) {
-      const keys = this.props.navigation.state.params.keys
+      const ids = this.props.navigation.state.params.ids
       const user = this.props.navigation.state.params.user
 
-      this.setState({keys, user})
-      this.props.fetchFlashcards(user.id, keys)
-      // this.props.fetchUserFlashcardPrefs(user)
+      if (ids) {
+        this.setState({current:ids[0]})
+        this.props.fetchFlashcards(ids, user.id)
+      }
     }
   }
 
   onYesNoAction(action) {
-    const user = this.state.user
-    const flashcard = this.props.flashcards[this.state.index]
+    const user = this.props.navigation.state.params.user
+    const flashcard = this.props.flashcards[this.state.current]
 
-    let keepVal = false
+    let val = false
     if (action.type === C.ACTION_YES) {
-      keepVal = true
+      val = true
     }
     if (action.type === C.ACTION_NO) {
-      // do nothing, keepVal = false
+      // do nothing, val = false
     }
 
-    this.props.updateUserFlashcardPref({
-      user,
-      flashcard: flashcard,
-      key: C.KEY_PREF_KEEP,
-      val: keepVal
-    })
+    this.props.updateUserFlashcardPref(
+      user.id,
+      flashcard.id,
+      {
+        key: C.KEY_PREF_KEEP,
+        val
+      }
+    )
+
+    const a = Object.keys(this.props.flashcards)
+    const i = a.indexOf(this.state.current)
+    if (i < a.length - 1) {
+      this.setState({current: a[i+1]})
+    } else {
+      console.log("end of array")
+    }
   }
 
   onBookmarkToggle(isBookmarked, id) {
-    const user = this.state.user
+    const user = this.props.navigation.state.params.user
     const flashcard = this.props.flashcards[id]
-    this.props.updateUserFlashcardPref({
-      user,
-      flashcard: flashcard,
-      key: C.KEY_PREF_BOOKMARKED,
-      val: isBookmarked
-    })
+    this.props.updateUserFlashcardPref(
+      user.id,
+      flashcard.id,
+      {
+        key: C.KEY_PREF_BOOKMARKED,
+        val: isBookmarked
+      }
+    )
   }
 
   render() {
@@ -82,21 +94,20 @@ class FlashcardsViewer extends React.Component {
 
     const ready = this.props.ready
     const flashcards = this.props.flashcards
-    const prefs = this.props.userFlashcardPrefs
+    const current = this.state.current
 
     return (
       <View style={S.container}>
         <View style={spacer} />
         <View style={{flex:7, alignItems:'center'}}>
-          { ready && Object.keys(flashcards).map(k =>
+          { ready &&
               <Flashcard
                 style={{width: '85%'}}
-                key={k}
-                data={flashcards[k]}
-                prefs={flashcards[k].prefs}
+                key={current}
+                data={flashcards[current]}
+                prefs={flashcards[current].prefs}
                 onBookmarkToggle={this.onBookmarkToggle}
               />
-            )
           }
         </View>
         <View style={spacer} />
@@ -118,26 +129,16 @@ class FlashcardsViewer extends React.Component {
 }
 
 function mapStateToProps (state) {
-  const flashcards = {}
-  const userFlashcardPrefs = {}
-
-  // TODO remove debug messages
-  // console.log('mapStateToProps')
-  // if (state.flashcards.isReady) {
-  //   console.log(state.flashcards.data)
-  // }
   return {
     ready: state.flashcards.isReady,
     flashcards: state.flashcards.data,
-    userFlashcardPrefs: state.userFlashcardPrefs.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchFlashcards: (userId, keys) => dispatch(fetchFlashcards(userId, keys)),
-    fetchUserFlashcardPrefs: (user) => dispatch(fetchUserFlashcardPrefs(user)),
-    updateUserFlashcardPref: (options) => dispatch(updateUserFlashcardPref(options))
+    fetchFlashcards: (ids, userId) => dispatch(fetchFlashcards(ids, userId)),
+    updateUserFlashcardPref: (userId, flashcardId, prefs) => dispatch(updateUserFlashcardPref(userId, flashcardId, prefs))
   }
 }
 

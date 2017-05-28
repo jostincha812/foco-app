@@ -1,11 +1,11 @@
 import MockFlashcardsAPI from './MockFlashcardsAPI'
 import MockFlashcardSetsAPI from './MockFlashcardSetsAPI'
-import MockUserFlashcardPrefsAPI from './MockUserFlashcardPrefsAPI'
+import MockUserPrefsAPI from './MockUserPrefsAPI'
 
 const mockAPI = {
   flashcards: MockFlashcardsAPI,
   flashcardSets: MockFlashcardSetsAPI,
-  userFlashcardPrefs: MockUserFlashcardPrefsAPI,
+  userPrefs: MockUserPrefsAPI,
 }
 
 const firebaseAPI = {

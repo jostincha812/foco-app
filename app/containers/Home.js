@@ -50,8 +50,8 @@ class Home extends React.Component {
     const props = this.props
 
     // TODO remove mock data
-    const key = api.flashcardSets.getFlashcardSets()[0]
-    const set = api.flashcardSets.getFlashcardSet(key)
+    const id = api.flashcardSets.getFlashcardSets()[0]
+    const set = api.flashcardSets.getFlashcardSet(id)
     const user = {
       id: '12345',
       username: 'lovince',
@@ -71,7 +71,7 @@ class Home extends React.Component {
         }
         <Card
           title={set.title}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, keys:set.flashcardsKeys})}>
+          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcardsIds})}>
           <Text>
             {set.tags}
           </Text>

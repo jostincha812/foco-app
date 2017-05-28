@@ -1,47 +1,56 @@
 import MockFlashcards from './mock/MockFlashcards'
-import MockFlashcardTagsAPI from './MockFlashcardTagsAPI'
-import MockUserFlashcardPrefsAPI from './MockUserFlashcardPrefsAPI'
+import MockFlashcardsTags from './mock/MockFlashcardsTags'
+
+import MockUserPrefsAPI from './MockUserPrefsAPI'
 
 export default FlashcardsAPI = {
-  getFlashcardKeys: () => {
-    const keys = Object.keys(MockFlashcards)
-    return keys
+  getFlashcardIds: () => {
+    return new Promise(resolve => resolve(Object.keys(MockFlashcards)))
   },
 
-  getFlashcard: (key) => {
-    const userId = "12345"
+  getFlashcardIdsWithTags: (tags) => {
 
-    return new Promise(resolve =>
-      resolve({id: key, ...MockFlashcards[key]})
-    ).then(result => {
-      // TODO convert Tags API to return promises
-      return new Promise(resolve => {
-        const tags = MockFlashcardTagsAPI.getFlashcardTags(key)
-        resolve({...result, tags})
-      })
-    }).then(result => {
-      return MockUserFlashcardPrefsAPI.getUserFlashcardPrefs(userId, key).then(prefs => {
-        return {...result, prefs}
-      })
-      // TODO convert UserFlashcardPrefs API to return promises
-      // return new Promise(resolve => {
-      //   const prefs = MockUserFlashcardPrefsAPI.getUserFlashcardPrefs(userId, key)
-      //   resolve({...result, prefs})
-      // })
+  },
+
+  getFlashcard: (id, userId) => {
+    return Promise.all([
+      new Promise(resolve => resolve({id, ...MockFlashcards[id]})),
+      FlashcardsAPI.getFlashcardTags(id),
+      MockUserPrefsAPI.getUserFlashcardPrefs(userId, id),
+    ]).then(results => {
+      return {...results[0], tags:results[1], prefs:results[2]}
     })
   },
 
+  getFlashcards: (ids, userId) => {
+    const promises = []
+    ids.map(id => {
+      promises.push(FlashcardsAPI.getFlashcard(id, userId))
+    })
+    return Promise.all(promises)
+  },
+
   updateFlashcard: (key, data) => {
-    const f = Object.assign({}, MockFlashcards[key], data)
-    MockFlashcards[key] = f
-    return f
+    return new Promise(resolve => {
+      const f = Object.assign({}, MockFlashcards[key], data)
+      MockFlashcards[key] = f
+      resolve(f)
+    })
   },
 
   deleteFlashcard: (key) => {
-    const status = {}
-    status[C.KEY_STATUS] = C.STATUS_DELETED
-    const f = Object.assign({}, MockFlashcards[key], status)
-    MockFlashcards[key] = f
-    return f
+    return new Promise(resolve => {
+      const status = {}
+      status[C.KEY_STATUS] = C.STATUS_DELETED
+      const f = Object.assign({}, MockFlashcards[key], status)
+      MockFlashcards[key] = f
+      resolve(f)
+    })
+  },
+
+  getFlashcardTags: (key) => {
+    return new Promise(resolve => {
+      resolve(Object.keys(MockFlashcardsTags[key]))
+    })
   },
 }
