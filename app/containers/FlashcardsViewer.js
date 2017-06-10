@@ -2,15 +2,15 @@ import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 
+import api from '../data/api'
+import { fetchFlashcardIds, fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
+
 import C from '../C'
 import T from '../T'
 import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
-
-import api from '../data/api'
-
-import { fetchFlashcardIds, fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
+import CardsStack from '../components/CardsStack'
 import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
@@ -102,13 +102,16 @@ class FlashcardsViewer extends React.Component {
         <View style={S.container}>
           <View style={spacer} />
           <View style={{flex:7, alignItems:'center'}}>
-              <Flashcard
-                style={{width: '85%'}}
-                key={current}
-                data={flashcards[current]}
-                prefs={flashcards[current].prefs}
-                onBookmarkToggle={this.onBookmarkToggle}
-              />
+            <Flashcard
+              style={{width: '85%', height: '90%', top: spacing.standard, zIndex:101}}
+              key={current}
+              data={flashcards[current]}
+              prefs={flashcards[current].prefs}
+              onBookmarkToggle={this.onBookmarkToggle}
+            />
+            <CardsStack
+              style={{position:'absolute', height: '100%', width: '85%', zIndex:100}}
+            />
           </View>
           <View style={spacer} />
           <View style={{height:T.largeIconSize*2.5, flexDirection:'row', justifyContent:'space-around'}}>
