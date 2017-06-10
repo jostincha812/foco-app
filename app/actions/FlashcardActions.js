@@ -2,6 +2,13 @@ import C from '../C'
 
 import api from '../data/api'
 
+export function fetchFlashcardIds() {
+  return {
+    type: C.FETCH_FLASHCARD_IDS,
+    payload: api.flashcards.getFlashcardIds()
+  }
+}
+
 export function fetchFlashcard(id, userId) {
   return {
     type: C.FETCH_FLASHCARD,

@@ -3,7 +3,7 @@ import MockFlashcardsTags from './mock/MockFlashcardsTags'
 
 import MockUserPrefsAPI from './MockUserPrefsAPI'
 
-export default FlashcardsAPI = {
+export default MockFlashcardsAPI = {
   getFlashcardIds: () => {
     return new Promise(resolve => resolve(Object.keys(MockFlashcards)))
   },
@@ -15,7 +15,7 @@ export default FlashcardsAPI = {
   getFlashcard: (id, userId) => {
     return Promise.all([
       new Promise(resolve => resolve({id, ...MockFlashcards[id]})),
-      FlashcardsAPI.getFlashcardTags(id),
+      MockFlashcardsAPI.getFlashcardTags(id),
       MockUserPrefsAPI.getUserFlashcardPrefs(userId, id),
     ]).then(results => {
       return {...results[0], tags:results[1], prefs:results[2]}
@@ -25,7 +25,7 @@ export default FlashcardsAPI = {
   getFlashcards: (ids, userId) => {
     const promises = []
     ids.map(id => {
-      promises.push(FlashcardsAPI.getFlashcard(id, userId))
+      promises.push(MockFlashcardsAPI.getFlashcard(id, userId))
     })
     return Promise.all(promises)
   },

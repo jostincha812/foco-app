@@ -9,7 +9,7 @@ import Icons from '../components/Icons'
 
 import api from '../data/api'
 
-import { fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
+import { fetchFlashcardIds, fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
 import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
@@ -137,6 +137,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    fetchFlashcardIds: () => dispatch(fetchFlashcardIds()),
     fetchFlashcards: (ids, userId) => dispatch(fetchFlashcards(ids, userId)),
     updateUserFlashcardPref: (userId, flashcardId, prefs) => dispatch(updateUserFlashcardPref(userId, flashcardId, prefs))
   }
