@@ -3,7 +3,7 @@ import MockUserFlashcardSetsAPI from './MockUserFlashcardSetsAPI'
 import MockUserPrefsAPI from './MockUserPrefsAPI'
 
 import JsFbFlashcardsAPI from './JsFbFlashcardsAPI'
-import JsFbUserFlashcardSetsAPI from './MockUserFlashcardSetsAPI'
+import JsFbUserFlashcardSetsAPI from './JsFbUserFlashcardSetsAPI'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 
 const mockAPI = {
@@ -14,7 +14,7 @@ const mockAPI = {
 
 const jsFbAPI = {
   flashcards: JsFbFlashcardsAPI,
-  flashcardSets: JsFbUserFlashcardSetsAPI,
+  flashcardSets: MockUserFlashcardSetsAPI,
   userPrefs: JsFbUserPrefsAPI,
 }
 
@@ -23,11 +23,3 @@ const jsFbAPI = {
 
 export default jsFbAPI
 console.log('Using Javascript Firebase API')
-
-// export default (key) => {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       return resolve(data[key])
-//     }, Math.floor(Math.random() * 3000))
-//   })
-// }

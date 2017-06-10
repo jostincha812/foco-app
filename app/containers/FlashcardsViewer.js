@@ -6,6 +6,7 @@ import C from '../C'
 import T from '../T'
 import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 import api from '../data/api'
 
@@ -96,11 +97,11 @@ class FlashcardsViewer extends React.Component {
     const flashcards = this.props.flashcards
     const current = this.state.current
 
-    return (
-      <View style={S.container}>
-        <View style={spacer} />
-        <View style={{flex:7, alignItems:'center'}}>
-          { ready &&
+    if (ready) {
+      return (
+        <View style={S.container}>
+          <View style={spacer} />
+          <View style={{flex:7, alignItems:'center'}}>
               <Flashcard
                 style={{width: '85%'}}
                 key={current}
@@ -108,23 +109,27 @@ class FlashcardsViewer extends React.Component {
                 prefs={flashcards[current].prefs}
                 onBookmarkToggle={this.onBookmarkToggle}
               />
-          }
+          </View>
+          <View style={spacer} />
+          <View style={{height:T.largeIconSize*2.5, flexDirection:'row', justifyContent:'space-around'}}>
+            <TouchableOpacity
+              style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
+              onPress={() => this.onYesNoAction({type:C.ACTION_NO}) }>
+              {Icons.noCircledOutline({size:T.largeIconSize*2, tintColor:T.noColor})}
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
+              onPress={() => this.onYesNoAction({type:C.ACTION_YES}) }>
+              {Icons.yesCircledOutline({size:T.largeIconSize*2, tintColor:T.yesColor})}
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={spacer} />
-        <View style={{height:T.largeIconSize*2.5, flexDirection:'row', justifyContent:'space-around'}}>
-          <TouchableOpacity
-            style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-            onPress={() => this.onYesNoAction({type:C.ACTION_NO}) }>
-            {Icons.noCircledOutline({size:T.largeIconSize*2, tintColor:T.noColor})}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-            onPress={() => this.onYesNoAction({type:C.ACTION_YES}) }>
-            {Icons.yesCircledOutline({size:T.largeIconSize*2, tintColor:T.yesColor})}
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
+      )
+    } else {
+      return (
+        <LoadingIndicator />
+      )
+    }
   }
 }
 
