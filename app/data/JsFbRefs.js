@@ -5,6 +5,7 @@ const refs = {
   flashcards: '/flashcards',
   flashcardsTags: '/flashcards_tags',
   users: '/users',
+  userFlashcardSets: '/user_flashcardsets',
   userPrefs: '/user_prefs',
 }
 
@@ -31,5 +32,13 @@ export default JsFbRefs = {
 
   userPrefs: (key, prefsKey) => {
     return db().ref(`${refs.userPrefs}/${key}/${prefsKey}`)
+  },
+
+  userFlashcardSets: (key) => {
+    return db().ref(`${refs.userFlashcardSets}/${key}`)
+  },
+
+  userFlashcardSet: (key, setKey) => {
+    return db().ref(`${refs.userFlashcardSets}/${key}/${setKey}`)
   },
 }

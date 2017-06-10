@@ -1,20 +1,20 @@
 import MockFlashcardsAPI from './MockFlashcardsAPI'
-import MockFlashcardSetsAPI from './MockFlashcardSetsAPI'
+import MockUserFlashcardSetsAPI from './MockUserFlashcardSetsAPI'
 import MockUserPrefsAPI from './MockUserPrefsAPI'
 
 import JsFbFlashcardsAPI from './JsFbFlashcardsAPI'
-import JsFbFlashcardSetsAPI from './MockFlashcardSetsAPI'
+import JsFbUserFlashcardSetsAPI from './MockUserFlashcardSetsAPI'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 
 const mockAPI = {
   flashcards: MockFlashcardsAPI,
-  flashcardSets: MockFlashcardSetsAPI,
+  flashcardSets: MockUserFlashcardSetsAPI,
   userPrefs: MockUserPrefsAPI,
 }
 
 const jsFbAPI = {
   flashcards: JsFbFlashcardsAPI,
-  flashcardSets: JsFbFlashcardSetsAPI,
+  flashcardSets: JsFbUserFlashcardSetsAPI,
   userPrefs: JsFbUserPrefsAPI,
 }
 

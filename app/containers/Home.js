@@ -50,12 +50,9 @@ class Home extends React.Component {
     const props = this.props
 
     // TODO remove mock data
-    const id = api.flashcardSets.getFlashcardSets()[0]
-    const set = api.flashcardSets.getFlashcardSet(id)
-    const user = {
-      id: '12345',
-      username: 'lovince',
-    }
+    const user = { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3' }
+    const setId = api.flashcardSets.getUserFlashcardSets(user.id)[0]
+    const set = api.flashcardSets.getUserFlashcardSet(user.id, setId)
 
     if (props.userProfile.isFetching) {
       return (
