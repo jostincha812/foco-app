@@ -14,15 +14,20 @@ export default class Flashcard extends React.Component {
     super(props)
     this.state = {
       isBookmarked: false,
+      isStarred: false,
     }
 
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
+    this.onStarToggle = this.onStarToggle.bind(this)
   }
 
   componentWillMount() {
     const prefs = this.props.prefs
     if (prefs) {
-      this.setState({isBookmarked: prefs[C.KEY_PREF_BOOKMARKED]})
+      this.setState({
+        isBookmarked: prefs[C.KEY_PREF_BOOKMARKED],
+        isStarred: prefs[C.KEY_PREF_STARRED],
+      })
     }
   }
 
@@ -31,6 +36,13 @@ export default class Flashcard extends React.Component {
     const newBookmarkedState = !this.state.isBookmarked
     this.setState({isBookmarked: newBookmarkedState})
     this.props.onBookmarkToggle(newBookmarkedState, id)
+  }
+
+  onStarToggle() {
+    const id = this.props.data.id
+    const newStarredState = !this.state.isStarred
+    this.setState({isStarred: newStarredState})
+    this.props.onStarToggle(newStarredState, id)
   }
 
   render() {
@@ -53,11 +65,17 @@ export default class Flashcard extends React.Component {
         // onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
       >
         <View style={styles.inner}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{position:'absolute', top:-spacing.standard-6, right: 0}}
             onPress={this.onBookmarkToggle}
           >
             { this.state.isBookmarked ? Icons.bookmark() : Icons.bookmarkOutline() }
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            style={{position:'absolute', top:-spacing.small, right:-spacing.small}}
+            onPress={this.onStarToggle}
+          >
+            { this.state.isStarred ? Icons.star({tintColor:T.starredColor}) : Icons.starOutline({tintColor:T.inactiveColor}) }
           </TouchableOpacity>
           <MarkdownView styles={styles.markdown}>
             {data.front}
@@ -65,11 +83,17 @@ export default class Flashcard extends React.Component {
         </View>
 
         <View style={styles.inner}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{position:'absolute', top:-spacing.standard-6, right: 0}}
             onPress={this.onBookmarkToggle}
           >
             { this.state.isBookmarked ? Icons.bookmark() : Icons.bookmarkOutline() }
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            style={{position:'absolute', top:-spacing.small, right:-spacing.small}}
+            onPress={this.onStarToggle}
+          >
+            { this.state.isStarred ? Icons.star({tintColor:T.starredColor}) : Icons.starOutline({tintColor:T.inactiveColor}) }
           </TouchableOpacity>
           <MarkdownView styles={styles.markdown}>
             {data.back}

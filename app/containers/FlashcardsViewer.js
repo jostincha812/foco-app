@@ -37,6 +37,7 @@ class FlashcardsViewer extends React.Component {
     this.state = { done:false }
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
+    this.onStarToggle = this.onStarToggle.bind(this)
     this.goBack = this.goBack.bind(this)
   }
 
@@ -109,6 +110,19 @@ class FlashcardsViewer extends React.Component {
     )
   }
 
+  onStarToggle(isStarred, id) {
+    const user = this.props.navigation.state.params.user
+    const flashcard = this.props.flashcards[id]
+    this.props.updateUserFlashcardPref(
+      user.id,
+      flashcard.id,
+      {
+        key: C.KEY_PREF_STARRED,
+        val: isStarred
+      }
+    )
+  }
+
   render() {
     const spacer={flex:0.5, opacity:0, backgroundColor:'#fff'}
 
@@ -152,6 +166,7 @@ class FlashcardsViewer extends React.Component {
                 data={flashcards[current]}
                 prefs={flashcards[current].prefs}
                 onBookmarkToggle={this.onBookmarkToggle}
+                onStarToggle={this.onStarToggle}
               />
             </Animatable.View>
           </View>
