@@ -15,7 +15,6 @@ export default class ProgressIndicatorBar extends React.Component {
   find_dimensions(layout){
     const {x, y, width, height} = layout;
     this.setState({width, height})
-    console.log(`found dimensions: ${width}x${height}`)
   }
 
   render() {

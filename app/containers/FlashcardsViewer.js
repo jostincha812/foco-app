@@ -113,12 +113,17 @@ class FlashcardsViewer extends React.Component {
 
     if (this.state.done) {
       return (
-        <View style={[S.container, S.centeredContent]}>
+        <Animatable.View
+          animation="fadeIn"
+          duration={500}
+          style={[S.container, S.centeredContent]}
+          >
           <TouchableOpacity
+            style={[{width:240, height:240}, S.card, S.rounded, S.centeredContent]}
             onPress={() => this.props.navigation.goBack() }>
             <Text>Fin</Text>
           </TouchableOpacity>
-        </View>
+        </Animatable.View>
       )
     }
 
@@ -155,7 +160,9 @@ class FlashcardsViewer extends React.Component {
       )
     } else {
       return (
-        <LoadingIndicator />
+        <View style={[S.container, S.centeredContent]}>
+          <LoadingIndicator />
+        </View>
       )
     }
   }

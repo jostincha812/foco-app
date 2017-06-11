@@ -17,7 +17,7 @@ export default styles = {
     paddingBottom: spacing.xsmall,
   },
   centeredContent: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
