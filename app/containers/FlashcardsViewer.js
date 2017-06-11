@@ -2,12 +2,14 @@ import React from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import * as Animatable from 'react-native-animatable'
+import { Button } from 'react-native-elements'
 
 import api from '../data/api'
 import { fetchFlashcardIds, fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
 
 import C from '../C'
 import T from '../T'
+import L from '../L'
 import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
@@ -35,6 +37,7 @@ class FlashcardsViewer extends React.Component {
     this.state = { done:false }
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
+    this.goBack = this.goBack.bind(this)
   }
 
   componentWillMount() {
@@ -47,6 +50,10 @@ class FlashcardsViewer extends React.Component {
         this.props.fetchFlashcards(ids, user.id)
       }
     }
+  }
+
+  goBack() {
+    this.props.navigation.goBack()
   }
 
   onYesNoAction(action) {
@@ -118,11 +125,16 @@ class FlashcardsViewer extends React.Component {
           duration={500}
           style={[S.container, S.centeredContent]}
           >
-          <TouchableOpacity
-            style={[{width:240, height:240}, S.card, S.rounded, S.centeredContent]}
-            onPress={() => this.props.navigation.goBack() }>
-            <Text>Fin</Text>
-          </TouchableOpacity>
+          <Button
+            title={L.done}
+            raised={true}
+            icon={{name: 'check'}}
+            iconRight={true}
+            borderRadius={spacing.xsmall}
+            backgroundColor={T.activeColor}
+            buttonStyle={{width:'80%'}}
+            onPress={this.goBack}
+          />
         </Animatable.View>
       )
     }
@@ -144,17 +156,31 @@ class FlashcardsViewer extends React.Component {
             </Animatable.View>
           </View>
           <View style={spacer} />
-          <View style={{height:T.largeIconSize*2.5, flexDirection:'row', justifyContent:'space-around'}}>
-            <TouchableOpacity
-              style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-              onPress={() => this.onYesNoAction({type:C.ACTION_NO}) }>
-              {Icons.noCircledOutline({size:T.largeIconSize*2, tintColor:T.noColor})}
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-              onPress={() => this.onYesNoAction({type:C.ACTION_YES}) }>
-              {Icons.yesCircledOutline({size:T.largeIconSize*2, tintColor:T.yesColor})}
-            </TouchableOpacity>
+          <View style={{width:'85%', alignSelf:'center', paddingBottom:spacing.xlarge, flexDirection:'row', justifyContent:'space-around'}}>
+            <View style={{width:'42.5%'}}>
+              <Button
+                title={L.discard}
+                buttonStyle={{marginLeft:0, width:'100%'}}
+                raised={true}
+                // iconComponent={Icons.noCircledOutline({size:T.iconSize, tintColor:T.noColor})}
+                borderRadius={spacing.xsmall}
+                backgroundColor={T.inactiveColor}
+                onPress={() => this.onYesNoAction({type:C.ACTION_NO})}
+              />
+            </View>
+            <View style={{width:'42.5%'}}>
+              <Button
+                title={L.keep}
+                buttonStyle={{marginLeft:0, width:'100%'}}
+                raised={true}
+                icon={{name:'playlist-add-check'}}
+                iconRight={true}
+                // iconComponent={Icons.yesCircledOutline({size:T.iconSize, tintColor:T.noColor})}
+                borderRadius={spacing.xsmall}
+                backgroundColor={T.yesColor}
+                onPress={() => this.onYesNoAction({type:C.ACTION_YES})}
+              />
+            </View>
           </View>
         </View>
       )
