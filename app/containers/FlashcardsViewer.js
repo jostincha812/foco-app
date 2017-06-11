@@ -10,6 +10,7 @@ import T from '../T'
 import S, { spacing } from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
+import ProgressIndicatorBar from '../components/ProgressIndicatorBar'
 import CardsStack from '../components/CardsStack'
 import Flashcard from '../components/Flashcard'
 
@@ -96,21 +97,21 @@ class FlashcardsViewer extends React.Component {
     const ready = this.props.ready
     const flashcards = this.props.flashcards
     const current = this.state.current
+    const a = Object.keys(this.props.flashcards)
+    const i = a.indexOf(this.state.current)
 
     if (ready) {
       return (
         <View style={S.container}>
+          <ProgressIndicatorBar progress={(i+1)/a.length} />
           <View style={spacer} />
           <View style={{flex:7, alignItems:'center'}}>
             <Flashcard
-              style={{width: '85%', height: '90%', top: spacing.standard, zIndex:101}}
+              style={{width: '85%', height: '100%'}}
               key={current}
               data={flashcards[current]}
               prefs={flashcards[current].prefs}
               onBookmarkToggle={this.onBookmarkToggle}
-            />
-            <CardsStack
-              style={{position:'absolute', height: '100%', width: '85%', zIndex:100}}
             />
           </View>
           <View style={spacer} />
