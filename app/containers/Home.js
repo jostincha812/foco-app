@@ -27,13 +27,13 @@ class Home extends React.Component {
           {Icons.menu({tintColor: S.header.tintColor})}
         </TouchableOpacity>
       ),
-      right: (
-        <TouchableOpacity
-          style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER) }>
-          {Icons.forward({tintColor: S.header.tintColor})}
-        </TouchableOpacity>
-      )
+      // right: (
+      //   <TouchableOpacity
+      //     style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
+      //     onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER) }>
+      //     {Icons.forward({tintColor: S.header.tintColor})}
+      //   </TouchableOpacity>
+      // )
     })
   }
 

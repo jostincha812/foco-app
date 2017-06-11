@@ -41,7 +41,8 @@ export default styles = {
   },
 
   // navigation header styles
-  statusBarStyle: 'light-content',
+  // statusBarStyle: 'light-content',
+  statusBarStyle: 'dark-content',
   header: {
     backTitle: null,
     tintColor: T.headerTintColor,

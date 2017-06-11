@@ -10,3 +10,7 @@
 ## v0.3
 * **FlashcardViewer** with _Yes/No_ and _Bookmark_ actions
 * **Flashcard** component using **Flipcard**, **Markdown** and **TagsList**
+
+## v0.4
+* **FlashcardViewer** progressing through cards and shows progress indicator
+* **Flashcard** component using **Starred** action

@@ -22,7 +22,7 @@ export default class ProgressIndicatorBar extends React.Component {
 
     return (
       <View
-        style={[{width:'100%', height:2}, this.props.style]}
+        style={[{width:'100%', height:1}, this.props.style]}
         onLayout={(event) => { this.find_dimensions(event.nativeEvent.layout) }}
         >
         <Progress.Bar

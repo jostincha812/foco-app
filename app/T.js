@@ -16,8 +16,8 @@ export default FocoTheme = {
   noColor: '#E57373',       // red 300
   starredColor: '#FDD835',  // yellow 600
 
-  headerBackgroundColor: '#1E88E5',
-  headerTintColor: '#fff',
+  headerBackgroundColor: '#fff',
+  headerTintColor: '#EF6C00',
 
   containerBackgroundColor: '#ECEFF1',
   contentBackgroundColor: '#fff',

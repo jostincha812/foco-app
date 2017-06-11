@@ -19,7 +19,7 @@ import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
   static navigationOptions = {
-    title: ({ state }) => `Second Screen`,
+    title: ({ state }) => ``,
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
       left: (
