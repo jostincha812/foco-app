@@ -1,6 +1,7 @@
 import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
+import * as Animatable from 'react-native-animatable'
 
 import api from '../data/api'
 import { fetchFlashcardIds, fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
@@ -72,7 +73,17 @@ class FlashcardsViewer extends React.Component {
     const a = Object.keys(this.props.flashcards)
     const i = a.indexOf(this.state.current)
     if (i < a.length - 1) {
-      this.setState({current: a[i+1]})
+      if (action.type === C.ACTION_YES) {
+        this.refs.flashcardView.fadeOutRightBig(500).then(endState => {
+          this.setState({current: a[i+1]})
+          this.refs.flashcardView.fadeInDown(200)
+        })
+      } else {
+        this.refs.flashcardView.fadeOutLeftBig(500).then(endState => {
+          this.setState({current: a[i+1]})
+          this.refs.flashcardView.fadeInDown(200)
+        })
+      }
     } else {
       console.log("end of array")
     }
@@ -106,13 +117,15 @@ class FlashcardsViewer extends React.Component {
           <ProgressIndicatorBar progress={(i+1)/a.length} />
           <View style={spacer} />
           <View style={{flex:7, alignItems:'center'}}>
-            <Flashcard
-              style={{width: '85%', height: '100%'}}
-              key={current}
-              data={flashcards[current]}
-              prefs={flashcards[current].prefs}
-              onBookmarkToggle={this.onBookmarkToggle}
-            />
+            <Animatable.View animation="fadeInDown" duration={200} ref="flashcardView">
+              <Flashcard
+                style={{width: '85%', height: '100%'}}
+                key={current}
+                data={flashcards[current]}
+                prefs={flashcards[current].prefs}
+                onBookmarkToggle={this.onBookmarkToggle}
+              />
+            </Animatable.View>
           </View>
           <View style={spacer} />
           <View style={{height:T.largeIconSize*2.5, flexDirection:'row', justifyContent:'space-around'}}>
