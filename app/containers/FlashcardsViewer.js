@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import * as Animatable from 'react-native-animatable'
 
@@ -32,7 +32,7 @@ class FlashcardsViewer extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { done:false }
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
   }
@@ -70,23 +70,23 @@ class FlashcardsViewer extends React.Component {
       }
     )
 
+    let animation = this.refs.flashcardView.fadeOutRightBig
+    if (action.type === C.ACTION_YES) {
+      // do nothing
+    } else {
+      animation = this.refs.flashcardView.fadeOutLeftBig
+    }
+
     const a = Object.keys(this.props.flashcards)
     const i = a.indexOf(this.state.current)
-    if (i < a.length - 1) {
-      if (action.type === C.ACTION_YES) {
-        this.refs.flashcardView.fadeOutRightBig(500).then(endState => {
-          this.setState({current: a[i+1]})
-          this.refs.flashcardView.fadeInDown(200)
-        })
+    animation(500).then(endState => {
+      if (i < a.length - 1) {
+        this.setState({current: a[i+1]})
+        this.refs.flashcardView.fadeInDown(200)
       } else {
-        this.refs.flashcardView.fadeOutLeftBig(500).then(endState => {
-          this.setState({current: a[i+1]})
-          this.refs.flashcardView.fadeInDown(200)
-        })
+        this.setState({done: true})
       }
-    } else {
-      console.log("end of array")
-    }
+    })
   }
 
   onBookmarkToggle(isBookmarked, id) {
@@ -110,6 +110,17 @@ class FlashcardsViewer extends React.Component {
     const current = this.state.current
     const a = Object.keys(this.props.flashcards)
     const i = a.indexOf(this.state.current)
+
+    if (this.state.done) {
+      return (
+        <View style={[S.container, S.centeredContent]}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.goBack() }>
+            <Text>Fin</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
 
     if (ready) {
       return (
