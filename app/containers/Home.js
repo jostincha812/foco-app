@@ -9,7 +9,7 @@ import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
 import Card from '../components/Card'
 
-import { fetchUserProfile } from '../actions/UserProfileActions'
+import { fetchUserFlashcardSets } from '../actions/UserFlashcardSetsActions'
 
 import api from '../data/api'
 
@@ -17,16 +17,16 @@ class Home extends React.Component {
   // const {state, setParams, navigate} = navigation
   // const {user} = state.params
   static navigationOptions = {
-    title: `Home`,
+    title: `Foco: WSET-3`,
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
-      left: (
-        <TouchableOpacity
-          style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-          onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: S.header.tintColor})}
-        </TouchableOpacity>
-      ),
+      // left: (
+      //   <TouchableOpacity
+      //     style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
+      //     onPress={() => navigation.navigate('DrawerOpen') }>
+      //     {Icons.menu({tintColor: S.header.tintColor})}
+      //   </TouchableOpacity>
+      // ),
       // right: (
       //   <TouchableOpacity
       //     style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
@@ -38,7 +38,9 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUserProfile()
+    // TODO replace with first fetch with app config setting
+    this.props.fetchUserFlashcardSets(C.FOCO_WSET3)
+    this.props.fetchUserFlashcardSets(this.props.user.id)
   }
 
   navigate(route) {
@@ -48,31 +50,50 @@ class Home extends React.Component {
   render() {
     const navigation = this.props.navigation
     const props = this.props
+    const user = this.props.user
+    const appSets = this.props.sets[C.FOCO_WSET3] ? this.props.sets[C.FOCO_WSET3] : {}
+    const userSets = this.props.sets[user.id] ? this.props.sets[user.id] : {}
 
-    // TODO remove mock data
-    const user = { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3' }
-    const setId = api.flashcardSets.getUserFlashcardSets(user.id)[0]
-    const set = api.flashcardSets.getUserFlashcardSet(user.id, setId)
-
-    if (props.userProfile.isFetching) {
+    if (!this.props.ready) {
       return (
-        <LoadingIndicator />
+        <View style={[S.container, S.centeredContent]}>
+          <StatusBar barStyle={S.statusBarStyle} />
+          <LoadingIndicator />
+        </View>
       )
     }
 
     return (
       <ScrollView style={S.container}>
         <StatusBar barStyle={S.statusBarStyle} />
-        { props.userProfile.data ?
-          <View data={props.userProfile.data} /> : null
-        }
-        <Card
-          title={set.title}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcardsIds})}>
-          <Text>
-            {set.tags}
-          </Text>
-        </Card>
+        <Text>Common Sets</Text>
+        { Object.keys(appSets).map(setId => {
+          const set = appSets[setId]
+          return (
+            <Card
+              key={setId}
+              title={set.title}
+              onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcards})}>
+              <Text>
+                {set.tags}
+              </Text>
+            </Card>
+          )
+        })}
+        <Text>User Sets</Text>
+        { Object.keys(userSets).map(setId => {
+          const set = userSets[setId]
+          return (
+            <Card
+              key={setId}
+              title={set.title}
+              onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcards})}>
+              <Text>
+                {set.tags}
+              </Text>
+            </Card>
+          )
+        })}
       </ScrollView>
     );
   }
@@ -80,13 +101,15 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    userProfile: state.userProfile
+    user: { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3' },
+    ready: state.flashcardSets.isReady,
+    sets: state.flashcardSets.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchUserProfile: () => dispatch(fetchUserProfile())
+    fetchUserFlashcardSets: (id) => dispatch(fetchUserFlashcardSets(id)),
   }
 }
 

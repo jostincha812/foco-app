@@ -2,15 +2,10 @@ import MockUserFlashcardSets from './mock/MockUserFlashcardSets'
 
 export default FlashcardSetsAPI = {
   getUserFlashcardSets: (id) => {
-    const keys = Object.keys(MockUserFlashcardSets)
-    return keys
+    return new Promise(resolve => {
+      const sets = {}
+      sets[id] = { ...MockUserFlashcardSets[id] }
+      resolve(sets)
+    })
   },
-
-  getUserFlashcardSet: (id, setId) => {
-    return {
-      userId: id,
-      setId: setId,
-      ...MockUserFlashcardSets[setId]
-    }
-  }
 }

@@ -2,6 +2,12 @@ import C from '../C'
 
 import api from '../data/api'
 
+export function resetFlashcardsState() {
+  return {
+    type: C.RESET_FLASHCARDS_STATE,
+  }
+}
+
 export function fetchFlashcardIds() {
   return {
     type: C.FETCH_FLASHCARD_IDS,

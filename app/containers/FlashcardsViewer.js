@@ -5,7 +5,7 @@ import * as Animatable from 'react-native-animatable'
 import { Button } from 'react-native-elements'
 
 import api from '../data/api'
-import { fetchFlashcardIds, fetchFlashcards, updateUserFlashcardPref } from '../actions/FlashcardActions'
+import { fetchFlashcardIds, fetchFlashcards, resetFlashcardsState, updateUserFlashcardPref } from '../actions/FlashcardActions'
 
 import C from '../C'
 import T from '../T'
@@ -51,6 +51,10 @@ class FlashcardsViewer extends React.Component {
         this.props.fetchFlashcards(ids, user.id)
       }
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetFlashcardsState()
   }
 
   goBack() {
@@ -218,6 +222,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    resetFlashcardsState: () => dispatch(resetFlashcardsState()),
     fetchFlashcardIds: () => dispatch(fetchFlashcardIds()),
     fetchFlashcards: (ids, userId) => dispatch(fetchFlashcards(ids, userId)),
     updateUserFlashcardPref: (userId, flashcardId, prefs) => dispatch(updateUserFlashcardPref(userId, flashcardId, prefs))

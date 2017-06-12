@@ -9,6 +9,9 @@ const initialState = {
 
 export default function FlashcardReducer (state = initialState, action) {
   switch (action.type) {
+    case C.RESET_FLASHCARDS_STATE:
+      return initialState
+      
     case C.FETCH_FLASHCARD_IDS_PENDING:
       return {
         ...state,
