@@ -6,7 +6,7 @@ import T from '../T.js';
 
 const AppIcon = (name, options) => {
   let size = options.size ? options.size : T.iconSize;
-  let color = options.tintColor ? options.tintColor : T.color;
+  let color = options.color ? options.color : T.color;
   let focused = options.focused ? options.focused : false;
   return (
     <Icon name={name} size={size} color={color} />
@@ -77,6 +77,7 @@ export default {
   image: (options = {}) => AppIcon('image', options),
   warning: (options = {}) => AppIcon('alert-circle', options),
   menu: (options = {}) => AppIcon('menu', options),
+  inlineMenu: (options = {}) => AppIcon('dots-vertical', options),
   settings: (options = {}) => AppIcon('settings', options),
   grid: (options = {}) => AppIcon('view-grid', options),
   list: (options = {}) => AppIcon('view-headline', options),

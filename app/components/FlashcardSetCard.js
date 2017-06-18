@@ -1,80 +1,57 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { Card } from 'react-native-elements'
 
+import C from '../C'
 import T from '../T'
 import S from '../styles/styles'
 import L from '../L'
 
+import Icons from '../components/Icons'
 import TagsList from '../components/TagsList'
+import LevelPill from '../components/LevelPill'
 
 export default class FlashcardSetCard extends React.Component {
   render() {
     const props = this.props
-    const style = this.props.style
-    const onPress = this.props.onPress
-    const type = this.props.type ? this.props.type : 'regular'
     const set = props.set
+    const type = this.props.type ? this.props.type : 'regular'
+    const onPress = this.props.onPress
 
-    const cards = {
-      hero: (
-        <View style={[S.cards.card, S.cards.raised, S.corners.rounded, styles[type]]}>
-          {/* header block */}
-          <View style={{padding:S.spacing.small, flex:5, justifyContent:'flex-end'}}>
-            <Text style={S.text.title}>
-              {set.title}
-            </Text>
-            <View style={{height:1, borderBottomColor:T.dividerColor, borderBottomWidth:1}} />
+    const card = (
+      <View
+        style={[S.cards.card, S.cards.raised, S.corners.rounded, styles[type], props.style]}
+        title={props.title}
+        titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
+        dividerStyle={{marginBottom:S.spacing.xsmall}}>
+        <View style={styles.header}>
+          <Text style={S.text.title}>
+            {set.title}
+          </Text>
+        </View>
+        <View style={styles.content}>
+          {/* left info block */}
+          <View style={styles.info}>
+            <View style={{flexDirection:'row', justifyContent:'flex-start'}}>
+              {Icons.cards({size:T.smallIconSize, color:T.inactiveColor})}
+              <Text style={[S.text.normal, {marginLeft:S.spacing.xsmall}]}>
+                {`${set.flashcards.length} ${L.cards}`}
+              </Text>
+            </View>
+            <LevelPill level={set.level} style={{marginTop:S.spacing.xsmall}} />
           </View>
-          {/* action block */}
-          <View style={{padding:S.spacing.small, flex:1, flexDirection:'row'}}>
-            <Text style={S.text.normal}>
-              {`${set.flashcards.length} ${L.cards}`}
-            </Text>
-            <TagsList tags={set.tags} max={2} />
+
+          {/* right action menu block */}
+          <View style={[S.containers.centered,{paddingTop:S.spacing.xsmall}]}>
+            {Icons.inlineMenu({size:T.smallIconSize+4})}
           </View>
         </View>
-      ),
-      carousel: (
-        <View style={[S.cards.card, S.cards.raised, S.corners.rounded, styles[type]]}>
-          <View style={{flex:3}}>
-            <Text style={S.text.title}>
-              {props.title}
-            </Text>
-          </View>
-          <View style={{flex:2}}>
-            <Text style={S.text.subtitle}>
-              {props.subtitle}
-            </Text>
-            <TagsList tags={set.tags} max={2} />
-          </View>
-        </View>
-      ),
-      regular: (
-        <View
-          style={[S.cards.card, S.cards.raised, S.corners.rounded, styles[type]]}
-          title={props.title}
-          titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
-          dividerStyle={{marginBottom:S.spacing.xsmall}}>
-          <View style={{flex:3}}>
-            <Text style={S.text.title}>
-              {props.title}
-            </Text>
-          </View>
-          <View style={{flex:2}}>
-            <Text style={S.text.subtitle}>
-              {props.subtitle}
-            </Text>
-            <TagsList tags={set.tags} max={2} />
-          </View>
-        </View>
-      )
-    }
+      </View>
+    )
 
     if (onPress) {
       return (
         <TouchableOpacity onPress={onPress}>
-          {cards[type]}
+          {card}
         </TouchableOpacity>
       )
     } else {
@@ -89,11 +66,29 @@ const styles = StyleSheet.create({
     height: 180,
   },
   carousel: {
-    width: 200,
-    height: 100,
+    width: 240,
+    height: 140,
+    marginRight: S.spacing.small,
   },
   regular: {
-    width: '50%',
-    height: 80,
+    width: 140,
+    height: 140,
   },
+  header: {
+    flex: 1,
+    padding: S.spacing.small,
+    borderBottomColor: T.dividerColor,
+    borderBottomWidth: 1
+  },
+  content: {
+    height: 50,
+    padding:S.spacing.small,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center',
+  },
+  info: {
+    justifyContent:'center',
+    alignItems:'flex-start',
+  }
 })

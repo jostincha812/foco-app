@@ -9,5 +9,9 @@ export default {
   discard: 'Discard',
   done: 'Fin',
 
+  // levels
+  beginner: 'Easy',
+  intermediate: 'Normal',
+  advanced: 'Hard',
 
 }

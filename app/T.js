@@ -17,13 +17,18 @@ export default FocoTheme = {
   noColor: '#E57373',       // red 300
   starredColor: '#FDD835',  // yellow 600
   dividerColor: '#EEE',
+  transparent: 'transparent',
+
+  beginnerColor: '#43A047', // green 600
+  intermediateColor: '#FFC107', // amber 500
+  advancedColor: '#BF360C', // deep orange 900
 
   headerBackgroundColor: '#fff',
   headerTintColor: '#EF6C00',
 
   containerBackgroundColor: '#ECEFF1',
   contentBackgroundColor: '#fff',
-  contentBorderColor: '#D0D0D0',
+  contentBorderColor: '#F9F9F9',
   translucentBlackColor: '#00000066',
   translucentWhiteColor: '#ffffff66',
 

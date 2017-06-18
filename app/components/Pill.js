@@ -20,7 +20,7 @@ export default class Pill extends React.Component {
     }
     return (
       <View style={[styles.pill, {backgroundColor:colors.backgroundColor}, this.props.style]}>
-        <Text style={[S.text.tags, {color:colors.textColor}]}>{label.toUpperCase()}</Text>
+        <Text style={[S.text.pill, {color:colors.textColor}]}>{label.toUpperCase()}</Text>
       </View>
     )
   }

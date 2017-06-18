@@ -9,6 +9,7 @@ import S from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
 import FlashcardSetCard from '../components/FlashcardSetCard'
+import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
 
 import { fetchUserFlashcardSets } from '../actions/UserFlashcardSetsActions'
 
@@ -73,7 +74,7 @@ class Home extends React.Component {
     return (
       <ScrollView style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <View style={[S.containers.hero]}>
+        <View style={[S.containers.hero, {paddingBottom:S.spacing.small}]}>
           <Text style={S.text.hero}>{L.featured}</Text>
           { appSetKeys &&
             flashcardSetCard({id:appSetKeys[0], ...appSets[appSetKeys[0]]}, 'hero')
@@ -93,11 +94,10 @@ class Home extends React.Component {
         </ScrollView>
         <View style={[S.containers.list]}>
           <Text style={S.text.title}>{L.mycards}</Text>
-          { Object.keys(userSets).map(setId => {
-            const set = userSets[setId]
-            set.id = setId
-            return flashcardSetCard(set, 'regular')
-          })}
+          <FlashcardSetsGridList
+            sets={userSets}
+            onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ...set})}
+          />
         </View>
       </ScrollView>
     );

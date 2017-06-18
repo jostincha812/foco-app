@@ -34,7 +34,7 @@ export default styles = {
       fontWeight: T.fontWeight,
       fontSize: T.fontSize,
     },
-    tags: {
+    pill: {
       fontSize: T.smallFontSize,
       fontWeight: T.boldFontWeight,
     }
@@ -70,7 +70,13 @@ export default styles = {
       paddingBottom: 0
     },
     list: {
-      padding: spacing.normal
+      padding: spacing.normal,
+    },
+    grid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'flex-start'
     },
     centered: {
       justifyContent: 'center',
@@ -102,10 +108,10 @@ export default styles = {
 
   corners: {
     rounded: {
-      borderRadius: spacing.xsmall,
+      borderRadius: spacing.xsmall/2,
     },
     roundedSmall: {
-      borderRadius: spacing.xsmall/2,
+      borderRadius: spacing.xsmall/4,
     },
     roundedLarge: {
       borderRadius: spacing.small,
