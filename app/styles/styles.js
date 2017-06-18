@@ -1,8 +1,7 @@
-import { StyleSheet } from 'react-native'
 import T from '../T'
 
-export const spacing = {
-  standard: 16,
+const spacing = {
+  normal: 16,
   small: 8,
   xsmall: 4,
   large: 24,
@@ -11,38 +10,109 @@ export const spacing = {
 }
 
 export default styles = {
-  container: {
-    flex: 1,
-    backgroundColor: T.containerBackgroundColor,
-    paddingBottom: spacing.xsmall,
+  // statusBarStyle: 'light-content',
+  statusBarStyle: 'dark-content',
+
+  // grids and spacing
+  spacing: spacing,
+
+  // text styles
+  text: {
+    hero: {
+      fontWeight: T.heavyFontWeight,
+      fontSize: T.xlargeFontSize,
+    },
+    title: {
+      fontWeight: T.heavyFontWeight,
+      fontSize: T.largeFontSize,
+    },
+    subtitle: {
+      fontWeight: T.boldFontWeight,
+      fontSize: T.fontSize,
+    },
+    normal: {
+      fontWeight: T.fontWeight,
+      fontSize: T.fontSize,
+    },
+    tags: {
+      fontSize: T.smallFontSize,
+      fontWeight: T.boldFontWeight,
+    }
   },
-  centeredContent: {
-    // flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+
+  markdown: {
+    paragraph: {
+      fontSize: T.fontSize,
+      fontWeight: T.fontWeight,
+    },
+    link: {
+      color: T.accentColor2,
+    },
+    heading1: {
+      fontSize: T.titleFontSize,
+      fontWeight: T.titleFontWeight,
+    },
+    heading2: {
+      fontSize: T.titleFontSize-2,
+    },
   },
-  flexRowWrapped: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start'
+
+  containers: {
+    screen: {
+      backgroundColor: T.containerBackgroundColor,
+    },
+    hero: {
+      padding: spacing.normal
+    },
+    carousel: {
+      padding: spacing.normal,
+      paddingTop: 0,
+      paddingBottom: 0
+    },
+    list: {
+      padding: spacing.normal
+    },
+    centered: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    flexRowWrapped: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'flex-start'
+    },
   },
-  card: {
-    borderColor: T.contentBorderColor,
-    backgroundColor: T.contentBackgroundColor,
+
+  cards: {
+    card: {
+      borderColor: T.contentBorderColor,
+      backgroundColor: T.contentBackgroundColor,
+      borderWidth: 0.5,
+    },
+    raised: {
+      shadowColor: T.shadowColor,
+      shadowOffset: {
+        width: 0,
+        height: spacing.xsmall,
+      },
+      shadowRadius: spacing.xsmall,
+      shadowOpacity: 0.2,
+    },
   },
-  rounded: {
-    borderRadius: spacing.small,
-  },
-  roundedSmall: {
-    borderRadius: spacing.xsmall,
-  },
-  roundedLarge: {
-    borderRadius: spacing.standard,
+
+  corners: {
+    rounded: {
+      borderRadius: spacing.xsmall,
+    },
+    roundedSmall: {
+      borderRadius: spacing.xsmall/2,
+    },
+    roundedLarge: {
+      borderRadius: spacing.small,
+    },
   },
 
   // navigation header styles
-  // statusBarStyle: 'light-content',
-  statusBarStyle: 'dark-content',
   header: {
     backTitle: null,
     tintColor: T.headerTintColor,

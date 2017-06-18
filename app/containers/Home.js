@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 
 import C from '../C'
 import T from '../T'
-import S, { spacing } from '../styles/styles'
+import L from '../L'
+import S from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
-import Card from '../components/Card'
+import FlashcardSetCard from '../components/FlashcardSetCard'
 
 import { fetchUserFlashcardSets } from '../actions/UserFlashcardSetsActions'
 
@@ -20,20 +21,13 @@ class Home extends React.Component {
     title: `Foco: WSET-3`,
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
-      // left: (
-      //   <TouchableOpacity
-      //     style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
-      //     onPress={() => navigation.navigate('DrawerOpen') }>
-      //     {Icons.menu({tintColor: S.header.tintColor})}
-      //   </TouchableOpacity>
-      // ),
-      // right: (
-      //   <TouchableOpacity
-      //     style={{top:spacing.xsmall/2, paddingRight: spacing.small}}
-      //     onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER) }>
-      //     {Icons.forward({tintColor: S.header.tintColor})}
-      //   </TouchableOpacity>
-      // )
+      right: (
+        <TouchableOpacity
+          style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
+          onPress={() => navigation.navigate(C.NAV_PROFILE_HOME) }>
+          {Icons.profile({tintColor: S.header.tintColor})}
+        </TouchableOpacity>
+      )
     })
   }
 
@@ -54,46 +48,57 @@ class Home extends React.Component {
     const appSets = this.props.sets[C.FOCO_WSET3] ? this.props.sets[C.FOCO_WSET3] : {}
     const userSets = this.props.sets[user.id] ? this.props.sets[user.id] : {}
 
+    const flashcardSetCard = (set, type) => {
+      return (
+        <FlashcardSetCard
+          type={type}
+          key={set.id}
+          set={set}
+          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcards})}>
+        </FlashcardSetCard>
+      )
+    }
+
     if (!this.props.ready) {
       return (
-        <View style={[S.container, S.centeredContent]}>
+        <View style={[S.containers.screen, S.containers.centered]}>
           <StatusBar barStyle={S.statusBarStyle} />
           <LoadingIndicator />
         </View>
       )
     }
 
+    const appSetKeys = Object.keys(appSets)
+
     return (
-      <ScrollView style={S.container}>
+      <ScrollView style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <Text>Common Sets</Text>
-        { Object.keys(appSets).map(setId => {
-          const set = appSets[setId]
-          return (
-            <Card
-              key={setId}
-              title={set.title}
-              onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcards})}>
-              <Text>
-                {set.tags}
-              </Text>
-            </Card>
-          )
-        })}
-        <Text>User Sets</Text>
-        { Object.keys(userSets).map(setId => {
-          const set = userSets[setId]
-          return (
-            <Card
-              key={setId}
-              title={set.title}
-              onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcards})}>
-              <Text>
-                {set.tags}
-              </Text>
-            </Card>
-          )
-        })}
+        <View style={[S.containers.hero]}>
+          <Text style={S.text.hero}>{L.featured}</Text>
+          { appSetKeys &&
+            flashcardSetCard({id:appSetKeys[0], ...appSets[appSetKeys[0]]}, 'hero')
+          }
+        </View>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={[S.containers.carousel]}>
+          { Object.keys(appSets).map((setId, index) => {
+            if (index) {
+              const set = appSets[setId]
+              set.id = setId
+              return flashcardSetCard(set, 'carousel')
+            }
+          })}
+        </ScrollView>
+        <View style={[S.containers.list]}>
+          <Text style={S.text.title}>{L.mycards}</Text>
+          { Object.keys(userSets).map(setId => {
+            const set = userSets[setId]
+            set.id = setId
+            return flashcardSetCard(set, 'regular')
+          })}
+        </View>
       </ScrollView>
     );
   }

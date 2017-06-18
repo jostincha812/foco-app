@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 import C from '../C';
 import T from '../T';
-import S, { spacing } from '../styles/styles';
+import S from '../styles/styles';
 import Pill from '../components/Pill';
 
 export default class UserActivitiesList extends React.Component {
@@ -20,7 +20,7 @@ export default class UserActivitiesList extends React.Component {
               return (
                 <Pill
                   theme={theme}
-                  style={{marginRight:spacing.xsmall}}
+                  style={{marginRight:S.spacing.xsmall}}
                   key={t}
                   label={t}
                 />

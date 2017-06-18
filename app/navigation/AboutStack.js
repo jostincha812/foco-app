@@ -3,7 +3,7 @@ import { TouchableOpacity, Image } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
-import S, { spacing } from '../styles/styles'
+import S from '../styles/styles'
 
 import Icons from '../components/Icons'
 import IconsHome from '../containers/IconsHome'
@@ -22,7 +22,7 @@ const AboutStack = StackNavigator(STACK, {
       ...S.header,
       left: (
         <TouchableOpacity
-          style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
+          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
           onPress={() => navigation.navigate('DrawerOpen') }>
           {Icons.menu({tintColor: S.header.tintColor})}
         </TouchableOpacity>

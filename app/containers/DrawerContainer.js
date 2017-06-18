@@ -3,7 +3,7 @@ import { Dimensions, ScrollView, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 import T from '../T'
-import S, { spacing } from '../styles/styles'
+import S from '../styles/styles'
 import Icons from '../components/Icons'
 
 class DrawerContainer extends React.Component {
@@ -22,7 +22,7 @@ class DrawerContainer extends React.Component {
         contentContainerStyle={{minHeight: this.height || heightOfDeviceScreen}}
       >
         <View style={{height: 160, backgroundColor: T.headerBackgroundColor, justifyContent:'flex-end'}}>
-          <Text style={{padding: spacing.standard, fontSize: T.titleFontSize, fontWeight: T.titleFontWeight, color: T.inverseTextColor}}>
+          <Text style={{padding: S.spacing.standard, fontSize: T.titleFontSize, fontWeight: T.titleFontWeight, color: T.inverseTextColor}}>
             Drawer Header
           </Text>
         </View>
@@ -32,7 +32,7 @@ class DrawerContainer extends React.Component {
         </View>
 
         <View>
-          <Text style={{padding: spacing.standard, color: T.shadowColor, fontWeight: T.titleFontWeight}}>
+          <Text style={{padding: S.spacing.standard, color: T.shadowColor, fontWeight: T.titleFontWeight}}>
             About FocoApp
           </Text>
         </View>

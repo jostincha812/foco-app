@@ -10,7 +10,7 @@ import { fetchFlashcardIds, fetchFlashcards, resetFlashcardsState, updateUserFla
 import C from '../C'
 import T from '../T'
 import L from '../L'
-import S, { spacing } from '../styles/styles'
+import S from '../styles/styles'
 import Icons from '../components/Icons'
 import LoadingIndicator from '../components/LoadingIndicator'
 import ProgressIndicatorBar from '../components/ProgressIndicatorBar'
@@ -24,7 +24,7 @@ class FlashcardsViewer extends React.Component {
       ...defaultHeader,
       left: (
         <TouchableOpacity
-          style={{top:spacing.xsmall/2, paddingLeft: spacing.small}}
+          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
           onPress={() => navigation.goBack() }>
           {Icons.back({tintColor: S.header.tintColor})}
         </TouchableOpacity>
@@ -141,14 +141,14 @@ class FlashcardsViewer extends React.Component {
         <Animatable.View
           animation="fadeIn"
           duration={500}
-          style={[S.container, S.centeredContent]}
+          style={[S.containers.screen, S.containers.centered]}
           >
           <Button
             title={L.done}
             raised={true}
             icon={{name: 'check'}}
             iconRight={true}
-            borderRadius={spacing.xsmall}
+            borderRadius={S.spacing.xsmall}
             backgroundColor={T.activeColor}
             buttonStyle={{width:'80%'}}
             onPress={this.goBack}
@@ -159,7 +159,7 @@ class FlashcardsViewer extends React.Component {
 
     if (ready) {
       return (
-        <View style={S.container}>
+        <View style={S.containers.screen}>
           <ProgressIndicatorBar progress={(i+1)/a.length} />
           <View style={spacer} />
           <View style={{flex:7, alignItems:'center'}}>
@@ -175,14 +175,14 @@ class FlashcardsViewer extends React.Component {
             </Animatable.View>
           </View>
           <View style={spacer} />
-          <View style={{width:'85%', alignSelf:'center', paddingBottom:spacing.xlarge, flexDirection:'row', justifyContent:'space-around'}}>
+          <View style={{width:'85%', alignSelf:'center', paddingBottom:S.spacing.xlarge, flexDirection:'row', justifyContent:'space-around'}}>
             <View style={{width:'42.5%'}}>
               <Button
                 title={L.discard}
                 buttonStyle={{marginLeft:0, width:'100%'}}
                 raised={true}
                 // iconComponent={Icons.noCircledOutline({size:T.iconSize, tintColor:T.noColor})}
-                borderRadius={spacing.xsmall}
+                borderRadius={S.spacing.xsmall}
                 backgroundColor={T.inactiveColor}
                 onPress={() => this.onYesNoAction({type:C.ACTION_NO})}
               />
@@ -195,7 +195,7 @@ class FlashcardsViewer extends React.Component {
                 icon={{name:'playlist-add-check'}}
                 iconRight={true}
                 // iconComponent={Icons.yesCircledOutline({size:T.iconSize, tintColor:T.noColor})}
-                borderRadius={spacing.xsmall}
+                borderRadius={S.spacing.xsmall}
                 backgroundColor={T.yesColor}
                 onPress={() => this.onYesNoAction({type:C.ACTION_YES})}
               />
@@ -205,7 +205,7 @@ class FlashcardsViewer extends React.Component {
       )
     } else {
       return (
-        <View style={[S.container, S.centeredContent]}>
+        <View style={[S.containers.screen, S.containers.centered]}>
           <LoadingIndicator />
         </View>
       )

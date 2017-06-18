@@ -10,6 +10,21 @@ export default FlashcardSets = {
       "tags" : [ "fr", "burgundy", "winestyle", "varietals", "terroir" ],
       "title" : "Deep dive into Burgundy"
     },
+    "set0003" : {
+      "flashcards" : [ "-Ke7rKqQ-igJ1_PJx31F", "-Ke7pjT5p4qJcki1TRiC", "-Ke7u1il9g85445relzr", "-Ke7v1crcyyAL-jqUNEa", "-Ker6tCXwHYgtJs2o43P", "-Ker8V2wBl3pLqSZLoJW", "-KesvEl5giDeTkoTIisL", "-KesyFBApfbFYrAhVrZR" ],
+      "tags" : [ "fr", "burgundy", "winestyle", "varietals", "terroir" ],
+      "title" : "Deep dive 2"
+    },
+    "set0004" : {
+      "flashcards" : [ "-Ke7rKqQ-igJ1_PJx31F", "-Ke7pjT5p4qJcki1TRiC", "-Ke7u1il9g85445relzr", "-Ke7v1crcyyAL-jqUNEa", "-Ker6tCXwHYgtJs2o43P", "-Ker8V2wBl3pLqSZLoJW", "-KesvEl5giDeTkoTIisL", "-KesyFBApfbFYrAhVrZR" ],
+      "tags" : [ "fr", "burgundy", "winestyle", "varietals", "terroir" ],
+      "title" : "Classic French wines"
+    },
+    "set0005" : {
+      "flashcards" : [ "-Ke7rKqQ-igJ1_PJx31F", "-Ke7pjT5p4qJcki1TRiC", "-Ke7u1il9g85445relzr", "-Ke7v1crcyyAL-jqUNEa", "-Ker6tCXwHYgtJs2o43P", "-Ker8V2wBl3pLqSZLoJW", "-KesvEl5giDeTkoTIisL", "-KesyFBApfbFYrAhVrZR" ],
+      "tags" : [ "fr", "burgundy", "winestyle", "varietals", "terroir" ],
+      "title" : "Chablis"
+    },
   },
   "E5HfTJLiJtdRoQujlAFUB9KAw5H3": {
     "12345": {

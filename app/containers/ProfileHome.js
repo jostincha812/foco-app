@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollView, StatusBar, Text, Button } from 'react-native'
 
-import S, { spacing } from '../styles/styles'
+import S from '../styles/styles'
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {

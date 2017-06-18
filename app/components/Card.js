@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { Card, Divider } from 'react-native-elements'
 
 import T from '../T'
-import { spacing } from '../styles/styles'
+import S from '../styles/styles'
 
 export default class VPQCard extends React.Component {
   render() {
@@ -14,8 +14,8 @@ export default class VPQCard extends React.Component {
     const card = (
       <Card
         title={props.title}
-        titleStyle={{marginBottom:spacing.xsmall, textAlign:'left'}}
-        dividerStyle={{marginBottom:spacing.xsmall}}
+        titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
+        dividerStyle={{marginBottom:S.spacing.xsmall}}
         containerStyle={[styles.card, containerStyle]}>
         <View style={innerStyle}>
           {props.children}
@@ -38,7 +38,7 @@ export default class VPQCard extends React.Component {
     // return (
     //   <View style={[styles.card, {flexDirection:'column'}]}>
     //     {props.title && (
-    //       <View style={{marginBottom:spacing.xsmall}}>
+    //       <View style={{marginBottom:S.spacing.xsmall}}>
     //         <Text style={styles.cardTitle}>{props.title}</Text>
     //         <Divider />
     //       </View>
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
       width: 0.6,
     },
     padding: 8,
-    margin: spacing.none,
-    marginTop: spacing.xsmall,
+    margin: S.spacing.none,
+    marginTop: S.spacing.xsmall,
   },
   cardTitle: {
     fontWeight: T.titleFontWeight,

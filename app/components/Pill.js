@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import C from '../C';
 import T from '../T';
-import S, { spacing } from '../styles/styles';
+import S from '../styles/styles';
 
 export default class Pill extends React.Component {
   colors(theme) {
@@ -41,14 +41,13 @@ const styles = StyleSheet.create({
   pill: {
     paddingTop: 1,
     paddingBottom: 2,
-    paddingLeft: spacing.small,
-    paddingRight: spacing.small,
-    borderRadius: spacing.standard,
+    paddingLeft: S.spacing.small,
+    paddingRight: S.spacing.small,
+    borderRadius: S.spacing.normal,
     backgroundColor: T.activeColor,
   },
   pillText: {
-    fontSize: T.smallFontSize,
-    fontWeight: T.boldedFontWeight,
+    ...S.text.tags,
     color: T.inverseTextColor,
   },
 })

@@ -3,13 +3,18 @@ import refs from './JsFbRefs'
 export default JsUserFlashcardSetsAPI = {
   getUserFlashcardSets: (id) => {
     return refs.userFlashcardSets(id).once('value').then(snap => {
-      return Object.keys(snap.val())
+      const sets = {}
+      sets[id] = { ...snap.val() }
+      return sets
     })
   },
-
-  getUserFlashcardSet: (id, setId) => {
-    return refs.userFlashcardSet(id, setId).once('value').then(snap => {
-      return {userId: id, setId: setId, ...snap.val()}
-    })
-  }
+  //
+  //
+  // getUserFlashcardSets: (id) => {
+  //   return new Promise(resolve => {
+  //     const sets = {}
+  //     sets[id] = { ...MockUserFlashcardSets[id] }
+  //     resolve(sets)
+  //   })
+  // },
 }
