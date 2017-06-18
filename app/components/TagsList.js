@@ -14,7 +14,7 @@ export default class UserActivitiesList extends React.Component {
     const max = this.props.max ? this.props.max : 3;
 
     return (
-      <View style={{flexDirection:'row', alignItems:'center'}}>
+      <View style={[{flexDirection:'row', alignItems:'center'}, this.props.styles]}>
         { tags.map((t, i) => {
             if (i < max) {
               return (
@@ -30,12 +30,11 @@ export default class UserActivitiesList extends React.Component {
 
         { (tags.length > max) &&
           <Pill
-            theme={more}
             key='TAGS_LIST_MORE'
-            label={`+ ${tags.length-3} more`}
+            label={`+${tags.length-max}`}
+            inversed={true}
           />
         }
-
       </View>
     );
   }

@@ -1,53 +1,49 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
-import C from '../C';
-import T from '../T';
-import S from '../styles/styles';
+import C from '../C'
+import T from '../T'
+import S from '../styles/styles'
 
 export default class Pill extends React.Component {
-  colors(theme) {
-    let colors = {
-      bg: T.activeColor,
-      text: T.inverseTextColor,
-    };
-    if (theme === C.THEME_ACCENT1) {
-      colors.bg = T.accentColor;
-      colors.text = T.inverseTextColor;
-    }
-    if (theme === C.THEME_ACCENT2) {
-      colors.bg = T.accentColor2;
-      colors.text = T.inverseTextColor;
-    }
-    if (theme === C.THEME_INVERSED) {
-      colors.bg = 'transparent';
-      colors.text = T.textColor;
-    }
-    return colors;
-  }
-
   render() {
-    const label = this.props.label;
-    const colors = this.colors(this.props.theme);
+    const label = this.props.label
+    const inversed = this.props.inversed
+    const disabled = this.props.disabled
+
+    let colors = styles.normal
+    if (inversed) {
+      colors = styles.inversed
+    }
+    if (disabled) {
+      colors = styles.disabled
+    }
     return (
-      <View style={[styles.pill, {backgroundColor:colors.bg}, this.props.style]}>
-        <Text style={[styles.pillText, {color:colors.text}]}>{label.toUpperCase()}</Text>
+      <View style={[styles.pill, {backgroundColor:colors.backgroundColor}, this.props.style]}>
+        <Text style={[S.text.tags, {color:colors.textColor}]}>{label.toUpperCase()}</Text>
       </View>
-    );
+    )
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   pill: {
     paddingTop: 1,
     paddingBottom: 2,
     paddingLeft: S.spacing.small,
     paddingRight: S.spacing.small,
     borderRadius: S.spacing.normal,
+  },
+  normal: {
     backgroundColor: T.activeColor,
+    textColor: T.inverseTextColor,
   },
-  pillText: {
-    ...S.text.tags,
-    color: T.inverseTextColor,
+  inversed: {
+    backgroundColor: T.inverseColor,
+    textColor: T.activeColor,
   },
-})
+  disabled: {
+    backgroundColor: T.inactiveColor,
+    textColor: T.inverseTextColor,
+  },
+}
