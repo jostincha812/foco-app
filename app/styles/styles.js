@@ -59,6 +59,7 @@ export default styles = {
 
   containers: {
     screen: {
+      flex: 1,
       backgroundColor: T.containerBackgroundColor,
     },
     hero: {

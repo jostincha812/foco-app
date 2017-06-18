@@ -128,7 +128,7 @@ class FlashcardsViewer extends React.Component {
   }
 
   render() {
-    const spacer={flex:0.5, opacity:0, backgroundColor:'#fff'}
+    const spacer={flex:0.5, opacity:0, backgroundColor:T.transparent}
 
     const ready = this.props.ready
     const flashcards = this.props.flashcards

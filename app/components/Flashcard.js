@@ -66,17 +66,11 @@ export default class Flashcard extends React.Component {
         onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
       >
         <View style={styles.inner}>
-          {/* <TouchableOpacity
-            style={{position:'absolute', top:-S.spacing.standard-6, right: 0}}
-            onPress={this.onBookmarkToggle}
-          >
-            { this.state.isBookmarked ? Icons.bookmark() : Icons.bookmarkOutline() }
-          </TouchableOpacity> */}
           <TouchableOpacity
-            style={{position:'absolute', top:-S.spacing.small, right:-S.spacing.small}}
+            style={{position:'absolute', top:S.spacing.small, right:-S.spacing.normal}}
             onPress={this.onStarToggle}
           >
-            { this.state.isStarred ? Icons.star({tintColor:T.starredColor}) : Icons.starOutline({tintColor:T.inactiveColor}) }
+            { this.state.isStarred ? Icons.star({color:T.starredColor}) : Icons.starOutline({color:T.inactiveColor}) }
           </TouchableOpacity>
           <MarkdownView styles={S.markdown}>
             {data.front}
@@ -84,17 +78,11 @@ export default class Flashcard extends React.Component {
         </View>
 
         <View style={styles.inner}>
-          {/* <TouchableOpacity
-            style={{position:'absolute', top:-S.spacing.standard-6, right: 0}}
-            onPress={this.onBookmarkToggle}
-          >
-            { this.state.isBookmarked ? Icons.bookmark() : Icons.bookmarkOutline() }
-          </TouchableOpacity> */}
           <TouchableOpacity
-            style={{position:'absolute', top:-S.spacing.small, right:-S.spacing.small}}
+            style={{position:'absolute', top:S.spacing.small, right:-S.spacing.normal}}
             onPress={this.onStarToggle}
           >
-            { this.state.isStarred ? Icons.star({tintColor:T.starredColor}) : Icons.starOutline({tintColor:T.inactiveColor}) }
+            { this.state.isStarred ? Icons.star({color:T.starredColor}) : Icons.starOutline({color:T.inactiveColor}) }
           </TouchableOpacity>
           <MarkdownView styles={S.markdown}>
             {data.back}
@@ -112,7 +100,7 @@ const styles = {
   container: {
     ...S.cards.card,
     ...S.cards.raised,
-    ...S.cards.rounded,
+    ...S.corners.rounded,
     padding: S.spacing.standard,
     paddingLeft: S.spacing.large,
     paddingRight: S.spacing.large,
