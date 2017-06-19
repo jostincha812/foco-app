@@ -42,11 +42,13 @@ export default class FlashcardSetCard extends React.Component {
             />
           }
           <Text style={[
-            S.text.title, {
+            (type==='hero') ? S.text.title : S.text.subtitle,
+            {
               padding:S.spacing.small,
               backgroundColor:image ? T.colors.translucentWhite : T.colors.transparent,
               color:image ? T.colors.text : T.colors.inverseText,
-            }]}>
+            }
+          ]}>
             {set.title}
           </Text>
         </View>

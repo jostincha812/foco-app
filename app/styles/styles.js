@@ -27,7 +27,7 @@ export default styles = {
       fontSize: T.fonts.largeSize,
     },
     subtitle: {
-      fontWeight: T.fonts.boldWeight,
+      fontWeight: T.fonts.heavyWeight,
       fontSize: T.fonts.normalSize,
     },
     normal: {
