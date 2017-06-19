@@ -18,8 +18,8 @@ const jsFbAPI = {
   userPrefs: JsFbUserPrefsAPI,
 }
 
-export default mockAPI
-console.log('Using MOCK API')
+// export default mockAPI
+// console.log('Using MOCK API')
 
-// export default jsFbAPI
-// console.log('Using Javascript Firebase API')
+export default jsFbAPI
+console.log('Using Javascript Firebase API')

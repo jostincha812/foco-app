@@ -12,6 +12,6 @@ export default {
   // levels
   beginner: 'Easy',
   intermediate: 'Normal',
-  advanced: 'Hard',
+  advanced: 'Difficult',
 
 }
