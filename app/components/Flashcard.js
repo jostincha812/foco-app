@@ -63,14 +63,14 @@ export default class Flashcard extends React.Component {
         clickable={true}
         alignHeight={true}
         alignWidth={true}
-        onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
+        // onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
       >
         <View style={styles.inner}>
           <TouchableOpacity
             style={{position:'absolute', top:S.spacing.small, right:-S.spacing.normal}}
             onPress={this.onStarToggle}
           >
-            { this.state.isStarred ? Icons.star({color:T.starredColor}) : Icons.starOutline({color:T.inactiveColor}) }
+            { this.state.isStarred ? Icons.star({color:T.colors.starred}) : Icons.starOutline({color:T.colors.inactive}) }
           </TouchableOpacity>
           <MarkdownView styles={S.markdown}>
             {data.front}
@@ -82,7 +82,7 @@ export default class Flashcard extends React.Component {
             style={{position:'absolute', top:S.spacing.small, right:-S.spacing.normal}}
             onPress={this.onStarToggle}
           >
-            { this.state.isStarred ? Icons.star({color:T.starredColor}) : Icons.starOutline({color:T.inactiveColor}) }
+            { this.state.isStarred ? Icons.star({color:T.colors.starred}) : Icons.starOutline({color:T.colors.inactive}) }
           </TouchableOpacity>
           <MarkdownView styles={S.markdown}>
             {data.back}

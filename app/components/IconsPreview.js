@@ -11,9 +11,9 @@ export default class IconsPreview extends React.Component {
     return (
       <View>
         <Card title='Foco Icons' innerStyle={S.flexRowWrapped}>
-          { I.home({tintColor: T.accentColor}) }
-          { I.homeOutline({tintColor: T.accentColor2}) }
-          { I.search() }
+          { I.home({color: T.colors.active}) }
+          { I.homeOutline({color: T.colors.inactive}) }
+          { I.search({color: T.colors.accent}) }
           { I.bookmark() }
           { I.bookmarkOutline() }
           { I.profile() }
@@ -59,13 +59,14 @@ export default class IconsPreview extends React.Component {
 
         <Card title='App Icons' innerStyle={S.flexRowWrapped}>
           { I.menu() }
+          { I.inlineMenu() }
+          { I.settings() }
           { I.help() }
           { I.new() }
           { I.image() }
           { I.back() }
           { I.forward() }
           { I.warning() }
-          { I.settings() }
           { I.grid() }
           { I.list() }
           { I.tune() }

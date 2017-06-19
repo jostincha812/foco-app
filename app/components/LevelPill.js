@@ -12,16 +12,16 @@ export default class LevelPill extends React.Component {
   render() {
     const level = this.props.level
     let label = L.beginner
-    let color = T.beginnerColor
+    let color = T.colors.beginner
 
     if (level===C.LEVEL_BEGINNER) {
       // do nothing
     } else if (level===C.LEVEL_INTERMEDIATE) {
       label = L.intermediate
-      color = T.intermediateColor
+      color = T.colors.intermediate
     } else if (level===C.LEVEL_ADVANCED) {
       label = L.advanced
-      color = T.advancedColor
+      color = T.colors.advanced
     } else {
       // label = ''
       // color = T.transparent

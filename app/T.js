@@ -1,50 +1,65 @@
 export default FocoTheme = {
   // colors - http://www.material-ui.com/#/customization/colors
-  brandColor: '#EF6C00',   // orange 900
+  colors: {
+    app: '#EF6C00',   // orange 800
+    headerBackground: '#FFF',
+    containerBackground: '#FAFAFA', // grey 50
+    containerBackground: '#ECEFF1',
+    contentBackground: '#FFF',
+    contentBorder: '#F5F5F5',   // grey 100
 
-  // color: '#424242',         // grey 800
-  activeColor: '#E64A19',   // deep orange 700
-  inactiveColor: '#BDBDBD', // grey 400
-  accentColor: '#1E88E5',   // blue 600
-  textColor: '#424242',     // grey 800
-  inverseColor: '#fff',
-  inactiveTextColor: '#757575',  // grey 600
-  inverseTextColor: '#fff',
-  shadowColor: '#aaa',
-  yesColorActive: '#388E3C',// green 700
-  yesColor: '#81C784',      // green 300
-  noColorActive: '#D32F2F', // red 700
-  noColor: '#E57373',       // red 300
-  starredColor: '#FDD835',  // yellow 600
-  dividerColor: '#EEE',
-  transparent: 'transparent',
+    normal: '#212121',         // grey 900
+    active: '#E64A19',   // deep orange 700
+    inactive: '#BDBDBD', // grey 400
+    accent: '#1E88E5',   // blue 600
+    inverse: '#FFF',
+    text: '#212121',        // grey 900
+    inactiveText: '#757575',  // grey 600
+    inverseText: '#fff',
+    shadow: '#aaa',
+    yes: '#81C784',      // green 300
+    yesActive: '#388E3C',// green 700
+    no: '#E57373',       // red 300
+    noActive: '#D32F2F', // red 700
+    starred: '#FDD835',  // yellow 600
+    divider: '#EEE',
+    transparent: 'transparent',
+    translucentBlack: '#00000055',
+    translucentWhite: '#ffffffaa',
 
-  beginnerColor: '#43A047', // green 600
-  intermediateColor: '#FFC107', // amber 500
-  advancedColor: '#BF360C', // deep orange 900
+    beginner: '#43A047', // green 600
+    intermediate: '#FFC107', // amber 500
+    advanced: '#E53935', // red 600
 
-  headerBackgroundColor: '#fff',
-  headerTintColor: '#EF6C00',
+    climate: '#2196F3',   // blue 500
+    geography: '#00897B', // teal 600
+    terroir: '#5D4037',   // brown 700
+    law: '#424242',       // grey 800
+    varietals: '1B5E20',  // green 900
+    vinification: '#BF360C',  // deep orange 900
+    viticulture: '#7B1FA2', // purple 700
+    winestyle: '#B71C1C', // red 900
+    sparkling: '#FFD600', // yellow A700
+    fortified: '#FF6F00', // amber 900
+  },
 
-  containerBackgroundColor: '#ECEFF1',
-  contentBackgroundColor: '#fff',
-  contentBorderColor: '#F9F9F9',
-  translucentBlackColor: '#00000066',
-  translucentWhiteColor: '#ffffff66',
+  icons: {
+    smallIcon: 16,
+    normalIcon: 28,
+    largeIcon: 48,
+    xlargeIcon: 64,
+  },
 
-  iconSize: 28,
-  smallIconSize: 16,
-  largeIconSize: 48,
-  xlargeIconSize: 64,
+  fonts: {
+    xsmallSize: 8,
+    smallSize: 10,
+    normalSize: 14,
+    largeSize: 16,
+    xlargeSize: 24,
 
-  xsmallFontSize: 8,
-  smallFontSize: 10,
-  fontSize: 14,
-  largeFontSize: 16,
-  xlargeFontSize: 24,
-
-  lightFontWeight: '100',
-  fontWeight: '200',
-  boldFontWeight: '400',
-  heavyFontWeight: '900',
+    lightWeight: '100',
+    normalWeight: '200',
+    boldWeight: '400',
+    heavyWeight: '900',
+  },
 }

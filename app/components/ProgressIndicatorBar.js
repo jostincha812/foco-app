@@ -31,8 +31,8 @@ export default class ProgressIndicatorBar extends React.Component {
           width={this.state.width}
           borderWidth={0}
           borderRadius={0}
-          color={T.accentColor}
-          unfilledColor={T.inactiveColor} />
+          color={T.colors.accent}
+          unfilledColor={T.colors.inactive} />
       </View>
     )
   }

@@ -5,6 +5,7 @@ export default FlashcardSets = {
       "tags" : [ "fr", "varietals" ],
       "title" : "Grape varietals of France",
       "level" : "beginner",
+      "image" : "http://payload412.cargocollective.com/1/0/20503/10553322/france-wine-regions_670.jpg",
     },
     "set0002" : {
       "flashcards" : [ "-Ke7rKqQ-igJ1_PJx31F", "-Ke7pjT5p4qJcki1TRiC", "-Ke7u1il9g85445relzr", "-Ke7v1crcyyAL-jqUNEa", "-Ker6tCXwHYgtJs2o43P", "-Ker8V2wBl3pLqSZLoJW", "-KesvEl5giDeTkoTIisL", "-KesyFBApfbFYrAhVrZR" ],

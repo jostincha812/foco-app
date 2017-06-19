@@ -16,7 +16,7 @@ export default class UserActivitiesList extends React.Component {
             if (i < max) {
               return (
                 <Pill
-                  style={{marginRight:S.spacing.xsmall}}
+                  style={{backgroundColor:T.colors.accent, marginRight:S.spacing.xsmall}}
                   key={t}
                   label={t}
                 />

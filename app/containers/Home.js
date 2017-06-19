@@ -26,7 +26,7 @@ class Home extends React.Component {
         <TouchableOpacity
           style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
           onPress={() => navigation.navigate(C.NAV_PROFILE_HOME) }>
-          {Icons.profile({tintColor: S.header.tintColor})}
+          {Icons.profile({color: S.header.tintColor})}
         </TouchableOpacity>
       )
     })

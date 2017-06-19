@@ -17,7 +17,7 @@ const HomeStack = StackNavigator(STACK, {
   navigationOptions: {
     drawer: {
       label: 'Home',
-      icon: ({ focused, tintColor }) => Icons.home({ focused, tintColor }),
+      icon: ({ focused, tintColor }) => Icons.home({ focused, color:tintColor }),
     },
     header: (navigation, defaultHeader) => ({
       ...defaultHeader,
@@ -26,13 +26,13 @@ const HomeStack = StackNavigator(STACK, {
         <TouchableOpacity
           style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
           onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: S.header.tintColor})}
+          {Icons.menu({color: S.header.tintColor})}
         </TouchableOpacity>
       ),
     }),
     tabBar: ({ state, setParams }) => ({
       icon: ({ focused, tintColor }) => (
-        Icons.home({ focused, tintColor })
+        Icons.home({ focused, color:tintColor })
       ),
     }),
   }

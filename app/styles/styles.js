@@ -19,48 +19,49 @@ export default styles = {
   // text styles
   text: {
     hero: {
-      fontWeight: T.heavyFontWeight,
-      fontSize: T.xlargeFontSize,
+      fontWeight: T.fonts.heavyWeight,
+      fontSize: T.fonts.xlargeSize,
     },
     title: {
-      fontWeight: T.heavyFontWeight,
-      fontSize: T.largeFontSize,
+      fontWeight: T.fonts.heavyWeight,
+      fontSize: T.fonts.largeSize,
     },
     subtitle: {
-      fontWeight: T.boldFontWeight,
-      fontSize: T.fontSize,
+      fontWeight: T.fonts.boldWeight,
+      fontSize: T.fonts.normalSize,
     },
     normal: {
-      fontWeight: T.fontWeight,
-      fontSize: T.fontSize,
+      fontWeight: T.fonts.normalWeight,
+      fontSize: T.fonts.normalSize,
     },
     pill: {
-      fontSize: T.smallFontSize,
-      fontWeight: T.boldFontWeight,
+      fontSize: T.fonts.smallSize,
+      fontWeight: T.fonts.boldWeight,
     }
   },
 
   markdown: {
     paragraph: {
-      fontSize: T.fontSize,
-      fontWeight: T.fontWeight,
+      fontSize: T.fonts.normalSize,
+      fontWeight: T.fonts.normalWeight,
     },
     link: {
-      color: T.accentColor2,
+      color: T.colors.accent,
     },
     heading1: {
-      fontSize: T.titleFontSize,
-      fontWeight: T.titleFontWeight,
+      fontSize: T.fonts.largeSize,
+      fontWeight: T.fonts.boldWeight,
     },
     heading2: {
-      fontSize: T.titleFontSize-2,
+      fontSize: T.fonts.normalSize,
+      fontWeight: T.fonts.boldWeight,
     },
   },
 
   containers: {
     screen: {
       flex: 1,
-      backgroundColor: T.containerBackgroundColor,
+      backgroundColor: T.colors.containerBackground,
     },
     hero: {
       padding: spacing.normal
@@ -92,12 +93,12 @@ export default styles = {
 
   cards: {
     card: {
-      borderColor: T.contentBorderColor,
-      backgroundColor: T.contentBackgroundColor,
+      borderColor: T.colors.contentBorder,
+      backgroundColor: T.colors.contentBackground,
       borderWidth: 0.5,
     },
     raised: {
-      shadowColor: T.shadowColor,
+      shadowColor: T.colors.shadow,
       shadowOffset: {
         width: 0,
         height: spacing.xsmall,
@@ -122,21 +123,21 @@ export default styles = {
   // navigation header styles
   header: {
     backTitle: null,
-    tintColor: T.headerTintColor,
+    tintColor: T.colors.app,
     titleStyle: {
-      fontWeight: T.titleFontWeight,
-      color: T.headerTintColor,
+      fontWeight: T.fonts.boldWeight,
+      color: T.colors.app,
     },
     style: {
-      backgroundColor: T.headerBackgroundColor,
+      backgroundColor: T.colors.headerBackground,
       borderBottomWidth: 0,
     },
   },
   // titleBanner: {
-  //   fontSize: T.titleFontSize,
-  //   fontWeight: T.fontWeight,
-  //   color: T.inverseTextColor,
-  //   // backgroundColor: T.translucentWhiteColor,
+  //   fontSize: T.fonts.normalSize,
+  //   fontWeight: T.fonts.normalWeight,
+  //   color: T.colors.inverseText,
+  //   backgroundColor: T.colors.translucentWhite,
   //   marginBottom: spacing.small,
   // },
 }

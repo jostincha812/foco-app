@@ -35,15 +35,15 @@ const styles = {
     borderRadius: S.spacing.normal,
   },
   normal: {
-    backgroundColor: T.activeColor,
-    textColor: T.inverseTextColor,
+    backgroundColor: T.colors.active,
+    textColor: T.colors.inverseText,
   },
   inversed: {
-    backgroundColor: T.inverseColor,
-    textColor: T.activeColor,
+    backgroundColor: T.colors.inverse,
+    textColor: T.colors.active,
   },
   disabled: {
-    backgroundColor: T.inactiveColor,
-    textColor: T.inverseTextColor,
+    backgroundColor: T.colors.inactive,
+    textColor: T.colors.inverseText,
   },
 }

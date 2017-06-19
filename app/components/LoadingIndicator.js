@@ -11,7 +11,7 @@ export default class LoadingIndicator extends React.Component {
     // suitable spinner types: Pulse, Wave, ThreeBounce
     return (
       <View style={S.centeredContent}>
-        <Spinner size={T.xlargeIconSize} type='ThreeBounce' color={T.accentColor} />
+        <Spinner size={T.icons.xlargeIcon} type='ThreeBounce' color={T.colors.app} />
       </View>
     )
   }

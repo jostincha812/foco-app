@@ -5,8 +5,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import T from '../T.js';
 
 const AppIcon = (name, options) => {
-  let size = options.size ? options.size : T.iconSize;
-  let color = options.color ? options.color : T.color;
+  let size = options.size ? options.size : T.icons.normalIcon;
+  let color = options.color ? options.color : T.colors.normal;
   let focused = options.focused ? options.focused : false;
   return (
     <Icon name={name} size={size} color={color} />

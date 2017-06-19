@@ -149,7 +149,7 @@ class FlashcardsViewer extends React.Component {
             icon={{name: 'check'}}
             iconRight={true}
             borderRadius={S.spacing.xsmall}
-            backgroundColor={T.activeColor}
+            backgroundColor={T.colors.active}
             buttonStyle={{width:'80%'}}
             onPress={this.goBack}
           />
@@ -183,7 +183,7 @@ class FlashcardsViewer extends React.Component {
                 raised={true}
                 // iconComponent={Icons.noCircledOutline({size:T.iconSize, tintColor:T.noColor})}
                 borderRadius={S.spacing.xsmall}
-                backgroundColor={T.inactiveColor}
+                backgroundColor={T.colors.inactive}
                 onPress={() => this.onYesNoAction({type:C.ACTION_NO})}
               />
             </View>
@@ -196,7 +196,7 @@ class FlashcardsViewer extends React.Component {
                 iconRight={true}
                 // iconComponent={Icons.yesCircledOutline({size:T.iconSize, tintColor:T.noColor})}
                 borderRadius={S.spacing.xsmall}
-                backgroundColor={T.yesColor}
+                backgroundColor={T.colors.yes}
                 onPress={() => this.onYesNoAction({type:C.ACTION_YES})}
               />
             </View>
