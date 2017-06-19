@@ -10,12 +10,23 @@ import Icons from '../components/Icons'
 import LevelPill from '../components/LevelPill'
 
 export default class FlashcardSetCard extends React.Component {
+  cardColor(tags) {
+    for (i=0; i<tags.length; i++) {
+      const c = T.colors[tags[i]]
+      if (c) {
+        return c
+      }
+    }
+    return T.colors.inactive
+  }
+
   render() {
     const props = this.props
     const type = this.props.type ? this.props.type : 'regular'
     const onPress = this.props.onPress
     const set = props.set
     const image = set.image
+    const color = this.cardColor(set.tags)
 
     const card = (
       <View
@@ -23,7 +34,7 @@ export default class FlashcardSetCard extends React.Component {
         title={props.title}
         titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
         dividerStyle={{marginBottom:S.spacing.xsmall}}>
-        <View style={styles.header}>
+        <View style={[styles.header, {backgroundColor:color}]}>
           { image &&
             <Image
               style={{width:'100%', height:'100%', position:'absolute'}}
@@ -32,10 +43,9 @@ export default class FlashcardSetCard extends React.Component {
           }
           <Text style={[
             S.text.title, {
-              margin:S.spacing.small,
-              padding:S.spacing.xsmall,
-              backgroundColor:T.colors.translucentWhite,
-              color:T.colors.text
+              padding:S.spacing.small,
+              backgroundColor:image ? T.colors.translucentWhite : T.colors.transparent,
+              color:image ? T.colors.text : T.colors.inverseText,
             }]}>
             {set.title}
           </Text>
