@@ -59,7 +59,7 @@ export default FocoTheme = {
 
     lightWeight: '100',
     normalWeight: '200',
-    boldWeight: '400',
+    boldWeight: '500',
     heavyWeight: '900',
   },
 }
