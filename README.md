@@ -14,3 +14,6 @@
 ## v0.4
 * **FlashcardViewer** progressing through cards and shows progress indicator
 * **Flashcard** component using **Starred** action
+
+## v0.5
+* **Home** shows _Featured_ and _My Cards_ card sets
