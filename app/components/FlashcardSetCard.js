@@ -11,6 +11,10 @@ import LevelPill from '../components/LevelPill'
 
 export default class FlashcardSetCard extends React.Component {
   cardColor(tags) {
+    if (!tags) {
+      return T.colors.inactive
+    }
+    
     for (i=0; i<tags.length; i++) {
       const c = T.colors[tags[i]]
       if (c) {

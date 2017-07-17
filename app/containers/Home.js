@@ -11,7 +11,7 @@ import LoadingIndicator from '../components/LoadingIndicator'
 import FlashcardSetCard from '../components/FlashcardSetCard'
 import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
 
-import { fetchUserFlashcardSets } from '../actions/UserFlashcardSetsActions'
+import { fetchFeaturedFlashcardSets, fetchUserFlashcardSets } from '../actions/UserFlashcardSetsActions'
 
 import api from '../data/api'
 
@@ -34,7 +34,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     // TODO replace with first fetch with app config setting
-    this.props.fetchUserFlashcardSets(C.FOCO_WSET3)
+    this.props.fetchFeaturedFlashcardSets()
     this.props.fetchUserFlashcardSets(this.props.user.id)
   }
 
@@ -115,6 +115,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    fetchFeaturedFlashcardSets: () => dispatch(fetchFeaturedFlashcardSets()),
     fetchUserFlashcardSets: (id) => dispatch(fetchUserFlashcardSets(id)),
   }
 }

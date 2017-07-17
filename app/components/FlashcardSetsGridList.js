@@ -19,6 +19,11 @@ export default class FlashcardSetsGridList extends React.Component {
 
     return (
       <View style={S.containers.grid}>
+        <AddNewCard
+          style={{width: itemWidth, marginBottom:S.spacing.xsmall*2}}
+          type='regular'
+          onPress={onAddNew} />
+
         { Object.keys(cardSets).map(id => {
           const set = cardSets[id]
           return (
@@ -31,10 +36,6 @@ export default class FlashcardSetsGridList extends React.Component {
             </FlashcardSetCard>
           )
         })}
-        <AddNewCard
-          style={{width: itemWidth, marginBottom:S.spacing.xsmall*2}}
-          type='regular'
-          onPress={onAddNew} />
       </View>
     )
   }

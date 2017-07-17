@@ -1,8 +1,8 @@
 export default {
   // Home
   featured: 'Featured',
-  mycards: 'My Cards',
-  newset: 'New Set',
+  mycards: 'My Sets',
+  newset: 'Configure Set',
   regions: 'Regions',
   tags: 'Tags',
 
@@ -11,6 +11,7 @@ export default {
   keep: 'Keep',
   discard: 'Discard',
   done: 'Fin',
+  starred: 'Starred',
 
   // levels
   beginner: 'Easy',

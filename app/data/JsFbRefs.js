@@ -30,8 +30,12 @@ export default JsFbRefs = {
     return db().ref(`${refs.users}/${key}`)
   },
 
-  userPrefs: (key, prefsKey) => {
-    return db().ref(`${refs.userPrefs}/${key}/${prefsKey}`)
+  userPrefs: (key) => {
+    return db().ref(`${refs.userPrefs}/${key}`)
+  },
+
+  userCardPrefs: (key, cardKey) => {
+    return db().ref(`${refs.userPrefs}/${key}/${cardKey}`)
   },
 
   userFlashcardSets: (key) => {

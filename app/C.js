@@ -85,5 +85,4 @@ export default {
   STATUS_INACTIVE: 'inactive',
   STATUS_DELETED: 'deleted',
 
-
 }
