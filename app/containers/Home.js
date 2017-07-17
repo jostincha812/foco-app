@@ -74,7 +74,7 @@ class Home extends React.Component {
     return (
       <ScrollView style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <View style={[S.containers.hero, {paddingBottom:S.spacing.small}]}>
+        <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
           <Text style={S.text.hero}>{L.featured}</Text>
           { appSetKeys &&
             flashcardSetCard({id:appSetKeys[0], ...appSets[appSetKeys[0]]}, 'hero')
@@ -83,7 +83,7 @@ class Home extends React.Component {
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          style={[S.containers.carousel]}>
+          style={[S.containers.carousel, {paddingTop:S.spacing.xsmall, paddingBottom:S.spacing.small}]}>
           { Object.keys(appSets).map((setId, index) => {
             if (index) {
               const set = appSets[setId]
@@ -92,7 +92,7 @@ class Home extends React.Component {
             }
           })}
         </ScrollView>
-        <View style={[S.containers.list]}>
+        <View style={[S.containers.list, {paddingTop:S.spacing.small}]}>
           <Text style={S.text.title}>{L.mycards}</Text>
           <FlashcardSetsGridList
             sets={userSets}

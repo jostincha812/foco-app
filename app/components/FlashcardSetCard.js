@@ -30,7 +30,7 @@ export default class FlashcardSetCard extends React.Component {
 
     const card = (
       <View
-        style={[S.cards.card, S.cards.raised, S.corners.rounded, styles[type], props.style]}
+        style={[S.cards.card, S.cards.raised, styles[type], props.style]}
         title={props.title}
         titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
         dividerStyle={{marginBottom:S.spacing.xsmall}}>

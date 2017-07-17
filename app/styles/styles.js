@@ -37,7 +37,7 @@ export default styles = {
     pill: {
       fontSize: T.fonts.smallSize,
       fontWeight: T.fonts.boldWeight,
-    }
+    },
   },
 
   markdown: {
@@ -64,12 +64,10 @@ export default styles = {
       backgroundColor: T.colors.containerBackground,
     },
     hero: {
-      padding: spacing.normal
+      padding: spacing.normal,
     },
     carousel: {
       padding: spacing.normal,
-      paddingTop: 0,
-      paddingBottom: 0
     },
     list: {
       padding: spacing.normal,
@@ -78,7 +76,7 @@ export default styles = {
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-between',
-      alignItems: 'flex-start'
+      alignItems: 'flex-start',
     },
     centered: {
       justifyContent: 'center',
@@ -87,7 +85,7 @@ export default styles = {
     flexRowWrapped: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      alignItems: 'flex-start'
+      alignItems: 'flex-start',
     },
   },
 
@@ -101,19 +99,19 @@ export default styles = {
       shadowColor: T.colors.shadow,
       shadowOffset: {
         width: 0,
-        height: spacing.xsmall,
+        height: spacing.xsmall/2,
       },
-      shadowRadius: spacing.xsmall,
-      shadowOpacity: 0.2,
+      shadowRadius: spacing.xsmall/2,
+      shadowOpacity: 0.25,
     },
   },
 
   corners: {
     rounded: {
-      borderRadius: spacing.xsmall/2,
+      borderRadius: spacing.xsmall,
     },
     roundedSmall: {
-      borderRadius: spacing.xsmall/4,
+      borderRadius: spacing.xsmall / 2,
     },
     roundedLarge: {
       borderRadius: spacing.small,
@@ -133,11 +131,4 @@ export default styles = {
       borderBottomWidth: 0,
     },
   },
-  // titleBanner: {
-  //   fontSize: T.fonts.normalSize,
-  //   fontWeight: T.fonts.normalWeight,
-  //   color: T.colors.inverseText,
-  //   backgroundColor: T.colors.translucentWhite,
-  //   marginBottom: spacing.small,
-  // },
 }

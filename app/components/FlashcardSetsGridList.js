@@ -6,6 +6,7 @@ import T from '../T'
 import S from '../styles/styles'
 
 import FlashcardSetCard from './FlashcardSetCard'
+import AddNewCard from './AddNewCard'
 
 export default class FlashcardSetsGridList extends React.Component {
   render() {
@@ -29,6 +30,10 @@ export default class FlashcardSetsGridList extends React.Component {
             </FlashcardSetCard>
           )
         })}
+        <AddNewCard
+          style={{width: itemWidth, marginBottom:S.spacing.xsmall*2}}
+          type='regular'
+          onPress={() => console.log('Add New')} />
       </View>
     )
   }
