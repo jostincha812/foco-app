@@ -2,6 +2,9 @@ export default {
   // Home
   featured: 'Featured',
   mycards: 'My Cards',
+  newset: 'New Set',
+  regions: 'Regions',
+  tags: 'Tags',
 
   // Flashcard Sets
   cards: 'cards',
@@ -14,4 +17,7 @@ export default {
   intermediate: 'Normal',
   advanced: 'Difficult',
 
+  // navigation
+  next: 'Next',
+  go: 'Go',
 }

@@ -97,6 +97,7 @@ class Home extends React.Component {
           <FlashcardSetsGridList
             sets={userSets}
             onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ...set})}
+            onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR)}
           />
         </View>
       </ScrollView>

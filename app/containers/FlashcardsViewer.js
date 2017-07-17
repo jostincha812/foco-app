@@ -26,7 +26,7 @@ class FlashcardsViewer extends React.Component {
         <TouchableOpacity
           style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
           onPress={() => navigation.goBack() }>
-          {Icons.back({tintColor: S.header.tintColor})}
+          {Icons.back({color: S.header.tintColor})}
         </TouchableOpacity>
       ),
     }),
