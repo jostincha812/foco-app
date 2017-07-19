@@ -39,7 +39,6 @@ export default class Flashcard extends React.Component {
   }
 
   onStarToggle() {
-    console.log('star toggled')
     const id = this.props.data.id
     const newStarredState = !this.state.isStarred
     this.setState({isStarred: newStarredState})

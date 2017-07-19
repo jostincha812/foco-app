@@ -96,6 +96,10 @@ const styles = StyleSheet.create({
     height: 140,
     marginRight: S.spacing.small,
   },
+  full: {
+    width: '100%',
+    height: 140,
+  },
   regular: {
     width: 140,
     height: 140,

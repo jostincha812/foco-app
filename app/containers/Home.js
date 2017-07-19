@@ -11,7 +11,12 @@ import LoadingIndicator from '../components/LoadingIndicator'
 import FlashcardSetCard from '../components/FlashcardSetCard'
 import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
 
-import { fetchFeaturedFlashcardSets, fetchUserStarredFlashcardsSet, fetchUserFlashcardSets } from '../actions/UserFlashcardSetsActions'
+import {
+  fetchFeaturedFlashcardSets,
+  fetchUserFlashcardSets,
+  setupUserStarredFlashcardsListeners,
+  teardownUserStarredFlashcardsListeners,
+} from '../actions/UserFlashcardSetsActions'
 
 import api from '../data/api'
 
@@ -35,8 +40,13 @@ class Home extends React.Component {
   componentDidMount() {
     // TODO replace with first fetch with app config setting
     this.props.fetchFeaturedFlashcardSets()
-    this.props.fetchUserStarredFlashcardsSet(this.props.user.id)
+    // this.props.fetchUserStarredFlashcardsSet(this.props.user.id)
     this.props.fetchUserFlashcardSets(this.props.user.id)
+    this.props.setupUserStarredFlashcardsListeners(this.props.user.id)
+  }
+
+  componentWillUnmount() {
+    this.props.teardownUserStarredFlashcardsListeners(this.props.user.id)
   }
 
   navigate(route) {
@@ -49,6 +59,7 @@ class Home extends React.Component {
     const user = this.props.user
     const appSets = this.props.sets[C.FOCO_WSET3] ? this.props.sets[C.FOCO_WSET3] : {}
     const userSets = this.props.sets[user.id] ? this.props.sets[user.id] : {}
+    const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
 
     const flashcardSetCard = (set, type) => {
       return (
@@ -95,6 +106,11 @@ class Home extends React.Component {
         </ScrollView>
         <View style={[S.containers.list, {paddingTop:S.spacing.small}]}>
           <Text style={S.text.title}>{L.mycards}</Text>
+          { starredSet &&
+            <View style={{paddingBottom:S.spacing.xsmall, paddingBottom:S.spacing.small}}>
+              {flashcardSetCard({...starredSet, title:L.starred}, 'full')}
+            </View>
+          }
           <FlashcardSetsGridList
             sets={userSets}
             onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ...set})}
@@ -117,8 +133,10 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     fetchFeaturedFlashcardSets: () => dispatch(fetchFeaturedFlashcardSets()),
-    fetchUserStarredFlashcardsSet: (id) => dispatch(fetchUserStarredFlashcardsSet(id)),
+    // fetchUserStarredFlashcardsSet: (id) => dispatch(fetchUserStarredFlashcardsSet(id)),
     fetchUserFlashcardSets: (id) => dispatch(fetchUserFlashcardSets(id)),
+    setupUserStarredFlashcardsListeners: (id) => dispatch(setupUserStarredFlashcardsListeners(id)),
+    teardownUserStarredFlashcardsListeners: (id) => dispatch(teardownUserStarredFlashcardsListeners(id)),
   }
 }
 
