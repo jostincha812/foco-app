@@ -10,6 +10,14 @@ export function fetchFeaturedFlashcardSets() {
   }
 }
 
+export function fetchUserStarredFlashcardsSet(id) {
+  return {
+    type: C.FETCH_USER_FLASHCARD_SETS,
+    userId: id,
+    payload: api.flashcardSets.getUserStarredFlashcardsSet(id)
+  }
+}
+
 export function fetchUserFlashcardSets(id) {
   return {
     type: C.FETCH_USER_FLASHCARD_SETS,

@@ -2,16 +2,16 @@ export default {
   // Home
   featured: 'Featured',
   mycards: 'My Sets',
-  newset: 'Configure Set',
-  regions: 'Regions',
-  tags: 'Tags',
 
   // Flashcard Sets
   cards: 'cards',
   keep: 'Keep',
   discard: 'Discard',
   done: 'Fin',
-  starred: 'Starred',
+  starred: 'Starred Cards',
+  configureset: 'Configure Set',
+  regions: 'Regions',
+  tags: 'Tags',
 
   // levels
   beginner: 'Easy',

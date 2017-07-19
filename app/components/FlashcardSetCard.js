@@ -14,7 +14,7 @@ export default class FlashcardSetCard extends React.Component {
     if (!tags) {
       return T.colors.inactive
     }
-    
+
     for (i=0; i<tags.length; i++) {
       const c = T.colors[tags[i]]
       if (c) {
@@ -35,9 +35,7 @@ export default class FlashcardSetCard extends React.Component {
     const card = (
       <View
         style={[S.cards.card, S.cards.raised, styles[type], props.style]}
-        title={props.title}
-        titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
-        dividerStyle={{marginBottom:S.spacing.xsmall}}>
+        >
         <View style={[styles.header, {backgroundColor:color}]}>
           { image &&
             <Image
@@ -53,7 +51,7 @@ export default class FlashcardSetCard extends React.Component {
               color:image ? T.colors.text : T.colors.inverseText,
             }
           ]}>
-            {set.title}
+            {props.title ? props.title : set.title}
           </Text>
         </View>
         <View style={styles.content}>

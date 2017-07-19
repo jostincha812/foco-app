@@ -10,17 +10,21 @@ export default JsUserFlashcardSetsAPI = {
     })
   },
 
-  getUserFlashcardSets: (id) => {
+  getUserStarredFlashcardsSet: (id) => {
     return refs.userPrefs(id).orderByChild(C.KEY_PREF_STARRED).equalTo(true).once('value').then(snap => {
       const cards = Object.keys(snap.val())
       const set = {
         flashcards: cards ? cards : [],
-        title: C.KEY_PREF_STARRED.toUpperCase(),
+        title: C.KEY_PREF_STARRED,
         tags: [],
       }
       console.log(set)
       return set
-    }).then(result => {
+    })
+  },
+
+  getUserFlashcardSets: (id) => {
+    return JsUserFlashcardSetsAPI.getUserStarredFlashcardsSet(id).then(result => {
       return refs.userFlashcardSets(id).once('value').then(snap => {
         const sets = {}
         sets[id] = { ...snap.val() }
@@ -29,13 +33,4 @@ export default JsUserFlashcardSetsAPI = {
       })
     })
   },
-  //
-  //
-  // getUserFlashcardSets: (id) => {
-  //   return new Promise(resolve => {
-  //     const sets = {}
-  //     sets[id] = { ...MockUserFlashcardSets[id] }
-  //     resolve(sets)
-  //   })
-  // },
 }
