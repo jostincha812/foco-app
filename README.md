@@ -17,3 +17,6 @@
 
 ## v0.5
 * **Home** shows _Featured_ and _My Cards_ card sets
+
+## v0.6
+* **Home** shows _Starred_ cards set that automatically refreshes from FB
