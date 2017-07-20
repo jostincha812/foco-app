@@ -20,3 +20,6 @@
 
 ## v0.6
 * **Home** shows _Starred_ cards set that automatically refreshes from FB
+
+## v0.7
+* upgraded to react-navigation 1.0.0.beta11
