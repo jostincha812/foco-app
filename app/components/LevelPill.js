@@ -6,7 +6,7 @@ import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 
-import Pill from './Pill'
+import Pill from '../lib/Pill'
 
 export default class LevelPill extends React.Component {
   render() {

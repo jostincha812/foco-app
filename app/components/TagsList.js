@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 import T from '../T'
 import S from '../styles/styles'
-import Pill from '../components/Pill'
+import Pill from '../lib/Pill'
 
 export default class UserActivitiesList extends React.Component {
   render() {

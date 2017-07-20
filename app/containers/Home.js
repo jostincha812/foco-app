@@ -7,9 +7,10 @@ import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import Icons from '../components/Icons'
-import LoadingIndicator from '../components/LoadingIndicator'
 import FlashcardSetCard from '../components/FlashcardSetCard'
 import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
+
+import LoadingIndicator from '../lib/LoadingIndicator'
 
 import {
   fetchFeaturedFlashcardSets,

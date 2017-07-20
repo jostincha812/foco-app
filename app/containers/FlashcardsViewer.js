@@ -12,10 +12,11 @@ import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import Icons from '../components/Icons'
-import LoadingIndicator from '../components/LoadingIndicator'
-import ProgressIndicatorBar from '../components/ProgressIndicatorBar'
-import CardsStack from '../components/CardsStack'
 import Flashcard from '../components/Flashcard'
+
+import CardsStack from '../lib/CardsStack'
+import LoadingIndicator from '../lib/LoadingIndicator'
+import ProgressIndicatorBar from '../lib/ProgressIndicatorBar'
 
 class FlashcardsViewer extends React.Component {
   static navigationOptions = ({navigation}) => ({

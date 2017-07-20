@@ -7,9 +7,9 @@ import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import Icons from '../components/Icons'
-import LoadingIndicator from '../components/LoadingIndicator'
 
 import api from '../data/api'
+import LoadingIndicator from '../lib/LoadingIndicator'
 
 class FlashcardsSetConfigurator extends React.Component {
   static navigationOptions = ({navigation}) => ({

@@ -11,16 +11,31 @@ export default class VPQCard extends React.Component {
     const containerStyle = props.containerStyle ? props.containerStyle : {}
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
+    // const card = (
+    //   <Card
+    //     title={props.title}
+    //     titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
+    //     dividerStyle={{marginBottom:S.spacing.xsmall}}
+    //     containerStyle={[styles.card, containerStyle]}>
+    //     <View style={innerStyle}>
+    //       {props.children}
+    //     </View>
+    //   </Card>
+    // )
+
+    // --- no dependency version ---//
     const card = (
-      <Card
-        title={props.title}
-        titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
-        dividerStyle={{marginBottom:S.spacing.xsmall}}
-        containerStyle={[styles.card, containerStyle]}>
+      <View style={[styles.card, containerStyle, {flexDirection:'column'}]}>
+        {props.title && (
+          <View style={{marginBottom:S.spacing.xsmall}}>
+            <Text style={styles.cardTitle}>{props.title}</Text>
+            <Divider />
+          </View>
+        )}
         <View style={innerStyle}>
           {props.children}
         </View>
-      </Card>
+      </View>
     )
 
     const onPress = this.props.onPress
@@ -33,31 +48,16 @@ export default class VPQCard extends React.Component {
     } else {
       return card
     }
-
-    // --- no dependency version ---//
-    // return (
-    //   <View style={[styles.card, {flexDirection:'column'}]}>
-    //     {props.title && (
-    //       <View style={{marginBottom:S.spacing.xsmall}}>
-    //         <Text style={styles.cardTitle}>{props.title}</Text>
-    //         <Divider />
-    //       </View>
-    //     )}
-    //     <View style={propsStyle}>
-    //       {props.children}
-    //     </View>
-    //   </View>
-    // );
   }
 }
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: T.contentBackgroundColor,
-    borderColor: T.contentBorderColor,
+    backgroundColor: T.colors.contentBackground,
+    borderColor: T.colors.contentBorder,
     borderWidth: 0.5,
     borderRadius: 0,
-    shadowColor: T.shadowColor,
+    shadowColor: T.colors.shadow,
     shadowOpacity: 0.4,
     shadowRadius: 0.8,
     shadowOffset: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: S.spacing.xsmall,
   },
   cardTitle: {
-    fontWeight: T.titleFontWeight,
-    fontSize: T.titleFontSize,
+    fontWeight: T.fonts.heavyWeight,
+    fontSize: T.fonts.largeSize,
   }
 })
