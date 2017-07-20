@@ -32,7 +32,7 @@ export default JsUserFlashcardSetsAPI = {
   // },
 
   setupUserStarredFlashcardsListeners: (id, callback) => {
-    const r = refs.userPrefs(id).orderByChild(C.KEY_PREF_STARRED).equalTo(true)
+    const r = refs.userFlashcardPrefs(id).orderByChild(C.KEY_PREF_STARRED).equalTo(true)
     const sets = {}
     sets[C.KEY_PREF_STARRED] = {
       flashcards: [],
@@ -53,7 +53,7 @@ export default JsUserFlashcardSetsAPI = {
   },
 
   teardownUserStarredFlashcardsListeners: (id) => {
-    const r = refs.userPrefs(id).orderByChild(C.KEY_PREF_STARRED).equalTo(true)
+    const r = refs.userFlashcardPrefs(id).orderByChild(C.KEY_PREF_STARRED).equalTo(true)
     r.off('child_added')
     r.off('child_removed')
   },
