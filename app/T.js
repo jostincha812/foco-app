@@ -4,7 +4,7 @@ export default FocoTheme = {
     app: '#EF6C00',   // orange 800
     headerBackground: '#FFF',
     containerBackground: '#FAFAFA', // grey 50
-    containerBackground: '#ECEFF1',
+    // containerBackground: '#ECEFF1',
     contentBackground: '#FFF',
     contentBorder: '#E5E5E5',   // grey 100
 

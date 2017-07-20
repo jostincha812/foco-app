@@ -9,6 +9,8 @@ import L from '../L'
 import Icons from '../components/Icons'
 import LevelPill from '../components/LevelPill'
 
+import Card from '../lib/Card'
+
 export default class FlashcardSetCard extends React.Component {
   cardColor(tags) {
     if (!tags) {

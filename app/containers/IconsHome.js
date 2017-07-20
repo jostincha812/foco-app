@@ -27,7 +27,7 @@ class IconsHome extends React.Component {
     return (
       <ScrollView style={S.container}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <Card title='Foco Icons' innerStyle={S.containers.flexRowWrapped}>
+        <Card title='Foco Icons' divider={true} innerStyle={S.containers.flexRowWrapped}>
           { Icons.home({color: T.colors.active}) }
           { Icons.homeOutline({color: T.colors.inactive}) }
           { Icons.search({color: T.colors.accent}) }
@@ -47,7 +47,7 @@ class IconsHome extends React.Component {
           { Icons.cloud() }
         </Card>
 
-        <Card title='User Actions' innerStyle={S.containers.flexRowWrapped}>
+        <Card title='User Actions' containerStyle={{marginTop:0}} innerStyle={S.containers.flexRowWrapped}>
           { Icons.favorite() }
           { Icons.favoriteOutline() }
           { Icons.star() }
@@ -74,7 +74,7 @@ class IconsHome extends React.Component {
           { Icons.noCircledOutline() }
         </Card>
 
-        <Card title='App Icons' innerStyle={S.containers.flexRowWrapped}>
+        <Card title='App Icons' containerStyle={{marginTop:0}} innerStyle={S.containers.flexRowWrapped}>
           { Icons.menu() }
           { Icons.inlineMenu() }
           { Icons.settings() }

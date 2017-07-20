@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { Card, Divider } from 'react-native-elements'
 
 import T from '../T'
 import S from '../styles/styles'
@@ -10,26 +9,13 @@ export default class VPQCard extends React.Component {
     const props = this.props
     const containerStyle = props.containerStyle ? props.containerStyle : {}
     const innerStyle = props.innerStyle ? props.innerStyle : {}
+    const divider = props.divider ? null : { borderBottomWidth: 0 }
 
-    // const card = (
-    //   <Card
-    //     title={props.title}
-    //     titleStyle={{marginBottom:S.spacing.xsmall, textAlign:'left'}}
-    //     dividerStyle={{marginBottom:S.spacing.xsmall}}
-    //     containerStyle={[styles.card, containerStyle]}>
-    //     <View style={innerStyle}>
-    //       {props.children}
-    //     </View>
-    //   </Card>
-    // )
-
-    // --- no dependency version ---//
     const card = (
-      <View style={[styles.card, containerStyle, {flexDirection:'column'}]}>
+      <View style={[styles.card, styles.raised, containerStyle]}>
         {props.title && (
-          <View style={{marginBottom:S.spacing.xsmall}}>
+          <View style={[styles.titleContainer, divider]}>
             <Text style={styles.cardTitle}>{props.title}</Text>
-            <Divider />
           </View>
         )}
         <View style={innerStyle}>
@@ -53,23 +39,29 @@ export default class VPQCard extends React.Component {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: T.colors.contentBackground,
-    borderColor: T.colors.contentBorder,
+    borderColor: '#E5E5E5',
+    backgroundColor: '#FFF',
     borderWidth: 0.5,
-    borderRadius: 0,
-    shadowColor: T.colors.shadow,
-    shadowOpacity: 0.4,
-    shadowRadius: 0.8,
-    shadowOffset: {
-      height: 0.6,
-      width: 0.6,
-    },
+    margin: 8,
     padding: 8,
-    margin: S.spacing.none,
-    marginTop: S.spacing.xsmall,
+  },
+  raised: {
+    shadowColor: '#aaa',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.25,
+  },
+  titleContainer: {
+    marginBottom: 4,
+    borderBottomWidth: 0.85,
+    borderColor:'#E5E5E5',
   },
   cardTitle: {
-    fontWeight: T.fonts.heavyWeight,
-    fontSize: T.fonts.largeSize,
+    fontWeight: '900',
+    fontSize: 18,
+    marginBottom: 2,
   }
 })
