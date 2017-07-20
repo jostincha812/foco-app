@@ -1,9 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-import T from '../T'
-import S from '../styles/styles'
-
 export default class VPQCard extends React.Component {
   render() {
     const props = this.props
