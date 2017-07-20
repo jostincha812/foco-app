@@ -12,28 +12,23 @@ const STACK = {}
 STACK[C.NAV_PROFILE_HOME] = { screen: ProfileHome }
 
 const ProfileStack = StackNavigator(STACK, {
-  navigationOptions: {
+  navigationOptions: ({navigation}) => ({
     drawer: {
       label: 'Profile',
       icon: ({ focused, tintColor }) => Icons.profile({ focused, tintColor }),
     },
-    header: (navigation, defaultHeader) => ({
-      ...defaultHeader,
-      ...S.header,
-      left: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-          onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: S.header.tintColor})}
-        </TouchableOpacity>
-      ),
-    }),
-    tabBar: ({ state, setParams }) => ({
-      icon: ({ focused, tintColor }) => (
-        Icons.profile({ focused, tintColor })
-      ),
-    })
-  },
+    ...S.navigation,
+    headerLeft: (
+      <TouchableOpacity
+        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        onPress={() => navigation.navigate('DrawerOpen') }>
+        {Icons.menu({tintColor: S.navigation.headerTintColor})}
+      </TouchableOpacity>
+    ),
+    tabBarIcon: ({ focused, tintColor }) => (
+      Icons.profile({ focused, color:tintColor })
+    ),
+  }),
 })
 
 export default ProfileStack

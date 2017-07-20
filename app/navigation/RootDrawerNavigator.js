@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { DrawerNavigator, DrawerView } from 'react-navigation'
+import { DrawerNavigator, DrawerItems } from 'react-navigation'
 
 import DrawerContainer from '../containers/DrawerContainer'
 import HomeStack from './HomeStack'
@@ -16,9 +16,9 @@ const RootDrawerNavigator = DrawerNavigator({
   animationEnabled: false,
   contentComponent: props => (
     <DrawerContainer>
-      <DrawerView.Items {...props} />
+      <DrawerItems {...props} />
     </DrawerContainer>
-  )
+  ),
 });
 
 export default RootDrawerNavigator

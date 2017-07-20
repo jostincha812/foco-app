@@ -12,28 +12,23 @@ const STACK = {}
 STACK[C.NAV_ABOUT_APP_ICONS] = { screen: IconsHome }
 
 const AboutStack = StackNavigator(STACK, {
-  navigationOptions: {
+  navigationOptions: ({navigation}) => ({
     drawer: {
       label: 'App Info',
       icon: ({ focused, tintColor }) => Icons.home({ focused, tintColor }),
     },
-    header: (navigation, defaultHeader) => ({
-      ...defaultHeader,
-      ...S.header,
-      left: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-          onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: S.header.tintColor})}
-        </TouchableOpacity>
-      ),
-    }),
-    tabBar: ({ state, setParams }) => ({
-      icon: ({ focused, tintColor }) => (
-        Icons.about({ focused, tintColor })
-      ),
-    }),
-  }
+    ...S.navigation,
+    headerLeft: (
+      <TouchableOpacity
+        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        onPress={() => navigation.navigate('DrawerOpen') }>
+        {Icons.menu({tintColor: S.navigation.headerTintColor})}
+      </TouchableOpacity>
+    ),
+    tabBarIcon: ({ focused, tintColor }) => (
+      Icons.about({ focused, color:tintColor })
+    ),
+  })
 })
 
 export default AboutStack

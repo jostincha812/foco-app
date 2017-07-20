@@ -12,9 +12,9 @@ const RootStackNavigator = StackNavigator({
 }, {
   swipeEnabled: false,
   animationEnabled: false,
-  navigationOptions: {
-    header: S.header,
-  }
+  navigationOptions: ({navigation}) => ({
+    ...S.navigation,
+  })
 })
 
 export default RootStackNavigator

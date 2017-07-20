@@ -18,19 +18,16 @@ import CardsStack from '../components/CardsStack'
 import Flashcard from '../components/Flashcard'
 
 class FlashcardsViewer extends React.Component {
-  static navigationOptions = {
-    title: ({ state }) => ``,
-    header: (navigation, defaultHeader) => ({
-      ...defaultHeader,
-      left: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-          onPress={() => navigation.goBack() }>
-          {Icons.back({color: S.header.tintColor})}
-        </TouchableOpacity>
-      ),
-    }),
-  }
+  static navigationOptions = ({navigation}) => ({
+    title: null,
+    headerLeft: (
+      <TouchableOpacity
+        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        onPress={() => navigation.goBack() }>
+        {Icons.back({color: S.navigation.headerTintColor})}
+      </TouchableOpacity>
+    ),
+  })
 
   constructor(props) {
     super(props)

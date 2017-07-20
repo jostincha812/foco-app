@@ -23,19 +23,16 @@ import api from '../data/api'
 class Home extends React.Component {
   // const {state, setParams, navigate} = navigation
   // const {user} = state.params
-  static navigationOptions = {
-    title: `Foco: WSET-3`,
-    header: (navigation, defaultHeader) => ({
-      ...defaultHeader,
-      right: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
-          onPress={() => navigation.navigate(C.NAV_PROFILE_HOME) }>
-          {Icons.profile({color: S.header.tintColor})}
-        </TouchableOpacity>
-      )
-    })
-  }
+  static navigationOptions = ({navigation}) => ({
+    title: null,
+    headerRight: (
+      <TouchableOpacity
+        style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
+        onPress={() => navigation.navigate(C.NAV_PROFILE_HOME) }>
+        {Icons.profile({color: S.navigation.headerTintColor})}
+      </TouchableOpacity>
+    )
+  })
 
   componentDidMount() {
     // TODO replace with first fetch with app config setting

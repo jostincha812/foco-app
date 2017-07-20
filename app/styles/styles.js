@@ -119,14 +119,14 @@ export default styles = {
   },
 
   // navigation header styles
-  header: {
-    backTitle: null,
-    tintColor: T.colors.app,
-    titleStyle: {
+  navigation: {
+    headerBackTitle: null,
+    headerTintColor: T.colors.app,
+    headerTitleStyle: {
       fontWeight: T.fonts.boldWeight,
       color: T.colors.app,
     },
-    style: {
+    headerStyle: {
       backgroundColor: T.colors.headerBackground,
       borderBottomWidth: 0,
     },

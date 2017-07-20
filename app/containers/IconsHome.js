@@ -9,19 +9,16 @@ import Icons from '../components/Icons'
 import IconsPreview from '../components/IconsPreview';
 
 class IconsHome extends React.Component {
-  static navigationOptions = {
-    title: ({ state }) => `Icons Preview`,
-    header: (navigation, defaultHeader) => ({
-      ...defaultHeader,
-      left: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-          onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({tintColor: S.header.tintColor})}
-        </TouchableOpacity>
-      ),
-    }),
-  };
+  static navigationOptions = ({navigation}) => ({
+    title: 'Icons Preview',
+    headerLeft: (
+      <TouchableOpacity
+        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        onPress={() => navigation.navigate('DrawerOpen') }>
+        {Icons.menu({tintColor: S.navigation.headerTintColor})}
+      </TouchableOpacity>
+    ),
+  })
 
   render() {
     const navigation = this.props.navigation;

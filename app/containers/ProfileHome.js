@@ -5,7 +5,7 @@ import S from '../styles/styles'
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
-    title: ({ state }) => `Profile`,
+    title: 'Profile',
   }
 
   render() {

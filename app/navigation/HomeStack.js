@@ -16,28 +16,23 @@ STACK[C.NAV_FLASHCARDS_VIEWER] = { screen: FlashcardsViewer }
 STACK[C.NAV_FLASHCARDS_SET_CONFIGURATOR] = { screen: FlashcardsSetConfigurator }
 
 const HomeStack = StackNavigator(STACK, {
-  navigationOptions: {
+  navigationOptions: ({navigation}) => ({
     drawer: {
       label: 'Home',
       icon: ({ focused, tintColor }) => Icons.home({ focused, color:tintColor }),
     },
-    header: (navigation, defaultHeader) => ({
-      ...defaultHeader,
-      ...S.header,
-      left: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-          onPress={() => navigation.navigate('DrawerOpen') }>
-          {Icons.menu({color: S.header.tintColor})}
-        </TouchableOpacity>
-      ),
-    }),
-    tabBar: ({ state, setParams }) => ({
-      icon: ({ focused, tintColor }) => (
+    ...S.navigation,
+    headerLeft: (
+      <TouchableOpacity
+        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        onPress={() => navigation.navigate('DrawerOpen') }>
+        {Icons.menu({color: S.navigation.headerTintColor})}
+      </TouchableOpacity>
+    ),
+    tabBarIcon: ({ focused, tintColor }) => (
         Icons.home({ focused, color:tintColor })
-      ),
-    }),
-  }
+    ),
+  })
 })
 
 export default HomeStack
