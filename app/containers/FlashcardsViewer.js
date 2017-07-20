@@ -159,10 +159,10 @@ class FlashcardsViewer extends React.Component {
         <View style={S.containers.screen}>
           <ProgressIndicatorBar progress={(i+1)/a.length} />
           <View style={spacer} />
-          <View style={{flex:7, alignItems:'center'}}>
+          <View style={{flex:7, width:'85%', alignSelf:'center', alignItems:'center'}}>
             <Animatable.View animation="fadeInDown" duration={200} ref="flashcardView">
               <Flashcard
-                style={{width: '85%', height: '100%'}}
+                style={{width: '100%', height: '100%'}}
                 key={current}
                 data={flashcards[current]}
                 prefs={flashcards[current].prefs}

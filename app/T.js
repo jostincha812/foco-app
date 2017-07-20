@@ -6,7 +6,7 @@ export default FocoTheme = {
     containerBackground: '#FAFAFA', // grey 50
     containerBackground: '#ECEFF1',
     contentBackground: '#FFF',
-    contentBorder: '#F5F5F5',   // grey 100
+    contentBorder: '#E5E5E5',   // grey 100
 
     normal: '#212121',         // grey 900
     active: '#E64A19',   // deep orange 700
