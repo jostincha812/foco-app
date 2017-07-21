@@ -9,52 +9,50 @@ import L from '../L'
 import Icons from '../components/Icons'
 import LevelPill from '../components/LevelPill'
 
-import Card from '../lib/Card'
-
 export default class FlashcardSetCard extends React.Component {
-  cardColor(tags) {
-    if (!tags) {
-      return T.colors.inactive
-    }
-
-    for (i=0; i<tags.length; i++) {
-      const c = T.colors[tags[i]]
-      if (c) {
-        return c
-      }
-    }
-    return T.colors.inactive
-  }
-
   render() {
     const props = this.props
-    const type = this.props.type ? this.props.type : 'regular'
-    const onPress = this.props.onPress
+    const type = props.type ? props.type : 'regular'
+    const onPress = props.onPress
+    const icon = props.icon
+    const backgroundColor = props.backgroundColor
     const set = props.set
     const image = set.image
-    const color = this.cardColor(set.tags)
 
     const card = (
       <View
         style={[S.cards.card, S.cards.raised, styles[type], props.style]}
         >
-        <View style={[styles.header, {backgroundColor:color}]}>
+        <View style={[styles.header, {backgroundColor}]}>
           { image &&
             <Image
               style={{width:'100%', height:'100%', position:'absolute'}}
               source={{uri: image}}
             />
           }
-          <Text style={[
-            (type==='hero') ? S.text.title : S.text.subtitle,
-            {
-              padding:S.spacing.small,
-              backgroundColor:image ? T.colors.translucentWhite : T.colors.transparent,
-              color:image ? T.colors.text : T.colors.inverseText,
+          <View style={{flexDirection:'row'}}>
+            { icon &&
+              <View style={{paddingLeft:S.spacing.small, paddingTop:S.spacing.xsmall}}>
+                {icon}
+              </View>
             }
-          ]}>
-            {props.title ? props.title : set.title}
-          </Text>
+            <Text style={[
+              (type==='hero') ? S.text.title : S.text.subtitle,
+              {
+                padding:S.spacing.small,
+                backgroundColor: T.colors.translucentWhite,
+                color: T.colors.text,
+                // backgroundColor: image ? T.colors.translucentWhite : T.colors.transparent,
+                // color:image ? T.colors.text : T.colors.inverseText,
+              }
+            ]}>
+              {props.title ? props.title : set.title}
+            </Text>
+          </View>
+          <LevelPill
+            level={set.level}
+            style={{alignSelf:'flex-start', marginLeft:S.spacing.small}}
+          />
         </View>
         <View style={styles.content}>
           {/* left info block */}
@@ -65,7 +63,6 @@ export default class FlashcardSetCard extends React.Component {
                 {`${set.flashcards.length} ${L.cards}`}
               </Text>
             </View>
-            <LevelPill level={set.level} style={{marginTop:S.spacing.xsmall}} />
           </View>
 
           {/* right action menu block */}

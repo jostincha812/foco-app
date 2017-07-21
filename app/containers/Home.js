@@ -59,12 +59,13 @@ class Home extends React.Component {
     const userSets = this.props.sets[user.id] ? this.props.sets[user.id] : {}
     const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
 
-    const flashcardSetCard = (set, type) => {
+    const flashcardSetCard = (set, type, icon) => {
       return (
         <FlashcardSetCard
           type={type}
           key={set.id}
           set={set}
+          icon={icon}
           onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcards})}>
         </FlashcardSetCard>
       )
@@ -106,7 +107,11 @@ class Home extends React.Component {
           <Text style={S.text.title}>{L.mycards}</Text>
           { starredSet &&
             <View style={{paddingBottom:S.spacing.xsmall, paddingBottom:S.spacing.small}}>
-              {flashcardSetCard({...starredSet, title:L.starred}, 'full')}
+              {flashcardSetCard(
+                {...starredSet, title:L.starred},
+                'full',
+                Icons.star({color:T.colors.starred})
+              )}
             </View>
           }
           <FlashcardSetsGridList
