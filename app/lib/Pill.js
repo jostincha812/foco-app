@@ -1,28 +1,60 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-
-import C from '../C'
-import T from '../T'
-import S from '../styles/styles'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default class Pill extends React.Component {
   render() {
-    const label = this.props.label
-    const inversed = this.props.inversed
-    const disabled = this.props.disabled
+    const props = this.props
+    const label = props.label ? props.label.toUpperCase() : null
+    const large = props.large ? styles.large : null
+    const color = props.color ? props.color : styles.normal.color
+    const backgroundColor = props.backgroundColor ? props.backgroundColor : styles.normal.backgroundColor
+    const borderColor = props.borderColor ? props.borderColor : styles.normal.borderColor
+    const disabledColor = props.disabledColor ? props.disabledColor : styles.disabled.color
+    const disabledBackgroundColor = props.disabledBackgroundColor ? props.disabledBackgroundColor : styles.disabled.backgroundColor
 
-    let colors = styles.normal
-    if (inversed) {
-      colors = styles.inversed
+    let colors = {
+      color,
+      backgroundColor,
+      borderColor,
     }
-    if (disabled) {
-      colors = styles.disabled
+
+    if (props.inversed) {
+      colors.color = backgroundColor
+      colors.borderColor = borderColor
+      colors.backgroundColor = color
     }
-    return (
-      <View style={[styles.pill, {backgroundColor:colors.backgroundColor}, this.props.style]}>
-        <Text style={[S.text.pill, {color:colors.textColor}]}>{label.toUpperCase()}</Text>
+
+    if (props.inactive) {
+      colors.color = backgroundColor
+      colors.borderColor = 'transparent'
+      colors.backgroundColor = color
+    }
+
+    if (props.disabled) {
+      colors.color = disabledColor
+      colors.borderColor = 'transparent'
+      colors.backgroundColor = disabledBackgroundColor
+    }
+
+    const pill = (
+      <View style={[
+          styles.pill,
+          {borderColor:colors.borderColor, backgroundColor:colors.backgroundColor},
+          this.props.style
+      ]}>
+        <Text style={[styles.label, {color:colors.color}, large]}>{label}</Text>
       </View>
     )
+
+    if (props.onPress) {
+      return (
+        <TouchableOpacity onPress={() => props.onPress(props.id)}>
+          {pill}
+        </TouchableOpacity>
+      )
+    } else {
+      return pill
+    }
   }
 }
 
@@ -30,20 +62,27 @@ const styles = {
   pill: {
     paddingTop: 1,
     paddingBottom: 2,
-    paddingLeft: S.spacing.small,
-    paddingRight: S.spacing.small,
-    borderRadius: S.spacing.normal,
+    paddingLeft: 8,
+    paddingRight: 8,
+    borderRadius: 16,
+    borderWidth: 0.5,
+  },
+  label: {
+    fontSize: 10,
+    fontWeight: '500',
+  },
+  large: {
+    fontSize: 14,
+    paddingTop: 1,
   },
   normal: {
-    backgroundColor: T.colors.active,
-    textColor: T.colors.inverseText,
-  },
-  inversed: {
-    backgroundColor: T.colors.inverse,
-    textColor: T.colors.active,
+    color: '#FFF',
+    borderColor: 'transparent',
+    backgroundColor: '#1E88E5',
   },
   disabled: {
-    backgroundColor: T.colors.inactive,
-    textColor: T.colors.inverseText,
+    color: '#333',
+    borderColor: 'transparent',
+    backgroundColor: '#BDBDBD',
   },
 }

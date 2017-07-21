@@ -23,13 +23,15 @@ export default class LevelPill extends React.Component {
       label = L.advanced
       color = T.colors.advanced
     } else {
-      // label = ''
-      // color = T.transparent
       return null
     }
 
     return (
-      <Pill label={label} style={[{backgroundColor:color}, this.props.style]} />
+      <Pill
+        label={label}
+        style={this.props.style}
+        backgroundColor={color}
+      />
     )
   }
 }

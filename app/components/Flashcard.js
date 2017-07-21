@@ -7,7 +7,7 @@ import C from '../C'
 import T from '../T'
 import S from '../styles/styles'
 import Icons from './Icons'
-import TagsList from './TagsList'
+import PillsList from '../lib/PillsList'
 
 export default class Flashcard extends React.Component {
   constructor(props) {
@@ -51,6 +51,11 @@ export default class Flashcard extends React.Component {
     const tags = data.tags
     const prefs = this.props.prefs
 
+    const items = []
+    tags.map(tag => {
+      items.push({key:tag, label:tag})
+    })
+
     return (
       <FlipCard
         style={[styles.container, props.style]}
@@ -86,8 +91,11 @@ export default class Flashcard extends React.Component {
           <MarkdownView styles={S.markdown}>
             {data.back}
           </MarkdownView>
-          <TagsList
-            tags={tags}
+          <PillsList
+            items={items}
+            textColor={T.colors.active}
+            pillColor={T.colors.inverse}
+            pillBorderColor='transparent'
           />
         </View>
       </FlipCard>

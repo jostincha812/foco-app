@@ -2,6 +2,7 @@ export default {
   // Home
   featured: 'Featured',
   mycards: 'My Sets',
+  configureset: 'Configure Set',
 
   // Flashcard Sets
   cards: 'cards',
@@ -9,7 +10,6 @@ export default {
   discard: 'Discard',
   done: 'Fin',
   starred: 'Starred Cards',
-  configureset: 'Configure Set',
   regions: 'Regions',
   tags: 'Tags',
 
