@@ -8,11 +8,11 @@ import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import Icons from '../components/Icons'
+import TagsSelector from '../components/TagsSelector'
 
 import api from '../data/api'
 
 import tags from '../lib/tags'
-import PillsList from '../lib/PillsList'
 import LoadingIndicator from '../lib/LoadingIndicator'
 
 class FlashcardsSetConfigurator extends React.Component {
@@ -29,26 +29,42 @@ class FlashcardsSetConfigurator extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { selected:[] }
+    this.state = { selectedRegions:[], selectedCategories:[] }
     this.onToggle = this.onToggle.bind(this)
   }
 
-  onToggle(tagState) {
+  onToggle(type, tagState) {
+    let state = this.state.selectedRegions
+    if (type === 'REGIONS') {
+      // do nothing
+    } else if (type === 'CATEGORIES') {
+      state = this.state.selectedCategories
+    }
+
     const tag = tagState.tag
     const selected = tagState.val
     if (selected) {
-      this.state.selected.push(tag)
+      state.push(tag)
     } else {
-      this.state.selected.splice(this.state.selected.indexOf(tag),1)
+      state.splice(state.indexOf(tag),1)
     }
-    console.log(this.state.selected)
+
+    console.log(this.state)
   }
 
   render() {
-    const items = []
+    const regions = []
     Object.keys(tags.regions).map(key => {
-      items.push(tags.regions[key])
+      regions.push(tags.regions[key])
     })
+    const categories = []
+    Object.keys(tags.categories).map(key => {
+      categories.push(tags.categories[key])
+    })
+
+    const selectedRegion = this.state.selectedRegions
+    const selectedCategories = this.state.selectedCategories
+    const count = 22
 
     return (
       <View style={S.containers.screen}>
@@ -56,21 +72,28 @@ class FlashcardsSetConfigurator extends React.Component {
         <ScrollView contentContinerStyle={S.containers.flexRowWrapped}>
           <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
             <Text style={S.text.hero}>{L.regions}</Text>
-            <PillsList
-              items={items}
-              selected={['US','AT']}
-              onToggle={this.onToggle}
-              largePills={true}
-              textColor={T.colors.inverseText}
-              pillColor={T.colors.active}
-              pillBorderColor={T.colors.active}
-              disabledPillColor={T.colors.disabled}
-              disabledTextColor={T.colors.inactiveText}
+            <TagsSelector
+              items={regions}
+              selected={selectedRegion}
+              onToggle={tagState => this.onToggle('REGIONS', tagState)}
+            />
+          </View>
+          <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
+            <Text style={S.text.hero}>{L.tags}</Text>
+            <TagsSelector
+              items={categories}
+              selected={selectedCategories}
+              onToggle={tagState => this.onToggle('CATEGORIES', tagState)}
             />
           </View>
         </ScrollView>
+        <View>
+          <Text style={[S.containers.normal, S.text.subtitle]}>
+            ~ {count} {L.cards}
+          </Text>
+        </View>
         <Button
-          title={L.next}
+          title={L.go.toUpperCase()}
           buttonStyle={{marginLeft:0, width:'100%'}}
           raised={true}
           icon={{name:'chevron-right'}}

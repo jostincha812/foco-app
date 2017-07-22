@@ -25,12 +25,12 @@ export default class PillsList extends React.Component {
   }
 
   toggleItem(key) {
-    const newState = {}
-    newState[key] = !this.state[key]
-    this.setState(newState)
+    const state = {}
+    state[key] = !this.state[key]
+    this.setState(state)
 
     if (this.props.onToggle) {
-      this.props.onToggle({tag:key, val:newState[key]})
+      this.props.onToggle({tag:key, val:state[key]})
     }
   }
 

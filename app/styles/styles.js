@@ -72,6 +72,9 @@ export default styles = {
     list: {
       padding: spacing.normal,
     },
+    normal: {
+      padding: spacing.normal,
+    },
     grid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
