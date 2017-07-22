@@ -10,7 +10,7 @@ import S from '../styles/styles'
 import Icons from '../components/Icons'
 import TagsSelector from '../components/TagsSelector'
 
-import api from '../data/api'
+import { estimateFlashcardSetFromTags } from '../actions/UserFlashcardSetsActions'
 
 import tags from '../lib/tags'
 import LoadingIndicator from '../lib/LoadingIndicator'
@@ -49,7 +49,7 @@ class FlashcardsSetConfigurator extends React.Component {
       state.splice(state.indexOf(tag),1)
     }
 
-    console.log(this.state)
+    estimateFlashcardSetFromTags(C.WSET3, this.state.selectedRegions, this.state.selectedCategories)
   }
 
   render() {
@@ -113,6 +113,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    estimateFlashcardSetFromTags: (level, tags1, tags2) => dispatch(estimateFlashcardSetFromTags(level, tags1, tags2))
   }
 }
 

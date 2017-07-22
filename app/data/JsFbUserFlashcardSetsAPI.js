@@ -57,4 +57,51 @@ export default JsUserFlashcardSetsAPI = {
     r.off('child_added')
     r.off('child_removed')
   },
+
+  estimateFlashcardSetFromTags: (level, tags1, tags2) => {
+    // TODO check for levels
+    // console.log(level)
+    const promises1 = []
+
+    if (tags1) {
+      tags1.map(tag => {
+        promises1.push(refs.flashcardsTags().orderByChild(tag).equalTo(true).once('value').then(snap => snap.val()))
+      })
+    }
+
+    const promises2 = []
+    if (tags2) {
+      tags2.map(tag => {
+        promises2.push(refs.flashcardsTags().orderByChild(tag).equalTo(true).once('value').then(snap => snap.val()))
+      })
+    }
+
+    return Promise.all(promises1).then(results1 => {
+      // OR -- union of results
+      let set1 = {}
+      results1.map(r => set1 = Object.assign(set1, r))
+      return set1
+    }).then(set1 => Promise.all(promises2).then(results2 => {
+      // OR -- union of results
+      let set2 = {}
+      results2.map(r => set2 = Object.assign(set2, r))
+
+      // then AND -- intersect of results
+      if (Object.keys(set1).length && Object.keys(set2).length) {
+        const set3 = Object.keys(set1).filter({}.hasOwnProperty.bind(set2))
+        console.log(set3)
+        return set3
+      }
+
+      if (Object.keys(set1).length) {
+        console.log(Object.keys(set1))
+        return Object.keys(set1)
+      }
+
+      if (Object.keys(set2).length) {
+        console.log(Object.keys(set2))
+        return Object.keys(set2)
+      }
+    }))
+  }
 }

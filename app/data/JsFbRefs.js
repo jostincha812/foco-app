@@ -18,6 +18,10 @@ export default JsFbRefs = {
     return db().ref(`${refs.flashcards}/${key}`)
   },
 
+  flashcardsTags: () => {
+    return db().ref(`${refs.flashcardsTags}`)
+  },
+
   flashcardTags: (key) => {
     return db().ref(`${refs.flashcardsTags}/${key}`)
   },

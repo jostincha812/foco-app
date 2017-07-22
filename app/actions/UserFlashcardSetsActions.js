@@ -52,3 +52,11 @@ export function teardownUserStarredFlashcardsListeners(id) {
     api.flashcardSets.teardownUserStarredFlashcardsListeners(id)
   }
 }
+
+export function estimateFlashcardSetFromTags(level, tags1, tags2) {
+  return {
+    type: C.ESTIMATE_FLASHCARD_SET_FROM_TAGS,
+    level: level,
+    payload: api.flashcardSets.estimateFlashcardSetFromTags(level, tags1, tags2)
+  }
+}
