@@ -58,6 +58,7 @@ class FlashcardsSetConfigurator extends React.Component {
             <Text style={S.text.hero}>{L.regions}</Text>
             <PillsList
               items={items}
+              selected={['US','AT']}
               onToggle={this.onToggle}
               largePills={true}
               textColor={T.colors.inverseText}

@@ -93,8 +93,9 @@ export default class Flashcard extends React.Component {
           </MarkdownView>
           <PillsList
             items={items}
-            textColor={T.colors.active}
-            pillColor={T.colors.inverse}
+            selected={tags}
+            textColor={T.colors.inverse}
+            pillColor={T.colors.active}
             pillBorderColor='transparent'
           />
         </View>

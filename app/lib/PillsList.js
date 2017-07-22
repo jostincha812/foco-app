@@ -11,9 +11,17 @@ export default class PillsList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.items.map((item, i) => {
-      this.state[item.key] = false
+    const props = this.props
+    const state = {}
+    props.items.map(item => {
+      state[item.key] = false
     })
+    if (props.selected) {
+      props.selected.map(key => {
+        state[key] = true
+      })
+    }
+    this.setState(state)
   }
 
   toggleItem(key) {
