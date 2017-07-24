@@ -22,4 +22,5 @@ export default {
   // navigation
   next: 'Next',
   go: 'Go',
+  save: 'Save',
 }

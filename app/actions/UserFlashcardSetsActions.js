@@ -25,6 +25,14 @@ export function createUserFlashcardSet(id, level, title, flashcards, tags) {
   }
 }
 
+export function saveUserFlashcardSet(id, setId, level, title, flashcards, tags) {
+  return {
+    type: C.SAVE_USER_FLASHCARD_SET,
+    userId: id,
+    payload: api.flashcardSets.saveUserFlashcardSet(id, setId, level, title, flashcards, tags)
+  }
+}
+
 // export function fetchUserStarredFlashcardsSet(id) {
 //   return {
 //     type: C.FETCH_USER_FLASHCARD_SETS,

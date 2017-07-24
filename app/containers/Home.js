@@ -116,6 +116,7 @@ class Home extends React.Component {
             sets={userSets}
             onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ...set})}
             onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR)}
+            onEdit={(set) => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {...set})}
           />
         </View>
       </ScrollView>

@@ -14,6 +14,7 @@ export default class FlashcardSetsGridList extends React.Component {
     const cardSets = this.props.sets
     const onPress = this.props.onPress
     const onAddNew = this.props.onAddNew
+    const onEdit = this.props.onEdit
     const {height, width} = Dimensions.get('window')
     const padding = S.spacing.normal
     const itemWidth = (width-padding*2) / 2 - S.spacing.xsmall
@@ -28,6 +29,7 @@ export default class FlashcardSetsGridList extends React.Component {
               type='regular'
               key={id}
               set={set}
+              onEdit={() => onEdit({id, ...set})}
               onPress={() => onPress({id, ids:set.flashcards})}>
             </FlashcardSetCard>
           )

@@ -33,6 +33,21 @@ export default JsUserFlashcardSetsAPI = {
     })
   },
 
+  saveUserFlashcardSet: (id, setId, level, title, flashcards, tags) => {
+    const sets = {}
+    const data = {
+      level,
+      title,
+      flashcards: Object.values(flashcards),
+      tags
+    }
+    return refs.userFlashcardSets(id).child(setId).update(data).then(ref => {
+      sets[id] = {}
+      sets[id][ref.key] = data
+      return sets
+    })
+  },
+
   // getUserStarredFlashcardsSet: (id) => {
   //   return refs.userPrefs(id).orderByChild(C.KEY_PREF_STARRED).equalTo(true).once('value').then(snap => {
   //     const cards = Object.keys(snap.val())

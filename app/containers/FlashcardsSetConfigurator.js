@@ -18,7 +18,8 @@ import {
   fetchFlashcardsWithTags,
 } from '../actions/FlashcardActions'
 import {
-  createUserFlashcardSet
+  createUserFlashcardSet,
+  saveUserFlashcardSet,
 } from '../actions/UserFlashcardSetsActions'
 
 class FlashcardsSetConfigurator extends React.Component {
@@ -40,15 +41,65 @@ class FlashcardsSetConfigurator extends React.Component {
     this.onDone = this.onDone.bind(this)
   }
 
+  componentWillMount() {
+    this.props.resetFlashcardsState()
+
+    const navigation = this.props.navigation
+    if (navigation.state.params) {
+      const id = navigation.state.params.id
+      const selectedTags = navigation.state.params.tags
+      const title = navigation.state.params.title
+
+      console.log(selectedTags)
+      // build selected regions / categories lists
+      const regions = []
+      const categories = []
+      selectedTags.map(t => {
+        if (tags.regions.hasOwnProperty(t.toUpperCase())) {
+          regions.push(t)
+        }
+        if (tags.categories.hasOwnProperty(t)) {{
+          categories.push(t)
+        }}
+      })
+
+      this.setState({
+        name: title,
+        selectedRegions: regions,
+        selectedCategories: categories,
+        editing: true,
+      })
+
+      // TODO use level from app config
+      this.props.fetchFlashcardsWithTags(
+        C.WSET3,
+        regions,
+        categories,
+      )
+    }
+  }
+
   onDone() {
     const navigation = this.props.navigation
-    this.props.createUserFlashcardSet(
-      this.props.user.id,
-      null,
-      this.state.name,
-      this.props.flashcards,
-      this.state.selectedRegions.concat(this.state.selectedCategories)
-    )
+    if (this.state.editing) {
+      this.props.saveUserFlashcardSet(
+        this.props.user.id,
+        navigation.state.params.id,
+        null,
+        this.state.name,
+        this.props.flashcards,
+        this.state.selectedRegions.concat(this.state.selectedCategories)
+      )
+    } else {
+      this.props.createUserFlashcardSet(
+        this.props.user.id,
+        null,
+        this.state.name,
+        this.props.flashcards,
+        this.state.selectedRegions.concat(this.state.selectedCategories)
+      )
+    }
+
     // TODO navigate away only when successful
     navigation.navigate(C.NAV_HOME)
     this.props.resetFlashcardsState()
@@ -70,6 +121,7 @@ class FlashcardsSetConfigurator extends React.Component {
       state.splice(state.indexOf(tag),1)
     }
 
+    // TODO use level from app config
     this.props.fetchFlashcardsWithTags(
       C.WSET3,
       this.state.selectedRegions,
@@ -90,6 +142,7 @@ class FlashcardsSetConfigurator extends React.Component {
     const selectedRegion = this.state.selectedRegions
     const selectedCategories = this.state.selectedCategories
     const count = Object.keys(this.props.flashcards).length
+    const label = this.state.editing ? L.save : L.go
 
     return (
       <View style={S.containers.screen}>
@@ -129,7 +182,7 @@ class FlashcardsSetConfigurator extends React.Component {
           </View>
         }
         <Button
-          title={L.go.toUpperCase()}
+          title={label.toUpperCase()}
           buttonStyle={{marginLeft:0, width:'100%'}}
           raised={true}
           icon={{name:'chevron-right'}}
@@ -155,7 +208,8 @@ function mapDispatchToProps (dispatch) {
   return {
     resetFlashcardsState: () => dispatch(resetFlashcardsState()),
     fetchFlashcardsWithTags: (level, tags1, tags2) => dispatch(fetchFlashcardsWithTags(level, tags1, tags2)),
-    createUserFlashcardSet: (id, level, title, flashcards, tags) => dispatch(createUserFlashcardSet(id, level, title, flashcards, tags))
+    createUserFlashcardSet: (id, level, title, flashcards, tags) => dispatch(createUserFlashcardSet(id, level, title, flashcards, tags)),
+    saveUserFlashcardSet: (id, setId, level, title, flashcards, tags) => dispatch(saveUserFlashcardSet(id, setId, level, title, flashcards, tags)),
   }
 }
 

@@ -14,6 +14,7 @@ export default class FlashcardSetCard extends React.Component {
     const props = this.props
     const type = props.type ? props.type : 'regular'
     const onPress = props.onPress
+    const onEdit = props.onEdit
     const icon = props.icon
     const backgroundColor = props.backgroundColor
     const set = props.set
@@ -66,9 +67,15 @@ export default class FlashcardSetCard extends React.Component {
           </View>
 
           {/* right action menu block */}
-          <View style={[S.containers.centered,{paddingTop:S.spacing.xsmall}]}>
-            {Icons.inlineMenu({size:T.icons.smallIcon+4})}
-          </View>
+          { onEdit &&
+            <View style={[S.containers.centered,{paddingTop:S.spacing.xsmall}]}>
+              {Icons.edit({
+                size: T.icons.smallIcon,
+                color: T.colors.normal,
+                onPress: onEdit
+              })}
+            </View>
+          }
         </View>
       </View>
     )
