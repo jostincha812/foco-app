@@ -40,6 +40,7 @@ class FlashcardsViewer extends React.Component {
   }
 
   componentWillMount() {
+    this.props.resetFlashcardsState()
     if (this.props.navigation) {
       const ids = this.props.navigation.state.params.ids
       const user = this.props.navigation.state.params.user
@@ -156,6 +157,9 @@ class FlashcardsViewer extends React.Component {
     }
 
     if (ready) {
+      console.log(ready)
+      console.log(flashcards)
+      console.log(current)
       return (
         <View style={S.containers.screen}>
           <ProgressIndicatorBar progress={(i+1)/a.length} />

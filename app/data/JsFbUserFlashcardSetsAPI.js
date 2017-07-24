@@ -18,12 +18,12 @@ export default JsUserFlashcardSetsAPI = {
     })
   },
 
-  createUserFlashcardSet: (id, level, title, flashcardIds, tags) => {
+  createUserFlashcardSet: (id, level, title, flashcards, tags) => {
     const sets = {}
     const data = {
       level,
       title,
-      flashcards: flashcardIds,
+      flashcards: Object.values(flashcards),
       tags
     }
     return refs.userFlashcardSets(id).push(data).then(ref => {

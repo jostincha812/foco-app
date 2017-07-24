@@ -10,10 +10,6 @@ export default JsFbFlashcardsAPI = {
     })
   },
 
-  getFlashcardIdsWithTags: (tags) => {
-
-  },
-
   getFlashcard: (id, userId) => {
     return Promise.all([
       refs.flashcard(id).once('value').then(snap => {

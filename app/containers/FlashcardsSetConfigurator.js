@@ -14,6 +14,7 @@ import tags from '../lib/tags'
 import LoadingIndicator from '../lib/LoadingIndicator'
 
 import {
+  resetFlashcardsState,
   fetchFlashcardsWithTags,
 } from '../actions/FlashcardActions'
 import {
@@ -53,6 +54,7 @@ class FlashcardsSetConfigurator extends React.Component {
     )
     // TODO navigate away only when successful
     navigation.navigate(C.NAV_HOME)
+    this.props.resetFlashcardsState()
   }
 
   onToggle(type, tagState) {
@@ -154,6 +156,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    resetFlashcardsState: () => dispatch(resetFlashcardsState()),
     fetchFlashcardsWithTags: (level, tags1, tags2) => dispatch(fetchFlashcardsWithTags(level, tags1, tags2)),
     createUserFlashcardSet: (id, level, title, flashcards, tags) => dispatch(createUserFlashcardSet(id, level, title, flashcards, tags))
   }
