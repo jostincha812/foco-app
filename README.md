@@ -23,3 +23,6 @@
 
 ## v0.7
 * upgraded to react-navigation 1.0.0.beta11
+
+## v0.8
+* **FlashcardsSetConfigurator** creates set from Tags
