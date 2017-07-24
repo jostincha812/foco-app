@@ -43,7 +43,7 @@ export default JsUserFlashcardSetsAPI = {
     }
     return refs.userFlashcardSets(id).child(setId).update(data).then(ref => {
       sets[id] = {}
-      sets[id][ref.key] = data
+      sets[id][setId] = data
       return sets
     })
   },

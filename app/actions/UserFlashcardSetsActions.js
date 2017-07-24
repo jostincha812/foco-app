@@ -1,35 +1,35 @@
 import C from '../C'
 import api from '../data/api'
 
-export function fetchFeaturedFlashcardSets(id) {
+export function fetchFeaturedFlashcardSets(userId) {
   return {
     type: C.FETCH_USER_FLASHCARD_SETS,
-    userId: id,
-    payload: api.flashcardSets.getFeaturedFlashcardSets(id)
+    userId: userId,
+    payload: api.flashcardSets.getFeaturedFlashcardSets(userId)
   }
 }
 
-export function fetchUserFlashcardSets(id) {
+export function fetchUserFlashcardSets(userId) {
   return {
     type: C.FETCH_USER_FLASHCARD_SETS,
-    userId: id,
-    payload: api.flashcardSets.getUserFlashcardSets(id)
+    userId: userId,
+    payload: api.flashcardSets.getUserFlashcardSets(userId)
   }
 }
 
-export function createUserFlashcardSet(id, level, title, flashcards, tags) {
+export function createUserFlashcardSet(userId, level, title, flashcards, tags) {
   return {
     type: C.CREATE_USER_FLASHCARD_SET,
-    userId: id,
-    payload: api.flashcardSets.createUserFlashcardSet(id, level, title, flashcards, tags)
+    userId: userId,
+    payload: api.flashcardSets.createUserFlashcardSet(userId, level, title, flashcards, tags)
   }
 }
 
-export function saveUserFlashcardSet(id, setId, level, title, flashcards, tags) {
+export function saveUserFlashcardSet(userId, setId, level, title, flashcards, tags) {
   return {
     type: C.SAVE_USER_FLASHCARD_SET,
-    userId: id,
-    payload: api.flashcardSets.saveUserFlashcardSet(id, setId, level, title, flashcards, tags)
+    userId: userId,
+    payload: api.flashcardSets.saveUserFlashcardSet(userId, setId, level, title, flashcards, tags)
   }
 }
 
