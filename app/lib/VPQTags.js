@@ -1,4 +1,28 @@
-export default tags = {
+const VPQTags = {
+  split: (list) => {
+    const regions = []
+    const categories = []
+    const varietals = []
+
+    list.map(t => {
+      if (VPQTags.regions.hasOwnProperty(t.toUpperCase())) {
+        regions.push(t)
+      }
+      if (VPQTags.categories.hasOwnProperty(t)) {{
+        categories.push(t)
+      }}
+      if (VPQTags.varietals.hasOwnProperty(t.toUpperCase())) {
+        regions.push(t)
+      }
+    })
+
+    return {
+      regions,
+      categories,
+      varietals,
+    }
+  },
+
   categories: {
     climate: { key: 'climate', label: 'Climate' },
     fortified: { key: 'fortified', label: 'Fortified' },
@@ -34,3 +58,5 @@ export default tags = {
     zinfandel: { key: 'zinfandel', label: 'Zinfandel' },
   }
 }
+
+export default VPQTags

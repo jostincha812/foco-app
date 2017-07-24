@@ -10,7 +10,7 @@ import S from '../styles/styles'
 import Icons from '../components/Icons'
 import TagsSelector from '../components/TagsSelector'
 
-import tags from '../lib/tags'
+import VPQTags from '../lib/VPQTags'
 import LoadingIndicator from '../lib/LoadingIndicator'
 
 import {
@@ -47,21 +47,26 @@ class FlashcardsSetConfigurator extends React.Component {
     const navigation = this.props.navigation
     if (navigation.state.params) {
       const id = navigation.state.params.id
-      const selectedTags = navigation.state.params.tags
+      const tags = navigation.state.params.tags
       const title = navigation.state.params.title
 
-      console.log(selectedTags)
+      // console.log(selectedTags)
       // build selected regions / categories lists
-      const regions = []
-      const categories = []
-      selectedTags.map(t => {
-        if (tags.regions.hasOwnProperty(t.toUpperCase())) {
-          regions.push(t)
-        }
-        if (tags.categories.hasOwnProperty(t)) {{
-          categories.push(t)
-        }}
-      })
+      // const regions = []
+      // const categories = []
+      // selectedTags.map(t => {
+      //   if (tags.regions.hasOwnProperty(t.toUpperCase())) {
+      //     regions.push(t)
+      //   }
+      //   if (tags.categories.hasOwnProperty(t)) {{
+      //     categories.push(t)
+      //   }}
+      // })
+
+      const split = VPQTags.split(tags)
+      const regions = split.regions
+      const categories = split.categories
+      const varietals = split.varietals
 
       this.setState({
         name: title,
@@ -130,14 +135,9 @@ class FlashcardsSetConfigurator extends React.Component {
   }
 
   render() {
-    const regions = []
-    Object.keys(tags.regions).map(key => {
-      regions.push(tags.regions[key])
-    })
-    const categories = []
-    Object.keys(tags.categories).map(key => {
-      categories.push(tags.categories[key])
-    })
+    const regions = Object.values(VPQTags.regions)
+    const categories = Object.values(VPQTags.categories)
+    const varietals = Object.values(VPQTags.varietals)
 
     const selectedRegion = this.state.selectedRegions
     const selectedCategories = this.state.selectedCategories
