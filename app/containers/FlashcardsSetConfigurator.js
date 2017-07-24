@@ -107,6 +107,7 @@ class FlashcardsSetConfigurator extends React.Component {
           icon={{name:'chevron-right'}}
           iconRight={true}
           backgroundColor={T.colors.yes}
+          disabled={!(this.props.ready && count > 0)}
           // onPress={() => this.onYesNoAction({type:C.ACTION_YES})}
         />
       </View>
