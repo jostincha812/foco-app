@@ -157,9 +157,6 @@ class FlashcardsViewer extends React.Component {
     }
 
     if (ready) {
-      console.log(ready)
-      console.log(flashcards)
-      console.log(current)
       return (
         <View style={S.containers.screen}>
           <ProgressIndicatorBar progress={(i+1)/a.length} />

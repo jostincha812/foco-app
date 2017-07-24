@@ -42,9 +42,6 @@ class FlashcardsSetConfigurator extends React.Component {
 
   onDone() {
     const navigation = this.props.navigation
-
-    console.log(this.state)
-    console.log(this.props.flashcards)
     this.props.createUserFlashcardSet(
       this.props.user.id,
       null,
