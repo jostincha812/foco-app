@@ -11,7 +11,7 @@ export default function FlashcardReducer (state = initialState, action) {
   switch (action.type) {
     case C.RESET_FLASHCARDS_STATE:
       return initialState
-      
+
     case C.FETCH_FLASHCARD_IDS_PENDING:
       return {
         ...state,
@@ -77,6 +77,28 @@ export default function FlashcardReducer (state = initialState, action) {
         data: flashcards
       }
     case C.FETCH_FLASHCARDS_REJECTED:
+      return {
+        ...state,
+        isFetching: false,
+        error: true
+      }
+
+    case C.FETCH_FLASHCARDS_WITH_TAGS_PENDING:
+      return {
+        ...state,
+        data: {},
+        isFetching: true,
+        isReady: false,
+        error: false,
+      }
+    case C.FETCH_FLASHCARDS_WITH_TAGS_FULFILLED:
+      return {
+        ...state,
+        isFetching: false,
+        isReady: true,
+        data: Object.assign({}, state.data, action.payload)
+      }
+    case C.FETCH_FLASHCARDS_WITH_TAGS_REJECTED:
       return {
         ...state,
         isFetching: false,

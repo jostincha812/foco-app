@@ -1,8 +1,7 @@
 import C from '../C'
 import api from '../data/api'
 
-export function fetchFeaturedFlashcardSets() {
-  const id = C.FOCO_WSET3
+export function fetchFeaturedFlashcardSets(id) {
   return {
     type: C.FETCH_USER_FLASHCARD_SETS,
     userId: id,
@@ -50,13 +49,5 @@ export function teardownUserStarredFlashcardsListeners(id) {
       userId: id,
     })
     api.flashcardSets.teardownUserStarredFlashcardsListeners(id)
-  }
-}
-
-export function estimateFlashcardSetFromTags(level, tags1, tags2) {
-  return {
-    type: C.ESTIMATE_FLASHCARD_SET_FROM_TAGS,
-    level: level,
-    payload: api.flashcardSets.estimateFlashcardSetFromTags(level, tags1, tags2)
   }
 }

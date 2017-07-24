@@ -52,28 +52,6 @@ export default function UserFlashcardSetsReducer (state = initialState, action) 
         error: false,
       }
 
-    case C.ESTIMATE_FLASHCARD_SET_FROM_TAGS_PENDING:
-      return {
-        ...state,
-        isFetching: true,
-        isReady: false,
-        error: false,
-      }
-    case C.ESTIMATE_FLASHCARD_SET_FROM_TAGS_FULFILLED:
-      return {
-        ...state,
-        isFetching: false,
-        isReady: true,
-        data: Object.assign({}, state.data, action.payload)
-      }
-    case C.ESTIMATE_FLASHCARD_SET_FROM_TAGS_REJECTED:
-      return {
-        ...state,
-        isFetching: false,
-        error: true
-      }
-
-
     default:
       return state
   }

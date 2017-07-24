@@ -10,10 +10,12 @@ import S from '../styles/styles'
 import Icons from '../components/Icons'
 import TagsSelector from '../components/TagsSelector'
 
-import { estimateFlashcardSetFromTags } from '../actions/UserFlashcardSetsActions'
-
 import tags from '../lib/tags'
 import LoadingIndicator from '../lib/LoadingIndicator'
+
+import {
+  fetchFlashcardsWithTags,
+} from '../actions/FlashcardActions'
 
 class FlashcardsSetConfigurator extends React.Component {
   static navigationOptions = ({navigation}) => ({
@@ -49,7 +51,11 @@ class FlashcardsSetConfigurator extends React.Component {
       state.splice(state.indexOf(tag),1)
     }
 
-    estimateFlashcardSetFromTags(C.WSET3, this.state.selectedRegions, this.state.selectedCategories)
+    this.props.fetchFlashcardsWithTags(
+      C.WSET3,
+      this.state.selectedRegions,
+      this.state.selectedCategories
+    )
   }
 
   render() {
@@ -64,7 +70,7 @@ class FlashcardsSetConfigurator extends React.Component {
 
     const selectedRegion = this.state.selectedRegions
     const selectedCategories = this.state.selectedCategories
-    const count = 22
+    const count = Object.keys(this.props.flashcards).length
 
     return (
       <View style={S.containers.screen}>
@@ -87,11 +93,13 @@ class FlashcardsSetConfigurator extends React.Component {
             />
           </View>
         </ScrollView>
-        <View>
-          <Text style={[S.containers.normal, S.text.subtitle]}>
-            ~ {count} {L.cards}
-          </Text>
-        </View>
+        { (this.props.ready && count > 0) &&
+          <View>
+            <Text style={[S.containers.normal, S.text.subtitle]}>
+              ~ {count} {L.cards}
+            </Text>
+          </View>
+        }
         <Button
           title={L.go.toUpperCase()}
           buttonStyle={{marginLeft:0, width:'100%'}}
@@ -108,12 +116,14 @@ class FlashcardsSetConfigurator extends React.Component {
 
 function mapStateToProps (state) {
   return {
+    ready: state.flashcards.isReady,
+    flashcards: state.flashcards.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    estimateFlashcardSetFromTags: (level, tags1, tags2) => dispatch(estimateFlashcardSetFromTags(level, tags1, tags2))
+    fetchFlashcardsWithTags: (level, tags1, tags2) => dispatch(fetchFlashcardsWithTags(level, tags1, tags2))
   }
 }
 

@@ -29,6 +29,13 @@ export function fetchFlashcards(ids, userId) {
   }
 }
 
+export function fetchFlashcardsWithTags(level, tags1, tags2) {
+  return {
+    type: C.FETCH_FLASHCARDS_WITH_TAGS,
+    level: level,
+    payload: api.flashcards.getFlashcardsWithTags(level, tags1, tags2),
+  }
+}
 export function updateUserFlashcardPref(userId, flashcardId, { key, val }) {
   const pref = {}
   pref[key] = val

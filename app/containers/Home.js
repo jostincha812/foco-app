@@ -19,8 +19,6 @@ import {
   teardownUserStarredFlashcardsListeners,
 } from '../actions/UserFlashcardSetsActions'
 
-import api from '../data/api'
-
 class Home extends React.Component {
   // const {state, setParams, navigate} = navigation
   // const {user} = state.params
@@ -37,7 +35,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     // TODO replace with first fetch with app config setting
-    this.props.fetchFeaturedFlashcardSets()
+    this.props.fetchFeaturedFlashcardSets(C.FOCO_WSET3)
     // this.props.fetchUserStarredFlashcardsSet(this.props.user.id)
     this.props.fetchUserFlashcardSets(this.props.user.id)
     this.props.setupUserStarredFlashcardsListeners(this.props.user.id)
@@ -135,7 +133,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchFeaturedFlashcardSets: () => dispatch(fetchFeaturedFlashcardSets()),
+    fetchFeaturedFlashcardSets: (levelId) => dispatch(fetchFeaturedFlashcardSets(levelId)),
     // fetchUserStarredFlashcardsSet: (id) => dispatch(fetchUserStarredFlashcardsSet(id)),
     fetchUserFlashcardSets: (id) => dispatch(fetchUserFlashcardSets(id)),
     setupUserStarredFlashcardsListeners: (id) => dispatch(setupUserStarredFlashcardsListeners(id)),
