@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { Button } from 'react-native-elements'
+import { Button, FormLabel, FormInput } from 'react-native-elements'
 
 import C from '../C'
 import T from '../T'
@@ -16,6 +16,9 @@ import LoadingIndicator from '../lib/LoadingIndicator'
 import {
   fetchFlashcardsWithTags,
 } from '../actions/FlashcardActions'
+import {
+  createUserFlashcardSet
+} from '../actions/UserFlashcardSetsActions'
 
 class FlashcardsSetConfigurator extends React.Component {
   static navigationOptions = ({navigation}) => ({
@@ -31,8 +34,25 @@ class FlashcardsSetConfigurator extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { selectedRegions:[], selectedCategories:[] }
+    this.state = { name:'', selectedRegions:[], selectedCategories:[] }
     this.onToggle = this.onToggle.bind(this)
+    this.onDone = this.onDone.bind(this)
+  }
+
+  onDone() {
+    const navigation = this.props.navigation
+
+    console.log(this.state)
+    console.log(this.props.flashcards)
+    this.props.createUserFlashcardSet(
+      this.props.user.id,
+      null,
+      this.state.name,
+      this.props.flashcards,
+      this.state.selectedRegions.concat(this.state.selectedCategories)
+    )
+    // TODO navigate away only when successful
+    navigation.navigate(C.NAV_HOME)
   }
 
   onToggle(type, tagState) {
@@ -76,8 +96,17 @@ class FlashcardsSetConfigurator extends React.Component {
       <View style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
         <ScrollView contentContinerStyle={S.containers.flexRowWrapped}>
+          <View style={{paddingBottom:S.spacing.xsmall}}>
+            <FormInput
+              onChangeText={(text) => this.setState({name:text})}
+              placeholder={L.untitled}
+              value={this.state.name}
+              containerStyle={{marginTop:S.spacing.normal}}
+              inputStyle={{color:T.colors.text, fontWeight:T.fonts.heavyWeight}}
+            />
+          </View>
           <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
-            <Text style={S.text.hero}>{L.regions}</Text>
+            <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.regions}</Text>
             <TagsSelector
               items={regions}
               selected={selectedRegion}
@@ -85,7 +114,7 @@ class FlashcardsSetConfigurator extends React.Component {
             />
           </View>
           <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
-            <Text style={S.text.hero}>{L.tags}</Text>
+            <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.tags}</Text>
             <TagsSelector
               items={categories}
               selected={selectedCategories}
@@ -108,7 +137,7 @@ class FlashcardsSetConfigurator extends React.Component {
           iconRight={true}
           backgroundColor={T.colors.yes}
           disabled={!(this.props.ready && count > 0)}
-          // onPress={() => this.onYesNoAction({type:C.ACTION_YES})}
+          onPress={this.onDone}
         />
       </View>
     )
@@ -117,6 +146,7 @@ class FlashcardsSetConfigurator extends React.Component {
 
 function mapStateToProps (state) {
   return {
+    user: { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3' },
     ready: state.flashcards.isReady,
     flashcards: state.flashcards.data,
   }
@@ -124,7 +154,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchFlashcardsWithTags: (level, tags1, tags2) => dispatch(fetchFlashcardsWithTags(level, tags1, tags2))
+    fetchFlashcardsWithTags: (level, tags1, tags2) => dispatch(fetchFlashcardsWithTags(level, tags1, tags2)),
+    createUserFlashcardSet: (id, level, title, flashcards, tags) => dispatch(createUserFlashcardSet(id, level, title, flashcards, tags))
   }
 }
 

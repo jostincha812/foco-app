@@ -30,6 +30,28 @@ export default function UserFlashcardSetsReducer (state = initialState, action) 
         error: true
       }
 
+    case C.CREATE_USER_FLASHCARD_SET_PENDING:
+      return {
+        ...state,
+        isFetching: true,
+        isReady: false,
+        error: false,
+      }
+    case C.CREATE_USER_FLASHCARD_SET_FULFILLED:
+      return {
+        ...state,
+        isFetching: false,
+        isReady: true,
+        data: Object.assign({}, state.data, action.payload)
+      }
+    case C.CREATE_USER_FLASHCARD_SET_REJECTED:
+      return {
+        ...state,
+        isFetching: false,
+        error: true
+      }
+
+
     case C.STARRED_USER_FLASHCARDS_ON:
       return {
         ...state,

@@ -12,6 +12,7 @@ export default {
   starred: 'Starred Cards',
   regions: 'Regions',
   tags: 'Tags',
+  untitled: 'Untitled Set',
 
   // levels
   beginner: 'Easy',
