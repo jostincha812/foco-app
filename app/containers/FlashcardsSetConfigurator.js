@@ -7,6 +7,7 @@ import C from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
+import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
 import TagsSelector from '../components/TagsSelector'
 
@@ -22,7 +23,7 @@ import {
   saveUserFlashcardSet,
 } from '../actions/UserFlashcardSetsActions'
 
-class FlashcardsSetConfigurator extends React.Component {
+class FlashcardsSetConfigurator extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
     title: L.configureset,
     headerLeft: (
@@ -108,6 +109,10 @@ class FlashcardsSetConfigurator extends React.Component {
     // TODO navigate away only when successful
     navigation.navigate(C.NAV_HOME)
     this.props.resetFlashcardsState()
+    this.showToast('Saved', {
+      backgroundColor:T.colors.yes,
+      textColor:T.colors.inverse
+    })
   }
 
   onToggle(type, tagState) {

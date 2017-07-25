@@ -11,6 +11,7 @@ import C from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
+import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
 import Flashcard from '../components/Flashcard'
 
@@ -18,7 +19,7 @@ import CardsStack from '../lib/CardsStack'
 import LoadingIndicator from '../lib/LoadingIndicator'
 import ProgressIndicatorBar from '../lib/ProgressIndicatorBar'
 
-class FlashcardsViewer extends React.Component {
+class FlashcardsViewer extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
     title: null,
     headerLeft: (

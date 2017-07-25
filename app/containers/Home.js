@@ -6,6 +6,7 @@ import C from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
+import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
 import FlashcardSetCard from '../components/FlashcardSetCard'
 import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
@@ -19,7 +20,7 @@ import {
   teardownUserStarredFlashcardsListeners,
 } from '../actions/UserFlashcardSetsActions'
 
-class Home extends React.Component {
+class Home extends BaseContainer {
   // const {state, setParams, navigate} = navigation
   // const {user} = state.params
   static navigationOptions = ({navigation}) => ({
