@@ -17,53 +17,54 @@ export function fetchUserFlashcardSets(userId) {
   }
 }
 
-export function createUserFlashcardSet(userId, level, title, flashcards, tags) {
+export function createUserFlashcardSet(userId, data) {
   return {
     type: C.CREATE_USER_FLASHCARD_SET,
     userId: userId,
-    payload: api.flashcardSets.createUserFlashcardSet(userId, level, title, flashcards, tags)
+    payload: api.flashcardSets.createUserFlashcardSet(userId, data)
   }
 }
 
-export function saveUserFlashcardSet(userId, setId, level, title, flashcards, tags) {
+export function saveUserFlashcardSet(userId, data) {
   return {
     type: C.SAVE_USER_FLASHCARD_SET,
     userId: userId,
-    payload: api.flashcardSets.saveUserFlashcardSet(userId, setId, level, title, flashcards, tags)
+    payload: api.flashcardSets.saveUserFlashcardSet(userId, data)
   }
 }
 
-// export function fetchUserStarredFlashcardsSet(id) {
-//   return {
-//     type: C.FETCH_USER_FLASHCARD_SETS,
-//     userId: id,
-//     payload: api.flashcardSets.getUserStarredFlashcardsSet(id)
-//   }
-// }
+// NOTE: one time only -- use setupUserStarredFlashcardsListeners below for auto-refresh
+export function fetchUserStarredFlashcardsSet(userId) {
+  return {
+    type: C.FETCH_USER_FLASHCARD_SETS,
+    userId: userId,
+    payload: api.flashcardSets.getUserStarredFlashcardsSet(userId)
+  }
+}
 
-export function setupUserStarredFlashcardsListeners(id) {
+export function setupUserStarredFlashcardsListeners(userId) {
   return dispatch => {
     dispatch({
       type: C.STARRED_USER_FLASHCARDS_ON,
-      userId: id,
+      userId: userId,
     })
 
-    api.flashcardSets.setupUserStarredFlashcardsListeners(id, (results) => {
+    api.flashcardSets.setupUserStarredFlashcardsListeners(userId, (results) => {
       dispatch({
         type: C.STARRED_USER_FLASHCARDS_UPDATED,
-        userId: id,
+        userId: userId,
         payload: results,
       })
     })
   }
 }
 
-export function teardownUserStarredFlashcardsListeners(id) {
+export function teardownUserStarredFlashcardsListeners(userId) {
   return dispatch => {
     dispatch({
       type: C.STARRED_USER_FLASHCARDS_OFF,
-      userId: id,
+      userId: userId,
     })
-    api.flashcardSets.teardownUserStarredFlashcardsListeners(id)
+    api.flashcardSets.teardownUserStarredFlashcardsListeners(userId)
   }
 }

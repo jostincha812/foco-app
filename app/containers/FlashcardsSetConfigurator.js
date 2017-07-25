@@ -48,23 +48,8 @@ class FlashcardsSetConfigurator extends BaseContainer {
     const navigation = this.props.navigation
     if (navigation.state.params) {
       const id = navigation.state.params.id
-      const tags = navigation.state.params.tags
       const title = navigation.state.params.title
-
-      // console.log(selectedTags)
-      // build selected regions / categories lists
-      // const regions = []
-      // const categories = []
-      // selectedTags.map(t => {
-      //   if (tags.regions.hasOwnProperty(t.toUpperCase())) {
-      //     regions.push(t)
-      //   }
-      //   if (tags.categories.hasOwnProperty(t)) {{
-      //     categories.push(t)
-      //   }}
-      // })
-
-      const split = VPQTags.split(tags)
+      const split = VPQTags.split(navigation.state.params.tags)
       const regions = split.regions
       const categories = split.categories
       const varietals = split.varietals
@@ -87,23 +72,23 @@ class FlashcardsSetConfigurator extends BaseContainer {
 
   onDone() {
     const navigation = this.props.navigation
+
+    const data = {
+      setId: navigation.state.params.id,
+      level: null,
+      title: this.state.name,
+      flashcards: Object.values(this.props.flashcards),
+      tags: this.state.selectedRegions.concat(this.state.selectedCategories)
+    }
     if (this.state.editing) {
-      this.props.saveUserFlashcardSet(
-        this.props.user.id,
-        navigation.state.params.id,
-        null,
-        this.state.name,
-        this.props.flashcards,
-        this.state.selectedRegions.concat(this.state.selectedCategories)
-      )
+      this.props.saveUserFlashcardSet(this.props.user.id, data)
     } else {
-      this.props.createUserFlashcardSet(
-        this.props.user.id,
-        null,
-        this.state.name,
-        this.props.flashcards,
-        this.state.selectedRegions.concat(this.state.selectedCategories)
-      )
+      this.props.createUserFlashcardSet(this.props.user.id, data)
+      //   null,
+      //   this.state.name,
+      //   this.props.flashcards,
+      //   this.state.selectedRegions.concat(this.state.selectedCategories)
+      // )
     }
 
     // TODO navigate away only when successful
@@ -213,8 +198,8 @@ function mapDispatchToProps (dispatch) {
   return {
     resetFlashcardsState: () => dispatch(resetFlashcardsState()),
     fetchFlashcardsWithTags: (level, tags1, tags2) => dispatch(fetchFlashcardsWithTags(level, tags1, tags2)),
-    createUserFlashcardSet: (id, level, title, flashcards, tags) => dispatch(createUserFlashcardSet(id, level, title, flashcards, tags)),
-    saveUserFlashcardSet: (id, setId, level, title, flashcards, tags) => dispatch(saveUserFlashcardSet(id, setId, level, title, flashcards, tags)),
+    createUserFlashcardSet: (userId, data) => dispatch(createUserFlashcardSet(userId, data)),
+    saveUserFlashcardSet: (userId, data) => dispatch(saveUserFlashcardSet(userId, data)),
   }
 }
 
