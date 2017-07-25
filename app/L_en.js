@@ -2,7 +2,8 @@ export default {
   // Home
   featured: 'Featured',
   mycards: 'My Sets',
-  configureset: 'Configure Set',
+  editset: 'Edit Set',
+  newset: 'New Set',
 
   // Flashcard Sets
   cards: 'cards',
@@ -23,4 +24,10 @@ export default {
   next: 'Next',
   go: 'Go',
   save: 'Save',
+
+  // actions
+  saved: 'Saved',
+  created: 'Created',
+  removed: 'Removed',
+  error: 'Error',
 }

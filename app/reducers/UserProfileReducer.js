@@ -12,7 +12,8 @@ export default function UserProfileReducer (state = initialState, action) {
       return {
         ...state,
         data: null,
-        isFetching: true
+        isFetching: true,
+        error: false,
       }
     case C.FETCH_USER_PROFILE_FULFILLED:
       return {

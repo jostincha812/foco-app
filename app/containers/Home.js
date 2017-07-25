@@ -35,26 +35,22 @@ class Home extends BaseContainer {
   })
 
   componentDidMount() {
-    // TODO replace with first fetch with app config setting
-    this.props.fetchFeaturedFlashcardSets(C.FOCO_WSET3)
-    // this.props.fetchUserStarredFlashcardsSet(this.props.user.id)
-    this.props.fetchUserFlashcardSets(this.props.user.id)
-    this.props.setupUserStarredFlashcardsListeners(this.props.user.id)
+    const user = this.props.user
+    this.props.fetchFeaturedFlashcardSets(user.level)
+    this.props.fetchUserFlashcardSets(user.id)
+    this.props.setupUserStarredFlashcardsListeners(user.id)
   }
 
   componentWillUnmount() {
-    this.props.teardownUserStarredFlashcardsListeners(this.props.user.id)
-  }
-
-  navigate(route) {
-    this.props.navigation.navigate(route)
+    const user = this.props.user
+    this.props.teardownUserStarredFlashcardsListeners(user.id)
   }
 
   render() {
     const navigation = this.props.navigation
     const props = this.props
     const user = this.props.user
-    const appSets = this.props.sets[C.FOCO_WSET3] ? this.props.sets[C.FOCO_WSET3] : {}
+    const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
     const userSets = this.props.sets[user.id] ? this.props.sets[user.id] : {}
     const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
 
@@ -116,8 +112,8 @@ class Home extends BaseContainer {
           <FlashcardSetsGridList
             sets={userSets}
             onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ...set})}
-            onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR)}
-            onEdit={(set) => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {...set})}
+            onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user})}
+            onEdit={(set) => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user, set, dispatch: props.dispatch})}
           />
         </View>
       </ScrollView>
@@ -127,19 +123,19 @@ class Home extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    user: { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3' },
-    ready: state.flashcardSets.isReady,
+    user: { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3', level: C.WSET3 },
+    ready: state.flashcardSets.status === C.FB_FETCHED,
     sets: state.flashcardSets.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchFeaturedFlashcardSets: (levelId) => dispatch(fetchFeaturedFlashcardSets(levelId)),
-    // fetchUserStarredFlashcardsSet: (id) => dispatch(fetchUserStarredFlashcardsSet(id)),
-    fetchUserFlashcardSets: (id) => dispatch(fetchUserFlashcardSets(id)),
-    setupUserStarredFlashcardsListeners: (id) => dispatch(setupUserStarredFlashcardsListeners(id)),
-    teardownUserStarredFlashcardsListeners: (id) => dispatch(teardownUserStarredFlashcardsListeners(id)),
+    dispatch,
+    fetchFeaturedFlashcardSets: (level) => dispatch(fetchFeaturedFlashcardSets(level)),
+    fetchUserFlashcardSets: (userId) => dispatch(fetchUserFlashcardSets(userId)),
+    setupUserStarredFlashcardsListeners: (userId) => dispatch(setupUserStarredFlashcardsListeners(userId)),
+    teardownUserStarredFlashcardsListeners: (userId) => dispatch(teardownUserStarredFlashcardsListeners(userId)),
   }
 }
 

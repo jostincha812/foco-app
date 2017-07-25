@@ -5,7 +5,7 @@ export default JsUserFlashcardSetsAPI = {
   getFeaturedFlashcardSets: (userId) => {
     return refs.userFlashcardSets(userId).once('value').then(snap => {
       const sets = {}
-      sets[id] = { ...snap.val() }
+      sets[userId] = { ...snap.val() }
       return sets
     })
   },
@@ -13,7 +13,7 @@ export default JsUserFlashcardSetsAPI = {
   getUserFlashcardSets: (userId) => {
     return refs.userFlashcardSets(userId).once('value').then(snap => {
       const sets = {}
-      sets[id] = { ...snap.val() }
+      sets[userId] = { ...snap.val() }
       return sets
     })
   },
@@ -22,8 +22,8 @@ export default JsUserFlashcardSetsAPI = {
     const sets = {}
     delete data.setId
     return refs.userFlashcardSets(userId).push(data).then(ref => {
-      sets[id] = {}
-      sets[id][ref.key] = data
+      sets[userId] = {}
+      sets[userId][ref.key] = data
       return sets
     })
   },
@@ -33,10 +33,14 @@ export default JsUserFlashcardSetsAPI = {
     const setId = data.setId
     delete data.setId
     return refs.userFlashcardSets(userId).child(setId).update(data).then(() => {
-      sets[id] = {}
-      sets[id][setId] = data
+      sets[userId] = {}
+      sets[userId][setId] = data
       return sets
     })
+  },
+
+  deleteUserFlashcardSet: (userId, setId) => {
+    return refs.userFlashcardSets(userId).child(setId).remove()
   },
 
   // NOTE: one time only -- use setupUserStarredFlashcardsListeners below for auto-refresh

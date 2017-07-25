@@ -1,11 +1,11 @@
 import C from '../C'
 import api from '../data/api'
 
-export function fetchFeaturedFlashcardSets(userId) {
+export function fetchFeaturedFlashcardSets(level) {
   return {
     type: C.FETCH_USER_FLASHCARD_SETS,
-    userId: userId,
-    payload: api.flashcardSets.getFeaturedFlashcardSets(userId)
+    userId: level,
+    payload: api.flashcardSets.getFeaturedFlashcardSets(level)
   }
 }
 
@@ -30,6 +30,14 @@ export function saveUserFlashcardSet(userId, data) {
     type: C.SAVE_USER_FLASHCARD_SET,
     userId: userId,
     payload: api.flashcardSets.saveUserFlashcardSet(userId, data)
+  }
+}
+
+export function deleteUserFlashcardSet(userId, setId) {
+  return {
+    type: C.DELETE_USER_FLASHCARD_SET,
+    userId: userId,
+    payload: api.flashcardSets.deleteUserFlashcardSet(userId, setId)
   }
 }
 

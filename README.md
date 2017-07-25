@@ -26,3 +26,6 @@
 
 ## v0.8
 * **FlashcardsSetConfigurator** creates set from Tags
+
+### v0.8.1
+* **FlashcardsSetConfigurator** edits and deletes sets
