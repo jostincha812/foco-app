@@ -30,4 +30,8 @@ export default {
   created: 'Created',
   removed: 'Removed',
   error: 'Error',
+  signinFacebook: 'Sign In with Facebook',
+  signinGoogle: 'Sign In with Google  ',
+  signinEmail: 'Sign In with Email',
+  signupEmail: 'Sign Up with Email',
 }

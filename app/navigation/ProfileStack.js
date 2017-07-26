@@ -9,7 +9,7 @@ import Icons from '../components/Icons'
 import ProfileHome from '../containers/ProfileHome'
 
 const STACK = {}
-STACK[C.NAV_PROFILE_HOME] = { screen: ProfileHome }
+STACK[C.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
