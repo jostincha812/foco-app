@@ -29,3 +29,5 @@
 
 ### v0.8.1
 * **FlashcardsSetConfigurator** edits and deletes sets
+### v0.8.2
+* **FlashcardsSetConfigurator** and **FlashcardsViewer** clean-up and refactoring
