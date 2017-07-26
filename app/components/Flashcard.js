@@ -6,55 +6,61 @@ import FlipCard from 'react-native-flip-card'
 import C from '../C'
 import T from '../T'
 import S from '../styles/styles'
+
 import Icons from './Icons'
 import PillsList from '../lib/PillsList'
 
 export default class Flashcard extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      isBookmarked: false,
-      isStarred: false,
-    }
+    this.state = {}
+    this.state[C.KEY_PREF_STARRED] = false
+    this.state[C.KEY_PREF_BOOKMARKED] = false
 
-    this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
-    this.onStarToggle = this.onStarToggle.bind(this)
+    this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
   componentWillMount() {
     const prefs = this.props.prefs
     if (prefs) {
-      this.setState({
-        isBookmarked: prefs[C.KEY_PREF_BOOKMARKED],
-        isStarred: prefs[C.KEY_PREF_STARRED],
-      })
+      const state = {}
+      if (prefs[C.KEY_PREF_BOOKMARKED]) {
+        state[C.KEY_PREF_BOOKMARKED] = prefs[C.KEY_PREF_BOOKMARKED]
+      }
+      if (prefs[C.KEY_PREF_STARRED]) {
+        state[C.KEY_PREF_STARRED] = prefs[C.KEY_PREF_STARRED]
+      }
+      this.setState(state)
     }
   }
 
-  onBookmarkToggle() {
+  onPrefToggle(key) {
     const id = this.props.data.id
-    const newBookmarkedState = !this.state.isBookmarked
-    this.setState({isBookmarked: newBookmarkedState})
-    this.props.onBookmarkToggle(newBookmarkedState, id)
-  }
-
-  onStarToggle() {
-    const id = this.props.data.id
-    const newStarredState = !this.state.isStarred
-    this.setState({isStarred: newStarredState})
-    this.props.onStarToggle(newStarredState, id)
+    const state = {}
+    state[key] = !this.state[key]
+    this.setState(state)
+    this.props.onPrefToggle(id, state)
   }
 
   render() {
     const props = this.props
     const data = this.props.data
     const tags = data.tags
-    const prefs = this.props.prefs
 
     const items = []
     tags.map(tag => {
       items.push({key:tag, label:tag})
     })
+
+    const isStarred = this.state[C.KEY_PREF_STARRED]
+    const isBookmarked = this.state[C.KEY_PREF_BOOKMARKED]
+    const starToggleOptions = {
+      style: {position:'absolute', top:S.spacing.small, right:-S.spacing.normal},
+      onPress: () => this.onPrefToggle(C.KEY_PREF_STARRED),
+    }
+    const starToggle = isStarred ?
+      Icons.star({color:T.colors.starred, ...starToggleOptions}) :
+      Icons.starOutline({color:T.colors.inactive, ...starToggleOptions})
 
     return (
       <FlipCard
@@ -70,24 +76,14 @@ export default class Flashcard extends React.Component {
         // onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
       >
         <View style={styles.inner}>
-          <TouchableOpacity
-            style={{position:'absolute', top:S.spacing.small, right:-S.spacing.normal}}
-            onPress={this.onStarToggle}
-          >
-            { this.state.isStarred ? Icons.star({color:T.colors.starred}) : Icons.starOutline({color:T.colors.inactive}) }
-          </TouchableOpacity>
+          {starToggle}
           <MarkdownView styles={S.markdown}>
             {data.front}
           </MarkdownView>
         </View>
 
         <View style={styles.inner}>
-          <TouchableOpacity
-            style={{position:'absolute', top:S.spacing.small, right:-S.spacing.normal}}
-            onPress={this.onStarToggle}
-          >
-            { this.state.isStarred ? Icons.star({color:T.colors.starred}) : Icons.starOutline({color:T.colors.inactive}) }
-          </TouchableOpacity>
+          {starToggle}
           <MarkdownView styles={S.markdown}>
             {data.back}
           </MarkdownView>

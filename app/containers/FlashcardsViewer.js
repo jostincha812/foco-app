@@ -34,10 +34,10 @@ class FlashcardsViewer extends BaseContainer {
 
   constructor(props) {
     super(props)
-    this.state = { done:false }
+    this.state = { index:-1, current:null }
+    this.onFinish = this.onFinish.bind(this)
     this.onYesNoAction = this.onYesNoAction.bind(this)
-    this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
-    this.onStarToggle = this.onStarToggle.bind(this)
+    this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
   componentWillMount() {
@@ -45,9 +45,10 @@ class FlashcardsViewer extends BaseContainer {
     if (this.props.navigation) {
       const ids = this.props.navigation.state.params.ids
       const user = this.props.navigation.state.params.user
+      const index = 0
 
       if (ids) {
-        this.setState({current:ids[0]})
+        this.setState({current:ids[index], index})
         this.props.fetchFlashcards(ids, user.id)
       }
     }
@@ -57,24 +58,22 @@ class FlashcardsViewer extends BaseContainer {
     this.props.resetFlashcardsState()
   }
 
+  onFinish() {
+    this.props.resetFlashcardsState()
+    this.props.navigation.navigate(C.NAV_HOME)
+  }
+
   onYesNoAction(action) {
     const user = this.props.navigation.state.params.user
+    const ids = this.props.navigation.state.params.ids
     const flashcard = this.props.flashcards[this.state.current]
-
-    let val = false
-    if (action.type === C.ACTION_YES) {
-      val = true
-    }
-    if (action.type === C.ACTION_NO) {
-      // do nothing, val = false
-    }
 
     this.props.updateUserFlashcardPref(
       user.id,
       flashcard.id,
       {
         key: C.KEY_PREF_KEEP,
-        val
+        val: action.type === C.ACTION_YES,
       }
     )
 
@@ -85,40 +84,26 @@ class FlashcardsViewer extends BaseContainer {
       animation = this.refs.flashcardView.fadeOutLeftBig
     }
 
-    const a = Object.keys(this.props.flashcards)
-    const i = a.indexOf(this.state.current)
+    const index = this.state.index + 1
     animation(500).then(endState => {
-      if (i < a.length - 1) {
-        this.setState({current: a[i+1]})
+      if (index < ids.length) {
+        this.setState({index, current:ids[index]})
         this.refs.flashcardView.fadeInDown(200)
       } else {
-        this.setState({done: true})
+        this.setState({index, current:null})
       }
     })
   }
 
-  onBookmarkToggle(isBookmarked, id) {
+  onPrefToggle(id, pref) {
     const user = this.props.navigation.state.params.user
     const flashcard = this.props.flashcards[id]
     this.props.updateUserFlashcardPref(
       user.id,
       flashcard.id,
       {
-        key: C.KEY_PREF_BOOKMARKED,
-        val: isBookmarked
-      }
-    )
-  }
-
-  onStarToggle(isStarred, id) {
-    const user = this.props.navigation.state.params.user
-    const flashcard = this.props.flashcards[id]
-    this.props.updateUserFlashcardPref(
-      user.id,
-      flashcard.id,
-      {
-        key: C.KEY_PREF_STARRED,
-        val: isStarred
+        key: Object.keys(pref)[0],
+        val: Object.values(pref)[0]
       }
     )
   }
@@ -130,11 +115,13 @@ class FlashcardsViewer extends BaseContainer {
     const navigation = props.navigation
     const ready = props.ready
     const flashcards = props.flashcards
-    const current = this.state.current
-    const a = Object.keys(props.flashcards)
-    const i = a.indexOf(current)
 
-    if (this.state.done) {
+    const ids = this.props.navigation.state.params.ids
+    const current = this.state.current
+    const index = this.state.index
+    const progress = (index+1)/ids.length
+
+    if (progress > 1) {
       return (
         <Animatable.View
           animation="fadeIn"
@@ -149,7 +136,7 @@ class FlashcardsViewer extends BaseContainer {
             borderRadius={S.spacing.xsmall}
             backgroundColor={T.colors.active}
             buttonStyle={{width:'80%'}}
-            onPress={navigation.navigate(C.NAV_HOME)}
+            onPress={this.onFinish}
           />
         </Animatable.View>
       )
@@ -158,7 +145,7 @@ class FlashcardsViewer extends BaseContainer {
     if (ready) {
       return (
         <View style={S.containers.screen}>
-          <ProgressIndicatorBar progress={(i+1)/a.length} />
+          <ProgressIndicatorBar progress={progress} />
           <View style={spacer} />
           <View style={{flex:7, width:'85%', alignSelf:'center', alignItems:'center'}}>
             <Animatable.View animation="fadeInDown" duration={200} ref="flashcardView">
@@ -167,8 +154,7 @@ class FlashcardsViewer extends BaseContainer {
                 key={current}
                 data={flashcards[current]}
                 prefs={flashcards[current].prefs}
-                onBookmarkToggle={this.onBookmarkToggle}
-                onStarToggle={this.onStarToggle}
+                onPrefToggle={this.onPrefToggle}
               />
             </Animatable.View>
           </View>
