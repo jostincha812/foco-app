@@ -37,7 +37,7 @@ class FlashcardsViewer extends BaseContainer {
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
     this.onStarToggle = this.onStarToggle.bind(this)
-    this.goBack = this.goBack.bind(this)
+    // this.goBack = this.goBack.bind(this)
   }
 
   componentWillMount() {
@@ -57,9 +57,9 @@ class FlashcardsViewer extends BaseContainer {
     this.props.resetFlashcardsState()
   }
 
-  goBack() {
-    this.props.navigation.goBack()
-  }
+  // goBack() {
+  //   this.props.navigation.goBack()
+  // }
 
   onYesNoAction(action) {
     const user = this.props.navigation.state.params.user
@@ -130,11 +130,13 @@ class FlashcardsViewer extends BaseContainer {
   render() {
     const spacer={flex:0.5, opacity:0, backgroundColor:T.transparent}
 
-    const ready = this.props.ready
-    const flashcards = this.props.flashcards
+    const props = this.props
+    const navigation = props.navigation
+    const ready = props.ready
+    const flashcards = props.flashcards
     const current = this.state.current
-    const a = Object.keys(this.props.flashcards)
-    const i = a.indexOf(this.state.current)
+    const a = Object.keys(props.flashcards)
+    const i = a.indexOf(current)
 
     if (this.state.done) {
       return (
@@ -151,7 +153,7 @@ class FlashcardsViewer extends BaseContainer {
             borderRadius={S.spacing.xsmall}
             backgroundColor={T.colors.active}
             buttonStyle={{width:'80%'}}
-            onPress={this.goBack}
+            onPress={navigation.navigate(C.NAV_HOME)}
           />
         </Animatable.View>
       )
@@ -215,7 +217,7 @@ class FlashcardsViewer extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    ready: state.flashcards.isReady,
+    ready: state.flashcards.status === C.FB_FETCHED,
     flashcards: state.flashcards.data,
   }
 }

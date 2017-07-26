@@ -1,10 +1,11 @@
 import C from '../C'
 const initialState = {
   data: {},
-  isReady: false,
-  isFetching: false,
-  isStoring: false,
-  error: false,
+  status: C.FB_NONE,
+  // isReady: false,
+  // isFetching: false,
+  // isStoring: false,
+  error: null,
 }
 
 export default function FlashcardReducer (state = initialState, action) {
@@ -16,112 +17,100 @@ export default function FlashcardReducer (state = initialState, action) {
       return {
         ...state,
         data: {},
-        isFetching: true,
-        isReady: false,
-        error: false,
+        status: C.FB_FETCHING,
+        error: null,
+        // isFetching: true,
+        // isReady: false,
       }
     case C.FETCH_FLASHCARD_IDS_FULFILLED:
       return {
         ...state,
-        isFetching: false,
-        isReady: true,
+        status: C.FB_FETCHED,
         data: action.payload
       }
     case C.FETCH_FLASHCARD_IDS_REJECTED:
       return {
         ...state,
-        isFetching: false,
-        error: true
+        status: C.FB_ERROR,
+        error: action.payload,
       }
 
     case C.FETCH_FLASHCARD_PENDING:
       return {
         ...state,
         data: {},
-        isFetching: true,
-        isReady: false,
-        error: false,
+        status: C.FB_FETCHING,
+        error: null,
       }
     case C.FETCH_FLASHCARD_FULFILLED:
       return {
         ...state,
-        isFetching: false,
-        isReady: true,
+        status: C.FB_FETCHED,
         data: action.payload
       }
     case C.FETCH_FLASHCARD_REJECTED:
       return {
         ...state,
-        isFetching: false,
-        error: true
+        status: C.FB_ERROR,
+        error: action.payload,
       }
 
     case C.FETCH_FLASHCARDS_PENDING:
       return {
         ...state,
         data: {},
-        isFetching: true,
-        isReady: false,
-        error: false,
+        status: C.FB_FETCHING,
+        error: null,
       }
     case C.FETCH_FLASHCARDS_FULFILLED:
-      // convert array from Promises.all() back to json object
-      const flashcards = {}
-      action.payload.map(f => {
-        flashcards[f.id] = f
-      })
       return {
         ...state,
-        isFetching: false,
-        isReady: true,
-        data: flashcards
+        status: C.FB_FETCHED,
+        data: action.payload,
       }
     case C.FETCH_FLASHCARDS_REJECTED:
       return {
         ...state,
-        isFetching: false,
-        error: true
+        status: C.FB_ERROR,
+        error: action.payload,
       }
 
     case C.FETCH_FLASHCARDS_WITH_TAGS_PENDING:
       return {
         ...state,
         data: {},
-        isFetching: true,
-        isReady: false,
-        error: false,
+        status: C.FB_FETCHING,
+        error: null,
       }
     case C.FETCH_FLASHCARDS_WITH_TAGS_FULFILLED:
       return {
         ...state,
-        isFetching: false,
-        isReady: true,
+        status: C.FB_FETCHED,
         data: Object.assign({}, state.data, action.payload)
       }
     case C.FETCH_FLASHCARDS_WITH_TAGS_REJECTED:
       return {
         ...state,
-        isFetching: false,
-        error: true
+        status: C.FB_ERROR,
+        error: action.payload,
       }
 
     case C.UPDATE_USER_FLASHCARD_PREFERENCE_PENDING:
       return {
         ...state,
-        isStoring: true,
-        isFetching: false,
-        error: false,
+        status: C.FB_UPDATING,
+        error: null,
       }
     case C.UPDATE_USER_FLASHCARD_PREFERENCE_FULFILLED:
       return {
         ...state,
-        isStoring: false,
+        status: C.FB_UPDATED,
       }
     case C.UPDATE_USER_FLASHCARD_PREFERENCE_REJECTED:
       return {
         ...state,
-        isStoring: false,
-        error: true,
+        status: C.FB_ERROR,
+        error: action.payload,
       }
 
     default:

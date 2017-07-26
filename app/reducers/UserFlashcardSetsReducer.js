@@ -92,7 +92,7 @@ export default function UserFlashcardSetsReducer (state = initialState, action) 
     case C.STARRED_USER_FLASHCARDS_UPDATED:
       return {
         ...state,
-        status: C.FB_SUCCESS,
+        status: C.FB_FETCHED,
         data: Object.assign({}, state.data, action.payload)
       }
     case C.STARRED_USER_FLASHCARDS_OFF:

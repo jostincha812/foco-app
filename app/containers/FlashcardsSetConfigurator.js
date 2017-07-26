@@ -229,7 +229,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    ready: state.flashcards.isReady,
+    ready: state.flashcards.status === C.FB_FETCHED,
     flashcards: state.flashcards.data,
     status: state.flashcardSets.status,
   }
