@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import * as Animatable from 'react-native-animatable'
 import { Button } from 'react-native-elements'
 
-import api from '../data/api'
-import { fetchFlashcardIds, fetchFlashcards, resetFlashcardsState, updateUserFlashcardPref } from '../actions/FlashcardActions'
-
 import C from '../C'
 import T from '../T'
 import L from '../L'
@@ -15,20 +12,24 @@ import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
 import Flashcard from '../components/Flashcard'
 
-import CardsStack from '../lib/CardsStack'
 import LoadingIndicator from '../lib/LoadingIndicator'
 import ProgressIndicatorBar from '../lib/ProgressIndicatorBar'
+
+import {
+  fetchFlashcardIds,
+  fetchFlashcards,
+  resetFlashcardsState,
+  updateUserFlashcardPref
+} from '../actions/FlashcardActions'
 
 class FlashcardsViewer extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
     title: null,
-    headerLeft: (
-      <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-        onPress={() => navigation.goBack() }>
-        {Icons.back({color: S.navigation.headerTintColor})}
-      </TouchableOpacity>
-    ),
+    headerLeft: Icons.back({
+      color: S.navigation.headerTintColor,
+      style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
+      onPress: () => navigation.goBack()
+    }),
   })
 
   constructor(props) {
@@ -37,7 +38,6 @@ class FlashcardsViewer extends BaseContainer {
     this.onYesNoAction = this.onYesNoAction.bind(this)
     this.onBookmarkToggle = this.onBookmarkToggle.bind(this)
     this.onStarToggle = this.onStarToggle.bind(this)
-    // this.goBack = this.goBack.bind(this)
   }
 
   componentWillMount() {
@@ -56,10 +56,6 @@ class FlashcardsViewer extends BaseContainer {
   componentWillUnmount() {
     this.props.resetFlashcardsState()
   }
-
-  // goBack() {
-  //   this.props.navigation.goBack()
-  // }
 
   onYesNoAction(action) {
     const user = this.props.navigation.state.params.user

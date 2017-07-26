@@ -32,20 +32,18 @@ class FlashcardsSetConfigurator extends BaseContainer {
 
     return ({
       title: navigation.state.params ? L.editset : L.newset,
-      headerLeft: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-          onPress={() => navigation.goBack() }>
-          {Icons.back({color: S.navigation.headerTintColor})}
-        </TouchableOpacity>
-      ),
+      headerLeft: Icons.back({
+        color: S.navigation.headerTintColor,
+        style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
+        onPress: () => navigation.goBack()
+      }),
       headerRight: ( set &&
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
-          onPress={() =>  dispatch(deleteUserFlashcardSet(user.id, set.id)) }>
-          {Icons.delete({color: S.navigation.headerTintColor})}
-        </TouchableOpacity>
-      )
+        Icons.delete({
+          color: S.navigation.headerTintColor,
+          style: {top:S.spacing.xsmall/2, paddingRight: S.spacing.small},
+          onPress: () =>  dispatch(deleteUserFlashcardSet(user.id, set.id))
+        })
+      ),
     })
   }
 

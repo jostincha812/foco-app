@@ -5,15 +5,16 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import T from '../T.js';
 
 const AppIcon = (name, options) => {
-  let size = options.size ? options.size : T.icons.normalIcon;
-  let color = options.color ? options.color : T.colors.normal;
-  let focused = options.focused ? options.focused : false;
+  const size = options.size ? options.size : T.icons.normalIcon;
+  const color = options.color ? options.color : T.colors.normal;
+  const focused = options.focused ? options.focused : false;
+  const style = options.style
   const onPress = options.onPress
 
   if (onPress) {
     return (
       <TouchableOpacity
-        style={{}}
+        style={style}
         onPress={onPress}
         >
         <Icon name={name} size={size} color={color} />
@@ -21,7 +22,7 @@ const AppIcon = (name, options) => {
     )
   } else {
     return (
-      <Icon style={{}} name={name} size={size} color={color} />
+      <Icon style={style} name={name} size={size} color={color} />
     )
   }
 };
