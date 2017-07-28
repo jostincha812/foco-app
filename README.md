@@ -31,3 +31,6 @@
 * **FlashcardsSetConfigurator** edits and deletes sets
 ### v0.8.2
 * **FlashcardsSetConfigurator** and **FlashcardsViewer** clean-up and refactoring
+
+## v0.9
+* Authenticating users through Facebook login
