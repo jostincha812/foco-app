@@ -20,7 +20,7 @@ const HomeStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
     headerTitle: (
-      Icons.foco({color: S.navigation.headerTintColor})
+      Icons.foco({color: T.colors.app})
     ),
     headerLeft: (
       <TouchableOpacity

@@ -17,7 +17,7 @@ class ProfileHome extends BaseContainer {
   static navigationOptions = {
     ...S.navigation,
     headerTitle: (
-      Icons.profile({color: S.navigation.headerTintColor})
+      Icons.profile({color: T.colors.app})
     ),
   }
 
