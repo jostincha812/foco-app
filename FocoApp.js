@@ -6,8 +6,8 @@ import { Provider } from 'react-redux'
 import configureStore from './configureStore'
 import configureFirebase from './configureFirebase'
 
-import RootContainer from './app/navigation/RootDrawerNavigator'
-// import RootContainer from './app/navigation/RootStackNavigator'
+// import RootContainer from './app/navigation/RootDrawerNavigator'
+import RootContainer from './app/navigation/RootStackNavigator'
 // import RootContainer from './app/navigation/RootTabNavigator'
 
 const store = configureStore()

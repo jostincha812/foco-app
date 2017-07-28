@@ -1,19 +1,22 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import Home from '../containers/Home'
-import IconsHome from '../containers/IconsHome'
-import ProfileHome from '../containers/ProfileHome'
+import S from '../styles/styles'
+import SignInStack from './SignInStack'
+import HomeStack from './HomeStack'
+import ProfileStack from './ProfileStack'
+import AboutStack from './AboutStack'
 
 const RootStackNavigator = StackNavigator({
-  Home: { screen: Home },
-  Icons: { screen: IconsHome },
-  Profile: { screen: ProfileHome },
+  SignInStack: { screen: SignInStack },
+  HomeStack: { screen: HomeStack },
+  ProfileStack: { screen: ProfileStack },
+  AboutStack: { screen: AboutStack },
 }, {
   swipeEnabled: false,
   animationEnabled: false,
   navigationOptions: ({navigation}) => ({
-    ...S.navigation,
+    header: null,
   })
 })
 

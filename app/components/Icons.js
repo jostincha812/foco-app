@@ -30,6 +30,7 @@ const AppIcon = (name, options) => {
 // https://materialdesignicons.com/
 export default {
   // foco icons
+  foco: (options = {}) => AppIcon('book-open-page-variant', options),
   home: (options = {}) => AppIcon('home', options),
   homeOutline: (options = {}) => AppIcon('home-outline', options),
   search: (options = {}) => AppIcon('magnify', options),

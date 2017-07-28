@@ -3,14 +3,17 @@ import { TabNavigator } from 'react-navigation'
 
 import T from '../T'
 
+import S from '../styles/styles'
+import SignInStack from './SignInStack'
 import HomeStack from './HomeStack'
-import AboutStack from './AboutStack'
 import ProfileStack from './ProfileStack'
+import AboutStack from './AboutStack'
 
 const RootTabNavigator = TabNavigator({
-  Home: { screen: HomeStack },
-  About: { screen: AboutStack },
-  Profile: { screen: ProfileStack },
+  SignInStack: { screen: SignInStack },
+  HomeStack: { screen: HomeStack },
+  ProfileStack: { screen: ProfileStack },
+  AboutStack: { screen: AboutStack },
 }, {
   swipeEnabled: false,
   animationEnabled: false,

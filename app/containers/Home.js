@@ -25,10 +25,13 @@ class Home extends BaseContainer {
   // const {user} = state.params
   static navigationOptions = ({navigation}) => ({
     title: null,
-    headerRight: (
+    headerTitle: (
+      Icons.foco({color: S.navigation.headerTintColor})
+    ),
+    headerLeft: (
       <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
-        onPress={() => navigation.navigate(C.NAV_PROFILE_HOME) }>
+        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        onPress={() => navigation.navigate(C.NAV_USER_PROFILE_HOME) }>
         {Icons.profile({color: S.navigation.headerTintColor})}
       </TouchableOpacity>
     )
