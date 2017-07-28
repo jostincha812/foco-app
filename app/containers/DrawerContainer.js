@@ -1,10 +1,12 @@
 import React from 'react'
 import { Dimensions, ScrollView, View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import { Button } from 'react-native-elements'
 
 import T from '../T'
 import S from '../styles/styles'
 import Icons from '../components/Icons'
+import FirebaseAuth from '../auth/FirebaseAuth'
 
 class DrawerContainer extends React.Component {
   componentDidMount() {
@@ -30,6 +32,11 @@ class DrawerContainer extends React.Component {
         <View style={{flex: 1}}>
           {props.children}
         </View>
+
+        <Button
+          title='Sign Out'
+          onPress={FirebaseAuth.logout}
+        />
 
         <View>
           <Text style={{padding: S.spacing.standard, color: T.shadowColor, fontWeight: T.titleFontWeight}}>

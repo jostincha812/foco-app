@@ -8,6 +8,10 @@ export default FocoTheme = {
     contentBackground: '#FFF',
     contentBorder: '#E5E5E5',   // grey 100
 
+    success: '#81C784',      // green 300
+    warning: '#FDD835',  // yellow 600
+    error: '#D32F2F', // red 700
+
     normal: '#212121',         // grey 900
     active: '#E64A19',   // deep orange 700
     inactive: '#BDBDBD', // grey 400

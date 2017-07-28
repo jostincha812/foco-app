@@ -8,16 +8,51 @@ import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
+import FirebaseAuth from '../auth/FirebaseAuth'
 
-class SignInWithFacebook extends BaseContainer {
+class SignInHome extends BaseContainer {
+  static navigationOptions = ({navigation}) => ({
+    title: null,
+    headerLeft: null,
+  })
+
   constructor(props) {
     super(props)
-    this.onSignIn = this.onSignIn.bind(this)
+    this.onLogin = this.onLogin.bind(this)
+    this.onLogout = this.onLogout.bind(this)
+    this.onUserChange = this.onUserChange.bind(this)
+    this.emailVerified = this.emailVerified.bind(this)
+    this.onError = this.onError.bind(this)
   }
 
-  onSignIn() {
-    this.showToast("Signed In")
+  componentDidMount() {
+    FirebaseAuth.setup(this.onLogin, this.onUserChange, this.onLogout, this.emailVerified, this.onError)
+  }
+
+  onLogin(user, val) {
+    console.log(user)
+    console.log(val)
     this.props.navigation.navigate(C.NAV_HOME)
+  }
+
+  onLogout() {
+    console.log('onLogout')
+    this.props.navigation.navigate(C.NAV_USER_SIGNIN)
+  }
+
+  onUserChange(user, val) {
+    console.log('onUserChange()')
+    console.log(user)
+    console.log(val)
+  }
+
+  emailVerified() {
+    console.log('emailVerified()')
+  }
+
+  onError(e) {
+    this.errorToast(e.message)
+    console.log(e)
   }
 
   render() {
@@ -31,7 +66,7 @@ class SignInWithFacebook extends BaseContainer {
           style={{width:'75%'}}
           fontSize={T.fonts.normalSize}
           fontWeight={T.fonts.normalWeight}
-          onPress={this.onSignIn}
+          onPress={FirebaseAuth.loginWithFacebook}
         />
       </View>
     )
@@ -52,4 +87,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignInWithFacebook)
+)(SignInHome)
