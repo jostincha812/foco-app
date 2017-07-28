@@ -37,13 +37,13 @@ class Home extends BaseContainer {
   componentDidMount() {
     const user = this.props.user
     this.props.fetchFeaturedFlashcardSets(user.level)
-    this.props.fetchUserFlashcardSets(user.id)
-    this.props.setupUserStarredFlashcardsListeners(user.id)
+    this.props.fetchUserFlashcardSets(user.uid)
+    this.props.setupUserStarredFlashcardsListeners(user.uid)
   }
 
   componentWillUnmount() {
     const user = this.props.user
-    this.props.teardownUserStarredFlashcardsListeners(user.id)
+    this.props.teardownUserStarredFlashcardsListeners(user.uid)
   }
 
   render() {
@@ -51,7 +51,7 @@ class Home extends BaseContainer {
     const props = this.props
     const user = this.props.user
     const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
-    const userSets = this.props.sets[user.id] ? this.props.sets[user.id] : {}
+    const userSets = this.props.sets[user.uid] ? this.props.sets[user.uid] : {}
     const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
 
     const flashcardSetCard = (set, type, icon) => {
@@ -123,7 +123,7 @@ class Home extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    user: { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3', level: C.WSET3 },
+    user: state.userProfile.data,
     ready: state.flashcardSets.status === C.FB_FETCHED,
     sets: state.flashcardSets.data,
   }

@@ -7,7 +7,7 @@ import S from '../styles/styles'
 import L from '../L'
 
 import Icons from '../components/Icons'
-import LevelPill from '../components/LevelPill'
+import DifficultyPill from '../components/DifficultyPill'
 
 export default class FlashcardSetCard extends React.Component {
   render() {
@@ -50,8 +50,8 @@ export default class FlashcardSetCard extends React.Component {
               {props.title ? props.title : set.title}
             </Text>
           </View>
-          <LevelPill
-            level={set.level}
+          <DifficultyPill
+            difficulty={set.difficulty}
             style={{alignSelf:'flex-start', marginLeft:S.spacing.small}}
           />
         </View>

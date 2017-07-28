@@ -49,7 +49,7 @@ class FlashcardsViewer extends BaseContainer {
 
       if (ids) {
         this.setState({current:ids[index], index})
-        this.props.fetchFlashcards(ids, user.id)
+        this.props.fetchFlashcards(ids, user.uid)
       }
     }
   }
@@ -69,7 +69,7 @@ class FlashcardsViewer extends BaseContainer {
     const flashcard = this.props.flashcards[this.state.current]
 
     this.props.updateUserFlashcardPref(
-      user.id,
+      user.uid,
       flashcard.id,
       {
         key: C.KEY_PREF_KEEP,
@@ -99,7 +99,7 @@ class FlashcardsViewer extends BaseContainer {
     const user = this.props.navigation.state.params.user
     const flashcard = this.props.flashcards[id]
     this.props.updateUserFlashcardPref(
-      user.id,
+      user.uid,
       flashcard.id,
       {
         key: Object.keys(pref)[0],

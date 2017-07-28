@@ -8,20 +8,23 @@ import S from '../styles/styles'
 
 import Pill from '../lib/Pill'
 
-export default class LevelPill extends React.Component {
+export default class DifficultyPill extends React.Component {
   render() {
-    const level = this.props.level
-    let label = L.beginner
+    const difficulty = this.props.difficulty
+    let label = L.easy
     let color = T.colors.beginner
 
-    if (level===C.LEVEL_BEGINNER) {
+    if (difficulty===C.DIFFICULTY_EASY) {
       // do nothing
-    } else if (level===C.LEVEL_INTERMEDIATE) {
-      label = L.intermediate
+    } else if (difficulty===C.DIFFICULTY_NORMAL) {
+      label = L.normal
       color = T.colors.intermediate
-    } else if (level===C.LEVEL_ADVANCED) {
-      label = L.advanced
+    } else if (difficulty===C.DIFFICULTY_HARD) {
+      label = L.hard
       color = T.colors.advanced
+    } else if (difficulty===C.DIFFICULTY_EXPERT) {
+      label = L.expert
+      color = T.colors.expert
     } else {
       return null
     }

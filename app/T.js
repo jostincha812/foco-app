@@ -32,8 +32,9 @@ export default FocoTheme = {
     translucentWhite: '#ffffffaa',
 
     beginner: '#43A047', // green 600
-    intermediate: '#FFC107', // amber 500
+    intermediate: '#1E88E5', // blue 600
     advanced: '#E53935', // red 600
+    expert: '#000', // black
 
     climate: '#2196F3',   // blue 500
     geography: '#00897B', // teal 600

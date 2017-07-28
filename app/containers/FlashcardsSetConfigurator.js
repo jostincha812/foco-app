@@ -41,7 +41,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
         Icons.delete({
           color: S.navigation.headerTintColor,
           style: {top:S.spacing.xsmall/2, paddingRight: S.spacing.small},
-          onPress: () =>  dispatch(deleteUserFlashcardSet(user.id, set.id))
+          onPress: () =>  dispatch(deleteUserFlashcardSet(user.uid, set.id))
         })
       ),
     })
@@ -134,9 +134,9 @@ class FlashcardsSetConfigurator extends BaseContainer {
       tags: this.state.selectedRegions.concat(this.state.selectedCategories)
     }
     if (this.state.editing) {
-      this.props.saveUserFlashcardSet(this.state.user.id, data)
+      this.props.saveUserFlashcardSet(this.state.user.uid, data)
     } else {
-      this.props.createUserFlashcardSet(this.state.user.id, data)
+      this.props.createUserFlashcardSet(this.state.user.uid, data)
     }
   }
 

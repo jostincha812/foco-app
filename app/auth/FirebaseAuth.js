@@ -13,16 +13,16 @@ const FirebaseAuth = class {
   onLogin = null;
   onError = null;
 
+  // @TODO
   init(googleConfig) {
     Auth.Google.configure(googleConfig);
   }
 
-  setup = (onLogin, onUserChange, onLogout, onEmailVerified, onError) => {
+  setup = (onLogin, onLogout, onEmailVerified, onError) => {
     if (this.isConfigured) {
       return
     }
     this.isConfigured = true
-    this.onUserChange = onUserChange;
     this.onLogout = onLogout;
     this.onEmailVerified = onEmailVerified;
     this.onLogin = onLogin;
@@ -34,33 +34,19 @@ const FirebaseAuth = class {
         // Determine if user needs to verify email
         var emailVerified = !user.providerData || !user.providerData.length || user.providerData[0].providerId != 'password' || user.emailVerified;
 
-        // Upsert profile information
-        var profileRef = fbRefs.users().child(user.uid)
-        profileRef.update({
+        const profile = {
           emailVerified: emailVerified,
           email: user.email,
           displayName: user.displayName,
           photoURL: user.photoURL,
-        })
-
-        profileRef.on('value', (profile)=> {
-          const val = profile.val();
-
-          // Email become verified in session
-          if (val.emailVerified && (this.profile && !this.profile.val().emailVerified)) {
-            this.onEmailVerified && this.onEmailVerified();
-          }
-
-          if (!this.user) {
-            this.onLogin && this.onLogin(user, val); // On login
-          } else if (val) {
-            this.onUserChange && this.onUserChange(user, val); // On updated
-          }
-
-          this.profile = profile; // Store profile
-          this.user = user; // Store user
-        });
-
+          uid: user.uid,
+          lastActive: new Date().toUTCString(),
+        }
+        if (!this.user) {
+          this.onLogin && this.onLogin(profile); // On login
+        }
+        this.profile = profile; // Store profile
+        this.user = user; // Store user
       } else if (this.user) {
         this.profile = null;
         this.user = null; // Clear user and logout
@@ -69,7 +55,29 @@ const FirebaseAuth = class {
     });
   }
 
-  login = (email, password) => {
+  logout = () => {
+    firebase.auth().signOut();
+  }
+
+  loginWithFacebook = () => {
+    Providers.Facebook.login(['public_profile', 'email', 'user_friends'])
+      .then((token) => (
+        firebase.auth()
+          .signInWithCredential(firebase.auth.FacebookAuthProvider.credential(token))
+      ))
+      .catch((err) => this.onError && this.onError(err));
+  }
+
+  loginWithGoogle = () => {
+    Providers.Google.login()
+      .then((token) => (
+        firebase.auth()
+          .signInWithCredential(firebase.auth.GoogleAuthProvider.credential(null, token))
+      ))
+      .catch((err) => this.onError && this.onError(err));
+  }
+
+  loginWithEmail = (email, password) => {
     try {
       firebase.auth().signInWithEmailAndPassword(email, password)
         .catch((err) => this.onError && this.onError(err));
@@ -94,33 +102,6 @@ const FirebaseAuth = class {
     this.user.sendEmailVerification();
   }
 
-  loginWithFacebook = () => {
-    Providers.Facebook.login(['public_profile', 'email', 'user_friends'])
-      .then((token) => (
-        firebase.auth()
-          .signInWithCredential(firebase.auth.FacebookAuthProvider.credential(token))
-      ))
-      .catch((err) => this.onError && this.onError(err));
-  }
-
-  loginWithGoogle = () => {
-    Providers.Google.login()
-      .then((token) => (
-        firebase.auth()
-          .signInWithCredential(firebase.auth.GoogleAuthProvider.credential(null, token))
-      ))
-      .catch((err) => this.onError && this.onError(err));
-  }
-
-  logout = () => {
-    firebase.auth().signOut();
-  }
-
-  update = (data) => {
-    var profileRef = fbRefs.users().child(user.uid)
-    return profileRef.update(data);
-  }
-
   resetPassword = (email) => {
     firebase.auth().sendPasswordResetEmail(email);
   }
@@ -129,11 +110,11 @@ const FirebaseAuth = class {
     this.user.updatePassword(password);
   }
 
-  linkWithGoogle = () => {
+  linkWithFacebook = () => {
     // @TODO
   }
 
-  linkWithFacebook = () => {
+  linkWithGoogle = () => {
     // @TODO
   }
 

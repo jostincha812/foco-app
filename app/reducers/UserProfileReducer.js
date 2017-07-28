@@ -10,6 +10,26 @@ export default function UserProfileReducer (state = initialState, action) {
     case C.RESET_USER_PROFILE_STATE:
       return initialState
 
+    case C.UPSERT_USER_PROFILE_PENDING:
+      return {
+        ...state,
+        data: null,
+        status: C.FB_UPDATING,
+        error: null,
+      }
+    case C.UPSERT_USER_PROFILE_FULFILLED:
+      return {
+        ...state,
+        status: C.FB_UPDATED,
+        data: action.payload
+      }
+    case C.UPSERT_USER_PROFILE_REJECTED:
+      return {
+        ...state,
+        status: C.FB_ERROR,
+        error: action.payload,
+      }
+
     case C.FETCH_USER_PROFILE_PENDING:
       return {
         ...state,

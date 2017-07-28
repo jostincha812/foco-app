@@ -12,50 +12,45 @@ import FirebaseAuth from '../auth/FirebaseAuth'
 
 import {
   resetUserProfileState,
+  upsertUserProfile,
   fetchUserProfile,
 } from '../actions/UserProfileActions'
 
 class SignInHome extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
     title: null,
-    headerLeft: null,
+    header: null
   })
 
   constructor(props) {
     super(props)
     this.onLogin = this.onLogin.bind(this)
     this.onLogout = this.onLogout.bind(this)
-    this.onUserChange = this.onUserChange.bind(this)
     this.emailVerified = this.emailVerified.bind(this)
     this.onError = this.onError.bind(this)
   }
 
   componentDidMount() {
-    FirebaseAuth.setup(this.onLogin, this.onUserChange, this.onLogout, this.emailVerified, this.onError)
+    FirebaseAuth.setup(this.onLogin, this.onLogout, this.emailVerified, this.onError)
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.profileFetched != nextProps.profileFetched) {
       if (nextProps.profileFetched) {
-        console.log(this.props.profile)
         this.props.navigation.navigate(C.NAV_HOME)
       }
     }
   }
 
   onLogin(user) {
-    this.props.fetchUserProfile(user.uid)
+    this.props.upsertUserProfile(user.uid, user).then(() => {
+      this.props.fetchUserProfile(user.uid)
+    })
   }
 
   onLogout() {
     this.props.resetUserProfileState()
     this.props.navigation.navigate(C.NAV_USER_SIGNIN)
-  }
-
-  onUserChange(user, val) {
-    console.log('onUserChange()')
-    console.log(user)
-    console.log(val)
   }
 
   emailVerified() {
@@ -96,6 +91,7 @@ function mapDispatchToProps (dispatch) {
   return {
     dispatch,
     resetUserProfileState: () => dispatch(resetUserProfileState()),
+    upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
     fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
   }
 }

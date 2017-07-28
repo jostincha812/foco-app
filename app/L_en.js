@@ -16,9 +16,10 @@ export default {
   untitled: 'Untitled Set',
 
   // levels
-  beginner: 'Easy',
-  intermediate: 'Normal',
-  advanced: 'Difficult',
+  easy: 'Easy',
+  normal: 'Normal',
+  hard: 'Difficult',
+  expert: 'Expert',
 
   // navigation
   next: 'Next',
