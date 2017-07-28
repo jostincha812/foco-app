@@ -5,17 +5,20 @@ import MockUserPrefsAPI from './MockUserPrefsAPI'
 import JsFbFlashcardsAPI from './JsFbFlashcardsAPI'
 import JsFbUserFlashcardSetsAPI from './JsFbUserFlashcardSetsAPI'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
+import JsFbUserProfileAPI from './JsFbUserProfileAPI'
 
 const mockAPI = {
   flashcards: MockFlashcardsAPI,
   flashcardSets: MockUserFlashcardSetsAPI,
   userPrefs: MockUserPrefsAPI,
+  userProfile: null,
 }
 
 const jsFbAPI = {
   flashcards: JsFbFlashcardsAPI,
   flashcardSets: JsFbUserFlashcardSetsAPI,
   userPrefs: JsFbUserPrefsAPI,
+  userProfile: JsFbUserProfileAPI,
 }
 
 // export default mockAPI

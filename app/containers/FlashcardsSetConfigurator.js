@@ -52,7 +52,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
     this.onToggle = this.onToggle.bind(this)
     this.onDone = this.onDone.bind(this)
     this.state = {
-      status: C.FB_NONE,
+      status: C.FB_IDLE,
       user: null,
       setId: '',
       title: '',

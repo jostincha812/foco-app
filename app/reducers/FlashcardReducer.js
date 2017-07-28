@@ -1,7 +1,7 @@
 import C from '../C'
 const initialState = {
   data: {},
-  status: C.FB_NONE,
+  status: C.FB_IDLE,
   // isReady: false,
   // isFetching: false,
   // isStoring: false,

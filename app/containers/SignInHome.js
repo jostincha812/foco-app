@@ -10,6 +10,11 @@ import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 
+import {
+  resetUserProfileState,
+  fetchUserProfile,
+} from '../actions/UserProfileActions'
+
 class SignInHome extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
     title: null,
@@ -29,14 +34,21 @@ class SignInHome extends BaseContainer {
     FirebaseAuth.setup(this.onLogin, this.onUserChange, this.onLogout, this.emailVerified, this.onError)
   }
 
-  onLogin(user, val) {
-    console.log(user)
-    console.log(val)
-    this.props.navigation.navigate(C.NAV_HOME)
+  componentWillReceiveProps(nextProps) {
+    if (this.props.profileFetched != nextProps.profileFetched) {
+      if (nextProps.profileFetched) {
+        console.log(this.props.profile)
+        this.props.navigation.navigate(C.NAV_HOME)
+      }
+    }
+  }
+
+  onLogin(user) {
+    this.props.fetchUserProfile(user.uid)
   }
 
   onLogout() {
-    console.log('onLogout')
+    this.props.resetUserProfileState()
     this.props.navigation.navigate(C.NAV_USER_SIGNIN)
   }
 
@@ -75,12 +87,16 @@ class SignInHome extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
+    profileFetched: state.userProfile.status === C.FB_FETCHED,
+    profile: state.userProfile.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
+    resetUserProfileState: () => dispatch(resetUserProfileState()),
+    fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
   }
 }
 
