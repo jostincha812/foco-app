@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
+
+import { View, StatusBar } from 'react-native'
 import { SocialIcon } from 'react-native-elements'
 
 import C from '../C'
@@ -15,13 +16,11 @@ import {
   upsertUserProfile,
   fetchUserProfile,
 } from '../actions/UserProfileActions'
+import {
+  resetFlashcardsState
+} from '../actions/FlashcardActions'
 
 class SignInHome extends BaseContainer {
-  static navigationOptions = ({navigation}) => ({
-    title: null,
-    header: null
-  })
-
   constructor(props) {
     super(props)
     this.onLogin = this.onLogin.bind(this)
@@ -37,7 +36,7 @@ class SignInHome extends BaseContainer {
   componentWillReceiveProps(nextProps) {
     if (this.props.profileFetched != nextProps.profileFetched) {
       if (nextProps.profileFetched) {
-        this.props.navigation.navigate(C.NAV_HOME)
+        this.props.navigation.navigate(C.NAV_HOME_TAB)
       }
     }
   }
@@ -50,6 +49,7 @@ class SignInHome extends BaseContainer {
 
   onLogout() {
     this.props.resetUserProfileState()
+    this.props.resetFlashcardsState()
     this.props.navigation.navigate(C.NAV_USER_SIGNIN)
   }
 
@@ -90,6 +90,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
+    resetFlashcardsState: () => dispatch(resetFlashcardsState()),
     resetUserProfileState: () => dispatch(resetUserProfileState()),
     upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
     fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),

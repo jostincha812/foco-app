@@ -25,6 +25,7 @@ import {
 class FlashcardsViewer extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
     title: null,
+    headerTitle: null,
     headerLeft: Icons.back({
       color: S.navigation.headerTintColor,
       style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},

@@ -2,6 +2,7 @@ import React from 'react'
 import { TouchableOpacity, Image } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
+import T from '../T'
 import C from '../C'
 import S from '../styles/styles'
 
@@ -18,6 +19,16 @@ STACK[C.NAV_FLASHCARDS_SET_CONFIGURATOR] = { screen: FlashcardsSetConfigurator }
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
+    headerTitle: (
+      Icons.foco({color: S.navigation.headerTintColor})
+    ),
+    headerLeft: (
+      <TouchableOpacity
+        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        onPress={() => navigation.navigate(C.NAV_PROFILE_TAB) }>
+        {Icons.profile({color: T.colors.inactive})}
+      </TouchableOpacity>
+    )
     // @TODO activate for Drawer Nav
     // drawer: {
     //   label: 'Home',

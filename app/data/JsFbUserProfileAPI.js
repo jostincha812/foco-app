@@ -10,9 +10,7 @@ export default JsFbUserProfileAPI = {
       if (!snap.val()) {
         // new user, insert with default user params
         p = Object.assign({}, p, {...UserDefaults})
-        console.log('defaults inserted')
       }
-      console.log(p)
       return refs.user(uid).update(p).then(() => {
         return {uid, ...p}
       })

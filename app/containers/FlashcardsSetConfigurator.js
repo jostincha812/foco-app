@@ -32,6 +32,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
 
     return ({
       title: navigation.state.params ? L.editset : L.newset,
+      headerTitle: null,
       headerLeft: Icons.back({
         color: S.navigation.headerTintColor,
         style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},

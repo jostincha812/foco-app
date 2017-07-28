@@ -21,22 +21,6 @@ import {
 } from '../actions/UserFlashcardSetsActions'
 
 class Home extends BaseContainer {
-  // const {state, setParams, navigate} = navigation
-  // const {user} = state.params
-  static navigationOptions = ({navigation}) => ({
-    title: null,
-    headerTitle: (
-      Icons.foco({color: S.navigation.headerTintColor})
-    ),
-    headerLeft: (
-      <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-        onPress={() => navigation.navigate(C.NAV_USER_PROFILE_HOME) }>
-        {Icons.profile({color: S.navigation.headerTintColor})}
-      </TouchableOpacity>
-    )
-  })
-
   componentDidMount() {
     const user = this.props.user
     this.props.fetchFeaturedFlashcardSets(user.level)
@@ -53,6 +37,17 @@ class Home extends BaseContainer {
     const navigation = this.props.navigation
     const props = this.props
     const user = this.props.user
+    const ready = this.props.ready
+
+    if (!(ready && user)) {
+      return (
+        <View style={[S.containers.screen, S.containers.centered]}>
+          <StatusBar barStyle={S.statusBarStyle} />
+          <LoadingIndicator />
+        </View>
+      )
+    }
+
     const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
     const userSets = this.props.sets[user.uid] ? this.props.sets[user.uid] : {}
     const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
@@ -69,17 +64,7 @@ class Home extends BaseContainer {
       )
     }
 
-    if (!this.props.ready) {
-      return (
-        <View style={[S.containers.screen, S.containers.centered]}>
-          <StatusBar barStyle={S.statusBarStyle} />
-          <LoadingIndicator />
-        </View>
-      )
-    }
-
     const appSetKeys = Object.keys(appSets)
-
     return (
       <ScrollView style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />

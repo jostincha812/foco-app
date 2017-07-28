@@ -3,15 +3,11 @@ import { StackNavigator } from 'react-navigation'
 
 import S from '../styles/styles'
 import SignInStack from './SignInStack'
-import HomeStack from './HomeStack'
-import ProfileStack from './ProfileStack'
-import AboutStack from './AboutStack'
+import AppTabNavigator from './AppTabNavigator'
 
 const RootStackNavigator = StackNavigator({
-  SignInStack: { screen: SignInStack },
-  HomeStack: { screen: HomeStack },
-  ProfileStack: { screen: ProfileStack },
-  AboutStack: { screen: AboutStack },
+  NAV_USER_SIGNIN: { screen: SignInStack },
+  AppTabNavigator: { screen: AppTabNavigator },
 }, {
   swipeEnabled: false,
   animationEnabled: false,

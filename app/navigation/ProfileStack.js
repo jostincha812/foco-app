@@ -2,6 +2,7 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
+import T from '../T'
 import C from '../C'
 import S from '../styles/styles'
 
@@ -13,21 +14,31 @@ STACK[C.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    drawer: {
-      label: 'Profile',
-      icon: ({ focused, tintColor }) => Icons.profile({ focused, tintColor }),
-    },
     ...S.navigation,
-    headerLeft: (
+    headerLeft: null,
+    headerRight: (
       <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-        onPress={() => navigation.navigate('DrawerOpen') }>
-        {Icons.menu({tintColor: S.navigation.headerTintColor})}
+        style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
+        onPress={() => navigation.navigate(C.NAV_HOME_TAB) }>
+        {Icons.home({color: T.colors.inactive})}
       </TouchableOpacity>
     ),
-    tabBarIcon: ({ focused, tintColor }) => (
-      Icons.profile({ focused, color:tintColor })
-    ),
+    // @TODO activate for Drawer Nav
+    // drawer: {
+    //   label: 'Profile',
+    //   icon: ({ focused, tintColor }) => Icons.profile({ focused, tintColor }),
+    // },
+    // headerLeft: (
+    //   <TouchableOpacity
+    //     style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+    //     onPress={() => navigation.navigate('DrawerOpen') }>
+    //     {Icons.menu({color: S.navigation.headerTintColor})}
+    //   </TouchableOpacity>
+    // ),
+    // @TODO activate for Tab Nav
+    // tabBarIcon: ({ focused, tintColor }) => (
+    //   Icons.profile({ focused, color:tintColor })
+    // ),
   }),
 })
 
