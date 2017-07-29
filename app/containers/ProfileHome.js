@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, ScrollView, StatusBar, Text } from 'react-native'
-import { Button } from 'react-native-elements'
+import { Avatar, Button, ButtonGroup } from 'react-native-elements'
 
 import C from '../C'
 import T from '../T'
@@ -14,16 +14,28 @@ import FirebaseAuth from '../auth/FirebaseAuth'
 import LoadingIndicator from '../lib/LoadingIndicator'
 
 class ProfileHome extends BaseContainer {
-  static navigationOptions = {
-    ...S.navigation,
-    headerTitle: (
-      Icons.profile({color: T.colors.app})
-    ),
+  constructor () {
+    super()
+    this.state = {
+      selectedIndex: 1
+    }
+    this.updateIndex = this.updateIndex.bind(this)
+  }
+
+  updateIndex (selectedIndex) {
+    this.setState({selectedIndex})
+  }
+
+  initials(name) {
+    return ('VL')
   }
 
   render() {
     const props = this.props
     const profile = props.profile
+
+    const selectedIndex = this.state.selectedIndex
+    const levels = ['WSET-2', 'WSET-3']
 
     if (!profile) {
       return (
@@ -35,14 +47,42 @@ class ProfileHome extends BaseContainer {
     }
 
     return (
-      <ScrollView style={S.containers.screen}>
+      <View style={[S.containers.screen]}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <Text>Username: {profile ? profile.displayName : {}}</Text>
+        <View style={{flex:1, alignItems:'center', margin:S.spacing.xlarge}}>
+          <View style={{height: 96, width: 96, marginBottom:S.spacing.small}}>
+            <Avatar
+              rounded
+              width={96}
+              height={96}
+              source={{uri:profile.photoURL}}
+              avatarStyle={{borderColor:T.colors.normal}}
+              title={this.initials(profile.displayName)}
+              titleStyle={S.text.title}
+            />
+          </View>
+          <Text style={[S.text.title, {marginBottom:S.spacing.small}]}>
+            {profile.displayName}
+          </Text>
+
+          <ButtonGroup
+            onPress={this.updateIndex}
+            selectedIndex={selectedIndex}
+            buttons={levels}
+            textStyle={S.text.subtitle}
+            selectedBackgroundColor={T.colors.active}
+            selectedTextStyle={{color:T.colors.activeText}}
+            containerStyle={{height:30, marginBottom:S.spacing.small}}
+          />
+        </View>
         <Button
-          title='Sign Out'
+          buttonStyle={{marginBottom:S.spacing.large}}
+          backgroundColor={T.colors.error}
+          raised={true}
+          title={L.signOut}
           onPress={FirebaseAuth.logout}
         />
-      </ScrollView>
+      </View>
     )
   }
 }

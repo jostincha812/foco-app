@@ -35,4 +35,5 @@ export default {
   signinGoogle: 'Sign In with Google  ',
   signinEmail: 'Sign In with Email',
   signupEmail: 'Sign Up with Email',
+  signOut: 'Sign Out',
 }

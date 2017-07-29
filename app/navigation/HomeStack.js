@@ -20,14 +20,18 @@ const HomeStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
     headerTitle: (
-      Icons.foco({color: T.colors.app})
+      Icons.foco({
+        size: T.icons.largeIcon,
+        color: T.colors.app
+      })
     ),
     headerLeft: (
-      <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-        onPress={() => navigation.navigate(C.NAV_PROFILE_TAB) }>
-        {Icons.profile({color: T.colors.inactive})}
-      </TouchableOpacity>
+      Icons.profile({
+        size: T.icons.largeIcon,
+        color: T.colors.inactive,
+        style: { top:S.spacing.xsmall/2, paddingLeft:S.spacing.small},
+        onPress: () => navigation.navigate(C.NAV_PROFILE_TAB)
+      })
     )
     // @TODO activate for Drawer Nav
     // drawer: {

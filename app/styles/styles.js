@@ -132,6 +132,14 @@ export default styles = {
     headerStyle: {
       backgroundColor: T.colors.headerBackground,
       borderBottomWidth: 0,
+      borderBottomColor: T.colors.headerBackground,
+      elevation: 0,
+      shadowColor: 'transparent',
+      shadowOpacity: 0,
+      shadowRadius: 0,
+      shadowOffset: {
+        height: 0,
+      },
     },
   },
 }

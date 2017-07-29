@@ -16,12 +16,16 @@ const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
     headerLeft: null,
+    headerTitle: (
+      Icons.profile({size:T.icons.largeIcon, color:T.colors.app, style:{top:S.spacing.xsmall/2}})
+    ),
     headerRight: (
-      <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
-        onPress={() => navigation.navigate(C.NAV_HOME_TAB) }>
-        {Icons.home({color: T.colors.inactive})}
-      </TouchableOpacity>
+      Icons.foco({
+        size: T.icons.largeIcon,
+        color: T.colors.inactive,
+        style: { paddingRight: S.spacing.small },
+        onPress: () => navigation.navigate(C.NAV_HOME_TAB),
+      })
     ),
     // @TODO activate for Drawer Nav
     // drawer: {

@@ -20,7 +20,7 @@ const AboutStack = StackNavigator(STACK, {
     ...S.navigation,
     headerLeft: (
       <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+        style={{paddingLeft: S.spacing.small}}
         onPress={() => navigation.navigate('DrawerOpen') }>
         {Icons.menu({tintColor: S.navigation.headerTintColor})}
       </TouchableOpacity>

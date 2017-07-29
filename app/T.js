@@ -2,9 +2,8 @@ export default FocoTheme = {
   // colors - http://www.material-ui.com/#/customization/colors
   colors: {
     app: '#EF6C00',   // orange 800
-    headerBackground: '#FFF',
+    headerBackground: '#FAFAFA',
     containerBackground: '#FAFAFA', // grey 50
-    // containerBackground: '#ECEFF1',
     contentBackground: '#FFF',
     contentBorder: '#E5E5E5',   // grey 100
 
@@ -20,6 +19,7 @@ export default FocoTheme = {
     text: '#212121',        // grey 900
     inactiveText: '#757575',  // grey 600
     inverseText: '#fff',
+    activeText: '#fff',
     shadow: '#aaa',
     yes: '#81C784',      // green 300
     yesActive: '#388E3C',// green 700
@@ -51,8 +51,8 @@ export default FocoTheme = {
   icons: {
     smallIcon: 16,
     normalIcon: 24,
-    largeIcon: 48,
-    xlargeIcon: 64,
+    largeIcon: 28,
+    xlargeIcon: 48,
   },
 
   fonts: {
