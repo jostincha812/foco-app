@@ -10,6 +10,7 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
+import Intro from '../components/Intro'
 
 import {
   resetUserProfileState,
@@ -66,15 +67,19 @@ class SignInHome extends BaseContainer {
     return (
       <View style={[S.containers.screen, S.containers.centered]}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <SocialIcon
-          title={L.signinFacebook}
-          button={true}
-          type='facebook'
-          style={{width:'75%'}}
-          fontSize={T.fonts.normalSize}
-          fontWeight={T.fonts.normalWeight}
-          onPress={FirebaseAuth.loginWithFacebook}
-        />
+
+        <View style={{alignSelf:'center', height:'60%'}}>
+          <Intro style={{flex:1}}/>
+          <SocialIcon
+            title={L.signinFacebook}
+            button={true}
+            type='facebook'
+            style={{width:'75%'}}
+            fontSize={T.fonts.normalSize}
+            fontWeight={T.fonts.normalWeight}
+            onPress={FirebaseAuth.loginWithFacebook}
+          />
+        </View>
       </View>
     )
   }
