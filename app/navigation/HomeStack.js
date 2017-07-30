@@ -21,7 +21,7 @@ const HomeStack = StackNavigator(STACK, {
     ...S.navigation,
     headerTitle: (
       Icons.foco({
-        size: T.icons.largeIcon,
+        // size: T.icons.largeIcon,
         color: T.colors.app
       })
     ),

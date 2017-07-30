@@ -1,4 +1,6 @@
 export default {
+  FOCO: 'FOCO by VPQLabs',
+  VERSION: 'v1.0.1',
   WSET3: 'WSET3',
   WSET2: 'WSET2',
 

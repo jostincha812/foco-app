@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, ScrollView, StatusBar, Text } from 'react-native'
-import { Avatar, Button, ButtonGroup } from 'react-native-elements'
+import { View, StatusBar, Text } from 'react-native'
+import { Avatar, Button, List, ListItem } from 'react-native-elements'
 
 import C from '../C'
 import T from '../T'
@@ -9,33 +9,15 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
+import UserProfile from '../components/UserProfile'
 
 import FirebaseAuth from '../auth/FirebaseAuth'
 import LoadingIndicator from '../lib/LoadingIndicator'
 
 class ProfileHome extends BaseContainer {
-  constructor () {
-    super()
-    this.state = {
-      selectedIndex: 1
-    }
-    this.updateIndex = this.updateIndex.bind(this)
-  }
-
-  updateIndex (selectedIndex) {
-    this.setState({selectedIndex})
-  }
-
-  initials(name) {
-    return ('VL')
-  }
-
   render() {
     const props = this.props
     const profile = props.profile
-
-    const selectedIndex = this.state.selectedIndex
-    const levels = ['WSET-2', 'WSET-3']
 
     if (!profile) {
       return (
@@ -46,42 +28,73 @@ class ProfileHome extends BaseContainer {
       )
     }
 
+    const list = [
+      // {
+      //   title: 'Restore Purchases',
+      //   icon: 'restore',
+      //   hideChevron: true,
+      //   onPress: () => console.log('Restore purchases')
+      // },
+      {
+        title: 'Rate Us',
+        icon: 'rate-review',
+        hideChevron: true,
+        onPress: () => console.log('Rate us')
+      },
+      {
+        title: 'Share Foco',
+        icon: 'share',
+        hideChevron: true,
+        onPress: () => console.log('Share with Friends')
+      },
+      // {
+      //   title: 'Help and Support',
+      //   onPress: () => console.log('Contact support')
+      // },
+      // {
+      //   title: 'Privacy Policy',
+      //   onPress: () => console.log('Show Privacy Policy')
+      // },
+      // {
+      //   title: 'Terms of Service',
+      //   onPress: () => console.log('Show TOS')
+      // },
+    ]
+
     return (
       <View style={[S.containers.screen]}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <View style={{flex:1, alignItems:'center', margin:S.spacing.xlarge}}>
-          <View style={{height: 96, width: 96, marginBottom:S.spacing.small}}>
-            <Avatar
-              rounded
-              width={96}
-              height={96}
-              source={{uri:profile.photoURL}}
-              avatarStyle={{borderColor:T.colors.normal}}
-              title={this.initials(profile.displayName)}
-              titleStyle={S.text.title}
-            />
-          </View>
-          <Text style={[S.text.title, {marginBottom:S.spacing.small}]}>
-            {profile.displayName}
-          </Text>
+        <UserProfile style={{flex:1}} profile={profile} />
 
-          <ButtonGroup
-            onPress={this.updateIndex}
-            selectedIndex={selectedIndex}
-            buttons={levels}
-            textStyle={S.text.subtitle}
-            selectedBackgroundColor={T.colors.active}
-            selectedTextStyle={{color:T.colors.activeText}}
-            containerStyle={{height:30, marginBottom:S.spacing.small}}
+        <List containerStyle={{borderTopWidth:0, borderBottomWidth:0, marginBottom:S.spacing.large}}>
+          {
+            list.map((item, i) => (
+              <ListItem
+                key={i}
+                hideChevron={item.hideChevron}
+                title={item.title}
+                leftIcon={{name: item.icon}}
+                onPress={item.onPress}
+              />
+            ))
+          }
+        </List>
+
+        <List containerStyle={{borderTopWidth:0, borderBottomWidth:0, marginBottom:S.spacing.large}}>
+          <ListItem
+            key={C.NAV_SIGNOUT}
+            hideChevron={true}
+            title={L.signOut}
+            titleStyle={{color:T.colors.error, alignSelf:'center'}}
+            onPress={FirebaseAuth.logout}
           />
+        </List>
+
+        <View style={{marginTop:S.spacing.large, marginBottom:S.spacing.normal}}>
+          <Text style={[S.text.normal, {color:T.colors.inactiveText, textAlign:'center', fontStyle:'italic'}]}>
+            {C.FOCO}, {C.VERSION}
+          </Text>
         </View>
-        <Button
-          buttonStyle={{marginBottom:S.spacing.large}}
-          backgroundColor={T.colors.error}
-          raised={true}
-          title={L.signOut}
-          onPress={FirebaseAuth.logout}
-        />
       </View>
     )
   }

@@ -1,4 +1,12 @@
 export default {
+  // User Profile
+  level: 'Studying',
+  purchases: 'Purchases',
+  role: 'Role',
+  IAP_EARLY_ADOPTER: 'All Access (Early Adopter)',
+  ROLE_USER: '',
+  ROLE_ADMIN: 'Admin',
+
   // Home
   featured: 'Featured',
   mycards: 'My Sets',

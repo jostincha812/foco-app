@@ -68,7 +68,7 @@ class Home extends BaseContainer {
     return (
       <ScrollView style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
+        <View style={[S.containers.hero, {paddingTop:S.spacing.xsmall, paddingBottom:S.spacing.xsmall}]}>
           <Text style={S.text.hero}>{L.featured}</Text>
           { appSetKeys &&
             flashcardSetCard({id:appSetKeys[0], ...appSets[appSetKeys[0]]}, 'hero')

@@ -17,11 +17,15 @@ const ProfileStack = StackNavigator(STACK, {
     ...S.navigation,
     headerLeft: null,
     headerTitle: (
-      Icons.profile({size:T.icons.largeIcon, color:T.colors.app, style:{top:S.spacing.xsmall/2}})
+      Icons.profile({
+        size: T.icons.largeIcon,
+        color:T.colors.app,
+        style: { top:S.spacing.xsmall/2 }
+      })
     ),
     headerRight: (
       Icons.foco({
-        size: T.icons.largeIcon,
+        // size: T.icons.largeIcon,
         color: T.colors.inactive,
         style: { paddingRight: S.spacing.small },
         onPress: () => navigation.navigate(C.NAV_HOME_TAB),
