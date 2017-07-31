@@ -37,7 +37,7 @@ const FirebaseAuth = class {
         const profile = {
           emailVerified: emailVerified,
           email: user.email,
-          displayName: user.displayName,
+          displayName: user.displayName ? user.displayName : user.email,
           photoURL: user.photoURL,
           uid: user.uid,
           lastActive: new Date().toUTCString(),
@@ -86,11 +86,12 @@ const FirebaseAuth = class {
     }
   }
 
-  register = (username, password) => {
+  register = (name, email, password) => {
     try {
-      firebase.auth().createUserWithEmailAndPassword(username, password)
-        .then((user)=> {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((user) => {
           user.sendEmailVerification();
+          return user.updateProfile({displayName: name})
         })
         .catch((err) => this.onError && this.onError(err));
     } catch (e) {

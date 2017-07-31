@@ -16,7 +16,7 @@ export default class BaseContainer extends React.Component {
 
   showToast(message, options) {
     this.toast = Toast.show(message, {
-      duration: 2500,
+      duration: 2000,
       position: -40,
       shadow: true,
       animation: true,
@@ -29,7 +29,7 @@ export default class BaseContainer extends React.Component {
 
   errorToast(message, options) {
     this.showToast(message, {
-      duration: -1,
+      duration: 3500,
       backgroundColor: T.colors.error,
       ...options,
     })

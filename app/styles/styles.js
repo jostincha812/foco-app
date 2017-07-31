@@ -1,9 +1,10 @@
 import T from '../T'
 
 const spacing = {
-  normal: 16,
-  small: 8,
+  xxsmall: 2,
   xsmall: 4,
+  small: 8,
+  normal: 16,
   large: 24,
   xlarge: 32,
   none: 0,

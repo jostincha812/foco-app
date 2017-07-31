@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { View, StatusBar } from 'react-native'
-import { SocialIcon } from 'react-native-elements'
+import { View, StatusBar, Text} from 'react-native'
+import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
 import C from '../C'
 import T from '../T'
@@ -11,6 +11,7 @@ import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import Intro from '../components/Intro'
+import Divider from '../components/Divider'
 
 import {
   resetUserProfileState,
@@ -24,6 +25,7 @@ import {
 class SignInHome extends BaseContainer {
   constructor(props) {
     super(props)
+    this.state = {email:null, password:null}
     this.onLogin = this.onLogin.bind(this)
     this.onLogout = this.onLogout.bind(this)
     this.emailVerified = this.emailVerified.bind(this)
@@ -68,17 +70,85 @@ class SignInHome extends BaseContainer {
       <View style={[S.containers.screen, S.containers.centered]}>
         <StatusBar barStyle={S.statusBarStyle} />
 
-        <View style={{alignSelf:'center', height:'60%'}}>
-          <Intro style={{flex:1}}/>
+        <View style={{alignSelf:'center', alignItems:'center', height:'70%'}}>
+          <Intro style={{marginBottom:S.spacing.large}}/>
+
+          <View style={{width:'80%', marginTop:S.spacing.large}}>
+            <FormInput
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='email-address'
+              placeholder={L.email}
+              onChangeText={(text) => this.setState({email:text})}
+            />
+            <FormInput
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='default'
+              secureTextEntry={true}
+              placeholder={L.password}
+              onChangeText={(text) => this.setState({password:text})}
+            />
+
+            <Button
+              title={L.signIn}
+              icon={{name:'chevron-right', color:T.colors.inverseText}}
+              iconRight={true}
+              borderRadius={S.spacing.xlarge}
+              buttonStyle={{marginTop:S.spacing.large}}
+              raised={true}
+              fontSize={T.fonts.normalSize}
+              fontWeight={T.fonts.boldWeight}
+              color={T.colors.inverseText}
+              backgroundColor={T.colors.active}
+              onPress={() => FirebaseAuth.loginWithEmail(this.state.email, this.state.password)}
+            />
+          </View>
+
+          <View style={{flexDirection:'row', alignItems:'center', margin:S.spacing.large}}>
+            <Divider style={{borderColor:T.colors.inactive, width:60, marginRight:S.spacing.normal}} />
+            <Text style={{color:T.colors.inactiveText, fontStyle:'italic'}}>
+              {L.or}
+            </Text>
+            <Divider style={{borderColor:T.colors.inactive, width:60, marginLeft:S.spacing.normal}} />
+          </View>
+
           <SocialIcon
-            title={L.signinFacebook}
+            title={L.signInFacebook}
             button={true}
             type='facebook'
-            style={{width:'75%'}}
+            style={{width:'70%'}}
             fontSize={T.fonts.normalSize}
             fontWeight={T.fonts.normalWeight}
             onPress={FirebaseAuth.loginWithFacebook}
           />
+
+          <View style={{flexDirection:'row', alignItems:'center', marginTop:S.spacing.normal}}>
+            <Button
+              title={L.forgotPassword}
+              fontSize={T.fonts.normalSize}
+              fontWeight={T.fonts.normalWeight}
+              color={T.colors.inactiveText}
+              backgroundColor={T.colors.transparent}
+              onPress={() => {
+                if (this.state.email) {
+                  FirebaseAuth.resetPassword(this.state.email)
+                  this.showToast(L.resetPassword)
+                } else {
+                  this.errorToast(L.emailMissing)
+                }
+              }}
+            />
+
+            <Button
+              title={L.signUp}
+              fontSize={T.fonts.normalSize}
+              fontWeight={T.fonts.normalWeight}
+              color={T.colors.inactiveText}
+              backgroundColor={T.colors.transparent}
+              onPress={() => this.props.navigation.navigate(C.NAV_USER_SIGNUP_WITH_EMAIL)}
+            />
+          </View>
         </View>
       </View>
     )

@@ -85,7 +85,7 @@ class ProfileHome extends BaseContainer {
             key={C.NAV_SIGNOUT}
             hideChevron={true}
             title={L.signOut}
-            titleStyle={{color:T.colors.error, alignSelf:'center'}}
+            titleStyle={{color:T.colors.active, alignSelf:'center'}}
             onPress={FirebaseAuth.logout}
           />
         </List>

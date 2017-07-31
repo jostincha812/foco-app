@@ -1,32 +1,101 @@
 import React from 'react'
-import { View, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
-import { Button } from 'react-native-elements'
+import { View, StatusBar, Text} from 'react-native'
+import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
 import C from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
+import FirebaseAuth from '../auth/FirebaseAuth'
 
 class SignUpWithEmail extends BaseContainer {
   constructor(props) {
     super(props)
+    this.state = { name:null, email:null, password:null, confirmation:null }
     this.onSignUp = this.onSignUp.bind(this)
   }
 
   onSignUp() {
-    this.showToast("Signed Up")
-    this.props.navigation.navigate(C.NAV_HOME)
+    if (this.state.password != this.state.confirmation) {
+      return this.errorToast(L.confirmationFail)
+    }
+    if (this.state.name === null || this.state.name === '') {
+      return this.errorToast(L.nameFail)
+    }
+    FirebaseAuth.register(this.state.name, this.state.email, this.state.password)
   }
 
   render() {
     return (
       <View style={[S.containers.screen, S.containers.centered]}>
-        <Button
-          title="Sign In"
-          onPress={this.onSignUp}
-        />
+        <View style={{justifyContent:'space-between', alignSelf:'center', alignItems:'center', height:'70%'}}>
+          <View style={{marginTop:S.spacing.xlarge}}>
+            <Text style={[S.text.hero, {alignSelf:'center', marginBottom:S.spacing.normal}]}>
+              {L.createAccount}
+            </Text>
+            <Text style={S.text.normal}>
+              {L.accountBenefits}
+            </Text>
+          </View>
+
+          <View style={{width:'80%', marginTop:S.spacing.large}}>
+            <FormInput
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='default'
+              placeholder={L.name}
+              onChangeText={(text) => this.setState({name:text})}
+            />
+            <FormInput
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='email-address'
+              placeholder={L.email}
+              onChangeText={(text) => this.setState({email:text})}
+            />
+            <FormInput
+              containerStyle={{marginTop:S.spacing.large}}
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='default'
+              secureTextEntry={true}
+              placeholder={L.password}
+              onChangeText={(text) => this.setState({password:text})}
+            />
+            <FormInput
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='default'
+              secureTextEntry={true}
+              placeholder={L.confirmation}
+              onChangeText={(text) => this.setState({confirmation:text})}
+            />
+
+            <Button
+              title={L.go}
+              icon={{name:'chevron-right'}}
+              iconRight={true}
+              borderRadius={S.spacing.xlarge}
+              buttonStyle={{marginTop:S.spacing.large}}
+              raised={true}
+              fontSize={T.fonts.normalSize}
+              fontWeight={T.fonts.boldWeight}
+              backgroundColor={T.colors.active}
+              onPress={this.onSignUp}
+            />
+          </View>
+
+          <Button
+            title={L.haveAccount}
+            fontSize={T.fonts.normalSize}
+            fontWeight={T.fonts.normalWeight}
+            color={T.colors.inactiveText}
+            backgroundColor={T.colors.transparent}
+            onPress={() => this.props.navigation.goBack()}
+          />
+        </View>
       </View>
     )
   }

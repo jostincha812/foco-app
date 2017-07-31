@@ -12,12 +12,12 @@ export default FocoTheme = {
     error: '#D32F2F', // red 700
 
     normal: '#212121',         // grey 900
-    active: '#E64A19',   // deep orange 700
+    active: '#EF6C00',   // deep orange 700
     inactive: '#BDBDBD', // grey 400
     accent: '#1E88E5',   // blue 600
     inverse: '#FFF',
     text: '#212121',        // grey 900
-    inactiveText: '#757575',  // grey 600
+    inactiveText: '#959595',  // grey 500
     inverseText: '#fff',
     activeText: '#fff',
     shadow: '#aaa',
