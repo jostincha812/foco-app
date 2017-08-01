@@ -5,12 +5,13 @@ import { Provider } from 'react-redux'
 
 import configureStore from './configureStore'
 import configureFirebase from './configureFirebase'
+import firebase from './configureRNFirebase'
 
 // import RootContainer from './app/navigation/RootDrawerNavigator'
 import RootContainer from './app/navigation/RootStackNavigator'
 
 const store = configureStore()
-const firebase = configureFirebase()
+const firebaseX = configureFirebase()
 
 export default FocoApp = () => (
   <Provider store={store}>

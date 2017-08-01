@@ -1,5 +1,3 @@
-import * as firebase from 'firebase'
-
 import refs from './JsFbRefs'
 import { UserDefaults } from './defaults'
 
