@@ -25,7 +25,7 @@ export default class UserProfile extends React.Component {
             rounded
             width={116}
             height={116}
-            source={{uri:profile.photoURL}}
+            source={profile.photoURL ? {uri:profile.photoURL} : null}
             avatarStyle={{borderColor:T.colors.contentBorder, borderWidth:0.5}}
             title={this.initials(profile.displayName)}
             titleStyle={S.text.hero}

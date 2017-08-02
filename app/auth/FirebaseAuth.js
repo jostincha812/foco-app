@@ -28,7 +28,7 @@ const FirebaseAuth = class {
     this.onLogin = onLogin;
     this.onError = onError;
 
-    firebase.auth().onAuthStateChanged((user)=> {
+    return firebase.auth().onAuthStateChanged((user)=> {
 
       if (user) {
         // Determine if user needs to verify email

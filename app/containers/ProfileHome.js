@@ -18,8 +18,9 @@ class ProfileHome extends BaseContainer {
   render() {
     const props = this.props
     const profile = props.profile
+    const profileFetched = props.profileFetched
 
-    if (!profile) {
+    if (!profileFetched) {
       return (
         <View style={[S.containers.screen, S.containers.centered]}>
           <StatusBar barStyle={S.statusBarStyle} />

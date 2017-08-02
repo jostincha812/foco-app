@@ -7,6 +7,9 @@ const initialState = {
 
 export default function UserFlashcardSetsReducer (state = initialState, action) {
   switch (action.type) {
+    case C.RESET_USER_FLASHCARD_SETS_STATE:
+      return initialState
+      
     case C.FETCH_USER_FLASHCARD_SETS_PENDING:
       return {
         ...state,

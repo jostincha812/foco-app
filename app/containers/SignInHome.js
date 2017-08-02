@@ -21,6 +21,9 @@ import {
 import {
   resetFlashcardsState
 } from '../actions/FlashcardActions'
+import {
+  resetUserFlashcardSetsState
+} from '../actions/UserFlashcardSetsActions'
 
 class SignInHome extends BaseContainer {
   constructor(props) {
@@ -30,10 +33,17 @@ class SignInHome extends BaseContainer {
     this.onLogout = this.onLogout.bind(this)
     this.emailVerified = this.emailVerified.bind(this)
     this.onError = this.onError.bind(this)
+    this.unsubscribe = null
   }
 
   componentDidMount() {
-    FirebaseAuth.setup(this.onLogin, this.onLogout, this.emailVerified, this.onError)
+    this.unsubscribe = FirebaseAuth.setup(this.onLogin, this.onLogout, this.emailVerified, this.onError)
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,6 +63,7 @@ class SignInHome extends BaseContainer {
   onLogout() {
     this.props.resetUserProfileState()
     this.props.resetFlashcardsState()
+    this.props.resetUserFlashcardSetsState()
     this.props.navigation.navigate(C.NAV_USER_SIGNIN)
   }
 
@@ -165,10 +176,11 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    resetFlashcardsState: () => dispatch(resetFlashcardsState()),
     resetUserProfileState: () => dispatch(resetUserProfileState()),
     upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
     fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
+    resetFlashcardsState: () => dispatch(resetFlashcardsState()),
+    resetUserFlashcardSetsState: () => dispatch(resetUserFlashcardSetsState()),
   }
 }
 
