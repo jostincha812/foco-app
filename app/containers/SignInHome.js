@@ -84,7 +84,7 @@ class SignInHome extends BaseContainer {
         <View style={{alignSelf:'center', alignItems:'center', height:'70%'}}>
           <Intro style={{marginBottom:S.spacing.large}}/>
 
-          <View style={{width:'80%', marginTop:S.spacing.large}}>
+          <View style={{width:'80%', marginTop:S.spacing.large, borderColor:'#000', borderTopWidth:1}}>
             <FormInput
               autoCapitalize='none'
               autoCorrect={false}
