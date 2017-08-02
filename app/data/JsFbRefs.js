@@ -1,4 +1,4 @@
-import firebase from '../../configureRNFirebase'
+import firebase from '../../configureFirebase'
 
 const db = firebase.database
 const refs = {

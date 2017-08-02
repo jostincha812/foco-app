@@ -1,4 +1,4 @@
-import * as firebase from 'firebase'
+import firebase from '../../configureFirebase'
 
 import Providers from './Providers'
 import fbRefs from '../data/JsFbRefs'
