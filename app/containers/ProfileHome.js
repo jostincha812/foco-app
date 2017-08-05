@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, StatusBar, Text } from 'react-native'
 import { Avatar, Button, List, ListItem } from 'react-native-elements'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -15,6 +15,10 @@ import FirebaseAuth from '../auth/FirebaseAuth'
 import LoadingIndicator from '../lib/LoadingIndicator'
 
 class ProfileHome extends BaseContainer {
+  componentDidMount() {
+    this.setCurrentScreen(E.user_profile_home)
+  }
+
   render() {
     const props = this.props
     const profile = props.profile

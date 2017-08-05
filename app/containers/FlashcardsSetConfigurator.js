@@ -1,9 +1,11 @@
 import React from 'react'
-import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { fbAnalytics } from '../../configureFirebase'
+
+import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { Button, FormLabel, FormInput } from 'react-native-elements'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -31,12 +33,15 @@ class FlashcardsSetConfigurator extends BaseContainer {
     const dispatch = navigation.state.params.dispatch
 
     return ({
-      title: navigation.state.params ? L.editset : L.newset,
+      title: set ? L.editset : L.newset,
       headerTitle: null,
       headerLeft: Icons.back({
         color: S.navigation.headerTintColor,
         style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
-        onPress: () => navigation.goBack()
+        onPress: () => {
+          fbAnalytics.logEvent(E.event_configure_set_aborted)
+          navigation.goBack()
+        }
       }),
       headerRight: ( set &&
         Icons.delete({
@@ -53,6 +58,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
     this.onToggle = this.onToggle.bind(this)
     this.onDone = this.onDone.bind(this)
     this.state = {
+      editing: false,
       status: C.FB_IDLE,
       user: null,
       setId: '',
@@ -62,20 +68,24 @@ class FlashcardsSetConfigurator extends BaseContainer {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.setCurrentScreen(E.flashcards_set_configurator)
     this.props.resetFlashcardsState()
 
     const navigation = this.props.navigation
     const user = navigation.state.params.user
     this.setState({user})
 
+    let setId = null
+    let title = null
+
     if (navigation.state.params.set) {
-      const setId = navigation.state.params.set.id
-      const title = navigation.state.params.set.title
-      const split = VPQTags.split(navigation.state.params.set.tags)
-      const regions = split.regions
-      const categories = split.categories
-      const varietals = split.varietals
+      setId = navigation.state.params.set.id
+      title = navigation.state.params.set.title
+      const tags = VPQTags.split(navigation.state.params.set.tags)
+      const regions = tags.regions
+      const categories = tags.categories
+      const varietals = tags.varietals
 
       this.setState({
         setId,
@@ -91,6 +101,8 @@ class FlashcardsSetConfigurator extends BaseContainer {
         categories,
       )
     }
+
+    this.logEvent(E.event_configure_set, { isNew: setId==null, setId, title })
   }
 
   componentWillUnmount() {
@@ -102,14 +114,23 @@ class FlashcardsSetConfigurator extends BaseContainer {
     const status = nextProps.status
     if (status != this.props.status) {
       const label = ''
+      if (status === C.FB_REMOVED) {
+        label = L.removed
+        this.logEvent(E.event_configure_set_deleted, {
+          setId:this.state.setId,
+          title:this.state.title
+        })
+      }
       if (status === C.FB_UPDATED) {
         label = L.saved
+        this.logEvent(E.event_configure_set_saved, {
+          isNew:!this.state.editing,
+          setId:this.state.setId,
+          title:this.state.title
+        })
       }
       if (status === C.FB_UPDATED && !this.state.editing) {
         label = L.created
-      }
-      if (status === C.FB_REMOVED) {
-        label = L.removed
       }
 
       if (status === C.FB_UPDATED || status === C.FB_REMOVED) {

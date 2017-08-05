@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { fbAnalytics } from '../../configureFirebase'
+
 import { View, StatusBar, Text} from 'react-native'
 import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -17,6 +19,10 @@ class SignUpWithEmail extends BaseContainer {
     this.onSignUp = this.onSignUp.bind(this)
   }
 
+  componentDidMount() {
+    this.setCurrentScreen(E.signup_with_email_screen)
+  }
+
   onSignUp() {
     if (this.state.password != this.state.confirmation) {
       return this.errorToast(L.confirmationFail)
@@ -25,6 +31,10 @@ class SignUpWithEmail extends BaseContainer {
       return this.errorToast(L.nameFail)
     }
     FirebaseAuth.register(this.state.name, this.state.email, this.state.password)
+    this.logEvent(E.event_user_signup_submitted, {
+      name: this.state.name,
+      email: this.state.email,
+    })
   }
 
   render() {
@@ -93,7 +103,10 @@ class SignUpWithEmail extends BaseContainer {
             fontWeight={T.fonts.normalWeight}
             color={T.colors.inactiveText}
             backgroundColor={T.colors.transparent}
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() => {
+              this.logEvent(E.event_user_signup_aborted)
+              this.props.navigation.goBack()
+            }}
           />
         </View>
       </View>

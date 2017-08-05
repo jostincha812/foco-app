@@ -143,3 +143,27 @@ export default {
   STARRED_USER_FLASHCARDS_UPDATED: 'STARRED_USER_FLASHCARDS_UPDATED',
   STARRED_USER_FLASHCARDS_OFF: 'STARRED_USER_FLASHCARDS_OFF',
 }
+
+export const E = {
+  signin_home: { screenName: 'signin_home', screenClassOverride: 'SignInHome' },
+  signup_with_email_screen: { screenName: 'signup_with_email', screenClassOverride: 'SignUpWithEmail' },
+  signin_with_email_screen: { screenName: 'signin_with_email', screenClassOverride: 'SignInWithEmail' },
+  user_profile_home: { screenName: 'user_profile_home', screenClassOverride: 'ProfileHome' },
+  user_home: { screenName: 'user_home', screenClassOverride: 'Home' },
+  flashcards_set_configurator: { screenName: 'flashcards_set_configurator', screenClassOverride: 'FlashcardsSetConfigurator' },
+  flashcards_set_viewer: { screenName: 'flashcards_set_viewer', screenClassOverride: 'FlashcardsViewer' },
+
+  event_user_signup_submitted: 'user_signup_submitted',
+  event_user_signup_aborted: 'user_signup_aborted',
+  event_configure_set: 'configure_set',
+  event_configure_set_saved: 'configure_set_saved',
+  event_configure_set_deleted: 'configure_set_deleted',
+  event_configure_set_aborted: 'configure_set_aborted',
+  event_view_set: 'view_set',
+  event_view_set_aborted: 'view_set_aborted',
+  event_view_set_completed: 'view_set_completed',
+  event_set_type_featured: 'set_type_featured',
+  event_set_type_starred: 'set_type_starred',
+  event_set_type_user: 'set_type_user',
+  event_update_flashcard_pref: 'update_flashcard_pref',
+}

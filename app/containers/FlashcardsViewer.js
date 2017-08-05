@@ -1,10 +1,12 @@
 import React from 'react'
-import { TouchableOpacity, View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import { fbAnalytics } from '../../configureFirebase'
+
+import { TouchableOpacity, View, Text } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { Button } from 'react-native-elements'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -23,15 +25,24 @@ import {
 } from '../actions/FlashcardActions'
 
 class FlashcardsViewer extends BaseContainer {
-  static navigationOptions = ({navigation}) => ({
-    title: null,
-    headerTitle: null,
-    headerLeft: Icons.back({
-      color: S.navigation.headerTintColor,
-      style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
-      onPress: () => navigation.goBack()
-    }),
-  })
+  static navigationOptions = ({navigation}) => {
+    const type = navigation.state.params.type
+    const id = navigation.state.params.id
+    const title = navigation.state.params.title
+
+    return ({
+      title: null,
+      headerTitle: null,
+      headerLeft: Icons.back({
+        color: S.navigation.headerTintColor,
+        style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
+        onPress: () => {
+          fbAnalytics.logEvent(E.event_view_set_aborted, { id, title, type })
+          navigation.goBack()
+        }
+      }),
+    })
+  }
 
   constructor(props) {
     super(props)
@@ -41,12 +52,20 @@ class FlashcardsViewer extends BaseContainer {
     this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.resetFlashcardsState()
-    if (this.props.navigation) {
-      const ids = this.props.navigation.state.params.ids
-      const user = this.props.navigation.state.params.user
+
+    const navigation = this.props.navigation
+    if (navigation) {
+      const type = navigation.state.params.type
+      const id = navigation.state.params.id
+      const title = navigation.state.params.title
+      const ids = navigation.state.params.ids
+      const user = navigation.state.params.user
       const index = 0
+
+      this.setCurrentScreen(E.flashcards_set_viewer, { id, title })
+      this.logEvent(E.event_view_set, { id, title, type })
 
       if (ids) {
         this.setState({current:ids[index], index})
@@ -60,6 +79,12 @@ class FlashcardsViewer extends BaseContainer {
   }
 
   onFinish() {
+    const navigation = this.props.navigation
+    const type = navigation.state.params.type
+    const id = navigation.state.params.id
+    const title = navigation.state.params.title
+
+    this.logEvent(E.event_view_set_completed, { id, title, type })
     this.props.resetFlashcardsState()
     this.props.navigation.navigate(C.NAV_HOME)
   }
@@ -68,15 +93,21 @@ class FlashcardsViewer extends BaseContainer {
     const user = this.props.navigation.state.params.user
     const ids = this.props.navigation.state.params.ids
     const flashcard = this.props.flashcards[this.state.current]
+    const pref = {
+      key: C.KEY_PREF_KEEP,
+      val: action.type === C.ACTION_YES,
+    }
 
     this.props.updateUserFlashcardPref(
       user.uid,
       flashcard.id,
-      {
-        key: C.KEY_PREF_KEEP,
-        val: action.type === C.ACTION_YES,
-      }
+      pref
     )
+    this.logEvent(E.event_update_flashcard_pref, {
+      userId: user.uid,
+      flashcardId: flashcard.id,
+      pref
+    })
 
     let animation = this.refs.flashcardView.fadeOutRightBig
     if (action.type === C.ACTION_YES) {
@@ -96,17 +127,24 @@ class FlashcardsViewer extends BaseContainer {
     })
   }
 
-  onPrefToggle(id, pref) {
+  onPrefToggle(id, toggle) {
     const user = this.props.navigation.state.params.user
     const flashcard = this.props.flashcards[id]
+    const pref = {
+      key: Object.keys(toggle)[0],
+      val: Object.values(toggle)[0]
+    }
+
     this.props.updateUserFlashcardPref(
       user.uid,
       flashcard.id,
-      {
-        key: Object.keys(pref)[0],
-        val: Object.values(pref)[0]
-      }
+      pref,
     )
+    this.logEvent(E.event_update_flashcard_pref, {
+      userId: user.uid,
+      flashcardId: flashcard.id,
+      pref
+    })
   }
 
   render() {

@@ -2,16 +2,28 @@
 import React from 'react'
 import Toast from 'react-native-root-toast'
 
+import { fbAnalytics } from '../../configureFirebase'
 import T from '../T'
 
 export default class BaseContainer extends React.Component {
+
   constructor(props) {
     super(props)
+    this.logEvent = this.logEvent.bind(this)
+    this.setCurrentScreen = this.setCurrentScreen.bind(this)
     this.toast = null
     this.showToast = this.showToast.bind(this)
     this.hideToast = this.hideToast.bind(this)
     this.errorToast = this.errorToast.bind(this)
     this.successToast = this.successToast.bind(this)
+  }
+
+  logEvent(event, params) {
+    fbAnalytics.logEvent(event, params)
+  }
+
+  setCurrentScreen(screen) {
+    fbAnalytics.setCurrentScreen(screen.screenName, screen.screenClassOverride)
   }
 
   showToast(message, options) {

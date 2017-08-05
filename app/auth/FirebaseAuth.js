@@ -42,12 +42,16 @@ const FirebaseAuth = class {
           uid: user.uid,
           lastActive: new Date().toUTCString(),
         }
+
+        firebase.analytics().setUserId(user.uid)
+
         if (!this.user) {
           this.onLogin && this.onLogin(profile); // On login
         }
         this.profile = profile; // Store profile
         this.user = user; // Store user
       } else if (this.user) {
+        firebase.analytics().setUserId(null);
         this.profile = null;
         this.user = null; // Clear user and logout
         this.onLogout && this.onLogout();

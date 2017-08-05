@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { View, StatusBar, Text} from 'react-native'
 import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -38,6 +38,7 @@ class SignInHome extends BaseContainer {
 
   componentDidMount() {
     this.unsubscribe = FirebaseAuth.setup(this.onLogin, this.onLogout, this.emailVerified, this.onError)
+    this.setCurrentScreen(E.signin_home)
   }
 
   componentWillUnmount() {

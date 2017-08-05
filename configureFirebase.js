@@ -10,3 +10,4 @@ const configurationOptions = {
 
 const firebase = RNFirebase.initializeApp(configurationOptions)
 export default firebase
+export const fbAnalytics = firebase.analytics()
