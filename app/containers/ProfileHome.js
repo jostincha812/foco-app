@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
 import { View, StatusBar, Text } from 'react-native'
 import { Avatar, Button, List, ListItem } from 'react-native-elements'
 
@@ -44,13 +45,19 @@ class ProfileHome extends BaseContainer {
         title: 'Rate Us',
         icon: 'rate-review',
         hideChevron: true,
-        onPress: () => console.log('Rate us')
+        onPress: () => {
+          this.logEvent(E.event_user_actions, action: 'rate_app')
+          console.log('Rate us')
+        }
       },
       {
         title: 'Share Foco',
         icon: 'share',
         hideChevron: true,
-        onPress: () => console.log('Share with Friends')
+        onPress: () => {
+          this.logEvent(E.event_user_actions, action: 'share_app')
+          console.log('Share with Friends')
+        }
       },
       // {
       //   title: 'Help and Support',
