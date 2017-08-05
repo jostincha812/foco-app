@@ -153,8 +153,11 @@ export const E = {
   flashcards_set_configurator: { screenName: 'flashcards_set_configurator', screenClassOverride: 'FlashcardsSetConfigurator' },
   flashcards_set_viewer: { screenName: 'flashcards_set_viewer', screenClassOverride: 'FlashcardsViewer' },
 
+  event_user_signin_initiated: 'user_signin_initiated',
+  event_user_signin_completed: 'user_signin_completed',
   event_user_signup_submitted: 'user_signup_submitted',
   event_user_signup_aborted: 'user_signup_aborted',
+  event_user_signed_out: 'user_signed_out',
   event_configure_set: 'configure_set',
   event_configure_set_saved: 'configure_set_saved',
   event_configure_set_deleted: 'configure_set_deleted',

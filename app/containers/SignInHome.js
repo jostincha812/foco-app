@@ -37,8 +37,8 @@ class SignInHome extends BaseContainer {
   }
 
   componentDidMount() {
-    this.unsubscribe = FirebaseAuth.setup(this.onLogin, this.onLogout, this.emailVerified, this.onError)
     this.setCurrentScreen(E.signin_home)
+    this.unsubscribe = FirebaseAuth.setup(this.onLogin, this.onLogout, this.emailVerified, this.onError)
   }
 
   componentWillUnmount() {
@@ -56,12 +56,14 @@ class SignInHome extends BaseContainer {
   }
 
   onLogin(user) {
+    this.logEvent(E.event_user_signin_completed, user)
     this.props.upsertUserProfile(user.uid, user).then(() => {
       this.props.fetchUserProfile(user.uid)
     })
   }
 
   onLogout() {
+    this.logEvent(E.event_user_signed_out)
     this.props.resetUserProfileState()
     this.props.resetFlashcardsState()
     this.props.resetUserFlashcardSetsState()
@@ -113,7 +115,10 @@ class SignInHome extends BaseContainer {
               fontWeight={T.fonts.boldWeight}
               color={T.colors.inverseText}
               backgroundColor={T.colors.active}
-              onPress={() => FirebaseAuth.loginWithEmail(this.state.email, this.state.password)}
+              onPress={() => {
+                this.logEvent(E.event_user_signin_initiated, { provider:'email', email: this.state.email })
+                FirebaseAuth.loginWithEmail(this.state.email, this.state.password)
+              }}
             />
           </View>
 
@@ -132,7 +137,10 @@ class SignInHome extends BaseContainer {
             style={{width:'70%'}}
             fontSize={T.fonts.normalSize}
             fontWeight={T.fonts.normalWeight}
-            onPress={FirebaseAuth.loginWithFacebook}
+            onPress={() => {
+              this.logEvent(E.event_user_signin_initiated, { provider: 'facebook' })
+              FirebaseAuth.loginWithFacebook()
+            }}
           />
 
           <View style={{flexDirection:'row', alignItems:'center', marginTop:S.spacing.normal}}>
