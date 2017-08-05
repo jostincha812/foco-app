@@ -87,12 +87,13 @@ class SignInHome extends BaseContainer {
         <View style={{alignSelf:'center', alignItems:'center', height:'70%'}}>
           <Intro style={{marginBottom:S.spacing.large}}/>
 
-          <View style={{width:'80%', marginTop:S.spacing.large, borderColor:'#000', borderTopWidth:1}}>
+          <View style={{marginTop:S.spacing.large}}>
             <FormInput
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='email-address'
               placeholder={L.email}
+              containerStyle={{width:320}}
               onChangeText={(text) => this.setState({email:text})}
             />
             <FormInput
@@ -101,20 +102,21 @@ class SignInHome extends BaseContainer {
               keyboardType='default'
               secureTextEntry={true}
               placeholder={L.password}
+              containerStyle={{width:320}}
               onChangeText={(text) => this.setState({password:text})}
             />
 
             <Button
               title={L.signIn}
-              icon={{name:'chevron-right', color:T.colors.inverseText}}
+              icon={{name:'chevron-right', color:T.colors.active}}
               iconRight={true}
               borderRadius={S.spacing.xlarge}
-              buttonStyle={{marginTop:S.spacing.large}}
-              raised={true}
+              buttonStyle={{marginTop:S.spacing.small, width:320}}
+              raised={false}
               fontSize={T.fonts.normalSize}
               fontWeight={T.fonts.boldWeight}
-              color={T.colors.inverseText}
-              backgroundColor={T.colors.active}
+              color={T.colors.active}
+              backgroundColor={T.colors.transparent}
               onPress={() => {
                 this.logEvent(E.event_user_signin_initiated, { provider:'email', email: this.state.email })
                 FirebaseAuth.loginWithEmail(this.state.email, this.state.password)
@@ -134,7 +136,7 @@ class SignInHome extends BaseContainer {
             title={L.signInFacebook}
             button={true}
             type='facebook'
-            style={{width:'70%'}}
+            style={{width:320}}
             fontSize={T.fonts.normalSize}
             fontWeight={T.fonts.normalWeight}
             onPress={() => {

@@ -35,6 +35,11 @@ export default styles = {
       fontWeight: T.fonts.normalWeight,
       fontSize: T.fonts.normalSize,
     },
+    footnote: {
+      fontWeight: T.fonts.normalWeight,
+      fontSize: T.fonts.smallSize,
+      fontStyle: 'italic',
+    },
     pill: {
       fontSize: T.fonts.smallSize,
       fontWeight: T.fonts.boldWeight,

@@ -40,17 +40,20 @@ class SignUpWithEmail extends BaseContainer {
   render() {
     return (
       <View style={[S.containers.screen, S.containers.centered]}>
-        <View style={{justifyContent:'space-between', alignSelf:'center', alignItems:'center', height:'70%'}}>
-          <View style={{marginTop:S.spacing.xlarge}}>
-            <Text style={[S.text.hero, {alignSelf:'center', marginBottom:S.spacing.normal}]}>
+        <View style={{justifyContent:'space-between', alignSelf:'center', alignItems:'center', height:'75%'}}>
+          <View style={{marginTop:S.spacing.xlarge, width:'85%'}}>
+            <Text style={[S.text.hero, {alignSelf:'center'}]}>
               {L.createAccount}
             </Text>
-            <Text style={S.text.normal}>
+            <Text style={[S.text.normal, {marginTop:S.spacing.normal}]}>
               {L.accountBenefits}
+            </Text>
+            <Text style={[S.text.normal, {fontStyle:'italic', marginTop:S.spacing.normal}]}>
+              {L.accountSafety}
             </Text>
           </View>
 
-          <View style={{width:'80%', marginTop:S.spacing.large}}>
+          <View style={{width:360, marginTop:S.spacing.normal}}>
             <FormInput
               autoCapitalize='none'
               autoCorrect={false}

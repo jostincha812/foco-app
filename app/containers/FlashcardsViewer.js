@@ -170,11 +170,11 @@ class FlashcardsViewer extends BaseContainer {
           <Button
             title={L.done}
             raised={true}
-            icon={{name: 'check'}}
+            icon={{name: 'done-all'}}
             iconRight={true}
             borderRadius={S.spacing.xsmall}
             backgroundColor={T.colors.active}
-            buttonStyle={{width:'80%'}}
+            buttonStyle={{width:320}}
             onPress={this.onFinish}
           />
         </Animatable.View>
@@ -186,10 +186,10 @@ class FlashcardsViewer extends BaseContainer {
         <View style={S.containers.screen}>
           <ProgressIndicatorBar progress={progress} />
           <View style={spacer} />
-          <View style={{flex:7, width:'85%', alignSelf:'center', alignItems:'center'}}>
+          <View style={{flex:7, width:320, alignSelf:'center', alignItems:'center'}}>
             <Animatable.View animation="fadeInDown" duration={200} ref="flashcardView">
               <Flashcard
-                style={{width: '100%', height: '100%'}}
+                style={{width: 320, height: '100%'}}
                 key={current}
                 data={flashcards[current]}
                 prefs={flashcards[current].prefs}
@@ -198,7 +198,7 @@ class FlashcardsViewer extends BaseContainer {
             </Animatable.View>
           </View>
           <View style={spacer} />
-          <View style={{width:'85%', alignSelf:'center', paddingBottom:S.spacing.xlarge, flexDirection:'row', justifyContent:'space-around'}}>
+          <View style={{width:320, alignSelf:'center', paddingBottom:S.spacing.xlarge, flexDirection:'row', justifyContent:'space-around'}}>
             <View style={{width:'42.5%'}}>
               <Button
                 title={L.discard}
@@ -215,8 +215,8 @@ class FlashcardsViewer extends BaseContainer {
                 title={L.keep}
                 buttonStyle={{marginLeft:0, width:'100%'}}
                 raised={true}
-                icon={{name:'playlist-add-check'}}
-                iconRight={true}
+                // icon={{name:'playlist-add-check'}}
+                // iconRight={true}
                 // iconComponent={Icons.yesCircledOutline({size:T.iconSize, tintColor:T.noColor})}
                 borderRadius={S.spacing.xsmall}
                 backgroundColor={T.colors.yes}
