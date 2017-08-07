@@ -15,16 +15,9 @@ import FirebaseAuth from '../auth/FirebaseAuth'
 import Intro from '../components/Intro'
 
 import {
-  resetUserProfileState,
   upsertUserProfile,
   fetchUserProfile,
 } from '../actions/UserProfileActions'
-import {
-  resetFlashcardsState
-} from '../actions/FlashcardActions'
-import {
-  resetUserFlashcardSetsState
-} from '../actions/UserFlashcardSetsActions'
 
 class Splash extends BaseContainer {
   constructor(props) {
@@ -62,7 +55,7 @@ class Splash extends BaseContainer {
     if (nextProps.profileFetched && (nextProps.profileFetched != this.props.profileFetched)) {
       setTimeout(
         () => this.props.navigation.navigate(C.NAV_HOME_TAB),
-        800
+        1200
       )
     }
   }
@@ -71,7 +64,7 @@ class Splash extends BaseContainer {
     if (FirebaseAuth.initialized && !firebase.auth().authenticated) {
       setTimeout(
         () => this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME),
-        800
+        1200
       )
     }
   }
@@ -86,7 +79,7 @@ class Splash extends BaseContainer {
 
   onLogout() {
     this.logEvent(E.event_user_signed_out)
-    this.props.resetUserProfileState()
+    this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME)
   }
 
   emailVerified() {
@@ -100,9 +93,9 @@ class Splash extends BaseContainer {
 
   render() {
     return (
-      <View style={[S.containers.screen, S.containers.centered]}>
-         <StatusBar barStyle={S.statusBarStyle} />
-         <Intro large={true} />
+      <View style={[S.containers.screen, S.containers.centered, {backgroundColor:T.colors.app}]}>
+         <StatusBar barStyle={S.inverseStatusBarStyle} />
+         <Intro large={true} inverse={true} />
       </View>
     )
   }
@@ -118,11 +111,8 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    resetUserProfileState: () => dispatch(resetUserProfileState()),
     upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
     fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
-    resetFlashcardsState: () => dispatch(resetFlashcardsState()),
-    resetUserFlashcardSetsState: () => dispatch(resetUserFlashcardSetsState()),
   }
 }
 

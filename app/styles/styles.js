@@ -11,8 +11,8 @@ const spacing = {
 }
 
 export default styles = {
-  // statusBarStyle: 'light-content',
   statusBarStyle: 'dark-content',
+  inverseStatusBarStyle: 'light-content',
 
   // grids and spacing
   spacing: spacing,

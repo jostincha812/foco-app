@@ -12,11 +12,16 @@ export default class Intro extends React.Component {
   render() {
     const style = this.props.style
     const large = this.props.large
+    const inverse = this.props.inverse
     return (
       <View style={[styles.container, style]}>
-        {Icons.foco({color: T.colors.app, size: large ? 128 : 96})}
-        <Text style={styles.appName}>{C.FOCO}</Text>
-        <Text style={styles.vendorName}>{C.VPQLABS}</Text>
+        {Icons.foco({color: inverse ? T.colors.inverse : T.colors.app, size: large ? 128 : 96})}
+        <Text style={[styles.appName, {color: inverse ? T.colors.inverseText : T.colors.normal}]}>
+          {C.FOCO}
+        </Text>
+        <Text style={[styles.vendorName, {color: inverse ? T.colors.inverseText : T.colors.normal}]}>
+          {C.VPQLABS}
+        </Text>
       </View>
     )
   }
@@ -29,12 +34,12 @@ const styles = StyleSheet.create({
   appName: {
     fontSize: T.fonts.largeSize,
     fontWeight: T.fonts.heavyWeight,
-    // marginTop: S.spacing.xsmall,
   },
   vendorName: {
     fontSize: T.fonts.largeSize - 6,
     fontWeight: T.fonts.normalWeight,
     fontStyle: 'italic',
     marginTop: S.spacing.xxsmall,
+    color: T.colors.normal,
   }
 })
