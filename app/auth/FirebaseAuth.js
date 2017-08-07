@@ -4,7 +4,7 @@ import Providers from './Providers'
 import fbRefs from '../data/JsFbRefs'
 
 const FirebaseAuth = class {
-  isConfigured = false
+  initialized = false
   user = null;
   profile = null;
   onUserChange = null;
@@ -18,18 +18,19 @@ const FirebaseAuth = class {
     Auth.Google.configure(googleConfig);
   }
 
-  setup = (onLogin, onLogout, onEmailVerified, onError) => {
-    if (this.isConfigured) {
+  setup = (onInitialize, onLogin, onLogout, onEmailVerified, onError) => {
+    if (this.initialized) {
+      this.onInitialize && this.onInitialize(this.initialized)
       return
     }
-    this.isConfigured = true
-    this.onLogout = onLogout;
-    this.onEmailVerified = onEmailVerified;
-    this.onLogin = onLogin;
-    this.onError = onError;
+    this.initialized = true
+    this.onInitialize = onInitialize
+    this.onLogout = onLogout
+    this.onEmailVerified = onEmailVerified
+    this.onLogin = onLogin
+    this.onError = onError
 
     return firebase.auth().onAuthStateChanged((user)=> {
-
       if (user) {
         // Determine if user needs to verify email
         var emailVerified = !user.providerData || !user.providerData.length || user.providerData[0].providerId != 'password' || user.emailVerified;
@@ -41,10 +42,12 @@ const FirebaseAuth = class {
           photoURL: user.photoURL,
           uid: user.uid,
           lastActive: new Date().toUTCString(),
+          providerId: user.providerId,
+          providerData: user.providerData,
         }
-
         firebase.analytics().setUserId(user.uid)
 
+        this.onInitialize && this.onInitialize(this.initialized)
         if (!this.user) {
           this.onLogin && this.onLogin(profile); // On login
         }
@@ -55,6 +58,8 @@ const FirebaseAuth = class {
         this.profile = null;
         this.user = null; // Clear user and logout
         this.onLogout && this.onLogout();
+      } else {
+        this.onInitialize && this.onInitialize(this.initialized)
       }
     });
   }

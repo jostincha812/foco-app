@@ -6,7 +6,7 @@ import SignInStack from './SignInStack'
 import AppTabNavigator from './AppTabNavigator'
 
 const RootStackNavigator = StackNavigator({
-  NAV_USER_SIGNIN: { screen: SignInStack },
+  SignInStack: { screen: SignInStack },
   AppTabNavigator: { screen: AppTabNavigator },
 }, {
   swipeEnabled: false,

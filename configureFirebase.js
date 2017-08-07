@@ -1,7 +1,8 @@
 import RNFirebase from 'react-native-firebase'
 
 const configurationOptions = {
-  debug: true
+  debug: true,
+  persistence: true,
 }
 
 // export default function configureFirebase() {

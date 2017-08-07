@@ -11,9 +11,10 @@ import Icons from '../components/Icons'
 export default class Intro extends React.Component {
   render() {
     const style = this.props.style
+    const large = this.props.large
     return (
       <View style={[styles.container, style]}>
-        {Icons.foco({color: T.colors.app, size: 96})}
+        {Icons.foco({color: T.colors.app, size: large ? 128 : 96})}
         <Text style={styles.appName}>{C.FOCO}</Text>
         <Text style={styles.vendorName}>{C.VPQLABS}</Text>
       </View>

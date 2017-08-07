@@ -11,6 +11,7 @@ import ProfileHome from '../containers/ProfileHome'
 
 const STACK = {}
 STACK[C.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
+STACK[C.NAV_USER_PROFILE_DETAILED] = { screen: ProfileHome }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({

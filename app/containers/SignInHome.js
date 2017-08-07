@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
+import firebase from '../../configureFirebase'
 
 import { View, StatusBar, Text} from 'react-native'
 import { SocialIcon, FormInput, Button } from 'react-native-elements'
@@ -10,8 +12,10 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
+import SignInWithEmailForm from '../components/SignInWithEmailForm'
 import Intro from '../components/Intro'
 import Divider from '../components/Divider'
+import LoadingIndicator from '../lib/LoadingIndicator'
 
 import {
   resetUserProfileState,
@@ -26,59 +30,6 @@ import {
 } from '../actions/UserFlashcardSetsActions'
 
 class SignInHome extends BaseContainer {
-  constructor(props) {
-    super(props)
-    this.state = {email:null, password:null}
-    this.onLogin = this.onLogin.bind(this)
-    this.onLogout = this.onLogout.bind(this)
-    this.emailVerified = this.emailVerified.bind(this)
-    this.onError = this.onError.bind(this)
-    this.unsubscribe = null
-  }
-
-  componentDidMount() {
-    this.setCurrentScreen(E.signin_home)
-    this.unsubscribe = FirebaseAuth.setup(this.onLogin, this.onLogout, this.emailVerified, this.onError)
-  }
-
-  componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.profileFetched != nextProps.profileFetched) {
-      if (nextProps.profileFetched) {
-        this.props.navigation.navigate(C.NAV_HOME_TAB)
-      }
-    }
-  }
-
-  onLogin(user) {
-    this.logEvent(E.event_user_signin_completed, user)
-    this.props.upsertUserProfile(user.uid, user).then(() => {
-      this.props.fetchUserProfile(user.uid)
-    })
-  }
-
-  onLogout() {
-    this.logEvent(E.event_user_signed_out)
-    this.props.resetUserProfileState()
-    this.props.resetFlashcardsState()
-    this.props.resetUserFlashcardSetsState()
-    this.props.navigation.navigate(C.NAV_USER_SIGNIN)
-  }
-
-  emailVerified() {
-    console.log('emailVerified()')
-  }
-
-  onError(e) {
-    this.errorToast(e.message)
-    console.log(e)
-  }
-
   render() {
     return (
       <View style={[S.containers.screen, S.containers.centered]}>
@@ -87,42 +38,13 @@ class SignInHome extends BaseContainer {
         <View style={{alignSelf:'center', alignItems:'center', height:'70%'}}>
           <Intro style={{marginBottom:S.spacing.large}}/>
 
-          <View style={{marginTop:S.spacing.large}}>
-            <FormInput
-              autoCapitalize='none'
-              autoCorrect={false}
-              keyboardType='email-address'
-              placeholder={L.email}
-              containerStyle={{width:320}}
-              onChangeText={(text) => this.setState({email:text})}
-            />
-            <FormInput
-              autoCapitalize='none'
-              autoCorrect={false}
-              keyboardType='default'
-              secureTextEntry={true}
-              placeholder={L.password}
-              containerStyle={{width:320}}
-              onChangeText={(text) => this.setState({password:text})}
-            />
-
-            <Button
-              title={L.signIn}
-              icon={{name:'chevron-right', color:T.colors.active}}
-              iconRight={true}
-              borderRadius={S.spacing.xlarge}
-              buttonStyle={{marginTop:S.spacing.small, width:320}}
-              raised={false}
-              fontSize={T.fonts.normalSize}
-              fontWeight={T.fonts.boldWeight}
-              color={T.colors.active}
-              backgroundColor={T.colors.transparent}
-              onPress={() => {
-                this.logEvent(E.event_user_signin_initiated, { provider:'email', email: this.state.email })
-                FirebaseAuth.loginWithEmail(this.state.email, this.state.password)
-              }}
-            />
-          </View>
+          <SignInWithEmailForm
+            style={{marginTop:S.spacing.large}}
+            onSubmit={(email, password) => {
+              this.logEvent(E.event_user_signin_initiated, { provider:'email', email })
+              FirebaseAuth.loginWithEmail(email, password)
+            }}
+          />
 
           <View style={{flexDirection:'row', alignItems:'center', margin:S.spacing.large}}>
             <Divider style={{borderColor:T.colors.inactive, width:60, marginRight:S.spacing.normal}} />
