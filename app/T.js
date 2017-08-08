@@ -1,7 +1,7 @@
 export default FocoTheme = {
   // colors - http://www.material-ui.com/#/customization/colors
   colors: {
-    app: '#EF6C00',   // orange 800
+    app: '#EE541B',   // orange 800
     headerBackground: '#F5F5F5',
     containerBackground: '#F5F5F5', // grey 100
     contentBackground: '#FFF',

@@ -88,7 +88,7 @@ class Splash extends BaseContainer {
 
   onError(e) {
     this.errorToast(e.message)
-    this.logError(E.event_firebase_error, e)
+    this.logEvent(E.event_firebase_error, e)
   }
 
   render() {
