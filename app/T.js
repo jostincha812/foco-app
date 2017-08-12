@@ -56,11 +56,11 @@ export default FocoTheme = {
   },
 
   fonts: {
-    xsmallSize: 8,
-    smallSize: 10,
-    normalSize: 14,
-    largeSize: 18,
-    xlargeSize: 24,
+    xsmallSize: 10,
+    smallSize: 14,
+    normalSize: 18,
+    largeSize: 24,
+    xlargeSize: 36,
 
     lightWeight: '100',
     normalWeight: '200',
