@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet } from 'react-native'
 
 import C from '../C'
 import T from '../T'
@@ -15,7 +15,10 @@ export default class Intro extends React.Component {
     const inverse = this.props.inverse
     return (
       <View style={[styles.container, style]}>
-        {Icons.foco({color: inverse ? T.colors.inverse : T.colors.app, size: large ? 128 : 96})}
+        <Image
+          style={{width:120, height:120}}
+          source={{uri: '../../assets/foco.png'}}
+        />
         <Text style={[styles.appName, {color: inverse ? T.colors.inverseText : T.colors.normal}]}>
           {C.FOCO}
         </Text>

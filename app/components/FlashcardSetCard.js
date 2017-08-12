@@ -16,7 +16,7 @@ export default class FlashcardSetCard extends React.Component {
     const onPress = props.onPress
     const onEdit = props.onEdit
     const icon = props.icon
-    const backgroundColor = props.backgroundColor
+    const backgroundColor = T.colors.contentBackground
     const set = props.set
     const image = set.image
 
@@ -31,7 +31,7 @@ export default class FlashcardSetCard extends React.Component {
               source={{uri: image}}
             />
           }
-          <View style={{flexDirection:'row'}}>
+          <View style={{flexDirection:'row', backgroundColor}}>
             { icon &&
               <View style={{paddingLeft:S.spacing.small, paddingTop:S.spacing.xsmall}}>
                 {icon}
@@ -121,9 +121,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems:'center',
+    backgroundColor: T.colors.contentBackground,
   },
   info: {
     justifyContent:'center',
     alignItems:'flex-start',
+    backgroundColor: T.colors.contentBackground,
   }
 })
