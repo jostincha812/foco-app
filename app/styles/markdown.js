@@ -32,9 +32,6 @@ export default markdown = {
   link: {
     color: T.colors.accent,
   },
-  paragraph: {
-    marginBottom: 20,
-  },
   text: {
     fontSize: T.fonts.normalSize,
     fontWeight: T.fonts.normalWeight,
