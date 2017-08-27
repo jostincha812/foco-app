@@ -27,7 +27,7 @@ const HomeStack = StackNavigator(STACK, {
     ),
     headerLeft: (
       Icons.profile({
-        size: T.icons.largeIcon,
+        // size: T.icons.largeIcon,
         color: T.colors.inactive,
         style: { top:S.spacing.xsmall/2, paddingLeft:S.spacing.small},
         onPress: () => navigation.navigate(C.NAV_PROFILE_TAB)

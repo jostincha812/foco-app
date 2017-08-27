@@ -19,7 +19,7 @@ const ProfileStack = StackNavigator(STACK, {
     headerLeft: null,
     headerTitle: (
       Icons.profile({
-        size: T.icons.largeIcon,
+        // size: T.icons.largeIcon,
         color:T.colors.app,
         style: { top:S.spacing.xsmall/2 }
       })
