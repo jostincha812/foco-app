@@ -30,7 +30,7 @@
                                                       moduleName:@"FocoApp"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:0.94f green:0.42f blue:0.0f alpha:1];
+  rootView.backgroundColor = [[UIColor alloc] initWithRed:0.97f green:0.52f blue:0.09f alpha:1];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];

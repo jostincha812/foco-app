@@ -94,7 +94,7 @@ class Splash extends BaseContainer {
   render() {
     return (
       <View style={[S.containers.screen, S.containers.centered, {backgroundColor:T.colors.app}]}>
-         <StatusBar barStyle={S.inverseStatusBarStyle} />
+         <StatusBar barStyle={S.statusBarStyle} />
          <LoadingIndicator large={true} inverse={true} />
       </View>
     )
