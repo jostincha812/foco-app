@@ -41,24 +41,24 @@ class ProfileHome extends BaseContainer {
       //   hideChevron: true,
       //   onPress: () => console.log('Restore purchases')
       // },
-      {
-        title: 'Rate Us',
-        icon: 'rate-review',
-        hideChevron: true,
-        onPress: () => {
-          this.logEvent(E.event_user_actions, action: 'rate_app')
-          console.log('Rate us')
-        }
-      },
-      {
-        title: 'Share Foco',
-        icon: 'share',
-        hideChevron: true,
-        onPress: () => {
-          this.logEvent(E.event_user_actions, action: 'share_app')
-          console.log('Share with Friends')
-        }
-      },
+      // {
+      //   title: 'Rate Us',
+      //   icon: 'rate-review',
+      //   hideChevron: true,
+      //   onPress: () => {
+      //     this.logEvent(E.event_user_actions, action: 'rate_app')
+      //     console.log('Rate us')
+      //   }
+      // },
+      // {
+      //   title: 'Share Foco',
+      //   icon: 'share',
+      //   hideChevron: true,
+      //   onPress: () => {
+      //     this.logEvent(E.event_user_actions, action: 'share_app')
+      //     console.log('Share with Friends')
+      //   }
+      // },
       // {
       //   title: 'Help and Support',
       //   onPress: () => console.log('Contact support')
