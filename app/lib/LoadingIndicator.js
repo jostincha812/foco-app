@@ -9,9 +9,13 @@ import S from '../styles/styles';
 export default class LoadingIndicator extends React.Component {
   render() {
     // suitable spinner types: Pulse, Wave, ThreeBounce
+    const type = 'ThreeBounce'
+    const color = this.props.inverse ? T.colors.inverse : T.colors.app
+    const size = this.props.large ? T.icons.xlargeIcon : T.icons.largeIcon
+    
     return (
       <View style={S.centeredContent}>
-        <Spinner size={T.icons.xlargeIcon} type='ThreeBounce' color={T.colors.app} />
+        <Spinner type={type} size={size} color={color} />
       </View>
     )
   }

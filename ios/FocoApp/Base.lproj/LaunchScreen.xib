@@ -15,12 +15,45 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="foco-raw" translatesAutoresizingMaskIntoConstraints="NO" id="CrU-nr-GKn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="foco-raw" translatesAutoresizingMaskIntoConstraints="NO" id="CrU-nr-GKn">
                     <rect key="frame" x="152" y="152" width="176" height="176"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTG-Lx-i3g">
+                    <rect key="frame" x="162" y="336" width="157" height="21"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Foco: Level-3">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="24" name="HelveticaNeue-Thin"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lv-Gt-TCF">
+                    <rect key="frame" x="102" y="365" width="276" height="21"/>
+                    <attributedString key="attributedText">
+                        <fragment content="WSET-3 Award in Wines Exam Prep">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue-ThinItalic"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.97051578760147095" green="0.51269441843032837" blue="0.085124410688877106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6Lv-Gt-TCF" firstAttribute="centerX" secondItem="yTG-Lx-i3g" secondAttribute="centerX" id="5ee-Ui-0ge"/>
+                <constraint firstItem="yTG-Lx-i3g" firstAttribute="centerX" secondItem="CrU-nr-GKn" secondAttribute="centerX" id="MS0-xo-hIW"/>
+                <constraint firstItem="CrU-nr-GKn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fPv-Mz-u2e"/>
+                <constraint firstItem="6Lv-Gt-TCF" firstAttribute="top" secondItem="yTG-Lx-i3g" secondAttribute="bottom" constant="8" id="ltR-Cc-Pa2"/>
+                <constraint firstItem="yTG-Lx-i3g" firstAttribute="top" secondItem="CrU-nr-GKn" secondAttribute="bottom" constant="8" id="mJt-QP-har"/>
+                <constraint firstItem="yTG-Lx-i3g" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="vY7-bw-WnJ"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>

@@ -12,7 +12,7 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
-import Intro from '../components/Intro'
+import LoadingIndicator from '../lib/LoadingIndicator'
 
 import {
   upsertUserProfile,
@@ -95,7 +95,7 @@ class Splash extends BaseContainer {
     return (
       <View style={[S.containers.screen, S.containers.centered, {backgroundColor:T.colors.app}]}>
          <StatusBar barStyle={S.inverseStatusBarStyle} />
-         <Intro large={true} inverse={true} />
+         <LoadingIndicator large={true} inverse={true} />
       </View>
     )
   }
