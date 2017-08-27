@@ -6,6 +6,7 @@ import FlipCard from 'react-native-flip-card'
 import C from '../C'
 import T from '../T'
 import S from '../styles/styles'
+import MDStyles from '../styles/markdown'
 
 import Icons from './Icons'
 import PillsList from '../lib/PillsList'
@@ -77,14 +78,14 @@ export default class Flashcard extends React.Component {
       >
         <View style={styles.inner}>
           {starToggle}
-          <MarkdownView styles={S.markdown}>
+          <MarkdownView styles={MDStyles}>
             {data.front}
           </MarkdownView>
         </View>
 
         <View style={styles.inner}>
           {starToggle}
-          <MarkdownView styles={S.markdown}>
+          <MarkdownView styles={MDStyles}>
             {data.back}
           </MarkdownView>
           <PillsList

@@ -46,24 +46,6 @@ export default styles = {
     },
   },
 
-  markdown: {
-    paragraph: {
-      fontSize: T.fonts.normalSize,
-      fontWeight: T.fonts.normalWeight,
-    },
-    link: {
-      color: T.colors.accent,
-    },
-    heading1: {
-      fontSize: T.fonts.largeSize,
-      fontWeight: T.fonts.boldWeight,
-    },
-    heading2: {
-      fontSize: T.fonts.normalSize,
-      fontWeight: T.fonts.boldWeight,
-    },
-  },
-
   containers: {
     screen: {
       flex: 1,
