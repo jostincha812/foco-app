@@ -25,16 +25,15 @@ const VPQTags = {
 
   categories: {
     climate: { key: 'climate', label: 'Climate' },
-    fortified: { key: 'fortified', label: 'Fortified' },
     viticulture: { key: 'viticulture', label: 'Grape Growing' },
-    varietals: { key: 'varietals', label: 'Grape Varietals' },
+    varietals: { key: 'varietals', label: 'Grape Varieties' },
     geography: { key: 'geography', label: 'Geography' },
-    law: { key: 'law', label: 'Labelling Law' },
+    law: { key: 'law', label: 'Appellation & Labelling Laws' },
     terroir: { key: 'terroir', label: 'Terroir' },
-    sparkling: { key: 'sparkling', label: 'Sparkling' },
-    spirits: { key: 'spirits', label: 'Spirits' },
     viniculture: { key: 'viniculture', label: 'Wine Making' },
-    winestyle: { key: 'winestyle', label: 'Wine Style' },
+    winestyle: { key: 'winestyle', label: 'Wine Styles' },
+    fortified: { key: 'fortified', label: 'Fortified Wines' },
+    sparkling: { key: 'sparkling', label: 'Sparkling Wines' },
   },
 
   regions: {

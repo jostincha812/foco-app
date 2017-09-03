@@ -11,6 +11,7 @@ export default class TagsSelector extends React.Component {
     const selected = props.selected
     const onToggle = props.onToggle
 
+    console.log(selected)
     return (
       <PillsList
         items={items}

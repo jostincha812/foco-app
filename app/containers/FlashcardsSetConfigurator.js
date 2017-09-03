@@ -192,7 +192,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
     const categories = Object.values(VPQTags.categories)
     const varietals = Object.values(VPQTags.varietals)
 
-    const selectedRegion = this.state.selectedRegions
+    const selectedRegions = this.state.selectedRegions
     const selectedCategories = this.state.selectedCategories
     const count = Object.keys(this.props.flashcards).length
     const label = this.state.editing ? L.save : L.go
@@ -211,19 +211,19 @@ class FlashcardsSetConfigurator extends BaseContainer {
             />
           </View>
           <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
-            <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.regions}</Text>
-            <TagsSelector
-              items={regions}
-              selected={selectedRegion}
-              onToggle={tagState => this.onToggle('REGIONS', tagState)}
-            />
-          </View>
-          <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
             <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.tags}</Text>
             <TagsSelector
               items={categories}
               selected={selectedCategories}
               onToggle={tagState => this.onToggle('CATEGORIES', tagState)}
+            />
+          </View>
+          <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
+            <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.regions}</Text>
+            <TagsSelector
+              items={regions}
+              selected={selectedRegions}
+              onToggle={tagState => this.onToggle('REGIONS', tagState)}
             />
           </View>
         </ScrollView>

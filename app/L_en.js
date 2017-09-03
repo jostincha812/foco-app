@@ -20,7 +20,7 @@ export default {
   done: 'All Cards Reviewed',
   starred: 'Starred Cards',
   regions: 'Regions',
-  tags: 'Tags',
+  tags: 'Categories',
   untitled: 'Untitled Set',
 
   // levels
