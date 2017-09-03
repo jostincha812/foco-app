@@ -29,11 +29,12 @@ class FlashcardsViewer extends BaseContainer {
     const type = navigation.state.params.type
     const id = navigation.state.params.id
     const title = navigation.state.params.title
+    const hideLeft = navigation.state.params.hideLeft || false
 
     return ({
       title: null,
       headerTitle: null,
-      headerLeft: Icons.back({
+      headerLeft: hideLeft ? null : Icons.back({
         color: S.navigation.headerTintColor,
         style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
         onPress: () => {
@@ -86,7 +87,7 @@ class FlashcardsViewer extends BaseContainer {
 
     this.logEvent(E.event_view_set_completed, { id, title, type })
     this.props.resetFlashcardsState()
-    this.props.navigation.navigate(C.NAV_HOME)
+    this.props.navigation.goBack()
   }
 
   onYesNoAction(action) {
@@ -123,6 +124,7 @@ class FlashcardsViewer extends BaseContainer {
         this.refs.flashcardView.fadeInDown(200)
       } else {
         this.setState({index, current:null})
+        this.props.navigation.setParams({hideLeft: true})
       }
     })
   }
