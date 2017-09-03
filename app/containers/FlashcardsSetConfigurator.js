@@ -138,9 +138,9 @@ class FlashcardsSetConfigurator extends BaseContainer {
           this.state.exiting = true
           this.props.resetFlashcardsState()
           this.showToast(label)
-          navigation.navigate(C.NAV_HOME)
+          // navigation.navigate(C.NAV_HOME)
           // @TODO goBack does not load Home screen properly
-          // navigation.goBack()
+          navigation.goBack()
         }
       }
     }
