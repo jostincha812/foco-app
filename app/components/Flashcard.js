@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, ScrollView, TouchableOpacity } from 'react-native'
 import { MarkdownView } from 'react-native-markdown-view'
 import FlipCard from 'react-native-flip-card'
 
@@ -14,7 +14,7 @@ import PillsList from '../lib/PillsList'
 export default class Flashcard extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { flipped: false }
     this.state[C.KEY_PREF_STARRED] = false
     this.state[C.KEY_PREF_BOOKMARKED] = false
 
@@ -70,20 +70,28 @@ export default class Flashcard extends React.Component {
         perspective={-1000}
         flipHorizontal={true}
         flipVertical={false}
-        flip={false}
-        clickable={true}
+        flip={this.state.flipped}
+        clickable={false}
         alignHeight={true}
         alignWidth={true}
-        // onFlipped={(isFlipped)=>{console.log('isFlipped', isFlipped)}}
       >
-        <View style={styles.inner}>
+
+        <TouchableOpacity
+          style={styles.inner}
+          activeOpacity={1}
+          onPress={() => this.setState({flipped: !this.state.flipped})}
+        >
           {starToggle}
           <MarkdownView styles={MDStyles}>
             {data.front}
           </MarkdownView>
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.inner}>
+        <TouchableOpacity
+          style={styles.inner}
+          activeOpacity={1}
+          onPress={() => this.setState({flipped: !this.state.flipped})}
+        >
           {starToggle}
           <MarkdownView styles={MDStyles}>
             {data.back}
@@ -95,7 +103,7 @@ export default class Flashcard extends React.Component {
             pillColor={T.colors.active}
             pillBorderColor='transparent'
           />
-        </View>
+        </TouchableOpacity>
       </FlipCard>
     )
   }
