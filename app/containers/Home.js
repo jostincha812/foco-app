@@ -29,6 +29,17 @@ class Home extends BaseContainer {
     this.props.setupUserStarredFlashcardsListeners(user.uid)
   }
 
+  componentWillReceiveProps(nextProps) {
+    const user = this.props.user
+    if (nextProps.updated || nextProps.deleted) {
+      // need a timeout to allow navigation event to complete
+      setTimeout(
+        () => this.props.fetchUserFlashcardSets(user.uid),
+        100
+      )
+    }
+  }
+
   componentWillUnmount() {
     const user = this.props.user
     this.props.teardownUserStarredFlashcardsListeners(user.uid)
@@ -117,6 +128,8 @@ function mapStateToProps (state) {
   return {
     user: state.userProfile.data,
     ready: state.flashcardSets.status === C.FB_FETCHED,
+    updated: state.flashcardSets.status === C.FB_UPDATED,
+    deleted: state.flashcardSets.status === C.FB_REMOVED,
     sets: state.flashcardSets.data,
   }
 }

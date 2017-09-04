@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { fbAnalytics } from '../../configureFirebase'
 
 import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
@@ -136,10 +137,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
       if (status === C.FB_UPDATED || status === C.FB_REMOVED) {
         if (!this.state.exiting) {
           this.state.exiting = true
-          this.props.resetFlashcardsState()
           this.showToast(label)
-          // navigation.navigate(C.NAV_HOME)
-          // @TODO goBack does not load Home screen properly
           navigation.goBack()
         }
       }
