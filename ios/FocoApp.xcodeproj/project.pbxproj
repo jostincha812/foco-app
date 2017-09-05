@@ -22,17 +22,18 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		173CEA8A5E61FBB53EC54887 /* libPods-FocoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E54C2C0A2ACCB3ADA0C146 /* libPods-FocoAppTests.a */; };
 		5C3ED661E7AF42C283247410 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A4E0BB8E094E5E93E2608D /* libRNVectorIcons.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8897E0E4F99D57318731C0DD /* libPods-FocoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E464D9331FAD88A6E7F05C /* libPods-FocoApp.a */; };
 		8D9056341F2AAB3100EA000E /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056331F2AAAFF00EA000E /* libRCTFBLogin.a */; };
 		8D9056391F2AAC6300EA000E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056351F2AAC6300EA000E /* Bolts.framework */; };
 		8D90563A1F2AAC6300EA000E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */; };
 		8D90563B1F2AAC6300EA000E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */; };
 		8D90563C1F2AAC6300EA000E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056381F2AAC6300EA000E /* FBSDKShareKit.framework */; };
 		8DF126BB1F3040CF0031AE7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DF126BA1F3040CF0031AE7F /* GoogleService-Info.plist */; };
-		93F43F2FF2ACABE486201C8E /* libPods-FocoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6F10DFA52D8DF5F12D9845 /* libPods-FocoApp.a */; };
-		9F31480F4425C521C7364E1E /* libPods-FocoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F32D296CC83F9DBFE00259 /* libPods-FocoAppTests.a */; };
+		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B485D08C0E874EC2850E2417 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FCCA8B20094E1D9014C3CE /* libRNSpinkit.a */; };
 		E773F27B1E93568F00655FDA /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E773F2711E93568F00655FDA /* Entypo.ttf */; };
 		E773F27C1E93568F00655FDA /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E773F2721E93568F00655FDA /* EvilIcons.ttf */; };
@@ -44,7 +45,6 @@
 		E773F2821E93568F00655FDA /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E773F2781E93568F00655FDA /* Octicons.ttf */; };
 		E773F2831E93568F00655FDA /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E773F2791E93568F00655FDA /* SimpleLineIcons.ttf */; };
 		E773F2841E93568F00655FDA /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E773F27A1E93568F00655FDA /* Zocial.ttf */; };
-		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +286,13 @@
 			remoteGlobalIDString = 4F3A6B5B1ACFBCC500CA65F7;
 			remoteInfo = RCTFBLogin;
 		};
+		8DDFC8011F5E7BD000797E89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ADD01A681E09402E00F6D226;
+			remoteInfo = "RCTBlob-tvOS";
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -305,7 +312,6 @@
 		00E356EE1AD99517003FC87E /* FocoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FocoAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FocoAppTests.m; sourceTree = "<group>"; };
-		06F32D296CC83F9DBFE00259 /* libPods-FocoAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocoAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* FocoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,15 +325,17 @@
 		161F7953FEC043E0A3449CB7 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		18A4E0BB8E094E5E93E2608D /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		1A09EF2D280147B684435015 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		1B6F10DFA52D8DF5F12D9845 /* libPods-FocoApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocoApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FCCA8B20094E1D9014C3CE /* libRNSpinkit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSpinkit.a; sourceTree = "<group>"; };
 		31DB7B13FD59467BB3A4B029 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		451DBE43657CD9F030DE0473 /* Pods-FocoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FocoApp/Pods-FocoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		46D9C87D988E4C88AE029C0C /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSpinkit.xcodeproj; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; };
-		4774518613D9D3E3C5F8728F /* Pods-FocoAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FocoAppTests/Pods-FocoAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		47EAC80452354EC5A69FF348 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		49E54C2C0A2ACCB3ADA0C146 /* libPods-FocoAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocoAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CB72B46F08E3612B8700A44 /* Pods-FocoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FocoAppTests/Pods-FocoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		5FF2498E3F45D63CA4E3F57D /* Pods-FocoAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FocoAppTests/Pods-FocoAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		77E464D9331FAD88A6E7F05C /* libPods-FocoApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocoApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		81EF1AD5467C270E30E8B858 /* Pods-FocoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FocoApp/Pods-FocoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		83186347798D4F6DA9BD4069 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8D90562E1F2AAAFF00EA000E /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
@@ -338,10 +346,11 @@
 		8DF126BA1F3040CF0031AE7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "FocoApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F3A1E5D28A249E8AA95D632 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		96DF0621CBD141AF99022821 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B3EF4FE65D964620BCB33413 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		B88B820DDF9B4ADB81C6697F /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		CE2CAC1C01E14D9580E6A8EC /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		CE87694D1E8A1F9AF3EBDAA2 /* Pods-FocoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FocoApp/Pods-FocoApp.release.xcconfig"; sourceTree = "<group>"; };
+		D8C4B436928398097B3A0609 /* Pods-FocoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FocoApp/Pods-FocoApp.release.xcconfig"; sourceTree = "<group>"; };
 		E773F2711E93568F00655FDA /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		E773F2721E93568F00655FDA /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		E773F2731E93568F00655FDA /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
@@ -353,8 +362,6 @@
 		E773F2791E93568F00655FDA /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		E773F27A1E93568F00655FDA /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		E80CABA9779C4759AFFBA656 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		F794C0558FD102F307B047A6 /* Pods-FocoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocoAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FocoAppTests/Pods-FocoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,7 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				9F31480F4425C521C7364E1E /* libPods-FocoAppTests.a in Frameworks */,
+				173CEA8A5E61FBB53EC54887 /* libPods-FocoAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +397,7 @@
 				8D90563A1F2AAC6300EA000E /* FBSDKCoreKit.framework in Frameworks */,
 				B485D08C0E874EC2850E2417 /* libRNSpinkit.a in Frameworks */,
 				5C3ED661E7AF42C283247410 /* libRNVectorIcons.a in Frameworks */,
-				93F43F2FF2ACABE486201C8E /* libPods-FocoApp.a in Frameworks */,
+				8897E0E4F99D57318731C0DD /* libPods-FocoApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +518,6 @@
 			isa = PBXGroup;
 			children = (
 				146834041AC3E56700842450 /* libReact.a */,
-				3DAD3EA31DF850E9000B6D8A /* libReact.a */,
 				3DAD3EA51DF850E9000B6D8A /* libyoga.a */,
 				3DAD3EA71DF850E9000B6D8A /* libyoga.a */,
 				3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */,
@@ -536,17 +542,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6193CB609CC34ACA556B4BDC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				451DBE43657CD9F030DE0473 /* Pods-FocoApp.debug.xcconfig */,
-				CE87694D1E8A1F9AF3EBDAA2 /* Pods-FocoApp.release.xcconfig */,
-				F794C0558FD102F307B047A6 /* Pods-FocoAppTests.debug.xcconfig */,
-				4774518613D9D3E3C5F8728F /* Pods-FocoAppTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +549,17 @@
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		79C77E9C5C934E38F6BAFED9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81EF1AD5467C270E30E8B858 /* Pods-FocoApp.debug.xcconfig */,
+				D8C4B436928398097B3A0609 /* Pods-FocoApp.release.xcconfig */,
+				5CB72B46F08E3612B8700A44 /* Pods-FocoAppTests.debug.xcconfig */,
+				5FF2498E3F45D63CA4E3F57D /* Pods-FocoAppTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -596,7 +602,7 @@
 				00E356EF1AD99517003FC87E /* FocoAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				0496CBEC0AF440BA94C25082 /* Resources */,
-				6193CB609CC34ACA556B4BDC /* Pods */,
+				79C77E9C5C934E38F6BAFED9 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -617,14 +623,6 @@
 			children = (
 				8D9056281F2AAAAC00EA000E /* libRNSpinkit.a */,
 				8D90562A1F2AAAAC00EA000E /* libRNSpinkit.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		ADBDB9201DFEBF0600ED6528 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -652,10 +650,19 @@
 				8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */,
 				8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */,
 				8D9056381F2AAC6300EA000E /* FBSDKShareKit.framework */,
-				1B6F10DFA52D8DF5F12D9845 /* libPods-FocoApp.a */,
-				06F32D296CC83F9DBFE00259 /* libPods-FocoAppTests.a */,
+				77E464D9331FAD88A6E7F05C /* libPods-FocoApp.a */,
+				49E54C2C0A2ACCB3ADA0C146 /* libPods-FocoAppTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ADBDB9201DFEBF0600ED6528 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */,
+				8DDFC8021F5E7BD000797E89 /* libRCTBlob-tvOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E773F2701E93568F00655FDA /* Fonts */ = {
@@ -683,12 +690,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FocoAppTests" */;
 			buildPhases = (
-				05D335D7FB1C559B1756AA0D /* [CP] Check Pods Manifest.lock */,
+				DEC27A4B19DAF5CB9113E392 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				89F30A43093F18ED1C664003 /* [CP] Embed Pods Frameworks */,
-				71BE8EF762F013A9CE3C5D08 /* [CP] Copy Pods Resources */,
+				EFCB5EAD2A08AD7A36AF3323 /* [CP] Embed Pods Frameworks */,
+				117095505D310D52835751E7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -704,13 +711,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FocoApp" */;
 			buildPhases = (
-				83B3848FCCC750F42BCD7447 /* [CP] Check Pods Manifest.lock */,
+				615D45937E94DDC51E75C365 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				3313144805A504D90A357803 /* [CP] Embed Pods Frameworks */,
-				328C30D1EC2EE2BF682E9B5C /* [CP] Copy Pods Resources */,
+				189975663BC281E5754C7C64 /* [CP] Embed Pods Frameworks */,
+				0998E31D0D50BDF7ED383C72 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -760,12 +767,12 @@
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
 				},
 				{
-					ProductGroup = 8D90562F1F2AAAFF00EA000E /* Products */;
-					ProjectRef = 8D90562E1F2AAAFF00EA000E /* RCTFBLogin.xcodeproj */;
-				},
-				{
 					ProductGroup = ADBDB9201DFEBF0600ED6528 /* Products */;
 					ProjectRef = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
+				},
+				{
+					ProductGroup = 8D90562F1F2AAAFF00EA000E /* Products */;
+					ProjectRef = 8D90562E1F2AAAFF00EA000E /* RCTFBLogin.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -1052,6 +1059,13 @@
 			remoteRef = 8D9056321F2AAAFF00EA000E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8DDFC8021F5E7BD000797E89 /* libRCTBlob-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTBlob-tvOS.a";
+			remoteRef = 8DDFC8011F5E7BD000797E89 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1106,22 +1120,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		05D335D7FB1C559B1756AA0D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		328C30D1EC2EE2BF682E9B5C /* [CP] Copy Pods Resources */ = {
+		0998E31D0D50BDF7ED383C72 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1136,22 +1135,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FocoApp/Pods-FocoApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3313144805A504D90A357803 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FocoApp/Pods-FocoApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		71BE8EF762F013A9CE3C5D08 /* [CP] Copy Pods Resources */ = {
+		117095505D310D52835751E7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1166,7 +1150,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FocoAppTests/Pods-FocoAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		83B3848FCCC750F42BCD7447 /* [CP] Check Pods Manifest.lock */ = {
+		189975663BC281E5754C7C64 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FocoApp/Pods-FocoApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		615D45937E94DDC51E75C365 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1181,7 +1180,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		89F30A43093F18ED1C664003 /* [CP] Embed Pods Frameworks */ = {
+		DEC27A4B19DAF5CB9113E392 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EFCB5EAD2A08AD7A36AF3323 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1241,7 +1255,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F794C0558FD102F307B047A6 /* Pods-FocoAppTests.debug.xcconfig */;
+			baseConfigurationReference = 5CB72B46F08E3612B8700A44 /* Pods-FocoAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1262,6 +1276,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
@@ -1273,7 +1288,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4774518613D9D3E3C5F8728F /* Pods-FocoAppTests.release.xcconfig */;
+			baseConfigurationReference = 5FF2498E3F45D63CA4E3F57D /* Pods-FocoAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1291,6 +1306,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
@@ -1302,7 +1318,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 451DBE43657CD9F030DE0473 /* Pods-FocoApp.debug.xcconfig */;
+			baseConfigurationReference = 81EF1AD5467C270E30E8B858 /* Pods-FocoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1332,7 +1348,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE87694D1E8A1F9AF3EBDAA2 /* Pods-FocoApp.release.xcconfig */;
+			baseConfigurationReference = D8C4B436928398097B3A0609 /* Pods-FocoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
