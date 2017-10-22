@@ -40,8 +40,7 @@ export default class SignInWithEmailForm extends React.Component {
 
         <Button
           title={L.signIn}
-          icon={{name:'chevron-right', color:T.colors.active}}
-          iconRight={true}
+          iconRight={{name:'chevron-right', color:T.colors.active}}
           borderRadius={S.spacing.xlarge}
           buttonStyle={{marginTop:S.spacing.small, width:320}}
           raised={false}

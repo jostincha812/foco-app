@@ -2,5 +2,6 @@
 rm -rf ./node_modules
 rm -rf $TMPDIR/react-*
 npm install
-sudo chmod -R 777 node_modules
+chmod -R 777 node_modules
+# cd ios || pod install || cd ..
 npm start -- --reset-cache
