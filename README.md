@@ -34,3 +34,6 @@
 
 ## v0.9
 * Authenticating users through Facebook login
+
+## v0.9.1
+* Upgraded to react-native 0.49.3
