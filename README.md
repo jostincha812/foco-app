@@ -37,4 +37,5 @@
 
 ## v0.9.1
 * Upgraded to react-native 0.49.3
+* Upgraded Android configs
 * Linked react-native-firebase to Android and iOS
