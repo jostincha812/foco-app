@@ -1,17 +1,18 @@
 import T from '../T'
 
 const spacing = {
-  normal: 16,
-  small: 8,
+  xxsmall: 2,
   xsmall: 4,
+  small: 8,
+  normal: 16,
   large: 24,
   xlarge: 32,
   none: 0,
 }
 
 export default styles = {
-  // statusBarStyle: 'light-content',
   statusBarStyle: 'dark-content',
+  inverseStatusBarStyle: 'light-content',
 
   // grids and spacing
   spacing: spacing,
@@ -27,33 +28,20 @@ export default styles = {
       fontSize: T.fonts.largeSize,
     },
     subtitle: {
-      fontWeight: T.fonts.heavyWeight,
+      fontWeight: T.fonts.boldWeight,
       fontSize: T.fonts.normalSize,
     },
     normal: {
       fontWeight: T.fonts.normalWeight,
       fontSize: T.fonts.normalSize,
     },
+    footnote: {
+      fontWeight: T.fonts.normalWeight,
+      fontSize: T.fonts.smallSize,
+      fontStyle: 'italic',
+    },
     pill: {
       fontSize: T.fonts.smallSize,
-      fontWeight: T.fonts.boldWeight,
-    },
-  },
-
-  markdown: {
-    paragraph: {
-      fontSize: T.fonts.normalSize,
-      fontWeight: T.fonts.normalWeight,
-    },
-    link: {
-      color: T.colors.accent,
-    },
-    heading1: {
-      fontSize: T.fonts.largeSize,
-      fontWeight: T.fonts.boldWeight,
-    },
-    heading2: {
-      fontSize: T.fonts.normalSize,
       fontWeight: T.fonts.boldWeight,
     },
   },
@@ -132,6 +120,14 @@ export default styles = {
     headerStyle: {
       backgroundColor: T.colors.headerBackground,
       borderBottomWidth: 0,
+      borderBottomColor: T.colors.headerBackground,
+      elevation: 0,
+      shadowColor: 'transparent',
+      shadowOpacity: 0,
+      shadowRadius: 0,
+      shadowOffset: {
+        height: 0,
+      },
     },
   },
 }

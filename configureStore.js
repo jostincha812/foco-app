@@ -5,7 +5,10 @@ import thunk from 'redux-thunk'
 
 import rootReducer from './app/reducers'
 
-export default function configureStore() {
-  let store = createStore(rootReducer, applyMiddleware(promiseMiddleware(), thunk, loggerMiddleware))
-  return store
-}
+// export default function configureStore() {
+//   const store = createStore(rootReducer, applyMiddleware(promiseMiddleware(), thunk, loggerMiddleware))
+//   return store
+// }
+
+const store = createStore(rootReducer, applyMiddleware(promiseMiddleware(), thunk, loggerMiddleware))
+export default store

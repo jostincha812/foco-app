@@ -11,11 +11,20 @@ export default class PillsList extends React.Component {
   }
 
   componentDidMount() {
-    const props = this.props
+    this.updateFromProps(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.updateFromProps(nextProps)
+  }
+
+  updateFromProps(props) {
     const state = {}
-    props.items.map(item => {
-      state[item.key] = false
-    })
+    if (props.items) {
+      props.items.map(item => {
+        state[item.key] = false
+      })
+    }
     if (props.selected) {
       props.selected.map(key => {
         state[key] = true

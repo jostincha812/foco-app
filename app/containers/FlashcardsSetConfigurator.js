@@ -1,9 +1,12 @@
 import React from 'react'
-import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
+import { fbAnalytics } from '../../configureFirebase'
+
+import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { Button, FormLabel, FormInput } from 'react-native-elements'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -31,21 +34,23 @@ class FlashcardsSetConfigurator extends BaseContainer {
     const dispatch = navigation.state.params.dispatch
 
     return ({
-      title: navigation.state.params ? L.editset : L.newset,
-      headerLeft: (
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-          onPress={() => navigation.goBack() }>
-          {Icons.back({color: S.navigation.headerTintColor})}
-        </TouchableOpacity>
-      ),
+      title: set ? L.editset : L.newset,
+      headerTitle: null,
+      headerLeft: Icons.back({
+        color: S.navigation.headerTintColor,
+        style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
+        onPress: () => {
+          fbAnalytics.logEvent(E.event_configure_set_aborted)
+          navigation.goBack()
+        }
+      }),
       headerRight: ( set &&
-        <TouchableOpacity
-          style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
-          onPress={() =>  dispatch(deleteUserFlashcardSet(user.id, set.id)) }>
-          {Icons.delete({color: S.navigation.headerTintColor})}
-        </TouchableOpacity>
-      )
+        Icons.delete({
+          color: S.navigation.headerTintColor,
+          style: {top:S.spacing.xsmall/2, paddingRight: S.spacing.small},
+          onPress: () =>  dispatch(deleteUserFlashcardSet(user.uid, set.id))
+        })
+      ),
     })
   }
 
@@ -54,7 +59,8 @@ class FlashcardsSetConfigurator extends BaseContainer {
     this.onToggle = this.onToggle.bind(this)
     this.onDone = this.onDone.bind(this)
     this.state = {
-      status: C.FB_NONE,
+      editing: false,
+      status: C.FB_IDLE,
       user: null,
       setId: '',
       title: '',
@@ -63,20 +69,24 @@ class FlashcardsSetConfigurator extends BaseContainer {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.setCurrentScreen(E.flashcards_set_configurator)
     this.props.resetFlashcardsState()
 
     const navigation = this.props.navigation
     const user = navigation.state.params.user
     this.setState({user})
 
+    let setId = null
+    let title = null
+
     if (navigation.state.params.set) {
-      const setId = navigation.state.params.set.id
-      const title = navigation.state.params.set.title
-      const split = VPQTags.split(navigation.state.params.set.tags)
-      const regions = split.regions
-      const categories = split.categories
-      const varietals = split.varietals
+      setId = navigation.state.params.set.id
+      title = navigation.state.params.set.title
+      const tags = VPQTags.split(navigation.state.params.set.tags)
+      const regions = tags.regions
+      const categories = tags.categories
+      const varietals = tags.varietals
 
       this.setState({
         setId,
@@ -92,6 +102,8 @@ class FlashcardsSetConfigurator extends BaseContainer {
         categories,
       )
     }
+
+    this.logEvent(E.event_configure_set, { isNew: setId==null, setId, title })
   }
 
   componentWillUnmount() {
@@ -103,22 +115,30 @@ class FlashcardsSetConfigurator extends BaseContainer {
     const status = nextProps.status
     if (status != this.props.status) {
       const label = ''
+      if (status === C.FB_REMOVED) {
+        label = L.removed
+        this.logEvent(E.event_configure_set_deleted, {
+          setId:this.state.setId,
+          title:this.state.title
+        })
+      }
       if (status === C.FB_UPDATED) {
         label = L.saved
+        this.logEvent(E.event_configure_set_saved, {
+          isNew:!this.state.editing,
+          setId:this.state.setId,
+          title:this.state.title
+        })
       }
       if (status === C.FB_UPDATED && !this.state.editing) {
         label = L.created
-      }
-      if (status === C.FB_REMOVED) {
-        label = L.removed
       }
 
       if (status === C.FB_UPDATED || status === C.FB_REMOVED) {
         if (!this.state.exiting) {
           this.state.exiting = true
-          this.props.resetFlashcardsState()
           this.showToast(label)
-          navigation.navigate(C.NAV_HOME)
+          navigation.goBack()
         }
       }
     }
@@ -136,9 +156,9 @@ class FlashcardsSetConfigurator extends BaseContainer {
       tags: this.state.selectedRegions.concat(this.state.selectedCategories)
     }
     if (this.state.editing) {
-      this.props.saveUserFlashcardSet(this.state.user.id, data)
+      this.props.saveUserFlashcardSet(this.state.user.uid, data)
     } else {
-      this.props.createUserFlashcardSet(this.state.user.id, data)
+      this.props.createUserFlashcardSet(this.state.user.uid, data)
     }
   }
 
@@ -170,7 +190,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
     const categories = Object.values(VPQTags.categories)
     const varietals = Object.values(VPQTags.varietals)
 
-    const selectedRegion = this.state.selectedRegions
+    const selectedRegions = this.state.selectedRegions
     const selectedCategories = this.state.selectedCategories
     const count = Object.keys(this.props.flashcards).length
     const label = this.state.editing ? L.save : L.go
@@ -189,19 +209,19 @@ class FlashcardsSetConfigurator extends BaseContainer {
             />
           </View>
           <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
-            <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.regions}</Text>
-            <TagsSelector
-              items={regions}
-              selected={selectedRegion}
-              onToggle={tagState => this.onToggle('REGIONS', tagState)}
-            />
-          </View>
-          <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
             <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.tags}</Text>
             <TagsSelector
               items={categories}
               selected={selectedCategories}
               onToggle={tagState => this.onToggle('CATEGORIES', tagState)}
+            />
+          </View>
+          <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
+            <Text style={[S.text.title, {paddingBottom:S.spacing.xsmall}]}>{L.regions}</Text>
+            <TagsSelector
+              items={regions}
+              selected={selectedRegions}
+              onToggle={tagState => this.onToggle('REGIONS', tagState)}
             />
           </View>
         </ScrollView>
@@ -229,7 +249,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    ready: state.flashcards.isReady,
+    ready: state.flashcards.status === C.FB_FETCHED,
     flashcards: state.flashcards.data,
     status: state.flashcardSets.status,
   }

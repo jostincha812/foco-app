@@ -1,21 +1,25 @@
 export default FocoTheme = {
   // colors - http://www.material-ui.com/#/customization/colors
   colors: {
-    app: '#EF6C00',   // orange 800
-    headerBackground: '#FFF',
-    containerBackground: '#FAFAFA', // grey 50
-    // containerBackground: '#ECEFF1',
+    app: '#F78316',   // orange 800
+    headerBackground: '#F5F5F5',
+    containerBackground: '#F5F5F5', // grey 100
     contentBackground: '#FFF',
-    contentBorder: '#E5E5E5',   // grey 100
+    contentBorder: '#E0E0E0',   // grey 300
+
+    success: '#81C784',      // green 300
+    warning: '#FDD835',  // yellow 600
+    error: '#D32F2F', // red 700
 
     normal: '#212121',         // grey 900
-    active: '#E64A19',   // deep orange 700
+    active: '#EF6C00',   // deep orange 700
     inactive: '#BDBDBD', // grey 400
     accent: '#1E88E5',   // blue 600
     inverse: '#FFF',
     text: '#212121',        // grey 900
-    inactiveText: '#757575',  // grey 600
+    inactiveText: '#959595',  // grey 500
     inverseText: '#fff',
+    activeText: '#fff',
     shadow: '#aaa',
     yes: '#81C784',      // green 300
     yesActive: '#388E3C',// green 700
@@ -28,8 +32,9 @@ export default FocoTheme = {
     translucentWhite: '#ffffffaa',
 
     beginner: '#43A047', // green 600
-    intermediate: '#FFC107', // amber 500
+    intermediate: '#1E88E5', // blue 600
     advanced: '#E53935', // red 600
+    expert: '#000', // black
 
     climate: '#2196F3',   // blue 500
     geography: '#00897B', // teal 600
@@ -44,18 +49,18 @@ export default FocoTheme = {
   },
 
   icons: {
-    smallIcon: 16,
-    normalIcon: 24,
-    largeIcon: 48,
-    xlargeIcon: 64,
+    smallIcon: 20,
+    normalIcon: 28,
+    largeIcon: 36,
+    xlargeIcon: 48,
   },
 
   fonts: {
-    xsmallSize: 8,
-    smallSize: 10,
-    normalSize: 14,
-    largeSize: 18,
-    xlargeSize: 24,
+    xsmallSize: 10,
+    smallSize: 14,
+    normalSize: 18,
+    largeSize: 24,
+    xlargeSize: 32,
 
     lightWeight: '100',
     normalWeight: '200',

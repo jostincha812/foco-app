@@ -1,12 +1,15 @@
 import C from '../C'
 const initialState = {
   data: {},
-  status: C.FB_NONE,
+  status: C.FB_IDLE,
   error: null,
 }
 
 export default function UserFlashcardSetsReducer (state = initialState, action) {
   switch (action.type) {
+    case C.RESET_USER_FLASHCARD_SETS_STATE:
+      return initialState
+      
     case C.FETCH_USER_FLASHCARD_SETS_PENDING:
       return {
         ...state,
@@ -92,7 +95,7 @@ export default function UserFlashcardSetsReducer (state = initialState, action) 
     case C.STARRED_USER_FLASHCARDS_UPDATED:
       return {
         ...state,
-        status: C.FB_SUCCESS,
+        status: C.FB_FETCHED,
         data: Object.assign({}, state.data, action.payload)
       }
     case C.STARRED_USER_FLASHCARDS_OFF:

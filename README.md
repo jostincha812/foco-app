@@ -29,3 +29,13 @@
 
 ### v0.8.1
 * **FlashcardsSetConfigurator** edits and deletes sets
+### v0.8.2
+* **FlashcardsSetConfigurator** and **FlashcardsViewer** clean-up and refactoring
+
+## v0.9
+* Authenticating users through Facebook login
+
+## v0.9.1
+* Upgraded to react-native 0.49.3
+* Upgraded Android configs
+* Linked react-native-firebase to Android and iOS

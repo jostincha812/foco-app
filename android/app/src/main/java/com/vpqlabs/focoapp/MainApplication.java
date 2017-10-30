@@ -10,6 +10,12 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.crash.RNFirebaseCrashPackage;
+import io.invertase.firebase.database.RNFirebaseDatabasePackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,9 +31,19 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new VectorIconsPackage(),
-            new RNSpinkitPackage()
+          new RNFirebasePackage(),
+          new RNFirebaseAnalyticsPackage(),
+          new RNFirebaseAuthPackage(),
+          new RNFirebaseCrashPackage(),
+          new RNFirebaseDatabasePackage(),
+          new VectorIconsPackage(),
+          new RNSpinkitPackage()
       );
+    }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
     }
   };
 

@@ -1,3 +1,3 @@
 #!/bin/bash
-react-native run-ios
+react-native run-ios --simulator="iPhone 6s Plus"
 

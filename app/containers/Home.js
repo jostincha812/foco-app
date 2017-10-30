@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -21,52 +21,37 @@ import {
 } from '../actions/UserFlashcardSetsActions'
 
 class Home extends BaseContainer {
-  // const {state, setParams, navigate} = navigation
-  // const {user} = state.params
-  static navigationOptions = ({navigation}) => ({
-    title: null,
-    headerRight: (
-      <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingRight: S.spacing.small}}
-        onPress={() => navigation.navigate(C.NAV_PROFILE_HOME) }>
-        {Icons.profile({color: S.navigation.headerTintColor})}
-      </TouchableOpacity>
-    )
-  })
-
   componentDidMount() {
     const user = this.props.user
+    this.setCurrentScreen(E.user_home)
     this.props.fetchFeaturedFlashcardSets(user.level)
-    this.props.fetchUserFlashcardSets(user.id)
-    this.props.setupUserStarredFlashcardsListeners(user.id)
+    this.props.fetchUserFlashcardSets(user.uid)
+    this.props.setupUserStarredFlashcardsListeners(user.uid)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const user = this.props.user
+    if (nextProps.updated || nextProps.deleted) {
+      // need a timeout to allow navigation event to complete
+      setTimeout(
+        () => this.props.fetchUserFlashcardSets(user.uid),
+        100
+      )
+    }
   }
 
   componentWillUnmount() {
     const user = this.props.user
-    this.props.teardownUserStarredFlashcardsListeners(user.id)
+    this.props.teardownUserStarredFlashcardsListeners(user.uid)
   }
 
   render() {
     const navigation = this.props.navigation
     const props = this.props
     const user = this.props.user
-    const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
-    const userSets = this.props.sets[user.id] ? this.props.sets[user.id] : {}
-    const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
+    const ready = this.props.ready
 
-    const flashcardSetCard = (set, type, icon) => {
-      return (
-        <FlashcardSetCard
-          type={type}
-          key={set.id}
-          set={set}
-          icon={icon}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ids:set.flashcards})}>
-        </FlashcardSetCard>
-      )
-    }
-
-    if (!this.props.ready) {
+    if (!(ready && user)) {
       return (
         <View style={[S.containers.screen, S.containers.centered]}>
           <StatusBar barStyle={S.statusBarStyle} />
@@ -75,43 +60,61 @@ class Home extends BaseContainer {
       )
     }
 
-    const appSetKeys = Object.keys(appSets)
+    const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
+    const userSets = this.props.sets[user.uid] ? this.props.sets[user.uid] : {}
+    const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
 
+    const flashcardSetCard = (cardtype, set, type, icon) => {
+      return (
+        <FlashcardSetCard
+          key={set.id}
+          type={cardtype}
+          set={set}
+          icon={icon}
+          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, type, id:set.id, title:set.title, ids:set.flashcards})}>
+        </FlashcardSetCard>
+      )
+    }
+
+    const appSetKeys = Object.keys(appSets)
     return (
       <ScrollView style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <View style={[S.containers.hero, {paddingBottom:S.spacing.xsmall}]}>
+        <View style={[S.containers.hero, {paddingTop:S.spacing.xsmall, paddingBottom:S.spacing.xsmall}]}>
           <Text style={S.text.hero}>{L.featured}</Text>
-          { appSetKeys &&
-            flashcardSetCard({id:appSetKeys[0], ...appSets[appSetKeys[0]]}, 'hero')
+          { (appSetKeys.length > 0) &&
+            flashcardSetCard('hero', {id:appSetKeys[0], ...appSets[appSetKeys[0]]}, E.event_set_type_featured)
           }
         </View>
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           style={[S.containers.carousel, {paddingTop:S.spacing.xsmall, paddingBottom:S.spacing.small}]}>
-          { Object.keys(appSets).map((setId, index) => {
-            if (index) {
-              const set = appSets[setId]
-              set.id = setId
-              return flashcardSetCard(set, 'carousel')
+          { (appSetKeys.length > 0) &&
+            appSetKeys.map((setId, index) => {
+              if (index) {
+                const set = appSets[setId]
+                set.id = setId
+                return flashcardSetCard('carousel', set, E.event_set_type_featured)
+              }
             }
-          })}
+          )}
         </ScrollView>
         <View style={[S.containers.list, {paddingTop:S.spacing.small}]}>
           <Text style={S.text.title}>{L.mycards}</Text>
           { starredSet &&
             <View style={{paddingBottom:S.spacing.xsmall, paddingBottom:S.spacing.small}}>
               {flashcardSetCard(
-                {...starredSet, title:L.starred},
                 'full',
+                {...starredSet, title:L.starred},
+                E.event_set_type_starred,
                 Icons.star({color:T.colors.starred})
               )}
             </View>
           }
           <FlashcardSetsGridList
             sets={userSets}
-            onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, ...set})}
+            onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {type:E.event_set_type_user, user, ...set})}
             onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user})}
             onEdit={(set) => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user, set, dispatch: props.dispatch})}
           />
@@ -123,8 +126,10 @@ class Home extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    user: { id: 'E5HfTJLiJtdRoQujlAFUB9KAw5H3', level: C.WSET3 },
+    user: state.userProfile.data,
     ready: state.flashcardSets.status === C.FB_FETCHED,
+    updated: state.flashcardSets.status === C.FB_UPDATED,
+    deleted: state.flashcardSets.status === C.FB_REMOVED,
     sets: state.flashcardSets.data,
   }
 }

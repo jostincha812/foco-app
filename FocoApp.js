@@ -1,17 +1,12 @@
 // configure redux / firebase / etc.
 import React from 'react'
-import { AppRegistry } from 'react-native'
 import { Provider } from 'react-redux'
 
-import configureStore from './configureStore'
-import configureFirebase from './configureFirebase'
+import store from './configureStore'
+import firebase from './configureFirebase'
 
-import RootContainer from './app/navigation/RootDrawerNavigator'
-// import RootContainer from './app/navigation/RootStackNavigator'
-// import RootContainer from './app/navigation/RootTabNavigator'
-
-const store = configureStore()
-const firebase = configureFirebase()
+// import RootContainer from './app/navigation/RootDrawerNavigator'
+import RootContainer from './app/navigation/RootStackNavigator'
 
 export default FocoApp = () => (
   <Provider store={store}>

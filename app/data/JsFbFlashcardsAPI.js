@@ -1,5 +1,3 @@
-import * as firebase from 'firebase'
-
 import refs from './JsFbRefs'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 
@@ -27,7 +25,13 @@ export default JsFbFlashcardsAPI = {
     ids.map(id => {
       promises.push(JsFbFlashcardsAPI.getFlashcard(id, userId))
     })
-    return Promise.all(promises)
+    return Promise.all(promises).then(results => {
+      const flashcards = {}
+      results.map(f => {
+        flashcards[f.id] = f
+      })
+      return flashcards
+    })
   },
 
   updateFlashcard: (id, data) => {

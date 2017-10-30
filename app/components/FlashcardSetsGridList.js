@@ -25,10 +25,10 @@ export default class FlashcardSetsGridList extends React.Component {
           const set = cardSets[id]
           return (
             <FlashcardSetCard
-              style={{width: itemWidth, marginBottom:S.spacing.xsmall*2}}
-              type='regular'
               key={id}
+              type='regular'
               set={set}
+              style={{width: itemWidth, marginBottom:S.spacing.xsmall*2}}
               onEdit={() => onEdit({id, ...set})}
               onPress={() => onPress({id, ids:set.flashcards})}>
             </FlashcardSetCard>

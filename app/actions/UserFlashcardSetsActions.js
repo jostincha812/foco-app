@@ -1,6 +1,12 @@
 import C from '../C'
 import api from '../data/api'
 
+export function resetUserFlashcardSetsState() {
+  return {
+    type: C.RESET_USER_FLASHCARD_SETS_STATE,
+  }
+}
+
 export function fetchFeaturedFlashcardSets(level) {
   return {
     type: C.FETCH_USER_FLASHCARD_SETS,
