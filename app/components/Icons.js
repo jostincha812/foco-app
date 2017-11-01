@@ -43,6 +43,7 @@ export default {
   analytics: (options = {}) => AppIcon('chart-line', options),
   study: (options = {}) => AppIcon('book-open-variant', options),
   timer: (options = {}) => AppIcon('timer', options),
+  collection: (options = {}) => AppIcon('format-list-bulleted-type', options),
 
   multipleChoice: (options = {}) => AppIcon('format-list-bulleted', options),
   cards: (options = {}) => AppIcon('cards', options),

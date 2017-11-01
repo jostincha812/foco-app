@@ -19,20 +19,25 @@ STACK[C.NAV_FLASHCARDS_SET_CONFIGURATOR] = { screen: FlashcardsSetConfigurator }
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
-    headerTitle: (
-      Icons.foco({
-        // size: T.icons.largeIcon,
-        color: T.colors.app
-      })
+    tabBarLabel: 'Today',
+    tabBarIcon: ({ focused, tintColor }) => (
+      Icons.foco({ focused, color: tintColor })
     ),
-    headerLeft: (
-      Icons.profile({
-        // size: T.icons.largeIcon,
-        color: T.colors.inactive,
-        style: { top:S.spacing.xsmall/2, paddingLeft:S.spacing.small},
-        onPress: () => navigation.navigate(C.NAV_PROFILE_TAB)
-      })
-    )
+    // @TODO remove after move to tabs
+    // headerTitle: (
+    //   Icons.foco({
+    //     // size: T.icons.largeIcon,
+    //     color: T.colors.app
+    //   })
+    // ),
+    // headerLeft: (
+    //   Icons.profile({
+    //     // size: T.icons.largeIcon,
+    //     color: T.colors.inactive,
+    //     style: { top:S.spacing.xsmall/2, paddingLeft:S.spacing.small},
+    //     onPress: () => navigation.navigate(C.NAV_PROFILE_TAB)
+    //   })
+    // )
     // @TODO activate for Drawer Nav
     // drawer: {
     //   label: 'Home',
