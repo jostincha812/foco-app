@@ -6,12 +6,12 @@ import C from '../C'
 import S from '../styles/styles'
 
 import Icons from '../components/Icons'
-import IconsHome from '../containers/IconsHome'
+import CollectionHome from '../containers/CollectionHome'
 
 const STACK = {}
-STACK[C.NAV_ABOUT_APP_ICONS] = { screen: IconsHome }
+STACK[C.NAV_COLLECTION_HOME] = { screen: CollectionHome }
 
-const MyCollectionStack = StackNavigator(STACK, {
+const CollectionStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
     tabBarLabel: 'My Collection',
@@ -25,4 +25,4 @@ const MyCollectionStack = StackNavigator(STACK, {
   })
 })
 
-export default MyCollectionStack
+export default CollectionStack

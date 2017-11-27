@@ -21,6 +21,10 @@ import {
 } from '../actions/UserFlashcardSetsActions'
 
 class Home extends BaseContainer {
+  static navigationOptions = ({navigation}) => ({
+    title: 'Featured',
+  })
+
   componentDidMount() {
     const user = this.props.user
     this.setCurrentScreen(E.user_home)

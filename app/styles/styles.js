@@ -63,6 +63,13 @@ export default styles = {
     normal: {
       padding: spacing.normal,
     },
+    header: {
+      paddingTop: spacing.normal,
+      paddingBottom: spacing.xsmall,
+      marginLeft: spacing.normal,
+      marginRight: spacing.normal,
+      backgroundColor: T.colors.transparent,
+    },
     grid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -82,6 +89,8 @@ export default styles = {
 
   cards: {
     card: {
+      margin: spacing.normal,
+      marginBottom: 0,
       borderColor: T.colors.contentBorder,
       backgroundColor: T.colors.contentBackground,
       borderWidth: 0.5,
@@ -95,17 +104,27 @@ export default styles = {
       shadowRadius: spacing.xsmall/2,
       shadowOpacity: 0.25,
     },
+    hero: {
+      height: 360,
+    },
+    regular: {
+      height: 240,
+    },
+    carousel: {
+      height: 180,
+      width: 300,
+    },
   },
 
   corners: {
     rounded: {
-      borderRadius: spacing.xsmall,
+      borderRadius: spacing.large,
     },
     roundedSmall: {
-      borderRadius: spacing.xsmall / 2,
+      borderRadius: spacing.normal,
     },
     roundedLarge: {
-      borderRadius: spacing.small,
+      borderRadius: spacing.xlarge,
     },
   },
 

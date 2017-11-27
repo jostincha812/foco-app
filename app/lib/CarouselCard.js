@@ -1,24 +1,17 @@
 import React from 'react'
-import { Text, View, Image, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
-export default class Card extends React.Component {
-  renderCard(props) {
+export default class HeroCard extends React.Component {
+  render() {
+    const props = this.props
     const containerStyle = props.containerStyle ? props.containerStyle : {}
     const headerStyle = props.headerStyle ? props.headerStyle : {}
     const innerStyle = props.innerStyle ? props.innerStyle : {}
-    const action = props.action ? props.action : null
     const divider = props.divider ? { borderBottomWidth: 0.5, borderBottomColor: '#aaa' } : { borderBottomWidth: 0 }
-    const backgroundImage = props.backgroundImage
 
-    return (
-      <View style={[styles.cards.card, styles.cards.raised, styles.corners.rounded, styles.corners.rounded, containerStyle]}>
-        { backgroundImage &&
-          <Image
-            style={[styles.corners.rounded, {width:'100%', height:'100%', position:'absolute'}]}
-            source={{uri: backgroundImage}}
-          />
-        }
+    const card = (
+      <View style={[styles.cards.card, styles.cards.raised, styles.cards.carousel, styles.corners.rounded, containerStyle]}>
         {props.title && (
           <View style={[styles.containers.header, divider]}>
             <Text style={[styles.text.title]}>{props.title}</Text>
@@ -29,20 +22,16 @@ export default class Card extends React.Component {
         </View>
       </View>
     )
-  }
-
-  render() {
-    const props = this.props
 
     const onPress = this.props.onPress
     if (onPress) {
       return (
         <TouchableOpacity onPress={onPress}>
-          {this.renderCard(props)}
+          {card}
         </TouchableOpacity>
       )
     } else {
-      return this.renderCard(props)
+      return card
     }
   }
 }

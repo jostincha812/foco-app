@@ -8,17 +8,19 @@ import S from '../styles/styles';
 import Icons from '../components/Icons'
 
 import Card from '../lib/Card';
+import HeroCard from '../lib/HeroCard'
+import CarouselCard from '../lib/CarouselCard'
 
 class IconsHome extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'Icons Preview',
-    headerLeft: (
-      <TouchableOpacity
-        style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-        onPress={() => navigation.navigate('DrawerOpen') }>
-        {Icons.menu({tintColor: S.navigation.headerTintColor})}
-      </TouchableOpacity>
-    ),
+    // headerLeft: (
+    //   <TouchableOpacity
+    //     style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
+    //     onPress={() => navigation.navigate('DrawerOpen') }>
+    //     {Icons.menu({tintColor: S.navigation.headerTintColor})}
+    //   </TouchableOpacity>
+    // ),
   })
 
   render() {
@@ -27,7 +29,11 @@ class IconsHome extends React.Component {
     return (
       <ScrollView style={S.container}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <Card title='Foco Icons' divider={true} innerStyle={S.containers.flexRowWrapped}>
+        <Card
+          title='Foco Icons'
+          divider={true}
+          backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
+          innerStyle={S.containers.flexRowWrapped}>
           { Icons.home({color: T.colors.active}) }
           { Icons.homeOutline({color: T.colors.inactive}) }
           { Icons.search({color: T.colors.accent}) }
@@ -47,7 +53,7 @@ class IconsHome extends React.Component {
           { Icons.cloud() }
         </Card>
 
-        <Card title='User Actions' containerStyle={{marginTop:0}} innerStyle={S.containers.flexRowWrapped}>
+        <HeroCard title='User Actions' innerStyle={S.containers.flexRowWrapped}>
           { Icons.favorite() }
           { Icons.favoriteOutline() }
           { Icons.star() }
@@ -72,9 +78,9 @@ class IconsHome extends React.Component {
           { Icons.yesCircledOutline() }
           { Icons.noCircled() }
           { Icons.noCircledOutline() }
-        </Card>
+        </HeroCard>
 
-        <Card title='App Icons' containerStyle={{marginTop:0}} innerStyle={S.containers.flexRowWrapped}>
+        <CarouselCard title='App Icons' innerStyle={S.containers.flexRowWrapped}>
           { Icons.menu() }
           { Icons.inlineMenu() }
           { Icons.settings() }
@@ -87,7 +93,7 @@ class IconsHome extends React.Component {
           { Icons.grid() }
           { Icons.list() }
           { Icons.tune() }
-        </Card>
+        </CarouselCard>
       </ScrollView>
     );
   }

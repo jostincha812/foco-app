@@ -24,14 +24,14 @@ export default class FlashcardSetCard extends React.Component {
       <View
         style={[S.cards.card, S.cards.raised, styles[type], props.style]}
         >
-        <View style={[styles.header, {backgroundColor}]}>
+        <View style={[styles.header, /* {backgroundColor} */]}>
           { image &&
             <Image
               style={{width:'100%', height:'100%', position:'absolute'}}
               source={{uri: image}}
             />
           }
-          <View style={{flexDirection:'row', backgroundColor}}>
+          <View style={{flexDirection:'row', /* backgroundColor */}}>
             { icon &&
               <View style={{paddingLeft:S.spacing.small, paddingTop:S.spacing.xsmall}}>
                 {icon}
@@ -41,7 +41,7 @@ export default class FlashcardSetCard extends React.Component {
               (type==='hero') ? S.text.title : S.text.subtitle,
               {
                 padding:S.spacing.small,
-                backgroundColor: T.colors.translucentWhite,
+                // backgroundColor: T.colors.translucentWhite,
                 color: T.colors.text,
                 // backgroundColor: image ? T.colors.translucentWhite : T.colors.transparent,
                 // color:image ? T.colors.text : T.colors.inverseText,
@@ -96,19 +96,27 @@ const styles = StyleSheet.create({
   hero: {
     width: '100%',
     height: 200,
+    backgroundColor: T.colors.contentBackground,
+    ...S.corners.roundedLarge,
   },
   carousel: {
     width: 240,
     height: 140,
     marginRight: S.spacing.small,
+    backgroundColor: T.colors.contentBackground,
+    ...S.corners.rounded,
   },
   full: {
     width: '100%',
     height: 140,
+    backgroundColor: T.colors.contentBackground,
+    ...S.corners.roundedLarge,
   },
   regular: {
     width: 140,
     height: 140,
+    backgroundColor: T.colors.contentBackground,
+    ...S.corners.rounded,
   },
   header: {
     flex: 1,
@@ -121,11 +129,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems:'center',
-    backgroundColor: T.colors.contentBackground,
+    // backgroundColor: T.colors.contentBackground,
   },
   info: {
     justifyContent:'center',
     alignItems:'flex-start',
-    backgroundColor: T.colors.contentBackground,
+    // backgroundColor: T.colors.contentBackground,
   }
 })
