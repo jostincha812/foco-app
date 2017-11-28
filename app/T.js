@@ -28,8 +28,8 @@ export default FocoTheme = {
     starred: '#FDD835',  // yellow 600
     divider: '#EEE',
     transparent: 'transparent',
-    translucentBlack: '#00000055',
-    translucentWhite: '#ffffffaa',
+    translucentBlack: '#00000033',
+    translucentWhite: '#ffffffdd',
 
     beginner: '#43A047', // green 600
     intermediate: '#1E88E5', // blue 600
@@ -60,11 +60,11 @@ export default FocoTheme = {
     smallSize: 14,
     normalSize: 18,
     largeSize: 24,
-    xlargeSize: 32,
+    xlargeSize: 36,
 
     lightWeight: '100',
-    normalWeight: '200',
-    boldWeight: '500',
+    normalWeight: '300',
+    boldWeight: '600',
     heavyWeight: '900',
   },
 }

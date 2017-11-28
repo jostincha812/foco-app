@@ -1,12 +1,12 @@
 import T from '../T'
 
 const spacing = {
-  xxsmall: 2,
-  xsmall: 4,
-  small: 8,
+  xxsmall: 4,
+  xsmall: 8,
+  small: 12,
   normal: 16,
   large: 24,
-  xlarge: 32,
+  xlarge: 30,
   none: 0,
 }
 
@@ -24,25 +24,25 @@ export default styles = {
       fontSize: T.fonts.xlargeSize,
     },
     title: {
-      fontWeight: T.fonts.heavyWeight,
+      fontWeight: T.fonts.boldWeight,
       fontSize: T.fonts.largeSize,
     },
     subtitle: {
-      fontWeight: T.fonts.boldWeight,
+      fontWeight: T.fonts.normalWeight,
       fontSize: T.fonts.normalSize,
     },
     normal: {
-      fontWeight: T.fonts.normalWeight,
+      fontWeight: T.fonts.lightWeight,
       fontSize: T.fonts.normalSize,
     },
     footnote: {
-      fontWeight: T.fonts.normalWeight,
+      fontWeight: T.fonts.lightWeight,
       fontSize: T.fonts.smallSize,
       fontStyle: 'italic',
     },
     pill: {
+      fontWeight: T.fonts.lightWeight,
       fontSize: T.fonts.smallSize,
-      fontWeight: T.fonts.boldWeight,
     },
   },
 
@@ -51,14 +51,9 @@ export default styles = {
       flex: 1,
       backgroundColor: T.colors.containerBackground,
     },
-    hero: {
-      padding: spacing.normal,
-    },
-    carousel: {
-      padding: spacing.normal,
-    },
     list: {
-      padding: spacing.normal,
+      margin: 0,
+      padding: 0,
     },
     normal: {
       padding: spacing.normal,
@@ -68,7 +63,10 @@ export default styles = {
       paddingBottom: spacing.xsmall,
       marginLeft: spacing.normal,
       marginRight: spacing.normal,
-      backgroundColor: T.colors.transparent,
+      backgroundColor: T.colors.translucentWhite,
+    },
+    headerBottom: {
+      paddingBottom: spacing.normal,
     },
     grid: {
       flexDirection: 'row',
@@ -87,10 +85,28 @@ export default styles = {
     },
   },
 
-  cards: {
-    card: {
+  lists: {
+    listItem: {
       margin: spacing.normal,
-      marginBottom: 0,
+      marginTop: 0,
+    },
+    carouselItem: {
+      marginRight: 0,
+    },
+    lastItem: {
+      marginBottom: spacing.normal,
+    }
+  },
+
+  cards: {
+    list: {
+      margin: 0,
+      padding: 0,
+      paddingTop: spacing.normal,
+      paddingBottom: spacing.normal,
+    },
+    card: {
+      margin: 0,
       borderColor: T.colors.contentBorder,
       backgroundColor: T.colors.contentBackground,
       borderWidth: 0.5,
@@ -108,23 +124,24 @@ export default styles = {
       height: 360,
     },
     regular: {
-      height: 240,
+      height: 360,
     },
     carousel: {
       height: 180,
-      width: 300,
+      width: 360,
+      marginRight: spacing.normal,
     },
   },
 
   corners: {
     rounded: {
-      borderRadius: spacing.large,
-    },
-    roundedSmall: {
       borderRadius: spacing.normal,
     },
+    roundedSmall: {
+      borderRadius: spacing.small,
+    },
     roundedLarge: {
-      borderRadius: spacing.xlarge,
+      borderRadius: spacing.large,
     },
   },
 

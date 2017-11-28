@@ -12,7 +12,7 @@ export default class Card extends React.Component {
     const backgroundImage = props.backgroundImage
 
     return (
-      <View style={[styles.cards.card, styles.cards.raised, styles.corners.rounded, styles.corners.rounded, containerStyle]}>
+      <View style={[styles.cards.card, styles.cards.raised, styles.corners.rounded, containerStyle]}>
         { backgroundImage &&
           <Image
             style={[styles.corners.rounded, {width:'100%', height:'100%', position:'absolute'}]}
@@ -21,6 +21,9 @@ export default class Card extends React.Component {
         }
         {props.title && (
           <View style={[styles.containers.header, divider]}>
+            {props.subtitle && (
+              <Text style={[styles.text.subtitle]}>{props.subtitle.toUpperCase()}</Text>
+            )}
             <Text style={[styles.text.title]}>{props.title}</Text>
           </View>
         )}
