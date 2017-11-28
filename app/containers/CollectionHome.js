@@ -25,7 +25,7 @@ class CollectionHome extends BaseContainer {
       <ScrollView style={S.cards.list}>
         <StatusBar barStyle={S.statusBarStyle} />
         <Card
-          title='Regular Card'
+          title='Card Title'
           subtitle='subtitle'
           divider={true}
           backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
@@ -34,9 +34,9 @@ class CollectionHome extends BaseContainer {
         </Card>
 
         <HeroCard
-          title='Hero Card'
-          tagline='Some tagline message'
-          subtitle='Card of the Day'
+          title='Card Title'
+          subtitle='Subtitle or Tagline'
+          hero='Hero of the Day'
           backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
           containerStyle={[S.lists.listItem, S.cards.hero]}
           innerStyle={S.containers.normal}>

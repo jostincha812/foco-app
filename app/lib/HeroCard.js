@@ -31,17 +31,19 @@ export default class HeroCard extends Card {
           <View style={{position:'absolute'}}>
             {props.children}
           </View>
-          {props.subtitle && (
-            <View style={{width:'33%'}}>
-              <Text style={[styles.text.hero, {backgroundColor:'transparent'}]}>{props.subtitle}</Text>
+          {props.hero && (
+            <View style={{width:'35%'}}>
+              <Text style={[styles.text.hero, {backgroundColor:'transparent', lineHeight:styles.text.hero.fontSize+2}]}>
+                {props.hero}
+              </Text>
             </View>
           )}
         </View>
         {props.title && (
           <View style={[styles.containers.header, styles.containers.headerBottom]}>
             <Text style={[styles.text.title]}>{props.title}</Text>
-            {props.tagline && (
-              <Text style={[styles.text.normal]}>{props.tagline}</Text>
+            {props.subtitle && (
+              <Text style={[styles.text.subtitle]}>{props.subtitle}</Text>
             )}
           </View>
         )}

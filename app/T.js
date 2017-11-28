@@ -60,7 +60,7 @@ export default FocoTheme = {
     smallSize: 14,
     normalSize: 18,
     largeSize: 24,
-    xlargeSize: 36,
+    xlargeSize: 38,
 
     lightWeight: '100',
     normalWeight: '300',
