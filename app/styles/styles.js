@@ -1,12 +1,12 @@
 import T from '../T'
 
 const spacing = {
-  xxsmall: 4,
-  xsmall: 8,
-  small: 12,
-  normal: 16,
-  large: 24,
-  xlarge: 30,
+  xxsmall: 8,
+  xsmall: 12,
+  small: 16,
+  normal: 24,
+  large: 30,
+  xlarge: 36,
   none: 0,
 }
 
@@ -59,14 +59,13 @@ export default styles = {
       padding: spacing.normal,
     },
     header: {
-      paddingTop: spacing.normal,
-      paddingBottom: spacing.xsmall,
+      paddingTop: spacing.small,
+      paddingBottom: spacing.xxsmall,
       marginLeft: spacing.normal,
       marginRight: spacing.normal,
-      backgroundColor: T.colors.translucentWhite,
     },
     headerBottom: {
-      paddingBottom: spacing.normal,
+      paddingBottom: spacing.small,
     },
     grid: {
       flexDirection: 'row',
@@ -91,11 +90,10 @@ export default styles = {
       marginTop: 0,
     },
     carouselItem: {
+      paddingHorizontal: spacing.normal,
+      marginLeft: 0,
       marginRight: 0,
     },
-    lastItem: {
-      marginBottom: spacing.normal,
-    }
   },
 
   cards: {
@@ -128,20 +126,20 @@ export default styles = {
     },
     carousel: {
       height: 180,
-      width: 360,
-      marginRight: spacing.normal,
+      width: 340,
+      marginRight: spacing.small,
     },
   },
 
   corners: {
     rounded: {
-      borderRadius: spacing.normal,
-    },
-    roundedSmall: {
       borderRadius: spacing.small,
     },
+    roundedSmall: {
+      borderRadius: spacing.xsmall,
+    },
     roundedLarge: {
-      borderRadius: spacing.large,
+      borderRadius: spacing.normal,
     },
   },
 

@@ -1,32 +1,34 @@
 import React from 'react'
-import { Text, View, Image, TouchableOpacity } from 'react-native'
-import styles from './styles'
+import { View, Image, TouchableOpacity } from 'react-native'
+
+import styles, { sizes, themes, DefaultTheme } from './styles'
+import StyledText from './StyledText'
+import StyledDivider from './StyledDivider'
 
 export default class Card extends React.Component {
-  renderCard(props) {
-    const containerStyle = props.containerStyle ? props.containerStyle : {}
-    const headerStyle = props.headerStyle ? props.headerStyle : {}
+  renderInner(props) {
+    const theme = props.theme
     const innerStyle = props.innerStyle ? props.innerStyle : {}
-    const action = props.action ? props.action : null
-    const divider = props.divider ? { borderBottomWidth: 0.5, borderBottomColor: '#aaa' } : { borderBottomWidth: 0 }
-    const backgroundImage = props.backgroundImage
 
     return (
-      <View style={[styles.cards.card, styles.cards.raised, styles.corners.rounded, containerStyle]}>
-        { backgroundImage &&
-          <Image
-            style={[styles.corners.rounded, {width:'100%', height:'100%', position:'absolute'}]}
-            source={{uri: backgroundImage}}
-          />
-        }
-        {props.title && (
-          <View style={[styles.containers.header, divider]}>
-            {props.subtitle && (
-              <Text style={[styles.text.subtitle]}>{props.subtitle.toUpperCase()}</Text>
-            )}
-            <Text style={[styles.text.title]}>{props.title}</Text>
+      <View>
+        { props.title &&
+          <View style={[styles.containers.header]}>
+            { props.subtitle &&
+              <StyledText style='subtitle' theme={theme}>
+                {props.subtitle.toUpperCase()}
+              </StyledText>
+            }
+            { props.title &&
+              <StyledText style='title' theme={theme}>
+                {props.title}
+              </StyledText>
+            }
+            { props.divider &&
+              <StyledDivider location='bottom' theme={theme} />
+            }
           </View>
-        )}
+        }
         <View style={[styles.containers.normal, innerStyle]}>
           {props.children}
         </View>
@@ -37,15 +39,39 @@ export default class Card extends React.Component {
   render() {
     const props = this.props
 
+    const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
+    const backgroundImage = props.backgroundImage
+    const backgroundColor = props.backgroundColor ? props.backgroundColor : theme.backgroundColor
+    const containerStyle = [
+      styles.cards.card,
+      styles.cards.raised,
+      styles.corners.rounded,
+      { justifyContent: 'space-between' },
+      { backgroundColor: backgroundImage ? 'transparent' : backgroundColor },
+      props.containerStyle ? props.containerStyle : {},
+    ]
+
+    const card = (
+      <View style={containerStyle}>
+        { backgroundImage &&
+          <Image
+            style={[styles.corners.rounded, {width:'100%', height:'100%', position:'absolute'}]}
+            source={{uri: backgroundImage}}
+          />
+        }
+        {this.renderInner(props)}
+      </View>
+    )
+
     const onPress = this.props.onPress
     if (onPress) {
       return (
         <TouchableOpacity onPress={onPress}>
-          {this.renderCard(props)}
+          {card}
         </TouchableOpacity>
       )
     } else {
-      return this.renderCard(props)
+      return card
     }
   }
 }
