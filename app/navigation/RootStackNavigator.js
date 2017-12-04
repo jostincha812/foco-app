@@ -13,6 +13,7 @@ const RootStackNavigator = StackNavigator({
   animationEnabled: false,
   navigationOptions: ({navigation}) => ({
     header: null,
+    gesturesEnabled: false,
   })
 })
 
