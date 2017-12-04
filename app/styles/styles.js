@@ -49,11 +49,20 @@ export default styles = {
   containers: {
     screen: {
       flex: 1,
+      margin: 0,
+      padding: 0,
       backgroundColor: T.colors.containerBackground,
     },
     list: {
       margin: 0,
+      paddingHorizontal: 0,
+      paddingVertical: spacing.normal,
+    },
+    carousel: {
+      margin: 0,
+      marginBottom: spacing.normal,
       padding: 0,
+      paddingHorizontal: spacing.normal,
     },
     normal: {
       padding: spacing.normal,
@@ -89,20 +98,22 @@ export default styles = {
       margin: spacing.normal,
       marginTop: 0,
     },
-    carouselItem: {
-      paddingHorizontal: spacing.normal,
+    lastItem: {
+      marginBottom: 0,
+    },
+    horizontalItem: {
+      margin: spacing.normal,
       marginLeft: 0,
+    },
+    lastHorizontalItem: {
       marginRight: 0,
     },
+    carouselItem: {
+      marginRight: spacing.xsmall,
+    }
   },
 
   cards: {
-    list: {
-      margin: 0,
-      padding: 0,
-      paddingTop: spacing.normal,
-      paddingBottom: spacing.normal,
-    },
     card: {
       margin: 0,
       borderColor: T.colors.contentBorder,
@@ -126,8 +137,7 @@ export default styles = {
     },
     carousel: {
       height: 180,
-      width: 340,
-      marginRight: spacing.small,
+      aspectRatio: 2,
     },
   },
 

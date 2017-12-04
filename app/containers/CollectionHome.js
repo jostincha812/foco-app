@@ -22,8 +22,9 @@ class CollectionHome extends BaseContainer {
     const navigation = this.props.navigation;
 
     return (
-      <ScrollView style={S.cards.list}>
+      <ScrollView contentContainerStyle={S.containers.list}>
         <StatusBar barStyle={S.statusBarStyle} />
+
         <Card
           title='Card Title'
           subtitle='subtitle'
@@ -34,36 +35,36 @@ class CollectionHome extends BaseContainer {
           containerStyle={[S.lists.listItem, S.cards.regular]}>
         </Card>
 
-        <HeroCard
-          title='Card Title'
-          subtitle='Subtitle or Tagline'
-          hero='Hero of the Day'
-          divider={true}
-          theme='dark'
-          backgroundColor={T.colors.geography}
-          containerStyle={[S.lists.listItem, S.cards.hero]}>
-          <Text>Some short form text.</Text>
-        </HeroCard>
-
-        <Carousel
-          style={[S.lists.listItem, S.lists.carouselItem]}>
+        <Carousel style={[S.containers.carousel]}>
           <CarouselCard
             title='Best Collection vol 1'
             subtitle='Carousel Items'
             divider={false}
             theme='light'
-            backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
-            containerStyle={S.cards.carousel}>
+            containerStyle={[S.lists.carouselItem, S.cards.carousel]}>
           </CarouselCard>
           <CarouselCard
             title='Cards against Humanity'
             subtitle='Carousel Items'
-            divider={true}
-            theme='dark'
+            divider={false}
+            theme='light'
             backgroundColor={T.colors.climate}
-            containerStyle={S.cards.carousel}>
+            backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
+            containerStyle={[S.lists.carouselItem, S.lists.lastHorizontalItem, S.cards.carousel]}>
           </CarouselCard>
         </Carousel>
+
+        <HeroCard
+          title='Card Title'
+          subtitle='Subtitle or Tagline'
+          hero={`Hero\nof the\nDay`}
+          divider={true}
+          theme='dark'
+          backgroundColor={T.colors.geography}
+          backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
+          containerStyle={[S.lists.listItem, S.lists.lastItem, S.cards.hero]}>
+          <Text>Some short form text.</Text>
+        </HeroCard>
       </ScrollView>
     );
   }

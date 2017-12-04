@@ -12,14 +12,14 @@ export default class HeroCard extends Card {
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
     return (
-      <View style={{flex:1}}>
+      <View style={{flex:1, backgroundColor:'transparent'}}>
         <View style={{flex:2, justifyContent:'center'}}>
           <View style={[styles.containers.normal, {flexGrow:1}, innerStyle]}>
             {props.children}
           </View>
 
           {props.hero && (
-            <View style={[styles.containers.normal, {position:'absolute', width:'45%'}]}>
+            <View style={[styles.containers.normal, {position:'absolute'}]}>
               <StyledText style='hero' theme={props.theme}>
                 {props.hero}
               </StyledText>

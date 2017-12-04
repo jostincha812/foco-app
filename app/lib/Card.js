@@ -11,7 +11,7 @@ export default class Card extends React.Component {
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
     return (
-      <View>
+      <View style={{ backgroundColor:'transparent' }}>
         { props.title &&
           <View style={[styles.containers.header]}>
             { props.subtitle &&
@@ -47,7 +47,7 @@ export default class Card extends React.Component {
       styles.cards.raised,
       styles.corners.rounded,
       { justifyContent: 'space-between' },
-      { backgroundColor: backgroundImage ? 'transparent' : backgroundColor },
+      { backgroundColor: backgroundColor },
       props.containerStyle ? props.containerStyle : {},
     ]
 

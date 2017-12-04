@@ -1,9 +1,7 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
 
-import C from '../C'
-import T from '../T'
-import S from '../styles/styles'
+import styles, { sizes } from './styles'
 
 export default class Carousel extends React.Component {
   render() {
@@ -13,7 +11,7 @@ export default class Carousel extends React.Component {
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          style={props.style}>
+          contentContainerStyle={props.style}>
           {props.children}
         </ScrollView>
     )

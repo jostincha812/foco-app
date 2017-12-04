@@ -8,11 +8,14 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
-import FlashcardSetCard from '../components/FlashcardSetCard'
-import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
+// import FlashcardSetCard from '../components/FlashcardSetCard'
+// import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
+import CollectionCard from '../components/CollectionCard'
 
 import LoadingIndicator from '../lib/LoadingIndicator'
+import StyledText from '../lib/StyledText'
 import Carousel from '../lib/Carousel'
+import CarouselCard from '../lib/CarouselCard'
 
 import {
   fetchFeaturedFlashcardSets,
@@ -68,60 +71,64 @@ class Home extends BaseContainer {
     const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
     const userSets = this.props.sets[user.uid] ? this.props.sets[user.uid] : {}
     const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
+    const appSetKeys = Object.keys(appSets)
 
-    const flashcardSetCard = (cardtype, set, type, icon) => {
+    const collectionCard = (type, set, eventType, params) => {
       return (
-        <FlashcardSetCard
+        <CollectionCard
           key={set.id}
-          type={cardtype}
+          type={type}
           set={set}
-          icon={icon}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, type, id:set.id, title:set.title, ids:set.flashcards})}>
-        </FlashcardSetCard>
+          {...params}
+          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, eventType, id:set.id, title:set.title, ids:set.flashcards})}>
+        </CollectionCard>
       )
     }
 
-    const appSetKeys = Object.keys(appSets)
     return (
-      <ScrollView style={S.containers.list}>
+      <ScrollView contentContainerStyle={S.containers.list}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <View style={[S.lists.listItem, {paddingTop:S.spacing.xsmall, paddingBottom:S.spacing.xsmall}]}>
-          <Text style={S.text.title}>{L.featured}</Text>
-          { (appSetKeys.length > 0) &&
-            flashcardSetCard('hero', {id:appSetKeys[0], ...appSets[appSetKeys[0]]}, E.event_set_type_featured)
-          }
-        </View>
-        <Carousel
-          style={[S.lists.listItem, S.lists.carouselItem, S.lists.lastItem]}>
-          { (appSetKeys.length > 0) &&
-            appSetKeys.map((setId, index) => {
-              if (index) {
-                const set = appSets[setId]
-                set.id = setId
-                return flashcardSetCard('carousel', set, E.event_set_type_featured)
-              }
+
+        { appSetKeys &&
+          appSetKeys.map((id, index) => {
+            const set = {id, ...appSets[id]}
+            if (index == 0) {
+              return collectionCard('hero', set, E.event_set_type_featured, {
+                style: [S.lists.listItem],
+                hero: L.featured.replace(' ',`\n`),
+                backgroundColor: T.colors.normal,
+              })
             }
-          )}
-        </Carousel>
-        <View style={[S.lists.listItem]}>
-          <Text style={S.text.title}>{L.mycards}</Text>
-          { starredSet &&
-            <View style={{paddingBottom:S.spacing.xsmall, paddingBottom:S.spacing.small}}>
-              {flashcardSetCard(
-                'full',
-                {...starredSet, title:L.starred},
-                E.event_set_type_starred,
-                Icons.star({color:T.colors.starred})
-              )}
-            </View>
+
+            return collectionCard('regular', {id, ...set}, E.event_set_type_featured, {
+              style: [S.lists.listItem],
+            })
           }
-          <FlashcardSetsGridList
-            sets={userSets}
-            onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {type:E.event_set_type_user, user, ...set})}
-            onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user})}
-            onEdit={(set) => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user, set, dispatch: props.dispatch})}
-          />
-        </View>
+        )}
+
+        { starredSet &&
+          collectionCard('hero', starredSet, E.event_set_type_starred, {
+            style: [S.lists.listItem],
+            title: L.mycollection,
+            hero: L.starred.replace(' ',`\n`),
+            icon: Icons.star({color:T.colors.starred}),
+            backgroundColor: T.colors.climate,
+          })
+        }
+
+        { userSets &&
+          <Carousel style={[S.containers.carousel, S.lists.lastItem]}>
+            { Object.keys(userSets).map((id, index) => {
+                const set = {id, ...userSets[id]}
+                const lastItem = (index == (Object.keys(userSets).length-1)) ? S.lists.lastHorizontalItem : null
+                return collectionCard('carousel', set, E.event_set_type_featured, {
+                  style: {...S.lists.carouselItem, ...lastItem},
+                  subtitle: L.mycollection,
+                })
+              }
+            )}
+          </Carousel>
+        }
       </ScrollView>
     );
   }

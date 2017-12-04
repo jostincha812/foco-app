@@ -12,7 +12,7 @@ export default class CarouselCard extends Card {
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
     return (
-      <View style={{flex:1, justifyContent:'center'}}>
+      <View style={{flex:1, justifyContent:'center', backgroundColor:'transparent'}}>
         <View style={[styles.containers.normal, {flex:2, justifyContent:'center'}, innerStyle]}>
           {props.children}
         </View>

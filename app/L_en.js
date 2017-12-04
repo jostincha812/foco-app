@@ -9,7 +9,8 @@ export default {
 
   // Home
   featured: 'Featured Sets',
-  mycards: 'My Sets',
+  mycards: 'My Cards',
+  mycollection: 'My Collection',
   editset: 'Configure Set',
   newset: 'New Card Set',
 
