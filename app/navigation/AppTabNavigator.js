@@ -19,10 +19,10 @@ TABS[C.NAV_PROFILE_TAB] = { screen: ProfileStack }
 
 const AppTabNavigator = TabNavigator(TABS, {
   swipeEnabled: false,
-  animationEnabled: true,
+  animationEnabled: false,
   navigationOptions: ({navigation}) => ({
     tabBarVisible: true,
-    gesturesEnabled: true,
+    gesturesEnabled: false,
   }),
   tabBarOptions: {
     showIcon: true,
