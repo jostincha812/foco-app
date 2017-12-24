@@ -130,14 +130,14 @@ export default styles = {
       shadowOpacity: 0.25,
     },
     hero: {
-      height: 360,
+      height: 400,
     },
     regular: {
-      height: 360,
+      height: 400,
     },
     carousel: {
-      height: 180,
-      aspectRatio: 2,
+      height: 200,
+      aspectRatio: 1.7,
     },
   },
 

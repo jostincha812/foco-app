@@ -46,8 +46,7 @@ export default class Card extends React.Component {
       styles.cards.card,
       styles.cards.raised,
       styles.corners.rounded,
-      { justifyContent: 'space-between' },
-      { backgroundColor: backgroundColor },
+      { justifyContent: 'space-between' , backgroundColor: backgroundColor },
       props.containerStyle ? props.containerStyle : {},
     ]
 
