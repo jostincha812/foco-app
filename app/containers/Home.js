@@ -13,9 +13,7 @@ import Icons from '../components/Icons'
 import CollectionCard from '../components/CollectionCard'
 
 import LoadingIndicator from '../lib/LoadingIndicator'
-import StyledText from '../lib/StyledText'
 import Carousel from '../lib/Carousel'
-import CarouselCard from '../lib/CarouselCard'
 
 import {
   fetchFeaturedFlashcardSets,

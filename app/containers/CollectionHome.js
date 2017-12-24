@@ -30,26 +30,33 @@ class CollectionHome extends BaseContainer {
           subtitle='subtitle'
           divider={true}
           theme='light'
-          backgroundColor={T.colors.viniculture}
           backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
           containerStyle={[S.lists.listItem, S.cards.regular]}>
         </Card>
 
         <Carousel style={[S.containers.carousel]}>
           <CarouselCard
+            title='Cards against Humanity'
+            subtitle='Carousel Items'
+            divider={false}
+            theme='dark'
+            backgroundColor={T.colors.climate}
+            containerStyle={[S.cards.carousel, S.lists.carouselItem]}>
+          </CarouselCard>
+          <CarouselCard
             title='Best Collection vol 1'
             subtitle='Carousel Items'
             divider={false}
             theme='light'
-            containerStyle={[S.lists.carouselItem, S.cards.carousel]}>
+            containerStyle={[S.cards.carousel, S.lists.carouselItem]}>
           </CarouselCard>
           <CarouselCard
-            title='Cards against Humanity'
+            title='Cards against Humanity vol 2'
             subtitle='Carousel Items'
             divider={false}
             theme='light'
             backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
-            containerStyle={[S.lists.carouselItem, S.lists.lastHorizontalItem, S.cards.carousel]}>
+            containerStyle={[S.cards.carousel, S.lists.carouselItem, S.lists.lastHorizontalItem]}>
           </CarouselCard>
         </Carousel>
 

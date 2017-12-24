@@ -56,7 +56,8 @@ export default styles = {
     list: {
       margin: 0,
       paddingHorizontal: 0,
-      paddingVertical: spacing.normal,
+      paddingTop: spacing.normal,
+      paddingBottom: spacing.normal - spacing.xsmall,
     },
     carousel: {
       margin: 0,
@@ -99,7 +100,7 @@ export default styles = {
       marginTop: 0,
     },
     lastItem: {
-      marginBottom: 0,
+      marginBottom: spacing.xsmall,
     },
     horizontalItem: {
       margin: spacing.normal,
@@ -137,7 +138,8 @@ export default styles = {
     },
     carousel: {
       height: 200,
-      aspectRatio: 1.7,
+      width: 340,
+      // aspectRatio: 1.7,
     },
   },
 
