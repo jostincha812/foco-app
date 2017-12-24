@@ -8,19 +8,21 @@ import StyledDivider from './StyledDivider'
 export default class Card extends React.Component {
   renderInner(props) {
     const theme = props.theme
+    const selectedTheme = themes[props.theme] ? themes[props.theme] : DefaultTheme
+    const headerBackground = props.backgroundColor ? 'transparent' : selectedTheme.backgroundColor
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
     return (
       <View style={{ backgroundColor:'transparent' }}>
         { props.title &&
-          <View style={[styles.containers.header]}>
+          <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
             { props.subtitle &&
-              <StyledText style='subtitle' theme={theme}>
+              <StyledText style='subtitle' theme={theme} numberOfLines={1}>
                 {props.subtitle.toUpperCase()}
               </StyledText>
             }
             { props.title &&
-              <StyledText style='title' theme={theme}>
+              <StyledText style='title' theme={theme} numberOfLines={1}>
                 {props.title}
               </StyledText>
             }

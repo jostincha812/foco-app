@@ -48,7 +48,6 @@ class CollectionHome extends BaseContainer {
             subtitle='Carousel Items'
             divider={false}
             theme='light'
-            backgroundColor={T.colors.climate}
             backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
             containerStyle={[S.lists.carouselItem, S.lists.lastHorizontalItem, S.cards.carousel]}>
           </CarouselCard>
@@ -59,8 +58,7 @@ class CollectionHome extends BaseContainer {
           subtitle='Subtitle or Tagline'
           hero={`Hero\nof the\nDay`}
           divider={true}
-          theme='dark'
-          backgroundColor={T.colors.geography}
+          theme='light'
           backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
           containerStyle={[S.lists.listItem, S.lists.lastItem, S.cards.hero]}>
           <Text>Some short form text.</Text>
