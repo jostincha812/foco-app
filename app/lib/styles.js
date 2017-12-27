@@ -14,6 +14,7 @@ export const sizes = {
 export const weights = {
   light: '100',
   normal: '300',
+  semibold: '400',
   bold: '600',
   heavy: '900',
 }
@@ -22,14 +23,16 @@ export const themes = {
   light: {
     borderColor: '#E0E0E0',
     backgroundColor: '#FFF',
-    shadowColor: '#AAA',
+    dividerColor: '#95a5a6',
+    shadowColor: '#7f8c8d',
     color: '#000',
   },
 
   dark: {
     borderColor: '#AAA',
     backgroundColor: '#3E3E3E',
-    shadowColor: '#666',
+    dividerColor: '#CCC',
+    shadowColor: '#7f8c8d',
     color: '#FFF',
   },
 }
@@ -98,8 +101,8 @@ export default styles = {
       color: DefaultTheme.color,
     },
     subtitle: {
-      fontWeight: weights.normal,
-      fontSize: sizes.normal,
+      fontWeight: weights.semibold,
+      fontSize: sizes.normal + 2,
       color: DefaultTheme.color,
     },
     normal: {

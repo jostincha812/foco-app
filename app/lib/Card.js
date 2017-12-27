@@ -13,7 +13,7 @@ export default class Card extends React.Component {
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
     return (
-      <View style={{ backgroundColor:'transparent' }}>
+      <View style={{ flex:1, backgroundColor:'transparent' }}>
         { props.title &&
           <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
             { props.subtitle &&
