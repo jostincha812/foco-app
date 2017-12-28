@@ -8,14 +8,14 @@ import StyledDivider from './StyledDivider'
 
 export default class CarouselCard extends Card {
   renderInner(props) {
-    const theme = props.theme
-    const selectedTheme = themes[props.theme] ? themes[props.theme] : DefaultTheme
-    const headerBackground = props.backgroundColor ? 'transparent' : selectedTheme.backgroundColor
+    const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
+    const headerBackground = props.backgroundColor ? 'transparent' : theme.backgroundColor
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
     return (
-      <View style={{flex:1, justifyContent:'center', backgroundColor:'transparent'}}>
+      <View style={{flex:1, justifyContent:'center', backgroundColor:'transparent', overflow:'hidden'}}>
         <View style={[styles.containers.normal, {flex:2, justifyContent:'center'}, innerStyle]}>
+          {props.toggle}
           {props.children}
         </View>
 
@@ -25,12 +25,12 @@ export default class CarouselCard extends Card {
               <StyledDivider location='top' theme={theme} />
             )}
             {props.title && (
-              <StyledText style='title' theme={props.theme} numberOfLines={1}>
+              <StyledText style='title' theme={theme} numberOfLines={1}>
                 {props.title}
               </StyledText>
             )}
             {props.subtitle && (
-              <StyledText style='subtitle' theme={props.theme} numberOfLines={1}>
+              <StyledText style='subtitle' theme={theme} numberOfLines={1}>
                 {props.subtitle}
               </StyledText>
             )}

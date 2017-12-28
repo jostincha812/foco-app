@@ -105,12 +105,23 @@ class Home extends BaseContainer {
         )}
 
         { starredSet &&
-          collectionCard('hero', starredSet, E.event_set_type_starred, {
+          collectionCard('list', starredSet, E.event_set_type_starred, {
             style: [S.lists.listItem],
             title: L.mycollection,
             hero: L.starred.replace(' ',`\n`),
             icon: Icons.star({color:T.colors.starred}),
             backgroundColor: T.colors.climate,
+            max: 3,
+            list: [
+              {title:'Item 1', subtitle:'something', id:'id_001', onPress:() => console.log('test')},
+              {title:'Item 2', subtitle:'something', id:'id_002'},
+              {title:'Item 3', subtitle:'something', id:'id_003'},
+              {title:'Item 4', subtitle:'something', id:'id_004'},
+              {title:'Item 5', subtitle:'something', id:'id_005'},
+              {title:'Item 6', subtitle:'something', id:'id_006'},
+              {title:'Item 7', subtitle:'something', id:'id_007'},
+              {title:'Item 8', subtitle:'something', id:'id_008'},
+            ]
           })
         }
 

@@ -7,13 +7,12 @@ import StyledDivider from './StyledDivider'
 
 export default class Card extends React.Component {
   renderInner(props) {
-    const theme = props.theme
-    const selectedTheme = themes[props.theme] ? themes[props.theme] : DefaultTheme
-    const headerBackground = props.backgroundColor ? 'transparent' : selectedTheme.backgroundColor
-    const innerStyle = props.innerStyle ? props.innerStyle : {}
+    const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
+    const headerBackground = props.backgroundColor ? 'transparent' : theme.backgroundColor
+    const innerStyle = props.innerStyle
 
     return (
-      <View style={{ flex:1, backgroundColor:'transparent' }}>
+      <View style={{ flex:1, backgroundColor:'transparent', overflow:'hidden' }}>
         { props.title &&
           <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
             { props.subtitle &&
@@ -31,6 +30,7 @@ export default class Card extends React.Component {
             }
           </View>
         }
+        {props.toggle}
         <View style={[styles.containers.normal, innerStyle]}>
           {props.children}
         </View>

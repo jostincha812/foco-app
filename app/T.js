@@ -21,13 +21,13 @@ export default FocoTheme = {
     inactiveText: '#959595',  // grey 500
     inverseText: '#fff',
     activeText: '#fff',
-    shadow: '#aaa',
+    shadow: '#7f8c8d',
     yes: '#81C784',      // green 300
     yesActive: '#388E3C',// green 700
     no: '#E57373',       // red 300
     noActive: '#D32F2F', // red 700
     starred: '#FDD835',  // yellow 600
-    divider: '#EEE',
+    divider: '#95a5a6',
     transparent: 'transparent',
     translucentBlack: '#00000033',
     translucentWhite: '#ffffffdd',

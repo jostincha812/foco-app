@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 
-import styles, { sizes } from './styles'
+import styles, { sizes, themes, DefaultTheme } from './styles'
 import Card from './Card'
 import ListCardItem from './ListCardItem'
 import StyledText from './StyledText'
@@ -9,14 +9,15 @@ import StyledDivider from './StyledDivider'
 
 export default class ListCard extends Card {
   renderInner(props) {
-    const theme = props.theme
+    const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
+    const headerBackground = props.backgroundColor ? 'transparent' : theme.backgroundColor
     const innerStyle = props.innerStyle ? props.innerStyle : {}
     const max = props.max ? ((props.max>5) ? 5 : props.max) : 5
 
     return (
-      <View style={{ flex:1, justifyContent:'space-between', backgroundColor:'transparent' }}>
+      <View style={{ flex:1, justifyContent:'space-between', backgroundColor:'transparent', overflow:'hidden' }}>
         { props.title &&
-          <View style={[styles.containers.header]}>
+          <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
             { props.subtitle &&
               <StyledText style='subtitle' theme={theme}>
                 {props.subtitle.toUpperCase()}
@@ -32,6 +33,7 @@ export default class ListCard extends Card {
             }
           </View>
         }
+        {props.toggle}
         <View style={[{justifyContent:'flex-end'}, styles.containers.normal, innerStyle]}>
           { props.list &&
             props.list.slice(0,max).map((item, index) => {

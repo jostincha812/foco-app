@@ -8,21 +8,21 @@ import StyledDivider from './StyledDivider'
 
 export default class HeroCard extends Card {
   renderInner(props) {
-    const theme = props.theme
-    const selectedTheme = themes[props.theme] ? themes[props.theme] : DefaultTheme
-    const headerBackground = props.backgroundColor ? 'transparent' : selectedTheme.backgroundColor
+    const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
+    const headerBackground = props.backgroundColor ? 'transparent' : theme.backgroundColor
     const innerStyle = props.innerStyle ? props.innerStyle : {}
 
     return (
-      <View style={{flex:1, backgroundColor:'transparent'}}>
+      <View style={{flex:1, backgroundColor:'transparent', overflow:'hidden'}}>
         <View style={{flex:2, justifyContent:'center'}}>
           <View style={[styles.containers.normal, {flexGrow:1}, innerStyle]}>
+            {props.toggle}
             {props.children}
           </View>
 
           {props.hero && (
             <View style={[styles.containers.normal, {position:'absolute'}]}>
-              <StyledText style='hero' theme={props.theme}>
+              <StyledText style='hero' theme={theme}>
                 {props.hero}
               </StyledText>
             </View>
@@ -34,11 +34,11 @@ export default class HeroCard extends Card {
             {props.divider && (
               <StyledDivider location='top' theme={theme} />
             )}
-            <StyledText style='title' theme={props.theme} numberOfLines={1}>
+            <StyledText style='title' theme={theme} numberOfLines={1}>
               {props.title}
             </StyledText>
             {props.subtitle && (
-              <StyledText style='subtitle' theme={props.theme} numberOfLines={1}>
+              <StyledText style='subtitle' theme={theme} numberOfLines={1}>
                 {props.subtitle}
               </StyledText>
             )}

@@ -1,12 +1,12 @@
 import React from 'react'
 import { View } from 'react-native'
-import styles, { sizes, themes, DefaultTheme } from './styles'
+import styles, { sizes } from './styles'
 
 export default class StyledDivider extends React.Component {
   render() {
     const props = this.props
-    const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
-    const style = { height:1, borderBottomWidth:sizes.hairline, borderColor:theme.dividerColor }
+    const theme = props.theme ? props.theme : {}
+    const style = { height:1, borderBottomWidth:sizes.hairline, borderColor:theme.color }
 
     const location = props.location
     if (location == 'top') {

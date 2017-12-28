@@ -16,7 +16,6 @@ export default class Flashcard extends React.Component {
     super(props)
     this.state = { flipped: false }
     this.state[C.KEY_PREF_STARRED] = false
-    this.state[C.KEY_PREF_BOOKMARKED] = false
     this.state[C.KEY_PREF_FLAGGED] = false
 
     this.onPrefToggle = this.onPrefToggle.bind(this)
@@ -26,9 +25,6 @@ export default class Flashcard extends React.Component {
     const prefs = this.props.prefs
     if (prefs) {
       const state = {}
-      if (prefs[C.KEY_PREF_BOOKMARKED]) {
-        state[C.KEY_PREF_BOOKMARKED] = prefs[C.KEY_PREF_BOOKMARKED]
-      }
       if (prefs[C.KEY_PREF_STARRED]) {
         state[C.KEY_PREF_STARRED] = prefs[C.KEY_PREF_STARRED]
       }
@@ -58,7 +54,6 @@ export default class Flashcard extends React.Component {
     })
 
     const isStarred = this.state[C.KEY_PREF_STARRED]
-    const isFlagged = this.state[C.KEY_PREF_FLAGGED]
     const starToggleOptions = {
       style: {position:'absolute', top:S.spacing.small, right:S.spacing.small},
       onPress: () => this.onPrefToggle(C.KEY_PREF_STARRED),
@@ -67,6 +62,7 @@ export default class Flashcard extends React.Component {
       Icons.star({color:T.colors.starred, ...starToggleOptions}) :
       Icons.starOutline({color:T.colors.inactive, ...starToggleOptions})
 
+    const isFlagged = this.state[C.KEY_PREF_FLAGGED]
     const flagToggleOptions = {
       style: {position:'absolute', top:S.spacing.small, left:S.spacing.large},
       onPress: () => this.onPrefToggle(C.KEY_PREF_FLAGGED),
