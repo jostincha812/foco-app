@@ -72,7 +72,7 @@ export default class Flashcard extends React.Component {
       onPress: () => this.onPrefToggle(C.KEY_PREF_FLAGGED),
     }
     const flagToggle = isFlagged ?
-    Icons.flag({color:T.colors.error, ...flagToggleOptions}) :
+    Icons.flag({color:T.colors.app, ...flagToggleOptions}) :
     Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions})
 
     return (

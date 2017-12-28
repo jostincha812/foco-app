@@ -1,4 +1,5 @@
 import T from '../T'
+import S from './styles'
 
 export default markdown = {
   codeBlock: {
@@ -9,13 +10,17 @@ export default markdown = {
     fontWeight: T.fonts.boldWeight,
   },
   heading1: {
-    fontSize: 32,
+    ...S.text.title
+    // fontSize: 32,
   },
   heading2: {
-    fontSize: 24,
+    ...S.text.subtitle
+    // fontSize: 24,
   },
   heading3: {
-    fontSize: 20,
+    ...S.text.subtitle,
+    textDecorationLine: 'underline'
+    // fontSize: 20,
   },
   heading4: {
     fontSize: 16,
@@ -27,14 +32,20 @@ export default markdown = {
     fontSize: 11,
   },
   hr: {
-    backgroundColor: T.colors.contentBackground,
+    backgroundColor: T.colors.transparent,
   },
   link: {
     color: T.colors.accent,
   },
+  list: {
+    borderColor: '#000',
+    borderWidth: 1,
+  },
+  paragraph: {
+    marginBottom: S.spacing.small,
+  },
   text: {
-    fontSize: T.fonts.normalSize,
-    fontWeight: T.fonts.normalWeight,
+    ...S.text.normal,
   },
   strong: {
     fontWeight: T.fonts.boldWeight,

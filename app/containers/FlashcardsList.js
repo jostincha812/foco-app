@@ -24,7 +24,7 @@ import {
   updateUserFlashcardPref
 } from '../actions/FlashcardActions'
 
-class FlashcardsViewer extends BaseContainer {
+class FlashcardsList extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     const type = navigation.state.params.type
     const id = navigation.state.params.id
@@ -178,4 +178,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FlashcardsViewer)
+)(FlashcardsList)
