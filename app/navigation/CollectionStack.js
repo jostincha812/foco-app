@@ -14,14 +14,10 @@ STACK[C.NAV_COLLECTION_HOME] = { screen: CollectionHome }
 const CollectionStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
-    tabBarLabel: 'My Collection',
+    tabBarLabel: 'Bookmarked',
     tabBarIcon: ({ focused, tintColor }) => (
-      Icons.collection({ focused, color:tintColor })
+      Icons.bookmark({ focused, color:tintColor, size:S.tabNav.iconSize })
     ),
-    // drawer: {
-    //   label: 'My Collection',
-    //   icon: ({ focused, tintColor }) => Icons.home({ focused, tintColor }),
-    // },
   })
 })
 

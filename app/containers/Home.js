@@ -24,7 +24,7 @@ import {
 
 class Home extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
-    title: 'Featured',
+    title: 'Home',
   })
 
   componentDidMount() {

@@ -26,9 +26,15 @@ const AppTabNavigator = TabNavigator(TABS, {
   }),
   tabBarOptions: {
     showIcon: true,
-    showLabel: false,
+    showLabel: true,
     activeTintColor: T.colors.active,
     inactiveTintColor: T.colors.inactive,
+    style: {
+      backgroundColor: T.colors.tabNavBackground,
+    },
+    labelStyle: {
+      marginBottom: 4,
+    },
   },
 })
 

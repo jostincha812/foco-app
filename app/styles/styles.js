@@ -155,18 +155,24 @@ export default styles = {
     },
   },
 
+  // nav tab bar styles
+  tabNav: {
+    iconSize: 28,
+    backgroundColor: T.colors.tabNavBackground,
+  },
+
   // navigation header styles
   navigation: {
     headerBackTitle: null,
     headerTintColor: T.colors.app,
     headerTitleStyle: {
       fontWeight: T.fonts.boldWeight,
-      color: T.colors.app,
+      color: T.colors.normal,
     },
     headerStyle: {
       backgroundColor: T.colors.headerBackground,
-      borderBottomWidth: 0,
-      borderBottomColor: T.colors.headerBackground,
+      borderBottomWidth: 0.5,
+      borderBottomColor: T.colors.inactive,
       elevation: 0,
       shadowColor: 'transparent',
       shadowOpacity: 0,

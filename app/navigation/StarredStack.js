@@ -14,9 +14,9 @@ STACK[C.NAV_STARRED_HOME] = { screen: StarredHome }
 const StarredStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation,
-    tabBarLabel: 'Starred Cards',
+    tabBarLabel: 'Starred',
     tabBarIcon: ({ focused, tintColor }) => (
-      Icons.star({ focused, color:tintColor })
+      Icons.star({ focused, color:tintColor, size:S.tabNav.iconSize })
     ),
   })
 })

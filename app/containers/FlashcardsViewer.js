@@ -32,7 +32,6 @@ class FlashcardsViewer extends BaseContainer {
     const hideLeft = navigation.state.params.hideLeft || false
 
     return ({
-      title: null,
       headerTitle: null,
       headerLeft: hideLeft ? null : Icons.back({
         color: S.navigation.headerTintColor,

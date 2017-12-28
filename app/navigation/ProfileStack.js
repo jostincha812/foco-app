@@ -18,41 +18,9 @@ const ProfileStack = StackNavigator(STACK, {
     ...S.navigation,
     tabBarLabel: 'My Profile',
     tabBarIcon: ({ focused, tintColor }) => (
-      Icons.profile({ focused, color: tintColor })
+      Icons.profile({ focused, color: tintColor, size:S.tabNav.iconSize })
     ),
-    // @TODO remove after move to tabs
-    // headerLeft: null,
-    // headerTitle: (
-    //   Icons.profile({
-    //     // size: T.icons.largeIcon,
-    //     color:T.colors.app,
-    //     style: { top:S.spacing.xsmall/2 }
-    //   })
-    // ),
-    // headerRight: (
-    //   Icons.foco({
-    //     // size: T.icons.largeIcon,
-    //     color: T.colors.inactive,
-    //     style: { paddingRight: S.spacing.small },
-    //     onPress: () => navigation.navigate(C.NAV_HOME_TAB),
-    //   })
-    // ),
-    // @TODO activate for Drawer Nav
-    // drawer: {
-    //   label: 'Profile',
-    //   icon: ({ focused, tintColor }) => Icons.profile({ focused, tintColor }),
-    // },
-    // headerLeft: (
-    //   <TouchableOpacity
-    //     style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-    //     onPress={() => navigation.navigate('DrawerOpen') }>
-    //     {Icons.menu({color: S.navigation.headerTintColor})}
-    //   </TouchableOpacity>
-    // ),
-    // @TODO activate for Tab Nav
-    // tabBarIcon: ({ focused, tintColor }) => (
-    //   Icons.profile({ focused, color:tintColor })
-    // ),
+    header: null,
   }),
 })
 
