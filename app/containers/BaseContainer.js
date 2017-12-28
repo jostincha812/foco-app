@@ -68,4 +68,15 @@ export default class BaseContainer extends React.Component {
       Toast.hide(toast)
     }
   }
+
+  render() {
+    // If dimensions is defined, render the real view otherwise the dummy view
+    // if (this.state.dimensions) {
+    //   var { dimensions } = this.state
+    //   var { width, height } = dimensions
+    //   // do stuff
+    //   ...
+    // }
+    return null
+  }
 }

@@ -55,7 +55,7 @@ export default class PillsList extends React.Component {
     const onPress = props.onToggle ? this.toggleItem : null
 
     return (
-      <View style={[styles.container, props.styles]}>
+      <View style={[styles.container, props.style]}>
         { items.map((item, i) => {
           if (i < max) {
             return (

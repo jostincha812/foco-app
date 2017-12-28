@@ -32,7 +32,6 @@ class FlashcardsViewer extends BaseContainer {
     const hideLeft = navigation.state.params.hideLeft || false
 
     return ({
-      headerTitle: null,
       headerLeft: hideLeft ? null : Icons.back({
         color: S.navigation.headerTintColor,
         style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
@@ -125,8 +124,7 @@ class FlashcardsViewer extends BaseContainer {
     if (ready) {
       return (
         <ScrollView
-          style={[S.containers.screen, S.containers.normal]}
-          contentContainerStyle={{backgroundColor:'transparent'}}
+          style={[S.containers.screen, S.containers.normal, {backgroundColor:'transparent'}]}
           pagingEnabled={true}
           onLayout={this.onLayout}
           >

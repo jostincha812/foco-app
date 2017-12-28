@@ -17,6 +17,7 @@ export default class Flashcard extends React.Component {
     this.state = { flipped: false }
     this.state[C.KEY_PREF_STARRED] = false
     this.state[C.KEY_PREF_BOOKMARKED] = false
+    this.state[C.KEY_PREF_FLAGGED] = false
 
     this.onPrefToggle = this.onPrefToggle.bind(this)
   }
@@ -30,6 +31,9 @@ export default class Flashcard extends React.Component {
       }
       if (prefs[C.KEY_PREF_STARRED]) {
         state[C.KEY_PREF_STARRED] = prefs[C.KEY_PREF_STARRED]
+      }
+      if (prefs[C.KEY_PREF_FLAGGED]) {
+        state[C.KEY_PREF_FLAGGED] = prefs[C.KEY_PREF_FLAGGED]
       }
       this.setState(state)
     }
@@ -54,14 +58,22 @@ export default class Flashcard extends React.Component {
     })
 
     const isStarred = this.state[C.KEY_PREF_STARRED]
-    const isBookmarked = this.state[C.KEY_PREF_BOOKMARKED]
+    const isFlagged = this.state[C.KEY_PREF_FLAGGED]
     const starToggleOptions = {
-      style: {position:'absolute', top:S.spacing.small, right:-S.spacing.normal},
+      style: {position:'absolute', top:S.spacing.small, right:S.spacing.small},
       onPress: () => this.onPrefToggle(C.KEY_PREF_STARRED),
     }
     const starToggle = isStarred ?
       Icons.star({color:T.colors.starred, ...starToggleOptions}) :
       Icons.starOutline({color:T.colors.inactive, ...starToggleOptions})
+
+    const flagToggleOptions = {
+      style: {position:'absolute', top:S.spacing.small, left:S.spacing.large},
+      onPress: () => this.onPrefToggle(C.KEY_PREF_FLAGGED),
+    }
+    const flagToggle = isFlagged ?
+    Icons.flag({color:T.colors.error, ...flagToggleOptions}) :
+    Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions})
 
     return (
       <FlipCard
@@ -81,6 +93,7 @@ export default class Flashcard extends React.Component {
           activeOpacity={1}
           onPress={() => this.setState({flipped: !this.state.flipped})}
         >
+          {flagToggle}
           {starToggle}
           <MarkdownView styles={MDStyles}>
             {data.front}
@@ -92,11 +105,13 @@ export default class Flashcard extends React.Component {
           activeOpacity={1}
           onPress={() => this.setState({flipped: !this.state.flipped})}
         >
+          {flagToggle}
           {starToggle}
           <MarkdownView styles={MDStyles}>
             {data.back}
           </MarkdownView>
           <PillsList
+            style={{position:'absolute', left:S.spacing.large, bottom:S.spacing.small}}
             items={items}
             selected={tags}
             textColor={T.colors.inverse}
@@ -114,15 +129,12 @@ const styles = {
     ...S.cards.card,
     ...S.cards.raised,
     ...S.corners.rounded,
-    padding: S.spacing.standard,
-    paddingLeft: S.spacing.large,
-    paddingRight: S.spacing.large,
-    overflow: 'hidden',
+    padding: S.spacing.none,
   },
   inner: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
-    overflow: 'visible',
+    paddingHorizontal: S.spacing.large,
+    overflow: 'hidden',
   },
 }

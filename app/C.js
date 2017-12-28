@@ -19,6 +19,7 @@ export default {
 
   KEY_PREF_KEEP: 'keep',
   KEY_PREF_BOOKMARKED: 'bookmarked',
+  KEY_PREF_FLAGGED: 'flagged',
   KEY_PREF_STARRED: 'starred',
   KEY_STATUS: 'status',
 
