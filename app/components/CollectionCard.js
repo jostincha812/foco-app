@@ -49,13 +49,12 @@ export default class CollectionCard extends React.Component {
 
     const isBookmarked = this.state[C.KEY_PREF_BOOKMARKED]
     const bookmarkToggleOptions = {
+      color: isBookmarked ? T.colors.starred : (theme == 'dark') ? T.colors.ghostWhite : T.colors.ghostBlack,
       size: T.icons.largeIcon,
       style: {position:'absolute', top:-S.spacing.xxsmall, right:S.spacing.small},
       onPress: () => this.onPrefToggle(C.KEY_PREF_BOOKMARKED),
     }
-    const bookmarkToggle = isBookmarked ?
-      Icons.bookmark({color:T.colors.starred, ...bookmarkToggleOptions}) :
-      Icons.bookmarkOutline({color:(theme == 'dark') ? T.colors.inverse : T.colors.inactive, ...bookmarkToggleOptions})
+    const bookmarkToggle = Icons.bookmark(bookmarkToggleOptions)
 
     const params = {
       title: props.title ? props.title : set.title,

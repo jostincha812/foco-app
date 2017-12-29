@@ -149,6 +149,7 @@ export const E = {
   signin_with_email_screen: { screenName: 'signin_with_email', screenClassOverride: 'SignInWithEmail' },
   user_profile_home: { screenName: 'user_profile_home', screenClassOverride: 'ProfileHome' },
   user_home: { screenName: 'user_home', screenClassOverride: 'Home' },
+  collection_home: { screenName:'collection_home', screenClassOverride:'CollectionHome' },
   flashcards_set_configurator: { screenName: 'flashcards_set_configurator', screenClassOverride: 'FlashcardsSetConfigurator' },
   flashcards_set_viewer: { screenName: 'flashcards_set_viewer', screenClassOverride: 'FlashcardsViewer' },
 

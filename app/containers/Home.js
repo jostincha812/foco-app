@@ -119,12 +119,13 @@ class Home extends BaseContainer {
               return collectionCard('hero', set, E.event_set_type_featured, {
                 style: [S.lists.listItem],
                 hero: L.featured.replace(' ',`\n`),
-                backgroundColor: T.colors.normal,
+                backgroundColor: T.colors.accent,
               })
             }
 
             return collectionCard('regular', {id, ...set}, E.event_set_type_featured, {
               style: [S.lists.listItem],
+              backgroundColor: set.backgroundColor,
             })
           }
         )}
