@@ -9,7 +9,7 @@ import S from '../styles/styles'
 import FlashcardSetCard from './FlashcardSetCard'
 import AddNewCard from './AddNewCard'
 
-export default class FlashcardSetsGridList extends React.Component {
+export default class CollectionsGridList extends React.Component {
   render() {
     const cardSets = this.props.sets
     const onPress = this.props.onPress

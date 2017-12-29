@@ -5,8 +5,9 @@ const refs = {
   flashcards: '/flashcards',
   flashcardsTags: '/flashcards_tags',
   users: '/users',
-  userFlashcardSets: '/user_flashcardsets',
+  userCollections: '/user_collections',
   userFlashcardPrefs: '/user_flashcard_prefs',
+  userCollectionPrefs: '/user_collection_prefs',
 }
 
 export default JsFbRefs = {
@@ -42,11 +43,20 @@ export default JsFbRefs = {
     return db().ref(`${refs.userFlashcardPrefs}/${key}/${cardKey}`)
   },
 
-  userFlashcardSets: (key) => {
-    return db().ref(`${refs.userFlashcardSets}/${key}`)
+  userCollections: (key) => {
+    return db().ref(`${refs.userCollections}/${key}`)
   },
 
-  userFlashcardSet: (key, setKey) => {
-    return db().ref(`${refs.userFlashcardSets}/${key}/${setKey}`)
+  userCollection: (key, collectionKey) => {
+    return db().ref(`${refs.userCollections}/${key}/${collectionKey}`)
   },
+
+  userCollectionPrefs: (key) => {
+    return db().ref(`${refs.userCollectionPrefs}/${key}`)
+  },
+
+  userCollectionPref: (key, collectionKey) => {
+    return db().ref(`${refs.userCollectionPrefs}/${key}/${collectionKey}`)
+  },
+
 }

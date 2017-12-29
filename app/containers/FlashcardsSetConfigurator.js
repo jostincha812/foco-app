@@ -22,10 +22,10 @@ import {
   fetchFlashcardsWithTags,
 } from '../actions/FlashcardActions'
 import {
-  createUserFlashcardSet,
-  saveUserFlashcardSet,
-  deleteUserFlashcardSet,
-} from '../actions/UserFlashcardSetsActions'
+  createUserCollection,
+  saveUserCollection,
+  deleteUserCollection,
+} from '../actions/UserCollectionsActions'
 
 class FlashcardsSetConfigurator extends BaseContainer {
   static navigationOptions = ({navigation}) => {
@@ -48,7 +48,7 @@ class FlashcardsSetConfigurator extends BaseContainer {
         Icons.delete({
           color: S.navigation.headerTintColor,
           style: {top:S.spacing.xsmall/2, paddingRight: S.spacing.small},
-          onPress: () =>  dispatch(deleteUserFlashcardSet(user.uid, set.id))
+          onPress: () =>  dispatch(deleteUserCollection(user.uid, set.id))
         })
       ),
     })
@@ -156,9 +156,9 @@ class FlashcardsSetConfigurator extends BaseContainer {
       tags: this.state.selectedRegions.concat(this.state.selectedCategories)
     }
     if (this.state.editing) {
-      this.props.saveUserFlashcardSet(this.state.user.uid, data)
+      this.props.saveUserCollection(this.state.user.uid, data)
     } else {
-      this.props.createUserFlashcardSet(this.state.user.uid, data)
+      this.props.createUserCollection(this.state.user.uid, data)
     }
   }
 
@@ -251,7 +251,7 @@ function mapStateToProps (state) {
   return {
     ready: state.flashcards.status === C.FB_FETCHED,
     flashcards: state.flashcards.data,
-    status: state.flashcardSets.status,
+    status: state.collections.status,
   }
 }
 
@@ -259,8 +259,8 @@ function mapDispatchToProps (dispatch) {
   return {
     resetFlashcardsState: () => dispatch(resetFlashcardsState()),
     fetchFlashcardsWithTags: (level, tags1, tags2) => dispatch(fetchFlashcardsWithTags(level, tags1, tags2)),
-    createUserFlashcardSet: (userId, data) => dispatch(createUserFlashcardSet(userId, data)),
-    saveUserFlashcardSet: (userId, data) => dispatch(saveUserFlashcardSet(userId, data)),
+    createUserCollection: (userId, data) => dispatch(createUserCollection(userId, data)),
+    saveUserCollection: (userId, data) => dispatch(saveUserCollection(userId, data)),
   }
 }
 

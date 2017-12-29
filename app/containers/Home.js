@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
+import { View, ScrollView, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
@@ -7,48 +7,71 @@ import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
-import Icons from '../components/Icons'
-// import FlashcardSetCard from '../components/FlashcardSetCard'
-// import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
+// import Icons from '../components/Icons'
 import CollectionCard from '../components/CollectionCard'
-
 import LoadingIndicator from '../lib/LoadingIndicator'
-import Carousel from '../lib/Carousel'
+// import Carousel from '../lib/Carousel'
 
 import {
-  fetchFeaturedFlashcardSets,
-  fetchUserFlashcardSets,
-  setupUserStarredFlashcardsListeners,
-  teardownUserStarredFlashcardsListeners,
-} from '../actions/UserFlashcardSetsActions'
+  // fetchFeaturedCollections,
+  fetchUserCollections,
+  updateUserCollectionPref,
+  // setupUserStarredCollectionListeners,
+  // teardownUserStarredCollectionListeners,
+} from '../actions/UserCollectionsActions'
 
 class Home extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
     title: 'Home',
   })
 
+  constructor(props) {
+    super(props)
+    this.onPrefToggle = this.onPrefToggle.bind(this)
+  }
+
   componentDidMount() {
     const user = this.props.user
     this.setCurrentScreen(E.user_home)
-    this.props.fetchFeaturedFlashcardSets(user.level)
-    this.props.fetchUserFlashcardSets(user.uid)
-    this.props.setupUserStarredFlashcardsListeners(user.uid)
+    // this.props.fetchFeaturedCollections(user.level)
+    this.props.fetchUserCollections(user.level, user.uid)
+    // this.props.setupUserStarredCollectionListeners(user.uid)
   }
 
-  componentWillReceiveProps(nextProps) {
+  // componentWillReceiveProps(nextProps) {
+  //   const user = this.props.user
+  //   if (nextProps.updated || nextProps.deleted) {
+  //     // need a timeout to allow navigation event to complete
+  //     setTimeout(
+  //       () => this.props.fetchUserCollections(user.uid),
+  //       100
+  //     )
+  //   }
+  // }
+
+  // componentWillUnmount() {
+  //   const user = this.props.user
+  //   this.props.teardownUserStarredCollectionListeners(user.uid)
+  // }
+
+  onPrefToggle(id, toggle) {
     const user = this.props.user
-    if (nextProps.updated || nextProps.deleted) {
-      // need a timeout to allow navigation event to complete
-      setTimeout(
-        () => this.props.fetchUserFlashcardSets(user.uid),
-        100
-      )
+    const collection = this.props.collections[id]
+    const pref = {
+      key: Object.keys(toggle)[0],
+      val: Object.values(toggle)[0]
     }
-  }
 
-  componentWillUnmount() {
-    const user = this.props.user
-    this.props.teardownUserStarredFlashcardsListeners(user.uid)
+    this.props.updateUserCollectionPref(
+      user.uid,
+      id,
+      pref,
+    )
+    this.logEvent(E.event_update_user_collection_pref, {
+      userId: user.uid,
+      collectionId: id,
+      pref
+    })
   }
 
   render() {
@@ -66,9 +89,9 @@ class Home extends BaseContainer {
       )
     }
 
-    const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
-    const userSets = this.props.sets[user.uid] ? this.props.sets[user.uid] : {}
-    const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
+    const appSets = this.props.collections[user.level] ? this.props.collections[user.level] : {}
+    // const userSets = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
+    // const starredSet = this.props.collections[C.KEY_PREF_STARRED] ? this.props.collections[C.KEY_PREF_STARRED] : null
     const appSetKeys = Object.keys(appSets)
 
     const collectionCard = (type, set, eventType, params) => {
@@ -77,7 +100,9 @@ class Home extends BaseContainer {
           key={set.id}
           type={type}
           set={set}
+          prefs={set.prefs}
           {...params}
+          onPrefToggle={this.onPrefToggle}
           onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, eventType, id:set.id, title:set.title, ids:set.flashcards})}>
         </CollectionCard>
       )
@@ -103,7 +128,7 @@ class Home extends BaseContainer {
             })
           }
         )}
-
+{/*
         { starredSet &&
           collectionCard('list', starredSet, E.event_set_type_starred, {
             style: [S.lists.listItem],
@@ -138,6 +163,7 @@ class Home extends BaseContainer {
             )}
           </Carousel>
         }
+*/}
       </ScrollView>
     );
   }
@@ -146,20 +172,21 @@ class Home extends BaseContainer {
 function mapStateToProps (state) {
   return {
     user: state.userProfile.data,
-    ready: state.flashcardSets.status === C.FB_FETCHED,
-    updated: state.flashcardSets.status === C.FB_UPDATED,
-    deleted: state.flashcardSets.status === C.FB_REMOVED,
-    sets: state.flashcardSets.data,
+    ready: state.collections.status === C.FB_FETCHED,
+    updated: state.collections.status === C.FB_UPDATED,
+    deleted: state.collections.status === C.FB_REMOVED,
+    collections: state.collections.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    fetchFeaturedFlashcardSets: (level) => dispatch(fetchFeaturedFlashcardSets(level)),
-    fetchUserFlashcardSets: (userId) => dispatch(fetchUserFlashcardSets(userId)),
-    setupUserStarredFlashcardsListeners: (userId) => dispatch(setupUserStarredFlashcardsListeners(userId)),
-    teardownUserStarredFlashcardsListeners: (userId) => dispatch(teardownUserStarredFlashcardsListeners(userId)),
+    // fetchFeaturedCollections: (level) => dispatch(fetchUserCollections(level)),
+    fetchUserCollections: (ownerId, userId) => dispatch(fetchUserCollections(ownerId, userId)),
+    updateUserCollectionPref: (userId, collectionId, prefs) => dispatch(updateUserCollectionPref(userId, collectionId, prefs)),
+    // setupUserStarredCollectionListeners: (userId) => dispatch(setupUserStarredCollectionListeners(userId)),
+    // teardownUserStarredCollectionListeners: (userId) => dispatch(teardownUserStarredCollectionListeners(userId)),
   }
 }
 

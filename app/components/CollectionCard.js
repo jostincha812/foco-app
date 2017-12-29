@@ -34,9 +34,11 @@ export default class CollectionCard extends React.Component {
   }
 
   onPrefToggle(key) {
+    const id = this.props.set.id
     const state = {}
     state[key] = !this.state[key]
     this.setState(state)
+    this.props.onPrefToggle(id, state)
   }
 
   render() {

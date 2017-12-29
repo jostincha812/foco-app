@@ -9,17 +9,17 @@ import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
 import FlashcardSetCard from '../components/FlashcardSetCard'
-import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
+import CollectionsGridList from '../components/CollectionsGridList'
 
 import LoadingIndicator from '../lib/LoadingIndicator'
 import Carousel from '../lib/Carousel'
 
 import {
-  fetchFeaturedFlashcardSets,
-  fetchUserFlashcardSets,
+  fetchFeaturedCollections,
+  fetchUserCollections,
   setupUserStarredFlashcardsListeners,
   teardownUserStarredFlashcardsListeners,
-} from '../actions/UserFlashcardSetsActions'
+} from '../actions/UserCollectionsActions'
 
 class Home extends BaseContainer {
   static navigationOptions = ({navigation}) => ({
@@ -29,8 +29,8 @@ class Home extends BaseContainer {
   componentDidMount() {
     const user = this.props.user
     this.setCurrentScreen(E.user_home)
-    this.props.fetchFeaturedFlashcardSets(user.level)
-    this.props.fetchUserFlashcardSets(user.uid)
+    this.props.fetchFeaturedCollections(user.level)
+    this.props.fetchUserCollections(user.uid)
     this.props.setupUserStarredFlashcardsListeners(user.uid)
   }
 
@@ -39,7 +39,7 @@ class Home extends BaseContainer {
     if (nextProps.updated || nextProps.deleted) {
       // need a timeout to allow navigation event to complete
       setTimeout(
-        () => this.props.fetchUserFlashcardSets(user.uid),
+        () => this.props.fetchUserCollections(user.uid),
         100
       )
     }
@@ -115,7 +115,7 @@ class Home extends BaseContainer {
               )}
             </View>
           }
-          <FlashcardSetsGridList
+          <CollectionsGridList
             sets={userSets}
             onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {type:E.event_set_type_user, user, ...set})}
             onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user})}
@@ -130,18 +130,18 @@ class Home extends BaseContainer {
 function mapStateToProps (state) {
   return {
     user: state.userProfile.data,
-    ready: state.flashcardSets.status === C.FB_FETCHED,
-    updated: state.flashcardSets.status === C.FB_UPDATED,
-    deleted: state.flashcardSets.status === C.FB_REMOVED,
-    sets: state.flashcardSets.data,
+    ready: state.collections.status === C.FB_FETCHED,
+    updated: state.collections.status === C.FB_UPDATED,
+    deleted: state.collections.status === C.FB_REMOVED,
+    sets: state.collections.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    fetchFeaturedFlashcardSets: (level) => dispatch(fetchFeaturedFlashcardSets(level)),
-    fetchUserFlashcardSets: (userId) => dispatch(fetchUserFlashcardSets(userId)),
+    fetchFeaturedCollections: (level) => dispatch(fetchFeaturedCollections(level)),
+    fetchUserCollections: (userId) => dispatch(fetchUserCollections(userId)),
     setupUserStarredFlashcardsListeners: (userId) => dispatch(setupUserStarredFlashcardsListeners(userId)),
     teardownUserStarredFlashcardsListeners: (userId) => dispatch(teardownUserStarredFlashcardsListeners(userId)),
   }

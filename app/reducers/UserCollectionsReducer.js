@@ -5,100 +5,100 @@ const initialState = {
   error: null,
 }
 
-export default function UserFlashcardSetsReducer (state = initialState, action) {
+export default function UserCollectionsReducer (state = initialState, action) {
   switch (action.type) {
-    case C.RESET_USER_FLASHCARD_SETS_STATE:
+    case C.RESET_USER_COLLECTIONS_STATE:
       return initialState
-      
-    case C.FETCH_USER_FLASHCARD_SETS_PENDING:
+
+    case C.FETCH_USER_COLLECTIONS_PENDING:
       return {
         ...state,
         status: C.FB_FETCHING,
         error: null,
       }
-    case C.FETCH_USER_FLASHCARD_SETS_FULFILLED:
+    case C.FETCH_USER_COLLECTIONS_FULFILLED:
       return {
         ...state,
         status: C.FB_FETCHED,
         data: Object.assign({}, state.data, action.payload),
       }
-    case C.FETCH_USER_FLASHCARD_SETS_REJECTED:
+    case C.FETCH_USER_COLLECTIONS_REJECTED:
       return {
         ...state,
         status: C.FB_ERROR,
         error: action.payload,
       }
 
-    case C.CREATE_USER_FLASHCARD_SET_PENDING:
+    case C.CREATE_USER_COLLECTION_PENDING:
       return {
         ...state,
         status: C.FB_UPDATING,
         error: null,
       }
-    case C.CREATE_USER_FLASHCARD_SET_FULFILLED:
+    case C.CREATE_USER_COLLECTION_FULFILLED:
       return {
         ...state,
         status: C.FB_UPDATED,
         data: Object.assign({}, state.data, action.payload),
       }
-    case C.CREATE_USER_FLASHCARD_SET_REJECTED:
+    case C.CREATE_USER_COLLECTION_REJECTED:
       return {
         ...state,
         status: C.FB_ERROR,
         error: action.payload,
       }
 
-    case C.SAVE_USER_FLASHCARD_SET_PENDING:
+    case C.SAVE_USER_COLLECTION_PENDING:
       return {
         ...state,
         status: C.FB_UPDATING,
         error: null,
       }
-    case C.SAVE_USER_FLASHCARD_SET_FULFILLED:
+    case C.SAVE_USER_COLLECTION_FULFILLED:
       return {
         ...state,
         status: C.FB_UPDATED,
         data: Object.assign({}, state.data, action.payload)
       }
-    case C.SAVE_USER_FLASHCARD_SET_REJECTED:
+    case C.SAVE_USER_COLLECTION_REJECTED:
       return {
         ...state,
         status: C.FB_ERROR,
         error: action.payload,
       }
 
-    case C.DELETE_USER_FLASHCARD_SET_PENDING:
+    case C.DELETE_USER_COLLECTION_PENDING:
       return {
         ...state,
         status: C.FB_REMOVING,
         error: null,
       }
-    case C.DELETE_USER_FLASHCARD_SET_FULFILLED:
+    case C.DELETE_USER_COLLECTION_FULFILLED:
       return {
         ...state,
         status: C.FB_REMOVED,
         data: Object.assign({}, state.data, action.payload)
       }
-    case C.DELETE_USER_FLASHCARD_SET_REJECTED:
+    case C.DELETE_USER_COLLECTION_REJECTED:
       return {
         ...state,
         status: C.FB_ERROR,
         error: action.payload,
       }
 
-    case C.STARRED_USER_FLASHCARDS_ON:
+    case C.STARRED_USER_COLLECTION_ON:
       return {
         ...state,
         status: C.FB_FETCHING,
         error: null,
       }
-    case C.STARRED_USER_FLASHCARDS_UPDATED:
+    case C.STARRED_USER_COLLECTION_UPDATED:
       return {
         ...state,
         status: C.FB_FETCHED,
         data: Object.assign({}, state.data, action.payload)
       }
-    case C.STARRED_USER_FLASHCARDS_OFF:
+    case C.STARRED_USER_COLLECTION_OFF:
       return {
         ...state,
         status: C.FB_SUCCESS,

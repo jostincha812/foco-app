@@ -26,8 +26,8 @@ import {
   resetFlashcardsState
 } from '../actions/FlashcardActions'
 import {
-  resetUserFlashcardSetsState
-} from '../actions/UserFlashcardSetsActions'
+  resetUserCollectionsState
+} from '../actions/UserCollectionsActions'
 
 class SignInHome extends BaseContainer {
   render() {
@@ -113,7 +113,7 @@ function mapDispatchToProps (dispatch) {
     upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
     fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
     resetFlashcardsState: () => dispatch(resetFlashcardsState()),
-    resetUserFlashcardSetsState: () => dispatch(resetUserFlashcardSetsState()),
+    resetUserCollectionsState: () => dispatch(resetUserCollectionsState()),
   }
 }
 

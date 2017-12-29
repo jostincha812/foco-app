@@ -1,4 +1,4 @@
-export default FlashcardSets = {
+export default Collections = {
   "FOCO_WSET3": {
     "set0001" : {
       "flashcards" : [ "-KdUN-UV7tlBVcYSZZbo", "-KdUPp2fr3DhMrMVCoN_", "-KdUR6Rvmj3gSYW2Egzu", "-KdWR4U39SPcYM7FXXOz", "-KdWSlR2fe_n-2aUFM_w" ],
