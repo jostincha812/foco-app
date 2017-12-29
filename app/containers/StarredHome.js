@@ -15,9 +15,9 @@ import CarouselCard from '../lib/CarouselCard'
 import Carousel from '../lib/Carousel'
 
 class StarredHome extends BaseContainer {
-  static navigationOptions = ({navigation}) => ({
-    title: 'Starred Cards',
-  })
+  // static navigationOptions = ({navigation}) => ({
+  //   title: 'Starred Cards',
+  // })
 
   render() {
     const navigation = this.props.navigation;

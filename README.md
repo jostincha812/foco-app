@@ -40,3 +40,8 @@
 * Upgraded Android configs
 * Linked react-native-firebase to Android and iOS
 * Cards component family
+
+## v0.9.2
+* Using Cards components
+* Bookmarkable collections
+* 

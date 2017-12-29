@@ -21,9 +21,9 @@ import {
 } from '../actions/UserCollectionsActions'
 
 class Home extends BaseContainer {
-  static navigationOptions = ({navigation}) => ({
-    title: 'Home',
-  })
+  // static navigationOptions = ({navigation}) => ({
+  //   title: 'Home',
+  // })
 
   constructor(props) {
     super(props)

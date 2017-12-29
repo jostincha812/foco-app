@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
-import C from '../C'
+import C, { E } from '../C'
 import T from '../T'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
@@ -17,9 +17,9 @@ import {
 } from '../actions/UserCollectionsActions'
 
 class CollectionHome extends BaseContainer {
-  static navigationOptions = ({navigation}) => ({
-    title: 'My Collection',
-  })
+  // static navigationOptions = ({navigation}) => ({
+  //   title: 'My Collection',
+  // })
 
   constructor(props) {
     super(props)

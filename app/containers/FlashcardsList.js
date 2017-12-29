@@ -32,11 +32,13 @@ class FlashcardsList extends BaseContainer {
     const hideLeft = navigation.state.params.hideLeft || false
 
     return ({
+      title: null,
       headerLeft: hideLeft ? null : Icons.back({
         color: S.navigation.headerTintColor,
         style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
         onPress: () => {
-          fbAnalytics.logEvent(E.event_view_set_aborted, { id, title, type })
+          // don't need to log back event
+          // fbAnalytics.logEvent(E.event_view_set_aborted, { id, title, type })
           navigation.goBack()
         }
       }),

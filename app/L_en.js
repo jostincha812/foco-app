@@ -7,10 +7,18 @@ export default {
   ROLE_USER: '',
   ROLE_ADMIN: 'Admin',
 
-  // Home
-  featured: 'Featured Sets',
-  mycards: 'My Cards',
-  mycollection: 'My Collection',
+  // Nav
+  nav: {
+    app: 'Foco:3',
+    home: 'Home',
+    collections: 'Bookmarked',
+    starred: 'Starred',
+    profile: 'Profile',
+  },
+
+  // label strings
+  featured: 'Featured Collection',
+  starred: 'Starred Cards',
   editset: 'Configure Set',
   newset: 'New Card Set',
 
