@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, StatusBar } from 'react-native'
+import { View, ScrollView, StatusBar, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
@@ -21,12 +21,12 @@ import {
 } from '../actions/UserCollectionsActions'
 
 class Home extends BaseContainer {
-  // static navigationOptions = ({navigation}) => ({
-  //   title: 'Home',
-  // })
-
   constructor(props) {
     super(props)
+    this.state = {
+      refreshing: false,
+    }
+    this.onRefresh = this.onRefresh.bind(this)
     this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
@@ -34,25 +34,25 @@ class Home extends BaseContainer {
     const user = this.props.user
     this.setCurrentScreen(E.user_home)
     this.props.fetchCollections(user.level, user.uid)
-    // this.props.fetchFeaturedCollections(user.level)
     // this.props.setupUserStarredCollectionListeners(user.uid)
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   const user = this.props.user
-  //   if (nextProps.updated || nextProps.deleted) {
-  //     // need a timeout to allow navigation event to complete
-  //     setTimeout(
-  //       () => this.props.fetchUserCollections(user.uid),
-  //       100
-  //     )
-  //   }
-  // }
 
   // componentWillUnmount() {
   //   const user = this.props.user
   //   this.props.teardownUserStarredCollectionListeners(user.uid)
   // }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.ready && !this.props.ready) {
+      this.setState({refreshing: false})
+    }
+  }
+
+  onRefresh() {
+    const user = this.props.user
+    this.setState({refreshing: true})
+    this.props.fetchCollections(user.level, user.uid)
+  }
 
   onPrefToggle(id, toggle) {
     const user = this.props.user
@@ -112,7 +112,15 @@ class Home extends BaseContainer {
     const collectionsKeys = Object.keys(collections)
 
     return (
-      <ScrollView contentContainerStyle={S.containers.list}>
+      <ScrollView
+        contentContainerStyle={S.containers.list}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+          />
+        }
+      >
         <StatusBar barStyle={S.statusBarStyle} />
           { collections &&
             collectionsKeys.map((id, index) => {

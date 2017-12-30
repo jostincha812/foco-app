@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, StatusBar } from 'react-native'
+import { View, ScrollView, StatusBar, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
@@ -17,12 +17,28 @@ import {
 class CollectionHome extends BaseContainer {
   constructor(props) {
     super(props)
+    this.state = {
+      refreshing: false,
+    }
+    this.onRefresh = this.onRefresh.bind(this)
     this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
   componentDidMount() {
     const user = this.props.user
     this.setCurrentScreen(E.collection_home)
+    this.props.fetchUserBookmarkedCollections(user.uid)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.ready && !this.props.ready) {
+      this.setState({refreshing: false})
+    }
+  }
+
+  onRefresh() {
+    const user = this.props.user
+    this.setState({refreshing: true})
     this.props.fetchUserBookmarkedCollections(user.uid)
   }
 
@@ -63,7 +79,15 @@ class CollectionHome extends BaseContainer {
     const collections = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
     const collectionsKeys = Object.keys(collections)
     return (
-      <ScrollView contentContainerStyle={S.containers.list}>
+      <ScrollView
+        contentContainerStyle={S.containers.list}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+          />
+        }
+      >
         <StatusBar barStyle={S.statusBarStyle} />
           { collections &&
             collectionsKeys.map((id, index) => {
