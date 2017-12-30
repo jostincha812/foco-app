@@ -2,10 +2,10 @@ import firebase from '../../configureFirebase'
 
 const db = firebase.database
 const refs = {
+  collections: '/collections',
   flashcards: '/flashcards',
   flashcardsTags: '/flashcards_tags',
   users: '/users',
-  userCollections: '/user_collections',
   userFlashcardPrefs: '/user_flashcard_prefs',
   userCollectionPrefs: '/user_collection_prefs',
 }
@@ -35,28 +35,28 @@ export default JsFbRefs = {
     return db().ref(`${refs.users}/${key}`)
   },
 
-  userFlashcardPrefs: (key) => {
-    return db().ref(`${refs.userFlashcardPrefs}/${key}`)
+  userFlashcardPrefs: (userKey) => {
+    return db().ref(`${refs.userFlashcardPrefs}/${userKey}`)
   },
 
-  userFlashcardPref: (key, cardKey) => {
-    return db().ref(`${refs.userFlashcardPrefs}/${key}/${cardKey}`)
+  userFlashcardPref: (userKey, cardKey) => {
+    return db().ref(`${refs.userFlashcardPrefs}/${userKey}/${cardKey}`)
   },
 
-  userCollections: (key) => {
-    return db().ref(`${refs.userCollections}/${key}`)
+  collections: () => {
+    return db().ref(`${refs.collections}`)
   },
 
-  userCollection: (key, collectionKey) => {
-    return db().ref(`${refs.userCollections}/${key}/${collectionKey}`)
+  collection: (key) => {
+    return db().ref(`${refs.collections}/${key}`)
   },
 
-  userCollectionPrefs: (key) => {
-    return db().ref(`${refs.userCollectionPrefs}/${key}`)
+  userCollectionPrefs: (userKey) => {
+    return db().ref(`${refs.userCollectionPrefs}/${userKey}`)
   },
 
-  userCollectionPref: (key, collectionKey) => {
-    return db().ref(`${refs.userCollectionPrefs}/${key}/${collectionKey}`)
+  userCollectionPref: (userKey, collectionKey) => {
+    return db().ref(`${refs.userCollectionPrefs}/${userKey}/${collectionKey}`)
   },
 
 }

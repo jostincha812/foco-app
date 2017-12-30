@@ -18,6 +18,7 @@ TABS[C.NAV_STARRED_TAB] = { screen: StarredStack }
 TABS[C.NAV_PROFILE_TAB] = { screen: ProfileStack }
 
 const AppTabNavigator = TabNavigator(TABS, {
+  lazy: true,
   swipeEnabled: false,
   animationEnabled: false,
   navigationOptions: ({navigation}) => ({

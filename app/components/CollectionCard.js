@@ -23,7 +23,7 @@ export default class CollectionCard extends React.Component {
   }
 
   componentWillMount() {
-    const prefs = this.props.prefs
+    const prefs = this.props.collection.prefs
     if (prefs) {
       const state = {}
       if (prefs[C.KEY_PREF_BOOKMARKED]) {
@@ -34,7 +34,7 @@ export default class CollectionCard extends React.Component {
   }
 
   onPrefToggle(key) {
-    const id = this.props.set.id
+    const id = this.props.collection.id
     const state = {}
     state[key] = !this.state[key]
     this.setState(state)
@@ -44,8 +44,10 @@ export default class CollectionCard extends React.Component {
   render() {
     const props = this.props
     const type = props.type
-    const set = props.set
-    const theme = props.theme ? props.theme : (props.backgroundColor ? 'dark' : 'light')
+    const collection = props.collection
+
+    const backgroundColor = props.backgroundColor ? props.backgroundColor : collection.backgroundColor
+    const theme = props.theme ? props.theme : (backgroundColor? 'dark' : 'light')
 
     const isBookmarked = this.state[C.KEY_PREF_BOOKMARKED]
     const bookmarkToggleOptions = {
@@ -57,20 +59,19 @@ export default class CollectionCard extends React.Component {
     const bookmarkToggle = Icons.bookmark(bookmarkToggleOptions)
 
     const params = {
-      title: props.title ? props.title : set.title,
-      subtitle: props.subtitle ? props.subtitle : `${set.flashcards.length} ${L.cards}`,
-      hero: props.hero,
-      icon: props.icon,
       theme: theme,
-      backgroundColor: props.backgroundColor,
-      backgroundImage: props.backgroundImage ? props.backgroundImage : set.image,
+      backgroundColor: backgroundColor,
+      backgroundImage: props.backgroundImage ? props.backgroundImage : collection.image,
+      title: props.title ? props.title : collection.title,
+      subtitle: props.subtitle ? props.subtitle : `${collection.flashcards.length} ${L.cards}`,
+      hero: props.hero ? props.hero : collection.hero,
+      icon: props.icon ? props.icon : collection.icon,
       onPress: props.onPress,
       toggle: bookmarkToggle,
       max: props.max,
     }
 
-
-    if (type == 'hero') {
+    if (type == 'hero' || type == 'featured') {
       return (
         <HeroCard containerStyle={[S.cards.hero, props.style]} {...params}>
           {props.children}

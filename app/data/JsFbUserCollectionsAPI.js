@@ -3,19 +3,39 @@ import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 import C from '../C'
 
 export default JsUserCollectionsAPI = {
-  getUserCollections: (userId, userPrefId) => {
+  getCollections: (ownerId, userId, filterKey) => {
     return Promise.all([
-      refs.userCollections(userId).once('value'),
-      refs.userCollectionPrefs(userPrefId).once('value)')
+      refs.collections().orderByChild('owner').equalTo(ownerId).once('value'),
+      refs.userCollectionPrefs(userId).once('value')
     ]).then(results => {
       const collections = {}
       const list = results[0].val()
       const prefs = results[1].val()
+      collections[ownerId] = {}
 
-      collections[userId] = {}
       Object.keys(list).map(key => {
-        collections[userId][key] = list[key]
-        collections[userId][key].prefs = prefs[key]
+        if (!filterKey || (prefs[key] && prefs[key][filterKey]) ) {
+          collections[ownerId][key] = list[key]
+          collections[ownerId][key].prefs = prefs[key]
+        }
+      })
+      return collections
+    })
+  },
+
+  getUserBookmarkedCollections: (userId, filterKey) => {
+    return Promise.all([
+      refs.userCollectionPrefs(userId).orderByChild(filterKey).equalTo(true).once('value'),
+      refs.collections().once('value'),
+    ]).then(results => {
+      const collections = {}
+      const list = results[0].val()
+      const sources = results[1].val()
+      collections[userId] = {}
+
+      Object.keys(list).map(key => {
+        collections[userId][key] = sources[key]
+        collections[userId][key].prefs = list[key]
       })
       return collections
     })

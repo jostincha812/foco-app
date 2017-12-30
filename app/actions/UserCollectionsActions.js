@@ -7,20 +7,21 @@ export function resetUserCollectionsState() {
   }
 }
 
-export function fetchFeaturedCollections(level) {
-  return {
-    type: C.FETCH_USER_COLLECTIONS,
-    userId: level,
-    payload: api.collections.getFeaturedCollections(level)
-  }
-}
-
-export function fetchUserCollections(ownerId, userId) {
+export function fetchCollections(ownerId, userId) {
   return {
     type: C.FETCH_USER_COLLECTIONS,
     ownerId: ownerId,
     userId: userId,
-    payload: api.collections.getUserCollections(ownerId, userId)
+    payload: api.collections.getCollections(ownerId, userId)
+  }
+}
+
+export function fetchUserBookmarkedCollections(userId) {
+  const filterKey = C.KEY_PREF_BOOKMARKED
+  return {
+    type: C.FETCH_USER_COLLECTIONS,
+    userId: userId,
+    payload: api.collections.getUserBookmarkedCollections(userId, filterKey)
   }
 }
 

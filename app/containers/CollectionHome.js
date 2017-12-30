@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StatusBar } from 'react-native'
+import { View, ScrollView, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
@@ -8,19 +8,13 @@ import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import CollectionCard from '../components/CollectionCard'
 import LoadingIndicator from '../lib/LoadingIndicator'
-// import Icons from '../components/Icons'
-// import Card from '../lib/Card';
 
 import {
-  fetchUserCollections,
+  fetchUserBookmarkedCollections,
   updateUserCollectionPref,
 } from '../actions/UserCollectionsActions'
 
 class CollectionHome extends BaseContainer {
-  // static navigationOptions = ({navigation}) => ({
-  //   title: 'My Collection',
-  // })
-
   constructor(props) {
     super(props)
     this.onPrefToggle = this.onPrefToggle.bind(this)
@@ -29,7 +23,7 @@ class CollectionHome extends BaseContainer {
   componentDidMount() {
     const user = this.props.user
     this.setCurrentScreen(E.collection_home)
-    this.props.fetchUserCollections(user.level, user.uid)
+    this.props.fetchUserBookmarkedCollections(user.uid)
   }
 
   onPrefToggle(id, toggle) {
@@ -53,12 +47,43 @@ class CollectionHome extends BaseContainer {
   }
 
   render() {
-    const navigation = this.props.navigation;
+    const navigation = this.props.navigation
+    const user = this.props.user
+    const ready = this.props.ready
 
+    if (!(ready && user)) {
+      return (
+        <View style={[S.containers.screen, S.containers.centered]}>
+          <StatusBar barStyle={S.statusBarStyle} />
+          <LoadingIndicator />
+        </View>
+      )
+    }
+
+    const collections = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
+    const collectionsKeys = Object.keys(collections)
     return (
       <ScrollView contentContainerStyle={S.containers.list}>
         <StatusBar barStyle={S.statusBarStyle} />
-
+          { collections &&
+            collectionsKeys.map((id, index) => {
+              const collection = {id, ...collections[id]}
+              const lastItem = (index == (collectionsKeys.length-1)) ? S.lists.lastItem : null
+              return (
+                <CollectionCard
+                  style={[S.lists.listItem, lastItem]}
+                  key={collection.id}
+                  type={collection.type}
+                  // hero={collection.hero}
+                  // backgroundColor={collection.backgroundColor}
+                  collection={collection}
+                  // prefs={collection.prefs}
+                  onPrefToggle={this.onPrefToggle}
+                  onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, event:E.event_collection_type_bookmarked, id:collection.id, title:collection.title, ids:collection.flashcards})}>
+                </CollectionCard>
+              )
+            }
+          )}
       </ScrollView>
     )
   }
@@ -77,7 +102,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    fetchUserCollections: (ownerId, userId) => dispatch(fetchUserCollections(ownerId, userId)),
+    fetchUserBookmarkedCollections: (userId) => dispatch(fetchUserBookmarkedCollections(userId)),
     updateUserCollectionPref: (userId, collectionId, prefs) => dispatch(updateUserCollectionPref(userId, collectionId, prefs)),
   }
 }

@@ -168,6 +168,7 @@ export const E = {
   event_view_set_aborted: 'view_set_aborted',
   event_view_set_completed: 'view_set_completed',
   event_collection_type_featured: 'collection_type_featured',
+  event_collection_type_bookmarked: 'collection_type_bookmarked',
   event_collection_type_starred: 'collection_type_starred',
   event_collection_type_user: 'collection_type_user',
   event_update_flashcard_pref: 'update_flashcard_pref',

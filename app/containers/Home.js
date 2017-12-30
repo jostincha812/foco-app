@@ -14,7 +14,7 @@ import LoadingIndicator from '../lib/LoadingIndicator'
 
 import {
   // fetchFeaturedCollections,
-  fetchUserCollections,
+  fetchCollections,
   updateUserCollectionPref,
   // setupUserStarredCollectionListeners,
   // teardownUserStarredCollectionListeners,
@@ -33,8 +33,8 @@ class Home extends BaseContainer {
   componentDidMount() {
     const user = this.props.user
     this.setCurrentScreen(E.user_home)
+    this.props.fetchCollections(user.level, user.uid)
     // this.props.fetchFeaturedCollections(user.level)
-    this.props.fetchUserCollections(user.level, user.uid)
     // this.props.setupUserStarredCollectionListeners(user.uid)
   }
 
@@ -88,47 +88,51 @@ class Home extends BaseContainer {
         </View>
       )
     }
+    //
+    // const collectionCard = (type, set, eventType, params) => {
+    //   return (
+    //     <CollectionCard
+    //       key={set.id}
+    //       type={type}
+    //       set={set}
+    //       prefs={set.prefs}
+    //       {...params}
+    //       onPrefToggle={this.onPrefToggle}
+    //       onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, eventType, id:set.id, title:set.title, ids:set.flashcards})}>
+    //     </CollectionCard>
+    //   )
+    // }
 
-    const appSets = this.props.collections[user.level] ? this.props.collections[user.level] : {}
+    // const appSets = this.props.collections[user.level] ? this.props.collections[user.level] : {}
     // const userSets = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
     // const starredSet = this.props.collections[C.KEY_PREF_STARRED] ? this.props.collections[C.KEY_PREF_STARRED] : null
-    const appSetKeys = Object.keys(appSets)
+    // const appSetKeys = Object.keys(appSets)
 
-    const collectionCard = (type, set, eventType, params) => {
-      return (
-        <CollectionCard
-          key={set.id}
-          type={type}
-          set={set}
-          prefs={set.prefs}
-          {...params}
-          onPrefToggle={this.onPrefToggle}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, eventType, id:set.id, title:set.title, ids:set.flashcards})}>
-        </CollectionCard>
-      )
-    }
+    const collections = this.props.collections[user.level] ? this.props.collections[user.level] : {}
+    const collectionsKeys = Object.keys(collections)
 
     return (
       <ScrollView contentContainerStyle={S.containers.list}>
         <StatusBar barStyle={S.statusBarStyle} />
-
-        { appSetKeys &&
-          appSetKeys.map((id, index) => {
-            const set = {id, ...appSets[id]}
-            if (index == 0) {
-              return collectionCard('hero', set, E.event_set_type_featured, {
-                style: [S.lists.listItem],
-                hero: L.featured.replace(' ',`\n`),
-                backgroundColor: T.colors.accent,
-              })
+          { collections &&
+            collectionsKeys.map((id, index) => {
+              const collection = {id, ...collections[id]}
+              const lastItem = (index == (collectionsKeys.length-1)) ? S.lists.lastItem : null
+              return (
+                <CollectionCard
+                  style={[S.lists.listItem, lastItem]}
+                  key={collection.id}
+                  type={collection.type}
+                  // hero={collection.hero}
+                  // backgroundColor={collection.backgroundColor}
+                  collection={collection}
+                  // prefs={collection.prefs}
+                  onPrefToggle={this.onPrefToggle}
+                  onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, event:E.event_collection_type_bookmarked, id:collection.id, title:collection.title, ids:collection.flashcards})}>
+                </CollectionCard>
+              )
             }
-
-            return collectionCard('regular', {id, ...set}, E.event_set_type_featured, {
-              style: [S.lists.listItem],
-              backgroundColor: set.backgroundColor,
-            })
-          }
-        )}
+          )}
 {/*
         { starredSet &&
           collectionCard('list', starredSet, E.event_set_type_starred, {
@@ -184,7 +188,7 @@ function mapDispatchToProps (dispatch) {
   return {
     dispatch,
     // fetchFeaturedCollections: (level) => dispatch(fetchUserCollections(level)),
-    fetchUserCollections: (ownerId, userId) => dispatch(fetchUserCollections(ownerId, userId)),
+    fetchCollections: (ownerId, userId) => dispatch(fetchCollections(ownerId, userId)),
     updateUserCollectionPref: (userId, collectionId, prefs) => dispatch(updateUserCollectionPref(userId, collectionId, prefs)),
     // setupUserStarredCollectionListeners: (userId) => dispatch(setupUserStarredCollectionListeners(userId)),
     // teardownUserStarredCollectionListeners: (userId) => dispatch(teardownUserStarredCollectionListeners(userId)),
