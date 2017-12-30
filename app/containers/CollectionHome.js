@@ -3,11 +3,11 @@ import { View, ScrollView, StatusBar, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
-import T from '../T'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import CollectionCard from '../components/CollectionCard'
-import LoadingIndicator from '../lib/LoadingIndicator'
+import LoadingScreen from '../components/LoadingScreen'
+import EmptyListScreen from '../components/EmptyListScreen'
 
 import {
   fetchUserBookmarkedCollections,
@@ -17,10 +17,6 @@ import {
 class CollectionHome extends BaseContainer {
   constructor(props) {
     super(props)
-    this.state = {
-      refreshing: false,
-    }
-    this.onRefresh = this.onRefresh.bind(this)
     this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
@@ -67,47 +63,49 @@ class CollectionHome extends BaseContainer {
     const user = this.props.user
     const ready = this.props.ready
 
-    if (!(ready && user)) {
+    const collections = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
+    const collectionsKeys = Object.keys(collections)
+    const refreshControl = (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={this.onRefresh}
+      />
+    )
+
+    if (!ready || !user || !this.state.dimensions) {
       return (
-        <View style={[S.containers.screen, S.containers.centered]}>
-          <StatusBar barStyle={S.statusBarStyle} />
-          <LoadingIndicator />
-        </View>
+        <LoadingScreen onLayout={this.onLayout} />
       )
     }
 
-    const collections = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
-    const collectionsKeys = Object.keys(collections)
+    if (collectionsKeys.length == 0) {
+      return (
+        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl} />
+      )
+    }
+
     return (
       <ScrollView
         contentContainerStyle={S.containers.list}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this.onRefresh}
-          />
-        }
+        refreshControl={refreshControl}
       >
         <StatusBar barStyle={S.statusBarStyle} />
-          { collections &&
-            collectionsKeys.map((id, index) => {
-              const collection = {id, ...collections[id]}
-              const lastItem = (index == (collectionsKeys.length-1)) ? S.lists.lastItem : null
-              return (
-                <CollectionCard
-                  style={[S.lists.listItem, lastItem]}
-                  key={collection.id}
-                  type={collection.type}
-                  // hero={collection.hero}
-                  // backgroundColor={collection.backgroundColor}
-                  collection={collection}
-                  // prefs={collection.prefs}
-                  onPrefToggle={this.onPrefToggle}
-                  onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, event:E.event_collection_type_bookmarked, id:collection.id, title:collection.title, ids:collection.flashcards})}>
-                </CollectionCard>
-              )
-            }
-          )}
+        { collections &&
+          collectionsKeys.map((id, index) => {
+            const collection = {id, ...collections[id]}
+            const lastItem = (index == (collectionsKeys.length-1)) ? S.lists.lastItem : null
+            return (
+              <CollectionCard
+                style={[S.lists.listItem, lastItem]}
+                key={collection.id}
+                type={collection.type}
+                collection={collection}
+                onPrefToggle={this.onPrefToggle}
+                onPress={() => navigation.navigate(C.NAV_COLLECTION_VIEWER, {user, event:E.event_collection_type_bookmarked, id:collection.id, title:collection.title, ids:collection.flashcards})}>
+              </CollectionCard>
+            )
+          }
+        )}
       </ScrollView>
     )
   }

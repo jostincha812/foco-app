@@ -1,3 +1,4 @@
+import C from '../C'
 import refs from './JsFbRefs'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 
@@ -31,6 +32,25 @@ export default JsFbFlashcardsAPI = {
         flashcards[f.id] = f
       })
       return flashcards
+    })
+  },
+
+  getUserStarredFlashcards: (userId) => {
+    return refs.userFlashcardPrefs(userId).orderByChild(C.KEY_PREF_STARRED).equalTo(true).once('value').then(snap => {
+      if (snap.val()) {
+        const promises = []
+        const ids = Object.keys(snap.val())
+        ids.map(id => {
+          promises.push(JsFbFlashcardsAPI.getFlashcard(id, userId))
+        })
+        return Promise.all(promises).then(results => {
+          const flashcards = {}
+          results.map(f => {
+            flashcards[f.id] = f
+          })
+          return flashcards
+        })
+      }
     })
   },
 

@@ -21,6 +21,7 @@ export default {
   starred: 'Starred Cards',
   editset: 'Configure Set',
   newset: 'New Card Set',
+  empty: 'Nothing to see here',
 
   // Flashcard Sets
   cards: 'cards',

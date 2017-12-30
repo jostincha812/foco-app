@@ -12,13 +12,14 @@ export default class BaseContainer extends React.Component {
     this.logEvent = this.logEvent.bind(this)
     this.setCurrentScreen = this.setCurrentScreen.bind(this)
     this.onLayout = this.onLayout.bind(this)
+    this.onRefresh = this.onRefresh.bind(this)
     this.toast = null
     this.showToast = this.showToast.bind(this)
     this.hideToast = this.hideToast.bind(this)
     this.errorToast = this.errorToast.bind(this)
     this.successToast = this.successToast.bind(this)
 
-    this.state = { dimensions: undefined }
+    this.state = { dimensions: undefined, refreshing: false, }
   }
 
   logEvent(event, params) {
@@ -30,10 +31,17 @@ export default class BaseContainer extends React.Component {
   }
 
   onLayout(event) {
+    console.log("***** onLayout")
     if (this.state.dimensions) return // layout was already called
     let {width, height} = event.nativeEvent.layout
     this.setState({dimensions: {width, height}})
   }
+
+  onRefresh() {
+    // do nothing by default, subclasses should set state accordingly
+    // this.setState({refreshing: true})
+  }
+
 
   showToast(message, options) {
     this.toast = Toast.show(message, {
@@ -77,6 +85,10 @@ export default class BaseContainer extends React.Component {
     //   // do stuff
     //   ...
     // }
-    return null
+
+    // example dummy view to get dimensions
+    return (
+      <View style={{flex:1}} onLayout={this.onLayout} />
+    )
   }
 }

@@ -33,10 +33,12 @@ export default JsUserCollectionsAPI = {
       const sources = results[1].val()
       collections[userId] = {}
 
-      Object.keys(list).map(key => {
-        collections[userId][key] = sources[key]
-        collections[userId][key].prefs = list[key]
-      })
+      if (list) {
+        Object.keys(list).map(key => {
+          collections[userId][key] = sources[key]
+          collections[userId][key].prefs = list[key]
+        })
+      }
       return collections
     })
   },

@@ -1,125 +1,134 @@
 import React from 'react'
-import { Text, ScrollView, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
+import { fbAnalytics } from '../../configureFirebase'
 
-import C from '../C'
-import T from '../T'
+import { RefreshControl } from 'react-native'
+
+import C, { E } from '../C'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
-import Icons from '../components/Icons'
+import FlashcardsList from '../components/FlashcardsList'
+import LoadingScreen from '../components/LoadingScreen'
+import EmptyListScreen from '../components/EmptyListScreen'
 
-import Card from '../lib/Card';
-import HeroCard from '../lib/HeroCard'
-import ListCard from '../lib/ListCard'
-import CarouselCard from '../lib/CarouselCard'
-import Carousel from '../lib/Carousel'
+import {
+  fetchStarredFlashcards,
+  resetFlashcardsState,
+  updateUserFlashcardPref
+} from '../actions/FlashcardActions'
 
 class StarredHome extends BaseContainer {
-  // static navigationOptions = ({navigation}) => ({
-  //   title: 'Starred Cards',
-  // })
+  constructor(props) {
+    super(props)
+    this.onPrefToggle = this.onPrefToggle.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.navigation.addListener('focus', this._fetchData)
+    this.props.navigation.addListener('blur', this._cancelFetch)
+    // this.setCurrentScreen(E.flashcards_set_viewer, { id, title })
+    // this.logEvent(E.event_view_set, { id, title, type })
+  }
+
+  componentWillUnmount() {
+    this.props.navigation.removeListener('focus', this._fetchData);
+    this.props.navigation.removeListener('blur', this._cancelFetch);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.ready && !this.props.ready) {
+      this.setState({refreshing: false})
+    }
+  }
+
+  _fetchData() {
+    console.log("_fetchData()")
+    const user = this.props.user
+    this.setState({refreshing: true})
+    this.props.resetFlashcardsState()
+    this.props.fetchStarredFlashcards(user.uid)
+  }
+
+  _cancelFetch() {
+    console.log("_cancelFetch()")
+    this.props.resetFlashcardsState()
+    this.setState({refreshing: false})
+  }
+
+  onRefresh() {
+    this._fetchData()
+    // const user = this.props.user
+    // this.setState({refreshing: true})
+    // this.props.fetchStarredFlashcards(user.uid)
+  }
+
+  onPrefToggle(id, toggle) {
+    const user = this.props.user
+    const flashcard = this.props.flashcards[id]
+    const pref = {
+      key: Object.keys(toggle)[0],
+      val: Object.values(toggle)[0]
+    }
+
+    this.props.updateUserFlashcardPref(
+      user.uid,
+      flashcard.id,
+      pref,
+    )
+    this.logEvent(E.event_update_flashcard_pref, {
+      userId: user.uid,
+      flashcardId: flashcard.id,
+      pref
+    })
+  }
 
   render() {
-    const navigation = this.props.navigation;
+    const props = this.props
+    const ready = props.ready
+    const flashcards = props.flashcards
+    const refreshControl = (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={this.onRefresh}
+      />
+    )
+
+    if (!ready || !this.state.dimensions) {
+      return (
+        <LoadingScreen onLayout={this.onLayout} />
+      )
+    }
+
+    if (!flashcards) {
+      return (
+        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl} />
+      )
+    }
 
     return (
-      <ScrollView contentContainerStyle={S.containers.list}>
-        <StatusBar barStyle={S.statusBarStyle} />
-
-        <Card
-          title='Card Title'
-          subtitle='subtitle'
-          divider={true}
-          theme='light'
-          backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
-          containerStyle={[S.lists.listItem, S.cards.regular]}>
-        </Card>
-
-        <ListCard
-          title='List Title'
-          divider={false}
-          theme='light'
-          max={7}
-          list={[
-            {title:'Item 1', subtitle:'something', id:'id_001', onPress: () => console.log('id_008')},
-            {title:'Item 2', subtitle:'something', id:'id_002'},
-            {subtitle:'something', id:'id_003'},
-            {title:'Item 4', id:'id_004'},
-            {title:'Item 5', id:'id_005', onPress: () => console.log('id_005')},
-            {title:'Item 6', subtitle:'something', id:'id_006'},
-            {title:'Item 7', subtitle:'something', id:'id_007'},
-            {title:'Item 8', id:'id_008', onPress: () => console.log('id_008')},
-          ]}
-          containerStyle={[S.lists.listItem, S.cards.regular]}>
-        </ListCard>
-
-        <ListCard
-          title='List Title'
-          subtitle='subtitle'
-          theme='dark'
-          backgroundColor={T.colors.terroir}
-          max={3}
-          list={[
-            {title:'Item 1', subtitle:'something', id:'id_001'},
-            {title:'Item 2', subtitle:'something', id:'id_002'},
-            {title:'Item 3', subtitle:'something', id:'id_003'},
-            {title:'Item 4', subtitle:'something', id:'id_004'},
-            {title:'Item 5', subtitle:'something', id:'id_005'},
-            {title:'Item 6', subtitle:'something', id:'id_006'},
-            {title:'Item 7', subtitle:'something', id:'id_007'},
-            {title:'Item 8', subtitle:'something', id:'id_008'},
-          ]}
-          containerStyle={[S.lists.listItem, S.cards.regular]}>
-        </ListCard>
-
-        <Carousel style={[S.containers.carousel]}>
-          <CarouselCard
-            title='Cards against Humanity'
-            subtitle='Carousel Items'
-            divider={false}
-            theme='dark'
-            backgroundColor={T.colors.climate}
-            containerStyle={[S.cards.carousel, S.lists.carouselItem]}>
-          </CarouselCard>
-          <CarouselCard
-            title='Best Collection vol 1'
-            subtitle='Carousel Items'
-            divider={false}
-            theme='light'
-            containerStyle={[S.cards.carousel, S.lists.carouselItem]}>
-          </CarouselCard>
-          <CarouselCard
-            title='Cards against Humanity vol 2'
-            subtitle='Carousel Items'
-            divider={false}
-            theme='light'
-            backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
-            containerStyle={[S.cards.carousel, S.lists.carouselItem, S.lists.lastHorizontalItem]}>
-          </CarouselCard>
-        </Carousel>
-
-        <HeroCard
-          title='Card Title'
-          subtitle='Subtitle or Tagline'
-          hero={`Hero\nof the\nDay`}
-          divider={true}
-          theme='light'
-          backgroundImage='https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com'
-          containerStyle={[S.lists.listItem, S.lists.lastItem, S.cards.hero]}>
-          <Text>Some short form text.</Text>
-        </HeroCard>
-      </ScrollView>
+      <FlashcardsList
+        dimensions={this.state.dimensions}
+        flashcards={flashcards}
+        onPrefToggle={this.onPrefToggle}
+        refreshControl={refreshControl}
+      />
     )
   }
 }
 
 function mapStateToProps (state) {
   return {
+    user: state.userProfile.data,
+    ready: state.flashcards.status === C.FB_FETCHED,
+    flashcards: state.flashcards.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
+    resetFlashcardsState: () => dispatch(resetFlashcardsState()),
+    fetchStarredFlashcards: (userId) => dispatch(fetchStarredFlashcards(userId)),
+    updateUserFlashcardPref: (userId, flashcardId, prefs) => dispatch(updateUserFlashcardPref(userId, flashcardId, prefs))
   }
 }
 

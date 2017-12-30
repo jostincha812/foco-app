@@ -29,6 +29,13 @@ export function fetchFlashcards(ids, userId) {
   }
 }
 
+export function fetchStarredFlashcards(userId) {
+  return {
+    type: C.FETCH_FLASHCARDS,
+    payload: api.flashcards.getUserStarredFlashcards(userId)
+  }
+}
+
 export function fetchFlashcardsWithTags(level, tags1, tags2) {
   return {
     type: C.FETCH_FLASHCARDS_WITH_TAGS,

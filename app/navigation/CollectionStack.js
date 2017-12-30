@@ -8,9 +8,11 @@ import S from '../styles/styles'
 
 import Icons from '../components/Icons'
 import CollectionHome from '../containers/CollectionHome'
+import FlashcardsListContainer from '../containers/FlashcardsListContainer'
 
 const STACK = {}
 STACK[C.NAV_COLLECTION_HOME] = { screen: CollectionHome }
+STACK[C.NAV_COLLECTION_VIEWER] = { screen: FlashcardsListContainer }
 
 const CollectionStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
