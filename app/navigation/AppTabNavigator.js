@@ -1,6 +1,5 @@
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
-// import { enhance } from '../react-navigation-addons'
 
 import T from '../T'
 import C from '../C'

@@ -16,7 +16,7 @@ const StarredStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     // ...S.navigation,
     title: L.nav.app,
-    tabBarLabel: L.starred,
+    tabBarLabel: L.nav.starred,
     tabBarIcon: ({ focused, tintColor }) => (
       Icons.star({ focused, color:tintColor, size:S.tabNav.iconSize })
     ),

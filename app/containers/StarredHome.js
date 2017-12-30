@@ -24,15 +24,11 @@ class StarredHome extends BaseContainer {
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('focus', this._fetchData)
-    this.props.navigation.addListener('blur', this._cancelFetch)
-    // this.setCurrentScreen(E.flashcards_set_viewer, { id, title })
-    // this.logEvent(E.event_view_set, { id, title, type })
+    this._fetchData()
   }
 
   componentWillUnmount() {
-    this.props.navigation.removeListener('focus', this._fetchData);
-    this.props.navigation.removeListener('blur', this._cancelFetch);
+    this._cancelFetch()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,7 +38,6 @@ class StarredHome extends BaseContainer {
   }
 
   _fetchData() {
-    console.log("_fetchData()")
     const user = this.props.user
     this.setState({refreshing: true})
     this.props.resetFlashcardsState()
@@ -50,16 +45,12 @@ class StarredHome extends BaseContainer {
   }
 
   _cancelFetch() {
-    console.log("_cancelFetch()")
     this.props.resetFlashcardsState()
     this.setState({refreshing: false})
   }
 
   onRefresh() {
     this._fetchData()
-    // const user = this.props.user
-    // this.setState({refreshing: true})
-    // this.props.fetchStarredFlashcards(user.uid)
   }
 
   onPrefToggle(id, toggle) {

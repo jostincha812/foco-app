@@ -24,21 +24,13 @@ import {
 
 class FlashcardsListContainer extends BaseContainer {
   static navigationOptions = ({navigation}) => {
-    const type = navigation.state.params.type
-    const id = navigation.state.params.id
-    const title = navigation.state.params.title
     const hideLeft = navigation.state.params.hideLeft || false
-
     return ({
       title: null,
       headerLeft: hideLeft ? null : Icons.back({
         color: S.navigation.headerTintColor,
         style: {top:S.spacing.xsmall/2, paddingLeft: S.spacing.small},
-        onPress: () => {
-          // don't need to log back event
-          // fbAnalytics.logEvent(E.event_view_set_aborted, { id, title, type })
-          navigation.goBack()
-        }
+        onPress: () => { navigation.goBack() }
       }),
     })
   }

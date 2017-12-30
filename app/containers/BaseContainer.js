@@ -31,7 +31,6 @@ export default class BaseContainer extends React.Component {
   }
 
   onLayout(event) {
-    console.log("***** onLayout")
     if (this.state.dimensions) return // layout was already called
     let {width, height} = event.nativeEvent.layout
     this.setState({dimensions: {width, height}})
