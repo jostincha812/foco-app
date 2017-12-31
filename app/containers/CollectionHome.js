@@ -101,8 +101,12 @@ class CollectionHome extends BaseContainer {
                 type={collection.type}
                 collection={collection}
                 onPrefToggle={this.onPrefToggle}
-                onPress={() => navigation.navigate(C.NAV_COLLECTION_VIEWER, {user, event:E.event_collection_type_bookmarked, id:collection.id, title:collection.title, ids:collection.flashcards})}>
-              </CollectionCard>
+                onPress={() =>
+                  navigation.navigate(C.NAV_COLLECTIONS_FLASHCARDS_VIEWER, {
+                    user, collection
+                  })
+                }
+              />
             )
           }
         )}

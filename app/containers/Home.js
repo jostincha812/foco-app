@@ -109,8 +109,9 @@ class Home extends BaseContainer {
                       // id:collection.id,
                       // title:collection.title,
                       // flashcardIds:collection.flashcards
-                    })}>
-                </CollectionCard>
+                    })
+                  }
+                />
               )
             })
           }
