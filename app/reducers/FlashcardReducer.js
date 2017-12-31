@@ -2,98 +2,97 @@ import C from '../C'
 const initialState = {
   data: {},
   status: C.FB_IDLE,
-  // isReady: false,
-  // isFetching: false,
-  // isStoring: false,
   error: null,
 }
 
-export default function FlashcardReducer (state = initialState, action) {
+export default function FlashcardReducer (state = {}, action) {
+  const s = { ... state }
   switch (action.type) {
     case C.RESET_FLASHCARDS_STATE:
-      return initialState
+      s[action.meta.namespace] = initialState
+      return s
 
     case C.FETCH_FLASHCARD_IDS_PENDING:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         data: {},
         status: C.FB_FETCHING,
         error: null,
-        // isFetching: true,
-        // isReady: false,
       }
+      return s
     case C.FETCH_FLASHCARD_IDS_FULFILLED:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         status: C.FB_FETCHED,
         data: action.payload
       }
+      return s
     case C.FETCH_FLASHCARD_IDS_REJECTED:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         status: C.FB_ERROR,
-        error: action.payload,
+        data: action.payload
       }
+      return s
 
     case C.FETCH_FLASHCARD_PENDING:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         data: {},
         status: C.FB_FETCHING,
         error: null,
       }
+      return s
     case C.FETCH_FLASHCARD_FULFILLED:
-      return {
-        ...state,
-        status: C.FB_FETCHED,
-        data: action.payload
-      }
-    case C.FETCH_FLASHCARD_REJECTED:
-      return {
-        ...state,
-        status: C.FB_ERROR,
-        error: action.payload,
-      }
-
-    case C.FETCH_FLASHCARDS_PENDING:
-      return {
-        ...state,
-        data: {},
-        status: C.FB_FETCHING,
-        error: null,
-      }
-    case C.FETCH_FLASHCARDS_FULFILLED:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         status: C.FB_FETCHED,
         data: action.payload,
       }
-    case C.FETCH_FLASHCARDS_REJECTED:
-      return {
-        ...state,
+      return s
+    case C.FETCH_FLASHCARD_REJECTED:
+      s[action.meta.namespace] = {
+        data: {},
         status: C.FB_ERROR,
         error: action.payload,
       }
+      return s
 
-    case C.FETCH_FLASHCARDS_WITH_TAGS_PENDING:
-      return {
-        ...state,
+    case C.FETCH_FLASHCARDS_PENDING:
+      s[action.meta.namespace] = {
         data: {},
         status: C.FB_FETCHING,
         error: null,
       }
-    case C.FETCH_FLASHCARDS_WITH_TAGS_FULFILLED:
-      return {
-        ...state,
+      return s
+    case C.FETCH_FLASHCARDS_FULFILLED:
+      s[action.meta.namespace] = {
+        data: action.payload,
         status: C.FB_FETCHED,
-        data: Object.assign({}, state.data, action.payload)
       }
-    case C.FETCH_FLASHCARDS_WITH_TAGS_REJECTED:
-      return {
-        ...state,
+      return s
+    case C.FETCH_FLASHCARDS_REJECTED:
+      s[action.meta.namespace] = {
+        ...s[action.meta.namespace],
         status: C.FB_ERROR,
         error: action.payload,
       }
+      return s
+
+    case C.FETCH_FLASHCARDS_WITH_TAGS_PENDING:
+      s[action.meta.namespace] = {
+        data: {},
+        status: C.FB_FETCHING,
+        error: null,
+      }
+      return s
+    case C.FETCH_FLASHCARDS_WITH_TAGS_FULFILLED:
+      s[action.meta.namespace] = {
+        status: C.FB_FETCHED,
+        data: Object.assign({}, s[action.meta.namespace].data, action.payload)
+      }
+      return s
+    case C.FETCH_FLASHCARDS_WITH_TAGS_REJECTED:
+      s[action.meta.namespace] = {
+        status: C.FB_ERROR,
+        error: action.payload,
+      }
+      return s
 
     case C.UPDATE_USER_FLASHCARD_PREFERENCE_PENDING:
       return {

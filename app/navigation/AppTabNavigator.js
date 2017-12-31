@@ -13,7 +13,7 @@ import ProfileStack from './ProfileStack'
 
 const TABS = {}
 TABS[C.NAV_HOME_TAB] = { screen: HomeStack }
-TABS[C.NAV_COLLECTION_TAB] = { screen: CollectionStack }
+TABS[C.NAV_COLLECTIONS_TAB] = { screen: CollectionStack }
 TABS[C.NAV_STARRED_TAB] = { screen: StarredStack }
 TABS[C.NAV_PROFILE_TAB] = { screen: ProfileStack }
 

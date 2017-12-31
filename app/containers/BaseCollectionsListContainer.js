@@ -10,11 +10,11 @@ import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
 import {
-  fetchCollections,
+  fetchUserBookmarkedCollections,
   updateUserCollectionPref,
 } from '../actions/UserCollectionsActions'
 
-class Home extends BaseContainer {
+class CollectionHome extends BaseContainer {
   constructor(props) {
     super(props)
     this.onPrefToggle = this.onPrefToggle.bind(this)
@@ -22,8 +22,8 @@ class Home extends BaseContainer {
 
   componentDidMount() {
     const user = this.props.user
-    this.setCurrentScreen(E.user_home)
-    this.props.fetchCollections(user.level, user.uid)
+    this.setCurrentScreen(E.collection_home)
+    this.props.fetchUserBookmarkedCollections(user.uid)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +35,7 @@ class Home extends BaseContainer {
   onRefresh() {
     const user = this.props.user
     this.setState({refreshing: true})
-    this.props.fetchCollections(user.level, user.uid)
+    this.props.fetchUserBookmarkedCollections(user.uid)
   }
 
   onPrefToggle(id, toggle) {
@@ -60,11 +60,10 @@ class Home extends BaseContainer {
 
   render() {
     const navigation = this.props.navigation
-    const props = this.props
     const user = this.props.user
     const ready = this.props.ready
 
-    const collections = this.props.collections[user.level] ? this.props.collections[user.level] : {}
+    const collections = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
     const collectionsKeys = Object.keys(collections)
     const refreshControl = (
       <RefreshControl
@@ -73,7 +72,7 @@ class Home extends BaseContainer {
       />
     )
 
-    if (!ready || !user) {
+    if (!ready || !user || !this.state.dimensions) {
       return (
         <LoadingScreen onLayout={this.onLayout} />
       )
@@ -91,31 +90,24 @@ class Home extends BaseContainer {
         refreshControl={refreshControl}
       >
         <StatusBar barStyle={S.statusBarStyle} />
-          { collections &&
-            collectionsKeys.map((id, index) => {
-              const collection = {id, ...collections[id]}
-              const lastItem = (index == (collectionsKeys.length-1)) ? S.lists.lastItem : null
-              return (
-                <CollectionCard
-                  style={[S.lists.listItem, lastItem]}
-                  key={collection.id}
-                  type={collection.type}
-                  collection={collection}
-                  onPrefToggle={this.onPrefToggle}
-                  onPress={() =>
-                    navigation.navigate(C.NAV_HOME_FLASHCARDS_VIEWER, {
-                      user, collection
-                      // event:E.event_collection_type_bookmarked,
-                      // id:collection.id,
-                      // title:collection.title,
-                      // flashcardIds:collection.flashcards
-                    })}>
-                </CollectionCard>
-              )
-            })
+        { collections &&
+          collectionsKeys.map((id, index) => {
+            const collection = {id, ...collections[id]}
+            const lastItem = (index == (collectionsKeys.length-1)) ? S.lists.lastItem : null
+            return (
+              <CollectionCard
+                style={[S.lists.listItem, lastItem]}
+                key={collection.id}
+                type={collection.type}
+                collection={collection}
+                onPrefToggle={this.onPrefToggle}
+                onPress={() => navigation.navigate(C.NAV_COLLECTION_VIEWER, {user, event:E.event_collection_type_bookmarked, id:collection.id, title:collection.title, ids:collection.flashcards})}>
+              </CollectionCard>
+            )
           }
+        )}
       </ScrollView>
-    );
+    )
   }
 }
 
@@ -132,7 +124,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    fetchCollections: (ownerId, userId) => dispatch(fetchCollections(ownerId, userId)),
+    fetchUserBookmarkedCollections: (userId) => dispatch(fetchUserBookmarkedCollections(userId)),
     updateUserCollectionPref: (userId, collectionId, prefs) => dispatch(updateUserCollectionPref(userId, collectionId, prefs)),
   }
 }
@@ -140,4 +132,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home)
+)(CollectionHome)

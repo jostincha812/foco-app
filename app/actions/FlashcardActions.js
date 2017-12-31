@@ -1,53 +1,52 @@
 import C from '../C'
-
 import api from '../data/api'
 
-export function resetFlashcardsState() {
+export function resetFlashcardsState(ns) {
   return {
     type: C.RESET_FLASHCARDS_STATE,
+    meta: {
+      namespace: ns
+    },
   }
 }
 
-export function fetchFlashcardIds() {
-  return {
-    type: C.FETCH_FLASHCARD_IDS,
-    payload: api.flashcards.getFlashcardIds()
-  }
-}
-
-export function fetchFlashcard(id, userId) {
+export function fetchFlashcard(ns, id, userId) {
   return {
     type: C.FETCH_FLASHCARD,
-    payload: api.flashcards.getFlashcard(id, userId)
+    payload: api.flashcards.getFlashcard(id, userId),
+    meta: {
+      namespace: ns
+    },
   }
 }
 
-export function fetchFlashcards(ids, userId) {
+export function fetchFlashcards(ns, ids, userId) {
   return {
     type: C.FETCH_FLASHCARDS,
-    payload: api.flashcards.getFlashcards(ids, userId)
+    payload: api.flashcards.getFlashcards(ids, userId),
+    meta: {
+      namespace: ns
+    },
   }
 }
 
-export function fetchStarredFlashcards(userId) {
+export function fetchStarredFlashcards(ns, userId) {
   return {
     type: C.FETCH_FLASHCARDS,
-    payload: api.flashcards.getUserStarredFlashcards(userId)
+    payload: api.flashcards.getUserStarredFlashcards(userId),
+    meta: {
+      namespace: ns
+    },
   }
 }
 
-export function fetchFlashcardsWithTags(level, tags1, tags2) {
+export function fetchFlashcardsWithTags(ns, level, tags1, tags2) {
   return {
     type: C.FETCH_FLASHCARDS_WITH_TAGS,
-    level: level,
     payload: api.flashcards.getFlashcardsWithTags(level, tags1, tags2),
-  }
-}
-export function updateUserFlashcardPref(userId, flashcardId, { key, val }) {
-  const pref = {}
-  pref[key] = val
-  return {
-    type: C.UPDATE_USER_FLASHCARD_PREFS,
-    payload: api.userPrefs.updateUserFlashcardPrefs(userId, flashcardId, pref)
+    meta: {
+      namespace: ns,
+      level: level
+    },
   }
 }

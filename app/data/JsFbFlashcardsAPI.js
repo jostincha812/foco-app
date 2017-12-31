@@ -3,12 +3,6 @@ import refs from './JsFbRefs'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 
 export default JsFbFlashcardsAPI = {
-  getFlashcardIds: () => {
-    return refs.flashcards().once('value').then(snap => {
-      return (Object.keys(snap.val()))
-    })
-  },
-
   getFlashcard: (id, userId) => {
     return Promise.all([
       refs.flashcard(id).once('value').then(snap => {
