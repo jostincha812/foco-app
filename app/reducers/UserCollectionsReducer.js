@@ -5,29 +5,31 @@ const initialState = {
   error: null,
 }
 
-export default function UserCollectionsReducer (state = initialState, action) {
+export default function UserCollectionsReducer (state = {}, action) {
+  const s = { ...state }
   switch (action.type) {
     case C.RESET_USER_COLLECTIONS_STATE:
-      return initialState
+      s[action.meta.namespace] = initialState
+      return s
 
     case C.FETCH_USER_COLLECTIONS_PENDING:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         status: C.FB_FETCHING,
         error: null,
       }
+      return s
     case C.FETCH_USER_COLLECTIONS_FULFILLED:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         status: C.FB_FETCHED,
-        data: Object.assign({}, state.data, action.payload),
+        data: Object.assign({}, s[action.meta.namespace].data, action.payload),
       }
+      return s
     case C.FETCH_USER_COLLECTIONS_REJECTED:
-      return {
-        ...state,
+      s[action.meta.namespace] = {
         status: C.FB_ERROR,
         error: action.payload,
       }
+      return s
 
     case C.CREATE_USER_COLLECTION_PENDING:
       return {

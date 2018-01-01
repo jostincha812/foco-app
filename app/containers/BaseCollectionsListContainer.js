@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, ScrollView, StatusBar, RefreshControl } from 'react-native'
-import { connect } from 'react-redux'
+import { ScrollView, RefreshControl } from 'react-native'
 
 import C, { E } from '../C'
 import S from '../styles/styles'
@@ -9,21 +8,19 @@ import CollectionCard from '../components/CollectionCard'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
-import {
-  fetchUserBookmarkedCollections,
-  updateUserCollectionPref,
-} from '../actions/UserCollectionsActions'
-
-class CollectionHome extends BaseContainer {
+export default class CollectionHome extends BaseContainer {
   constructor(props) {
     super(props)
     this.onPrefToggle = this.onPrefToggle.bind(this)
+    this.onCollectionPress = this.onCollectionPress.bind(this)
   }
 
   componentDidMount() {
-    const user = this.props.user
-    this.setCurrentScreen(E.collection_home)
-    this.props.fetchUserBookmarkedCollections(user.uid)
+    this._fetchData()
+  }
+
+  componentWillUnmount() {
+    this._cancelFetch()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,29 +30,37 @@ class CollectionHome extends BaseContainer {
   }
 
   onRefresh() {
-    const user = this.props.user
-    this.setState({refreshing: true})
-    this.props.fetchUserBookmarkedCollections(user.uid)
+    this._fetchData()
   }
 
-  onPrefToggle(id, toggle) {
+  onPrefToggle(collectionId, pref) {
     const user = this.props.user
-    const collection = this.props.collections[id]
-    const pref = {
-      key: Object.keys(toggle)[0],
-      val: Object.values(toggle)[0]
-    }
+    const collection = {id:collectionId, ...this.props.collections[collectionId]}
+    this._updatePref({user, collection, pref})
+  }
 
-    this.props.updateUserCollectionPref(
-      user.uid,
-      id,
-      pref,
-    )
-    this.logEvent(E.event_update_user_collection_pref, {
-      userId: user.uid,
-      collectionId: id,
-      pref
+  onCollectionPress(collection) {
+    const navigation = this.props.navigation
+    const user = this.props.user
+    navigation.navigate(this._viewerRoute(), {
+      user, collection
     })
+  }
+
+  _fetchData() {
+    // no-op - to be overridden by subclass
+  }
+
+  _cancelFetch() {
+    // no-op - to be overridden by subclass
+  }
+
+  _updatePref(options) {
+    // no-op - to be overridden by subclass
+  }
+
+  _viewerRoute() {
+    // no-op - to be overridden by subclass
   }
 
   render() {
@@ -63,7 +68,7 @@ class CollectionHome extends BaseContainer {
     const user = this.props.user
     const ready = this.props.ready
 
-    const collections = this.props.collections[user.uid] ? this.props.collections[user.uid] : {}
+    const collections = this.props.collections ? this.props.collections : {}
     const collectionsKeys = Object.keys(collections)
     const refreshControl = (
       <RefreshControl
@@ -89,7 +94,6 @@ class CollectionHome extends BaseContainer {
         contentContainerStyle={S.containers.list}
         refreshControl={refreshControl}
       >
-        <StatusBar barStyle={S.statusBarStyle} />
         { collections &&
           collectionsKeys.map((id, index) => {
             const collection = {id, ...collections[id]}
@@ -101,7 +105,7 @@ class CollectionHome extends BaseContainer {
                 type={collection.type}
                 collection={collection}
                 onPrefToggle={this.onPrefToggle}
-                onPress={() => navigation.navigate(C.NAV_COLLECTION_VIEWER, {user, event:E.event_collection_type_bookmarked, id:collection.id, title:collection.title, ids:collection.flashcards})}>
+                onPress={() => this.onCollectionPress(collection)}>
               </CollectionCard>
             )
           }
@@ -110,26 +114,3 @@ class CollectionHome extends BaseContainer {
     )
   }
 }
-
-function mapStateToProps (state) {
-  return {
-    user: state.userProfile.data,
-    ready: state.collections.status === C.FB_FETCHED,
-    updated: state.collections.status === C.FB_UPDATED,
-    deleted: state.collections.status === C.FB_REMOVED,
-    collections: state.collections.data,
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    dispatch,
-    fetchUserBookmarkedCollections: (userId) => dispatch(fetchUserBookmarkedCollections(userId)),
-    updateUserCollectionPref: (userId, collectionId, prefs) => dispatch(updateUserCollectionPref(userId, collectionId, prefs)),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CollectionHome)

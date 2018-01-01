@@ -1,27 +1,36 @@
 import C from '../C'
 import api from '../data/api'
 
-export function resetUserCollectionsState() {
+export function resetUserCollectionsState(ns) {
   return {
     type: C.RESET_USER_COLLECTIONS_STATE,
+    meta: {
+      namespace: ns
+    }
   }
 }
 
-export function fetchCollections(ownerId, userId) {
+export function fetchCollections(ns, ownerId, userId) {
   return {
     type: C.FETCH_USER_COLLECTIONS,
-    ownerId: ownerId,
-    userId: userId,
-    payload: api.collections.getCollections(ownerId, userId)
+    payload: api.collections.getCollections(ownerId, userId),
+    meta: {
+      namespace: ns,
+      ownerId: ownerId,
+      userId: userId
+    }
   }
 }
 
-export function fetchUserBookmarkedCollections(userId) {
+export function fetchUserBookmarkedCollections(ns, userId) {
   const filterKey = C.KEY_PREF_BOOKMARKED
   return {
     type: C.FETCH_USER_COLLECTIONS,
-    userId: userId,
-    payload: api.collections.getUserBookmarkedCollections(userId, filterKey)
+    payload: api.collections.getUserBookmarkedCollections(userId, filterKey),
+    meta: {
+      namespace: ns,
+      userId: userId,
+    }
   }
 }
 
@@ -46,15 +55,6 @@ export function deleteUserCollection(userId, setId) {
     type: C.DELETE_USER_COLLECTION,
     userId: userId,
     payload: api.collections.deleteUserCollection(userId, setId)
-  }
-}
-
-export function updateUserCollectionPref(userId, collectionId, { key, val }) {
-  const pref = {}
-  pref[key] = val
-  return {
-    type: C.UPDATE_USER_COLLECTION_PREFS,
-    payload: api.userPrefs.updateUserCollectionPrefs(userId, collectionId, pref)
   }
 }
 

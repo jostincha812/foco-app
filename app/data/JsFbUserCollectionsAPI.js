@@ -11,12 +11,11 @@ export default JsUserCollectionsAPI = {
       const collections = {}
       const list = results[0].val()
       const prefs = results[1].val()
-      collections[ownerId] = {}
 
       Object.keys(list).map(key => {
         if (!filterKey || (prefs[key] && prefs[key][filterKey]) ) {
-          collections[ownerId][key] = list[key]
-          collections[ownerId][key].prefs = prefs[key]
+          collections[key] = list[key]
+          collections[key].prefs = prefs[key]
         }
       })
       return collections
@@ -31,12 +30,11 @@ export default JsUserCollectionsAPI = {
       const collections = {}
       const list = results[0].val()
       const sources = results[1].val()
-      collections[userId] = {}
 
       if (list) {
         Object.keys(list).map(key => {
-          collections[userId][key] = sources[key]
-          collections[userId][key].prefs = list[key]
+          collections[key] = sources[key]
+          collections[key].prefs = list[key]
         })
       }
       return collections

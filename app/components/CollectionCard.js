@@ -57,13 +57,13 @@ export default class CollectionCard extends React.Component {
       onPress: () => this.onPrefToggle(C.KEY_PREF_BOOKMARKED),
     }
     const bookmarkToggle = Icons.bookmark(bookmarkToggleOptions)
-
+    const numberOfCardsString = collection.flashcards ? `${collection.flashcards.length} ${L.cards}` : null
     const params = {
       theme: theme,
       backgroundColor: backgroundColor,
       backgroundImage: props.backgroundImage ? props.backgroundImage : collection.image,
       title: props.title ? props.title : collection.title,
-      subtitle: props.subtitle ? props.subtitle : `${collection.flashcards.length} ${L.cards}`,
+      subtitle: props.subtitle ? props.subtitle : numberOfCardsString,
       hero: props.hero ? props.hero : collection.hero,
       icon: props.icon ? props.icon : collection.icon,
       onPress: props.onPress,
