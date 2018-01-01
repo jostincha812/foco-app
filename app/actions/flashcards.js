@@ -30,7 +30,7 @@ export function fetchFlashcards(ns, ids, userId) {
   }
 }
 
-export function fetchStarredFlashcards(ns, userId) {
+export function fetchUserStarredFlashcards(ns, userId) {
   return {
     type: C.FETCH_FLASHCARDS,
     payload: api.flashcards.getUserStarredFlashcards(userId),
@@ -40,13 +40,13 @@ export function fetchStarredFlashcards(ns, userId) {
   }
 }
 
-export function fetchFlashcardsWithTags(ns, level, tags1, tags2) {
-  return {
-    type: C.FETCH_FLASHCARDS_WITH_TAGS,
-    payload: api.flashcards.getFlashcardsWithTags(level, tags1, tags2),
-    meta: {
-      namespace: ns,
-      level: level
-    },
-  }
-}
+// export function fetchFlashcardsWithTags(ns, level, tags1, tags2) {
+//   return {
+//     type: C.FETCH_FLASHCARDS_WITH_TAGS,
+//     payload: api.flashcards.getFlashcardsWithTags(level, tags1, tags2),
+//     meta: {
+//       namespace: ns,
+//       level: level
+//     },
+//   }
+// }

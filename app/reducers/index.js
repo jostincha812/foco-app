@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 
-import FlashcardReducer from './FlashcardReducer'
-import UserCollectionsReducer from './UserCollectionsReducer'
-import UserFlashcardPrefsReducer from './UserFlashcardPrefsReducer'
-import UserProfileReducer from './UserProfileReducer'
+import FlashcardsReducer from './flashcards'
+import CollectionsReducer from './collections'
+import UserPrefsReducer from './userPrefs'
+import UserProfileReducer from './userProfile'
 
 const rootReducer = combineReducers({
-  flashcards: FlashcardReducer,
-  collections: UserCollectionsReducer,
-  userFlashcardPrefs: UserFlashcardPrefsReducer,
+  flashcards: FlashcardsReducer,
+  collections: CollectionsReducer,
+  userPrefs: UserPrefsReducer,
   userProfile: UserProfileReducer
 })
 

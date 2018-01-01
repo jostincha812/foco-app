@@ -2,7 +2,6 @@ import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
-import S from '../styles/styles'
 
 import Splash from '../containers/Splash'
 import SignInHome from '../containers/SignInHome'

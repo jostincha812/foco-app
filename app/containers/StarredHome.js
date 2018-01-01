@@ -7,14 +7,14 @@ import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
-import { fetchStarredFlashcards, resetFlashcardsState } from '../actions/FlashcardActions'
-import { updateUserFlashcardPref } from '../actions/UserPrefsActions'
+import { resetFlashcardsState, fetchUserStarredFlashcards } from '../actions/flashcards'
+import { updateUserFlashcardPref } from '../actions/userPrefs'
 
 class StarredHome extends BaseFlashcardsListContainer {
   _fetchData() {
     const user = this.props.user
     this.setState({refreshing: true})
-    this.props.fetchStarredFlashcards(user.uid)
+    this.props.fetchUserStarredFlashcards(user.uid)
   }
 
   _cancelFetch() {
@@ -49,7 +49,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     resetFlashcardsState: () => dispatch(resetFlashcardsState(ns)),
-    fetchStarredFlashcards: (userId) => dispatch(fetchStarredFlashcards(ns, userId)),
+    fetchUserStarredFlashcards: (userId) => dispatch(fetchUserStarredFlashcards(ns, userId)),
     updateUserFlashcardPref: (userId, flashcardId, prefs) => dispatch(updateUserFlashcardPref(userId, flashcardId, prefs))
   }
 }

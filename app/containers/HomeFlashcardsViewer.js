@@ -2,14 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
-import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
+import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
-import { fetchFlashcards, resetFlashcardsState } from '../actions/FlashcardActions'
-import { updateUserFlashcardPref } from '../actions/UserPrefsActions'
+import { resetFlashcardsState, fetchFlashcards } from '../actions/flashcards'
+import { updateUserFlashcardPref } from '../actions/userPrefs'
 
 class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {

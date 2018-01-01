@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 
-import C, { E } from '../C'
+import C from '../C'
 import S from '../styles/styles'
 import Flashcard from '../components/Flashcard'
 

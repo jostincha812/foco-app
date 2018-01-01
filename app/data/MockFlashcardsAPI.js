@@ -4,12 +4,20 @@ import MockFlashcardsTags from './mock/MockFlashcardsTags'
 import MockUserPrefsAPI from './MockUserPrefsAPI'
 
 export default MockFlashcardsAPI = {
-  getFlashcardIds: () => {
-    return new Promise(resolve => resolve(Object.keys(MockFlashcards)))
-  },
+  // getFlashcardIds: () => {
+  //   return new Promise(resolve => resolve(Object.keys(MockFlashcards)))
+  // },
 
-  getFlashcardIdsWithTags: (tags) => {
+  // getFlashcardIdsWithTags: (tags) => {
+  //
+  // },
 
+  getFlashcards: (ids, userId) => {
+    const promises = []
+    ids.map(id => {
+      promises.push(MockFlashcardsAPI.getFlashcard(id, userId))
+    })
+    return Promise.all(promises)
   },
 
   getFlashcard: (id, userId) => {
@@ -20,14 +28,6 @@ export default MockFlashcardsAPI = {
     ]).then(results => {
       return {...results[0], tags:results[1], prefs:results[2]}
     })
-  },
-
-  getFlashcards: (ids, userId) => {
-    const promises = []
-    ids.map(id => {
-      promises.push(MockFlashcardsAPI.getFlashcard(id, userId))
-    })
-    return Promise.all(promises)
   },
 
   updateFlashcard: (key, data) => {

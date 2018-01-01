@@ -2,11 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
-import S from '../styles/styles'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
-import { resetUserCollectionsState, fetchUserBookmarkedCollections } from '../actions/UserCollectionsActions'
-import { updateUserCollectionPref } from '../actions/UserPrefsActions'
+import { resetCollectionsState, fetchUserBookmarkedCollections } from '../actions/collections'
+import { updateUserCollectionPref } from '../actions/userPrefs'
 
 class CollectionHome extends BaseCollectionsListContainer {
   _fetchData() {

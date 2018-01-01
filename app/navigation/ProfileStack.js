@@ -1,5 +1,4 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
@@ -16,8 +15,7 @@ STACK[C.NAV_USER_PROFILE_DETAILED] = { screen: ProfileHome }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    // ...S.navigation,
-    header: null,
+    // header: null,
     title: L.nav.app,
     tabBarLabel: L.nav.profile,
     tabBarIcon: ({ focused, tintColor }) => (

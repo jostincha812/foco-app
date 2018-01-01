@@ -8,8 +8,8 @@ import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
-import { fetchFlashcards, resetFlashcardsState } from '../actions/FlashcardActions'
-import { updateUserFlashcardPref } from '../actions/UserPrefsActions'
+import { resetFlashcardsState, fetchFlashcards } from '../actions/flashcards'
+import { updateUserFlashcardPref } from '../actions/userPrefs'
 
 class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {

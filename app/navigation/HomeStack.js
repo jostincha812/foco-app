@@ -1,8 +1,6 @@
 import React from 'react'
-import { TouchableOpacity, Image } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-import T from '../T'
 import C from '../C'
 import L from '../L'
 import S from '../styles/styles'
@@ -19,7 +17,6 @@ STACK[C.NAV_FLASHCARDS_SET_CONFIGURATOR] = { screen: FlashcardsSetConfigurator }
 
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    // ...S.navigation,
     title: L.nav.app,
     tabBarLabel: L.nav.home,
     tabBarIcon: ({ focused, tintColor }) => (

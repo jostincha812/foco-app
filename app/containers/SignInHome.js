@@ -21,13 +21,9 @@ import {
   resetUserProfileState,
   upsertUserProfile,
   fetchUserProfile,
-} from '../actions/UserProfileActions'
-import {
-  resetFlashcardsState
-} from '../actions/FlashcardActions'
-import {
-  resetUserCollectionsState
-} from '../actions/UserCollectionsActions'
+} from '../actions/userProfile'
+import { resetFlashcardsState } from '../actions/flashcards'
+import { resetCollectionsState } from '../actions/collections'
 
 class SignInHome extends BaseContainer {
   render() {

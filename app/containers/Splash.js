@@ -14,10 +14,7 @@ import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import LoadingIndicator from '../lib/LoadingIndicator'
 
-import {
-  upsertUserProfile,
-  fetchUserProfile,
-} from '../actions/UserProfileActions'
+import { fetchUserProfile, upsertUserProfile } from '../actions/userProfile'
 
 class Splash extends BaseContainer {
   constructor(props) {

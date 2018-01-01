@@ -20,12 +20,12 @@ import LoadingIndicator from '../lib/LoadingIndicator'
 import {
   resetFlashcardsState,
   fetchFlashcardsWithTags,
-} from '../actions/FlashcardActions'
+} from '../actions/flashcards'
 import {
   createUserCollection,
-  saveUserCollection,
+  upsertUserCollection,
   deleteUserCollection,
-} from '../actions/UserCollectionsActions'
+} from '../actions/collections'
 
 class FlashcardsSetConfigurator extends BaseContainer {
   static navigationOptions = ({navigation}) => {

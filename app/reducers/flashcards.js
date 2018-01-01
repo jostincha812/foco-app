@@ -5,7 +5,7 @@ const initialState = {
   error: null,
 }
 
-export default function FlashcardReducer (state = {}, action) {
+export default function FlashcardsReducer (state = {}, action) {
   const s = { ... state }
   switch (action.type) {
     case C.RESET_FLASHCARDS_STATE:

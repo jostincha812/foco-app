@@ -1,7 +1,6 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import S from '../styles/styles'
 import SignInStack from './SignInStack'
 import AppTabNavigator from './AppTabNavigator'
 

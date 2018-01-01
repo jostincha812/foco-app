@@ -1,5 +1,4 @@
 import React from 'react'
-import { TouchableOpacity, Image } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
@@ -14,7 +13,6 @@ STACK[C.NAV_STARRED_HOME] = { screen: StarredHome }
 
 const StarredStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    // ...S.navigation,
     title: L.nav.app,
     tabBarLabel: L.nav.starred,
     tabBarIcon: ({ focused, tintColor }) => (
