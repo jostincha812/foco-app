@@ -11,9 +11,9 @@ import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import Icons from '../components/Icons'
 import UserProfile from '../components/UserProfile'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 import FirebaseAuth from '../auth/FirebaseAuth'
-import LoadingIndicator from '../lib/LoadingIndicator'
 
 class ProfileHome extends BaseContainer {
   componentDidMount() {

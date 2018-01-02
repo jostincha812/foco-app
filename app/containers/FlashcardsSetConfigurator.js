@@ -15,7 +15,7 @@ import Icons from '../components/Icons'
 import TagsSelector from '../components/TagsSelector'
 
 import VPQTags from '../lib/VPQTags'
-import LoadingIndicator from '../lib/LoadingIndicator'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 import {
   resetFlashcardsState,

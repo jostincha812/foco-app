@@ -12,11 +12,9 @@ export default class LoadingIndicator extends React.Component {
     const type = 'ThreeBounce'
     const color = this.props.inverse ? T.colors.inverse : T.colors.app
     const size = this.props.large ? T.icons.xlargeIcon : T.icons.largeIcon
-    
+
     return (
-      <View style={S.centeredContent}>
-        <Spinner type={type} size={size} color={color} />
-      </View>
+      <Spinner type={type} size={size} color={color} />
     )
   }
 }

@@ -12,7 +12,7 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
-import LoadingIndicator from '../lib/LoadingIndicator'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 import { fetchUserProfile, upsertUserProfile } from '../actions/userProfile'
 

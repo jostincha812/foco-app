@@ -44,4 +44,5 @@
 ## v0.9.2
 * Using Cards components
 * Bookmarkable collections
-* 
+* Starred cards screen
+* Redux using screen namespaces

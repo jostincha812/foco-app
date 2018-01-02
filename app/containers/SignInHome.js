@@ -14,8 +14,8 @@ import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import SignInWithEmailForm from '../components/SignInWithEmailForm'
 import Intro from '../components/Intro'
-import Divider from '../components/Divider'
-import LoadingIndicator from '../lib/LoadingIndicator'
+import StyledDivider from '../lib/StyledDivider'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 import {
   resetUserProfileState,
@@ -43,11 +43,11 @@ class SignInHome extends BaseContainer {
           />
 
           <View style={{flexDirection:'row', alignItems:'center', margin:S.spacing.large}}>
-            <Divider style={{borderColor:T.colors.inactive, width:60, marginRight:S.spacing.normal}} />
+            <StyledDivider style={{borderColor:T.colors.inactive, width:60, marginRight:S.spacing.normal}} />
             <Text style={{color:T.colors.inactiveText, fontStyle:'italic'}}>
               {L.or}
             </Text>
-            <Divider style={{borderColor:T.colors.inactive, width:60, marginLeft:S.spacing.normal}} />
+            <StyledDivider style={{borderColor:T.colors.inactive, width:60, marginLeft:S.spacing.normal}} />
           </View>
 
           <SocialIcon
