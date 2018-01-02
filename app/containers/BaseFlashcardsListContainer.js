@@ -30,13 +30,9 @@ export default class StarredHome extends BaseContainer {
     this._fetchData()
   }
 
-  onPrefToggle(id, toggle) {
+  onPrefToggle(id, pref) {
     const user = this.props.user
     const flashcard = this.props.flashcards[id]
-    const pref = {
-      key: Object.keys(toggle)[0],
-      val: Object.values(toggle)[0]
-    }
     this._updatePref({user, flashcard, pref})
   }
 

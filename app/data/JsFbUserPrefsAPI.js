@@ -7,7 +7,7 @@ export default JsFbUserFlashcardPrefsAPI = {
     })
   },
 
-  updateUserFlashcardPrefs: (userId, flashcardId, prefs) => {
+  upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => {
     return refs.userFlashcardPref(userId, flashcardId).update(prefs)
   },
 
@@ -17,7 +17,7 @@ export default JsFbUserFlashcardPrefsAPI = {
     })
   },
 
-  updateUserCollectionPrefs: (userId, collectionId, prefs) => {
+  upsertUserCollectionPrefs: (userId, collectionId, prefs) => {
     return refs.userCollectionPref(userId, collectionId).update(prefs)
   },
 }

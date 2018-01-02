@@ -3,18 +3,6 @@ import refs from './JsFbRefs'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 
 export default JsFbFlashcardsAPI = {
-  getFlashcard: (id, userId) => {
-    return Promise.all([
-      refs.flashcard(id).once('value').then(snap => {
-        return {id, ...snap.val()}
-      }),
-      JsFbFlashcardsAPI.getFlashcardTags(id),
-      JsFbUserPrefsAPI.getUserFlashcardPrefs(userId, id),
-    ]).then(results => {
-      return {...results[0], tags:results[1], prefs:results[2]}
-    })
-  },
-
   getFlashcards: (ids, userId) => {
     const promises = []
     ids.map(id => {
@@ -29,22 +17,15 @@ export default JsFbFlashcardsAPI = {
     })
   },
 
-  getUserStarredFlashcards: (userId) => {
-    return refs.userFlashcardPrefs(userId).orderByChild(C.KEY_PREF_STARRED).equalTo(true).once('value').then(snap => {
-      if (snap.val()) {
-        const promises = []
-        const ids = Object.keys(snap.val())
-        ids.map(id => {
-          promises.push(JsFbFlashcardsAPI.getFlashcard(id, userId))
-        })
-        return Promise.all(promises).then(results => {
-          const flashcards = {}
-          results.map(f => {
-            flashcards[f.id] = f
-          })
-          return flashcards
-        })
-      }
+  getFlashcard: (id, userId) => {
+    return Promise.all([
+      refs.flashcard(id).once('value').then(snap => {
+        return {id, ...snap.val()}
+      }),
+      JsFbFlashcardsAPI.getFlashcardTags(id),
+      JsFbUserPrefsAPI.getUserFlashcardPrefs(userId, id),
+    ]).then(results => {
+      return {...results[0], tags:results[1], prefs:results[2]}
     })
   },
 
@@ -106,5 +87,24 @@ export default JsFbFlashcardsAPI = {
         return Object.keys(set2)
       }
     }))
-  }
+  },
+
+  getUserStarredFlashcards: (userId) => {
+    return refs.userFlashcardPrefs(userId).orderByChild(C.KEY_PREF_STARRED).equalTo(true).once('value').then(snap => {
+      if (snap.val()) {
+        const promises = []
+        const ids = Object.keys(snap.val())
+        ids.map(id => {
+          promises.push(JsFbFlashcardsAPI.getFlashcard(id, userId))
+        })
+        return Promise.all(promises).then(results => {
+          const flashcards = {}
+          results.map(f => {
+            flashcards[f.id] = f
+          })
+          return flashcards
+        })
+      }
+    })
+  },
 }

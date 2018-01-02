@@ -1,16 +1,26 @@
 import C from '../C'
 import api from '../data/api'
 
-export function updateUserFlashcardPref(userId, flashcardId, pref) {
+export function upsertUserFlashcardPrefs(userId, flashcardId, prefs) {
   return {
     type: C.UPDATE_USER_FLASHCARD_PREFS,
-    payload: api.userPrefs.updateUserFlashcardPrefs(userId, flashcardId, pref),
+    payload: api.userPrefs.upsertUserFlashcardPrefs(userId, flashcardId, prefs),
+    meta: {
+      userId,
+      flashcardId,
+      prefs
+    }
   }
 }
 
-export function updateUserCollectionPref(userId, collectionId, pref) {
+export function upsertUserCollectionPrefs(userId, collectionId, prefs) {
   return {
     type: C.UPDATE_USER_COLLECTION_PREFS,
-    payload: api.userPrefs.updateUserCollectionPrefs(userId, collectionId, pref)
+    payload: api.userPrefs.upsertUserCollectionPrefs(userId, collectionId, prefs),
+    meta: {
+      userId,
+      collectionId,
+      prefs
+    }
   }
 }

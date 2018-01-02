@@ -5,7 +5,7 @@ import C, { E } from '../C'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
 import { resetCollectionsState, fetchUserBookmarkedCollections } from '../actions/collections'
-import { updateUserCollectionPref } from '../actions/userPrefs'
+import { upsertUserCollectionPrefs } from '../actions/userPrefs'
 
 class CollectionHome extends BaseCollectionsListContainer {
   _fetchData() {
@@ -14,12 +14,12 @@ class CollectionHome extends BaseCollectionsListContainer {
   }
 
   _cancelFetch() {
-    this.props.resetUserCollectionsState()
+    this.props.resetCollectionsState()
   }
 
   _updatePref(options) {
     const { user, collection, pref } = options
-    this.props.updateUserCollectionPref(
+    this.props.upsertUserCollectionPrefs(
       user.uid,
       collection.id,
       pref,
@@ -50,7 +50,7 @@ function mapDispatchToProps (dispatch) {
     dispatch,
     resetUserCollectionsState: () => dispatch(resetUserCollectionsState(ns)),
     fetchUserBookmarkedCollections: (userId) => dispatch(fetchUserBookmarkedCollections(ns, userId)),
-    updateUserCollectionPref: (userId, collectionId, prefs) => dispatch(updateUserCollectionPref(userId, collectionId, prefs)),
+    upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
 }
 

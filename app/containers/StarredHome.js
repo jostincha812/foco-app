@@ -8,7 +8,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
 import { resetFlashcardsState, fetchUserStarredFlashcards } from '../actions/flashcards'
-import { updateUserFlashcardPref } from '../actions/userPrefs'
+import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
 class StarredHome extends BaseFlashcardsListContainer {
   _fetchData() {
@@ -24,7 +24,7 @@ class StarredHome extends BaseFlashcardsListContainer {
 
   _updatePref(options) {
     const { user, flashcard, pref } = options
-    this.props.updateUserFlashcardPref(
+    this.props.upsertUserFlashcardPrefs(
       user.uid,
       flashcard.id,
       pref,
@@ -50,7 +50,7 @@ function mapDispatchToProps (dispatch) {
   return {
     resetFlashcardsState: () => dispatch(resetFlashcardsState(ns)),
     fetchUserStarredFlashcards: (userId) => dispatch(fetchUserStarredFlashcards(ns, userId)),
-    updateUserFlashcardPref: (userId, flashcardId, prefs) => dispatch(updateUserFlashcardPref(userId, flashcardId, prefs))
+    upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(upsertUserFlashcardPrefs(userId, flashcardId, prefs))
   }
 }
 
