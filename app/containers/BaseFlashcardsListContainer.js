@@ -48,10 +48,15 @@ export default class StarredHome extends BaseContainer {
     // no-op - to be overridden by subclass
   }
 
+  _flashcards() {
+    // to be overridden by subclass
+    return this.props.flashcards
+  }
+
   render() {
     const props = this.props
     const ready = props.ready
-    const flashcards = props.flashcards
+    const flashcards = this._flashcards()
     const refreshControl = (
       <RefreshControl
         refreshing={this.state.refreshing}

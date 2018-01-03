@@ -37,6 +37,9 @@ class StarredHome extends BaseFlashcardsListContainer {
       filtered: false,
       filters: {},
     }
+    this.state.filters[C.TAG_TYPE_CATEGORIES] = {}
+    this.state.filters[C.TAG_TYPE_REGIONS] = {}
+    this.state.filters[C.TAG_TYPE_VARIETALS] = {}
     this.onDone = this.onDone.bind(this)
   }
 
@@ -71,6 +74,40 @@ class StarredHome extends BaseFlashcardsListContainer {
       userId: user.uid,
       flashcardId: flashcard.id,
       pref
+    })
+  }
+
+  _flashcards() {
+    if (this.props.flashcards == null) {
+      return null
+    }
+
+    const flashcards = {}
+    Object.keys(this.props.flashcards).map(key => {
+      if (this.passedFilters(this.props.flashcards[key])) {
+        flashcards[key] = { ...this.props.flashcards[key] }
+      }
+    })
+    return (flashcards)
+  }
+
+  passedFilters(flashcard) {
+    if (!this.state.filtered) {
+      return true
+    }
+
+    const filters = this.state.filters
+    const tags = flashcard.tags || []
+    tags.map(tag => {
+      if (filters[C.TAG_TYPE_CATEGORIES][tag]) {
+        return true
+      }
+      if (filters[C.TAG_TYPE_REGIONS][tag]) {
+        return true
+      }
+      if (filters[C.TAG_TYPE_VARIETALS][tag]) {
+        return true
+      }
     })
   }
 
