@@ -22,6 +22,7 @@ export default {
   editset: 'Configure Set',
   newset: 'New Card Set',
   empty: 'Nothing to see here',
+  filters: 'Filters',
 
   // Flashcard Sets
   cards: 'cards',
@@ -31,6 +32,7 @@ export default {
   starred: 'Starred Cards',
   regions: 'Regions',
   tags: 'Categories',
+  varietals: 'Varietals',
   untitled: 'Untitled Set',
 
   // levels
@@ -44,6 +46,7 @@ export default {
   go: 'Go',
   save: 'Save',
   or: 'or',
+  cancel: 'Cancel',
 
   // user auth
   name: 'Your name',

@@ -13,11 +13,10 @@ import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
 class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
-    const hideLeft = navigation.state.params.hideLeft || false
     return ({
       title: null,
-      headerLeft: hideLeft ? null : (
-        <NavHeaderBackButton onPress={navigation.goBack} />
+      headerLeft: (
+        <NavHeaderBackButton left={true} onPress={navigation.goBack} />
       )
     })
   }

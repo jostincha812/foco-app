@@ -46,3 +46,6 @@
 * Bookmarkable collections
 * Starred cards screen
 * Redux using screen namespaces
+
+## v0.9.3
+* Starred cards filtering

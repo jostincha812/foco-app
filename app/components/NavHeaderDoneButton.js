@@ -4,12 +4,12 @@ import T from '../T'
 import S from '../styles/styles'
 import Icons from '../components/Icons'
 
-export default class NavHeaderBackButton extends React.Component {
+export default class NavHeaderDoneButton extends React.Component {
   render() {
     const props = this.props
     const paddingLeft = props.left ? S.spacing.xsmall : 0
     const paddingRight = props.right ? S.spacing.xsmall : 0
-    return Icons.back({
+    return Icons.check({
       size: T.icons.normalIcon,
       color: S.navigation.headerTintColor,
       style: {top:S.spacing.xsmall/2, paddingLeft, paddingRight},

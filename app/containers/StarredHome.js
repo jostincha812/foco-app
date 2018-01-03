@@ -6,11 +6,49 @@ import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
+import NavHeaderFilterToggleButton from '../components/NavHeaderFilterToggleButton'
 
 import { resetFlashcardsState, fetchUserStarredFlashcards } from '../actions/flashcards'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
 class StarredHome extends BaseFlashcardsListContainer {
+  static navigationOptions = ({navigation}) => {
+    if (navigation.state.params) {
+      return ({
+        title: null,
+        headerRight: (
+          <NavHeaderFilterToggleButton
+            toggled={navigation.state.params.filtered}
+            right={true}
+            onPress={() => navigation.navigate(C.NAV_STARRED_FILTER_CONFIGURATOR, {
+              onDone: navigation.state.params.onDone,
+              filters: navigation.state.params.filters,
+            })}
+          />
+        )
+      })
+    }
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      ...this.state,
+      filtered: false,
+      filters: {},
+    }
+    this.onDone = this.onDone.bind(this)
+  }
+
+  componentDidMount() {
+    super.componentDidMount()
+    this.props.navigation.setParams({
+      filtered: this.state.filtered,
+      filters: this.state.filters,
+      onDone: this.onDone
+    })
+  }
+
   _fetchData() {
     const user = this.props.user
     this.setState({refreshing: true})
@@ -34,6 +72,27 @@ class StarredHome extends BaseFlashcardsListContainer {
       flashcardId: flashcard.id,
       pref
     })
+  }
+
+  onDone(filters) {
+    let filtered = false
+    if (filters) {
+      Object.keys(filters).map(filterType => {
+        Object.keys(filters[filterType]).map(key => {
+          if (filters[filterType][key]) {
+            filtered = true
+          }
+        })
+      })
+    }
+
+    // to update nav header
+    this.props.navigation.setParams({
+      filtered,
+      filters
+    })
+    // to update list
+    this.setState({filtered, filters})
   }
 }
 

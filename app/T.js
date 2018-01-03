@@ -52,7 +52,8 @@ export default FocoTheme = {
   },
 
   icons: {
-    smallIcon: 20,
+    xsmallIcon: 18,
+    smallIcon: 24,
     normalIcon: 28,
     largeIcon: 36,
     xlargeIcon: 48,

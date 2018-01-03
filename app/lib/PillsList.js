@@ -54,6 +54,10 @@ export default class PillsList extends React.Component {
     const disabledTextColor = props.disabledTextColor
     const onPress = props.onToggle ? this.toggleItem : null
 
+    if (!items) {
+      return null
+    }
+    
     return (
       <View style={[styles.container, props.style]}>
         { items.map((item, i) => {

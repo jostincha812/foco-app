@@ -87,6 +87,8 @@ export default {
   yesCircledOutline: (options = {}) => AppIcon('checkbox-marked-circle-outline', options),
   noCircled: (options = {}) => AppIcon('close-circle', options),
   noCircledOutline: (options = {}) => AppIcon('close-circle-outline', options),
+  filter: (options = {}) => AppIcon('filter', options),
+  filterOutline: (options = {}) => AppIcon('filter-outline', options),
 
   // app icons
   about: (options = {}) => AppIcon('information', options),
