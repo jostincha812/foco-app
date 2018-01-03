@@ -15,7 +15,6 @@ class StarredHome extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
     if (navigation.state.params) {
       return ({
-        title: null,
         headerRight: (
           <NavHeaderFilterToggleButton
             toggled={navigation.state.params.filtered}
