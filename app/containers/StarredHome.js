@@ -83,6 +83,7 @@ class StarredHome extends BaseFlashcardsListContainer {
 
     const flashcards = {}
     Object.keys(this.props.flashcards).map(key => {
+      console.log(this.props.flashcards[key].tags)
       if (this.passedFilters(this.props.flashcards[key])) {
         flashcards[key] = { ...this.props.flashcards[key] }
       }
@@ -95,19 +96,19 @@ class StarredHome extends BaseFlashcardsListContainer {
       return true
     }
 
+    let passed = false
     const filters = this.state.filters
     const tags = flashcard.tags || []
     tags.map(tag => {
-      if (filters[C.TAG_TYPE_CATEGORIES][tag]) {
-        return true
-      }
-      if (filters[C.TAG_TYPE_REGIONS][tag]) {
-        return true
-      }
-      if (filters[C.TAG_TYPE_VARIETALS][tag]) {
-        return true
+      if (filters[C.TAG_TYPE_CATEGORIES][tag] ||
+          filters[C.TAG_TYPE_REGIONS][tag] ||
+          filters[C.TAG_TYPE_VARIETALS][tag]) {
+        passed = true
+        return
       }
     })
+
+    return passed
   }
 
   onDone(filters) {
