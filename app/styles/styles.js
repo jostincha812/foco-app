@@ -35,6 +35,10 @@ export default styles = {
       fontWeight: T.fonts.lightWeight,
       fontSize: T.fonts.normalSize,
     },
+    listTitle: {
+      fontWeight: T.fonts.lightWeight,
+      fontSize: T.fonts.smallSize,
+    },
     footnote: {
       fontWeight: T.fonts.lightWeight,
       fontSize: T.fonts.smallSize,
