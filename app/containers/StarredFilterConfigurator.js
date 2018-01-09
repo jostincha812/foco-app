@@ -33,7 +33,6 @@ class StarredFilterConfigurator extends BaseContainer {
   }
 
   componentDidMount() {
-    super.componentDidMount()
     this.setState({filters: this.props.navigation.state.params.filters})
     this.props.navigation.setParams({getConfiguredFilters: () => this.state.filters })
   }
