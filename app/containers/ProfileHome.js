@@ -5,8 +5,8 @@ import { ScrollView, StatusBar } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 
 import C, { E } from '../C'
-import T from '../T'
 import L from '../L'
+import T from '../T'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import UserProfile from '../components/UserProfile'
@@ -32,17 +32,17 @@ class ProfileHome extends BaseContainer {
 
     const list = [
       {
-        title: 'Go Premium',
-        icon: 'restore',
+        title: L.upgrade,
+        icon: 'beenhere',
         onPress: () => console.log('Go premium')
       },
       {
-        title: 'Send feedback',
+        title: L.feedback,
         icon: 'rate-review',
         onPress: () => console.log('Send feedback')
       },
       {
-        title: 'Contact support',
+        title: L.support,
         icon: 'live-help',
         onPress: () => console.log('Contact support')
       },
@@ -60,9 +60,12 @@ class ProfileHome extends BaseContainer {
     return (
       <ScrollView style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
-        <UserProfile style={{}} profile={profile} />
+        <UserProfile style={S.containers.normal} profile={profile} />
 
-        <List containerStyle={{}}>
+        <List containerStyle={{
+          borderTopColor:T.colors.borderColor,
+          borderTopWidth:1,
+        }}>
           {
             list.map((item, i) => (
               <ListItem
@@ -72,18 +75,24 @@ class ProfileHome extends BaseContainer {
                 titleStyle={S.text.listTitle}
                 leftIcon={{name: item.icon}}
                 onPress={item.onPress}
+                containerStyle={{borderBottomColor:T.colors.borderColor, borderBottomWidth:0.5}}
               />
             ))
           }
         </List>
 
-        <List containerStyle={{marginBottom:S.spacing.large}}>
+        <List containerStyle={{
+          borderTopColor:T.colors.borderColor,
+          borderTopWidth:1,
+          marginBottom:S.spacing.large
+        }}>
           <ListItem
             key={C.NAV_SIGNOUT}
             hideChevron={true}
             title={L.signOut}
             titleStyle={[S.text.listTitle, {color:T.colors.active, alignSelf:'center'}]}
             onPress={FirebaseAuth.logout}
+            containerStyle={{borderBottomColor:T.colors.borderColor, borderBottomWidth:0.5}}
           />
         </List>
       </ScrollView>

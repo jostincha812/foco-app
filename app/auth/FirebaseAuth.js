@@ -47,6 +47,10 @@ const FirebaseAuth = class {
         }
         firebase.analytics().setUserId(user.uid)
 
+        if (user.providerData[0].providerId == 'facebook.com') {
+          profile.photoURL = user.providerData[0].photoURL
+        }
+
         this.onInitialize && this.onInitialize(this.initialized)
         if (!this.user) {
           this.onLogin && this.onLogin(profile); // On login

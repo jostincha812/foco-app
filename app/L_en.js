@@ -48,6 +48,12 @@ export default {
   or: 'or',
   cancel: 'Cancel',
 
+  // actions
+  saved: 'Saved',
+  created: 'Created',
+  removed: 'Removed',
+  error: 'Error',
+
   // user auth
   name: 'Your name',
   email: 'Your email address',
@@ -69,9 +75,8 @@ export default {
   accountBenefits: "Sign up for an account with your email address to access your progress across all your devices.",
   accountSafety: "Don't worry, your information will be securely encrypted and will not be shared with 3rd parties.",
 
-  // actions
-  saved: 'Saved',
-  created: 'Created',
-  removed: 'Removed',
-  error: 'Error',
+  // profile
+  upgrade: 'Go Premium',
+  feedback: 'Send feedback',
+  support: 'Contact support',
 }

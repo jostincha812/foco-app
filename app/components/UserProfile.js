@@ -17,14 +17,15 @@ export default class UserProfile extends React.Component {
   render() {
     const profile = this.props.profile
     const style = this.props.style
+    console.log(profile)
 
     return (
-      <View style={[{alignItems:'center', margin:S.spacing.xlarge}, style]}>
-        <View style={{height: 116, width: 116, marginBottom:S.spacing.small}}>
+      <View style={[{alignItems:'center', marginTop:S.spacing.normal}, style]}>
+        <View style={{height: 128, width: 128, marginBottom:S.spacing.small}}>
           <Avatar
             rounded
-            width={116}
-            height={116}
+            width={128}
+            height={128}
             source={profile.photoURL ? {uri:profile.photoURL} : null}
             avatarStyle={{borderColor:T.colors.contentBorder, borderWidth:0.5}}
             title={this.initials(profile.displayName)}
