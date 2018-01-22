@@ -8,10 +8,11 @@ import S from '../styles/styles'
 
 import Icons from '../components/Icons'
 import ProfileHome from '../containers/ProfileHome'
+import FeedbackContainer from '../containers/FeedbackContainer'
 
 const STACK = {}
 STACK[C.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
-STACK[C.NAV_USER_PROFILE_DETAILED] = { screen: ProfileHome }
+STACK[C.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackContainer }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({

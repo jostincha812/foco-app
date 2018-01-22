@@ -1,6 +1,7 @@
 import T from '../T'
 
 const spacing = {
+  navIconSpacer: 2,
   xxsmall: 8,
   xsmall: 12,
   small: 16,
@@ -115,6 +116,26 @@ export default styles = {
     },
     carouselItem: {
       marginRight: spacing.xsmall,
+    }
+  },
+
+  avatar: {
+    avatarStyle: {
+      padding: spacing.xxsmall/2,
+      borderColor:'white',
+      borderWidth: spacing.xxsmall/2,
+    },
+    containerStyle: {
+      shadowColor: T.colors.shadow,
+      shadowOffset: {
+        width: 0,
+        height: spacing.xsmall,
+      },
+      shadowRadius: spacing.xsmall,
+      shadowOpacity: 0.25,
+      borderColor: 'white',
+      borderWidth: spacing.xxsmall/2,
+      marginVertical: spacing.small,
     }
   },
 

@@ -89,6 +89,7 @@ export default {
   noCircledOutline: (options = {}) => AppIcon('close-circle-outline', options),
   filter: (options = {}) => AppIcon('filter', options),
   filterOutline: (options = {}) => AppIcon('filter-outline', options),
+  send: (options = {}) => AppIcon('send', options),
 
   // app icons
   about: (options = {}) => AppIcon('information', options),

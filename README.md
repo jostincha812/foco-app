@@ -49,3 +49,4 @@
 
 ## v0.9.3
 * Starred cards filtering
+* User feedback submission

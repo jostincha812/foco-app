@@ -12,7 +12,7 @@ export default class NavHeaderBackButton extends React.Component {
     return Icons.back({
       size: T.icons.normalIcon,
       color: S.navigation.headerTintColor,
-      style: {top:S.spacing.xsmall/2, paddingLeft, paddingRight},
+      style: {top:S.spacing.navIconSpacer, paddingLeft, paddingRight},
       onPress: () => this.props.onPress()
     })
   }

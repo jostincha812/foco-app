@@ -6,23 +6,26 @@ import JsFbFlashcardsAPI from './JsFbFlashcardsAPI'
 import JsFbCollectionsAPI from './JsFbCollectionsAPI'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 import JsFbUserProfileAPI from './JsFbUserProfileAPI'
+import jsFirebaseFeedbackAPI from './jsFirebaseFeedbackAPI'
 
 const mockAPI = {
   flashcards: MockFlashcardsAPI,
   collections: MockCollectionsAPI,
   userPrefs: MockUserPrefsAPI,
   userProfile: null,
+  feedback: null,
 }
 
-const jsFbAPI = {
+const jsFirebaseAPI = {
   flashcards: JsFbFlashcardsAPI,
   collections: JsFbCollectionsAPI,
   userPrefs: JsFbUserPrefsAPI,
   userProfile: JsFbUserProfileAPI,
+  feedback: jsFirebaseFeedbackAPI,
 }
 
 // export default mockAPI
 // console.log('Using MOCK API')
 
-export default jsFbAPI
+export default jsFirebaseAPI
 console.log('Using Javascript Firebase API')

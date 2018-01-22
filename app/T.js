@@ -27,7 +27,7 @@ export default FocoTheme = {
     no: '#E57373',       // red 300
     noActive: '#D32F2F', // red 700
     starred: '#FDD835',  // yellow 600
-    divider: '#95a5a6',
+    divider: '#95a5a666',
     transparent: 'transparent',
     ghostBlack: '#00000022',
     ghostWhite: '#ffffff66',

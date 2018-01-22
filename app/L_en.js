@@ -1,9 +1,10 @@
 export default {
   // User Profile
   level: 'Studying',
-  purchases: 'Purchases',
+  access: 'Access Level',
   role: 'Role',
-  IAP_EARLY_ADOPTER: 'All Access (Early Adopter)',
+  authenticationMethod: 'Authenicated by',
+  IAP_EARLY_ADOPTER: 'Early Adoptor All Access',
   ROLE_USER: '',
   ROLE_ADMIN: 'Admin',
 
@@ -53,6 +54,8 @@ export default {
   created: 'Created',
   removed: 'Removed',
   error: 'Error',
+  send: 'Send',
+  submitted: 'Submitted',
 
   // user auth
   name: 'Your name',
@@ -78,5 +81,5 @@ export default {
   // profile
   upgrade: 'Go Premium',
   feedback: 'Send feedback',
-  support: 'Contact support',
+  support: 'Get support',
 }

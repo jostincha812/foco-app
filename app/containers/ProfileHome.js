@@ -31,21 +31,21 @@ class ProfileHome extends BaseContainer {
     }
 
     const list = [
-      {
-        title: L.upgrade,
-        icon: 'beenhere',
-        onPress: () => console.log('Go premium')
-      },
+      // {
+      //   title: L.upgrade,
+      //   icon: 'beenhere',
+      //   onPress: () => console.log('Go premium')
+      // },
       {
         title: L.feedback,
         icon: 'rate-review',
-        onPress: () => console.log('Send feedback')
+        onPress: () => props.navigation.navigate(C.NAV_USER_PROFILE_SEND_FEEDBACK)
       },
-      {
-        title: L.support,
-        icon: 'live-help',
-        onPress: () => console.log('Contact support')
-      },
+      // {
+      //   title: L.support,
+      //   icon: 'live-help',
+      //   onPress: () => console.log('Get support')
+      // },
       // {
       //   title: 'Share Foco',
       //   icon: 'share',
@@ -58,14 +58,15 @@ class ProfileHome extends BaseContainer {
     ]
 
     return (
-      <ScrollView style={S.containers.screen}>
-        <StatusBar barStyle={S.statusBarStyle} />
-        <UserProfile style={S.containers.normal} profile={profile} />
+      <ScrollView
+        style={S.containers.screen}
+        contentContainerStyle={{flex:1, justifyContent:'space-between'}}>
 
-        <List containerStyle={{
-          borderTopColor:T.colors.borderColor,
-          borderTopWidth:1,
-        }}>
+        <StatusBar barStyle={S.statusBarStyle} />
+        <UserProfile style={{flex:1}} profile={profile} />
+
+        <List style={{flex:1}}
+          containerStyle={{borderColor:T.colors.divider, borderTopWidth:1, borderBottomWidth:1, marginBottom:S.spacing.small}}>
           {
             list.map((item, i) => (
               <ListItem
@@ -75,24 +76,19 @@ class ProfileHome extends BaseContainer {
                 titleStyle={S.text.listTitle}
                 leftIcon={{name: item.icon}}
                 onPress={item.onPress}
-                containerStyle={{borderBottomColor:T.colors.borderColor, borderBottomWidth:0.5}}
+                containerStyle={{borderBottomWidth:0}}
               />
             ))
           }
-        </List>
 
-        <List containerStyle={{
-          borderTopColor:T.colors.borderColor,
-          borderTopWidth:1,
-          marginBottom:S.spacing.large
-        }}>
           <ListItem
             key={C.NAV_SIGNOUT}
             hideChevron={true}
             title={L.signOut}
-            titleStyle={[S.text.listTitle, {color:T.colors.active, alignSelf:'center'}]}
+            titleStyle={[S.text.listTitle, {color:T.colors.active}]}
+            leftIcon={{name:'exit-to-app', color:T.colors.active}}
             onPress={FirebaseAuth.logout}
-            containerStyle={{borderBottomColor:T.colors.borderColor, borderBottomWidth:0.5}}
+            containerStyle={{borderBottomWidth:0}}
           />
         </List>
       </ScrollView>

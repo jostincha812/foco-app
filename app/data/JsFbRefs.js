@@ -8,6 +8,7 @@ const refs = {
   users: '/users',
   userFlashcardPrefs: '/user_flashcard_prefs',
   userCollectionPrefs: '/user_collection_prefs',
+  feedback: '/feedback',
 }
 
 export default JsFbRefs = {
@@ -59,4 +60,7 @@ export default JsFbRefs = {
     return db().ref(`${refs.userCollectionPrefs}/${userKey}/${collectionKey}`)
   },
 
+  feedback: () => {
+    return db().ref(`${refs.feedback}`)
+  }
 }

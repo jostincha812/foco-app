@@ -1,73 +1,107 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { Avatar } from 'react-native-elements'
+import { List, ListItem } from 'react-native-elements'
 
 import C from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
+import StyledText from '../lib/StyledText'
 
 export default class UserProfile extends React.Component {
-  initials(name) {
+  initials(profile) {
+    const name = profile.displayName
     let r = ''
     name.split(' ').map(n => r = r.concat(n[0]))
     return r
   }
 
+  authMethod(profile) {
+    const providerId = profile.providerData[0].providerId
+    if (providerId == 'facebook.com') {
+      return 'Facebook'
+    }
+    if (providerId == 'google.com') {
+      return 'Google'
+    }
+    if (providerId == 'email') {
+      return 'Email'
+    }
+    return providerId
+  }
+
   render() {
     const profile = this.props.profile
     const style = this.props.style
+    const hasPhoto = profile.photoURL ? true : false
     console.log(profile)
 
+    const list = [
+      {
+        title: L.level,
+        value: profile.level,
+      },
+      {
+        title: L.access,
+        value: L[profile.purchases[0]],
+      },
+      {
+        title: L.authenticationMethod,
+        value: this.authMethod(profile),
+      },
+      // {
+      //   title: 'Collections',
+      //   badge: 12,
+      // },
+      // {
+      //   title: 'Starred',
+      //   badge: 58,
+      // },
+      // {
+      //   title: 'Badges',
+      //   badge: 2,
+      //   onPress: () => console.log('show badges'),
+      // }
+    ]
+
     return (
-      <View style={[{alignItems:'center', marginTop:S.spacing.normal}, style]}>
-        <View style={{height: 128, width: 128, marginBottom:S.spacing.small}}>
+      <View style={style}>
+        <View style={[S.containers.normal, {alignItems:'center', paddingBottom:0}]}>
           <Avatar
             rounded
-            width={128}
-            height={128}
-            source={profile.photoURL ? {uri:profile.photoURL} : null}
-            avatarStyle={{borderColor:T.colors.contentBorder, borderWidth:0.5}}
-            title={this.initials(profile.displayName)}
-            titleStyle={S.text.hero}
+            width={96}
+            height={96}
+            source={hasPhoto ? {uri:profile.photoURL} : null}
+            icon={hasPhoto ? null : {name: 'person'}}
+            avatarStyle={S.avatar.avatarStyle}
+            // title={this.initials(profile)}
+            titleStyle={S.text.title}
+            containerStyle={S.avatar.containerStyle}
           />
+          <StyledText style='title'>
+            {profile.displayName}
+          </StyledText>
         </View>
-        <Text style={[S.text.title]}>
-          {profile.displayName}
-        </Text>
 
-        <View style={{width:'90%', marginTop:S.spacing.xlarge}}>
-          <View style={styles.row}>
-            <Text style={[styles.label, S.text.subtitle]}>
-              {L.level}
-            </Text>
-            <Text style={[styles.value, S.text.normal]}>
-              {profile.level}
-            </Text>
-          </View>
-
-          { profile.purchases &&
-            <View style={styles.row}>
-              <Text style={[styles.label, S.text.subtitle]}>
-                {L.purchases}
-              </Text>
-              <Text style={[styles.value, S.text.normal]}>
-                {L[profile.purchases[0]]}
-              </Text>
-            </View>
+        <List containerStyle={{borderColor:T.colors.divider, borderTopWidth:1, borderBottomWidth:1}}>
+          {
+            list.map((item, i) => (
+              <ListItem
+                key={i}
+                hideChevron={item.hideChevron}
+                title={item.title}
+                titleStyle={S.text.listTitle}
+                leftIcon={{name:item.icon}}
+                rightTitle={item.value}
+                badge={{value:item.badge, containerStyle:{backgroundColor:T.colors.active, marginTop:2}}}
+                onPress={item.onPress}
+                hideChevron={item.onPress ? false : true}
+                containerStyle={{borderBottomWidth:0}}
+              />
+            ))
           }
-
-          { profile.roles && profile.roles.includes(C.ROLE_ADMIN) &&
-            <View style={styles.row}>
-              <Text style={[styles.label, S.text.subtitle]}>
-                {L.role}
-              </Text>
-              <Text style={[styles.value, S.text.normal]}>
-                {L.ROLE_ADMIN}
-              </Text>
-            </View>
-          }
-        </View>
+        </List>
       </View>
     )
   }
