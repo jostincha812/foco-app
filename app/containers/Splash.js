@@ -17,6 +17,12 @@ import LoadingIndicator from '../components/LoadingIndicator'
 import { fetchUserProfile, upsertUserProfile } from '../actions/userProfile'
 
 class Splash extends BaseContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      header: null,
+    })
+  }
+
   constructor(props) {
     super(props)
     this.state = { initialized: false }

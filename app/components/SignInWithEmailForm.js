@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { View, Text} from 'react-native'
-import { SocialIcon, FormInput, Button } from 'react-native-elements'
+import { View } from 'react-native'
+import { FormInput, Button } from 'react-native-elements'
 
-import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -25,7 +24,6 @@ export default class SignInWithEmailForm extends React.Component {
           autoCorrect={false}
           keyboardType='email-address'
           placeholder={L.email}
-          containerStyle={{width:320}}
           onChangeText={(text) => this.setState({email:text})}
         />
         <FormInput
@@ -34,20 +32,18 @@ export default class SignInWithEmailForm extends React.Component {
           keyboardType='default'
           secureTextEntry={true}
           placeholder={L.password}
-          containerStyle={{width:320}}
           onChangeText={(text) => this.setState({password:text})}
         />
 
         <Button
           title={L.signIn}
-          iconRight={{name:'chevron-right', color:T.colors.active}}
-          borderRadius={S.spacing.xlarge}
-          buttonStyle={{marginTop:S.spacing.small, width:320}}
+          iconRight={{name:'chevron-right', color:T.colors.inverse}}
+          buttonStyle={{marginTop:S.spacing.small}}
           raised={false}
-          fontSize={T.fonts.normalSize}
+          fontSize={T.fonts.smallSize}
           fontWeight={T.fonts.boldWeight}
-          color={T.colors.active}
-          backgroundColor={T.colors.transparent}
+          color={T.colors.inverse}
+          backgroundColor={T.colors.accent}
           onPress={() => onSubmit(this.state.email, this.state.password)}
         />
       </View>

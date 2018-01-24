@@ -32,14 +32,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appName: {
-    fontSize: T.fonts.largeSize,
-    fontWeight: T.fonts.heavyWeight,
+    fontSize: T.fonts.xlargeSize,
+    fontWeight: T.fonts.normalWeight,
   },
   vendorName: {
-    fontSize: T.fonts.largeSize - 6,
-    fontWeight: T.fonts.normalWeight,
+    fontSize: T.fonts.smallSize,
+    fontWeight: T.fonts.lightWeight,
     fontStyle: 'italic',
-    marginTop: S.spacing.xxsmall,
-    color: T.colors.normal,
   }
 })

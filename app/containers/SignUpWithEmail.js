@@ -11,8 +11,17 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
+import NavHeaderBackButton from '../components/NavHeaderBackButton'
 
 class SignUpWithEmail extends BaseContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      headerLeft: (
+        <NavHeaderBackButton left={true} onPress={navigation.goBack} />
+      )
+    })
+  }
+
   constructor(props) {
     super(props)
     this.state = { name:null, email:null, password:null, confirmation:null }
@@ -39,21 +48,20 @@ class SignUpWithEmail extends BaseContainer {
 
   render() {
     return (
-      <View style={[S.containers.screen, S.containers.centered]}>
-        <View style={{justifyContent:'space-between', alignSelf:'center', alignItems:'center', height:'75%'}}>
-          <View style={{marginTop:S.spacing.xlarge, width:'85%'}}>
-            <Text style={[S.text.hero, {alignSelf:'center'}]}>
+      <View style={[S.containers.screen, S.containers.normal]}>
+          <View style={S.containers.normal}>
+            <Text style={[S.text.hero]}>
               {L.createAccount}
             </Text>
-            <Text style={[S.text.normal, {marginTop:S.spacing.normal}]}>
+            <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
               {L.accountBenefits}
             </Text>
-            <Text style={[S.text.normal, {fontStyle:'italic', marginTop:S.spacing.normal}]}>
+            <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
               {L.accountSafety}
             </Text>
           </View>
 
-          <View style={{width:360, marginTop:S.spacing.normal}}>
+          <View style={{}}>
             <FormInput
               autoCapitalize='none'
               autoCorrect={false}
@@ -87,31 +95,16 @@ class SignUpWithEmail extends BaseContainer {
             />
 
             <Button
-              title={L.go}
-              icon={{name:'chevron-right'}}
-              iconRight={true}
-              borderRadius={S.spacing.xlarge}
-              buttonStyle={{marginTop:S.spacing.large}}
-              raised={true}
-              fontSize={T.fonts.normalSize}
-              fontWeight={T.fonts.boldWeight}
-              backgroundColor={T.colors.active}
+              title={L.signUp}
+              iconRight={{name:'chevron-right'}}
+              buttonStyle={{marginTop:S.spacing.small}}
+              raised={false}
+              fontSize={T.fonts.smallSize}
+              fontWeight={T.fonts.lightWeight}
+              backgroundColor={T.colors.accent}
               onPress={this.onSignUp}
             />
           </View>
-
-          <Button
-            title={L.haveAccount}
-            fontSize={T.fonts.normalSize}
-            fontWeight={T.fonts.normalWeight}
-            color={T.colors.inactiveText}
-            backgroundColor={T.colors.transparent}
-            onPress={() => {
-              this.logEvent(E.event_user_signup_aborted)
-              this.props.navigation.goBack()
-            }}
-          />
-        </View>
       </View>
     )
   }
