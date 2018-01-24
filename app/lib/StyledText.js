@@ -8,9 +8,10 @@ export default class StyledText extends React.Component {
     const theme = props.theme ? props.theme : {}
     const numberOfLines = props.numberOfLines
     const style = styles.text[props.style] ? styles.text[props.style] : styles.text.normal
+    const color = props.color
 
     return (
-      <Text style={[style, {margin:0, color:theme.color}]} numberOfLines={numberOfLines}>
+      <Text style={[style, {margin:0, color: color?color:theme.color}]} numberOfLines={numberOfLines}>
         {props.children}
       </Text>
     )

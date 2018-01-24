@@ -51,7 +51,7 @@ export default class SignInHome extends BaseContainer {
             }}
           />
 
-          <StyledText style="footnote">
+          <StyledText style="footnote" color={T.colors.inactiveText}>
             {L.noFacebook}
           </StyledText>
 
@@ -59,7 +59,7 @@ export default class SignInHome extends BaseContainer {
             title={L.signInWithEmail}
             fontSize={T.fonts.smallSize}
             fontWeight={T.fonts.lightWeight}
-            color={T.colors.normal}
+            color={T.colors.inactiveText}
             backgroundColor={T.colors.transparent}
             onPress={() => this.props.navigation.navigate(C.NAV_USER_SIGNIN_WITH_EMAIL)}
           />
