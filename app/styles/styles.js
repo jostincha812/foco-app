@@ -9,6 +9,7 @@ const spacing = {
   normal: 24,
   large: 30,
   xlarge: 36,
+  xxlarge: 64,
   none: 0,
 }
 
@@ -217,4 +218,11 @@ export default styles = {
       },
     },
   },
+
+  inverseNavigation: {
+    headerTintColor: T.colors.app,
+    headerTitleStyle: {
+      color: T.colors.normal,
+    }
+  }
 }

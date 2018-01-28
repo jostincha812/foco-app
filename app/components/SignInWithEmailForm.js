@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import { FormInput, Button } from 'react-native-elements'
 
 import T from '../T'
+import F from '../F'
 import L from '../L'
 import S from '../styles/styles'
 
@@ -40,8 +41,8 @@ export default class SignInWithEmailForm extends React.Component {
           iconRight={{name:'chevron-right', color:T.colors.inverse}}
           buttonStyle={{marginTop:S.spacing.small}}
           raised={false}
-          fontSize={T.fonts.smallSize}
-          fontWeight={T.fonts.boldWeight}
+          fontSize={F.sizes.small}
+          fontWeight={F.sizes.bold}
           color={T.colors.inverse}
           backgroundColor={T.colors.accent}
           onPress={() => onSubmit(this.state.email, this.state.password)}

@@ -9,10 +9,11 @@ export default class NavHeaderLabelButton extends React.Component {
     const props = this.props
     const paddingLeft = props.left ? S.spacing.xsmall : 0
     const paddingRight = props.right ? S.spacing.xsmall : 0
+    const headerTintColor = props.inverse ? S.inverseNavigation.headerTintColor : S.navigation.headerTintColor
     return (
       <TouchableOpacity onPress={props.onPress}
         style={{top:S.spacing.navIconSpacer, paddingLeft, paddingRight}}>
-        <Text style={{color:S.navigation.headerTintColor}}>
+        <Text style={{color:headerTintColor}}>
           {props.label}
         </Text>
       </TouchableOpacity>

@@ -7,6 +7,7 @@ import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
 import C, { E } from '../C'
 import T from '../T'
+import F from '../F'
 import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
@@ -16,8 +17,9 @@ import NavHeaderBackButton from '../components/NavHeaderBackButton'
 class SignUpWithEmail extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
+      ...S.inverseNavigation,
       headerLeft: (
-        <NavHeaderBackButton left={true} onPress={navigation.goBack} />
+        <NavHeaderBackButton left={true} onPress={navigation.goBack} inverse={true} />
       )
     })
   }
@@ -99,8 +101,8 @@ class SignUpWithEmail extends BaseContainer {
               iconRight={{name:'chevron-right'}}
               buttonStyle={{marginTop:S.spacing.small}}
               raised={false}
-              fontSize={T.fonts.smallSize}
-              fontWeight={T.fonts.lightWeight}
+              fontSize={F.sizes.small}
+              fontWeight={F.weights.light}
               backgroundColor={T.colors.accent}
               onPress={this.onSignUp}
             />

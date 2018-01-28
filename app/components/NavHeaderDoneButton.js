@@ -9,9 +9,10 @@ export default class NavHeaderDoneButton extends React.Component {
     const props = this.props
     const paddingLeft = props.left ? S.spacing.xsmall : 0
     const paddingRight = props.right ? S.spacing.xsmall : 0
+    const headerTintColor = props.inverse ? S.inverseNavigation.headerTintColor : S.navigation.headerTintColor
     return Icons.check({
       size: T.icons.normalIcon,
-      color: S.navigation.headerTintColor,
+      color: headerTintColor,
       style: {top:S.spacing.navIconSpacer, paddingLeft, paddingRight},
       onPress: () => this.props.onPress()
     })

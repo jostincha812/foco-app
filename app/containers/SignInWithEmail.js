@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements'
 
 import C, { E } from '../C'
 import T from '../T'
+import F from '../F'
 import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
@@ -28,13 +29,20 @@ export default class SignInWithEmail extends BaseContainer {
 
     return (
       <View style={[S.containers.screen]}>
-        <StatusBar barStyle={S.statusBarStyle} />
-
         <View style={{flex:1, justifyContent:'flex-end'}}>
           <Intro large={true}/>
         </View>
 
-        <View style={{flex:1, justifyContent:'flex-end'}}>
+        <View style={{flex:1, marginBottom:S.spacing.xsmall, justifyContent:'flex-end'}}>
+          <Button
+            icon={{name:'chevron-left', color:T.colors.facebook}}
+            title={L.signInWithFacebook}
+            fontSize={F.sizes.small}
+            fontWeight={F.weights.light}
+            color={T.colors.facebook}
+            backgroundColor={T.colors.transparent}
+            onPress={() => navigation.goBack() }
+          />
           <View style={{}}>
             <SignInWithEmailForm
               style={S.containers.normal}
@@ -43,22 +51,13 @@ export default class SignInWithEmail extends BaseContainer {
                 FirebaseAuth.loginWithEmail(email, password)
               }}
             />
-            <Button
-              // icon={{name:'chevron-left', color:T.colors.facebook}}
-              title={L.signInWithFacebook}
-              fontSize={T.fonts.smallSize}
-              fontWeight={T.fonts.lightWeight}
-              color={T.colors.facebook}
-              backgroundColor={T.colors.transparent}
-              onPress={() => navigation.goBack() }
-            />
           </View>
 
-          <View style={[S.containers.normal, {paddingTop:0, flexDirection:'row', justifyContent:'space-between'}]}>
+          <View style={[{paddingTop:0, flexDirection:'row', justifyContent:'space-between'}]}>
             <Button
               title={L.forgotPassword}
-              fontSize={T.fonts.smallSize}
-              fontWeight={T.fonts.lightWeight}
+              fontSize={F.sizes.small}
+              fontWeight={F.weights.light}
               color={T.colors.inactiveText}
               backgroundColor={T.colors.transparent}
               onPress={() => {
@@ -73,8 +72,8 @@ export default class SignInWithEmail extends BaseContainer {
 
             <Button
               title={L.createAccount}
-              fontSize={T.fonts.smallSize}
-              fontWeight={T.fonts.lightWeight}
+              fontSize={F.sizes.small}
+              fontWeight={F.weights.light}
               color={T.colors.inactiveText}
               backgroundColor={T.colors.transparent}
               onPress={() => this.props.navigation.navigate(C.NAV_USER_SIGNUP_WITH_EMAIL)}

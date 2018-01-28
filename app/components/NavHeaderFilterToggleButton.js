@@ -27,11 +27,12 @@ export default class NavHeaderFilterToggleButton extends React.Component {
     const props = this.props
     const paddingLeft = props.left ? S.spacing.xsmall : 0
     const paddingRight = props.right ? S.spacing.xsmall : 0
+    const headerTintColor = props.inverse ? S.inverseNavigation.headerTintColor : S.navigation.headerTintColor
 
     if (this.state.toggled) {
       return Icons.filter({
         size: T.icons.smallIcon,
-        color: S.navigation.headerTintColor,
+        color: headerTintColor,
         style: {top:S.spacing.navIconSpacer, paddingLeft, paddingRight},
         onPress: this.onTogglePress
       })
@@ -39,7 +40,7 @@ export default class NavHeaderFilterToggleButton extends React.Component {
 
     return Icons.filterOutline({
       size: T.icons.smallIcon,
-      color: S.navigation.headerTintColor,
+      color: headerTintColor,
       style: {top:S.spacing.navIconSpacer, paddingLeft, paddingRight},
       onPress: this.onTogglePress
     })

@@ -52,7 +52,7 @@ export default class BaseContainer extends React.Component {
       hideOnPress: true,
       delay: 0,
       opacity: 0.9,
-      textStyle: {fontSize:T.fonts.smallSize},
+      textStyle: S.text.footnote,
       ...options,
     })
   }

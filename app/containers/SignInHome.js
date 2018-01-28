@@ -5,6 +5,7 @@ import { SocialIcon, Button } from 'react-native-elements'
 
 import C, { E } from '../C'
 import T from '../T'
+import F from '../F'
 import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
@@ -22,20 +23,20 @@ export default class SignInHome extends BaseContainer {
   render() {
     return (
       <View style={[S.containers.screen, S.containers.centered]}>
-        <StatusBar barStyle={S.statusBarStyle} />
+        <StatusBar barStyle={S.inverseStatusBarStyle} />
 
         <View style={{flex:1, justifyContent:'flex-end'}}>
           <Intro large={true}/>
         </View>
 
-        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+        <View style={{flex:1, marginBottom:S.spacing.xxlarge, justifyContent:'flex-end', alignItems:'center'}}>
           <SocialIcon
             title={L.signInWithFacebook}
             button={true}
             type='facebook'
             style={{width:300, marginBottom:S.spacing.xsmall}}
-            fontSize={T.fonts.normalSize}
-            fontWeight={T.fonts.normalWeight}
+            fontSize={F.sizes.normal}
+            fontWeight={F.weights.normal}
             onPress={() => {
               this.logEvent(E.event_user_signin_initiated, { provider: 'facebook' })
               FirebaseAuth.loginWithFacebook()
@@ -48,8 +49,8 @@ export default class SignInHome extends BaseContainer {
 
           <Button
             title={L.signInWithEmail}
-            fontSize={T.fonts.smallSize}
-            fontWeight={T.fonts.lightWeight}
+            fontSize={F.sizes.small}
+            fontWeight={F.weights.light}
             color={T.colors.inactiveText}
             backgroundColor={T.colors.transparent}
             onPress={() => this.props.navigation.navigate(C.NAV_USER_SIGNIN_WITH_EMAIL)}
