@@ -12,6 +12,7 @@ import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import NavHeaderSendButton from '../components/NavHeaderSendButton'
 import FeedbackForm from '../components/FeedbackForm'
 
+import CurrentUser from '../auth/CurrentUser'
 import { submitFeedback } from '../actions/feedback'
 
 class FeedbackContainer extends BaseContainer {
@@ -76,8 +77,7 @@ class FeedbackContainer extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    profileFetched: state.userProfile.status === C.FB_FETCHED,
-    profile: state.userProfile.data,
+    profile: CurrentUser.profile,
   }
 }
 

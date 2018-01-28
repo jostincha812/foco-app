@@ -177,6 +177,7 @@ export const E = {
   event_user_signup_submitted: 'user_signup_submitted',
   event_user_signup_aborted: 'user_signup_aborted',
   event_user_signed_out: 'user_signed_out',
+  event_user_email_verified: 'event_user_email_verified',
   event_configure_set: 'configure_set',
   event_configure_set_saved: 'configure_set_saved',
   event_configure_set_deleted: 'configure_set_deleted',

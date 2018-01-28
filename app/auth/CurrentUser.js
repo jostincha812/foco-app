@@ -1,22 +1,66 @@
 import C from '../C'
+import firebase from '../../configureFirebase'
+import FirebaseAuth from './FirebaseAuth'
+import api from '../data/api'
 
-let _user = null
+let _profile = null
+let _unsubscribe = null
+
 const CurrentUser = {
-  signedInAs: profile => _user = profile,
-  signedOut: () => _user = null,
+  setup: (onInitialize, onLogin, onLogout, onError, onEmailVerified) => {
+    const _onLogin = (user) => {
+      const p = {
+        lastActive: new Date().toUTCString(),
+        ...user
+      }
 
-  isLoggedIn: () => {
-    return _user ? true : false
+      api.userProfile.upsertUserProfile(user.uid, p).then(() => {
+        api.userProfile.getUserProfile(user.uid).then(profile => {
+          _profile = profile
+          onInitialize && onInitialize()
+          onLogin && onLogin()
+        })
+      })
+    }
+
+    const _onLogout = () => {
+      _profile = null
+      onLogout && onLogout()
+    }
+
+    if (!FirebaseAuth.initialized) {
+      _unsubscribe = FirebaseAuth.setup(
+        onInitialize,
+        _onLogin,
+        _onLogout,
+        onError,
+        onEmailVerified
+      )
+    }
   },
 
-  hasPremiumAccess: () => {
-    const user = _user
+  teardown: () => {
+    _unsubscribe && _unsubscribe()
+  },
+
+  get initialized() {
+    return FirebaseAuth.initialized
+  },
+
+  get authenticated() {
+    return _profile ? true : false
+  },
+
+  get profile() {
+    return _profile
+  },
+
+  get hasPremiumAccess() {
+    const profile = _profile
     let hasPremiumAccess = false
 
-    console.log(user)
-    if (user.purchases) {
-      user.purchases.map(purchase => {
-        console.log(purchase)
+    if (profile.purchases) {
+      profile.purchases.map(purchase => {
         if (purchase === C.IAP_EARLY_ADOPTER) {
           hasPremiumAccess = false
         }
@@ -32,10 +76,12 @@ const CurrentUser = {
     return hasPremiumAccess
   },
 
+  signOut: () => {
+    FirebaseAuth.logout()
+  },
+
   unlockPremiumAccess: () => {
-    const user = _user
-    // user.hasPremiumAccess = true
-    console.log(user)
+    console.log(_profile)
   }
 }
 

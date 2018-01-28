@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import C, { E } from '../C'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
+import CurrentUser from '../auth/CurrentUser'
 import { resetCollectionsState, fetchCollections } from '../actions/collections'
 import { upsertUserCollectionPrefs } from '../actions/userPrefs'
 
@@ -39,7 +40,7 @@ class Home extends BaseCollectionsListContainer {
 const ns = C.NAV_HOME
 function mapStateToProps (state) {
   return {
-    user: state.userProfile.data,
+    user: CurrentUser.profile,
     ready: state.collections[ns] ? state.collections[ns].status === C.FB_FETCHED : false,
     collections: state.collections[ns] ? state.collections[ns].data : {},
   }

@@ -6,34 +6,33 @@ import fbRefs from '../data/JsFbRefs'
 const FirebaseAuth = class {
   initialized = false
   user = null;
-  profile = null;
-  onUserChange = null;
-  onLogout = null;
-  onEmailVerified = null;
   onLogin = null;
+  onLogout = null;
   onError = null;
+  onEmailVerified = null;
 
   // @TODO
   init(googleConfig) {
     Auth.Google.configure(googleConfig);
   }
 
-  setup = (onInitialize, onLogin, onLogout, onEmailVerified, onError) => {
+  setup = (onInitialize, onLogin, onLogout, onError, onEmailVerified) => {
     if (this.initialized) {
       this.onInitialize && this.onInitialize(this.initialized)
       return
     }
     this.initialized = true
     this.onInitialize = onInitialize
-    this.onLogout = onLogout
-    this.onEmailVerified = onEmailVerified
     this.onLogin = onLogin
+    this.onLogout = onLogout
     this.onError = onError
+    this.onEmailVerified = onEmailVerified
 
     return firebase.auth().onAuthStateChanged((user)=> {
       if (user) {
         // Determine if user needs to verify email
         var emailVerified = !user.providerData || !user.providerData.length || user.providerData[0].providerId != 'password' || user.emailVerified;
+        firebase.analytics().setUserId(user.uid)
 
         const profile = {
           emailVerified: emailVerified,
@@ -41,25 +40,19 @@ const FirebaseAuth = class {
           displayName: user.displayName ? user.displayName : user.email,
           photoURL: user.photoURL,
           uid: user.uid,
-          lastActive: new Date().toUTCString(),
           providerId: user.providerId,
           providerData: user.providerData,
         }
-        firebase.analytics().setUserId(user.uid)
-
         if (user.providerData[0].providerId == 'facebook.com') {
           profile.photoURL = user.providerData[0].photoURL
         }
 
-        this.onInitialize && this.onInitialize(this.initialized)
         if (!this.user) {
           this.onLogin && this.onLogin(profile); // On login
         }
-        this.profile = profile; // Store profile
         this.user = user; // Store user
       } else if (this.user) {
         firebase.analytics().setUserId(null);
-        this.profile = null;
         this.user = null; // Clear user and logout
         this.onLogout && this.onLogout();
       } else {

@@ -12,7 +12,7 @@ import BaseContainer from './BaseContainer'
 import UserProfile from '../components/UserProfile'
 import LoadingScreen from '../components/LoadingScreen'
 
-import FirebaseAuth from '../auth/FirebaseAuth'
+import CurrentUser from '../auth/CurrentUser'
 
 class ProfileHome extends BaseContainer {
   componentDidMount() {
@@ -21,15 +21,9 @@ class ProfileHome extends BaseContainer {
 
   render() {
     const props = this.props
-    const profile = props.profile
-    const profileFetched = props.profileFetched
+    const profile = CurrentUser.profile
 
-    if (!profileFetched) {
-      return (
-        <LoadingScreen />
-      )
-    }
-
+    console.log(profile)
     const list = [
       // {
       //   title: L.upgrade,
@@ -87,7 +81,7 @@ class ProfileHome extends BaseContainer {
             title={L.signOut}
             titleStyle={[S.text.listTitle, {color:T.colors.active}]}
             leftIcon={{name:'exit-to-app', color:T.colors.active}}
-            onPress={FirebaseAuth.logout}
+            onPress={CurrentUser.signOut}
             containerStyle={{borderBottomWidth:0}}
           />
         </List>
@@ -98,16 +92,12 @@ class ProfileHome extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    profileFetched: state.userProfile.status === C.FB_FETCHED,
-    profile: state.userProfile.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
-    fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
   }
 }
 

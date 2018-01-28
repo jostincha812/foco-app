@@ -1,21 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-import firebase from '../../configureFirebase'
-
-import { View, StatusBar, Text} from 'react-native'
-import { SocialIcon, FormInput, Button } from 'react-native-elements'
+import { View, StatusBar } from 'react-native'
 
 import C, { E } from '../C'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
-import FirebaseAuth from '../auth/FirebaseAuth'
-import CurrentUser from '../auth/CurrentUser'
 import LoadingIndicator from '../components/LoadingIndicator'
 
-import { fetchUserProfile, upsertUserProfile } from '../actions/userProfile'
+import CurrentUser from '../auth/CurrentUser'
 
 class Splash extends BaseContainer {
   static navigationOptions = ({navigation}) => {
@@ -26,70 +21,49 @@ class Splash extends BaseContainer {
 
   constructor(props) {
     super(props)
-    this.state = { initialized: false }
     this.onLogin = this.onLogin.bind(this)
     this.onLogout = this.onLogout.bind(this)
-    this.emailVerified = this.emailVerified.bind(this)
+    this.onEmailVerified = this.onEmailVerified.bind(this)
     this.onError = this.onError.bind(this)
     this.unsubscribe = null
   }
 
   componentDidMount() {
     this.setCurrentScreen(E.signin_home)
-
-    if (!FirebaseAuth.initialized) {
-      this.unsubscribe = FirebaseAuth.setup(
-        (initialized) => {
-          this.setState({initialized})
-        },
-        this.onLogin,
-        this.onLogout,
-        this.emailVerified,
-        this.onError)
-    }
+    CurrentUser.setup(
+      (initialized) => this.setState({ initialized }),
+      this.onLogin,
+      this.onLogout,
+      this.onError,
+      this.onEmailVerified,
+    )
   }
 
   componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.profileFetched && (nextProps.profileFetched != this.props.profileFetched)) {
-      CurrentUser.signedInAs(nextProps.profile)
-      setTimeout(
-        () => this.props.navigation.navigate(C.NAV_HOME_TAB),
-        1200
-      )
-    }
+    CurrentUser.teardown()
   }
 
   componentDidUpdate() {
-    if (FirebaseAuth.initialized && !firebase.auth().authenticated) {
+    if (CurrentUser.initialized && !CurrentUser.authenticated) {
       setTimeout(
         () => this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME),
-        1200
+        600
       )
     }
   }
 
   onLogin(user) {
     this.logEvent(E.event_user_signin_completed, user)
-    this.props.upsertUserProfile(user.uid, user).then(() => {
-      this.props.fetchUserProfile(user.uid)
-    })
-    this.setState({initialized: false})
+    this.props.navigation.navigate(C.NAV_HOME_TAB)
   }
 
   onLogout() {
-    CurrentUser.signedOut()
     this.logEvent(E.event_user_signed_out)
     this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME)
   }
 
-  emailVerified() {
-    console.log('emailVerified()')
+  onEmailVerified() {
+    this.logEvent(E.event_user_email_verified)
   }
 
   onError(e) {
@@ -109,16 +83,12 @@ class Splash extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    profileFetched: state.userProfile.status === C.FB_FETCHED,
-    profile: state.userProfile.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
-    fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
   }
 }
 

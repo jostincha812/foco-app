@@ -1,5 +1,4 @@
 import React from 'react'
-// import { connect } from 'react-redux'
 
 import { View, StatusBar } from 'react-native'
 import { SocialIcon, Button } from 'react-native-elements'
@@ -12,14 +11,6 @@ import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import Intro from '../components/Intro'
 import StyledText from '../lib/StyledText'
-
-// import {
-//   resetUserProfileState,
-//   upsertUserProfile,
-//   fetchUserProfile,
-// } from '../actions/userProfile'
-// import { resetFlashcardsState } from '../actions/flashcards'
-// import { resetCollectionsState } from '../actions/collections'
 
 export default class SignInHome extends BaseContainer {
   static navigationOptions = ({navigation}) => {
@@ -68,26 +59,3 @@ export default class SignInHome extends BaseContainer {
     )
   }
 }
-
-function mapStateToProps (state) {
-  return {
-    // profileFetched: state.userProfile.status === C.FB_FETCHED,
-    // profile: state.userProfile.data,
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    dispatch,
-    // resetUserProfileState: () => dispatch(resetUserProfileState()),
-    // upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
-    // fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
-    // resetFlashcardsState: () => dispatch(resetFlashcardsState()),
-    // resetUserCollectionsState: () => dispatch(resetUserCollectionsState()),
-  }
-}
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(SignInHome)

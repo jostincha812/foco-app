@@ -19,7 +19,6 @@ const SignInStack = StackNavigator(STACK,  {
   animationEnabled: false,
   navigationOptions: ({navigation}) => ({
     title: null,
-    // header: null,
     gesturesEnabled: false,
   }),
 })

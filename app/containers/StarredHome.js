@@ -8,6 +8,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import NavHeaderFilterToggleButton from '../components/NavHeaderFilterToggleButton'
 
+import CurrentUser from '../auth/CurrentUser'
 import { resetFlashcardsState, fetchUserStarredFlashcards } from '../actions/flashcards'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
@@ -136,7 +137,7 @@ class StarredHome extends BaseFlashcardsListContainer {
 const ns = C.NAV_STARRED_HOME
 function mapStateToProps (state) {
   return {
-    user: state.userProfile.data,
+    user: CurrentUser.profile,
     ready: state.flashcards[ns] ? state.flashcards[ns].status === C.FB_FETCHED : null,
     flashcards: state.flashcards[ns] ? state.flashcards[ns].data : null,
   }

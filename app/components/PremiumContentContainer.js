@@ -14,24 +14,20 @@ export default class PremiumContentContainer extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ isLocked: !CurrentUser.hasPremiumAccess() })
+    this.setState({ isLocked: !CurrentUser.hasPremiumAccess })
   }
 
   componentDidReceiveProps(nextProps) {
-    this.setState({ isLocked: !CurrentUser.hasPremiumAccess() })
+    this.setState({ isLocked: !CurrentUser.hasPremiumAccess })
   }
 
   onLockPress() {
     CurrentUser.unlockPremiumAccess()
-    console.log(`onLockPress() hasPremiumAccess=${CurrentUser.hasPremiumAccess()}`)
-    this.setState({ isLocked: !CurrentUser.hasPremiumAccess() })
   }
 
   render() {
     const props = this.props
     const ContentContainer = props.onPress ? TouchableOpacity : View
-
-    // console.log(`render() hasPremiumAccess=${CurrentUser.hasPremiumAccess()}`)
 
     const lockView = (
       <View style={S.containers.centered}>
