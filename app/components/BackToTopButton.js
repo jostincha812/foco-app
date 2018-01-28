@@ -14,6 +14,7 @@ export default class BackToTopButton extends React.Component {
         <Icon
           containerStyle={{backgroundColor: T.colors.accent}}
           color={T.colors.inverse}
+          underlayColor={T.colors.translucentBlack}
           onPress={props.onPress}
           raised={true}
           size={T.icons.xsmallIcon}

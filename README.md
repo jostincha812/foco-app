@@ -53,3 +53,5 @@
 * Starred cards filtering
 * User feedback submission
 * Collections and Cards lists has BackToTop
+
+## 0.9.4
