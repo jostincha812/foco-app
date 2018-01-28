@@ -35,8 +35,7 @@ export default class SignInHome extends BaseContainer {
             button={true}
             type='facebook'
             style={{width:300, marginBottom:S.spacing.xsmall}}
-            fontSize={F.sizes.normal}
-            fontWeight={F.weights.normal}
+            fontStyle={{fontSize: F.sizes.small, fontWeight: F.weights.normal}}
             onPress={() => {
               this.logEvent(E.event_user_signin_initiated, { provider: 'facebook' })
               FirebaseAuth.loginWithFacebook()
