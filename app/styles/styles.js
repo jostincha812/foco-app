@@ -120,8 +120,8 @@ export default styles = {
     backToTop: {
       position: 'absolute',
       zIndex: 10001,
-      right: 0,
-      bottom: spacing.xlarge
+      right: spacing.xxsmall,
+      bottom: spacing.xxsmall
     }
   },
 
