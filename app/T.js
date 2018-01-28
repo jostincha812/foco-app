@@ -60,6 +60,7 @@ export default FocoTheme = {
     normalIcon: 28,
     largeIcon: 36,
     xlargeIcon: 48,
+    xxlargeIcon: 64,
   },
 
   fonts: {

@@ -38,8 +38,8 @@ export default markdown = {
     color: T.colors.accent,
   },
   list: {
-    borderColor: '#000',
-    borderWidth: 1,
+    // borderColor: '#000',
+    // borderWidth: 1,
   },
   paragraph: {
     marginBottom: S.spacing.small,
@@ -54,7 +54,8 @@ export default markdown = {
     borderColor: T.colors.contentBorder,
   },
   tableHeaderCell: {
-    borderColor: T.colors.contentBorder,
+    backgroundColor: T.colors.inactive,
+    color: T.colors.normal,
   },
   tableHeaderCellContent: {
     fontWeight: T.fonts.boldWeight,

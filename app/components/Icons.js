@@ -108,6 +108,7 @@ export default {
   new: (options = {}) => AppIcon('new-box', options),
   back: (options = {}) => AppIcon('chevron-left', options),
   forward: (options = {}) => AppIcon('chevron-right', options),
+  lock: (options = {}) => AppIcon('lock', options),
 
   // Drawer icons
   drawerAll: (options = {}) => AppIcon('cards', options),

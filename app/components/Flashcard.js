@@ -7,6 +7,7 @@ import C from '../C'
 import T from '../T'
 import S from '../styles/styles'
 import MDStyles from '../styles/markdown'
+import PremiumContentContainer from '../components/PremiumContentContainer'
 
 import Icons from './Icons'
 import PillsList from '../lib/PillsList'
@@ -79,7 +80,7 @@ export default class Flashcard extends React.Component {
         flipHorizontal={true}
         flipVertical={false}
         flip={this.state.flipped}
-        clickable={false}
+        clickable={true}
         alignHeight={true}
         alignWidth={true}
       >
@@ -96,10 +97,11 @@ export default class Flashcard extends React.Component {
           </MarkdownView>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        <PremiumContentContainer
           style={styles.inner}
           activeOpacity={1}
           onPress={() => this.setState({flipped: !this.state.flipped})}
+          iconSize={T.icons.xxlargeIcon}
         >
           {flagToggle}
           {starToggle}
@@ -114,7 +116,7 @@ export default class Flashcard extends React.Component {
             pillColor={T.colors.active}
             pillBorderColor='transparent'
           />
-        </TouchableOpacity>
+        </PremiumContentContainer>
       </FlipCard>
     )
   }

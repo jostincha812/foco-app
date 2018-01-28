@@ -12,6 +12,7 @@ import L from '../L'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
+import CurrentUser from '../auth/CurrentUser'
 import LoadingIndicator from '../components/LoadingIndicator'
 
 import { fetchUserProfile, upsertUserProfile } from '../actions/userProfile'
@@ -56,6 +57,7 @@ class Splash extends BaseContainer {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.profileFetched && (nextProps.profileFetched != this.props.profileFetched)) {
+      CurrentUser.signedInAs(nextProps.profile)
       setTimeout(
         () => this.props.navigation.navigate(C.NAV_HOME_TAB),
         1200
@@ -81,6 +83,7 @@ class Splash extends BaseContainer {
   }
 
   onLogout() {
+    CurrentUser.signedOut()
     this.logEvent(E.event_user_signed_out)
     this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME)
   }
