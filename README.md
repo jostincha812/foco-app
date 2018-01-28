@@ -48,5 +48,8 @@
 * Redux using screen namespaces
 
 ## v0.9.3
+* Simplified user profile view
+* Premium content locking views
 * Starred cards filtering
 * User feedback submission
+* Collections and Cards lists has BackToTop
