@@ -15,8 +15,9 @@ STACK[C.NAV_STARRED_FILTER_CONFIGURATOR] = { screen: StarredFilterConfigurator }
 
 const StarredStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    title: L.nav.app,
-    tabBarLabel: L.nav.starred,
+    ...S.navigation,
+    title: L.headers.starred,
+    tabBarLabel: L.tabs.starred,
     tabBarIcon: ({ focused, tintColor }) => (
       Icons.star({ focused, color:tintColor, size:S.tabNav.iconSize })
     ),

@@ -12,8 +12,8 @@ const spacing = {
 }
 
 export default styles = {
-  statusBarStyle: 'dark-content',
-  inverseStatusBarStyle: 'light-content',
+  statusBarStyle: 'light-content',
+  inverseStatusBarStyle: 'dark-content',
 
   // grids and spacing
   spacing: spacing,
@@ -189,13 +189,13 @@ export default styles = {
   // navigation header styles
   navigation: {
     headerBackTitle: null,
-    headerTintColor: T.colors.app,
+    headerTintColor: T.colors.inverse,
     headerTitleStyle: {
       fontWeight: T.fonts.boldWeight,
-      color: T.colors.normal,
+      color: T.colors.inverse,
     },
     headerStyle: {
-      backgroundColor: T.colors.headerBackground,
+      backgroundColor: T.colors.app,
       borderBottomWidth: 0.5,
       borderBottomColor: T.colors.inactive,
       elevation: 0,

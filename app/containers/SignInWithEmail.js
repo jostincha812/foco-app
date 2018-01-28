@@ -44,7 +44,7 @@ export default class SignInWithEmail extends BaseContainer {
               }}
             />
             <Button
-              icon={{name:'chevron-left', color:T.colors.facebook}}
+              // icon={{name:'chevron-left', color:T.colors.facebook}}
               title={L.signInWithFacebook}
               fontSize={T.fonts.smallSize}
               fontWeight={T.fonts.lightWeight}

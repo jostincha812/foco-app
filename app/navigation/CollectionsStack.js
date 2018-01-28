@@ -15,8 +15,9 @@ STACK[C.NAV_COLLECTIONS_FLASHCARDS_VIEWER] = { screen: CollectionsFlashcardsView
 
 const CollectionStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    title: L.nav.app,
-    tabBarLabel: L.nav.collections,
+    ...S.navigation,
+    title: L.headers.collections,
+    tabBarLabel: L.tabs.collections,
     tabBarIcon: ({ focused, tintColor }) => (
       Icons.bookmark({ focused, color:tintColor, size:S.tabNav.iconSize })
     ),

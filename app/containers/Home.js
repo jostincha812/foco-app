@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import C, { E } from '../C'
+import T from '../T'
+import L from '../L'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'
@@ -9,6 +11,12 @@ import { resetCollectionsState, fetchCollections } from '../actions/collections'
 import { upsertUserCollectionPrefs } from '../actions/userPrefs'
 
 class Home extends BaseCollectionsListContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      title: L.headers.home,
+    })
+  }
+
   _fetchData() {
     const user = this.props.user
     this.props.fetchCollections(user.level, user.uid)

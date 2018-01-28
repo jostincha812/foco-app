@@ -9,21 +9,31 @@ export default {
   ROLE_ADMIN: 'Admin',
 
   // Nav
-  nav: {
-    app: 'Foco:3',
+  tabs: {
     home: 'Home',
     collections: 'Bookmarked',
     starred: 'Starred',
     profile: 'Profile',
   },
 
-  // label strings
-  featured: 'Featured Collection',
-  starred: 'Starred Cards',
-  editset: 'Configure Set',
-  newset: 'New Card Set',
-  empty: 'Nothing to see here',
-  filters: 'Filters',
+  headers: {
+    app: 'Foco:3',
+    home: 'Home',
+    collections: 'My Collections',
+    starred: 'My Starred Cards',
+    filterStarred: 'Filter Starred',
+    profile: 'My Profile',
+  },
+
+  // strings
+  // featured: 'Featured Collection',
+  // starred: 'Starred Cards',
+  // editset: 'Configure Set',
+  // newset: 'New Card Set',
+  list: {
+    empty: 'Nothing to see here',
+    backToTop: 'Back to top',
+  },
 
   // Flashcard Sets
   cards: 'cards',

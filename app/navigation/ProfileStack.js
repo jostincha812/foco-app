@@ -16,9 +16,9 @@ STACK[C.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackContainer }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    // header: null,
-    title: L.nav.app,
-    tabBarLabel: L.nav.profile,
+    ...S.navigation,
+    title: L.headers.profile,
+    tabBarLabel: L.tabs.profile,
     tabBarIcon: ({ focused, tintColor }) => (
       Icons.profile({ focused, color: tintColor, size:S.tabNav.iconSize })
     ),

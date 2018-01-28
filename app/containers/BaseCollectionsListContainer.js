@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, RefreshControl } from 'react-native'
+import { StatusBar, ScrollView, RefreshControl } from 'react-native'
 
 import C, { E } from '../C'
 import S from '../styles/styles'
@@ -94,6 +94,7 @@ export default class CollectionHome extends BaseContainer {
         contentContainerStyle={S.containers.list}
         refreshControl={refreshControl}
       >
+        <StatusBar barStyle={S.statusBarStyle} />
         { collections &&
           collectionsKeys.map((id, index) => {
             const collection = {id, ...collections[id]}

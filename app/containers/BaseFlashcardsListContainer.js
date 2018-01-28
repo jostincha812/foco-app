@@ -1,12 +1,13 @@
 import React from 'react'
-import { RefreshControl } from 'react-native'
+import { StatusBar, RefreshControl } from 'react-native'
 
+import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
-export default class StarredHome extends BaseContainer {
+export default class BaseFlashcardsListContainer extends BaseContainer {
   constructor(props) {
     super(props)
     this.onPrefToggle = this.onPrefToggle.bind(this)
@@ -82,7 +83,9 @@ export default class StarredHome extends BaseContainer {
         flashcards={flashcards}
         onPrefToggle={this.onPrefToggle}
         refreshControl={refreshControl}
-      />
+      >
+        <StatusBar barStyle={S.statusBarStyle} />
+      </FlashcardsList>
     )
   }
 }

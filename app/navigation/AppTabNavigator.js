@@ -22,7 +22,6 @@ const AppTabNavigator = TabNavigator(TABS, {
   swipeEnabled: false,
   animationEnabled: false,
   navigationOptions: ({navigation}) => ({
-    ...S.navigation,
     tabBarVisible: true,
     gesturesEnabled: false,
   }),

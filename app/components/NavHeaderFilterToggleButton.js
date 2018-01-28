@@ -39,7 +39,7 @@ export default class NavHeaderFilterToggleButton extends React.Component {
 
     return Icons.filterOutline({
       size: T.icons.smallIcon,
-      color: T.colors.inactive,
+      color: S.navigation.headerTintColor,
       style: {top:S.spacing.navIconSpacer, paddingLeft, paddingRight},
       onPress: this.onTogglePress
     })

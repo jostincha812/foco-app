@@ -15,8 +15,9 @@ STACK[C.NAV_HOME_FLASHCARDS_VIEWER] = { screen: HomeFlashcardsViewer }
 
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    title: L.nav.app,
-    tabBarLabel: L.nav.home,
+    ...S.navigation,
+    title: L.headers.app,
+    tabBarLabel: L.tabs.home,
     tabBarIcon: ({ focused, tintColor }) => (
       Icons.foco({ focused, color:tintColor, size:S.tabNav.iconSize })
     ),

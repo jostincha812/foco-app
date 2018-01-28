@@ -15,7 +15,7 @@ import FilterConfigurator from '../components/FilterConfigurator'
 class StarredFilterConfigurator extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
-      title: L.filters,
+      title: L.headers.filterStarred,
       headerLeft: <NavHeaderBackButton left={true} onPress={navigation.goBack} />,
       headerRight: <NavHeaderDoneButton right={true} onPress={() => {
         navigation.state.params.onDone(navigation.state.params.getConfiguredFilters())

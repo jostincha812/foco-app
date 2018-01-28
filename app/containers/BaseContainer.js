@@ -1,12 +1,13 @@
 
 import React from 'react'
+import { View, StatusBar } from 'react-native'
 import Toast from 'react-native-root-toast'
 
 import { fbAnalytics } from '../../configureFirebase'
 import T from '../T'
+import S from '../styles/styles'
 
 export default class BaseContainer extends React.Component {
-
   constructor(props) {
     super(props)
     this.logEvent = this.logEvent.bind(this)
@@ -88,7 +89,9 @@ export default class BaseContainer extends React.Component {
 
     // example dummy view to get dimensions
     return (
-      <View style={{flex:1}} onLayout={this.onLayout} />
+      <View style={{flex:1}} onLayout={this.onLayout}>
+        <StatusBar barStyle={S.statusBarStyle} />
+      </View>
     )
   }
 }
