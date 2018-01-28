@@ -8,6 +8,7 @@ import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
+import CurrentUser from '../auth/CurrentUser'
 import { resetFlashcardsState, fetchFlashcards } from '../actions/flashcards'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
@@ -53,7 +54,7 @@ class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
 const ns = C.NAV_COLLECTIONS_FLASHCARDS_VIEWER
 function mapStateToProps (state) {
   return {
-    user: state.userProfile.data,
+    user: CurrentUser.profile,
     ready: state.flashcards[ns] ? state.flashcards[ns].status === C.FB_FETCHED : null,
     flashcards: state.flashcards[ns] ? state.flashcards[ns].data : null,
   }
