@@ -116,6 +116,12 @@ export default styles = {
     },
     carouselItem: {
       marginRight: spacing.xsmall,
+    },
+    backToTop: {
+      position: 'absolute',
+      zIndex: 10001,
+      right: 0,
+      bottom: spacing.xlarge
     }
   },
 

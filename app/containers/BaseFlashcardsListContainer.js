@@ -1,16 +1,20 @@
 import React from 'react'
-import { StatusBar, RefreshControl } from 'react-native'
+import { View, StatusBar, RefreshControl } from 'react-native'
 
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
+import BackToTopButton from '../components/BackToTopButton'
 
 export default class BaseFlashcardsListContainer extends BaseContainer {
   constructor(props) {
     super(props)
+    this.state = { ...this.state, showBackToTop: false }
     this.onPrefToggle = this.onPrefToggle.bind(this)
+    this.onScroll = this.onScroll.bind(this)
+    this.onScrollToTopPress = this.onScrollToTopPress.bind(this)
   }
 
   componentDidMount() {
@@ -29,6 +33,22 @@ export default class BaseFlashcardsListContainer extends BaseContainer {
 
   onRefresh() {
     this._fetchData()
+  }
+
+  onScroll(e) {
+    const yOffset = e.nativeEvent.contentOffset.y
+    const passThreshold = yOffset > (this.state.dimensions.height * 1.5)
+    if (!this.state.showBackToTop && passThreshold) {
+      this.setState({ showBackToTop: true })
+    }
+
+    if (this.state.showBackToTop && !passThreshold) {
+      this.setState({ showBackToTop: false })
+    }
+  }
+
+  onScrollToTopPress() {
+    this.refs['_SCROLLVIEW'].scrollTo({x: 0, y: 0, animated: true})
   }
 
   onPrefToggle(id, pref) {
@@ -78,14 +98,25 @@ export default class BaseFlashcardsListContainer extends BaseContainer {
     }
 
     return (
-      <FlashcardsList
-        dimensions={this.state.dimensions}
-        flashcards={flashcards}
-        onPrefToggle={this.onPrefToggle}
-        refreshControl={refreshControl}
-      >
+      <View style={{flex:1}}>
         <StatusBar barStyle={S.statusBarStyle} />
-      </FlashcardsList>
+        <FlashcardsList
+          dimensions={this.state.dimensions}
+          flashcards={flashcards}
+          onPrefToggle={this.onPrefToggle}
+          refreshControl={refreshControl}
+          onScroll={this.onScroll}
+          scrollEventThrottle={64}
+          ref='_SCROLLVIEW'
+        />
+
+        { this.state.showBackToTop && (
+          <BackToTopButton
+            style={S.lists.backToTop}
+            onPress={this.onScrollToTopPress}
+          />
+        )}
+    </View>
     )
   }
 }

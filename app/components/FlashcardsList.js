@@ -6,6 +6,10 @@ import S from '../styles/styles'
 import Flashcard from '../components/Flashcard'
 
 export default class FlashcardsList extends React.Component {
+  scrollTo(options) {
+    this.refs['_SCROLLVIEW'].scrollTo(options)
+  }
+  
   render() {
     const props = this.props
     const flashcards = props.flashcards
@@ -16,6 +20,9 @@ export default class FlashcardsList extends React.Component {
         style={[S.containers.screen, S.containers.normal, {backgroundColor:'transparent'}]}
         pagingEnabled={true}
         refreshControl={props.refreshControl}
+        onScroll={props.onScroll}
+        scrollEventThrottle={props.scrollEventThrottle}
+        ref='_SCROLLVIEW'
         >
           { flashcards &&
             ids.map((id, index) => {
