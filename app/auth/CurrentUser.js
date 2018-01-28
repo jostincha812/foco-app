@@ -62,7 +62,7 @@ const CurrentUser = {
     if (profile.purchases) {
       profile.purchases.map(purchase => {
         if (purchase === C.IAP_EARLY_ADOPTER) {
-          hasPremiumAccess = false
+          hasPremiumAccess = true
         }
         if (purchase === C.IAP_FULL_ACCESS) {
           hasPremiumAccess = true
