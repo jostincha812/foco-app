@@ -84,7 +84,6 @@ class StarredHome extends BaseFlashcardsListContainer {
 
     const flashcards = {}
     Object.keys(this.props.flashcards).map(key => {
-      console.log(this.props.flashcards[key].tags)
       if (this.passedFilters(this.props.flashcards[key])) {
         flashcards[key] = { ...this.props.flashcards[key] }
       }
