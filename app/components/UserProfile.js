@@ -94,6 +94,7 @@ export default class UserProfile extends React.Component {
                 titleStyle={S.text.listTitle}
                 leftIcon={{name:item.icon}}
                 rightTitle={item.value}
+                rightTitleStyle={S.text.listTitle}
                 badge={{value:item.badge, containerStyle:{backgroundColor:T.colors.active, marginTop:2}}}
                 onPress={item.onPress}
                 hideChevron={item.onPress ? false : true}

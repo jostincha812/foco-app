@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import C from '../C'
 import T from '../T'
+import F from '../F'
 import L from '../L'
 import S from '../styles/styles'
 
@@ -32,12 +33,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appName: {
-    fontSize: T.fonts.xlargeSize,
-    fontWeight: T.fonts.normalWeight,
+    fontSize: F.sizes.xlarge,
+    fontWeight: F.weights.bold,
   },
   vendorName: {
-    fontSize: T.fonts.smallSize,
-    fontWeight: T.fonts.lightWeight,
+    fontSize: F.sizes.small,
+    fontWeight: F.weights.light,
     fontStyle: 'italic',
   }
 })

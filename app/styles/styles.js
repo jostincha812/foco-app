@@ -1,4 +1,5 @@
 import T from '../T'
+import F from '../F'
 
 const spacing = {
   navIconSpacer: 2,
@@ -21,33 +22,33 @@ export default styles = {
   // text styles
   text: {
     hero: {
-      fontWeight: T.fonts.heavyWeight,
-      fontSize: T.fonts.xlargeSize,
+      fontWeight: F.weights.hero,
+      fontSize: F.sizes.xlarge,
     },
     title: {
-      fontWeight: T.fonts.boldWeight,
-      fontSize: T.fonts.largeSize,
+      fontWeight: F.weights.bold,
+      fontSize: F.sizes.large,
     },
     subtitle: {
-      fontWeight: T.fonts.normalWeight,
-      fontSize: T.fonts.normalSize,
+      fontWeight: F.weights.normal,
+      fontSize: F.sizes.normal,
     },
     normal: {
-      fontWeight: T.fonts.lightWeight,
-      fontSize: T.fonts.normalSize,
+      fontWeight: F.weights.light,
+      fontSize: F.sizes.normal,
     },
     listTitle: {
-      fontWeight: T.fonts.lightWeight,
-      fontSize: T.fonts.smallSize,
+      fontWeight: F.weights.light,
+      fontSize: F.sizes.small,
     },
     footnote: {
-      fontWeight: T.fonts.lightWeight,
-      fontSize: T.fonts.smallSize,
+      fontWeight: F.weights.light,
+      fontSize: F.sizes.small,
       fontStyle: 'italic',
     },
     pill: {
-      fontWeight: T.fonts.lightWeight,
-      fontSize: T.fonts.smallSize,
+      fontWeight: F.weights.light,
+      fontSize: F.sizes.small,
     },
   },
 
@@ -162,9 +163,11 @@ export default styles = {
       shadowOpacity: 0.25,
     },
     hero: {
+      // aspectRatio: 1,
       height: 400,
     },
     regular: {
+      // aspectRatio: 1,
       height: 400,
     },
     carousel: {
@@ -197,7 +200,8 @@ export default styles = {
     headerBackTitle: null,
     headerTintColor: T.colors.inverse,
     headerTitleStyle: {
-      fontWeight: T.fonts.boldWeight,
+      fontWeight: F.weights.hero,
+      fontSize: F.sizes.normal,
       color: T.colors.inverse,
     },
     headerStyle: {

@@ -68,6 +68,7 @@ export default class FilterConfigurator extends React.Component {
         <View style={S.containers.normal}>
           <StyledText style='title'>{L.tags}</StyledText>
           <TagsSelector
+            style={{marginTop:S.spacing.xxsmall}}
             items={categories}
             selected={selectedCategories}
             onToggle={tagState => this.onToggle(C.TAG_TYPE_CATEGORIES, tagState)}
@@ -76,6 +77,7 @@ export default class FilterConfigurator extends React.Component {
         <View style={[S.containers.normal, {paddingTop:0}]}>
           <StyledText style='title'>{L.regions}</StyledText>
           <TagsSelector
+            style={{marginTop:S.spacing.xxsmall}}
             items={regions}
             selected={selectedRegions}
             onToggle={tagState => this.onToggle(C.TAG_TYPE_REGIONS, tagState)}
@@ -84,6 +86,7 @@ export default class FilterConfigurator extends React.Component {
         <View style={[S.containers.normal, {paddingTop:0}]}>
           <StyledText style='title'>{L.varietals}</StyledText>
           <TagsSelector
+            style={{marginTop:S.spacing.xxsmall}}
             items={varietals}
             selected={selectedVarietals}
             onToggle={tagState => this.onToggle(C.TAG_TYPE_VARIETALS, tagState)}

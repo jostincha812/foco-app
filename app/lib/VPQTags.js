@@ -33,8 +33,8 @@ const VPQTags = {
     viniculture: { key: 'viniculture', label: 'Wine Making' },
     winestyle: { key: 'winestyle', label: 'Wine Styles' },
     still: { key: 'still', label: 'Still Wines' },
-    fortified: { key: 'fortified', label: 'Fortified Wines' },
-    sparkling: { key: 'sparkling', label: 'Sparkling Wines' },
+    fortified: { key: 'fortified', label: 'Fortified' },
+    sparkling: { key: 'sparkling', label: 'Sparkling' },
   },
 
   regions: {

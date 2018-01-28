@@ -18,9 +18,9 @@ export default {
 
   headers: {
     app: 'Foco:3',
-    home: 'Home',
+    home: 'Featured',
     collections: 'My Collections',
-    starred: 'My Starred Cards',
+    starred: 'Starred Cards',
     filterStarred: 'Filter Starred',
     profile: 'My Profile',
   },

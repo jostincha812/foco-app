@@ -62,17 +62,17 @@ export default FocoTheme = {
     xlargeIcon: 48,
     xxlargeIcon: 64,
   },
-
-  fonts: {
-    xsmallSize: 10,
-    smallSize: 14,
-    normalSize: 18,
-    largeSize: 24,
-    xlargeSize: 38,
-
-    lightWeight: '100',
-    normalWeight: '300',
-    boldWeight: '600',
-    heavyWeight: '900',
-  },
+  //
+  // fonts: {
+  //   xsmallSize: 10,
+  //   smallSize: 14,
+  //   normalSize: 18,
+  //   largeSize: 24,
+  //   xlargeSize: 38,
+  //
+  //   lightWeight: '100',
+  //   normalWeight: '300',
+  //   boldWeight: '600',
+  //   heavyWeight: '900',
+  // },
 }

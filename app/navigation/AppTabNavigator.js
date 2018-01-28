@@ -27,7 +27,7 @@ const AppTabNavigator = TabNavigator(TABS, {
   }),
   tabBarOptions: {
     showIcon: true,
-    showLabel: true,
+    showLabel: false,
     activeTintColor: T.colors.active,
     inactiveTintColor: T.colors.inactive,
     style: {

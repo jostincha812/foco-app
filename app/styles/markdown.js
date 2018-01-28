@@ -1,13 +1,14 @@
 import T from '../T'
+import F from '../F'
 import S from './styles'
 
 export default markdown = {
   codeBlock: {
     fontFamily: 'Courier',
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
   heading: {
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
   heading1: {
     ...S.text.title
@@ -48,7 +49,7 @@ export default markdown = {
     ...S.text.normal,
   },
   strong: {
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
   table: {
     borderColor: T.colors.contentBorder,
@@ -58,6 +59,6 @@ export default markdown = {
     color: T.colors.normal,
   },
   tableHeaderCellContent: {
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
 }
