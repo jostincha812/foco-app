@@ -3,6 +3,7 @@ export default FocoTheme = {
   colors: {
     app: '#F78316',   // orange 800
     headerBackground: '#F5F5F5', // grey 100
+    headerBorder: '#E65100', // orange 900
     tabNavBackground: '#F5F5F5',
     containerBackground: '#ECEFF1', // blue grey 50
     contentBackground: '#FFF',

@@ -208,7 +208,7 @@ export default styles = {
     headerStyle: {
       backgroundColor: T.colors.app,
       borderBottomWidth: 0.5,
-      borderBottomColor: T.colors.inactive,
+      borderBottomColor: T.colors.headerBorder,
       elevation: 0,
       shadowColor: 'transparent',
       shadowOpacity: 0,
