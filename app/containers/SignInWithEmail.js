@@ -3,7 +3,8 @@ import React from 'react'
 import { View, StatusBar } from 'react-native'
 import { Button } from 'react-native-elements'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import T from '../T'
 import F from '../F'
 import L from '../L'
@@ -20,8 +21,9 @@ export default class SignInWithEmail extends BaseContainer {
     })
   }
 
-  componentDidMount() {
-    this.setCurrentScreen(E.signin_with_email_screen)
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_USER_SIGNIN_WITH_EMAIL, className:'SignInWithEmail'})
   }
 
   render() {
@@ -41,13 +43,16 @@ export default class SignInWithEmail extends BaseContainer {
             fontWeight={F.weights.light}
             color={T.colors.facebook}
             backgroundColor={T.colors.transparent}
-            onPress={() => navigation.goBack() }
+            onPress={() => {
+              this.logEvent(E.auth_signin_bounce, { screen:R.NAV_USER_SIGNIN_WITH_EMAIL })
+              navigation.goBack()
+            }}
           />
           <View style={{}}>
             <SignInWithEmailForm
               style={S.containers.normal}
               onSubmit={(email, password) => {
-                this.logEvent(E.event_user_signin_initiated, { provider:'email', email })
+                this.logEvent(E.auth_signing_in, { provider:'email', email })
                 FirebaseAuth.loginWithEmail(email, password)
               }}
             />
@@ -62,6 +67,7 @@ export default class SignInWithEmail extends BaseContainer {
               backgroundColor={T.colors.transparent}
               onPress={() => {
                 if (this.state.email) {
+                  this.logEvent(E.auth_reset_password, { email: this.state.email })
                   FirebaseAuth.resetPassword(this.state.email)
                   this.showToast(L.resetPassword)
                 } else {

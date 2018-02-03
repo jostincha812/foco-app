@@ -3,10 +3,12 @@ import { connect } from 'react-redux'
 import { ScrollView, StatusBar } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
+
 import BaseContainer from './BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import NavHeaderSendButton from '../components/NavHeaderSendButton'
@@ -37,6 +39,7 @@ class FeedbackContainer extends BaseContainer {
     super(props)
     this.state.form = { name:'', email:'', feedback:'' }
     this.onFormChange = this.onFormChange.bind(this)
+    this.setScreen({screenName:R.NAV_USER_PROFILE_SEND_FEEDBACK, className:'FeedbackContainer'})
   }
 
   componentDidMount() {

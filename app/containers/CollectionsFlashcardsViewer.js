@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
+
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import FlashcardsList from '../components/FlashcardsList'
@@ -12,12 +14,17 @@ import CurrentUser from '../auth/CurrentUser'
 import { resetFlashcardsState, fetchFlashcards } from '../actions/flashcards'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
-class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
+class CollectionsFlashcardsViewer extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: null,
       headerLeft: <NavHeaderBackButton left={true} onPress={navigation.goBack} />,
     })
+  }
+
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_COLLECTIONS_FLASHCARDS_VIEWER, className:'CollectionsFlashcardsViewer'})
   }
 
   _fetchData() {
@@ -71,4 +78,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomeFlashcardsViewer)
+)(CollectionsFlashcardsViewer)

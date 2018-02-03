@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { ScrollView, StatusBar } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
+
 import L from '../L'
 import T from '../T'
 import S from '../styles/styles'
@@ -15,15 +17,15 @@ import LoadingScreen from '../components/LoadingScreen'
 import CurrentUser from '../auth/CurrentUser'
 
 class ProfileHome extends BaseContainer {
-  componentDidMount() {
-    this.setCurrentScreen(E.user_profile_home)
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_USER_PROFILE_HOME, className:'ProfileHome'})
   }
 
   render() {
     const props = this.props
     const profile = CurrentUser.profile
 
-    console.log(profile)
     const list = [
       // {
       //   title: L.upgrade,

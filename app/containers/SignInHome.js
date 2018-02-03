@@ -3,7 +3,8 @@ import React from 'react'
 import { View, StatusBar } from 'react-native'
 import { SocialIcon, Button } from 'react-native-elements'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import T from '../T'
 import F from '../F'
 import L from '../L'
@@ -18,6 +19,11 @@ export default class SignInHome extends BaseContainer {
     return ({
       header: null,
     })
+  }
+
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_USER_SIGNIN_HOME, className:'SignInHome'})
   }
 
   render() {
@@ -37,7 +43,7 @@ export default class SignInHome extends BaseContainer {
             style={{width:300, marginBottom:S.spacing.xsmall}}
             fontStyle={{fontSize: F.sizes.small, fontWeight: F.weights.normal}}
             onPress={() => {
-              this.logEvent(E.event_user_signin_initiated, { provider: 'facebook' })
+              this.logEvent(E.auth_signing_in, { provider: 'facebook' })
               FirebaseAuth.loginWithFacebook()
             }}
           />

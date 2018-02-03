@@ -18,14 +18,14 @@ const CurrentUser = {
         api.userProfile.getUserProfile(user.uid).then(profile => {
           _profile = profile
           onInitialize && onInitialize()
-          onLogin && onLogin()
+          onLogin && onLogin(user)
         })
       })
     }
 
-    const _onLogout = () => {
+    const _onLogout = (user) => {
       _profile = null
-      onLogout && onLogout()
+      onLogout && onLogout(user)
     }
 
     if (!FirebaseAuth.initialized) {

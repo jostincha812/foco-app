@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import T from '../T'
 import L from '../L'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
@@ -15,6 +16,11 @@ class Home extends BaseCollectionsListContainer {
     return ({
       title: L.headers.home,
     })
+  }
+
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_HOME, className:'Home'})
   }
 
   _fetchData() {

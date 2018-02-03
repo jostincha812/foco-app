@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { View, StatusBar } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -30,6 +31,7 @@ class StarredFilterConfigurator extends BaseContainer {
     super(props)
     this.state.filters = {}
     this.onFiltersChange = this.onFiltersChange.bind(this)
+    this.setScreen({screenName:R.NAV_STARRED_FILTER_CONFIGURATOR, className:'StarredFilterConfigurator'})
   }
 
   componentDidMount() {

@@ -5,7 +5,8 @@ import { fbAnalytics } from '../../configureFirebase'
 import { View, StatusBar, Text} from 'react-native'
 import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import T from '../T'
 import F from '../F'
 import L from '../L'
@@ -19,7 +20,9 @@ class SignUpWithEmail extends BaseContainer {
     return ({
       ...S.inverseNavigation,
       headerLeft: (
-        <NavHeaderBackButton left={true} onPress={navigation.goBack} inverse={true} />
+        <NavHeaderBackButton left={true} inverse={true}
+          onPress={() => navigation.state.params.onBounce()}
+        />
       )
     })
   }
@@ -28,10 +31,17 @@ class SignUpWithEmail extends BaseContainer {
     super(props)
     this.state = { name:null, email:null, password:null, confirmation:null }
     this.onSignUp = this.onSignUp.bind(this)
+    this.setScreen({screenName:R.NAV_USER_SIGNUP_WITH_EMAIL, className:'SignUpWithEmail'})
   }
 
   componentDidMount() {
-    this.setCurrentScreen(E.signup_with_email_screen)
+    super.componentDidMount()
+    this.props.navigation.setParams({
+      onBounce: () => {
+        this.logEvent(E.auth_signup_bounce, { screen:R.NAV_USER_SIGNUP_WITH_EMAIL })
+        this.props.navigation.goBack()
+      }
+    })
   }
 
   onSignUp() {
@@ -41,11 +51,8 @@ class SignUpWithEmail extends BaseContainer {
     if (this.state.name === null || this.state.name === '') {
       return this.errorToast(L.nameFail)
     }
+    this.logEvent(E.auth_signed_up, { email: this.state.email })
     FirebaseAuth.register(this.state.name, this.state.email, this.state.password)
-    this.logEvent(E.event_user_signup_submitted, {
-      name: this.state.name,
-      email: this.state.email,
-    })
   }
 
   render() {

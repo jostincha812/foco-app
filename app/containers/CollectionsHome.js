@@ -1,14 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C, { E } from '../C'
-import BaseCollectionsListContainer from './BaseCollectionsListContainer'
+import C from '../C'
+import { E, R } from '../constants'
 
+import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 import CurrentUser from '../auth/CurrentUser'
 import { resetCollectionsState, fetchUserBookmarkedCollections } from '../actions/collections'
 import { upsertUserCollectionPrefs } from '../actions/userPrefs'
 
-class CollectionHome extends BaseCollectionsListContainer {
+class CollectionsHome extends BaseCollectionsListContainer {
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_COLLECTIONS_HOME, className:'CollectionsHome'})
+  }
+
   _fetchData() {
     const user = this.props.user
     this.props.fetchUserBookmarkedCollections(user.uid)
@@ -58,4 +64,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CollectionHome)
+)(CollectionsHome)

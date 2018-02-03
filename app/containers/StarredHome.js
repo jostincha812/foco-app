@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
@@ -41,6 +42,7 @@ class StarredHome extends BaseFlashcardsListContainer {
     this.state.filters[C.TAG_TYPE_REGIONS] = {}
     this.state.filters[C.TAG_TYPE_VARIETALS] = {}
     this.onDone = this.onDone.bind(this)
+    this.setScreen({screenName:R.NAV_STARRED_HOME, className:'StarredHome'})
   }
 
   componentDidMount() {

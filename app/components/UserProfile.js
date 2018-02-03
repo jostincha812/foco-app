@@ -35,7 +35,6 @@ export default class UserProfile extends React.Component {
     const profile = this.props.profile
     const style = this.props.style
     const hasPhoto = profile.photoURL ? true : false
-    console.log(profile)
 
     const list = [
       {

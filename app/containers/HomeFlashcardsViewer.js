@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
+
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import FlashcardsList from '../components/FlashcardsList'
@@ -20,6 +22,11 @@ class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
         <NavHeaderBackButton left={true} onPress={navigation.goBack} />
       )
     })
+  }
+
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_HOME_FLASHCARDS_VIEWER, className:'HomeFlashcardsViewer'})
   }
 
   _fetchData() {

@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { View, StatusBar } from 'react-native'
 
-import C, { E } from '../C'
+import C from '../C'
+import { E, R } from '../constants'
 import T from '../T'
 import L from '../L'
 import S from '../styles/styles'
@@ -26,10 +27,10 @@ class Splash extends BaseContainer {
     this.onEmailVerified = this.onEmailVerified.bind(this)
     this.onError = this.onError.bind(this)
     this.unsubscribe = null
+    this.setScreen({screenName:'Splash', className:'Splash'})
   }
 
   componentDidMount() {
-    this.setCurrentScreen(E.signin_home)
     CurrentUser.setup(
       (initialized) => this.setState({ initialized }),
       this.onLogin,
@@ -53,22 +54,23 @@ class Splash extends BaseContainer {
   }
 
   onLogin(user) {
-    this.logEvent(E.event_user_signin_completed, user)
+    console.log({uid: user.uid, provider: user.providerId})
+    this.logEvent(E.user_signed_in, {uid: user.uid, provider: user.providerId})
     this.props.navigation.navigate(C.NAV_HOME_TAB)
   }
 
-  onLogout() {
-    this.logEvent(E.event_user_signed_out)
+  onLogout(user) {
+    this.logEvent(E.user_signed_out, {uid: user.uid})
     this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME)
   }
 
   onEmailVerified() {
-    this.logEvent(E.event_user_email_verified)
+    this.logEvent(E.user_email_verified)
   }
 
   onError(e) {
+    this.logEvent(E.firebase_error, e)
     this.errorToast(e.message)
-    this.logEvent(E.event_firebase_error, e)
   }
 
   render() {

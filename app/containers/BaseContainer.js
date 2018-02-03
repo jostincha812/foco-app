@@ -11,7 +11,7 @@ export default class BaseContainer extends React.Component {
   constructor(props) {
     super(props)
     this.logEvent = this.logEvent.bind(this)
-    this.setCurrentScreen = this.setCurrentScreen.bind(this)
+    this.setScreen = this.setScreen.bind(this)
     this.onLayout = this.onLayout.bind(this)
     this.onRefresh = this.onRefresh.bind(this)
     this.toast = null
@@ -24,11 +24,12 @@ export default class BaseContainer extends React.Component {
   }
 
   logEvent(event, params) {
-    fbAnalytics.logEvent(event, params)
+    fbAnalytics.logEvent(event, { ...this._screen, ...params })
   }
 
-  setCurrentScreen(screen) {
-    fbAnalytics.setCurrentScreen(screen.screenName, screen.screenClassOverride)
+  setScreen({ screenName, className }) {
+    this._screen = { screenName: screenName, screenClassOverride: className }
+    fbAnalytics.setCurrentScreen(screenName, className)
   }
 
   onLayout(event) {
