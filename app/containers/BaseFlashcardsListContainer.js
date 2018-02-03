@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StatusBar, RefreshControl } from 'react-native'
+import { Dimensions, View, StatusBar, RefreshControl } from 'react-native'
 
+import { E } from '../constants'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FlashcardsList from '../components/FlashcardsList'
@@ -11,7 +12,7 @@ import BackToTopButton from '../components/BackToTopButton'
 export default class BaseFlashcardsListContainer extends BaseContainer {
   constructor(props) {
     super(props)
-    this.state = { ...this.state, showBackToTop: false }
+    this.state = { ...this.state, showBackToTop: false, reachedEnd: false }
     this.onPrefToggle = this.onPrefToggle.bind(this)
     this.onScroll = this.onScroll.bind(this)
     this.onScrollToTopPress = this.onScrollToTopPress.bind(this)
@@ -40,21 +41,51 @@ export default class BaseFlashcardsListContainer extends BaseContainer {
     const passThreshold = yOffset > (this.state.dimensions.height * 1.5)
     if (!this.state.showBackToTop && passThreshold) {
       this.setState({ showBackToTop: true })
+      this.logEvent(E.user_action_flashcards_scrolled, {
+        uid: this.props.user.uid,
+        ...this._screen,
+      })
     }
 
     if (this.state.showBackToTop && !passThreshold) {
       this.setState({ showBackToTop: false })
     }
+
+    const user = this.props.user
+    const windowHeight = Dimensions.get('window').height
+    const scrolledToEnd = (windowHeight + yOffset) >= e.nativeEvent.contentSize.height
+    if (!this.state.reachedEnd && scrolledToEnd) {
+      this.setState({ reachedEnd: true })
+      this.logEvent(E.user_action_flashcards_scrolled, {
+        uid: user.uid,
+        location: 'end',
+        ...this._screen,
+      })
+    } else if (this.state.reachedEnd && !scrolledToEnd) {
+      this.setState({ reachedEnd: false })
+    }
   }
 
   onScrollToTopPress() {
+    const user = this.props.user
     this.refs['_SCROLLVIEW'].scrollTo({x: 0, y: 0, animated: true})
+    this.logEvent(E.user_action_collections_scrolled, {
+      uid: user.uid,
+      location: 'start',
+      ...this._screen,
+    })
   }
 
   onPrefToggle(id, pref) {
     const user = this.props.user
     const flashcard = this.props.flashcards[id]
     this._updatePref({user, flashcard, pref})
+    this.logEvent(E.user_action_flashcard_pref_updated, {
+      uid: user.uid,
+      flashcardId: flashcard.id,
+      pref,
+      ...this._screen,
+    })
   }
 
   _fetchData() {

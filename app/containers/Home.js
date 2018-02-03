@@ -39,11 +39,6 @@ class Home extends BaseCollectionsListContainer {
       collection.id,
       pref,
     )
-    this.logEvent(E.event_update_user_collection_pref, {
-      userId: user.uid,
-      collectionId: collection.id,
-      pref
-    })
   }
 
   _viewerRoute() {

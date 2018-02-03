@@ -1,7 +1,7 @@
 import React from 'react'
-import { StatusBar, View, ScrollView, RefreshControl } from 'react-native'
+import { Dimensions, StatusBar, View, ScrollView, RefreshControl } from 'react-native'
 
-import C, { E } from '../C'
+import { E } from '../constants'
 import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import CollectionCard from '../components/CollectionCard'
@@ -12,11 +12,11 @@ import BackToTopButton from '../components/BackToTopButton'
 export default class CollectionHome extends BaseContainer {
   constructor(props) {
     super(props)
-    this.state = { ...this.state, showBackToTop: false }
-    this.onPrefToggle = this.onPrefToggle.bind(this)
-    this.onCollectionPress = this.onCollectionPress.bind(this)
+    this.state = { ...this.state, showBackToTop: false, reachedEnd: false }
     this.onScroll = this.onScroll.bind(this)
     this.onScrollToTopPress = this.onScrollToTopPress.bind(this)
+    this.onCollectionPress = this.onCollectionPress.bind(this)
+    this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
   componentDidMount() {
@@ -37,33 +37,67 @@ export default class CollectionHome extends BaseContainer {
     this._fetchData()
   }
 
-  onPrefToggle(collectionId, pref) {
-    const user = this.props.user
-    const collection = {id:collectionId, ...this.props.collections[collectionId]}
-    this._updatePref({user, collection, pref})
-  }
-
   onScroll(e) {
     const yOffset = e.nativeEvent.contentOffset.y
     const passThreshold = yOffset > (this.state.dimensions.height * 1.5)
     if (!this.state.showBackToTop && passThreshold) {
       this.setState({ showBackToTop: true })
+      this.logEvent(E.user_action_collections_scrolled, {
+        uid: this.props.user.uid,
+        ...this._screen,
+      })
     }
 
     if (this.state.showBackToTop && !passThreshold) {
       this.setState({ showBackToTop: false })
     }
+
+    const user = this.props.user
+    const windowHeight = Dimensions.get('window').height
+    const scrolledToEnd = (windowHeight + yOffset) >= e.nativeEvent.contentSize.height
+    if (!this.state.reachedEnd && scrolledToEnd) {
+      this.setState({ reachedEnd: true })
+      this.logEvent(E.user_action_collections_scrolled, {
+        uid: user.uid,
+        location: 'end',
+        ...this._screen,
+      })
+    } else if (this.state.reachedEnd && !scrolledToEnd) {
+      this.setState({ reachedEnd: false })
+    }
   }
 
   onScrollToTopPress() {
     this.refs['_SCROLLVIEW'].scrollTo({x: 0, y: 0, animated: true})
+    this.logEvent(E.user_action_collections_scrolled, {
+      uid: user.uid,
+      location: 'start',
+      ...this._screen,
+    })
   }
 
   onCollectionPress(collection) {
     const navigation = this.props.navigation
     const user = this.props.user
+    this.logEvent(E.user_action_collection_selected, {
+      uid: user.uid,
+      collectionId: collection.id,
+      ...this._screen,
+    })
     navigation.navigate(this._viewerRoute(), {
       user, collection
+    })
+  }
+
+  onPrefToggle(collectionId, pref) {
+    const user = this.props.user
+    const collection = {id:collectionId, ...this.props.collections[collectionId]}
+    this._updatePref({user, collection, pref})
+    this.logEvent(E.user_action_collection_pref_updated, {
+      uid: user.uid,
+      collectionId: collection.id,
+      pref,
+      ...this._screen,
     })
   }
 
