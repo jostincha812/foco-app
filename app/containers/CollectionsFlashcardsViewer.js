@@ -50,11 +50,6 @@ class CollectionsFlashcardsViewer extends BaseFlashcardsListContainer {
       flashcard.id,
       pref,
     )
-    this.logEvent(E.event_update_flashcard_pref, {
-      userId: user.uid,
-      flashcardId: flashcard.id,
-      pref
-    })
   }
 }
 
