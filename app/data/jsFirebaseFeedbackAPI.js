@@ -2,7 +2,7 @@ import refs from './JsFbRefs'
 import { UserDefaults } from './defaults'
 
 export default JsFbUserProfileAPI = {
-  insertFeedback: (user, inputs) => {
+  insertFeedback: (user, inputs, meta) => {
     const data = {
       uid: user.uid,
       displayName: user.displayName,
@@ -10,7 +10,8 @@ export default JsFbUserProfileAPI = {
       submittedName: inputs.name,
       submittedEmail: inputs.email,
       feedback: inputs.feedback,
-      submitted: new Date().toUTCString(),
+      submitted: meta.date,
+      version: meta.version,
     }
     return refs.feedback().push(data)
   },

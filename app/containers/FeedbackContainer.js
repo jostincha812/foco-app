@@ -23,11 +23,10 @@ class FeedbackContainer extends BaseContainer {
       title: L.feedback,
       headerLeft: <NavHeaderBackButton left={true} onPress={navigation.goBack} />,
       headerRight: <NavHeaderSendButton label={L.send} right={true} onPress={() => {
-        const user = navigation.state.params.getUserProfile()
-        const inputs = navigation.state.params.getFormInput()
-        navigation.state.params.submitFeedback(user, inputs)
-        // TODO move feedback to recipient
-        navigation.state.params.successToast(L.submitted)
+        // const user = navigation.state.params.getUserProfile()
+        // const inputs = navigation.state.params.getFormInput()
+        // navigation.state.params.submitFeedback(user, inputs)
+        navigation.state.params.submitFeedback()
         setTimeout(() => navigation.goBack())
         // using fix referenced here:
         // https://github.com/react-community/react-navigation/issues/1912#issuecomment-327791208
@@ -39,6 +38,7 @@ class FeedbackContainer extends BaseContainer {
     super(props)
     this.state.form = { name:'', email:'', feedback:'' }
     this.onFormChange = this.onFormChange.bind(this)
+    this.onSubmitFeedback = this.onSubmitFeedback.bind(this)
     this.setScreen({screenName:R.NAV_USER_PROFILE_SEND_FEEDBACK, className:'FeedbackContainer'})
   }
 
@@ -51,9 +51,9 @@ class FeedbackContainer extends BaseContainer {
       })
     }
     this.props.navigation.setParams({
-      getFormInput: () => this.state.form,
-      getUserProfile: () => this.props.profile,
-      submitFeedback: this.props.submitFeedback,
+      // getFormInput: () => this.state.form,
+      // getUserProfile: () => this.props.profile,
+      submitFeedback: this.onSubmitFeedback,
       successToast: this.successToast,
     })
   }
@@ -62,6 +62,23 @@ class FeedbackContainer extends BaseContainer {
     const state = {...this.state.form}
     state[key] = val
     this.setState({form: state})
+  }
+
+  onSubmitFeedback() {
+    const user = this.props.profile
+    const inputs = this.state.form
+    const meta = {
+      date: new Date().toUTCString(),
+      version: C.VERSION
+    }
+    console.log({user, inputs, meta})
+    this.props.submitFeedback(user, inputs, meta)
+    this.props.navigation.state.params.successToast(L.submitted)
+    this.logEvent(E.user_feedback_submitted, {
+      uid: user.uid,
+      feedback: inputs.feedback,
+      ...meta
+    })
   }
 
   render() {
@@ -86,7 +103,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    submitFeedback: (user, inputs) => dispatch(submitFeedback(user, inputs)),
+    submitFeedback: (user, inputs, meta) => dispatch(submitFeedback(user, inputs, meta)),
   }
 }
 

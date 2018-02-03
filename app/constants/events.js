@@ -1,6 +1,6 @@
 export default events = {
   firebase_error: 'firebase_error',
-  // user_actions: 'user_actions',
+
   auth_signin_bounce: 'auth_signin_bounce',
   auth_signup_bounce: 'auth_signup_bounce',
   auth_signing_in: 'auth_signing_in',
@@ -15,19 +15,7 @@ export default events = {
   user_action_collection_pref_updated: 'user_action_collection_pref_updated',
   user_action_flashcards_scrolled: 'user_action_flashcards_scrolled',
   user_action_flashcard_selected: 'user_action_flashcard_selected',
-  user_action_flashcard_pref_updated: 'user_action_flashcard_pref_updated'
+  user_action_flashcard_pref_updated: 'user_action_flashcard_pref_updated',
 
-  // event_configure_set: 'configure_set',
-  // event_configure_set_saved: 'configure_set_saved',
-  // event_configure_set_deleted: 'configure_set_deleted',
-  // event_configure_set_aborted: 'configure_set_aborted',
-  // view_set: 'view_set',
-  // view_set_aborted: 'view_set_aborted',
-  // view_set_completed: 'view_set_completed',
-  // collection_type_featured: 'collection_type_featured',
-  // collection_type_bookmarked: 'collection_type_bookmarked',
-  // collection_type_starred: 'collection_type_starred',
-  // collection_type_user: 'collection_type_user',
-  // update_flashcard_pref: 'update_flashcard_pref',
-  // update_collection_pref: 'update_collection_pref',
+  user_feedback_submitted: 'user_feedback_submitted',
 }
