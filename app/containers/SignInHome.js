@@ -30,7 +30,7 @@ export default class SignInHome extends BaseContainer {
   render() {
     return (
       <View style={[S.containers.screen, S.containers.centered]}>
-        <StatusBar barStyle={S.inverseStatusBarStyle} />
+        <StatusBar barStyle={S.statusBarStyle} />
 
         <View style={{flex:1, justifyContent:'flex-end'}}>
           <Intro large={true}/>

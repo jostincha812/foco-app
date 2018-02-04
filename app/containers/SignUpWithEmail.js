@@ -19,9 +19,8 @@ import NavHeaderBackButton from '../components/NavHeaderBackButton'
 class SignUpWithEmail extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
-      ...S.inverseNavigation,
       headerLeft: (
-        <NavHeaderBackButton left={true} inverse={true}
+        <NavHeaderBackButton left={true} inverse={false}
           onPress={() => navigation.state.params.onBounce()}
         />
       )
@@ -60,7 +59,7 @@ class SignUpWithEmail extends BaseContainer {
     return (
       <View style={[S.containers.screen, S.containers.normal]}>
           <View style={S.containers.normal}>
-            <Text style={[S.text.hero]}>
+            <Text style={[S.text.title]}>
               {L.createAccount}
             </Text>
             <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>

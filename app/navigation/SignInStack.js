@@ -2,6 +2,7 @@ import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
+import S from '../styles'
 
 import Splash from '../containers/Splash'
 import SignInHome from '../containers/SignInHome'
@@ -20,6 +21,8 @@ const SignInStack = StackNavigator(STACK,  {
   navigationOptions: ({navigation}) => ({
     title: null,
     gesturesEnabled: false,
+    ...S.navigation.header,
+    headerLeft: null,
   }),
 })
 
