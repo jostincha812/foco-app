@@ -8,8 +8,8 @@ import textStyles from './textStyles'
 import navigationStyles from './navigationStyles'
 
 export default styles = {
-  statusBarStyle: 'light-content',
-  inverseStatusBarStyle: 'dark-content',
+  statusBarStyle: 'dark-content',
+  inverseStatusBarStyle: 'light-content',
 
   spacing: spacing,
   navigation: navigationStyles,

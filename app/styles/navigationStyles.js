@@ -21,14 +21,14 @@ export default navigationStyles = {
   // navigation header styles
   header: {
     headerBackTitle: null,
-    headerTintColor: T.colors.inverse,
+    headerTintColor: T.colors.app,
     headerTitleStyle: {
       fontWeight: F.weights.hero,
       fontSize: F.sizes.normal,
-      color: T.colors.inverse,
+      color: T.colors.normal,
     },
     headerStyle: {
-      backgroundColor: T.colors.app,
+      backgroundColor: T.colors.headerBackground,
       borderBottomWidth: 0.5,
       borderBottomColor: T.colors.headerBorder,
       elevation: 0,
@@ -42,9 +42,16 @@ export default navigationStyles = {
   },
 
   inverseHeader: {
-    headerTintColor: T.colors.app,
+    headerTintColor: T.colors.inverse,
     headerTitleStyle: {
-      color: T.colors.normal,
+      color: T.colors.inverse,
+    }
+  },
+
+  inactiveHeader: {
+    headerTintColor: T.colors.inactive,
+    headerTitleStyle: {
+      color: T.colors.inactive,
     }
   }
 }
