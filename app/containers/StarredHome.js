@@ -10,11 +10,7 @@ import NavHeaderFilterToggleButton from '../components/NavHeaderFilterToggleButt
 import CurrentUser from '../auth/CurrentUser'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
-import flashcards from '../flashcards'
-console.log(flashcards)
-const { actions, FlashcardsList } = flashcards
-// import FlashcardsList from '../components/FlashcardsList'
-// import { resetFlashcardsState, fetchUserStarredFlashcards } from '../actions/flashcards'
+import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
 class StarredHome extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
@@ -144,8 +140,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    resetFlashcardsState: () => dispatch(actions.resetFlashcardsState(ns)),
-    fetchUserStarredFlashcards: (userId) => dispatch(actions.fetchUserStarredFlashcards(ns, userId)),
+    resetFlashcardsState: () => dispatch(FlashcardActions.resetFlashcardsState(ns)),
+    fetchUserStarredFlashcards: (userId) => dispatch(FlashcardActions.fetchUserStarredFlashcards(ns, userId)),
     upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(upsertUserFlashcardPrefs(userId, flashcardId, prefs))
   }
 }

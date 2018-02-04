@@ -11,9 +11,7 @@ import EmptyListScreen from '../components/EmptyListScreen'
 import CurrentUser from '../auth/CurrentUser'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
 
-import flashcards from '../flashcards'
-const { actions, FlashcardsList } = flashcards
-// import { resetFlashcardsState, fetchFlashcards } from '../actions/flashcards'
+import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
 class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
@@ -67,8 +65,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    resetFlashcardsState: () => dispatch(actions.resetFlashcardsState(ns)),
-    fetchFlashcards: (ids, userId) => dispatch(actions.fetchFlashcards(ns, ids, userId)),
+    resetFlashcardsState: () => dispatch(FlashcardActions.resetFlashcardsState(ns)),
+    fetchFlashcards: (ids, userId) => dispatch(FlashcardActions.fetchFlashcards(ns, ids, userId)),
     upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(upsertUserFlashcardPrefs(userId, flashcardId, prefs))
   }
 }

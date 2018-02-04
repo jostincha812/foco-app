@@ -5,10 +5,4 @@ import reducer from './reducer'
 import FlashcardItem from './components/Flashcard'
 import FlashcardsList from './components/FlashcardsList'
 
-export default {
-  actions,
-  actionTypes,
-  reducer,
-  FlashcardItem,
-  FlashcardsList
-}
+export { actions, actionTypes, reducer, FlashcardItem, FlashcardsList }

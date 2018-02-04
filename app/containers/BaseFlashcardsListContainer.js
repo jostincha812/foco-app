@@ -8,9 +8,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import BackToTopButton from '../components/BackToTopButton'
 
-// import FlashcardsList from '../components/FlashcardsList'
-import flashcards from '../flashcards'
-const { FlashcardsList } = flashcards
+import { FlashcardsList } from '../flashcards'
 
 export default class BaseFlashcardsListContainer extends BaseContainer {
   constructor(props) {
