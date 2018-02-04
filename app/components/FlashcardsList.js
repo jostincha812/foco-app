@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView } from 'react-native'
 
 import C from '../C'
-import S from '../styles/styles'
+import S from '../styles'
 import Flashcard from '../components/Flashcard'
 
 export default class FlashcardsList extends React.Component {

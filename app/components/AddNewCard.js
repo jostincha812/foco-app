@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 
 import C from '../C'
 import T from '../T'
-import S from '../styles/styles'
+import S from '../styles'
 
 import Icons from '../components/Icons'
 

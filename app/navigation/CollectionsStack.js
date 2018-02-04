@@ -2,8 +2,8 @@ import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
+import S from '../styles'
 import L from '../L'
-import S from '../styles/styles'
 
 import Icons from '../components/Icons'
 import CollectionsHome from '../containers/CollectionsHome'
@@ -15,11 +15,11 @@ STACK[C.NAV_COLLECTIONS_FLASHCARDS_VIEWER] = { screen: CollectionsFlashcardsView
 
 const CollectionStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    ...S.navigation,
+    ...S.navigation.header,
     title: L.headers.collections,
     tabBarLabel: L.tabs.collections,
     tabBarIcon: ({ focused, tintColor }) => (
-      Icons.bookmark({ focused, color:tintColor, size:S.tabNav.iconSize })
+      Icons.bookmark({ focused, color:tintColor, ...S.navigation.tabBarIcon })
     ),
   })
 })

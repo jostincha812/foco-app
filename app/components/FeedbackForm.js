@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { FormLabel, FormInput } from 'react-native-elements'
 
-import S from '../styles/styles'
+import S from '../styles'
 
 export default class FeedbackForm extends React.Component {
   constructor() {

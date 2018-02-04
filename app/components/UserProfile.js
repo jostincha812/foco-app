@@ -6,7 +6,7 @@ import { List, ListItem } from 'react-native-elements'
 import C from '../C'
 import T from '../T'
 import L from '../L'
-import S from '../styles/styles'
+import S from '../styles'
 import StyledText from '../lib/StyledText'
 
 export default class UserProfile extends React.Component {

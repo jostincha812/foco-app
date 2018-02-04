@@ -7,10 +7,11 @@ import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
 import C from '../C'
 import { E, R } from '../constants'
+import S from '../styles'
+
 import T from '../T'
 import F from '../F'
 import L from '../L'
-import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'

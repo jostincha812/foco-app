@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, StatusBar, View, ScrollView, RefreshControl } from 'react-native'
 
 import { E } from '../constants'
-import S from '../styles/styles'
+import S from '../styles'
 import BaseContainer from './BaseContainer'
 import CollectionCard from '../components/CollectionCard'
 import LoadingScreen from '../components/LoadingScreen'

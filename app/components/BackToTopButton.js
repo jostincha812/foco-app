@@ -4,7 +4,7 @@ import { Icon } from 'react-native-elements'
 
 import L from '../L'
 import T from '../T'
-import S from '../styles/styles'
+import S from '../styles'
 
 export default class BackToTopButton extends React.Component {
   render() {

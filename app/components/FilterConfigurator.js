@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native'
 
 import C from '../C'
 import L from '../L'
-import S from '../styles/styles'
+import S from '../styles'
 import TagsSelector from '../components/TagsSelector'
 import StyledText from '../lib/StyledText'
 

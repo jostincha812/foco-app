@@ -2,7 +2,7 @@ import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 
 import T from '../T'
-import S from '../styles/styles'
+import S from '../styles'
 import Icons from './Icons'
 import CurrentUser from '../auth/CurrentUser'
 

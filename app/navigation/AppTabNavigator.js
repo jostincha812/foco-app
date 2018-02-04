@@ -1,10 +1,9 @@
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
 
-import T from '../T'
 import C from '../C'
+import S from '../styles'
 
-import S from '../styles/styles'
 import HomeStack from './HomeStack'
 import CollectionsStack from './CollectionsStack'
 import StarredStack from './StarredStack'
@@ -28,14 +27,11 @@ const AppTabNavigator = TabNavigator(TABS, {
   tabBarOptions: {
     showIcon: true,
     showLabel: false,
-    activeTintColor: T.colors.active,
-    inactiveTintColor: T.colors.inactive,
-    style: {
-      backgroundColor: T.colors.tabNavBackground,
-    },
-    labelStyle: {
-      marginBottom: 4,
-    },
+    // style: S.navigation.tabBar,
+    // labelStyle: {
+    //   marginBottom: 4,
+    // },
+    ...S.navigation.tabBarOptions,
   },
 })
 

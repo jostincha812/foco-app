@@ -3,7 +3,7 @@ import { ScrollView, Text } from 'react-native'
 
 import T from '../T'
 import L from '../L'
-import S from '../styles/styles'
+import S from '../styles'
 
 export default class EmptyListScreen extends React.Component {
   render() {

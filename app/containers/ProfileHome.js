@@ -4,12 +4,11 @@ import { connect } from 'react-redux'
 import { ScrollView, StatusBar } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 
-import C from '../C'
-import { E, R } from '../constants'
+import { R } from '../constants'
+import T from '../T'
+import S from '../styles'
 
 import L from '../L'
-import T from '../T'
-import S from '../styles/styles'
 import BaseContainer from './BaseContainer'
 import UserProfile from '../components/UserProfile'
 import LoadingScreen from '../components/LoadingScreen'
@@ -35,7 +34,7 @@ class ProfileHome extends BaseContainer {
       {
         title: L.feedback,
         icon: 'rate-review',
-        onPress: () => props.navigation.navigate(C.NAV_USER_PROFILE_SEND_FEEDBACK)
+        onPress: () => props.navigation.navigate(R.NAV_USER_PROFILE_SEND_FEEDBACK)
       },
       // {
       //   title: L.support,
@@ -78,7 +77,7 @@ class ProfileHome extends BaseContainer {
           }
 
           <ListItem
-            key={C.NAV_SIGNOUT}
+            key={R.NAV_SIGNOUT}
             hideChevron={true}
             title={L.signOut}
             titleStyle={[S.text.listTitle, {color:T.colors.active}]}

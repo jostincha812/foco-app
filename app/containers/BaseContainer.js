@@ -5,7 +5,7 @@ import Toast from 'react-native-root-toast'
 
 import { fbAnalytics } from '../../configureFirebase'
 import T from '../T'
-import S from '../styles/styles'
+import S from '../styles'
 
 export default class BaseContainer extends React.Component {
   constructor(props) {

@@ -2,9 +2,8 @@ import React from 'react';
 import { ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import C from '../C';
 import T from '../T';
-import S from '../styles/styles';
+import S from '../styles';
 import Icons from '../components/Icons'
 
 import Card from '../lib/Card';
@@ -14,13 +13,6 @@ import CarouselCard from '../lib/CarouselCard'
 class IconsHome extends React.Component {
   static navigationOptions = ({navigation}) => ({
     title: 'Icons Preview',
-    // headerLeft: (
-    //   <TouchableOpacity
-    //     style={{top:S.spacing.xsmall/2, paddingLeft: S.spacing.small}}
-    //     onPress={() => navigation.navigate('DrawerOpen') }>
-    //     {Icons.menu({tintColor: S.navigation.headerTintColor})}
-    //   </TouchableOpacity>
-    // ),
   })
 
   render() {

@@ -6,7 +6,7 @@ import { FormInput, Button } from 'react-native-elements'
 import T from '../T'
 import F from '../F'
 import L from '../L'
-import S from '../styles/styles'
+import S from '../styles'
 
 export default class SignInWithEmailForm extends React.Component {
   constructor() {

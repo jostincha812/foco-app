@@ -1,6 +1,9 @@
 import T from '../T'
 import F from '../F'
-import S from './styles'
+
+import spacing from './spacing'
+import text from './textStyles'
+// import S from './styles'
 
 export default markdown = {
   codeBlock: {
@@ -11,15 +14,15 @@ export default markdown = {
     fontWeight: F.weights.bold,
   },
   heading1: {
-    ...S.text.title
+    ...text.title
     // fontSize: 32,
   },
   heading2: {
-    ...S.text.subtitle
+    ...text.subtitle
     // fontSize: 24,
   },
   heading3: {
-    ...S.text.subtitle,
+    ...text.subtitle,
     textDecorationLine: 'underline'
     // fontSize: 20,
   },
@@ -43,10 +46,10 @@ export default markdown = {
     // borderWidth: 1,
   },
   paragraph: {
-    marginBottom: S.spacing.small,
+    marginBottom: spacing.small,
   },
   text: {
-    ...S.text.normal,
+    ...text.normal,
   },
   strong: {
     fontWeight: F.weights.bold,

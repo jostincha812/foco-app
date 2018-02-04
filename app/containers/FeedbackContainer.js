@@ -5,9 +5,10 @@ import { NavigationActions } from 'react-navigation'
 
 import C from '../C'
 import { E, R } from '../constants'
+import S from '../styles'
+
 import T from '../T'
 import L from '../L'
-import S from '../styles/styles'
 
 import BaseContainer from './BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
@@ -71,7 +72,6 @@ class FeedbackContainer extends BaseContainer {
       date: new Date().toUTCString(),
       version: C.VERSION
     }
-    console.log({user, inputs, meta})
     this.props.submitFeedback(user, inputs, meta)
     this.props.navigation.state.params.successToast(L.submitted)
     this.logEvent(E.user_feedback_submitted, {

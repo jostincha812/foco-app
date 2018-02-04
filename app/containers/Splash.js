@@ -5,9 +5,7 @@ import { View, StatusBar } from 'react-native'
 
 import C from '../C'
 import { E, R } from '../constants'
-import T from '../T'
-import L from '../L'
-import S from '../styles/styles'
+import S from '../styles'
 import BaseContainer from './BaseContainer'
 import LoadingIndicator from '../components/LoadingIndicator'
 
@@ -54,7 +52,6 @@ class Splash extends BaseContainer {
   }
 
   onLogin(user) {
-    console.log({uid: user.uid, provider: user.providerId})
     this.logEvent(E.user_signed_in, {uid: user.uid, provider: user.providerId})
     this.props.navigation.navigate(C.NAV_HOME_TAB)
   }
@@ -75,7 +72,7 @@ class Splash extends BaseContainer {
 
   render() {
     return (
-      <View style={[S.containers.screen, S.containers.centered, {backgroundColor:T.colors.app}]}>
+      <View style={[S.containers.screen, S.containers.centered, S.containers.splashScreen]}>
          <StatusBar barStyle={S.statusBarStyle} />
          <LoadingIndicator large={true} inverse={true} />
       </View>

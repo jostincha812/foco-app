@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import C from '../C'
 import T from '../T'
 import L from '../L'
-import S from '../styles/styles'
+import S from '../styles'
 
 import Pill from '../lib/Pill'
 

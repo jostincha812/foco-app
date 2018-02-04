@@ -5,7 +5,7 @@ import C from '../C'
 import T from '../T'
 import F from '../F'
 import L from '../L'
-import S from '../styles/styles'
+import S from '../styles'
 
 import Icons from '../components/Icons'
 

@@ -2,8 +2,8 @@ import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
+import S from '../styles'
 import L from '../L'
-import S from '../styles/styles'
 
 import Icons from '../components/Icons'
 import StarredHome from '../containers/StarredHome'
@@ -15,11 +15,11 @@ STACK[C.NAV_STARRED_FILTER_CONFIGURATOR] = { screen: StarredFilterConfigurator }
 
 const StarredStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    ...S.navigation,
+    ...S.navigation.header,
     title: L.headers.starred,
     tabBarLabel: L.tabs.starred,
     tabBarIcon: ({ focused, tintColor }) => (
-      Icons.star({ focused, color:tintColor, size:S.tabNav.iconSize })
+      Icons.star({ focused, color:tintColor, ...S.navigation.tabBarIcon })
     ),
   })
 })

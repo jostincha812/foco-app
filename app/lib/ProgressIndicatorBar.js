@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import * as Progress from 'react-native-progress'
 
 import T from '../T';
-import S from '../styles/styles';
+import S from '../styles';
 
 export default class ProgressIndicatorBar extends React.Component {
   constructor(props) {

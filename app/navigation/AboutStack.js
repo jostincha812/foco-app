@@ -3,7 +3,7 @@ import { TouchableOpacity, Image } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import C from '../C'
-import S from '../styles/styles'
+import S from '../styles'
 
 import Icons from '../components/Icons'
 import IconsHome from '../containers/IconsHome'
@@ -13,20 +13,9 @@ STACK[C.NAV_ABOUT_APP_ICONS] = { screen: IconsHome }
 
 const AboutStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
-    drawer: {
-      label: 'App Info',
-      icon: ({ focused, tintColor }) => Icons.home({ focused, tintColor }),
-    },
-    ...S.navigation,
-    headerLeft: (
-      <TouchableOpacity
-        style={{paddingLeft: S.spacing.small}}
-        onPress={() => navigation.navigate('DrawerOpen') }>
-        {Icons.menu({tintColor: S.navigation.headerTintColor})}
-      </TouchableOpacity>
-    ),
+    ...S.navigation.header,
     tabBarIcon: ({ focused, tintColor }) => (
-      Icons.about({ focused, color:tintColor })
+      Icons.about({ focused, color:tintColor, ...S.navigation.tabBarIcon })
     ),
   })
 })
