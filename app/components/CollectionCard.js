@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import C from '../C'
 import T from '../T'
 import S from '../styles'
-import L from '../L'
+import L from '../locales'
 
 import Icons from '../components/Icons'
 import DifficultyPill from '../components/DifficultyPill'

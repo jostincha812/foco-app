@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
-import L from '../L'
+import L from '../locales'
 
 import Icons from '../components/Icons'
 import CardsExample from '../containers/CardsExample'

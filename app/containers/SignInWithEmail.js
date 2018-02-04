@@ -8,7 +8,7 @@ import S from '../styles'
 
 import T from '../T'
 import F from '../F'
-import L from '../L'
+import L from '../locales'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import Intro from '../components/Intro'

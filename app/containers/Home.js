@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import C from '../C'
 import { R } from '../constants'
 import T from '../T'
-import L from '../L'
+import L from '../locales'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'

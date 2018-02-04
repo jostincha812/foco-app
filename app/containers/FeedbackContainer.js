@@ -8,7 +8,7 @@ import { E, R } from '../constants'
 import S from '../styles'
 
 import T from '../T'
-import L from '../L'
+import L from '../locales'
 
 import BaseContainer from './BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'

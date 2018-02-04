@@ -8,7 +8,7 @@ import { R } from '../constants'
 import T from '../T'
 import S from '../styles'
 
-import L from '../L'
+import L from '../locales'
 import BaseContainer from './BaseContainer'
 import UserProfile from '../components/UserProfile'
 import LoadingScreen from '../components/LoadingScreen'

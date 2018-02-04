@@ -2,7 +2,7 @@ import React from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 
-import L from '../L'
+import L from '../locales'
 import T from '../T'
 import S from '../styles'
 

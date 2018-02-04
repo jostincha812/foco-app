@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
-import L from '../L'
+import L from '../locales'
 import BaseContainer from './BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import NavHeaderDoneButton from '../components/NavHeaderDoneButton'

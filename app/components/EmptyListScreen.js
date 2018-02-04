@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, Text } from 'react-native'
 
 import T from '../T'
-import L from '../L'
+import L from '../locales'
 import S from '../styles'
 
 export default class EmptyListScreen extends React.Component {
