@@ -4,10 +4,13 @@ import { Dimensions, View, StatusBar, RefreshControl } from 'react-native'
 import { E } from '../constants'
 import S from '../styles'
 import BaseContainer from './BaseContainer'
-import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import BackToTopButton from '../components/BackToTopButton'
+
+// import FlashcardsList from '../components/FlashcardsList'
+import flashcards from '../flashcards'
+const { FlashcardsList } = flashcards
 
 export default class BaseFlashcardsListContainer extends BaseContainer {
   constructor(props) {

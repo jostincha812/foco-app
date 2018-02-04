@@ -5,13 +5,15 @@ import C, { R } from '../constants'
 
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
-import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
 import CurrentUser from '../auth/CurrentUser'
-import { resetFlashcardsState, fetchFlashcards } from '../actions/flashcards'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
+
+import flashcards from '../flashcards'
+const { actions, FlashcardsList } = flashcards
+// import { resetFlashcardsState, fetchFlashcards } from '../actions/flashcards'
 
 class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
@@ -65,8 +67,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    resetFlashcardsState: () => dispatch(resetFlashcardsState(ns)),
-    fetchFlashcards: (ids, userId) => dispatch(fetchFlashcards(ns, ids, userId)),
+    resetFlashcardsState: () => dispatch(actions.resetFlashcardsState(ns)),
+    fetchFlashcards: (ids, userId) => dispatch(actions.fetchFlashcards(ns, ids, userId)),
     upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(upsertUserFlashcardPrefs(userId, flashcardId, prefs))
   }
 }

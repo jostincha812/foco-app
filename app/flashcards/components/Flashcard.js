@@ -3,14 +3,13 @@ import { View, ScrollView, TouchableOpacity } from 'react-native'
 import { MarkdownView } from 'react-native-markdown-view'
 import FlipCard from 'react-native-flip-card'
 
-import C from '../constants'
-import T from '../T'
-import S from '../styles'
-import MDStyles from '../styles/markdown'
-import PremiumContentContainer from '../components/PremiumContentContainer'
+import C from '../../constants'
+import T from '../../T'
+import S, { markdown } from '../../styles'
 
-import Icons from './Icons'
-import PillsList from '../lib/PillsList'
+import PremiumContentContainer from '../../components/PremiumContentContainer'
+import Icons from '../../components/Icons'
+import PillsList from '../../lib/PillsList'
 
 export default class Flashcard extends React.Component {
   constructor(props) {
@@ -92,7 +91,7 @@ export default class Flashcard extends React.Component {
         >
           {flagToggle}
           {starToggle}
-          <MarkdownView styles={MDStyles}>
+          <MarkdownView styles={markdown}>
             {data.front}
           </MarkdownView>
         </TouchableOpacity>
@@ -105,7 +104,7 @@ export default class Flashcard extends React.Component {
         >
           {flagToggle}
           {starToggle}
-          <MarkdownView styles={MDStyles}>
+          <MarkdownView styles={markdown}>
             {data.back}
           </MarkdownView>
           <PillsList

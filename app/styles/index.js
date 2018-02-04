@@ -7,6 +7,9 @@ import listStyles from './listStyles'
 import textStyles from './textStyles'
 import toastStyles from './toastStyles'
 import navigationStyles from './navigationStyles'
+import markdown from './markdown'
+
+export { markdown }
 
 export default styles = {
   statusBarStyle: 'dark-content',

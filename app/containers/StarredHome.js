@@ -3,14 +3,18 @@ import { connect } from 'react-redux'
 
 import C, { E, R } from '../constants'
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
-import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import NavHeaderFilterToggleButton from '../components/NavHeaderFilterToggleButton'
 
 import CurrentUser from '../auth/CurrentUser'
-import { resetFlashcardsState, fetchUserStarredFlashcards } from '../actions/flashcards'
 import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
+
+import flashcards from '../flashcards'
+console.log(flashcards)
+const { actions, FlashcardsList } = flashcards
+// import FlashcardsList from '../components/FlashcardsList'
+// import { resetFlashcardsState, fetchUserStarredFlashcards } from '../actions/flashcards'
 
 class StarredHome extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
@@ -140,8 +144,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    resetFlashcardsState: () => dispatch(resetFlashcardsState(ns)),
-    fetchUserStarredFlashcards: (userId) => dispatch(fetchUserStarredFlashcards(ns, userId)),
+    resetFlashcardsState: () => dispatch(actions.resetFlashcardsState(ns)),
+    fetchUserStarredFlashcards: (userId) => dispatch(actions.fetchUserStarredFlashcards(ns, userId)),
     upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(upsertUserFlashcardPrefs(userId, flashcardId, prefs))
   }
 }

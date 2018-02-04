@@ -1,8 +1,8 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
 
-import S from '../styles'
-import Flashcard from '../components/Flashcard'
+import S from '../../styles'
+import Flashcard from './Flashcard'
 
 export default class FlashcardsList extends React.Component {
   scrollTo(options) {
