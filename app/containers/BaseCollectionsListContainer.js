@@ -4,10 +4,11 @@ import { Dimensions, StatusBar, View, ScrollView, RefreshControl } from 'react-n
 import { E } from '../constants'
 import S from '../styles'
 import BaseContainer from './BaseContainer'
-import CollectionCard from '../components/CollectionCard'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import BackToTopButton from '../components/BackToTopButton'
+
+import { CollectionCard } from '../collections'
 
 export default class CollectionHome extends BaseContainer {
   constructor(props) {

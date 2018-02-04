@@ -7,8 +7,9 @@ import L from '../locales'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'
-import { resetCollectionsState, fetchCollections } from '../actions/collections'
 import { upsertUserCollectionPrefs } from '../actions/userPrefs'
+
+import { actions as CollectionsActions } from '../collections'
 
 class Home extends BaseCollectionsListContainer {
   static navigationOptions = ({navigation}) => {
@@ -57,7 +58,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    fetchCollections: (ownerId, userId) => dispatch(fetchCollections(ns, ownerId, userId)),
+    fetchCollections: (ownerId, userId) => dispatch(CollectionsActions.fetchCollections(ns, ownerId, userId)),
     upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
 }

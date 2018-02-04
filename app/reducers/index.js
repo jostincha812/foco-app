@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import flashcards from '../flashcards'
-import CollectionsReducer from './collections'
+import { reducer as CollectionsReducer } from '../collections'
 import UserPrefsReducer from './userPrefs'
 import UserProfileReducer from './userProfile'
 

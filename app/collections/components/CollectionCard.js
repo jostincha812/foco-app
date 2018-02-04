@@ -1,18 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 
-import C from '../constants'
-import T from '../T'
-import S from '../styles'
-import L from '../locales'
+import C from '../../constants'
+import T from '../../T'
+import S from '../../styles'
+import L from '../../locales'
 
-import Icons from '../components/Icons'
-import DifficultyPill from '../components/DifficultyPill'
+import Icons from '../../components/Icons'
+import DifficultyPill from '../../components/DifficultyPill'
 
-import Card from '../lib/Card'
-import HeroCard from '../lib/HeroCard'
-import CarouselCard from '../lib/CarouselCard'
-import ListCard from '../lib/ListCard'
+import Card from '../../lib/Card'
+import HeroCard from '../../lib/HeroCard'
+import CarouselCard from '../../lib/CarouselCard'
+import ListCard from '../../lib/ListCard'
 
 export default class CollectionCard extends React.Component {
   constructor(props) {
