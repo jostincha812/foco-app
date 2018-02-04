@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import C from '../C'
+import { R } from '../constants'
 import S from '../styles'
 import L from '../L'
 
@@ -10,8 +10,8 @@ import StarredHome from '../containers/StarredHome'
 import StarredFilterConfigurator from '../containers/StarredFilterConfigurator'
 
 const STACK = {}
-STACK[C.NAV_STARRED_HOME] = { screen: StarredHome }
-STACK[C.NAV_STARRED_FILTER_CONFIGURATOR] = { screen: StarredFilterConfigurator }
+STACK[R.NAV_STARRED_HOME] = { screen: StarredHome }
+STACK[R.NAV_STARRED_FILTER_CONFIGURATOR] = { screen: StarredFilterConfigurator }
 
 const StarredStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({

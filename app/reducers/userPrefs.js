@@ -1,4 +1,5 @@
 import C from '../C'
+import A from '../actions/actionTypes'
 const initialState = {
   data: {},
   isReady: false,
@@ -9,7 +10,7 @@ const initialState = {
 
 export default function UserPrefsReducer (state = initialState, action) {
   switch (action.type) {
-    // case C.FETCH_USER_FLASHCARD_PREFS_PENDING:
+    // case A.FETCH_USER_FLASHCARD_PREFS_PENDING:
     //   return {
     //     ...state,
     //     data: {},
@@ -17,7 +18,7 @@ export default function UserPrefsReducer (state = initialState, action) {
     //     isReady: false,
     //     error: false,
     //   }
-    // case C.FETCH_USER_FLASHCARD_PREFS_FULFILLED:
+    // case A.FETCH_USER_FLASHCARD_PREFS_FULFILLED:
     //   // // convert array from Promises.all() back to json object
     //   // const prefs = {}
     //   // action.payload.map(f => {
@@ -29,45 +30,45 @@ export default function UserPrefsReducer (state = initialState, action) {
     //     isReady: true,
     //     data: action.payload
     //   }
-    // case C.FETCH_USER_FLASHCARD_PREFS_REJECTED:
+    // case A.FETCH_USER_FLASHCARD_PREFS_REJECTED:
     //   return {
     //     ...state,
     //     isFetching: false,
     //     error: true
     //   }
 
-    case C.UPDATE_USER_FLASHCARD_PREFS_PENDING:
+    case A.UPDATE_USER_FLASHCARD_PREFS_PENDING:
       return {
         ...state,
         isStoring: true,
         isFetching: false,
         error: false,
       }
-    case C.UPDATE_USER_FLASHCARD_PREFS_FULFILLED:
+    case A.UPDATE_USER_FLASHCARD_PREFS_FULFILLED:
       return {
         ...state,
         isStoring: false,
       }
-    case C.UPDATE_USER_FLASHCARD_PREFS_REJECTED:
+    case A.UPDATE_USER_FLASHCARD_PREFS_REJECTED:
       return {
         ...state,
         isStoring: false,
         error: true,
       }
 
-    case C.UPDATE_USER_COLLECTION_PREFS_PENDING:
+    case A.UPDATE_USER_COLLECTION_PREFS_PENDING:
       return {
         ...state,
         isStoring: true,
         isFetching: false,
         error: false,
       }
-    case C.UPDATE_USER_COLLECTION_PREFS_FULFILLED:
+    case A.UPDATE_USER_COLLECTION_PREFS_FULFILLED:
       return {
         ...state,
         isStoring: false,
       }
-    case C.UPDATE_USER_COLLECTION_PREFS_REJECTED:
+    case A.UPDATE_USER_COLLECTION_PREFS_REJECTED:
       return {
         ...state,
         isStoring: false,

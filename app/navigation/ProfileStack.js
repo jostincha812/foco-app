@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import C from '../C'
+import { R } from '../constants'
 import S from '../styles'
 import L from '../L'
 
@@ -10,8 +10,8 @@ import ProfileHome from '../containers/ProfileHome'
 import FeedbackContainer from '../containers/FeedbackContainer'
 
 const STACK = {}
-STACK[C.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
-STACK[C.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackContainer }
+STACK[R.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
+STACK[R.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackContainer }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({

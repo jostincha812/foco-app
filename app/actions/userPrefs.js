@@ -1,9 +1,9 @@
-import C from '../C'
+import A from './actionTypes'
 import api from '../data/api'
 
 export function upsertUserFlashcardPrefs(userId, flashcardId, prefs) {
   return {
-    type: C.UPDATE_USER_FLASHCARD_PREFS,
+    type: A.UPDATE_USER_FLASHCARD_PREFS,
     payload: api.userPrefs.upsertUserFlashcardPrefs(userId, flashcardId, prefs),
     meta: {
       userId,
@@ -15,7 +15,7 @@ export function upsertUserFlashcardPrefs(userId, flashcardId, prefs) {
 
 export function upsertUserCollectionPrefs(userId, collectionId, prefs) {
   return {
-    type: C.UPDATE_USER_COLLECTION_PREFS,
+    type: A.UPDATE_USER_COLLECTION_PREFS,
     payload: api.userPrefs.upsertUserCollectionPrefs(userId, collectionId, prefs),
     meta: {
       userId,

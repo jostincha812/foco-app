@@ -21,7 +21,7 @@ class StarredHome extends BaseFlashcardsListContainer {
           <NavHeaderFilterToggleButton
             toggled={navigation.state.params.filtered}
             right={true}
-            onPress={() => navigation.navigate(C.NAV_STARRED_FILTER_CONFIGURATOR, {
+            onPress={() => navigation.navigate(R.NAV_STARRED_FILTER_CONFIGURATOR, {
               onDone: navigation.state.params.onDone,
               filters: navigation.state.params.filters,
             })}
@@ -130,7 +130,7 @@ class StarredHome extends BaseFlashcardsListContainer {
   }
 }
 
-const ns = C.NAV_STARRED_HOME
+const ns = R.NAV_STARRED_HOME
 function mapStateToProps (state) {
   return {
     user: CurrentUser.profile,

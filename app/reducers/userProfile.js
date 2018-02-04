@@ -1,4 +1,5 @@
 import C from '../C'
+import A from '../actions/actionTypes'
 const initialState = {
   data: null,
   status: C.FB_IDLE,
@@ -7,43 +8,43 @@ const initialState = {
 
 export default function UserProfileReducer (state = initialState, action) {
   switch (action.type) {
-    case C.RESET_USER_PROFILE_STATE:
+    case A.RESET_USER_PROFILE_STATE:
       return initialState
 
-    case C.UPSERT_USER_PROFILE_PENDING:
+    case A.UPSERT_USER_PROFILE_PENDING:
       return {
         ...state,
         data: null,
         status: C.FB_UPDATING,
         error: null,
       }
-    case C.UPSERT_USER_PROFILE_FULFILLED:
+    case A.UPSERT_USER_PROFILE_FULFILLED:
       return {
         ...state,
         status: C.FB_UPDATED,
         data: action.payload
       }
-    case C.UPSERT_USER_PROFILE_REJECTED:
+    case A.UPSERT_USER_PROFILE_REJECTED:
       return {
         ...state,
         status: C.FB_ERROR,
         error: action.payload,
       }
 
-    case C.FETCH_USER_PROFILE_PENDING:
+    case A.FETCH_USER_PROFILE_PENDING:
       return {
         ...state,
         data: null,
         status: C.FB_FETCHING,
         error: null,
       }
-    case C.FETCH_USER_PROFILE_FULFILLED:
+    case A.FETCH_USER_PROFILE_FULFILLED:
       return {
         ...state,
         status: C.FB_FETCHED,
         data: action.payload
       }
-    case C.FETCH_USER_PROFILE_REJECTED:
+    case A.FETCH_USER_PROFILE_REJECTED:
       return {
         ...state,
         status: C.FB_ERROR,

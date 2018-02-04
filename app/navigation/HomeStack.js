@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import C from '../C'
+import { R } from '../constants'
 import S from '../styles'
 import L from '../L'
 
@@ -10,8 +10,8 @@ import Home from '../containers/Home'
 import HomeFlashcardsViewer from '../containers/HomeFlashcardsViewer'
 
 const STACK = {}
-STACK[C.NAV_HOME] = { screen: Home }
-STACK[C.NAV_HOME_FLASHCARDS_VIEWER] = { screen: HomeFlashcardsViewer }
+STACK[R.NAV_HOME] = { screen: Home }
+STACK[R.NAV_HOME_FLASHCARDS_VIEWER] = { screen: HomeFlashcardsViewer }
 
 const HomeStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({

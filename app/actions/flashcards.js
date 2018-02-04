@@ -1,9 +1,9 @@
-import C from '../C'
+import A from './actionTypes'
 import api from '../data/api'
 
 export function resetFlashcardsState(ns) {
   return {
-    type: C.RESET_FLASHCARDS_STATE,
+    type: A.RESET_FLASHCARDS_STATE,
     meta: {
       namespace: ns
     },
@@ -12,7 +12,7 @@ export function resetFlashcardsState(ns) {
 
 export function fetchFlashcard(ns, id, userId) {
   return {
-    type: C.FETCH_FLASHCARD,
+    type: A.FETCH_FLASHCARD,
     payload: api.flashcards.getFlashcard(id, userId),
     meta: {
       namespace: ns
@@ -22,7 +22,7 @@ export function fetchFlashcard(ns, id, userId) {
 
 export function fetchFlashcards(ns, ids, userId) {
   return {
-    type: C.FETCH_FLASHCARDS,
+    type: A.FETCH_FLASHCARDS,
     payload: api.flashcards.getFlashcards(ids, userId),
     meta: {
       namespace: ns
@@ -32,7 +32,7 @@ export function fetchFlashcards(ns, ids, userId) {
 
 export function fetchUserStarredFlashcards(ns, userId) {
   return {
-    type: C.FETCH_FLASHCARDS,
+    type: A.FETCH_FLASHCARDS,
     payload: api.flashcards.getUserStarredFlashcards(userId),
     meta: {
       namespace: ns
@@ -42,7 +42,7 @@ export function fetchUserStarredFlashcards(ns, userId) {
 
 // export function fetchFlashcardsWithTags(ns, level, tags1, tags2) {
 //   return {
-//     type: C.FETCH_FLASHCARDS_WITH_TAGS,
+//     type: A.FETCH_FLASHCARDS_WITH_TAGS,
 //     payload: api.flashcards.getFlashcardsWithTags(level, tags1, tags2),
 //     meta: {
 //       namespace: ns,

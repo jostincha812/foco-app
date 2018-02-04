@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import C from '../C'
-import { E, R } from '../constants'
+import { R } from '../constants'
 
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
@@ -55,7 +55,7 @@ class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
   }
 }
 
-const ns = C.NAV_HOME_FLASHCARDS_VIEWER
+const ns = R.NAV_HOME_FLASHCARDS_VIEWER
 function mapStateToProps (state) {
   return {
     user: CurrentUser.profile,

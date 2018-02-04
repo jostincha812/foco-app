@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import C from '../C'
+import { R } from '../constants'
 import S from '../styles'
 import L from '../L'
 
@@ -10,7 +10,7 @@ import CardsExample from '../containers/CardsExample'
 import IconsExample from '../containers/IconsExample'
 
 const STACK = {}
-STACK[C.NAV_ABOUT_APP_ICONS] = { screen: IconsExample }
+STACK[R.NAV_ABOUT_APP_ICONS] = { screen: IconsExample }
 
 const SearchStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({

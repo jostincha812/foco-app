@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { View, StatusBar } from 'react-native'
 
-import C from '../C'
 import { E, R } from '../constants'
 import S from '../styles'
 import BaseContainer from './BaseContainer'
@@ -45,7 +44,7 @@ class Splash extends BaseContainer {
   componentDidUpdate() {
     if (CurrentUser.initialized && !CurrentUser.authenticated) {
       setTimeout(
-        () => this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME),
+        () => this.props.navigation.navigate(R.NAV_USER_SIGNIN_HOME),
         600
       )
     }
@@ -53,12 +52,12 @@ class Splash extends BaseContainer {
 
   onLogin(user) {
     this.logEvent(E.user_signed_in, {uid: user.uid, provider: user.providerId})
-    this.props.navigation.navigate(C.NAV_HOME_TAB)
+    this.props.navigation.navigate(R.NAV_HOME_TAB)
   }
 
   onLogout(user) {
     this.logEvent(E.user_signed_out, {uid: user.uid})
-    this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME)
+    this.props.navigation.navigate(R.NAV_USER_SIGNIN_HOME)
   }
 
   onEmailVerified() {

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import C from '../C'
-import { E, R } from '../constants'
+import { R } from '../constants'
 import T from '../T'
 import L from '../L'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
@@ -42,11 +42,11 @@ class Home extends BaseCollectionsListContainer {
   }
 
   _viewerRoute() {
-    return C.NAV_HOME_FLASHCARDS_VIEWER
+    return R.NAV_HOME_FLASHCARDS_VIEWER
   }
 }
 
-const ns = C.NAV_HOME
+const ns = R.NAV_HOME
 function mapStateToProps (state) {
   return {
     user: CurrentUser.profile,

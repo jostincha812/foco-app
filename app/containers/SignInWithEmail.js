@@ -3,7 +3,6 @@ import React from 'react'
 import { View, StatusBar } from 'react-native'
 import { Button } from 'react-native-elements'
 
-import C from '../C'
 import { E, R } from '../constants'
 import S from '../styles'
 
@@ -83,7 +82,7 @@ export default class SignInWithEmail extends BaseContainer {
               fontWeight={F.weights.light}
               color={T.colors.inactiveText}
               backgroundColor={T.colors.transparent}
-              onPress={() => this.props.navigation.navigate(C.NAV_USER_SIGNUP_WITH_EMAIL)}
+              onPress={() => this.props.navigation.navigate(R.NAV_USER_SIGNUP_WITH_EMAIL)}
             />
           </View>
         </View>
