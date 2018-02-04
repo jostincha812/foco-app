@@ -8,8 +8,7 @@ import EmptyListScreen from '../components/EmptyListScreen'
 import NavHeaderFilterToggleButton from '../components/NavHeaderFilterToggleButton'
 
 import CurrentUser from '../auth/CurrentUser'
-import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
-
+import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
 class StarredHome extends BaseFlashcardsListContainer {
@@ -142,7 +141,7 @@ function mapDispatchToProps (dispatch) {
   return {
     resetFlashcardsState: () => dispatch(FlashcardActions.resetFlashcardsState(ns)),
     fetchUserStarredFlashcards: (userId) => dispatch(FlashcardActions.fetchUserStarredFlashcards(ns, userId)),
-    upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(upsertUserFlashcardPrefs(userId, flashcardId, prefs))
+    upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(UserPrefsActions.upsertUserFlashcardPrefs(userId, flashcardId, prefs))
   }
 }
 

@@ -5,8 +5,7 @@ import C, { R } from '../constants'
 
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 import CurrentUser from '../auth/CurrentUser'
-import { upsertUserCollectionPrefs } from '../actions/userPrefs'
-
+import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as CollectionsActions } from '../collections'
 
 class CollectionsHome extends BaseCollectionsListContainer {
@@ -52,7 +51,7 @@ function mapDispatchToProps (dispatch) {
     dispatch,
     resetUserCollectionsState: () => dispatch(CollectionsActions.resetUserCollectionsState(ns)),
     fetchUserBookmarkedCollections: (userId) => dispatch(CollectionsActions.fetchUserBookmarkedCollections(ns, userId)),
-    upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(upsertUserCollectionPrefs(userId, collectionId, prefs)),
+    upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(UserPrefsActions.upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
 }
 

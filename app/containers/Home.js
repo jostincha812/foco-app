@@ -7,8 +7,7 @@ import L from '../locales'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'
-import { upsertUserCollectionPrefs } from '../actions/userPrefs'
-
+import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as CollectionsActions } from '../collections'
 
 class Home extends BaseCollectionsListContainer {
@@ -59,7 +58,7 @@ function mapDispatchToProps (dispatch) {
   return {
     dispatch,
     fetchCollections: (ownerId, userId) => dispatch(CollectionsActions.fetchCollections(ns, ownerId, userId)),
-    upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(upsertUserCollectionPrefs(userId, collectionId, prefs)),
+    upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(UserPrefsActions.upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
 }
 

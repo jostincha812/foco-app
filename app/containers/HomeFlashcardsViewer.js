@@ -9,8 +9,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 
 import CurrentUser from '../auth/CurrentUser'
-import { upsertUserFlashcardPrefs } from '../actions/userPrefs'
-
+import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
 class HomeFlashcardsViewer extends BaseFlashcardsListContainer {
@@ -67,7 +66,7 @@ function mapDispatchToProps (dispatch) {
   return {
     resetFlashcardsState: () => dispatch(FlashcardActions.resetFlashcardsState(ns)),
     fetchFlashcards: (ids, userId) => dispatch(FlashcardActions.fetchFlashcards(ns, ids, userId)),
-    upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(upsertUserFlashcardPrefs(userId, flashcardId, prefs))
+    upsertUserFlashcardPrefs: (userId, flashcardId, prefs) => dispatch(UserPrefsActions.upsertUserFlashcardPrefs(userId, flashcardId, prefs))
   }
 }
 
