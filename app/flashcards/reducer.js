@@ -95,24 +95,6 @@ export default function FlashcardsReducer (state = {}, action) {
       }
       return s
 
-    // case A.UPDATE_USER_FLASHCARD_PREFERENCE_PENDING:
-    //   return {
-    //     ...state,
-    //     status: C.FB_UPDATING,
-    //     error: null,
-    //   }
-    // case A.UPDATE_USER_FLASHCARD_PREFERENCE_FULFILLED:
-    //   return {
-    //     ...state,
-    //     status: C.FB_UPDATED,
-    //   }
-    // case A.UPDATE_USER_FLASHCARD_PREFERENCE_REJECTED:
-    //   return {
-    //     ...state,
-    //     status: C.FB_ERROR,
-    //     error: action.payload,
-    //   }
-
     default:
       return state
   }
