@@ -26,10 +26,12 @@ export default navigationStyles = {
       fontWeight: F.weights.hero,
       fontSize: F.sizes.normal,
       color: T.colors.normal,
+      // push title down a bit
+      top: 2,
     },
     headerStyle: {
       backgroundColor: T.colors.headerBackground,
-      borderBottomWidth: 0.5,
+      borderBottomWidth: 1,
       borderBottomColor: T.colors.headerBorder,
       elevation: 0,
       shadowColor: 'transparent',
