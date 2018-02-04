@@ -4,7 +4,6 @@ import { View, StatusBar } from 'react-native'
 import Toast from 'react-native-root-toast'
 
 import { fbAnalytics } from '../../configureFirebase'
-import T from '../T'
 import S from '../styles'
 
 export default class BaseContainer extends React.Component {
@@ -47,13 +46,12 @@ export default class BaseContainer extends React.Component {
   showToast(message, options) {
     this.toast = Toast.show(message, {
       duration: 2000,
-      // position: -40,
       shadow: false,
       animation: true,
       hideOnPress: true,
       delay: 0,
       opacity: 0.9,
-      textStyle: S.text.footnote,
+      ...S.toasts.toast,
       ...options,
     })
   }
@@ -61,14 +59,14 @@ export default class BaseContainer extends React.Component {
   errorToast(message, options) {
     this.showToast(message, {
       duration: 3500,
-      backgroundColor: T.colors.error,
+      ...S.toasts.error,
       ...options,
     })
   }
 
   successToast(message, options) {
     this.showToast(message, {
-      backgroundColor: T.colors.success,
+      ...S.toasts.success,
       ...options,
     })
   }

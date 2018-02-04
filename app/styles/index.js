@@ -5,6 +5,7 @@ import spacing from './spacing'
 import containerStyles from './containerStyles'
 import listStyles from './listStyles'
 import textStyles from './textStyles'
+import toastStyles from './toastStyles'
 import navigationStyles from './navigationStyles'
 
 export default styles = {
@@ -18,6 +19,7 @@ export default styles = {
   corners: containerStyles.corners,
   lists: listStyles,
   text: textStyles,
+  toasts: toastStyles,
 
   avatar: {
     avatarStyle: {
