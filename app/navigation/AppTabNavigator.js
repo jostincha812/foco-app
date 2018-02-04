@@ -27,10 +27,6 @@ const AppTabNavigator = TabNavigator(TABS, {
   tabBarOptions: {
     showIcon: true,
     showLabel: false,
-    // style: S.navigation.tabBar,
-    // labelStyle: {
-    //   marginBottom: 4,
-    // },
     ...S.navigation.tabBarOptions,
   },
 })
