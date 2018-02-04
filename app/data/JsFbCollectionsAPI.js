@@ -1,6 +1,6 @@
 import refs from './JsFbRefs'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
-import C from '../C'
+import C from '../constants'
 
 export default JsCollectionsAPI = {
   getCollections: (ownerId, userId, filterKey) => {

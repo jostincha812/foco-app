@@ -1,4 +1,4 @@
-import C from '../C'
+import C from '../constants'
 import A from '../actions/actionTypes'
 const initialState = {
   data: {},

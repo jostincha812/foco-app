@@ -68,6 +68,7 @@ export default class CollectionHome extends BaseContainer {
   }
 
   onScrollToTopPress() {
+    const user = this.props.user
     this.refs['_SCROLLVIEW'].scrollTo({x: 0, y: 0, animated: true})
     this.logEvent(E.user_action_collections_scrolled, {
       uid: user.uid,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 
-import C from '../C'
+import C from '../constants'
 import T from '../T'
 import S from '../styles'
 import L from '../locales'

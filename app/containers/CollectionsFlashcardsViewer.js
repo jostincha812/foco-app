@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C from '../C'
+import C from '../constants'
 import { R } from '../constants'
 
 import NavHeaderBackButton from '../components/NavHeaderBackButton'

@@ -1,4 +1,4 @@
-import C from '../C'
+import C from '../constants'
 import refs from './JsFbRefs'
 import JsFbUserPrefsAPI from './JsFbUserPrefsAPI'
 

@@ -2,9 +2,7 @@ import React from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 
-import L from '../locales'
 import T from '../T'
-import S from '../styles'
 
 export default class BackToTopButton extends React.Component {
   render() {
@@ -24,18 +22,6 @@ export default class BackToTopButton extends React.Component {
           // type='material-community'
         />
       </View>
-      // <TouchableOpacity onPress={props.onPress} style={props.style}>
-      //   <Text style={[S.text.footnote, {
-      //       color: T.colors.accent,
-      //       backgroundColor: T.colors.translucentWhite,
-      //       borderColor: T.colors.inverse,
-      //       borderWidth: 0.5,
-      //       padding: S.spacing.xxsmall/2
-      //     }
-      //   ]}>
-      //     {L.list.backToTop}
-      //   </Text>
-      // </TouchableOpacity>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-import C from '../C'
+import C from '../constants'
 import T from '../T'
 import F from '../F'
 import L from '../locales'

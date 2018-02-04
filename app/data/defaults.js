@@ -1,4 +1,4 @@
-import C from '../C'
+import C from '../constants'
 
 export const UserDefaults = {
   level: C.WSET3,

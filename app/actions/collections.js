@@ -1,4 +1,4 @@
-import C from '../C'
+import C from '../constants'
 import A from './actionTypes'
 import api from '../data/api'
 

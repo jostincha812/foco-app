@@ -3,7 +3,7 @@ import { View, ScrollView, TouchableOpacity } from 'react-native'
 import { MarkdownView } from 'react-native-markdown-view'
 import FlipCard from 'react-native-flip-card'
 
-import C from '../C'
+import C from '../constants'
 import T from '../T'
 import S from '../styles'
 import MDStyles from '../styles/markdown'

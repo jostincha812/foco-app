@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, ScrollView } from 'react-native'
 
-import C from '../C'
+import C from '../constants'
 import L from '../locales'
 import S from '../styles'
 import TagsSelector from '../components/TagsSelector'

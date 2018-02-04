@@ -5,7 +5,7 @@ import { fbAnalytics } from '../../configureFirebase'
 import { View, StatusBar, Text} from 'react-native'
 import { SocialIcon, FormInput, Button } from 'react-native-elements'
 
-import C from '../C'
+import C from '../constants'
 import { E, R } from '../constants'
 import S from '../styles'
 

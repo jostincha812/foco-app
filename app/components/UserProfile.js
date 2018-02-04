@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import { List, ListItem } from 'react-native-elements'
 
-import C from '../C'
+import C from '../constants'
 import T from '../T'
 import L from '../locales'
 import S from '../styles'

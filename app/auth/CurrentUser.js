@@ -1,4 +1,4 @@
-import C from '../C'
+import C from '../constants'
 import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
 import api from '../data/api'
