@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C from '../constants'
-import { E, R } from '../constants'
+import C, { E, R } from '../constants'
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import FlashcardsList from '../components/FlashcardsList'
 import LoadingScreen from '../components/LoadingScreen'

@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { ScrollView, StatusBar } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
-import C from '../constants'
-import { E, R } from '../constants'
+import C, { E, R } from '../constants'
 import S from '../styles'
 
 import T from '../T'

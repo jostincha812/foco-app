@@ -1,7 +1,6 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
 
-import C from '../constants'
 import S from '../styles'
 import Flashcard from '../components/Flashcard'
 
@@ -9,7 +8,7 @@ export default class FlashcardsList extends React.Component {
   scrollTo(options) {
     this.refs['_SCROLLVIEW'].scrollTo(options)
   }
-  
+
   render() {
     const props = this.props
     const flashcards = props.flashcards

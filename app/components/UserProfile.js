@@ -3,7 +3,6 @@ import { View } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import { List, ListItem } from 'react-native-elements'
 
-import C from '../constants'
 import T from '../T'
 import L from '../locales'
 import S from '../styles'
@@ -49,19 +48,6 @@ export default class UserProfile extends React.Component {
         title: L.authenticationMethod,
         value: this.authMethod(profile),
       },
-      // {
-      //   title: 'Collections',
-      //   badge: 12,
-      // },
-      // {
-      //   title: 'Starred',
-      //   badge: 58,
-      // },
-      // {
-      //   title: 'Badges',
-      //   badge: 2,
-      //   onPress: () => console.log('show badges'),
-      // }
     ]
 
     return (

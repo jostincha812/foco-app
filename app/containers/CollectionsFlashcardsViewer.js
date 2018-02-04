@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C from '../constants'
-import { R } from '../constants'
+import C, { R } from '../constants'
 
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'

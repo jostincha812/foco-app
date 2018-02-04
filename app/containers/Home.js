@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C from '../constants'
-import { R } from '../constants'
+import C, { R } from '../constants'
 import T from '../T'
 import L from '../locales'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
