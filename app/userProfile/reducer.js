@@ -1,5 +1,5 @@
 import C from '../constants'
-import A from '../actions/actionTypes'
+import A from './actionTypes'
 const initialState = {
   data: null,
   status: C.FB_IDLE,

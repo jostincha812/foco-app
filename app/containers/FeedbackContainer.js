@@ -15,7 +15,7 @@ import NavHeaderSendButton from '../components/NavHeaderSendButton'
 import FeedbackForm from '../components/FeedbackForm'
 
 import CurrentUser from '../auth/CurrentUser'
-import { submitFeedback } from '../actions/feedback'
+import { actions as FeedbackActions } from '../feedback'
 
 class FeedbackContainer extends BaseContainer {
   static navigationOptions = ({navigation}) => {
@@ -102,7 +102,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    submitFeedback: (user, inputs, meta) => dispatch(submitFeedback(user, inputs, meta)),
+    submitFeedback: (user, inputs, meta) => dispatch(FeedbackActions.submitFeedback(user, inputs, meta)),
   }
 }
 

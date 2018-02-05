@@ -3,7 +3,7 @@ import api from '../data/api'
 
 export function submitFeedback(user, inputs, meta) {
   return {
-    type: A.SUBMIT_FEEDBACK,
+    type: A.FEEDBACK_SUBMIT,
     payload: api.feedback.insertFeedback(user, inputs, meta),
     meta: {
       // namespace: ns
