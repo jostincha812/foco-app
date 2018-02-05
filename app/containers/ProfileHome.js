@@ -10,10 +10,10 @@ import S from '../styles'
 
 import L from '../locales'
 import BaseContainer from './BaseContainer'
-import UserProfile from '../components/UserProfile'
 import LoadingScreen from '../components/LoadingScreen'
 
 import CurrentUser from '../auth/CurrentUser'
+import { UserProfile } from '../userProfile'
 
 class ProfileHome extends BaseContainer {
   constructor(props) {

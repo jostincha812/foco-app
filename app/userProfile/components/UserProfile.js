@@ -3,10 +3,10 @@ import { View } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import { List, ListItem } from 'react-native-elements'
 
-import T from '../T'
-import L from '../locales'
-import S from '../styles'
-import StyledText from '../lib/StyledText'
+import T from '../../T'
+import L from '../../locales'
+import S from '../../styles'
+import StyledText from '../../lib/StyledText'
 
 export default class UserProfile extends React.Component {
   initials(profile) {

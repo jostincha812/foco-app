@@ -7,11 +7,11 @@ import L from '../locales'
 
 import Icons from '../components/Icons'
 import ProfileHome from '../containers/ProfileHome'
-import FeedbackContainer from '../containers/FeedbackContainer'
+import FeedbackScreen from '../containers/FeedbackScreen'
 
 const STACK = {}
 STACK[R.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
-STACK[R.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackContainer }
+STACK[R.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackScreen }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({

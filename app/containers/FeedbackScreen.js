@@ -5,27 +5,21 @@ import { NavigationActions } from 'react-navigation'
 
 import C, { E, R } from '../constants'
 import S from '../styles'
-
-import T from '../T'
 import L from '../locales'
 
 import BaseContainer from './BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import NavHeaderSendButton from '../components/NavHeaderSendButton'
-import FeedbackForm from '../components/FeedbackForm'
 
 import CurrentUser from '../auth/CurrentUser'
-import { actions as FeedbackActions } from '../feedback'
+import { actions as FeedbackActions, FeedbackForm } from '../feedback'
 
-class FeedbackContainer extends BaseContainer {
+class FeedbackScreen extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: L.feedback,
       headerLeft: <NavHeaderBackButton left={true} onPress={navigation.goBack} />,
       headerRight: <NavHeaderSendButton label={L.send} right={true} onPress={() => {
-        // const user = navigation.state.params.getUserProfile()
-        // const inputs = navigation.state.params.getFormInput()
-        // navigation.state.params.submitFeedback(user, inputs)
         navigation.state.params.submitFeedback()
         setTimeout(() => navigation.goBack())
         // using fix referenced here:
@@ -51,10 +45,7 @@ class FeedbackContainer extends BaseContainer {
       })
     }
     this.props.navigation.setParams({
-      // getFormInput: () => this.state.form,
-      // getUserProfile: () => this.props.profile,
       submitFeedback: this.onSubmitFeedback,
-      successToast: this.successToast,
     })
   }
 
@@ -72,7 +63,7 @@ class FeedbackContainer extends BaseContainer {
       version: C.VERSION
     }
     this.props.submitFeedback(user, inputs, meta)
-    this.props.navigation.state.params.successToast(L.submitted)
+    this.successToast(L.submitted)
     this.logEvent(E.user_feedback_submitted, {
       uid: user.uid,
       feedback: inputs.feedback,
@@ -109,4 +100,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FeedbackContainer)
+)(FeedbackScreen)
