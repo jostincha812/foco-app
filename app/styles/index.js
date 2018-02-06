@@ -7,6 +7,7 @@ import listStyles from './listStyles'
 import textStyles from './textStyles'
 import toastStyles from './toastStyles'
 import navigationStyles from './navigationStyles'
+import formStyles from './formStyles'
 import markdown from './markdown'
 
 export { markdown }
@@ -23,6 +24,7 @@ export default styles = {
   lists: listStyles,
   text: textStyles,
   toasts: toastStyles,
+  form: formStyles,
 
   avatar: {
     avatarStyle: {

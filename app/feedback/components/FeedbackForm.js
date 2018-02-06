@@ -1,7 +1,9 @@
 import React from 'react'
-import { View } from 'react-native'
-import { FormLabel, FormInput } from 'react-native-elements'
+import { Text, TextInput } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+// import { FormLabel } from 'react-native-elements'
 import { localize } from '../../locales'
+import S from '../../styles'
 
 export default class FeedbackForm extends React.Component {
   constructor() {
@@ -27,26 +29,50 @@ export default class FeedbackForm extends React.Component {
 
   render() {
     return (
-      <View style={{padding:0, margin:0}}>
-        <FormLabel>{localize("feedback.name")}</FormLabel>
-        <FormInput
+      <KeyboardAwareScrollView
+        style={{padding:0, margin:0}}
+        // contentContainerStyle={{flex:1, justifyContent:'flex-end'}}
+        keyboardDismissMode="interactive"
+        getTextInputRefs={() => {
+          return [this._name, this._email, this._feedback]
+        }}>
+        <Text style={S.form.label}>
+          {localize("feedback.name")}
+        </Text>
+        <TextInput
+          style={S.form.input}
           value={this.state.name}
           onChangeText={(text) => this.onInputTextChange('name', text)}
+          ref={(r) => { this._name = r }}
+          returnKeyType={'next'}
+          onSubmitEditing={(event) => this._email.focus()}
         />
-        <FormLabel>{localize("feedback.email")}</FormLabel>
-        <FormInput
+
+        <Text style={S.form.label}>
+          {localize("feedback.email")}
+        </Text>
+        <TextInput
+          style={S.form.input}
           value={this.state.email}
           keyboardType='email-address'
           onChangeText={(text) => this.onInputTextChange('email', text)}
+          ref={(r) => { this._email = r }}
+          returnKeyType={'next'}
+          onSubmitEditing={(event) => this._feedback.focus()}
         />
-        <FormLabel>{localize("feedback.feedback")}</FormLabel>
-        <FormInput
+
+        <Text style={S.form.label}>
+          {localize("feedback.feedback")}
+        </Text>
+        <TextInput
+          style={S.form.input}
           value={this.state.feedback}
           onChangeText={(text) => this.onInputTextChange('feedback', text)}
           multiline={true}
           numberOfLines={5}
+          ref={(r) => { this._feedback = r }}
         />
-      </View>
+      </KeyboardAwareScrollView>
     )
   }
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, StatusBar } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { View, StatusBar } from 'react-native'
 
 import C, { E, R } from '../constants'
 import S from '../styles'
@@ -73,14 +72,14 @@ class FeedbackScreen extends BaseContainer {
 
   render() {
     return (
-      <ScrollView style={S.containers.screen}>
+      <View style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
         <FeedbackForm
           name={this.props.profile.displayName}
           email={this.props.profile.email}
           onFormChange={this.onFormChange}
         />
-      </ScrollView>
+      </View>
     )
   }
 }
