@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { View } from 'react-native'
-import { FormInput, Button } from 'react-native-elements'
+import { TextInput } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+import { Button } from 'react-native-elements'
 
 import T from '../T'
 import F from '../F'
@@ -19,21 +20,35 @@ export default class SignInWithEmailForm extends React.Component {
     const onSubmit = this.props.onSubmit
 
     return (
-      <View style={style}>
-        <FormInput
+      <KeyboardAwareScrollView
+        style={[style, S.form.container]}
+        keyboardDismissMode="interactive"
+        getTextInputRefs={() => {
+          return [this._email, this._password]
+        }}
+      >
+        <TextInput
+          style={[S.form.input, {marginTop:S.spacing.large}]}
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='email-address'
           placeholder={localize("auth.email")}
           onChangeText={(text) => this.setState({email:text})}
+          ref={(r) => { this._email = r }}
+          returnKeyType={'next'}
+          onSubmitEditing={(event) => this._password.focus()}
         />
-        <FormInput
+        <TextInput
+          style={S.form.input}
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='default'
           secureTextEntry={true}
           placeholder={localize("auth.password")}
           onChangeText={(text) => this.setState({password:text})}
+          ref={(r) => { this._password = r }}
+          returnKeyType={'go'}
+          onSubmitEditing={() => onSubmit(this.state.email, this.state.password)}
         />
 
         <Button
@@ -47,7 +62,7 @@ export default class SignInWithEmailForm extends React.Component {
           backgroundColor={T.colors.accent}
           onPress={() => onSubmit(this.state.email, this.state.password)}
         />
-      </View>
+      </KeyboardAwareScrollView>
     )
   }
 }

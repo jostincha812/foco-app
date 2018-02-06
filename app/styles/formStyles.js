@@ -3,15 +3,12 @@ import F from '../F'
 import spacing from './spacing'
 
 const labelBase = {
-  marginHorizontal: spacing.normal,
-  marginTop: spacing.small,
   fontSize: F.sizes.small,
   fontWeight: F.weights.bold,
   color: T.colors.inactiveText,
 }
 
 const inputBase = {
-  marginHorizontal: spacing.normal,
   paddingTop: 4,
   paddingBottom: 2,
   // hilarious bug! https://github.com/facebook/react-native/issues/2140#issuecomment-201342220
@@ -24,6 +21,14 @@ const inputBase = {
 }
 
 export default {
+  container: {
+    padding: spacing.xlarge,
+  },
+
+  group: {
+    marginTop: spacing.normal
+  },
+
   label: labelBase,
   inverseLabel: {
     ...labelBase,

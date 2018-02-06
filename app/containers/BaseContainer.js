@@ -87,10 +87,10 @@ export default class BaseContainer extends React.Component {
     // }
 
     // example dummy view to get dimensions
-    return (
-      <View style={{flex:1}} onLayout={this.onLayout}>
-        <StatusBar barStyle={S.statusBarStyle} />
-      </View>
-    )
+    // return (
+    //   <View style={{flex:1}} onLayout={this.onLayout}>
+    //     <StatusBar barStyle={S.statusBarStyle} />
+    //   </View>
+    // )
   }
 }

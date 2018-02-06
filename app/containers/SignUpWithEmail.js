@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fbAnalytics } from '../../configureFirebase'
 
-import { View, StatusBar, Text} from 'react-native'
-import { SocialIcon, FormInput, Button } from 'react-native-elements'
+import { View, Text, TextInput} from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+import { SocialIcon, Button } from 'react-native-elements'
 
 import C, { E, R } from '../constants'
 import S from '../styles'
@@ -56,56 +57,83 @@ class SignUpWithEmail extends BaseContainer {
 
   render() {
     return (
-      <View style={[S.containers.screen, S.containers.normal]}>
-          <View style={S.containers.normal}>
-            <Text style={[S.text.title]}>
-              {localize("auth.createAccount")}
-            </Text>
-            <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
-              {localize("auth.accountBenefits")}
-            </Text>
-            <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
-              {localize("auth.accountSafety")}
-            </Text>
-          </View>
+      <View style={S.containers.screen}>
+        <KeyboardAwareScrollView
+          style={[S.form.container]}
+          keyboardDismissMode="interactive"
+          getTextInputRefs={() => {
+            return [this._name, this._email, this._password, this._confirmation]
+          }}
+        >
+          <Text style={[S.text.title]}>
+            {localize("auth.createAccount")}
+          </Text>
+          <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
+            {localize("auth.accountBenefits")}
+          </Text>
+          <Text style={[S.text.footnote, {marginTop:S.spacing.small}]}>
+            {localize("auth.accountSafety")}
+          </Text>
 
-          <View style={{}}>
-            <FormInput
+          <View style={S.form.group}>
+            <Text style={S.form.label}>
+              {localize("auth.signUpAs")}
+            </Text>
+            <TextInput
+              style={S.form.input}
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'
               placeholder={localize("auth.name")}
               onChangeText={(text) => this.setState({name:text})}
+              ref={(r) => { this._name = r }}
+              returnKeyType={'next'}
+              onSubmitEditing={(event) => this._email.focus()}
             />
-            <FormInput
+            <TextInput
+              style={S.form.input}
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='email-address'
               placeholder={localize("auth.email")}
               onChangeText={(text) => this.setState({email:text})}
+              ref={(r) => { this._email = r }}
+              returnKeyType={'next'}
+              onSubmitEditing={(event) => this._password.focus()}
             />
-            <FormInput
-              containerStyle={{marginTop:S.spacing.large}}
+          </View>
+
+          <View style={S.form.group}>
+            <TextInput
+              style={S.form.input}
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'
               secureTextEntry={true}
-              placeholder={localize("auth.password")}
+              placeholder={localize("auth.setPassword")}
               onChangeText={(text) => this.setState({password:text})}
+              ref={(r) => { this._password = r }}
+              returnKeyType={'next'}
+              onSubmitEditing={(event) => this._confirmation.focus()}
             />
-            <FormInput
+            <TextInput
+              style={S.form.input}
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'
               secureTextEntry={true}
               placeholder={localize("auth.confirmation")}
               onChangeText={(text) => this.setState({confirmation:text})}
+              ref={(r) => { this._confirmation = r }}
+              returnKeyType={'go'}
+              onSubmitEditing={this.onSignUp}
             />
+          </View>
 
+          <View style={S.form.group}>
             <Button
               title={localize("auth.signUp")}
               iconRight={{name:'chevron-right'}}
-              buttonStyle={{marginTop:S.spacing.small}}
               raised={false}
               fontSize={F.sizes.small}
               fontWeight={F.weights.light}
@@ -113,6 +141,7 @@ class SignUpWithEmail extends BaseContainer {
               onPress={this.onSignUp}
             />
           </View>
+        </KeyboardAwareScrollView>
       </View>
     )
   }

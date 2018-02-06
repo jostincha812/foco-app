@@ -27,40 +27,51 @@ export default class SignInHome extends BaseContainer {
   }
 
   render() {
+    if (this.state.dimensions) {
+      var { dimensions } = this.state
+      var { width, height } = dimensions
+
+      return (
+        <View style={[S.containers.screen]}>
+          <StatusBar barStyle={S.statusBarStyle} />
+
+          <View style={{height:height/2, justifyContent:'flex-end'}}>
+            <Intro large={true}/>
+          </View>
+
+          <View style={{height:height/2, paddingBottom:S.spacing.xxlarge, justifyContent:'flex-end', alignItems:'center'}}>
+            <SocialIcon
+              title={localize("auth.signInWithFacebook")}
+              button={true}
+              type='facebook'
+              style={{width:300, marginBottom:S.spacing.xsmall}}
+              fontStyle={{fontSize: F.sizes.small, fontWeight: F.weights.normal}}
+              onPress={() => {
+                this.logEvent(E.auth_signing_in, { provider: 'facebook' })
+                FirebaseAuth.loginWithFacebook()
+              }}
+            />
+
+            <StyledText style="footnote" color={T.colors.inactiveText}>
+              {localize("auth.noFacebook")}
+            </StyledText>
+
+            <Button
+              title={localize("auth.signInWithEmail")}
+              fontSize={F.sizes.small}
+              fontWeight={F.weights.light}
+              color={T.colors.inactiveText}
+              backgroundColor={T.colors.transparent}
+              onPress={() => this.props.navigation.navigate(R.NAV_USER_SIGNIN_WITH_EMAIL)}
+            />
+          </View>
+        </View>
+      )
+    }
+    // else dimensions not set
     return (
-      <View style={[S.containers.screen, S.containers.centered]}>
+      <View style={{flex:1}} onLayout={this.onLayout}>
         <StatusBar barStyle={S.statusBarStyle} />
-
-        <View style={{flex:1, justifyContent:'flex-end'}}>
-          <Intro large={true}/>
-        </View>
-
-        <View style={{flex:1, marginBottom:S.spacing.xxlarge, justifyContent:'flex-end', alignItems:'center'}}>
-          <SocialIcon
-            title={localize("auth.signInWithFacebook")}
-            button={true}
-            type='facebook'
-            style={{width:300, marginBottom:S.spacing.xsmall}}
-            fontStyle={{fontSize: F.sizes.small, fontWeight: F.weights.normal}}
-            onPress={() => {
-              this.logEvent(E.auth_signing_in, { provider: 'facebook' })
-              FirebaseAuth.loginWithFacebook()
-            }}
-          />
-
-          <StyledText style="footnote" color={T.colors.inactiveText}>
-            {localize("auth.noFacebook")}
-          </StyledText>
-
-          <Button
-            title={localize("auth.signInWithEmail")}
-            fontSize={F.sizes.small}
-            fontWeight={F.weights.light}
-            color={T.colors.inactiveText}
-            backgroundColor={T.colors.transparent}
-            onPress={() => this.props.navigation.navigate(R.NAV_USER_SIGNIN_WITH_EMAIL)}
-          />
-        </View>
       </View>
     )
   }

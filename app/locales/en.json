@@ -65,10 +65,12 @@
     "name": "Your name",
     "email": "Your email address",
     "password": "Your password",
+    "setPassword": "Set a password",
     "confirmation": "Your password again",
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "signUp": "Sign Up",
+    "signUpAs": "Sign up as",
     "createAccount": "Create an account",
     "createAccount": "Create your account",
     "haveAccount": "Sign in with Facebook or an existing account",
@@ -81,8 +83,8 @@
     "confirmationFail": "Please verify your password",
     "nameFail": "Please enter your name",
     "emailMissing": "Please enter your email address to reset your password",
-    "accountBenefits": "Sign up for an account with your email address and access your progress across all your devices.",
-    "accountSafety": "Dont worry, your information will be securely encrypted and will not be shared with 3rd parties.",
+    "accountBenefits": "Sign up for an account with your email address and study on the go on all your devices.",
+    "accountSafety": "Dont worry, your information will not be shared with 3rd parties.",
   },
 
   // levels
