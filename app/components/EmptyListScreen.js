@@ -2,8 +2,8 @@ import React from 'react'
 import { ScrollView, Text } from 'react-native'
 
 import T from '../T'
-import L from '../locales'
 import S from '../styles'
+import { localize } from '../locales'
 
 export default class EmptyListScreen extends React.Component {
   render() {
@@ -18,7 +18,7 @@ export default class EmptyListScreen extends React.Component {
         refreshControl={props.refreshControl}>
 
         <Text style={S.text.subtitle} color={color}>
-          {L.empty}
+          {localize("lists.empty")}
         </Text>
       </ScrollView>
     )

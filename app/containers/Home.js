@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import C, { R } from '../constants'
 import T from '../T'
-import L from '../locales'
+import C, { R } from '../constants'
+import { localize } from '../locales'
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'
@@ -13,7 +13,7 @@ import { actions as CollectionsActions } from '../collections'
 class Home extends BaseCollectionsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
-      title: L.headers.home,
+      title: localize("home.title"),
     })
   }
 

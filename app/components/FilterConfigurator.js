@@ -2,8 +2,8 @@ import React from 'react'
 import { View, ScrollView } from 'react-native'
 
 import C from '../constants'
-import L from '../locales'
 import S from '../styles'
+import { localize } from '../locales'
 import TagsSelector from '../components/TagsSelector'
 import StyledText from '../lib/StyledText'
 
@@ -66,7 +66,7 @@ export default class FilterConfigurator extends React.Component {
     return (
       <ScrollView contentContinerStyle={S.containers.flexRowWrapped}>
         <View style={S.containers.normal}>
-          <StyledText style='title'>{L.tags}</StyledText>
+          <StyledText style='title'>{localize("filters.tags")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
             items={categories}
@@ -75,7 +75,7 @@ export default class FilterConfigurator extends React.Component {
           />
         </View>
         <View style={[S.containers.normal, {paddingTop:0}]}>
-          <StyledText style='title'>{L.regions}</StyledText>
+          <StyledText style='title'>{localize("filters.regions")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
             items={regions}
@@ -84,7 +84,7 @@ export default class FilterConfigurator extends React.Component {
           />
         </View>
         <View style={[S.containers.normal, {paddingTop:0}]}>
-          <StyledText style='title'>{L.varietals}</StyledText>
+          <StyledText style='title'>{localize("filters.varietals")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
             items={varietals}

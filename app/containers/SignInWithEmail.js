@@ -8,7 +8,7 @@ import S from '../styles'
 
 import T from '../T'
 import F from '../F'
-import L from '../locales'
+import { localize } from '../locales'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import Intro from '../components/Intro'
@@ -38,7 +38,7 @@ export default class SignInWithEmail extends BaseContainer {
         <View style={{flex:1, marginBottom:S.spacing.xsmall, justifyContent:'flex-end'}}>
           <Button
             icon={{name:'chevron-left', color:T.colors.facebook}}
-            title={L.signInWithFacebook}
+            title={localize("auth.signInWithFacebook")}
             fontSize={F.sizes.small}
             fontWeight={F.weights.light}
             color={T.colors.facebook}
@@ -60,7 +60,7 @@ export default class SignInWithEmail extends BaseContainer {
 
           <View style={[{paddingTop:0, flexDirection:'row', justifyContent:'space-between'}]}>
             <Button
-              title={L.forgotPassword}
+              title={localize("auth.forgotPassword")}
               fontSize={F.sizes.small}
               fontWeight={F.weights.light}
               color={T.colors.inactiveText}
@@ -69,15 +69,15 @@ export default class SignInWithEmail extends BaseContainer {
                 if (this.state.email) {
                   this.logEvent(E.auth_reset_password, { email: this.state.email })
                   FirebaseAuth.resetPassword(this.state.email)
-                  this.showToast(L.resetPassword)
+                  this.showToast(localize("auth.resetPassword"))
                 } else {
-                  this.errorToast(L.emailMissing)
+                  this.errorToast(localize("auth.emailMissing"))
                 }
               }}
             />
 
             <Button
-              title={L.createAccount}
+              title={localize("auth.createAccount")}
               fontSize={F.sizes.small}
               fontWeight={F.weights.light}
               color={T.colors.inactiveText}

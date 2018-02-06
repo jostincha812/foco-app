@@ -3,7 +3,6 @@ import { StackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
-import L from '../locales'
 
 import Icons from '../components/Icons'
 import CardsExample from '../containers/CardsExample'
@@ -15,7 +14,6 @@ STACK[R.NAV_ABOUT_APP_ICONS] = { screen: IconsExample }
 const SearchStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation.header,
-    tabBarLabel: L.nav.search,
     tabBarIcon: ({ focused, tintColor }) => (
       Icons.search({ focused, color:tintColor, ...S.navigation.tabBarIcon })
     ),

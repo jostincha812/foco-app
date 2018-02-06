@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import C, { R } from '../constants'
+import { localize } from '../locales'
 
 import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 import CurrentUser from '../auth/CurrentUser'
@@ -9,6 +10,12 @@ import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as CollectionsActions } from '../collections'
 
 class CollectionsHome extends BaseCollectionsListContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      title: localize("home.title"),
+    })
+  }
+
   constructor(props) {
     super(props)
     this.setScreen({screenName:R.NAV_COLLECTIONS_HOME, className:'CollectionsHome'})

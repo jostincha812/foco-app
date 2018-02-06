@@ -10,7 +10,7 @@ import S from '../styles'
 
 import T from '../T'
 import F from '../F'
-import L from '../locales'
+import { localize } from '../locales'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
@@ -45,10 +45,10 @@ class SignUpWithEmail extends BaseContainer {
 
   onSignUp() {
     if (this.state.password != this.state.confirmation) {
-      return this.errorToast(L.confirmationFail)
+      return this.errorToast(localize("auth.confirmationFail"))
     }
     if (this.state.name === null || this.state.name === '') {
-      return this.errorToast(L.nameFail)
+      return this.errorToast(localize("auth.nameFail"))
     }
     this.logEvent(E.auth_signed_up, { email: this.state.email })
     FirebaseAuth.register(this.state.name, this.state.email, this.state.password)
@@ -59,13 +59,13 @@ class SignUpWithEmail extends BaseContainer {
       <View style={[S.containers.screen, S.containers.normal]}>
           <View style={S.containers.normal}>
             <Text style={[S.text.title]}>
-              {L.createAccount}
+              {localize("auth.createAccount")}
             </Text>
             <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
-              {L.accountBenefits}
+              {localize("auth.accountBenefits")}
             </Text>
             <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
-              {L.accountSafety}
+              {localize("auth.accountSafety")}
             </Text>
           </View>
 
@@ -74,14 +74,14 @@ class SignUpWithEmail extends BaseContainer {
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'
-              placeholder={L.name}
+              placeholder={localize("auth.name")}
               onChangeText={(text) => this.setState({name:text})}
             />
             <FormInput
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='email-address'
-              placeholder={L.email}
+              placeholder={localize("auth.email")}
               onChangeText={(text) => this.setState({email:text})}
             />
             <FormInput
@@ -90,7 +90,7 @@ class SignUpWithEmail extends BaseContainer {
               autoCorrect={false}
               keyboardType='default'
               secureTextEntry={true}
-              placeholder={L.password}
+              placeholder={localize("auth.password")}
               onChangeText={(text) => this.setState({password:text})}
             />
             <FormInput
@@ -98,12 +98,12 @@ class SignUpWithEmail extends BaseContainer {
               autoCorrect={false}
               keyboardType='default'
               secureTextEntry={true}
-              placeholder={L.confirmation}
+              placeholder={localize("auth.confirmation")}
               onChangeText={(text) => this.setState({confirmation:text})}
             />
 
             <Button
-              title={L.signUp}
+              title={localize("auth.signUp")}
               iconRight={{name:'chevron-right'}}
               buttonStyle={{marginTop:S.spacing.small}}
               raised={false}

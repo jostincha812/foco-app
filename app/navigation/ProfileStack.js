@@ -3,7 +3,6 @@ import { StackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
-import L from '../locales'
 
 import Icons from '../components/Icons'
 import ProfileHome from '../containers/ProfileHome'
@@ -16,8 +15,6 @@ STACK[R.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackScreen }
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation.header,
-    title: L.headers.profile,
-    tabBarLabel: L.tabs.profile,
     tabBarIcon: ({ focused, tintColor }) => (
       Icons.profile({ focused, color: tintColor, ...S.navigation.tabBarIcon })
     ),

@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import C, { E, R } from '../constants'
+import { localize } from '../locales'
+
 import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
@@ -15,6 +17,7 @@ class StarredHome extends BaseFlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
     if (navigation.state.params) {
       return ({
+        title: localize("starred.title"),
         headerRight: (
           <NavHeaderFilterToggleButton
             toggled={navigation.state.params.filtered}

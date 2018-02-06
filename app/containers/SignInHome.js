@@ -8,7 +8,7 @@ import S from '../styles'
 
 import T from '../T'
 import F from '../F'
-import L from '../locales'
+import { localize } from '../locales'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import Intro from '../components/Intro'
@@ -37,7 +37,7 @@ export default class SignInHome extends BaseContainer {
 
         <View style={{flex:1, marginBottom:S.spacing.xxlarge, justifyContent:'flex-end', alignItems:'center'}}>
           <SocialIcon
-            title={L.signInWithFacebook}
+            title={localize("auth.signInWithFacebook")}
             button={true}
             type='facebook'
             style={{width:300, marginBottom:S.spacing.xsmall}}
@@ -49,11 +49,11 @@ export default class SignInHome extends BaseContainer {
           />
 
           <StyledText style="footnote" color={T.colors.inactiveText}>
-            {L.noFacebook}
+            {localize("auth.noFacebook")}
           </StyledText>
 
           <Button
-            title={L.signInWithEmail}
+            title={localize("auth.signInWithEmail")}
             fontSize={F.sizes.small}
             fontWeight={F.weights.light}
             color={T.colors.inactiveText}

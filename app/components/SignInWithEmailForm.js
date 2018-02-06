@@ -5,8 +5,8 @@ import { FormInput, Button } from 'react-native-elements'
 
 import T from '../T'
 import F from '../F'
-import L from '../locales'
 import S from '../styles'
+import { localize } from '../locales'
 
 export default class SignInWithEmailForm extends React.Component {
   constructor() {
@@ -24,7 +24,7 @@ export default class SignInWithEmailForm extends React.Component {
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='email-address'
-          placeholder={L.email}
+          placeholder={localize("auth.email")}
           onChangeText={(text) => this.setState({email:text})}
         />
         <FormInput
@@ -32,12 +32,12 @@ export default class SignInWithEmailForm extends React.Component {
           autoCorrect={false}
           keyboardType='default'
           secureTextEntry={true}
-          placeholder={L.password}
+          placeholder={localize("auth.password")}
           onChangeText={(text) => this.setState({password:text})}
         />
 
         <Button
-          title={L.signIn}
+          title={localize("auth.signIn")}
           iconRight={{name:'chevron-right', color:T.colors.inverse}}
           buttonStyle={{marginTop:S.spacing.small}}
           raised={false}

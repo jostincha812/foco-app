@@ -1,6 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { FormLabel, FormInput } from 'react-native-elements'
+import { localize } from '../../locales'
 
 export default class FeedbackForm extends React.Component {
   constructor() {
@@ -27,18 +28,18 @@ export default class FeedbackForm extends React.Component {
   render() {
     return (
       <View style={{padding:0, margin:0}}>
-        <FormLabel>Name</FormLabel>
+        <FormLabel>{localize("feedback.name")}</FormLabel>
         <FormInput
           value={this.state.name}
           onChangeText={(text) => this.onInputTextChange('name', text)}
         />
-        <FormLabel>Email</FormLabel>
+        <FormLabel>{localize("feedback.email")}</FormLabel>
         <FormInput
           value={this.state.email}
           keyboardType='email-address'
           onChangeText={(text) => this.onInputTextChange('email', text)}
         />
-        <FormLabel>Feedback</FormLabel>
+        <FormLabel>{localize("feedback.feedback")}</FormLabel>
         <FormInput
           value={this.state.feedback}
           onChangeText={(text) => this.onInputTextChange('feedback', text)}

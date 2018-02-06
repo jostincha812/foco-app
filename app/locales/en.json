@@ -1,0 +1,117 @@
+{
+  // Navigation tabs
+  "tabs": {
+    "home": "Home",
+    "collections": "Bookmarked",
+    "starred": "Starred",
+    "profile": "Profile",
+  },
+
+  // Home screen
+  "home": {
+    "title": "Featured",
+  },
+
+  // Collections screen
+  "collections": {
+    "title": "My Bookmarked",
+    "cards": "Cards",
+  },
+
+  // Starred screen
+  "starred": {
+    "title": "Starred Cards",
+  },
+
+  // Filter Starred screen
+  "starredFilter": {
+    "title": "Filter Starred",
+  },
+
+  "filters": {
+    "regions": "Regions",
+    "tags": "Categories",
+    "varietals": "Varietals",
+  },
+
+  // Profile screen
+  "profile": {
+    "title": "My Profile",
+    "level": "Studying",
+    "access": "Access Level",
+    "role": "Role",
+    "authenticationMethod": "Authenticated by",
+    "upgrade": "Go Premium",
+    "feedback": "Send feedback",
+    "support": "Get support",
+  },
+
+  "roles": {
+    "IAP_EARLY_ADOPTER": "Early Adoptor All Access",
+    "ROLE_USER": "User",
+    "ROLE_EDUCATOR": "Educator",
+    "ROLE_ADMIN": "Admin",
+  },
+
+  "feedback": {
+    "title": "Send feedback",
+    "name": "Name",
+    "email": "Email Address",
+    "feedback": "Feedback",
+  },
+
+  // user auth
+  "auth": {
+    "name": "Your name",
+    "email": "Your email address",
+    "password": "Your password",
+    "confirmation": "Your password again",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "createAccount": "Create an account",
+    "createAccount": "Create your account",
+    "haveAccount": "Sign in with Facebook or an existing account",
+    "noFacebook": "or",
+    "signInWithFacebook": "Sign in with Facebook",
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithEmail": "Sign in with Email",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Password reset link sent",
+    "confirmationFail": "Please verify your password",
+    "nameFail": "Please enter your name",
+    "emailMissing": "Please enter your email address to reset your password",
+    "accountBenefits": "Sign up for an account with your email address and access your progress across all your devices.",
+    "accountSafety": "Dont worry, your information will be securely encrypted and will not be shared with 3rd parties.",
+  },
+
+  // levels
+  "difficulty": {
+    "easy": "Easy",
+    "normal": "Normal",
+    "hard": "Difficult",
+    "expert": "Expert",
+  },
+
+  // lists
+  "lists": {
+    "empty": "Nothing to see here",
+  },
+
+  "actions": {
+    // navigation
+    "next": "Next",
+    "go": "Go",
+    "save": "Save",
+    "or": "or",
+    "cancel": "Cancel",
+
+    // actions
+    "saved": "Saved",
+    "created": "Created",
+    "removed": "Removed",
+    "error": "Error",
+    "send": "Send",
+    "submitted": "Submitted",
+  }
+}

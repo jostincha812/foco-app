@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation'
 
 import C, { E, R } from '../constants'
 import S from '../styles'
-import L from '../locales'
+import { localize } from '../locales'
 
 import BaseContainer from './BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
@@ -17,9 +17,9 @@ import { actions as FeedbackActions, FeedbackForm } from '../feedback'
 class FeedbackScreen extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
-      title: L.feedback,
+      title: localize("feedback.title"),
       headerLeft: <NavHeaderBackButton left={true} onPress={navigation.goBack} />,
-      headerRight: <NavHeaderSendButton label={L.send} right={true} onPress={() => {
+      headerRight: <NavHeaderSendButton label={localize("actions.send")} right={true} onPress={() => {
         navigation.state.params.submitFeedback()
         setTimeout(() => navigation.goBack())
         // using fix referenced here:
@@ -63,7 +63,7 @@ class FeedbackScreen extends BaseContainer {
       version: C.VERSION
     }
     this.props.submitFeedback(user, inputs, meta)
-    this.successToast(L.submitted)
+    this.successToast(localize("actions.submitted"))
     this.logEvent(E.user_feedback_submitted, {
       uid: user.uid,
       feedback: inputs.feedback,

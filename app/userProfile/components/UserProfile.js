@@ -4,8 +4,8 @@ import { Avatar } from 'react-native-elements'
 import { List, ListItem } from 'react-native-elements'
 
 import T from '../../T'
-import L from '../../locales'
 import S from '../../styles'
+import { localize } from '../../locales'
 import StyledText from '../../lib/StyledText'
 
 export default class UserProfile extends React.Component {
@@ -37,15 +37,15 @@ export default class UserProfile extends React.Component {
 
     const list = [
       {
-        title: L.level,
+        title: localize("profile.level"),
         value: profile.level,
       },
       {
-        title: L.access,
-        value: L[profile.purchases[0]],
+        title: localize("profile.access"),
+        value: localize(`roles.${profile.purchases[0]}`),
       },
       {
-        title: L.authenticationMethod,
+        title: localize("profile.authenticationMethod"),
         value: this.authMethod(profile),
       },
     ]

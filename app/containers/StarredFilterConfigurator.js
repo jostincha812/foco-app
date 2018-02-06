@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { View, StatusBar } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
-import { R } from '../constants'
 import S from '../styles'
-import L from '../locales'
+import { R } from '../constants'
+import { localize } from '../locales'
 import BaseContainer from './BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import NavHeaderDoneButton from '../components/NavHeaderDoneButton'
@@ -14,7 +14,7 @@ import FilterConfigurator from '../components/FilterConfigurator'
 class StarredFilterConfigurator extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
-      title: L.headers.filterStarred,
+      title: localize("starredFilter.title"),
       headerLeft: <NavHeaderBackButton left={true} onPress={navigation.goBack} />,
       headerRight: <NavHeaderDoneButton right={true} onPress={() => {
         navigation.state.params.onDone(navigation.state.params.getConfiguredFilters())

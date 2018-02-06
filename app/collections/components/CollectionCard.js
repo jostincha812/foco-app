@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import C from '../../constants'
 import T from '../../T'
 import S from '../../styles'
-import L from '../../locales'
+import { localize } from '../../locales'
 
 import Icons from '../../components/Icons'
 import DifficultyPill from '../../components/DifficultyPill'
@@ -57,7 +57,7 @@ export default class CollectionCard extends React.Component {
       onPress: () => this.onPrefToggle(C.KEY_PREF_BOOKMARKED),
     }
     const bookmarkToggle = Icons.bookmark(bookmarkToggleOptions)
-    const numberOfCardsString = collection.flashcards ? `${collection.flashcards.length} ${L.cards}` : null
+    const numberOfCardsString = collection.flashcards ? `${collection.flashcards.length} ${localize("collections.cards")}` : null
     const params = {
       theme: theme,
       backgroundColor: backgroundColor,

@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { ScrollView, StatusBar } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 
-import { R } from '../constants'
 import T from '../T'
 import S from '../styles'
+import { R } from '../constants'
+import { localize } from '../locales'
 
-import L from '../locales'
 import BaseContainer from './BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
 
@@ -16,6 +16,12 @@ import CurrentUser from '../auth/CurrentUser'
 import { UserProfile } from '../userProfile'
 
 class ProfileHome extends BaseContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      title: localize("profile.title"),
+    })
+  }
+
   constructor(props) {
     super(props)
     this.setScreen({screenName:R.NAV_USER_PROFILE_HOME, className:'ProfileHome'})
@@ -27,22 +33,22 @@ class ProfileHome extends BaseContainer {
 
     const list = [
       // {
-      //   title: L.upgrade,
+      //   title: localize("profile.upgrade"),
       //   icon: 'beenhere',
       //   onPress: () => console.log('Go premium')
       // },
       {
-        title: L.feedback,
+        title: localize("profile.feedback"),
         icon: 'rate-review',
         onPress: () => props.navigation.navigate(R.NAV_USER_PROFILE_SEND_FEEDBACK)
       },
       // {
-      //   title: L.support,
+      //   title: localize("profile.support"),
       //   icon: 'live-help',
       //   onPress: () => console.log('Get support')
       // },
       // {
-      //   title: 'Share Foco',
+      //   title: localize("profile.share"),
       //   icon: 'share',
       //   hideChevron: true,
       //   onPress: () => {
@@ -79,7 +85,7 @@ class ProfileHome extends BaseContainer {
           <ListItem
             key={R.NAV_SIGNOUT}
             hideChevron={true}
-            title={L.signOut}
+            title={localize("auth.signOut")}
             titleStyle={[S.text.listTitle, {color:T.colors.active}]}
             leftIcon={{name:'exit-to-app', color:T.colors.active}}
             onPress={CurrentUser.signOut}
