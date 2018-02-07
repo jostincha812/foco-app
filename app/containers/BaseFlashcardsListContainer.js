@@ -130,7 +130,7 @@ export default class BaseFlashcardsListContainer extends BaseContainer {
     }
 
     return (
-      <View style={{flex:1}}>
+      <View style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
         <FlashcardsList
           dimensions={this.state.dimensions}

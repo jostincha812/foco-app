@@ -146,7 +146,7 @@ export default class CollectionHome extends BaseContainer {
     }
 
     return (
-      <View style={{flex:1}}>
+      <View style={S.containers.screen}>
         <ScrollView
           contentContainerStyle={S.containers.list}
           refreshControl={refreshControl}

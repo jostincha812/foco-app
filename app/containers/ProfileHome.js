@@ -61,8 +61,8 @@ class ProfileHome extends BaseContainer {
     return (
       <ScrollView
         style={S.containers.screen}
-        contentContainerStyle={{flex:1, justifyContent:'space-between'}}>
-
+        contentContainerStyle={{flex:1, justifyContent:'space-between'}}
+      >
         <StatusBar barStyle={S.statusBarStyle} />
         <UserProfile style={{flex:1}} profile={profile} />
 
