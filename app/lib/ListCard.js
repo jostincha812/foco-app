@@ -19,12 +19,12 @@ export default class ListCard extends Card {
         { props.title &&
           <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
             { props.subtitle &&
-              <StyledText style='subtitle' theme={theme}>
+              <StyledText textStyle='subtitle' theme={theme}>
                 {props.subtitle.toUpperCase()}
               </StyledText>
             }
             { props.title &&
-              <StyledText style='title' theme={theme}>
+              <StyledText textStyle='title' theme={theme}>
                 {props.title}
               </StyledText>
             }

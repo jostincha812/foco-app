@@ -30,8 +30,8 @@ export default containerStyles = {
     header: {
       paddingTop: spacing.small,
       paddingBottom: spacing.xxsmall,
-      marginLeft: spacing.normal,
-      marginRight: spacing.normal,
+      paddingLeft: spacing.normal,
+      paddingRight: spacing.normal,
     },
     headerBottom: {
       paddingBottom: spacing.small,

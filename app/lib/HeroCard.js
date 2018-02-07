@@ -22,7 +22,7 @@ export default class HeroCard extends Card {
 
           {props.hero && (
             <View style={[styles.containers.normal, {position:'absolute'}]}>
-              <StyledText style='hero' theme={theme}>
+              <StyledText textStyle='hero' theme={theme}>
                 {props.hero}
               </StyledText>
             </View>
@@ -34,11 +34,11 @@ export default class HeroCard extends Card {
             {props.divider && (
               <StyledDivider location='top' theme={theme} />
             )}
-            <StyledText style='title' theme={theme} numberOfLines={1}>
+            <StyledText textStyle='title' theme={theme} numberOfLines={1}>
               {props.title}
             </StyledText>
             {props.subtitle && (
-              <StyledText style='subtitle' theme={theme} numberOfLines={1}>
+              <StyledText textStyle='subtitle' theme={theme} numberOfLines={1}>
                 {props.subtitle}
               </StyledText>
             )}

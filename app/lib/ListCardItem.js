@@ -22,12 +22,12 @@ export default class ListCardItem extends React.Component {
           <View style={{flexDirection:'row', alignItems:'center'}}>
             <View style={{flex:10}}>
               { props.title &&
-                <StyledText style='subtitle' theme={theme} numberOfLines={1}>
+                <StyledText textStyle='subtitle' theme={theme} numberOfLines={1}>
                   {props.title}
                 </StyledText>
               }
               { props.subtitle &&
-                <StyledText style='normal' theme={theme} numberOfLines={1}>
+                <StyledText textStyle='normal' theme={theme} numberOfLines={1}>
                   {props.subtitle}
                 </StyledText>
               }

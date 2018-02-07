@@ -16,12 +16,12 @@ export default class Card extends React.Component {
         { props.title &&
           <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
             { props.subtitle &&
-              <StyledText style='subtitle' theme={theme} numberOfLines={1}>
+              <StyledText textStyle='subtitle' theme={theme} numberOfLines={1}>
                 {props.subtitle.toUpperCase()}
               </StyledText>
             }
             { props.title &&
-              <StyledText style='title' theme={theme} numberOfLines={1}>
+              <StyledText textStyle='title' theme={theme} numberOfLines={1}>
                 {props.title}
               </StyledText>
             }

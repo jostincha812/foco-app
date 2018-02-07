@@ -12,13 +12,18 @@ import { actions as CollectionsActions } from '../collections'
 class CollectionsHome extends BaseCollectionsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
-      title: localize("home.title"),
+      title: localize("collections.title"),
+      header: null,
     })
   }
 
   constructor(props) {
     super(props)
     this.setScreen({screenName:R.NAV_COLLECTIONS_HOME, className:'CollectionsHome'})
+  }
+
+  componentWillMount() {
+    this.setTitle(localize("collections.title"))
   }
 
   _fetchData() {

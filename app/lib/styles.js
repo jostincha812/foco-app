@@ -105,6 +105,11 @@ export default styles = {
       fontSize: sizes.normal + 2,
       color: DefaultTheme.color,
     },
+    header: {
+      fontWeight: weights.heavy,
+      fontSize: sizes.normal,
+      color: DefaultTheme.color,
+    },
     normal: {
       fontWeight: weights.light,
       fontSize: sizes.normal,

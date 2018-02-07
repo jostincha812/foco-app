@@ -61,7 +61,7 @@ export default class FilterConfigurator extends React.Component {
     return (
       <ScrollView contentContinerStyle={S.containers.flexRowWrapped}>
         <View style={S.containers.normal}>
-          <StyledText style='title'>{localize("filters.tags")}</StyledText>
+          <StyledText textStyle='title'>{localize("filters.tags")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
             items={categories}
@@ -70,7 +70,7 @@ export default class FilterConfigurator extends React.Component {
           />
         </View>
         <View style={[S.containers.normal, {paddingTop:0}]}>
-          <StyledText style='title'>{localize("filters.regions")}</StyledText>
+          <StyledText textStyle='title'>{localize("filters.regions")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
             items={regions}
@@ -79,7 +79,7 @@ export default class FilterConfigurator extends React.Component {
           />
         </View>
         <View style={[S.containers.normal, {paddingTop:0}]}>
-          <StyledText style='title'>{localize("filters.varietals")}</StyledText>
+          <StyledText textStyle='title'>{localize("filters.varietals")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
             items={varietals}

@@ -25,12 +25,12 @@ export default class CarouselCard extends Card {
               <StyledDivider location='top' theme={theme} />
             )}
             {props.title && (
-              <StyledText style='title' theme={theme} numberOfLines={1}>
+              <StyledText textStyle='title' theme={theme} numberOfLines={1}>
                 {props.title}
               </StyledText>
             )}
             {props.subtitle && (
-              <StyledText style='subtitle' theme={theme} numberOfLines={1}>
+              <StyledText textStyle='subtitle' theme={theme} numberOfLines={1}>
                 {props.subtitle}
               </StyledText>
             )}

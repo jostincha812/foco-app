@@ -64,7 +64,7 @@ export default class UserProfile extends React.Component {
             titleStyle={S.text.title}
             containerStyle={S.avatar.containerStyle}
           />
-          <StyledText style='title'>
+          <StyledText textStyle='title'>
             {profile.displayName}
           </StyledText>
         </View>

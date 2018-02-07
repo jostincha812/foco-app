@@ -13,6 +13,10 @@ export default textStyles = {
     fontWeight: F.weights.normal,
     fontSize: F.sizes.normal,
   },
+  header: {
+    fontWeight: F.weights.hero,
+    fontSize: F.sizes.normal,
+  },
   normal: {
     fontWeight: F.weights.light,
     fontSize: F.sizes.normal,

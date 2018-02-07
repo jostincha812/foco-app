@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, StatusBar, View, ScrollView, RefreshControl } from 'react-native'
+import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'react-native'
 
 import { E } from '../constants'
 import S from '../styles'
@@ -7,13 +7,16 @@ import BaseContainer from './BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import BackToTopButton from '../components/BackToTopButton'
+import StyledText from '../lib/StyledText'
 
 import { CollectionCard } from '../collections'
 
 export default class CollectionHome extends BaseContainer {
   constructor(props) {
     super(props)
-    this.state = { ...this.state, showBackToTop: false, reachedEnd: false }
+    this.state = { ...this.state, showBackToTop: false, reachedEnd: false, stickyTitle: false, stickied: false }
+    this.setTitle = this.setTitle.bind(this)
+    this.onTitleLayout = this.onTitleLayout.bind(this)
     this.onScroll = this.onScroll.bind(this)
     this.onScrollToTopPress = this.onScrollToTopPress.bind(this)
     this.onCollectionPress = this.onCollectionPress.bind(this)
@@ -36,6 +39,21 @@ export default class CollectionHome extends BaseContainer {
 
   onRefresh() {
     this._fetchData()
+  }
+
+  setTitle(title) {
+    this._title = title
+    if (title) {
+      this.setState({stickyTitle:true})
+    }
+  }
+
+  onTitleLayout(e) {
+    if (!this._titleHeight) {
+      const y = e.nativeEvent.layout.y
+      const h = e.nativeEvent.layout.height
+      this._titleHeight = y + h + 1
+    }
   }
 
   onScroll(e) {
@@ -65,6 +83,12 @@ export default class CollectionHome extends BaseContainer {
       })
     } else if (this.state.reachedEnd && !scrolledToEnd) {
       this.setState({ reachedEnd: false })
+    }
+
+    if (!this.state.stickied && yOffset > this._titleHeight) {
+      this.setState({stickied: true})
+    } else if (this.state.stickied && yOffset < this._titleHeight - 8) {
+      this.setState({stickied: false})
     }
   }
 
@@ -152,9 +176,24 @@ export default class CollectionHome extends BaseContainer {
           refreshControl={refreshControl}
           onScroll={this.onScroll}
           scrollEventThrottle={64}
+          stickyHeaderIndices={this.state.stickyTitle ? [1] : []}
           ref='_SCROLLVIEW'
         >
           <StatusBar barStyle={S.statusBarStyle} />
+
+          { this._title && (
+            <View
+              onLayout={this.onTitleLayout}
+              style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
+            >
+              <View style={{flex:1, justifyContent:'flex-end'}}>
+                <Text style={S.text.header}>
+                  {this._title}
+                </Text>
+              </View>
+            </View>
+          )}
+
           { collections &&
             collectionsKeys.map((id, index) => {
               const collection = {id, ...collections[id]}

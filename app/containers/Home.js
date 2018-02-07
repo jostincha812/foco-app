@@ -14,12 +14,17 @@ class Home extends BaseCollectionsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: localize("home.title"),
+      header: null,
     })
   }
 
   constructor(props) {
     super(props)
     this.setScreen({screenName:R.NAV_HOME, className:'Home'})
+  }
+
+  componentWillMount() {
+    this.setTitle(localize("home.title"))
   }
 
   _fetchData() {

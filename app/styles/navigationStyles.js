@@ -1,5 +1,7 @@
 import T from '../T'
 import F from '../F'
+import spacing from './spacing'
+import { Header } from 'react-navigation'
 
 export default navigationStyles = {
   // nav tab bar styles
@@ -16,6 +18,20 @@ export default navigationStyles = {
     labelStyle: {
       marginBottom: 4,
     },
+  },
+
+  floatingHeader: {
+    height: Header.HEIGHT,
+    backgroundColor: T.colors.containerBackground,
+    borderBottomWidth: 0,
+  },
+
+  stickiedHeader: {
+    height: Header.HEIGHT,
+    backgroundColor: T.colors.containerBackground,
+    borderBottomColor: T.colors.headerBorder,
+    borderBottomWidth: 1,
+    alignItems: 'center',
   },
 
   // navigation header styles

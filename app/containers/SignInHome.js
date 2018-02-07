@@ -52,7 +52,7 @@ export default class SignInHome extends BaseContainer {
               }}
             />
 
-            <StyledText style="footnote" color={T.colors.inactiveText}>
+            <StyledText textStyle="footnote" color={T.colors.inactiveText}>
               {localize("auth.noFacebook")}
             </StyledText>
 
