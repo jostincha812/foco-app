@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Map } from 'immutable'
 
 import C, { E, R } from '../constants'
 import { localize } from '../locales'
@@ -23,7 +24,7 @@ class StarredHome extends BaseFlashcardsListContainer {
             toggled={navigation.state.params.filtered}
             right={true}
             onPress={() => navigation.navigate(R.NAV_STARRED_FILTER_CONFIGURATOR, {
-              onDone: navigation.state.params.onDone,
+              onFilter: navigation.state.params.onFilter,
               filters: navigation.state.params.filters,
             })}
           />
@@ -39,10 +40,7 @@ class StarredHome extends BaseFlashcardsListContainer {
       filtered: false,
       filters: {},
     }
-    this.state.filters[C.TAG_TYPE_CATEGORIES] = {}
-    this.state.filters[C.TAG_TYPE_REGIONS] = {}
-    this.state.filters[C.TAG_TYPE_VARIETALS] = {}
-    this.onDone = this.onDone.bind(this)
+    this.onFilter = this.onFilter.bind(this)
     this.setScreen({screenName:R.NAV_STARRED_HOME, className:'StarredHome'})
   }
 
@@ -51,7 +49,8 @@ class StarredHome extends BaseFlashcardsListContainer {
     this.props.navigation.setParams({
       filtered: this.state.filtered,
       filters: this.state.filters,
-      onDone: this.onDone
+      onDone: this.onDone,
+      onFilter: this.onFilter,
     })
   }
 
@@ -98,9 +97,7 @@ class StarredHome extends BaseFlashcardsListContainer {
     const filters = this.state.filters
     const tags = flashcard.tags || []
     tags.map(tag => {
-      if (filters[C.TAG_TYPE_CATEGORIES][tag] ||
-          filters[C.TAG_TYPE_REGIONS][tag] ||
-          filters[C.TAG_TYPE_VARIETALS][tag]) {
+      if (filters[tag]) {
         passed = true
         return
       }
@@ -109,23 +106,18 @@ class StarredHome extends BaseFlashcardsListContainer {
     return passed
   }
 
-  onDone(filters) {
+  onFilter(filters) {
     let filtered = false
     if (filters) {
-      Object.keys(filters).map(filterType => {
-        Object.keys(filters[filterType]).map(key => {
-          if (filters[filterType][key]) {
-            filtered = true
-          }
-        })
+      Object.keys(filters).map(key => {
+        if (filters[key]) {
+          filtered = true
+        }
       })
     }
 
     // to update nav header
-    this.props.navigation.setParams({
-      filtered,
-      filters
-    })
+    this.props.navigation.setParams({filtered, filters})
     // to update list
     this.setState({filtered, filters})
   }

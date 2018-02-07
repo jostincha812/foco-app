@@ -13,41 +13,52 @@ import FilterConfigurator from '../components/FilterConfigurator'
 
 class StarredFilterConfigurator extends BaseContainer {
   static navigationOptions = ({navigation}) => {
+    const onDone = navigation.state.params.onDone
+    const onBack = navigation.state.params.onBack
     return ({
       title: localize("starredFilter.title"),
-      headerLeft: <NavHeaderBackButton left={true} onPress={navigation.goBack} />,
-      headerRight: <NavHeaderDoneButton right={true} onPress={() => {
-        navigation.state.params.onDone(navigation.state.params.getConfiguredFilters())
-        setTimeout(() => navigation.goBack())
-        // using fix referenced here:
-        // https://github.com/react-community/react-navigation/issues/1912#issuecomment-327791208
-      }}/>,
+      headerLeft: <NavHeaderBackButton left={true} onPress={onBack} />,
+      headerRight: <NavHeaderDoneButton right={true} onPress={onDone} />
     })
   }
 
   constructor(props) {
     super(props)
-    this.state.filters = {}
-    this.onFiltersChange = this.onFiltersChange.bind(this)
+    this.onBack = this.onBack.bind(this)
+    this.onDone = this.onDone.bind(this)
     this.setScreen({screenName:R.NAV_STARRED_FILTER_CONFIGURATOR, className:'StarredFilterConfigurator'})
   }
 
   componentDidMount() {
-    this.setState({filters: this.props.navigation.state.params.filters})
-    this.props.navigation.setParams({getConfiguredFilters: () => this.state.filters })
+    this.props.navigation.setParams({
+      onBack: this.onBack,
+      onDone: this.onDone,
+    })
   }
 
-  onFiltersChange(newFilters) {
-    this.setState(newFilters)
+  onBack() {
+    const navigation = this.props.navigation
+    navigation.goBack()
+  }
+
+  onDone() {
+    const navigation = this.props.navigation
+    const filters = this._configurator.filters
+    navigation.state.params.onFilter(filters)
+    setTimeout(() => navigation.goBack())
+    // using fix referenced here:
+    // https://github.com/react-community/react-navigation/issues/1912#issuecomment-327791208
   }
 
   render() {
+    const navigation = this.props.navigation
+    const filters = navigation.state.params.filters
     return (
       <View style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
         <FilterConfigurator
-          selectedFilters={this.state.filters}
-          onFiltersChange={this.onFiltersChange}
+          filters={filters}
+          ref={r => this._configurator = r}
         />
       </View>
     )

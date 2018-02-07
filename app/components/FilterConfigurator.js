@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, ScrollView } from 'react-native'
+import { Map } from 'immutable'
 
 import C from '../constants'
 import S from '../styles'
@@ -12,46 +13,40 @@ import VPQTags from '../lib/VPQTags'
 export default class FilterConfigurator extends React.Component {
   constructor(props) {
     super(props)
-    this.state = this.state || {}
-    this.state.filters = {}
+    this.state = this.state || { filters: null }
   }
 
   componentDidMount() {
-    this._setFiltersState(this.props.selectedFilters)
+    this._setFiltersState(this.props.filters)
   }
 
   componentWillReceiveProps(nextProps) {
-    this._setFiltersState(nextProps.selectedFilters)
+    this._setFiltersState(nextProps.filters)
   }
 
   _setFiltersState(filters) {
-    const newState = { filters }
-    filters[C.TAG_TYPE_CATEGORIES] = filters[C.TAG_TYPE_CATEGORIES] || {}
-    filters[C.TAG_TYPE_REGIONS] = filters[C.TAG_TYPE_REGIONS] || {}
-    filters[C.TAG_TYPE_VARIETALS] = filters[C.TAG_TYPE_VARIETALS] || {}
-    this.setState(newState)
+    this.setState({ filters: Map(filters) })
   }
 
   _selectedFilters(filterType) {
-    const filterState = this.state.filters[filterType]
-    if (filterState) {
-      const a = []
-      Object.keys(filterState).map(tag => {
-        if (filterState[tag]) {
-          a.push(tag)
-        }
-      })
-      return a
-    }
-    return []
+    const filters = this.state.filters || Map({})
+    const a = []
+    filters.map((v, k) => {
+      if (v) {
+        a.push(k)
+      }
+    })
+    return a
+  }
+
+  get filters() {
+    return (this.state.filters.toObject())
   }
 
   onToggle(type, tagState) {
-    const newState = { ...this.state }
-    newState.filters[type][tagState.tag] = tagState.val
-    if (this.props.onFiltersChange) {
-      this.props.onFiltersChange({filters: newState.filters})
-    }
+    const filters = this.state.filters
+    const newFilters = filters.set(tagState.tag, tagState.val)
+    this.setState({filters: newFilters})
   }
 
   render() {
