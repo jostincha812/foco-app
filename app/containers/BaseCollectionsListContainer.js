@@ -52,7 +52,7 @@ export default class CollectionHome extends BaseContainer {
     if (!this._titleHeight) {
       const y = e.nativeEvent.layout.y
       const h = e.nativeEvent.layout.height
-      this._titleHeight = y + h + 1
+      this._titleLoc = y
     }
   }
 
@@ -85,9 +85,9 @@ export default class CollectionHome extends BaseContainer {
       this.setState({ reachedEnd: false })
     }
 
-    if (!this.state.stickied && yOffset > this._titleHeight) {
+    if (!this.state.stickied && yOffset > this._titleLoc) {
       this.setState({stickied: true})
-    } else if (this.state.stickied && yOffset < this._titleHeight - 8) {
+    } else if (this.state.stickied && yOffset < this._titleLoc - 1) {
       this.setState({stickied: false})
     }
   }

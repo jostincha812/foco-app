@@ -32,7 +32,7 @@ export default class SignInHome extends BaseContainer {
       var { width, height } = dimensions
 
       return (
-        <View style={[S.containers.screen]}>
+        <View style={S.containers.screen}>
           <StatusBar barStyle={S.statusBarStyle} />
 
           <View style={{height:height/2, justifyContent:'flex-end'}}>

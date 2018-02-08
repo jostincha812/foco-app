@@ -9,18 +9,18 @@
 
   // Home screen
   "home": {
-    "title": "Featured",
+    "title": "Recommended",
   },
 
   // Collections screen
   "collections": {
-    "title": "My Bookmarked",
+    "title": "Bookmarked",
     "cards": "Cards",
   },
 
   // Starred screen
   "starred": {
-    "title": "Starred Cards",
+    "title": "Starred",
   },
 
   // Filter Starred screen

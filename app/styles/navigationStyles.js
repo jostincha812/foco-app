@@ -1,6 +1,7 @@
 import T from '../T'
 import F from '../F'
 import spacing from './spacing'
+import containers from './containerStyles'
 import { Header } from 'react-navigation'
 
 export default navigationStyles = {
@@ -32,6 +33,7 @@ export default navigationStyles = {
     borderBottomColor: T.colors.headerBorder,
     borderBottomWidth: 1,
     alignItems: 'center',
+    ...containers.cards.raised,
   },
 
   // navigation header styles
@@ -46,16 +48,11 @@ export default navigationStyles = {
       top: 2,
     },
     headerStyle: {
-      backgroundColor: T.colors.headerBackground,
+      backgroundColor: T.colors.containerBackground,
       borderBottomWidth: 1,
       borderBottomColor: T.colors.headerBorder,
       elevation: 0,
-      shadowColor: 'transparent',
-      shadowOpacity: 0,
-      shadowRadius: 0,
-      shadowOffset: {
-        height: 0,
-      },
+      ...containers.cards.raised,
     },
   },
 

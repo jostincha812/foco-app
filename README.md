@@ -57,3 +57,4 @@
 ## 0.9.4
 * Responsive font sizing
 * Consistent styling and font styles
+* Sticky nav headers

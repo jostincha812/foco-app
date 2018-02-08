@@ -64,9 +64,9 @@ export default containerStyles = {
       shadowColor: T.colors.shadow,
       shadowOffset: {
         width: 0,
-        height: spacing.xsmall/2,
+        height: 0,
       },
-      shadowRadius: spacing.xsmall/2,
+      shadowRadius: 1,
       shadowOpacity: 0.25,
     },
     hero: {
