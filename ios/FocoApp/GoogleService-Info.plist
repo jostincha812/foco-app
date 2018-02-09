@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>337229219663-veaiaqnjkuo4k4fo4kjgvoes0p84qh4d.apps.googleusercontent.com</string>
+	<string>465918881711-jn5vs2ivq9vkcqvs9hp2uusf7gct8m5k.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.337229219663-veaiaqnjkuo4k4fo4kjgvoes0p84qh4d</string>
+	<string>com.googleusercontent.apps.465918881711-jn5vs2ivq9vkcqvs9hp2uusf7gct8m5k</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBraItw4eRPgNluAA0OG0CEAustcXq81Xs</string>
+	<string>AIzaSyBbix22bVZA-WpTkYbN0_3Vgh6-_C4gzkM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>337229219663</string>
+	<string>465918881711</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.vpqlabs.foco</string>
 	<key>PROJECT_ID</key>
-	<string>project-4367012475013528568</string>
+	<string>foco-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>project-4367012475013528568.appspot.com</string>
+	<string>foco-prod.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:337229219663:ios:b86a165303aacac2</string>
+	<string>1:465918881711:ios:b86a165303aacac2</string>
 	<key>DATABASE_URL</key>
-	<string>https://focoapp.firebaseio.com</string>
+	<string>https://foco-prod.firebaseio.com</string>
 </dict>
 </plist>

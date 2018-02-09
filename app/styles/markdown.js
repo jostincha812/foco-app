@@ -1,21 +1,30 @@
 import T from '../T'
+import F from '../F'
+
+import spacing from './spacing'
+import text from './textStyles'
+// import S from './styles'
 
 export default markdown = {
   codeBlock: {
     fontFamily: 'Courier',
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
   heading: {
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
   heading1: {
-    fontSize: 32,
+    ...text.title
+    // fontSize: 32,
   },
   heading2: {
-    fontSize: 24,
+    ...text.subtitle
+    // fontSize: 24,
   },
   heading3: {
-    fontSize: 20,
+    ...text.subtitle,
+    textDecorationLine: 'underline'
+    // fontSize: 20,
   },
   heading4: {
     fontSize: 16,
@@ -27,25 +36,32 @@ export default markdown = {
     fontSize: 11,
   },
   hr: {
-    backgroundColor: T.colors.contentBackground,
+    backgroundColor: T.colors.transparent,
   },
   link: {
     color: T.colors.accent,
   },
+  list: {
+    // borderColor: '#000',
+    // borderWidth: 1,
+  },
+  paragraph: {
+    marginBottom: spacing.small,
+  },
   text: {
-    fontSize: T.fonts.normalSize,
-    fontWeight: T.fonts.normalWeight,
+    ...text.normal,
   },
   strong: {
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
   table: {
     borderColor: T.colors.contentBorder,
   },
   tableHeaderCell: {
-    borderColor: T.colors.contentBorder,
+    backgroundColor: T.colors.inactive,
+    color: T.colors.normal,
   },
   tableHeaderCellContent: {
-    fontWeight: T.fonts.boldWeight,
+    fontWeight: F.weights.bold,
   },
 }

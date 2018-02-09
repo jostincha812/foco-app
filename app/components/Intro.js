@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-import C from '../C'
+import C from '../constants'
 import T from '../T'
-import L from '../L'
-import S from '../styles/styles'
+import F from '../F'
+import L from '../locales'
+import S from '../styles'
 
 import Icons from '../components/Icons'
 
@@ -32,14 +33,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appName: {
-    fontSize: T.fonts.largeSize,
-    fontWeight: T.fonts.heavyWeight,
+    fontSize: F.sizes.xlarge,
+    fontWeight: F.weights.bold,
   },
   vendorName: {
-    fontSize: T.fonts.largeSize - 6,
-    fontWeight: T.fonts.normalWeight,
+    fontSize: F.sizes.small,
+    fontWeight: F.weights.light,
     fontStyle: 'italic',
-    marginTop: S.spacing.xxsmall,
-    color: T.colors.normal,
   }
 })

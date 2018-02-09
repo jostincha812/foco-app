@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { normalize } from './utils'
 
 export default class Pill extends React.Component {
   render() {
@@ -68,12 +69,13 @@ const styles = {
     borderWidth: 0.5,
   },
   label: {
-    fontSize: 10,
+    fontSize: normalize(12),
     fontWeight: '500',
+    paddingTop: 1,
   },
   large: {
-    fontSize: 14,
-    paddingTop: 1,
+    fontSize: normalize(16),
+    paddingTop: 0,
   },
   normal: {
     color: '#FFF',

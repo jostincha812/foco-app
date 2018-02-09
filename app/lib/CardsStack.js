@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { Card } from 'react-native-elements'
 
 import T from '../T'
-import S from '../styles/styles'
+import S from '../styles'
 
 export default class CardsStack extends React.Component {
   render() {

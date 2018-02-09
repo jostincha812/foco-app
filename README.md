@@ -39,3 +39,25 @@
 * Upgraded to react-native 0.49.3
 * Upgraded Android configs
 * Linked react-native-firebase to Android and iOS
+* Cards component family
+
+## v0.9.2
+* Using Cards components
+* Bookmarkable collections
+* Starred cards screen
+* Redux using screen namespaces
+
+## v0.9.3
+* Simplified user profile view
+* Premium content locking views
+* Starred cards filtering
+* User feedback submission
+* Collections and Cards lists has BackToTop
+
+## 0.9.4
+* Responsive font sizing
+* Consistent styling and font styles
+* Sticky nav headers
+
+## 1.0.0a
+* 1.0 alpha release

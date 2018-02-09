@@ -1,29 +1,33 @@
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
 
-import T from '../T'
-import C from '../C'
+import { R } from '../constants'
+import S from '../styles'
 
-import S from '../styles/styles'
 import HomeStack from './HomeStack'
+import CollectionsStack from './CollectionsStack'
+import StarredStack from './StarredStack'
+import SearchStack from './SearchStack'
 import ProfileStack from './ProfileStack'
 
 const TABS = {}
-TABS[C.NAV_PROFILE_TAB] = { screen: ProfileStack }
-TABS[C.NAV_HOME_TAB] = { screen: HomeStack }
+TABS[R.NAV_HOME_TAB] = { screen: HomeStack }
+TABS[R.NAV_COLLECTIONS_TAB] = { screen: CollectionsStack }
+TABS[R.NAV_STARRED_TAB] = { screen: StarredStack }
+TABS[R.NAV_PROFILE_TAB] = { screen: ProfileStack }
 
 const AppTabNavigator = TabNavigator(TABS, {
+  lazy: true,
   swipeEnabled: false,
-  animationEnabled: true,
+  animationEnabled: false,
   navigationOptions: ({navigation}) => ({
-    tabBarVisible: false,
+    tabBarVisible: true,
     gesturesEnabled: false,
   }),
   tabBarOptions: {
     showIcon: true,
     showLabel: false,
-    activeTintColor: T.activeColor,
-    inactiveTintColor: T.inactiveColor,
+    ...S.navigation.tabBarOptions,
   },
 })
 

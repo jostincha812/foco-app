@@ -2,116 +2,146 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fbAnalytics } from '../../configureFirebase'
 
-import { View, StatusBar, Text} from 'react-native'
-import { SocialIcon, FormInput, Button } from 'react-native-elements'
+import { View, Text, TextInput} from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+import { SocialIcon, Button } from 'react-native-elements'
 
-import C, { E } from '../C'
+import C, { E, R } from '../constants'
+import S from '../styles'
+
 import T from '../T'
-import L from '../L'
-import S from '../styles/styles'
+import F from '../F'
+import { localize } from '../locales'
 import BaseContainer from './BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
+import NavHeaderBackButton from '../components/NavHeaderBackButton'
 
 class SignUpWithEmail extends BaseContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      headerLeft: (
+        <NavHeaderBackButton left={true} inverse={false}
+          onPress={() => navigation.state.params.onBounce()}
+        />
+      )
+    })
+  }
+
   constructor(props) {
     super(props)
     this.state = { name:null, email:null, password:null, confirmation:null }
     this.onSignUp = this.onSignUp.bind(this)
+    this.setScreen({screenName:R.NAV_USER_SIGNUP_WITH_EMAIL, className:'SignUpWithEmail'})
   }
 
   componentDidMount() {
-    this.setCurrentScreen(E.signup_with_email_screen)
+    super.componentDidMount()
+    this.props.navigation.setParams({
+      onBounce: () => {
+        this.logEvent(E.auth_signup_bounce, { screen:R.NAV_USER_SIGNUP_WITH_EMAIL })
+        this.props.navigation.goBack()
+      }
+    })
   }
 
   onSignUp() {
     if (this.state.password != this.state.confirmation) {
-      return this.errorToast(L.confirmationFail)
+      return this.errorToast(localize("auth.confirmationFail"))
     }
     if (this.state.name === null || this.state.name === '') {
-      return this.errorToast(L.nameFail)
+      return this.errorToast(localize("auth.nameFail"))
     }
+    this.logEvent(E.auth_signed_up, { email: this.state.email })
     FirebaseAuth.register(this.state.name, this.state.email, this.state.password)
-    this.logEvent(E.event_user_signup_submitted, {
-      name: this.state.name,
-      email: this.state.email,
-    })
   }
 
   render() {
     return (
-      <View style={[S.containers.screen, S.containers.centered]}>
-        <View style={{justifyContent:'space-between', alignSelf:'center', alignItems:'center', height:'75%'}}>
-          <View style={{marginTop:S.spacing.xlarge, width:'85%'}}>
-            <Text style={[S.text.hero, {alignSelf:'center'}]}>
-              {L.createAccount}
-            </Text>
-            <Text style={[S.text.normal, {marginTop:S.spacing.normal}]}>
-              {L.accountBenefits}
-            </Text>
-            <Text style={[S.text.normal, {fontStyle:'italic', marginTop:S.spacing.normal}]}>
-              {L.accountSafety}
-            </Text>
-          </View>
+      <View style={S.containers.screen}>
+        <KeyboardAwareScrollView
+          style={[S.form.container]}
+          keyboardDismissMode="interactive"
+          getTextInputRefs={() => {
+            return [this._name, this._email, this._password, this._confirmation]
+          }}
+        >
+          <Text style={[S.text.title]}>
+            {localize("auth.createAccount")}
+          </Text>
+          <Text style={[S.text.footnote, {marginTop:S.spacing.normal}]}>
+            {localize("auth.accountBenefits")}
+          </Text>
+          <Text style={[S.text.footnote, {marginTop:S.spacing.small}]}>
+            {localize("auth.accountSafety")}
+          </Text>
 
-          <View style={{width:360, marginTop:S.spacing.normal}}>
-            <FormInput
+          <View style={S.form.group}>
+            <Text style={S.form.label}>
+              {localize("auth.signUpAs")}
+            </Text>
+            <TextInput
+              style={S.form.input}
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'
-              placeholder={L.name}
+              placeholder={localize("auth.name")}
               onChangeText={(text) => this.setState({name:text})}
+              ref={(r) => { this._name = r }}
+              returnKeyType={'next'}
+              onSubmitEditing={(event) => this._email.focus()}
             />
-            <FormInput
+            <TextInput
+              style={S.form.input}
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='email-address'
-              placeholder={L.email}
+              placeholder={localize("auth.email")}
               onChangeText={(text) => this.setState({email:text})}
-            />
-            <FormInput
-              containerStyle={{marginTop:S.spacing.large}}
-              autoCapitalize='none'
-              autoCorrect={false}
-              keyboardType='default'
-              secureTextEntry={true}
-              placeholder={L.password}
-              onChangeText={(text) => this.setState({password:text})}
-            />
-            <FormInput
-              autoCapitalize='none'
-              autoCorrect={false}
-              keyboardType='default'
-              secureTextEntry={true}
-              placeholder={L.confirmation}
-              onChangeText={(text) => this.setState({confirmation:text})}
-            />
-
-            <Button
-              title={L.go}
-              icon={{name:'chevron-right'}}
-              iconRight={true}
-              borderRadius={S.spacing.xlarge}
-              buttonStyle={{marginTop:S.spacing.large}}
-              raised={true}
-              fontSize={T.fonts.normalSize}
-              fontWeight={T.fonts.boldWeight}
-              backgroundColor={T.colors.active}
-              onPress={this.onSignUp}
+              ref={(r) => { this._email = r }}
+              returnKeyType={'next'}
+              onSubmitEditing={(event) => this._password.focus()}
             />
           </View>
 
-          <Button
-            title={L.haveAccount}
-            fontSize={T.fonts.normalSize}
-            fontWeight={T.fonts.normalWeight}
-            color={T.colors.inactiveText}
-            backgroundColor={T.colors.transparent}
-            onPress={() => {
-              this.logEvent(E.event_user_signup_aborted)
-              this.props.navigation.goBack()
-            }}
-          />
-        </View>
+          <View style={S.form.group}>
+            <TextInput
+              style={S.form.input}
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='default'
+              secureTextEntry={true}
+              placeholder={localize("auth.setPassword")}
+              onChangeText={(text) => this.setState({password:text})}
+              ref={(r) => { this._password = r }}
+              returnKeyType={'next'}
+              onSubmitEditing={(event) => this._confirmation.focus()}
+            />
+            <TextInput
+              style={S.form.input}
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='default'
+              secureTextEntry={true}
+              placeholder={localize("auth.confirmation")}
+              onChangeText={(text) => this.setState({confirmation:text})}
+              ref={(r) => { this._confirmation = r }}
+              returnKeyType={'go'}
+              onSubmitEditing={this.onSignUp}
+            />
+          </View>
+
+          <View style={S.form.group}>
+            <Button
+              title={localize("auth.signUp")}
+              iconRight={{name:'chevron-right'}}
+              raised={false}
+              fontSize={F.sizes.small}
+              fontWeight={F.weights.light}
+              backgroundColor={T.colors.accent}
+              onPress={this.onSignUp}
+            />
+          </View>
+        </KeyboardAwareScrollView>
       </View>
     )
   }

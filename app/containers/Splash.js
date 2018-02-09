@@ -1,99 +1,77 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-import firebase from '../../configureFirebase'
+import { View, StatusBar } from 'react-native'
 
-import { View, StatusBar, Text} from 'react-native'
-import { SocialIcon, FormInput, Button } from 'react-native-elements'
-
-import C, { E } from '../C'
-import T from '../T'
-import L from '../L'
-import S from '../styles/styles'
+import { E, R } from '../constants'
+import S from '../styles'
 import BaseContainer from './BaseContainer'
-import FirebaseAuth from '../auth/FirebaseAuth'
-import LoadingIndicator from '../lib/LoadingIndicator'
+import LoadingIndicator from '../components/LoadingIndicator'
 
-import {
-  upsertUserProfile,
-  fetchUserProfile,
-} from '../actions/UserProfileActions'
+import CurrentUser from '../auth/CurrentUser'
 
 class Splash extends BaseContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      header: null,
+    })
+  }
+
   constructor(props) {
     super(props)
-    this.state = { initialized: false }
     this.onLogin = this.onLogin.bind(this)
     this.onLogout = this.onLogout.bind(this)
-    this.emailVerified = this.emailVerified.bind(this)
+    this.onEmailVerified = this.onEmailVerified.bind(this)
     this.onError = this.onError.bind(this)
     this.unsubscribe = null
+    this.setScreen({screenName:'Splash', className:'Splash'})
   }
 
   componentDidMount() {
-    this.setCurrentScreen(E.signin_home)
-
-    if (!FirebaseAuth.initialized) {
-      this.unsubscribe = FirebaseAuth.setup(
-        (initialized) => {
-          this.setState({initialized})
-        },
-        this.onLogin,
-        this.onLogout,
-        this.emailVerified,
-        this.onError)
-    }
+    CurrentUser.setup(
+      (initialized) => this.setState({ initialized }),
+      this.onLogin,
+      this.onLogout,
+      this.onError,
+      this.onEmailVerified,
+    )
   }
 
   componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.profileFetched && (nextProps.profileFetched != this.props.profileFetched)) {
-      setTimeout(
-        () => this.props.navigation.navigate(C.NAV_HOME_TAB),
-        1200
-      )
-    }
+    CurrentUser.teardown()
   }
 
   componentDidUpdate() {
-    if (FirebaseAuth.initialized && !firebase.auth().authenticated) {
+    if (CurrentUser.initialized && !CurrentUser.authenticated) {
       setTimeout(
-        () => this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME),
-        1200
+        () => this.props.navigation.navigate(R.NAV_USER_SIGNIN_HOME),
+        600
       )
     }
   }
 
   onLogin(user) {
-    this.logEvent(E.event_user_signin_completed, user)
-    this.props.upsertUserProfile(user.uid, user).then(() => {
-      this.props.fetchUserProfile(user.uid)
-    })
-    this.setState({initialized: false})
+    this.logEvent(E.user_signed_in, {uid: user.uid, provider: user.providerId})
+    this.props.navigation.navigate(R.NAV_HOME_TAB)
   }
 
-  onLogout() {
-    this.logEvent(E.event_user_signed_out)
-    this.props.navigation.navigate(C.NAV_USER_SIGNIN_HOME)
+  onLogout(user) {
+    this.logEvent(E.user_signed_out, {uid: user.uid})
+    this.props.navigation.navigate(R.NAV_USER_SIGNIN_HOME)
   }
 
-  emailVerified() {
-    console.log('emailVerified()')
+  onEmailVerified() {
+    this.logEvent(E.user_email_verified)
   }
 
   onError(e) {
+    this.logEvent(E.firebase_error, e)
     this.errorToast(e.message)
-    this.logEvent(E.event_firebase_error, e)
   }
 
   render() {
     return (
-      <View style={[S.containers.screen, S.containers.centered, {backgroundColor:T.colors.app}]}>
+      <View style={[S.containers.screen, S.containers.centered, S.containers.splashScreen]}>
          <StatusBar barStyle={S.statusBarStyle} />
          <LoadingIndicator large={true} inverse={true} />
       </View>
@@ -103,16 +81,12 @@ class Splash extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    profileFetched: state.userProfile.status === C.FB_FETCHED,
-    profile: state.userProfile.data,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    upsertUserProfile: (uid, profile) => dispatch(upsertUserProfile(uid, profile)),
-    fetchUserProfile: (uid) => dispatch(fetchUserProfile(uid)),
   }
 }
 

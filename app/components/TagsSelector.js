@@ -13,6 +13,7 @@ export default class TagsSelector extends React.Component {
 
     return (
       <PillsList
+        style={props.style}
         items={items}
         selected={selected}
         onToggle={onToggle}

@@ -1,146 +1,69 @@
 import React from 'react'
-import { View, Text, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import C, { E } from '../C'
 import T from '../T'
-import L from '../L'
-import S from '../styles/styles'
-import BaseContainer from './BaseContainer'
-import Icons from '../components/Icons'
-import FlashcardSetCard from '../components/FlashcardSetCard'
-import FlashcardSetsGridList from '../components/FlashcardSetsGridList'
+import C, { R } from '../constants'
+import { localize } from '../locales'
+import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 
-import LoadingIndicator from '../lib/LoadingIndicator'
+import CurrentUser from '../auth/CurrentUser'
+import { actions as UserPrefsActions } from '../userPrefs'
+import { actions as CollectionsActions } from '../collections'
 
-import {
-  fetchFeaturedFlashcardSets,
-  fetchUserFlashcardSets,
-  setupUserStarredFlashcardsListeners,
-  teardownUserStarredFlashcardsListeners,
-} from '../actions/UserFlashcardSetsActions'
-
-class Home extends BaseContainer {
-  componentDidMount() {
-    const user = this.props.user
-    this.setCurrentScreen(E.user_home)
-    this.props.fetchFeaturedFlashcardSets(user.level)
-    this.props.fetchUserFlashcardSets(user.uid)
-    this.props.setupUserStarredFlashcardsListeners(user.uid)
+class Home extends BaseCollectionsListContainer {
+  static navigationOptions = ({navigation}) => {
+    return ({
+      title: localize("home.title"),
+      header: null,
+    })
   }
 
-  componentWillReceiveProps(nextProps) {
-    const user = this.props.user
-    if (nextProps.updated || nextProps.deleted) {
-      // need a timeout to allow navigation event to complete
-      setTimeout(
-        () => this.props.fetchUserFlashcardSets(user.uid),
-        100
-      )
-    }
+  constructor(props) {
+    super(props)
+    this.setScreen({screenName:R.NAV_HOME, className:'Home'})
   }
 
-  componentWillUnmount() {
-    const user = this.props.user
-    this.props.teardownUserStarredFlashcardsListeners(user.uid)
+  componentWillMount() {
+    this.setTitle(localize("home.title"))
   }
 
-  render() {
-    const navigation = this.props.navigation
-    const props = this.props
+  _fetchData() {
     const user = this.props.user
-    const ready = this.props.ready
+    this.props.fetchCollections(user.level, user.uid)
+  }
 
-    if (!(ready && user)) {
-      return (
-        <View style={[S.containers.screen, S.containers.centered]}>
-          <StatusBar barStyle={S.statusBarStyle} />
-          <LoadingIndicator />
-        </View>
-      )
-    }
+  _cancelFetch() {
+    this.props.resetCollectionsState()
+  }
 
-    const appSets = this.props.sets[user.level] ? this.props.sets[user.level] : {}
-    const userSets = this.props.sets[user.uid] ? this.props.sets[user.uid] : {}
-    const starredSet = this.props.sets[C.KEY_PREF_STARRED] ? this.props.sets[C.KEY_PREF_STARRED] : null
+  _updatePref(options) {
+    const { user, collection, pref } = options
+    this.props.upsertUserCollectionPrefs(
+      user.uid,
+      collection.id,
+      pref,
+    )
+  }
 
-    const flashcardSetCard = (cardtype, set, type, icon) => {
-      return (
-        <FlashcardSetCard
-          key={set.id}
-          type={cardtype}
-          set={set}
-          icon={icon}
-          onPress={() => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {user, type, id:set.id, title:set.title, ids:set.flashcards})}>
-        </FlashcardSetCard>
-      )
-    }
-
-    const appSetKeys = Object.keys(appSets)
-    return (
-      <ScrollView style={S.containers.screen}>
-        <StatusBar barStyle={S.statusBarStyle} />
-        <View style={[S.containers.hero, {paddingTop:S.spacing.xsmall, paddingBottom:S.spacing.xsmall}]}>
-          <Text style={S.text.hero}>{L.featured}</Text>
-          { (appSetKeys.length > 0) &&
-            flashcardSetCard('hero', {id:appSetKeys[0], ...appSets[appSetKeys[0]]}, E.event_set_type_featured)
-          }
-        </View>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          style={[S.containers.carousel, {paddingTop:S.spacing.xsmall, paddingBottom:S.spacing.small}]}>
-          { (appSetKeys.length > 0) &&
-            appSetKeys.map((setId, index) => {
-              if (index) {
-                const set = appSets[setId]
-                set.id = setId
-                return flashcardSetCard('carousel', set, E.event_set_type_featured)
-              }
-            }
-          )}
-        </ScrollView>
-        <View style={[S.containers.list, {paddingTop:S.spacing.small}]}>
-          <Text style={S.text.title}>{L.mycards}</Text>
-          { starredSet &&
-            <View style={{paddingBottom:S.spacing.xsmall, paddingBottom:S.spacing.small}}>
-              {flashcardSetCard(
-                'full',
-                {...starredSet, title:L.starred},
-                E.event_set_type_starred,
-                Icons.star({color:T.colors.starred})
-              )}
-            </View>
-          }
-          <FlashcardSetsGridList
-            sets={userSets}
-            onPress={(set) => navigation.navigate(C.NAV_FLASHCARDS_VIEWER, {type:E.event_set_type_user, user, ...set})}
-            onAddNew={() => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user})}
-            onEdit={(set) => navigation.navigate(C.NAV_FLASHCARDS_SET_CONFIGURATOR, {user, set, dispatch: props.dispatch})}
-          />
-        </View>
-      </ScrollView>
-    );
+  _viewerRoute() {
+    return R.NAV_HOME_FLASHCARDS_VIEWER
   }
 }
 
+const ns = R.NAV_HOME
 function mapStateToProps (state) {
   return {
-    user: state.userProfile.data,
-    ready: state.flashcardSets.status === C.FB_FETCHED,
-    updated: state.flashcardSets.status === C.FB_UPDATED,
-    deleted: state.flashcardSets.status === C.FB_REMOVED,
-    sets: state.flashcardSets.data,
+    user: CurrentUser.profile,
+    ready: state.collections[ns] ? state.collections[ns].status === C.FB_FETCHED : false,
+    collections: state.collections[ns] ? state.collections[ns].data : {},
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
-    fetchFeaturedFlashcardSets: (level) => dispatch(fetchFeaturedFlashcardSets(level)),
-    fetchUserFlashcardSets: (userId) => dispatch(fetchUserFlashcardSets(userId)),
-    setupUserStarredFlashcardsListeners: (userId) => dispatch(setupUserStarredFlashcardsListeners(userId)),
-    teardownUserStarredFlashcardsListeners: (userId) => dispatch(teardownUserStarredFlashcardsListeners(userId)),
+    fetchCollections: (ownerId, userId) => dispatch(CollectionsActions.fetchCollections(ns, ownerId, userId)),
+    upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(UserPrefsActions.upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
 }
 

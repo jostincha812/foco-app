@@ -2,8 +2,10 @@ export default FocoTheme = {
   // colors - http://www.material-ui.com/#/customization/colors
   colors: {
     app: '#F78316',   // orange 800
-    headerBackground: '#F5F5F5',
-    containerBackground: '#F5F5F5', // grey 100
+    headerBackground: '#F5F5F5', // grey 100
+    headerBorder: '#E0E0E0',
+    tabNavBackground: '#F5F5F5',
+    containerBackground: '#ECEFF1', // blue grey 50
     contentBackground: '#FFF',
     contentBorder: '#E0E0E0',   // grey 300
 
@@ -20,16 +22,21 @@ export default FocoTheme = {
     inactiveText: '#959595',  // grey 500
     inverseText: '#fff',
     activeText: '#fff',
-    shadow: '#aaa',
+    shadow: '#7f8c8d',
     yes: '#81C784',      // green 300
     yesActive: '#388E3C',// green 700
     no: '#E57373',       // red 300
     noActive: '#D32F2F', // red 700
     starred: '#FDD835',  // yellow 600
-    divider: '#EEE',
+    divider: '#95a5a666',
     transparent: 'transparent',
-    translucentBlack: '#00000055',
-    translucentWhite: '#ffffffaa',
+    ghostBlack: '#00000022',
+    ghostWhite: '#ffffff66',
+    translucentBlack: '#00000033',
+    translucentWhite: '#ffffffdd',
+
+    facebook: '#3b5998',
+    google: '#4285F4',
 
     beginner: '#43A047', // green 600
     intermediate: '#1E88E5', // blue 600
@@ -49,22 +56,11 @@ export default FocoTheme = {
   },
 
   icons: {
-    smallIcon: 20,
+    xsmallIcon: 18,
+    smallIcon: 24,
     normalIcon: 28,
     largeIcon: 36,
     xlargeIcon: 48,
-  },
-
-  fonts: {
-    xsmallSize: 10,
-    smallSize: 14,
-    normalSize: 18,
-    largeSize: 24,
-    xlargeSize: 32,
-
-    lightWeight: '100',
-    normalWeight: '200',
-    boldWeight: '500',
-    heavyWeight: '900',
+    xxlargeIcon: 64,
   },
 }

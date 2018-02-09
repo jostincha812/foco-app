@@ -43,6 +43,7 @@ export default {
   analytics: (options = {}) => AppIcon('chart-line', options),
   study: (options = {}) => AppIcon('book-open-variant', options),
   timer: (options = {}) => AppIcon('timer', options),
+  collection: (options = {}) => AppIcon('format-list-bulleted-type', options),
 
   multipleChoice: (options = {}) => AppIcon('format-list-bulleted', options),
   cards: (options = {}) => AppIcon('cards', options),
@@ -86,6 +87,9 @@ export default {
   yesCircledOutline: (options = {}) => AppIcon('checkbox-marked-circle-outline', options),
   noCircled: (options = {}) => AppIcon('close-circle', options),
   noCircledOutline: (options = {}) => AppIcon('close-circle-outline', options),
+  filter: (options = {}) => AppIcon('filter', options),
+  filterOutline: (options = {}) => AppIcon('filter-outline', options),
+  send: (options = {}) => AppIcon('send', options),
 
   // app icons
   about: (options = {}) => AppIcon('information', options),
@@ -104,6 +108,7 @@ export default {
   new: (options = {}) => AppIcon('new-box', options),
   back: (options = {}) => AppIcon('chevron-left', options),
   forward: (options = {}) => AppIcon('chevron-right', options),
+  lock: (options = {}) => AppIcon('lock', options),
 
   // Drawer icons
   drawerAll: (options = {}) => AppIcon('cards', options),

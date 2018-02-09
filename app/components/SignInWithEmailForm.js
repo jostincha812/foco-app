@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { View, Text} from 'react-native'
-import { SocialIcon, FormInput, Button } from 'react-native-elements'
+import { TextInput } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+import { Button } from 'react-native-elements'
 
-import C, { E } from '../C'
 import T from '../T'
-import L from '../L'
-import S from '../styles/styles'
+import F from '../F'
+import S from '../styles'
+import { localize } from '../locales'
 
 export default class SignInWithEmailForm extends React.Component {
   constructor() {
@@ -19,38 +20,49 @@ export default class SignInWithEmailForm extends React.Component {
     const onSubmit = this.props.onSubmit
 
     return (
-      <View style={style}>
-        <FormInput
+      <KeyboardAwareScrollView
+        style={[style, S.form.container]}
+        keyboardDismissMode="interactive"
+        getTextInputRefs={() => {
+          return [this._email, this._password]
+        }}
+      >
+        <TextInput
+          style={[S.form.input, {marginTop:S.spacing.large}]}
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='email-address'
-          placeholder={L.email}
-          containerStyle={{width:320}}
+          placeholder={localize("auth.email")}
           onChangeText={(text) => this.setState({email:text})}
+          ref={(r) => { this._email = r }}
+          returnKeyType={'next'}
+          onSubmitEditing={(event) => this._password.focus()}
         />
-        <FormInput
+        <TextInput
+          style={S.form.input}
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='default'
           secureTextEntry={true}
-          placeholder={L.password}
-          containerStyle={{width:320}}
+          placeholder={localize("auth.password")}
           onChangeText={(text) => this.setState({password:text})}
+          ref={(r) => { this._password = r }}
+          returnKeyType={'go'}
+          onSubmitEditing={() => onSubmit(this.state.email, this.state.password)}
         />
 
         <Button
-          title={L.signIn}
-          iconRight={{name:'chevron-right', color:T.colors.active}}
-          borderRadius={S.spacing.xlarge}
-          buttonStyle={{marginTop:S.spacing.small, width:320}}
+          title={localize("auth.signIn")}
+          iconRight={{name:'chevron-right', color:T.colors.inverse}}
+          buttonStyle={{marginTop:S.spacing.small}}
           raised={false}
-          fontSize={T.fonts.normalSize}
-          fontWeight={T.fonts.boldWeight}
-          color={T.colors.active}
-          backgroundColor={T.colors.transparent}
+          fontSize={F.sizes.small}
+          fontWeight={F.sizes.bold}
+          color={T.colors.inverse}
+          backgroundColor={T.colors.accent}
           onPress={() => onSubmit(this.state.email, this.state.password)}
         />
-      </View>
+      </KeyboardAwareScrollView>
     )
   }
 }
