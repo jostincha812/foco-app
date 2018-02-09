@@ -46,8 +46,8 @@ export default class CollectionCard extends React.Component {
     let type = props.type
     const collection = props.collection
 
-    const backgroundColor = props.backgroundColor ? props.backgroundColor : collection.backgroundColor
-    const theme = props.theme ? props.theme : (backgroundColor? 'dark' : 'light')
+    const backgroundColor = props.backgroundColor ? props.backgroundColor : collection.backgroundColor ? collection.backgroundColor : T.colors[collection.category]
+    const theme = props.theme ? props.theme : (backgroundColor ? 'dark' : 'light')
 
     const isBookmarked = this.state[C.KEY_PREF_BOOKMARKED]
     const bookmarkToggleOptions = {
