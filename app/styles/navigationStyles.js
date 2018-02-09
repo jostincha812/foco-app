@@ -36,6 +36,11 @@ export default navigationStyles = {
     borderBottomWidth: 0,
   },
 
+  floatingHeaderTextStyle: {
+    fontWeight: F.weights.hero,
+    fontSize: F.sizes.large,
+  },
+
   stickiedHeader: {
     height: Header.HEIGHT,
     backgroundColor: T.colors.containerBackground,
@@ -43,6 +48,11 @@ export default navigationStyles = {
     borderBottomWidth: 1,
     alignItems: 'center',
     ...containers.cards.raised,
+  },
+
+  stickiedHeaderTextStyle: {
+    fontWeight: F.weights.hero,
+    fontSize: F.sizes.normal,
   },
 
   // navigation header styles

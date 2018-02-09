@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'react-native'
 import { Animated, LayoutAnimation } from 'react-native'
 
-import { E } from '../constants'
+import C, { E } from '../constants'
 import S from '../styles'
 import BaseContainer from './BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
@@ -121,14 +121,23 @@ export default class CollectionHome extends BaseContainer {
   onCollectionPress(collection) {
     const navigation = this.props.navigation
     const user = this.props.user
-    this.logEvent(E.user_action_collection_selected, {
-      uid: user.uid,
-      collectionId: collection.id,
-      ...this._screen,
-    })
-    navigation.navigate(this._viewerRoute(), {
-      user, collection
-    })
+
+    if (collection.status == C.STATUS_COMING_SOON) {
+      this.logEvent(E.user_action_collection_coming_soon, {
+        uid: user.uid,
+        collectionId: collection.id,
+        ...this._screen,
+      })
+    } else {
+      this.logEvent(E.user_action_collection_selected, {
+        uid: user.uid,
+        collectionId: collection.id,
+        ...this._screen,
+      })
+      navigation.navigate(this._viewerRoute(), {
+        user, collection
+      })
+    }
   }
 
   onPrefToggle(collectionId, pref) {
@@ -173,6 +182,19 @@ export default class CollectionHome extends BaseContainer {
       />
     )
 
+    const headerView = (
+      <Animated.View
+        onLayout={this.onTitleLayout}
+        style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
+      >
+        <View style={{flex:1, justifyContent:'flex-end'}}>
+          <Text style={this.state.stickied ? S.navigation.stickiedHeaderTextStyle : S.navigation.floatingHeaderTextStyle}>
+            {this._title}
+          </Text>
+        </View>
+      </Animated.View>
+    )
+
     if (!ready || !user || !this.state.dimensions) {
       return (
         <LoadingScreen onLayout={this.onLayout} />
@@ -181,7 +203,9 @@ export default class CollectionHome extends BaseContainer {
 
     if (collectionsKeys.length == 0) {
       return (
-        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl} />
+        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl}>
+          { this._title && headerView }
+        </EmptyListScreen>
       )
     }
 
@@ -197,18 +221,7 @@ export default class CollectionHome extends BaseContainer {
         >
           <StatusBar barStyle={S.statusBarStyle} />
 
-          { this._title && (
-            <Animated.View
-              onLayout={this.onTitleLayout}
-              style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
-            >
-              <View style={{flex:1, justifyContent:'flex-end'}}>
-                <Text style={S.text.header}>
-                  {this._title}
-                </Text>
-              </View>
-            </Animated.View>
-          )}
+          { this._title && headerView }
 
           { collections &&
             collectionsKeys.map((id, index) => {

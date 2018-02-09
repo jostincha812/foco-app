@@ -43,7 +43,7 @@ export default class CollectionCard extends React.Component {
 
   render() {
     const props = this.props
-    const type = props.type
+    let type = props.type
     const collection = props.collection
 
     const backgroundColor = props.backgroundColor ? props.backgroundColor : collection.backgroundColor
@@ -69,6 +69,15 @@ export default class CollectionCard extends React.Component {
       onPress: props.onPress,
       toggle: bookmarkToggle,
       max: props.max,
+    }
+
+    if (collection.status == C.STATUS_COMING_SOON) {
+      params.hero = localize("collections.coming_soon")
+      params.backgroundColor = T.colors.inactive
+      params.theme = 'dark'
+      params.subtitle = null
+      params.toggle = null
+      type = 'hero'
     }
 
     if (type == 'hero' || type == 'featured') {
