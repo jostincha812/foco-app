@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'react-native'
 import { Animated, LayoutAnimation } from 'react-native'
 
-import { E } from '../constants'
+import C, { E } from '../constants'
 import S from '../styles'
 import BaseContainer from './BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
@@ -121,14 +121,23 @@ export default class CollectionHome extends BaseContainer {
   onCollectionPress(collection) {
     const navigation = this.props.navigation
     const user = this.props.user
-    this.logEvent(E.user_action_collection_selected, {
-      uid: user.uid,
-      collectionId: collection.id,
-      ...this._screen,
-    })
-    navigation.navigate(this._viewerRoute(), {
-      user, collection
-    })
+
+    if (collection.status == C.STATUS_COMING_SOON) {
+      this.logEvent(E.user_action_collection_coming_soon, {
+        uid: user.uid,
+        collectionId: collection.id,
+        ...this._screen,
+      })
+    } else {
+      this.logEvent(E.user_action_collection_selected, {
+        uid: user.uid,
+        collectionId: collection.id,
+        ...this._screen,
+      })
+      navigation.navigate(this._viewerRoute(), {
+        user, collection
+      })
+    }
   }
 
   onPrefToggle(collectionId, pref) {

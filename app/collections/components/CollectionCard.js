@@ -72,7 +72,6 @@ export default class CollectionCard extends React.Component {
     }
 
     if (collection.status == C.STATUS_COMING_SOON) {
-      params.onPress = () => console.log('coming soon')
       params.hero = localize("collections.coming_soon")
       params.backgroundColor = T.colors.inactive
       params.theme = 'dark'

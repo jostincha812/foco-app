@@ -13,6 +13,7 @@ export default events = {
   user_action_collections_scrolled: 'user_action_collections_scrolled',
   user_action_collection_selected: 'user_action_collection_selected',
   user_action_collection_pref_updated: 'user_action_collection_pref_updated',
+  user_action_collection_coming_soon: 'user_action_collection_coming_soon',
   user_action_flashcards_scrolled: 'user_action_flashcards_scrolled',
   user_action_flashcard_selected: 'user_action_flashcard_selected',
   user_action_flashcard_pref_updated: 'user_action_flashcard_pref_updated',
