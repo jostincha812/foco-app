@@ -173,6 +173,19 @@ export default class CollectionHome extends BaseContainer {
       />
     )
 
+    const headerView = (
+      <Animated.View
+        onLayout={this.onTitleLayout}
+        style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
+      >
+        <View style={{flex:1, justifyContent:'flex-end'}}>
+          <Text style={this.state.stickied ? S.navigation.stickiedHeaderTextStyle : S.navigation.floatingHeaderTextStyle}>
+            {this._title}
+          </Text>
+        </View>
+      </Animated.View>
+    )
+
     if (!ready || !user || !this.state.dimensions) {
       return (
         <LoadingScreen onLayout={this.onLayout} />
@@ -181,7 +194,9 @@ export default class CollectionHome extends BaseContainer {
 
     if (collectionsKeys.length == 0) {
       return (
-        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl} />
+        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl}>
+          { this._title && headerView }
+        </EmptyListScreen>
       )
     }
 
@@ -197,18 +212,7 @@ export default class CollectionHome extends BaseContainer {
         >
           <StatusBar barStyle={S.statusBarStyle} />
 
-          { this._title && (
-            <Animated.View
-              onLayout={this.onTitleLayout}
-              style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
-            >
-              <View style={{flex:1, justifyContent:'flex-end'}}>
-                <Text style={S.text.header}>
-                  {this._title}
-                </Text>
-              </View>
-            </Animated.View>
-          )}
+          { this._title && headerView }
 
           { collections &&
             collectionsKeys.map((id, index) => {

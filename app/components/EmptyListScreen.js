@@ -17,6 +17,8 @@ export default class EmptyListScreen extends React.Component {
         onLayout={props.onLayout}
         refreshControl={props.refreshControl}>
 
+        {props.children}
+
         <Text style={S.text.subtitle} color={color}>
           {localize("lists.empty")}
         </Text>

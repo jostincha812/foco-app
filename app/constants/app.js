@@ -27,6 +27,7 @@ export default {
   STATUS_FLAGGED: 'flagged',
   STATUS_INACTIVE: 'inactive',
   STATUS_DELETED: 'deleted',
+  STATUS_COMING_SOON: 'coming_soon',
 
   FB_IDLE: 'FB_IDLE',
   FB_SUCCESS: 'FB_SUCCESS',

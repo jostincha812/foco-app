@@ -63,3 +63,6 @@
 * _This_ changelog
 * Updated with production firebase settings
 * Updated with production Splash and Tab Navigation styles
+
+## 1.0.0-alpha2
+* _Coming soon_ collection cards
