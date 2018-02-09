@@ -59,5 +59,5 @@
 * Consistent styling and font styles
 * Sticky nav headers
 
-## 1.0.0a
+## 1.0.0-alpha
 * 1.0 alpha release
