@@ -81,7 +81,7 @@ const CurrentUser = {
   },
 
   unlockPremiumAccess: () => {
-    console.log(_profile)
+    console.log("unlockPremiumAccess()")
   }
 }
 
