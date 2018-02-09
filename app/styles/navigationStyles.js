@@ -11,13 +11,22 @@ export default navigationStyles = {
   },
 
   tabBarOptions: {
-    activeTintColor: T.colors.active,
-    inactiveTintColor: T.colors.inactive,
-    style: {
-      backgroundColor: T.colors.tabNavBackground,
-    },
     labelStyle: {
       marginBottom: 4,
+    },
+
+    // prod tab bar
+    // activeTintColor: T.colors.active,
+    // inactiveTintColor: T.colors.inactive,
+    // style: {
+    //   backgroundColor: T.colors.tabNavBackground,
+    // },
+
+    // dev tab bar
+    activeTintColor: T.colors.inverse,
+    inactiveTintColor: T.colors.normal,
+    style: {
+      backgroundColor: T.colors.translucentBlack,
     },
   },
 
