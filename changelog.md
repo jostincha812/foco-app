@@ -66,3 +66,7 @@
 
 ## 1.0.0-alpha2
 * _Coming soon_ collection cards
+
+## 1.0.0-alpha3
+* Hide navigation title in screens with sticky headers
+* Automatically assign card color based on Collection.category

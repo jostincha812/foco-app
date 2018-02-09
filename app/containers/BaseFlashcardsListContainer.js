@@ -125,13 +125,15 @@ export default class BaseFlashcardsListContainer extends BaseContainer {
 
     if (!flashcards) {
       return (
-        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl} />
+        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl}>
+        </EmptyListScreen>
       )
     }
 
     return (
       <View style={S.containers.screen}>
         <StatusBar barStyle={S.statusBarStyle} />
+
         <FlashcardsList
           dimensions={this.state.dimensions}
           flashcards={flashcards}

@@ -12,7 +12,7 @@ import { actions as CollectionsActions } from '../collections'
 class CollectionsHome extends BaseCollectionsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
-      title: localize("collections.title"),
+      title: null,
       header: null,
     })
   }
