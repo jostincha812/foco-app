@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'react-native'
+import { Animated, LayoutAnimation } from 'react-native'
 
 import { E } from '../constants'
 import S from '../styles'
@@ -85,9 +86,24 @@ export default class CollectionHome extends BaseContainer {
       this.setState({ reachedEnd: false })
     }
 
+    // LyaoutAnimation.Presets.linear == 500ms duration
+    // Linear with easing
+    const CustomLayoutLinear = {
+      duration: 200,
+      create: {
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity,
+      },
+      update: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+      },
+    }
+
     if (!this.state.stickied && yOffset > this._titleLoc) {
+      LayoutAnimation.configureNext(CustomLayoutLinear)
       this.setState({stickied: true})
     } else if (this.state.stickied && yOffset < this._titleLoc - 1) {
+      LayoutAnimation.configureNext(CustomLayoutLinear)
       this.setState({stickied: false})
     }
   }
@@ -182,7 +198,7 @@ export default class CollectionHome extends BaseContainer {
           <StatusBar barStyle={S.statusBarStyle} />
 
           { this._title && (
-            <View
+            <Animated.View
               onLayout={this.onTitleLayout}
               style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
             >
@@ -191,7 +207,7 @@ export default class CollectionHome extends BaseContainer {
                   {this._title}
                 </Text>
               </View>
-            </View>
+            </Animated.View>
           )}
 
           { collections &&
