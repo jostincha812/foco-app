@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lv-Gt-TCF">
-                    <rect key="frame" x="60" y="402" width="361" height="32"/>
+                    <rect key="frame" x="60" y="358" width="361" height="32"/>
                     <attributedString key="attributedText">
                         <fragment content="WSET exam?">
                             <attributes>
@@ -29,19 +29,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="foco-raw" translatesAutoresizingMaskIntoConstraints="NO" id="CrU-nr-GKn">
-                    <rect key="frame" x="176" y="59" width="128" height="128"/>
+                    <rect key="frame" x="176" y="48" width="128" height="128"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="128" id="RIC-Og-5QQ"/>
                         <constraint firstAttribute="height" constant="128" id="meA-fs-l6b"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTG-Lx-i3g">
-                    <rect key="frame" x="151" y="195" width="179" height="58"/>
+                    <rect key="frame" x="151" y="184" width="179" height="58"/>
                     <attributedString key="attributedText">
                         <fragment content="Foco:3">
                             <attributes>
                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="40" name="HelveticaNeue-Medium"/>
+                                <font key="NSFont" size="42" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -49,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fc2-rE-Nvi">
-                    <rect key="frame" x="60" y="366" width="361" height="28"/>
+                    <rect key="frame" x="60" y="322" width="361" height="28"/>
                     <attributedString key="attributedText">
                         <fragment content="Are you ready for your">
                             <attributes>
@@ -71,7 +71,7 @@
                 <constraint firstItem="CrU-nr-GKn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fPv-Mz-u2e"/>
                 <constraint firstItem="yTG-Lx-i3g" firstAttribute="top" secondItem="CrU-nr-GKn" secondAttribute="bottom" constant="8" id="mJt-QP-har"/>
                 <constraint firstItem="fc2-rE-Nvi" firstAttribute="centerX" secondItem="6Lv-Gt-TCF" secondAttribute="centerX" id="msi-GQ-l0g"/>
-                <constraint firstItem="yTG-Lx-i3g" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-40" id="vY7-bw-WnJ"/>
+                <constraint firstItem="yTG-Lx-i3g" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-55" id="vY7-bw-WnJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
