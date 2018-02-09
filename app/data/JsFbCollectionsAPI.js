@@ -9,8 +9,8 @@ export default JsCollectionsAPI = {
       refs.userCollectionPrefs(userId).once('value')
     ]).then(results => {
       const collections = {}
-      const list = results[0].val()
-      const prefs = results[1].val()
+      const list = results[0].val() || []
+      const prefs = results[1].val() || []
 
       Object.keys(list).map(key => {
         if (!filterKey || (prefs[key] && prefs[key][filterKey]) ) {
