@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G18013" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,30 +15,47 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lv-Gt-TCF">
-                    <rect key="frame" x="102" y="367" width="276" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lv-Gt-TCF">
+                    <rect key="frame" x="60" y="402" width="361" height="32"/>
                     <attributedString key="attributedText">
-                        <fragment content="Are you ready for WSET-3 exam?">
+                        <fragment content="WSET exam?">
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <font key="NSFont" size="18" name="HelveticaNeue-ThinItalic"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                <font key="NSFont" size="30" name="HelveticaNeue-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" lineHeightMultiple="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                             </attributes>
                         </fragment>
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="foco-raw" translatesAutoresizingMaskIntoConstraints="NO" id="CrU-nr-GKn">
-                    <rect key="frame" x="170" y="47" width="140" height="140"/>
+                    <rect key="frame" x="176" y="59" width="128" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="128" id="RIC-Og-5QQ"/>
+                        <constraint firstAttribute="height" constant="128" id="meA-fs-l6b"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTG-Lx-i3g">
-                    <rect key="frame" x="151" y="195" width="179" height="44"/>
+                    <rect key="frame" x="151" y="195" width="179" height="58"/>
                     <attributedString key="attributedText">
                         <fragment content="Foco:3">
                             <attributes>
                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="36" name="HelveticaNeue-Thin"/>
+                                <font key="NSFont" size="40" name="HelveticaNeue-Medium"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fc2-rE-Nvi">
+                    <rect key="frame" x="60" y="366" width="361" height="28"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Are you ready for your">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-ThinItalic"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" lineHeightMultiple="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                             </attributes>
                         </fragment>
                     </attributedString>
@@ -48,11 +65,13 @@
             <color key="backgroundColor" red="0.97051578760147095" green="0.51269441843032837" blue="0.085124410688877106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="6Lv-Gt-TCF" firstAttribute="centerX" secondItem="yTG-Lx-i3g" secondAttribute="centerX" id="5ee-Ui-0ge"/>
-                <constraint firstAttribute="bottom" secondItem="6Lv-Gt-TCF" secondAttribute="bottom" constant="120" id="ILl-Nd-LSZ"/>
+                <constraint firstItem="6Lv-Gt-TCF" firstAttribute="top" secondItem="fc2-rE-Nvi" secondAttribute="bottom" constant="8" id="GiS-wJ-W7o"/>
+                <constraint firstAttribute="bottom" secondItem="6Lv-Gt-TCF" secondAttribute="bottom" constant="90" id="ILl-Nd-LSZ"/>
                 <constraint firstItem="yTG-Lx-i3g" firstAttribute="centerX" secondItem="CrU-nr-GKn" secondAttribute="centerX" id="MS0-xo-hIW"/>
                 <constraint firstItem="CrU-nr-GKn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fPv-Mz-u2e"/>
                 <constraint firstItem="yTG-Lx-i3g" firstAttribute="top" secondItem="CrU-nr-GKn" secondAttribute="bottom" constant="8" id="mJt-QP-har"/>
-                <constraint firstItem="yTG-Lx-i3g" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="40" id="vY7-bw-WnJ"/>
+                <constraint firstItem="fc2-rE-Nvi" firstAttribute="centerX" secondItem="6Lv-Gt-TCF" secondAttribute="centerX" id="msi-GQ-l0g"/>
+                <constraint firstItem="yTG-Lx-i3g" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-40" id="vY7-bw-WnJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
