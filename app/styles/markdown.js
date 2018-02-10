@@ -14,26 +14,26 @@ export default markdown = {
     fontWeight: F.weights.bold,
   },
   heading1: {
-    ...text.title
-    // fontSize: 32,
+    ...text.title,
+    fontSize: F.sizes.normal,
   },
   heading2: {
-    ...text.subtitle
-    // fontSize: 24,
+    ...text.subtitle,
+    fontSize: F.sizes.normal,
   },
   heading3: {
     ...text.subtitle,
-    textDecorationLine: 'underline'
-    // fontSize: 20,
+    textDecorationLine: 'underline',
+    fontSize: F.sizes.small,
   },
   heading4: {
-    fontSize: 16,
+    fontSize: F.sizes.small,
   },
   heading5: {
-    fontSize: 14,
+    fontSize: F.sizes.small,
   },
   heading6: {
-    fontSize: 11,
+    fontSize: F.sizes.xsmall,
   },
   hr: {
     backgroundColor: T.colors.transparent,
@@ -45,11 +45,12 @@ export default markdown = {
     // borderColor: '#000',
     // borderWidth: 1,
   },
-  paragraph: {
-    marginBottom: spacing.small,
+  listItem: {
+    marginBottom: spacing.xxsmall,
   },
   text: {
     ...text.normal,
+    fontSize: F.sizes.small,
   },
   strong: {
     fontWeight: F.weights.bold,
