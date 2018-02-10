@@ -48,6 +48,14 @@ export default markdown = {
   listItem: {
     marginBottom: spacing.xxsmall,
   },
+  listItemNumber: {
+    minWidth: 16,
+    paddingRight: 4,
+  },
+  listItemBullet: {
+    minWidth: 16,
+    paddingRight: 4,
+  },
   text: {
     ...text.normal,
     fontSize: F.sizes.small,
