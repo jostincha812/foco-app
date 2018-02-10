@@ -43,6 +43,7 @@ export default FocoTheme = {
     advanced: '#E53935', // red 600
     expert: '#000', // black
 
+    featured: '#000',
     climate: '#2196F3',   // blue 500
     geography: '#00897B', // teal 600
     terroir: '#5D4037',   // brown 700
