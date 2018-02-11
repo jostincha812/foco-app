@@ -70,3 +70,8 @@
 ## 1.0.0-alpha3
 * Hide navigation title in screens with sticky headers
 * Automatically assign card color based on Collection.category
+
+## 1.0.0-alpha4
+* TextShadows on Hero Cards
+* Tightened Markdown Styles
+* Fixed crash when FlashcardTags and FlashcardPrefs not present in firebase
