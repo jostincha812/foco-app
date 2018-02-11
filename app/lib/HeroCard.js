@@ -11,6 +11,7 @@ export default class HeroCard extends Card {
     const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
     const headerBackground = props.backgroundColor ? 'transparent' : theme.backgroundColor
     const innerStyle = props.innerStyle ? props.innerStyle : {}
+    const textShadow = (props.theme == 'dark' && props.backgroundImage)
 
     return (
       <View style={{flex:1, backgroundColor:'transparent', overflow:'hidden'}}>
@@ -22,7 +23,7 @@ export default class HeroCard extends Card {
 
           {props.hero && (
             <View style={[styles.containers.normal, {position:'absolute'}]}>
-              <StyledText textStyle='hero' theme={theme}>
+              <StyledText textStyle='hero' theme={theme} textShadow={textShadow}>
                 {props.hero}
               </StyledText>
             </View>
@@ -34,11 +35,11 @@ export default class HeroCard extends Card {
             {props.divider && (
               <StyledDivider location='top' theme={theme} />
             )}
-            <StyledText textStyle='title' theme={theme} numberOfLines={1}>
+            <StyledText textStyle='title' theme={theme} textShadow={textShadow} numberOfLines={1}>
               {props.title}
             </StyledText>
             {props.subtitle && (
-              <StyledText textStyle='subtitle' theme={theme} numberOfLines={1}>
+              <StyledText textStyle='subtitle' theme={theme} textShadow={textShadow} numberOfLines={1}>
                 {props.subtitle}
               </StyledText>
             )}

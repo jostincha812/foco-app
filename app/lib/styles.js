@@ -126,5 +126,13 @@ export default styles = {
       fontSize: sizes.small,
       color: DefaultTheme.color,
     },
+    textShadow: {
+      textShadowColor: '#000',
+      textShadowOffset: {
+        width: 1,
+        height: 1,
+      },
+      textShadowRadius: 3,
+    },
   },
 }
