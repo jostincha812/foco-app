@@ -41,7 +41,8 @@ export default JsFbFlashcardsAPI = {
 
   getFlashcardTags: (id) => {
     return refs.flashcardTags(id).once('value').then(snap => {
-      return Object.keys(snap.val())
+      const val = snap.val() || {}
+      return Object.keys(val)
     })
   },
 
