@@ -7,9 +7,9 @@ import C from '../../constants'
 import T from '../../T'
 import S, { markdown } from '../../styles'
 
+import FlashcardTags from './FlashcardTags'
 import PremiumContentContainer from '../../components/PremiumContentContainer'
 import Icons from '../../components/Icons'
-import PillsList from '../../lib/PillsList'
 
 export default class Flashcard extends React.Component {
   constructor(props) {
@@ -46,12 +46,6 @@ export default class Flashcard extends React.Component {
   render() {
     const props = this.props
     const data = this.props.data
-    const tags = data.tags
-
-    const items = []
-    tags.map(tag => {
-      items.push({key:tag, label:tag})
-    })
 
     const isStarred = this.state[C.KEY_PREF_STARRED]
     const starToggleOptions = {
@@ -107,13 +101,9 @@ export default class Flashcard extends React.Component {
           <MarkdownView styles={markdown}>
             {data.back}
           </MarkdownView>
-          <PillsList
+          <FlashcardTags
             style={{position:'absolute', left:S.spacing.large, bottom:S.spacing.small}}
-            items={items}
-            selected={tags}
-            textColor={T.colors.inverse}
-            pillColor={T.colors.active}
-            pillBorderColor='transparent'
+            tags={data.tags}
           />
         </PremiumContentContainer>
       </FlipCard>

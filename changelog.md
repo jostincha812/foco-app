@@ -78,3 +78,6 @@
 
 ## 1.0.0-alpha5
 * ADMIN-ONLY lightweight data seeder
+
+## 1.0.0-alpha6
+* Limited number of tags shown in Flashcard
