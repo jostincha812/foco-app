@@ -427,67 +427,85 @@
     "status" : "active"
   },
   "-L576FEPOm7gZ4fpGuP0" : {
-    "back" : "*Muscadet Sevre et Maine Sur Lie* are produced by:\n\n* fermentation in inert vessels, after which the wine remains in old oak casks or stainless stell tanks in contact with the lees (yeast sediment) until bottling the following spring. \n\nThe wine is bottled straight from the storage vessel and may be filtered when bottled. These wines often have a slight sparkle and the lees contact increases the body of the wine and adds a yeasty complexity. ",
-    "difficulty" : "easy",
+    "back" : "*Muscadet Sèvre et Maine Sur Lie* are fermented in inert vessels, after which the wine spends the winter in contact with its *lees* in casks or tanks in contact.\n\nThe wine is bottled straight from the storage vessel in the following spring and may be filtered when bottled.\n\nContact with its lees increases the body of the wine and adds a yeasty complexity, and helps keep the wine fresh.",
+    "difficulty" : "normal",
     "front" : "How are *Muscadet Sevre et Maine Sur Lie* produced?",
     "level" : "WSET3",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "easy",
+    "tags" : ["fr", "loire", "viniculture"]
   },
   "-L576FEPOm7gZ4fpGuP2" : {
-    "back" : "White *Sancerre* is made of 100%*Sauvignon Blanc*. Classic examples are*bone dry*,*high acidity*, and highly*aromatic* with intense flavors of*peaches* and*gooseberries*[.](https://en.wikipedia.org/wiki/Gooseberries)\n\nCompared to other *Sauvignon Blancs*, the grapes do not reach the same levels of flavour ripeness that can be achieved in bright sunshine of *New Zealand*. \n\nCombined with slightly warmer fermentation temperatures, *Sancerre* wine maintains restrained style that eschews fruitiness for *gun smoke*and *flinty* characteristics.\n\nImproved vineyard management has led to wines no longer having overt herbaceous characteristics.",
-    "chapter" : "19",
-    "front" : "Describe a white *Sancerre* and the factors contributing to its style.",
+    "back" : "*White Sancerre* is a 100% *Sauvignon Blanc* style that is *bone dry*, *high in acidity*, and eschews *herbaceous* and *fruity* characteristics.\n\nSome villages (such as __Chavignol__) and vineyards (such as __Les Monts Damnés) have a reputation for *gun smoke* profile.",
+    "front" : "Describe a *white Sancerre* wine.",
     "level" : "WSET3",
-    "page" : "103",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "easy",
+    "tags" : ["fr", "winestyle", "loire", "varietal", "sauvignon_blanc"]
+  },
+  "-L5Ak4j2_a_VEdzJn7PN" : {
+    "back" : "__Loire__ *Sauvignon Blanc* do not reach the same level of ripeness that can be achieved in __New Zealand__'s bright sunshine.\n\nThe grapes are fermented at warmer temperatures and sometimes in old 600-litre wooden casks.",
+    "front" : "What factors contribute to __Loire Valley__'s more restrained *Sauvignon Blanc* as compared to a __New Zealand__ style?",
+    "level" : "WSET3",
+    "status" : "active",
+    "difficulty" : "easy",
+    "tags" : ["fr", "loire", "varietal", "sauvignon_blanc", "climate", "viniculture"]
+  },
+  "-L5Ak4j8pBYyYQQxeqpc" : {
+    "back" : "1. *Chenin Blanc*\n2. *Sauvignon Blanc*\n3. *Melon Blanc*",
+    "front" : "Name __Loire Valley__'s most important white varietals.",
+    "level" : "WSET3",
+    "status" : "active",
+    "difficulty" : "easy",
+    "tags" : ["fr", "loire", "varietal", "chenin_blanc", "sauvignon_blanc", "melon_blanc"]
   },
   "-L576FEQTrF2txySBjIZ" : {
-    "back" : "*Vouvray* (\"voo-vrae\") wines are always white and made from*Chenin Blanc*:\n- Full range of styles: dry to sweet, still to pétillant to sparkling\n- Wine color range from [medium straw](http://winefolly.com/review/complete-wine-color-chart/) (for sparkling wines) to deep gold (for aged sweet Moelleux)\n- Aromas are moderately intense, delivering flavors of pear, honeysuckle, quince, and apple (green or yellow)\n- Subtle notes of ginger and beeswax hint at presence of *noble rot* in certain vintages\n- Flavors range from lean, dry, and minerally, to fruity and succulently sweet, depending on the style",
-    "chapter" : "19",
+    "back" : "*Vouvray* (\"voo-vrae\") 100% *Chenin Blanc* white wines in a full range of styles - dry to sweet, still to pétillant to sparkling.\n\nColor ranges from *medium straw* (for sparkling wines) to *deep gold* (for aged sweet wines).\n\nAromas are *moderately intense*, with flavors of *pear*, *honeysuckle*, *quince*, and *apple*. Subtle notes of *ginger* and *beeswax* hint at presence of *noble rot* in certain vintages.\n\nFlavors range from *lean, dry, and minerally*, to *fruity and succulently sweet*, depending on the style.",
     "front" : "Describe *Vouvray* wines.",
     "level" : "WSET3",
-    "page" : "104",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "normal",
+    "tags" : ["fr", "winestyle", "loire", "varietal", "chenin_blanc"]
   },
   "-L576FEQTrF2txySBjIa" : {
-    "back" : "*Nantais* - Muscadet, Msacadet Sevre et Maine sur Lie\n*Anjou-Saumur* - Anjou, Saumur, Coteaux du Layon, Savennieres\n*Touraine* - Touraine, Vouvary, Chinon, Bourgueil\n*Central Vineyards* - Sancerre, Pouilly-Fume, Menetou-Salon",
-    "chapter" : "19",
-    "front" : "List the wine producing regions and key wines in the *Loire Valley*.",
+    "back" : "__Nantais__ - Muscadet, Musacadet Sèvre et Maine, Musacadet Sèvre et Maine sur Lie\n\n__Anjou-Saumur__ - Anjou, Saumur, Coteaux du Layon, Savennières\n\n__Touraine__ - Touraine, Vouvray, Chinon, Bourgueil\n\n__Central Vineyards__ - Sancerre, Pouilly-Fumé, Menetou-Salon",
+    "front" : "List the wine producing regions in the __Loire Valley__, from west to east, and list their key AC wines.",
     "level" : "WSET3",
-    "page" : "",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "normal",
+    "tags" : ["fr", "geography", "law", "loire"]
   },
   "-L576FEQTrF2txySBjIc" : {
     "back" : "*Sauvignon Blanc*",
-    "chapter" : "19",
-    "front" : "What grape variety is used in *Sancerre* white wine?",
+    "front" : "What grape variety is used in __Sancerre__ white wine?",
     "level" : "WSET3",
-    "page" : "103",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "easy",
+    "tags" : ["fr", "varietal", "sauvignon_blanc", "loire", "sancerre"]
   },
   "-L576FEQTrF2txySBjIe" : {
-    "back" : "*Chenin Blanc*",
-    "chapter" : "19",
-    "front" : "What grape variety is allowed in *Coteaux du Layon AC*?",
+    "back" : "*Quarts de Chaume AC* and *Bonnezeaux AC* rank highly in the world for their sweet wines.\n\n*Botrytis* develops especially well in the Layon and adds body and texture to a fresh fruits style *Chenin Blanc* with high acidity and medium to medium+ alcohol (between 12-14%).",
+    "front" : "Which two __Coteaux du Layon__ ACs are highly regarded for their *Botrytis* influenced sweet wines?",
     "level" : "WSET3",
-    "page" : "105",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "normal",
+    "tags" : ["fr", "winestyle", "chenin_blanc", "loire", "anjou_samur"]
   },
   "-L576FEQTrF2txySBjIg" : {
-    "back" : "*Coteaux du Layon* is a*sweet wine* made from*Chenin Blanc*, often affected by noble rot, but can also be very ripe or have sun-dried on the vine (*passerillé*).\n\nThe vineyards are located in the sheltered valley of the *Layon*, with the best sites on south facing slopes - which encourages high levels of ripeness and the onset of *botrytis*. \n\nSeveral pickings are necessary. Grapes are pressed and juice will slowly ferment due to hight natural sugar levels. \n\nFermentation stops naturally when the alcohol level reaches 12-14%, leaving high levels of residual sugar to make luscious sweet wines with high levels of balancing acidity and can mature in bottle for decades.",
-    "chapter" : "19",
-    "front" : "Describe a *Coteaux du Layon AC* wine and how it's produced.",
+    "back" : "__Coteaux du Layon AC__ is a *sweet wine* made from *Chenin Blanc*, often affected by *botrytis*, but can also be very ripe or have sun-dried on the vine (*passerillé*).\n\nSeveral pickings are typical, with grapes becoming sweeter the later they are picked.\n\nGrapes are pressed and juice will slowly ferment due to high natural sugar levels.\n\nFermentation stops naturally when the alcohol level reaches 12-14%, leaving high levels of residual sugar with high levels of balancing acidity.",
+    "front" : "How are __Coteaux du Layon AC__ wines produced?",
     "level" : "WSET3",
-    "page" : "105",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "normal",
+    "tags" : ["fr", "winestyle", "chenin_blanc", "loire", "anjou_samur"]
   },
   "-L576FEQTrF2txySBjIi" : {
     "back" : "*Sanvennieres* lies on the north bank of the *Loire Valley* in *Anjou Saumur*.\n\nAir circulation around the well-exposed vineyards impedes the development of *noble rot*, but enables late harvested *Chenin Blanc*  grapes to be used for full-bodied dry wines of exceptional complexity. ",
-    "chapter" : "19",
     "front" : "Where is *Sanvennieres* and what factors contribute to its sweet wines style?",
     "level" : "WSET3",
-    "page" : "105",
-    "status" : "active"
+    "status" : "active",
+    "difficulty" : "normal",
+    "tags" : ["fr", "winestyle", "chenin_blanc", "loire", "anjou_samur"]
   },
   "-L576FEQTrF2txySBjIk" : {
     "back" : "Noble varieties that can be used to make VT, SGN and Grand Cru:\n- *Riesling*\n- *Gewurztraminer* \n- *Pinot Gris* \n- *Muscat* \nOther notable varieties: *Pinot Blanc*, *Pinot Noir* and *Sylvaner*.",
@@ -689,5 +707,5 @@
     "page" : "",
     "status" : "active",
     "tags" : ["fr", "burgundy", "law"]
-  }
+  },
 }

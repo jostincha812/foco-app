@@ -41,20 +41,20 @@ const Seeder = {
         if (snap.exists()) {
           refs.flashcard(key).set(f)
         } else {
-          refKey = refs.flashcards().push(f)
+          refKey = refs.flashcards().push(f).key
         }
-      })
 
-      let tagsObj = {}
-      if (refKey==key && tags.length==0) {
-        tagsObj = flashcardTagsSeed[refKey]
-      } else {
-        // newly pushed flashcard
-        tags.map(tag => {
-          tagsObj[tag] = true
-        })
-      }
-      refs.flashcardTags(refKey).set(tagsObj)
+        let tagsObj = {}
+        if (refKey==key && tags.length==0) {
+          tagsObj = flashcardTagsSeed[refKey]
+        } else {
+          // use flashcard.tags
+          tags.map(tag => {
+            tagsObj[tag] = true
+          })
+        }
+        refs.flashcardTags(refKey).set(tagsObj)
+      })
     })
   }
 }

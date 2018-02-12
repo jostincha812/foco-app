@@ -352,5 +352,21 @@
       "fr" : true,
       "loire" : true,
       "viniculture" : true
+  },
+  "-L5Ak4j2_a_VEdzJn7PN" : {
+    "climate" : true,
+    "fr" : true,
+    "loire" : true,
+    "sauvignon_blanc" : true,
+    "varietal" : true,
+    "viniculture" : true
+  },
+  "-L5Ak4j8pBYyYQQxeqpc" : {
+    "chenin_blanc" : true,
+    "fr" : true,
+    "loire" : true,
+    "melon_blanc" : true,
+    "sauvignon_blanc" : true,
+    "varietal" : true
   }
 }

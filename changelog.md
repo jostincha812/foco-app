@@ -75,3 +75,6 @@
 * TextShadows on Hero Cards
 * Tightened Markdown Styles
 * Fixed crash when FlashcardTags and FlashcardPrefs not present in firebase
+
+## 1.0.0-alpha5
+* ADMIN-ONLY lightweight data seeder
