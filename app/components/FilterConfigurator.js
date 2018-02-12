@@ -50,9 +50,9 @@ export default class FilterConfigurator extends React.Component {
   }
 
   render() {
-    const regions = Object.values(VPQTags.regions)
-    const categories = Object.values(VPQTags.categories)
-    const varietals = Object.values(VPQTags.varietals)
+    const regions = VPQTags.regions
+    const categories = VPQTags.categories
+    const varietals = VPQTags.varietals
 
     const selectedRegions = this._selectedFilters(C.TAG_TYPE_REGIONS)
     const selectedCategories = this._selectedFilters(C.TAG_TYPE_CATEGORIES)
@@ -64,7 +64,7 @@ export default class FilterConfigurator extends React.Component {
           <StyledText textStyle='title'>{localize("filters.tags")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
-            items={categories}
+            tags={categories}
             selected={selectedCategories}
             onToggle={tagState => this.onToggle(C.TAG_TYPE_CATEGORIES, tagState)}
           />
@@ -73,7 +73,7 @@ export default class FilterConfigurator extends React.Component {
           <StyledText textStyle='title'>{localize("filters.regions")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
-            items={regions}
+            tags={regions}
             selected={selectedRegions}
             onToggle={tagState => this.onToggle(C.TAG_TYPE_REGIONS, tagState)}
           />
@@ -82,7 +82,7 @@ export default class FilterConfigurator extends React.Component {
           <StyledText textStyle='title'>{localize("filters.varietals")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}
-            items={varietals}
+            tags={varietals}
             selected={selectedVarietals}
             onToggle={tagState => this.onToggle(C.TAG_TYPE_VARIETALS, tagState)}
           />
