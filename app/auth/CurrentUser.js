@@ -2,6 +2,7 @@ import C from '../constants'
 import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
 import api from '../data/api'
+import Seeder from '../../seed/seeder'
 
 let _profile = null
 let _unsubscribe = null
@@ -55,6 +56,14 @@ const CurrentUser = {
     return _profile
   },
 
+  get isAdmin() {
+    if (_profile.roles && _profile.roles.includes(C.ROLE_ADMIN)) {
+      return true
+    } else {
+      return false
+    }
+  },
+
   get hasPremiumAccess() {
     const profile = _profile
     let hasPremiumAccess = false
@@ -82,6 +91,12 @@ const CurrentUser = {
 
   unlockPremiumAccess: () => {
     console.log("unlockPremiumAccess()")
+  },
+
+  reseedData: () => {
+    if (CurrentUser.isAdmin) {
+      Seeder.reseed()
+    }
   }
 }
 

@@ -3,6 +3,8 @@ import { View } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import { List, ListItem } from 'react-native-elements'
 
+import CurrentUser from '../../auth/CurrentUser'
+
 import T from '../../T'
 import S from '../../styles'
 import { localize } from '../../locales'
@@ -50,6 +52,15 @@ export default class UserProfile extends React.Component {
       },
     ]
 
+    if (CurrentUser.isAdmin) {
+      list.push({
+        title: 'RE-SEED DATA',
+        hideChevron: true,
+        badge: 'GO',
+        onPress: () => CurrentUser.reseedData()
+      })
+    }
+
     return (
       <View style={style}>
         <View style={[S.containers.normal, {alignItems:'center', paddingBottom:0}]}>
@@ -74,7 +85,6 @@ export default class UserProfile extends React.Component {
             list.map((item, i) => (
               <ListItem
                 key={i}
-                hideChevron={item.hideChevron}
                 title={item.title}
                 titleStyle={S.text.listTitle}
                 leftIcon={{name:item.icon}}
@@ -82,7 +92,7 @@ export default class UserProfile extends React.Component {
                 rightTitleStyle={S.text.listTitle}
                 badge={{value:item.badge, containerStyle:{backgroundColor:T.colors.active, marginTop:2}}}
                 onPress={item.onPress}
-                hideChevron={item.onPress ? false : true}
+                hideChevron={item.hideChevron ? true : item.onPress ? false : true}
                 containerStyle={{borderBottomWidth:0}}
               />
             ))

@@ -1,0 +1,38 @@
+{
+  "-L575mlZzLaH3KRGlQmL" : {
+    "difficulty" : "normal",
+    "flashcards" : [ "-L576FEC4L8skxEgO5Yd", "-L576FEC4L8skxEgO5Yf", "-L576FEDLfYrbW0G5RR_", "-L576FEDLfYrbW0G5RRb", "-L576FEDLfYrbW0G5RRd", "-L576FEDLfYrbW0G5RRf", "-L576FEDLfYrbW0G5RRh", "-L576FEF1LchHqfF8eUY", "-L576FEGCkGXFwel8N2i", "-L576FEGCkGXFwel8N2k", "-L576FEGCkGXFwel8N2m", "-L576FEH-rMjwEEq2RdV", "-L576FEH-rMjwEEq2RdX", "-L576FEH-rMjwEEq2Rda", "-L576FEI07qKwgWEt3Wo", "-L576FEI07qKwgWEt3Ww", "-L576FEJ-4qqxdt-fVRz", "-L576FEJ-4qqxdt-fVS0", "-L576FEJ-4qqxdt-fVS2", "-L576FEJ-4qqxdt-fVS4", "-L576FEKC69su77KB1ZL" ],
+    "image" : "https://static1.squarespace.com/static/55936452e4b0d62d66a71a2e/t/564494f0e4b0b0751fef2b2f/1447335156467/burgundy+wine+region+wine+map+by+fermentedgrape.com",
+    "owner" : "WSET3",
+    "tags" : [ "fr", "burgundy", "law" ],
+    "title" : "Burgundy ACs"
+  },
+  "-L575mlZzLaH3KRGlQmM" : {
+    "category" : "climate",
+    "difficulty" : "normal",
+    "flashcards" : [ "-L576FEKC69su77KB1ZN", "-L576FEMcmCGgWlTeYa2", "-L576FEMcmCGgWlTeYa4", "-L576FEMcmCGgWlTeYa6", "-L576FEMcmCGgWlTeYa8", "-L576FEMcmCGgWlTeYaA", "-L576FENapFfzFmOs39p", "-L576FENapFfzFmOs39r", "-L576FENapFfzFmOs39t", "-L576FENapFfzFmOs39v", "-L576FENapFfzFmOs39x", "-L576FENapFfzFmOs39z", "-L576FENapFfzFmOs3A0", "-L576FEOC00Iul1k_SnC", "-L576FEOC00Iul1k_SnE", "-L576FEOC00Iul1k_SnG", "-L576FEOC00Iul1k_SnI", "-L576FEOC00Iul1k_SnK", "-L576FEOC00Iul1k_SnM", "-L576FEOC00Iul1k_SnO", "-L576FEOC00Iul1k_SnQ", "-L576FEOC00Iul1k_SnS" ],
+    "hero" : "Brave\nNew Worlds",
+    "image" : "https://trademe.tmcdn.co.nz/photoserver/full/520647244.jpg",
+    "owner" : "WSET3",
+    "tags" : [ "nz", "winestyle", "varietals", "terroir" ],
+    "title" : "Everything New Zealand",
+    "type" : "hero"
+  },
+  "-L575ml_9zIosHHJo0Y_" : {
+    "backgroundColor" : "#000",
+    "category" : "featured",
+    "flashcards" : [ "-L576FEOC00Iul1k_SnU", "-L576FEPOm7gZ4fpGuOz", "-L576FEPOm7gZ4fpGuP0", "-L576FEPOm7gZ4fpGuP2", "-L576FEQTrF2txySBjIZ", "-L576FEQTrF2txySBjIa", "-L576FEQTrF2txySBjIc", "-L576FEQTrF2txySBjIe", "-L576FEQTrF2txySBjIg", "-L576FEQTrF2txySBjIi" ],
+    "hero" : "French Classics",
+    "owner" : "WSET3",
+    "tags" : [ "loire" ],
+    "title" : "Loire Valley Whites",
+    "type" : "featured"
+  },
+  "-L575ml_9zIosHHJo0Ya" : {
+    "difficulty" : "easy",
+    "owner" : "WSET3",
+    "status" : "coming_soon",
+    "tags" : [ "fr", "bordeaux", "law" ],
+    "title" : "Bordeaux First Growths"
+  }
+}
