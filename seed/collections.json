@@ -34,5 +34,14 @@
     "status" : "coming_soon",
     "tags" : [ "fr", "bordeaux", "law" ],
     "title" : "Bordeaux First Growths"
+  },
+  "1" : {
+    "difficulty" : "normal",
+    "owner" : "WSET3",
+    "hero" : "French Classics",
+    "title" : "Deep into Alsace",
+    "tags" : ["fr", "alsace", "winestyle", "varietals", "climate", "geography", "viniculture", "viticulture"],
+    "type" : "regular",
+    "flashcards" : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "-L576FERZq9sguvoAZoh", "-L576FERZq9sguvoAZof", "-L576FEQTrF2txySBjIk", "-L576FERZq9sguvoAZod", "-L576FERZq9sguvoAZob"]
   }
 }

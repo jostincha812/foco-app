@@ -1,0 +1,11 @@
+{
+  "es001" : {
+    "front" : "Describe a quality *Blaufränkisch*.",
+    "back" : "Quality *Blaufränkisch* wines have moderate tannins, crisp acidity, peppery, sour cherry, and strong mineral flavours.\n\nWines aged in oak produces wines with softer acidity and a sweeter fruit profile.",
+    "level" : "WSET3",
+    "status" : "active",
+    "difficulty" : "normal",
+    "tags" : ["es", "winestyle", "varietals", "blaufrankisch"]
+  },
+
+}

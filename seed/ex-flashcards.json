@@ -1,0 +1,76 @@
+{
+  "0" : {
+    "front" : "Front 10°C",
+    "back" : "Back",
+    "level" : "WSET3",
+    "status" : "active",
+    "difficulty" : "normal",
+    "tags" : []
+  },
+
+  "-L576FESNrFBSwq-YHB-" : {
+    "back" : "",
+    "chapter" : "",
+    "front" : "Describe the two ways in which producers are able to replicate hot maturation for **Madeira** wines.\n(6 points)",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "flagged"
+  },
+  "-L576FESNrFBSwq-YHB1" : {
+    "back" : "",
+    "chapter" : "",
+    "front" : "List the 10 styles of red *Port*.\n(10 points)",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "inactive"
+  },
+  "-L576FESNrFBSwq-YHB3" : {
+    "back" : "",
+    "chapter" : "",
+    "front" : "How is *Port* traditionally vinified and fortified?\n(6 points)",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "inactive"
+  },
+  "-L576FESNrFBSwq-YHB5" : {
+    "back" : "Sherry is famous for its system of maturation called the solera system. The solera system is made up of a number of groups of butts, reffered to here as levels, which holds wines of different ages. These levels are called criadera and solera. The maturation process invovles moving wines between the levels. Theis is archived as below:\n- Wine of bottling or blending is taken out of the system from the level that holds wines of the oldest average called the solera.\n- The solera is not fully emptied and the butts are replenished with wine from another level that contains wine of a slightly younger average of age called the first criadera,\n- The first criadera is then replenished by wine from the second criadera and so on, each criadera being replenished with younger wine.\n- The criadera containing the youngest wine is usually replenished with sobretable wine.\nThe numbers of criadera can vary from as few as three to as many as fourteen.\nBy law producer may only take a third of the wine from a solera system in the course of a year.",
+    "chapter" : "",
+    "front" : "Describe how the *Solera* system works in the maturation of **Sherry**.\n(6 points)",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "inactive"
+  },
+  "-L576FETfrrYGcf_Pq-B" : {
+    "back" : "- Traditional Method\n- Transfer Method\n- Tank Method\n- Asti Method\n- Carbonation",
+    "chapter" : "",
+    "front" : "What are five methods that can be used to make *sparkling* wines?",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "active"
+  },
+  "-L576FEU-8dS3tZxbmJM" : {
+    "back" : "*Blanc de Blancs* in *Champagne* are made using 100% *Chardonnay*. \n\nIn youth they can be light bodied with high acidty with a restained citrus and green apple fruit character. With bottle age, the very best develop a rich buttery character.\n\nThere are both NV and Vintage Blanc de Blancs.",
+    "chapter" : "",
+    "front" : "Describe *Blanc de Blancs* in *Champagne*.",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "active"
+  },
+  "-L576FEVvqgyG5LN3a34" : {
+    "back" : "1. Harvest and Pressing\n2. Primary Fermentation\n3. Blending\n4. Secondary Fermentation\n5. Yeast Autolysis\n6. Ridding\n7. Disgorgement and Corking\n8. Bottle Aging",
+    "chapter" : "",
+    "front" : "List the key steps in the \"Traditional Method\" for making *champagne*.",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "active"
+  },
+  "-L576FEVvqgyG5LN3a3A" : {
+    "back" : "\n*Bourgogne Hautes-Côtes de Nuits AC* vintage takes place approx. 1 week later than on the main Côte, many in co-operative cellars in *Beaune*. \n\nThese wines are lighter in body and less concentrated than wines from the main villages of *Côtede Nuits*.",
+    "chapter" : "",
+    "front" : "What are the main differences comparing *Bourgogne Hautes-Côtes de Nuits AC* to the main *Côte de Nuits* villages?",
+    "level" : "WSET3",
+    "page" : "",
+    "status" : "active",
+    "tags" : ["fr", "burgundy", "law"]
+  },
+}
