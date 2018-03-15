@@ -2,7 +2,6 @@ import C from '../constants'
 import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
 import api from '../data/api'
-import Seeder from '../../seed/seeder'
 
 let _profile = null
 let _unsubscribe = null
@@ -92,12 +91,6 @@ const CurrentUser = {
   unlockPremiumAccess: () => {
     console.log("unlockPremiumAccess()")
   },
-
-  reseedData: () => {
-    if (CurrentUser.isAdmin) {
-      Seeder.reseed()
-    }
-  }
 }
 
 Object.freeze(CurrentUser)

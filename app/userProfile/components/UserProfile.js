@@ -52,15 +52,6 @@ export default class UserProfile extends React.Component {
       },
     ]
 
-    if (CurrentUser.isAdmin) {
-      list.push({
-        title: 'RE-SEED DATA',
-        hideChevron: true,
-        badge: 'GO',
-        onPress: () => CurrentUser.reseedData()
-      })
-    }
-
     return (
       <View style={style}>
         <View style={[S.containers.normal, {alignItems:'center', paddingBottom:0}]}>
