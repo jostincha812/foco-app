@@ -9,8 +9,9 @@ import StyledDivider from './StyledDivider'
 export default class CarouselCard extends Card {
   renderInner(props) {
     const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
-    const headerBackground = props.backgroundColor ? 'transparent' : theme.backgroundColor
+    const headerBackground = props.backgroundColor ? 'transparent' : theme.headerBackground
     const innerStyle = props.innerStyle ? props.innerStyle : {}
+    const showDivider = (props.divider)
 
     return (
       <View style={{flex:1, justifyContent:'center', backgroundColor:'transparent', overflow:'hidden'}}>

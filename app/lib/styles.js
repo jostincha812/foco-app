@@ -6,6 +6,7 @@ export const sizes = {
   normal: 16,
   large: 24,
   xlarge: 36,
+  xxlarge: 44,
   none: 0,
 
   card: 360,
@@ -26,14 +27,33 @@ export const themes = {
     dividerColor: '#95a5a6',
     shadowColor: '#7f8c8d',
     color: '#000',
+    headerBackground: '#FFFFFFcc',
+    textShadow: {
+      textShadowColor: '#FFF',
+      textShadowOffset: {
+        width: 0.5,
+        height: 0.5,
+      },
+      textShadowRadius: 3,
+    },
+
   },
 
   dark: {
     borderColor: '#AAA',
     backgroundColor: '#3E3E3E',
-    dividerColor: '#CCC',
+    dividerColor: '#ffffffaa',
     shadowColor: '#7f8c8d',
     color: '#FFF',
+    headerBackground: '#CCCCCCcc',
+    textShadow: {
+      textShadowColor: '#000',
+      textShadowOffset: {
+        width: 0.5,
+        height: 0.5,
+      },
+      textShadowRadius: 3,
+    },
   },
 }
 export const DefaultTheme = themes.light
@@ -46,8 +66,8 @@ export default styles = {
     header: {
       paddingTop: sizes.small,
       paddingBottom: sizes.small,
-      marginLeft: sizes.normal,
-      marginRight: sizes.normal,
+      paddingLeft: sizes.normal,
+      paddingRight: sizes.normal,
     },
   },
 
@@ -90,8 +110,8 @@ export default styles = {
   text: {
     hero: {
       fontWeight: weights.heavy,
-      fontSize: sizes.xlarge,
-      lineHeight: sizes.xlarge+2,
+      fontSize: sizes.xxlarge,
+      lineHeight: sizes.xxlarge+2,
       color: DefaultTheme.color,
       backgroundColor: 'transparent',
     },
@@ -102,7 +122,7 @@ export default styles = {
     },
     subtitle: {
       fontWeight: weights.semibold,
-      fontSize: sizes.normal + 2,
+      fontSize: sizes.normal,
       color: DefaultTheme.color,
     },
     header: {
@@ -125,14 +145,6 @@ export default styles = {
       fontWeight: weights.light,
       fontSize: sizes.small,
       color: DefaultTheme.color,
-    },
-    textShadow: {
-      textShadowColor: '#000',
-      textShadowOffset: {
-        width: 1,
-        height: 1,
-      },
-      textShadowRadius: 3,
     },
   },
 }

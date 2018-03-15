@@ -46,8 +46,9 @@ export default class CollectionCard extends React.Component {
     let type = props.type
     const collection = props.collection
 
-    const backgroundColor = props.backgroundColor ? props.backgroundColor : collection.backgroundColor ? collection.backgroundColor : T.colors[collection.category]
-    const theme = props.theme ? props.theme : (backgroundColor ? 'dark' : 'light')
+    const backgroundColor = collection.backgroundColor ? collection.backgroundColor : T.colors[collection.category]
+    const theme = collection.theme ? collection.theme : (backgroundColor ? 'dark' : 'light')
+    const icon = collection.icon
 
     const isBookmarked = this.state[C.KEY_PREF_BOOKMARKED]
     const bookmarkToggleOptions = {
@@ -57,60 +58,71 @@ export default class CollectionCard extends React.Component {
       onPress: () => this.onPrefToggle(C.KEY_PREF_BOOKMARKED),
     }
     const bookmarkToggle = Icons.bookmark(bookmarkToggleOptions)
-    const numberOfCardsString = collection.flashcards ? `${collection.flashcards.length} ${localize("collections.cards")}` : null
+    const numberOfCards = collection.flashcards ? `${collection.flashcards.length} ${localize("collections.cards")}`.toUpperCase() : null
     const params = {
       theme: theme,
       backgroundColor: backgroundColor,
-      backgroundImage: props.backgroundImage ? props.backgroundImage : collection.image,
-      title: props.title ? props.title : collection.title,
-      subtitle: props.subtitle ? props.subtitle : numberOfCardsString,
-      hero: props.hero ? props.hero : collection.hero,
-      icon: props.icon ? props.icon : collection.icon,
-      onPress: props.onPress,
+      backgroundImage: collection.image,
+      // do titles/subtitles/hero in selectors below
+      // title: collection.title,
+      // subtitle: collection.subtitle ? collection.subtitle : numberOfCards,
+      // hero: collection.hero,
+      icon: icon,
       toggle: bookmarkToggle,
       max: props.max,
+      onPress: props.onPress,
     }
 
-    if (collection.status == C.STATUS_COMING_SOON) {
-      params.hero = localize("collections.coming_soon")
-      params.backgroundColor = T.colors.inactive
-      params.theme = 'dark'
-      params.subtitle = null
+    if (collection.category == C.STATUS_COMING_SOON) {
+      // params.backgroundColor = T.colors.inactive
+      // params.theme = 'dark'
+      collection.subtitle = collection.title
+      collection.title = localize("collections.coming_soon")
       params.toggle = null
       type = 'hero'
     }
 
-    if (type == 'hero' || type == 'featured') {
-      return (
-        <HeroCard containerStyle={[S.cards.hero, props.style]} {...params}>
-          {props.children}
-        </HeroCard>
-      )
+    if (collection.type == 'featured') {
+      params.theme = 'dark'
+      params.category = 'featured'
     }
 
-    if (type == 'carousel') {
-      return (
-        <CarouselCard containerStyle={[S.cards.carousel, props.style]} {...params}>
-          {props.children}
-        </CarouselCard>
-      )
+    switch (type) {
+      case 'hero':
+      case 'featured':
+        params.hero = collection.title
+        params.title = collection.subtitle
+        params.subtitle = numberOfCards
+        return (
+          <HeroCard containerStyle={[S.cards.hero, props.style]} {...params}>
+            {props.children}
+          </HeroCard>
+        )
+      case 'list':
+        params.title = collection.title
+        params.subtitle = null
+        return (
+          <ListCard
+            containerStyle={[S.cards.regular, props.style]} {...params}
+            list={props.list}>
+          </ListCard>
+        )
+      case 'carousel':
+        params.title = collection.title
+        params.subtitle = null
+        return (
+          <CarouselCard containerStyle={[S.cards.carousel, props.style]} {...params}>
+            {props.children}
+          </CarouselCard>
+        )
+      default:
+        params.title = collection.title
+        params.subtitle = numberOfCards
+        return (
+          <Card containerStyle={[S.cards.regular, props.style]} {...params}>
+            {props.children}
+          </Card>
+        )
     }
-
-    if (type == 'list') {
-      return (
-        <ListCard
-          containerStyle={[S.cards.regular, props.style]} {...params}
-          list={props.list}>
-        </ListCard>
-      )
-    }
-
-    // default card type
-    return (
-      <Card containerStyle={[S.cards.regular, props.style]} {...params}>
-        {props.children}
-      </Card>
-    )
-
   }
 }
