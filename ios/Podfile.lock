@@ -127,13 +127,13 @@ SPEC CHECKSUMS:
   FirebaseStorage: 0cca42d9b889a0227c3a50121f45a4469fc9eb27
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
-  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  leveldb-library: 9e29a1d913f922444127a7d0f28b025a0e2ba053
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
-  React: bfd693e2d08a61bf1dc056bba3f5c01a13a3cc31
-  RNFirebase: 553eb775cc87de5c7f420128b949b83ab99f1536
-  yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
+  React: 5751f5630c58f7ef31a00cf03044878295bceff0
+  RNFirebase: 9bddfc48ff74afc8fdb6e7edc6cb162f982014a7
+  yoga: 6e56575501ecea04196f9c9f08b90cf97cd5da24
 
 PODFILE CHECKSUM: 3ef85fe64966293caad2455575d9a6bc22d7209b
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.2.1
