@@ -44,6 +44,9 @@ export default FocoTheme = {
     expert: '#000', // black
 
     featured: '#000',
+    coming_soon: '#ADADAD',
+    key_facts: '#1E88E5',
+    obscure_facts: '#757D75',
     climate: '#2196F3',   // blue 500
     geography: '#00897B', // teal 600
     terroir: '#5D4037',   // brown 700
@@ -54,7 +57,6 @@ export default FocoTheme = {
     winestyle: '#8F1D21', // true red - http://bootflat.github.io/color-picker.html
     sparkling: '#FFD600', // yellow A700
     fortified: '#FF6F00', // amber 900
-    coming_soon: '#BDBDBD',
   },
 
   icons: {
