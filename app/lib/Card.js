@@ -8,24 +8,26 @@ import StyledDivider from './StyledDivider'
 export default class Card extends React.Component {
   renderInner(props) {
     const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
-    const headerBackground = props.backgroundColor ? 'transparent' : theme.backgroundColor
+    const headerBackground = props.backgroundImage ? theme.headerBackground : 'transparent'
     const innerStyle = props.innerStyle
+    const showTextShadow = (props.backgroundImage)
+    const showDivider = (props.divider)
 
     return (
       <View style={{ flex:1, backgroundColor:'transparent', overflow:'hidden' }}>
         { props.title &&
           <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
             { props.subtitle &&
-              <StyledText textStyle='subtitle' theme={theme} numberOfLines={1}>
-                {props.subtitle.toUpperCase()}
+              <StyledText textStyle='subtitle' theme={theme} textShadow={showTextShadow} numberOfLines={1}>
+                {props.subtitle}
               </StyledText>
             }
             { props.title &&
-              <StyledText textStyle='title' theme={theme} numberOfLines={1}>
+              <StyledText textStyle='title' theme={theme} textShadow={showTextShadow} numberOfLines={1}>
                 {props.title}
               </StyledText>
             }
-            { props.divider &&
+            { showDivider &&
               <StyledDivider location='bottom' theme={theme} />
             }
           </View>
@@ -48,7 +50,7 @@ export default class Card extends React.Component {
       styles.cards.card,
       styles.cards.raised,
       styles.corners.rounded,
-      { justifyContent: 'space-between' , backgroundColor: backgroundColor },
+      { justifyContent: 'space-between' , backgroundColor: backgroundColor, overflow:'hidden' },
       props.containerStyle ? props.containerStyle : {},
     ]
 

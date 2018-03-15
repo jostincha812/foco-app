@@ -9,7 +9,7 @@ export default class StyledText extends React.Component {
     const theme = props.theme ? props.theme : {}
     const numberOfLines = props.numberOfLines
     const textStyle = styles.text[props.textStyle] ? styles.text[props.textStyle] : styles.text.normal
-    const textShadow = props.textShadow ? styles.text.textShadow : null
+    const textShadow = props.textShadow ? theme.textShadow : null
     const color = props.color
 
     return (
