@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { ScrollView, StatusBar } from 'react-native'
+import { ScrollView, StatusBar, Linking } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 
 import T from '../T'
@@ -42,11 +42,11 @@ class ProfileHome extends BaseContainer {
         icon: 'rate-review',
         onPress: () => props.navigation.navigate(R.NAV_USER_PROFILE_SEND_FEEDBACK)
       },
-      // {
-      //   title: localize("profile.support"),
-      //   icon: 'live-help',
-      //   onPress: () => console.log('Get support')
-      // },
+      {
+        title: localize("profile.support"),
+        icon: 'live-help',
+        onPress: () => Linking.openURL(`mailto:support@vpqlabs.com?subject=Foco\:3%20support`)
+      },
       // {
       //   title: localize("profile.share"),
       //   icon: 'share',
