@@ -81,3 +81,8 @@
 
 ## 1.0.0-alpha6
 * Limited number of tags shown in Flashcard
+
+## 1.0.0-beta-1
+* Hide varietals filters
+* Added version in profile UI
+* Changed Sign Out to button

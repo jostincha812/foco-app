@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { ScrollView, StatusBar, Linking } from 'react-native'
-import { List, ListItem } from 'react-native-elements'
+import { List, ListItem, Button } from 'react-native-elements'
 
 import T from '../T'
 import S from '../styles'
-import { R } from '../constants'
+import { R, C } from '../constants'
 import { localize } from '../locales'
 
 import BaseContainer from './BaseContainer'
@@ -47,6 +47,12 @@ class ProfileHome extends BaseContainer {
         icon: 'live-help',
         onPress: () => Linking.openURL(`mailto:support@vpqlabs.com?subject=Foco\:3%20support`)
       },
+      {
+        title: localize("profile.version"),
+        icon: 'info',
+        label: C.VERSION,
+        hideChevron: true,
+      },
       // {
       //   title: localize("profile.share"),
       //   icon: 'share',
@@ -62,7 +68,7 @@ class ProfileHome extends BaseContainer {
       <ScrollView
         style={S.containers.screen}
         bounces={false}
-        contentContainerStyle={{flex:1, justifyContent:'space-between'}}
+        contentContainerStyle={{flex:1, justifyContent:'flex-start'}}
       >
         <StatusBar barStyle={S.statusBarStyle} />
         <UserProfile style={{flex:1}} profile={profile} />
@@ -77,22 +83,24 @@ class ProfileHome extends BaseContainer {
                 title={item.title}
                 titleStyle={S.text.listTitle}
                 leftIcon={{name: item.icon}}
+                rightTitle={item.label}
+                rightTitleStyle={S.text.listTitle}
                 onPress={item.onPress}
                 containerStyle={{borderBottomWidth:0}}
               />
             ))
           }
-
-          <ListItem
-            key={R.NAV_SIGNOUT}
-            hideChevron={true}
-            title={localize("auth.signOut")}
-            titleStyle={[S.text.listTitle, {color:T.colors.active}]}
-            leftIcon={{name:'exit-to-app', color:T.colors.active}}
-            onPress={CurrentUser.signOut}
-            containerStyle={{borderBottomWidth:0}}
-          />
         </List>
+        <Button
+          key={R.NAV_SIGNOUT}
+          hideChevron={true}
+          title={localize("auth.signOut")}
+          textStyle={S.text.listTitle}
+          iconRight={{name:'exit-to-app'}}
+          backgroundColor={T.colors.accent}
+          onPress={CurrentUser.signOut}
+          containerViewStyle={{marginVertical:S.spacing.large}}
+        />
       </ScrollView>
     )
   }
