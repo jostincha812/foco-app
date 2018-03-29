@@ -78,7 +78,7 @@ export default class FilterConfigurator extends React.Component {
             onToggle={tagState => this.onToggle(C.TAG_TYPE_REGIONS, tagState)}
           />
         </View>
-        <View style={[S.containers.normal, {paddingTop:0}]}>
+        <View style={[S.containers.normal, {paddingTop:0, display:'none'}]}>
           <StyledText textStyle='title'>{localize("filters.varietals")}</StyledText>
           <TagsSelector
             style={{marginTop:S.spacing.xxsmall}}

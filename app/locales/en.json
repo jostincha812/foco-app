@@ -45,6 +45,8 @@
     "upgrade": "Go Premium",
     "feedback": "Send feedback",
     "support": "Get support",
+    "version": "Version",
+    "about": "About",
   },
 
   "roles": {
