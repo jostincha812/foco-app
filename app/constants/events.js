@@ -9,6 +9,7 @@ export default events = {
   auth_signed_up: 'auth_signed_up',
   auth_signin_error: 'auth_signin_error',
   auth_reset_password: 'auth_reset_password',
+  auth_email_verified: 'auth_email_verified',
 
   user_action_collections_scrolled: 'user_action_collections_scrolled',
   user_action_collection_selected: 'user_action_collection_selected',

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F2F513AD389ECE9F89985EBCFC26AB6140914060",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F2F513AD389ECE9F89985EBCFC26AB6140914060" : 9223372036854775807,
+    "7A54EB75E1F47323AAEEC6D7C0468F296EE6EDDE" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0EA1F696-1EAF-4452-9343-C30C6C04CD01",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F2F513AD389ECE9F89985EBCFC26AB6140914060" : "app\/",
+    "7A54EB75E1F47323AAEEC6D7C0468F296EE6EDDE" : "app\/node_modules\/react-native-facebook-login\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "FocoApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios\/FocoApp.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:magus\/react-native-facebook-login.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7A54EB75E1F47323AAEEC6D7C0468F296EE6EDDE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/b150\/focoapp",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F2F513AD389ECE9F89985EBCFC26AB6140914060"
+    }
+  ]
+}

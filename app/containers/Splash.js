@@ -51,17 +51,17 @@ class Splash extends BaseContainer {
   }
 
   onLogin(user) {
-    this.logEvent(E.user_signed_in, {uid: user.uid, provider: user.providerId})
+    this.logEvent(E.auth_signed_in, {uid: user.uid, provider: user.providerId})
     this.props.navigation.navigate(R.NAV_HOME_TAB)
   }
 
   onLogout(user) {
-    this.logEvent(E.user_signed_out, {uid: user.uid})
+    this.logEvent(E.auth_signed_out, {uid: user.uid})
     this.props.navigation.navigate(R.NAV_USER_SIGNIN_HOME)
   }
 
   onEmailVerified() {
-    this.logEvent(E.user_email_verified)
+    this.logEvent(E.auth_email_verified)
   }
 
   onError(e) {

@@ -3,6 +3,21 @@ package com.vpqlabs.focoapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import com.magus.fblogin.FacebookLoginPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import com.magus.fblogin.FacebookLoginPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import com.magus.fblogin.FacebookLoginPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.magus.fblogin.FacebookLoginPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -33,6 +48,21 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
+            new RNSpinkitPackage(),
+            new RNI18nPackage(),
+            new RNFirebasePackage(),
+            new FacebookLoginPackage(),
+            new VectorIconsPackage(),
+            new RNSpinkitPackage(),
+            new RNI18nPackage(),
+            new RNFirebasePackage(),
+            new FacebookLoginPackage(),
+            new VectorIconsPackage(),
+            new RNSpinkitPackage(),
+            new RNI18nPackage(),
+            new RNFirebasePackage(),
+            new FacebookLoginPackage(),
             new RNI18nPackage(),
             new FacebookLoginPackage(),
           new RNFirebasePackage(),
