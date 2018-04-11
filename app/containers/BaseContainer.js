@@ -23,6 +23,9 @@ export default class BaseContainer extends React.Component {
   }
 
   logEvent(event, params) {
+    console.log("logEvent(****)")
+    console.log(event)
+    console.log(params)
     fbAnalytics.logEvent(event, { ...this._screen, ...params })
   }
 
