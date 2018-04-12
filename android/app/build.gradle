@@ -158,6 +158,13 @@ dependencies {
         transitive = false
     }
     compile project(':react-native-facebook-login')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-spinkit')
+    compile project(':react-native-i18n')
+    compile(project(':react-native-firebase')) {
+        transitive = false
+    }
+    compile project(':react-native-facebook-login')
     compile project(':react-native-i18n')
     compile project(':react-native-facebook-login')
     // Google dependencies
