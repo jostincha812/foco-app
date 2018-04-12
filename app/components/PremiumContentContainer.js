@@ -17,7 +17,7 @@ export default class PremiumContentContainer extends React.Component {
     this.setState({ isLocked: !CurrentUser.hasPremiumAccess })
   }
 
-  componentDidReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({ isLocked: !CurrentUser.hasPremiumAccess })
   }
 
