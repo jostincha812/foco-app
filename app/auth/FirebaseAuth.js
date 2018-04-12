@@ -86,7 +86,7 @@ const FirebaseAuth = class {
 
   loginWithEmail = (email, password) => {
     try {
-      firebase.auth().signInWithEmailAndPassword(email, password)
+      firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password)
         .catch((err) => this.onError && this.onError(err));
     } catch (e) {
       this.onError && this.onError(e);
@@ -95,8 +95,9 @@ const FirebaseAuth = class {
 
   register = (name, email, password) => {
     try {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((user) => {
+      firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
+        .then((credentials) => {
+          const user = credentials.user
           user.sendEmailVerification();
           return user.updateProfile({displayName: name})
         })
