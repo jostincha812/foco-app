@@ -86,3 +86,8 @@
 * Hide varietals filters
 * Added version in profile UI
 * Changed Sign Out to button
+
+## 1.0.0-beta-2
+* Upgraded to react 16.2.0, react-native 0.53.3, react-navigation 1.5.11, react-native-facebook-login 1.6.1, react-native-firebase 4.0.0
+* Updated to react-native-firebase 4.0.0 API
+* Minor bug fixes
