@@ -1477,7 +1477,7 @@
 				PRODUCT_NAME = FocoApp;
 				PROVISIONING_PROFILE = "e1b07d6c-37db-476d-a74c-535343dc7b15";
 				PROVISIONING_PROFILE_SPECIFIER = "Foco Development";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1516,7 +1516,7 @@
 				PROVISIONING_PROFILE = "63753c6a-0ff8-49ee-8670-e9de65a32a96";
 				PROVISIONING_PROFILE_SPECIFIER = "Foco Distribution";
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
