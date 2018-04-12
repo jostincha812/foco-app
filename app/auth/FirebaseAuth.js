@@ -1,4 +1,4 @@
-import firebase from '../../configureFirebase'
+import { firebase } from '../../configureFirebase'
 
 import Providers from './Providers'
 import fbRefs from '../data/JsFbRefs'
@@ -70,7 +70,7 @@ const FirebaseAuth = class {
     Providers.Facebook.login(['public_profile', 'email', 'user_friends'])
       .then((token) => (
         firebase.auth()
-          .signInWithCredential(firebase.auth.FacebookAuthProvider.credential(token))
+          .signInAndRetrieveDataWithCredential(firebase.auth.FacebookAuthProvider.credential(token))
       ))
       .catch((err) => this.onError && this.onError(err));
   }
@@ -79,7 +79,7 @@ const FirebaseAuth = class {
     Providers.Google.login()
       .then((token) => (
         firebase.auth()
-          .signInWithCredential(firebase.auth.GoogleAuthProvider.credential(null, token))
+          .signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(null, token))
       ))
       .catch((err) => this.onError && this.onError(err));
   }

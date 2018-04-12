@@ -1,14 +1,7 @@
 import RNFirebase from 'react-native-firebase'
 
-const configurationOptions = {
-  debug: true,
-  persistence: true,
-}
-
-// export default function configureFirebase() {
-//   return RNFirebase.initializeApp(configurationOptions)
-// }
-
-const firebase = RNFirebase.initializeApp(configurationOptions)
-export default firebase
+const app = RNFirebase.app()
+export default app
+export const firebase = RNFirebase
+export const fbAuth = firebase.auth()
 export const fbAnalytics = firebase.analytics()
