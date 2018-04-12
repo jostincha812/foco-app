@@ -35,7 +35,6 @@ class SignUpWithEmail extends BaseContainer {
   }
 
   componentDidMount() {
-    super.componentDidMount()
     this.props.navigation.setParams({
       onBounce: () => {
         this.logEvent(E.auth_signup_bounce, { screen:R.NAV_USER_SIGNUP_WITH_EMAIL })
