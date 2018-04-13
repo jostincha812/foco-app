@@ -93,4 +93,7 @@
 * Minor bug fixes
 
 ## 1.0.1 === 1.0.0-beta.3
-* Release build with authentication bug fixes for react-native-firebase 4.0.0
+* Authentication bug fixes for react-native-firebase 4.0.0
+
+## <new-version>
+*
