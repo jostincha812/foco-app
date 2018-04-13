@@ -94,3 +94,6 @@
 
 ## 1.0.0-beta.3
 * Authentication bug fixes for react-native-firebase 4.0.0
+
+## <new-version>
+* 
