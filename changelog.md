@@ -96,4 +96,5 @@
 * Authentication bug fixes for react-native-firebase 4.0.0
 
 ## <new-version>
-* 
+* "New" collections badge
+* Removed "flagging" action for non-admins

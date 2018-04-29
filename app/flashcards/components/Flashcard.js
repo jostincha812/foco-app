@@ -7,6 +7,7 @@ import C from '../../constants'
 import T from '../../T'
 import S, { markdown } from '../../styles'
 
+import CurrentUser from '../../auth/CurrentUser'
 import FlashcardTags from './FlashcardTags'
 import PremiumContentContainer from '../../components/PremiumContentContainer'
 import Icons from '../../components/Icons'
@@ -61,9 +62,9 @@ export default class Flashcard extends React.Component {
       style: {position:'absolute', top:S.spacing.small, left:S.spacing.large},
       onPress: () => this.onPrefToggle(C.KEY_PREF_FLAGGED),
     }
-    const flagToggle = isFlagged ?
-    Icons.flag({color:T.colors.app, ...flagToggleOptions}) :
-    Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions})
+    const flagToggle = !CurrentUser.isAdmin ? null : (isFlagged ?
+      Icons.flag({color:T.colors.app, ...flagToggleOptions}) :
+      Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions}))
 
     return (
       <FlipCard
