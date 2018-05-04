@@ -98,3 +98,6 @@
 ## 1.0.2
 * "New" collections badge
 * Removed "flagging" action for non-admins
+
+## 1.0.3
+* Maintenance build
