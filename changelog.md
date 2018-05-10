@@ -98,3 +98,7 @@
 ## <new-version>
 * "New" collections badge
 * Removed "flagging" action for non-admins
+
+## 1.0.5
+* Reverse sorting Collections lists
+* Collection.minVersion checking
