@@ -174,7 +174,7 @@ export default class CollectionHome extends BaseContainer {
     const ready = this.props.ready
 
     const collections = this.props.collections ? this.props.collections : {}
-    const collectionsKeys = Object.keys(collections)
+    const collectionsKeys = Object.keys(collections).sort().reverse()
     const refreshControl = (
       <RefreshControl
         refreshing={this.state.refreshing}
