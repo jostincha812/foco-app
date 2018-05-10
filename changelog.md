@@ -101,3 +101,7 @@
 
 ## 1.0.3 - 1.0.4
 * Maintenance build
+
+## 1.0.5
+* Reverse sorting Collections lists
+* Collection.minVersion checking

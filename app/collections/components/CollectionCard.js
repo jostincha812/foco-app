@@ -87,7 +87,13 @@ export default class CollectionCard extends React.Component {
       params.category = 'featured'
     }
 
+    if (collection.minVersion > C.VERSION) {
+      type = 'hidden'
+    }
+
     switch (type) {
+      case 'hidden':
+        return null
       case 'hero':
       case 'featured':
         params.hero = collection.title
