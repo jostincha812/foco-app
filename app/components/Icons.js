@@ -72,6 +72,7 @@ export default {
   commentMore: (options = {}) => AppIcon('comment-processing', options),
   lock: (options = {}) => AppIcon('lock', options),
   unlock: (options = {}) => AppIcon('lock-open-outline', options),
+  pullDown: (options = {}) => AppIcon('download', options),
 
   add: (options = {}) => AppIcon('plus', options),
   addOutline: (options = {}) => AppIcon('plus-circle-outline', options),

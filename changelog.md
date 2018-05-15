@@ -105,3 +105,6 @@
 ## 1.0.5
 * Reverse sorting Collections lists
 * Collection.minVersion checking
+
+## 1.0.6
+* Updated "Pull to Refresh" message
