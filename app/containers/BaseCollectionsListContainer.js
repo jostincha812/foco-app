@@ -203,7 +203,11 @@ export default class CollectionHome extends BaseContainer {
 
     if (collectionsKeys.length == 0) {
       return (
-        <EmptyListScreen onLayout={this.onLayout} refreshControl={refreshControl}>
+        <EmptyListScreen
+          contentContainerStyle={S.containers.list}
+          onLayout={this.onLayout}
+          refreshControl={refreshControl}
+        >
           { this._title && headerView }
         </EmptyListScreen>
       )

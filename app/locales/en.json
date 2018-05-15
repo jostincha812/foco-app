@@ -100,7 +100,7 @@
 
   // lists
   "lists": {
-    "empty": "Nothing to see here",
+    "empty": "Pull down to refresh",
   },
 
   "actions": {
