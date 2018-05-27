@@ -1,7 +1,7 @@
 export default {
   FOCO: 'Foco:3',
   VPQLABS: 'by VPQLabs',
-  VERSION: '1.0.7',
+  VERSION: '1.0.9',
   WSET3: 'WSET3',
   WSET2: 'WSET2',
 
