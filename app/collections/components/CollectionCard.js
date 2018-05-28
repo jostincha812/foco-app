@@ -64,14 +64,15 @@ export default class CollectionCard extends React.Component {
       theme: theme,
       backgroundColor: backgroundColor,
       backgroundImage: collection.image,
-      // do titles/subtitles/hero in selectors below
+      // *** do titles/subtitles/hero in selectors below
       // title: collection.title,
       // subtitle: collection.subtitle ? collection.subtitle : numberOfCards,
       // hero: collection.hero,
       icon: icon,
       toggle: bookmarkToggle,
       max: props.max,
-      onPress: props.onPress,
+      // *** moved onPress into PremiumContentContainer
+      // onPress: props.onPress,
     }
 
     if (collection.category == C.STATUS_COMING_SOON) {
@@ -138,10 +139,11 @@ export default class CollectionCard extends React.Component {
 
     return (
       <PremiumContentContainer
-        innerOpacity={0.33}
+        innerOpacity={0.25}
         iconSize={96}
         accessType={collection.accessType}
         accessKey={collection.id}
+        touchableLockOnly={false}
         onPress={props.onPress}>
         {card}
       </PremiumContentContainer>
