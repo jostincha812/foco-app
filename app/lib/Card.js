@@ -55,7 +55,6 @@ export default class Card extends React.Component {
     ]
 
     const ContainerView = props.onPress ? TouchableOpacity : View
-
     const card = (
         <ContainerView style={containerStyle} onPress={props.onPress}>
           { backgroundImage &&
@@ -68,17 +67,5 @@ export default class Card extends React.Component {
         </ContainerView>
     )
     return card
-
-    // const onPress = this.props.onPress
-    // if (onPress) {
-    //   return (
-    //     <TouchableOpacity onPress={onPress}>
-    //       {card}
-    //     </TouchableOpacity>
-    //   )
-    // } else {
-    //   return card
-    // }
-
   }
 }

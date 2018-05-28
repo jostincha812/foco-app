@@ -52,7 +52,7 @@ export default class PremiumContentContainer extends React.Component {
 
     return (
       <ContentContainer
-        style={S.containers.centered}
+        style={[props.style, S.containers.centered]}
         activeOpacity={props.activeOpacity}
         onPress={onPress}
       >
