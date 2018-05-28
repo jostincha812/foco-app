@@ -1,6 +1,7 @@
 import C from '../constants'
 import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
+import AccessManager from './AccessManager'
 import api from '../data/api'
 
 let _profile = null
@@ -63,22 +64,9 @@ const CurrentUser = {
     }
   },
 
-  get hasPremiumAccess() {
-    const profile = _profile
-    let hasPremiumAccess = false
-
-    if (profile.purchases) {
-      profile.purchases.map(purchase => {
-        if (purchase === C.IAP_EARLY_ADOPTER) {
-          hasPremiumAccess = true
-        }
-        if (purchase === C.IAP_FULL_ACCESS) {
-          hasPremiumAccess = true
-        }
-      })
-    }
-
-    return hasPremiumAccess
+  hasPremiumAccess: ({accessType, accessKey}) => {
+    const purchases = _profile.purchases
+    return AccessManager.hasAccess({purchases, accessType, accessKey})
   },
 
   signOut: () => {

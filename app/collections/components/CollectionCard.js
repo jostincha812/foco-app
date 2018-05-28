@@ -140,6 +140,8 @@ export default class CollectionCard extends React.Component {
       <PremiumContentContainer
         innerOpacity={0.33}
         iconSize={96}
+        accessType={collection.accessType}
+        accessKey={collection.id}
         onPress={props.onPress}>
         {card}
       </PremiumContentContainer>

@@ -96,6 +96,8 @@ export default class Flashcard extends React.Component {
           activeOpacity={1}
           innerOpacity={0.025}
           touchableLockOnly={true}
+          accessType={C.ACCESS_CONSUMABLE_FLASHCARD}
+          accessKey={props.data.id}
           onPress={() => this.setState({flipped: !this.state.flipped})}
         >
           <View style={styles.inner}>

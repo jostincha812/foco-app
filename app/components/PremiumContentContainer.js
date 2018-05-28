@@ -15,11 +15,17 @@ export default class PremiumContentContainer extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ isLocked: !CurrentUser.hasPremiumAccess })
+    this.setState({ isLocked: !CurrentUser.hasPremiumAccess({
+      accessType: this.props.accessType,
+      accessKey: this.props.accessKey,
+    }) })
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ isLocked: !CurrentUser.hasPremiumAccess })
+    this.setState({ isLocked: !CurrentUser.hasPremiumAccess({
+      accessType: this.props.accessType,
+      accessKey: this.props.accessKey,
+    }) })
   }
 
   onLockPress() {
