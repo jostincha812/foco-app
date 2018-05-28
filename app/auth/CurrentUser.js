@@ -75,9 +75,6 @@ const CurrentUser = {
         if (purchase === C.IAP_FULL_ACCESS) {
           hasPremiumAccess = true
         }
-        if (purchase === C.IAP_FULL_ACCESS) {
-          hasPremiumAccess = true
-        }
       })
     }
 

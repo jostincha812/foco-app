@@ -92,20 +92,23 @@ export default class Flashcard extends React.Component {
         </TouchableOpacity>
 
         <PremiumContentContainer
-          style={styles.inner}
-          activeOpacity={1}
-          onPress={() => this.setState({flipped: !this.state.flipped})}
           iconSize={T.icons.xxlargeIcon}
+          activeOpacity={1}
+          innerOpacity={0.025}
+          touchableLockOnly={true}
+          onPress={() => this.setState({flipped: !this.state.flipped})}
         >
-          {flagToggle}
-          {starToggle}
-          <MarkdownView styles={markdown}>
-            {data.back}
-          </MarkdownView>
-          <FlashcardTags
-            style={{position:'absolute', left:S.spacing.large, bottom:S.spacing.small}}
-            tags={data.tags}
-          />
+          <View style={styles.inner}>
+            {flagToggle}
+            {starToggle}
+            <MarkdownView styles={markdown}>
+              {data.back}
+            </MarkdownView>
+            <FlashcardTags
+              style={{position:'absolute', left:S.spacing.large, bottom:S.spacing.small}}
+              tags={data.tags}
+            />
+          </View>
         </PremiumContentContainer>
       </FlipCard>
     )

@@ -54,27 +54,31 @@ export default class Card extends React.Component {
       props.containerStyle ? props.containerStyle : {},
     ]
 
-    const card = (
-      <View style={containerStyle}>
-        { backgroundImage &&
-          <Image
-            style={[styles.corners.rounded, {width:'100%', height:'100%', position:'absolute'}]}
-            source={{uri: backgroundImage}}
-          />
-        }
-        {this.renderInner(props)}
-      </View>
-    )
+    const ContainerView = props.onPress ? TouchableOpacity : View
 
-    const onPress = this.props.onPress
-    if (onPress) {
-      return (
-        <TouchableOpacity onPress={onPress}>
-          {card}
-        </TouchableOpacity>
-      )
-    } else {
-      return card
-    }
+    const card = (
+        <ContainerView style={containerStyle} onPress={props.onPress}>
+          { backgroundImage &&
+            <Image
+              style={[styles.corners.rounded, {width:'100%', height:'100%', position:'absolute'}]}
+              source={{uri: backgroundImage}}
+            />
+          }
+          {this.renderInner(props)}
+        </ContainerView>
+    )
+    return card
+
+    // const onPress = this.props.onPress
+    // if (onPress) {
+    //   return (
+    //     <TouchableOpacity onPress={onPress}>
+    //       {card}
+    //     </TouchableOpacity>
+    //   )
+    // } else {
+    //   return card
+    // }
+
   }
 }

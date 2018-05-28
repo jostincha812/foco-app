@@ -157,5 +157,9 @@
     "pinot_gris": "Pinot Gris",
     "riesling": "Riesling",
     "zinfandel": "Zinfandel",
+  },
+
+  "iap" : {
+    "unlock_now": "Get It Now",
   }
 }
