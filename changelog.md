@@ -105,3 +105,7 @@
 
 ## 1.0.6
 * Updated "Pull to Refresh" message
+
+## 1.1.0
+* Delete Me
+* iOS IAP Dialogs
