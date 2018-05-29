@@ -11,7 +11,6 @@ export default class PremiumContentContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = { isLocked: true }
-    this.onLockPress = this.onLockPress.bind(this)
   }
 
   componentWillMount() {
@@ -28,20 +27,16 @@ export default class PremiumContentContainer extends React.Component {
     }) })
   }
 
-  onLockPress() {
-    CurrentUser.unlockPremiumAccess()
-  }
-
   render() {
     const props = this.props
     const ContentContainer = props.onPress ? TouchableOpacity : View
-    const onPress = this.state.isLocked && !props.touchableLockOnly ? this.onLockPress : props.onPress
+    const onPress = this.state.isLocked && !props.touchableLockOnly ? props.showIap : props.onPress
     const innerOpacity = this.state.isLocked ? (props.innerOpacity || 0) : 1
 
     const lock = (
       <TouchableOpacity
         style={[S.containers.centered, {position:'absolute', alignSelf:'center', zIndex: 100}]}
-        onPress={this.onLockPress}
+        onPress={this.props.showIap}
       >
         { Icons.lock({size:props.iconSize, color:T.colors.normal}) }
         <Text style={[S.text.header, {color:T.colors.normal}]}>

@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { View, StatusBar } from 'react-native'
 import Toast from 'react-native-root-toast'
@@ -19,7 +18,7 @@ export default class BaseContainer extends React.Component {
     this.errorToast = this.errorToast.bind(this)
     this.successToast = this.successToast.bind(this)
 
-    this.state = { dimensions: undefined, refreshing: false, }
+    this.state = { dimensions: undefined, refreshing: false }
   }
 
   logEvent(event, params) {
