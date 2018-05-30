@@ -16,6 +16,7 @@
     "react-native-firebase": "^4.0.0",
     "react-native-flip-card": "^3.5.2",
     "react-native-i18n": "^2.0.12",
+    "react-native-in-app-utils": "^6.0.0",
     "react-native-keyboard-aware-scrollview": "^2.0.0",
     "react-native-markdown-view": "^1.1.4",
     "react-native-modal": "^6.0.0",

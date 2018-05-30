@@ -1,39 +1,62 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View } from 'react-native'
 import Modal from 'react-native-modal'
-import { FlatButton } from 'react-native-elements'
+import { PricingCard, Button } from 'react-native-elements'
+
+import T from '../T'
+import S from '../styles'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 import CurrentUser from '../auth/CurrentUser'
-import Card from '../lib/Card'
-import S from '../styles'
-import { cards } from '../styles'
+import Store from './Store'
 
-const ProUpgradeModal = (props) => {
-  return (
-    <Modal
-      isVisible={props.isVisible}
-      onBackdropPress={props.dismissModal}
-      style={S.containers.centered}
-    >
-      <View style={[S.cards.card, S.cards.raised, S.corners.rounded,
-        S.cards.regular, {aspectRatio:0.8, padding:S.spacing.normal}]}>
+export default class ProUpgradeModal extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { productsLoaded: false }
+  }
 
-        <View style={{flex:1}}>
-          <Text>I am the Pro Upgrade modal!</Text>
-          <Button
-            title="Unlock now"
-            onPress={CurrentUser.unlockPremiumAccess}
+  componentDidMount() {
+    const product = 'com.vpqlabs.foco.professional.10'
+    Store.loadProduct({
+      identifier: product,
+      onSuccess: (details) => {
+        this.setState({productsLoaded: true, product:details})
+      },
+      onError: (error) => console.log(error)
+    })
+  }
+
+  render() {
+    const props = this.props
+    const product = this.state.product
+
+    return (
+      <Modal
+        isVisible={props.isVisible}
+        onBackdropPress={props.dismissModal}
+        style={S.containers.centered}
+      >
+
+        { !this.state.productsLoaded &&
+          <View style={[S.cards.card, S.cards.raised, S.corners.rounded, S.containers.centered,
+                        {aspectRatio:1}]}>
+            <LoadingIndicator />
+          </View>
+        }
+
+        { this.state.productsLoaded &&
+          <PricingCard
+            containerStyle={[S.cards.card, S.cards.raised, S.corners.rounded]}
+            title='Professional'
+            price={`${product.priceString}`}
+            color={T.colors.active}
+            info={['All Access Upgrade', 'All Collections', 'All Flashcards']}
+            button={{ title: 'UPGRADE NOW', icon: 'lock-open', buttonStyle: {marginTop:S.spacing.xlarge} }}
+            onButtonPress={CurrentUser.unlockPremiumAccess}
           />
-        </View>
-
-        <Button
-          title="Maybe Later"
-          style={{alignSelf:'flex-start'}}
-          onPress={props.dismissModal}
-        />
-      </View>
-    </Modal>
-  )
+        }
+      </Modal>
+    )
+  }
 }
-
-export default ProUpgradeModal

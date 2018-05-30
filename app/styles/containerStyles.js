@@ -60,6 +60,7 @@ export default containerStyles = {
       borderColor: T.colors.contentBorder,
       backgroundColor: T.colors.contentBackground,
       borderWidth: 0.5,
+      width: normalize(260),
     },
     raised: {
       shadowColor: T.colors.shadow,
