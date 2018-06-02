@@ -8,6 +8,7 @@ import { localize } from '../../locales'
 
 import Icons from '../../components/Icons'
 import DifficultyPill from '../../components/DifficultyPill'
+import PremiumContentContainer from '../../components/PremiumContentContainer'
 
 import Card from '../../lib/Card'
 import HeroCard from '../../lib/HeroCard'
@@ -63,14 +64,15 @@ export default class CollectionCard extends React.Component {
       theme: theme,
       backgroundColor: backgroundColor,
       backgroundImage: collection.image,
-      // do titles/subtitles/hero in selectors below
+      // *** do titles/subtitles/hero in selectors below
       // title: collection.title,
       // subtitle: collection.subtitle ? collection.subtitle : numberOfCards,
       // hero: collection.hero,
       icon: icon,
       toggle: bookmarkToggle,
       max: props.max,
-      onPress: props.onPress,
+      // *** moved onPress into PremiumContentContainer
+      // onPress: props.onPress,
     }
 
     if (collection.category == C.STATUS_COMING_SOON) {
@@ -91,6 +93,7 @@ export default class CollectionCard extends React.Component {
       type = 'hidden'
     }
 
+    let card = null
     switch (type) {
       case 'hidden':
         return null
@@ -99,36 +102,52 @@ export default class CollectionCard extends React.Component {
         params.hero = collection.title
         params.title = collection.subtitle
         params.subtitle = numberOfCards
-        return (
+        card = (
           <HeroCard containerStyle={[S.cards.hero, props.style]} {...params}>
             {props.children}
           </HeroCard>
         )
+        break
       case 'list':
         params.title = collection.title
         params.subtitle = null
-        return (
+        card = (
           <ListCard
             containerStyle={[S.cards.regular, props.style]} {...params}
             list={props.list}>
           </ListCard>
         )
+        break
       case 'carousel':
         params.title = collection.title
         params.subtitle = null
-        return (
+        card = (
           <CarouselCard containerStyle={[S.cards.carousel, props.style]} {...params}>
             {props.children}
           </CarouselCard>
         )
+        break
       default:
         params.title = collection.title
         params.subtitle = numberOfCards
-        return (
+        card = (
           <Card containerStyle={[S.cards.regular, props.style]} {...params}>
             {props.children}
           </Card>
         )
     }
+
+    return (
+      <PremiumContentContainer
+        innerOpacity={0.25}
+        iconSize={96}
+        accessType={collection.accessType}
+        accessKey={collection.id}
+        touchableLockOnly={false}
+        onPress={props.onPress}
+        showIap={props.showIap}>
+        {card}
+      </PremiumContentContainer>
+    )
   }
 }

@@ -34,6 +34,7 @@
 		8D90563A1F2AAC6300EA000E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */; };
 		8D90563B1F2AAC6300EA000E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */; };
 		8D90563C1F2AAC6300EA000E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056381F2AAC6300EA000E /* FBSDKShareKit.framework */; };
+		8DB56AC320BE646D00A20369 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB56AC220BE646D00A20369 /* StoreKit.framework */; };
 		8DF126BB1F3040CF0031AE7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DF126BA1F3040CF0031AE7F /* GoogleService-Info.plist */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B485D08C0E874EC2850E2417 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FCCA8B20094E1D9014C3CE /* libRNSpinkit.a */; };
@@ -413,6 +414,7 @@
 		8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		8D9056381F2AAC6300EA000E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		8DB56AC220BE646D00A20369 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8DF126BA1F3040CF0031AE7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "FocoApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F3A1E5D28A249E8AA95D632 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		96DF0621CBD141AF99022821 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
+				8DB56AC320BE646D00A20369 /* StoreKit.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -685,6 +688,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				0496CBEC0AF440BA94C25082 /* Resources */,
 				79C77E9C5C934E38F6BAFED9 /* Pods */,
+				8DEB7E28209CA4D1007347CC /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -737,6 +741,7 @@
 		8D90563D1F2AAC6B00EA000E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DB56AC220BE646D00A20369 /* StoreKit.framework */,
 				8D9056351F2AAC6300EA000E /* Bolts.framework */,
 				8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */,
 				8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */,
@@ -753,6 +758,17 @@
 				8DB92DDF1FFB719C000D7F48 /* libRNFirebase.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8DEB7E28209CA4D1007347CC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				24FCCA8B20094E1D9014C3CE /* libRNSpinkit.a */,
+				18A4E0BB8E094E5E93E2608D /* libRNVectorIcons.a */,
+				4569674283BF4279839686BB /* libRNFirebase.a */,
+				A1CE131C5D264A0ABA27FE67 /* libRNI18n.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		ADBDB9201DFEBF0600ED6528 /* Products */ = {
@@ -834,10 +850,18 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = JP5Q4987AG;
+						ProvisioningStyle = Manual;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = JP5Q4987AG;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1371,6 +1395,8 @@
 			baseConfigurationReference = 5CB72B46F08E3612B8700A44 /* Pods-FocoAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = JP5Q4987AG;
+				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1408,7 +1434,11 @@
 			baseConfigurationReference = 5FF2498E3F45D63CA4E3F57D /* Pods-FocoAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JP5Q4987AG;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
@@ -1466,7 +1496,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vpqlabs.foco;
 				PRODUCT_NAME = FocoApp;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "e1b07d6c-37db-476d-a74c-535343dc7b15";
+				PROVISIONING_PROFILE_SPECIFIER = "Foco Development";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1476,6 +1508,7 @@
 			baseConfigurationReference = D8C4B436928398097B3A0609 /* Pods-FocoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JP5Q4987AG;
 				ENABLE_BITCODE = NO;
@@ -1491,6 +1524,8 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 				);
 				INFOPLIST_FILE = FocoApp/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				"INSTALL_PATH[sdk=*]" = "$(LOCAL_APPS_DIR)";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1499,7 +1534,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vpqlabs.foco;
 				PRODUCT_NAME = FocoApp;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "63753c6a-0ff8-49ee-8670-e9de65a32a96";
+				PROVISIONING_PROFILE_SPECIFIER = "Foco Distribution";
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1526,6 +1564,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1543,7 +1582,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1572,6 +1611,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1582,7 +1622,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

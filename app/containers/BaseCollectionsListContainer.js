@@ -9,10 +9,11 @@ import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import BackToTopButton from '../components/BackToTopButton'
 import StyledText from '../lib/StyledText'
+import {ProUpgradeModal as IapModal} from '../iap'
 
 import { CollectionCard } from '../collections'
 
-export default class CollectionHome extends BaseContainer {
+export default class BaseCollectionsListContainer extends BaseContainer {
   constructor(props) {
     super(props)
     this.state = { ...this.state, showBackToTop: false, reachedEnd: false, stickyTitle: false, stickied: false }
@@ -22,6 +23,10 @@ export default class CollectionHome extends BaseContainer {
     this.onScrollToTopPress = this.onScrollToTopPress.bind(this)
     this.onCollectionPress = this.onCollectionPress.bind(this)
     this.onPrefToggle = this.onPrefToggle.bind(this)
+    this.showIapModal = this.showIapModal.bind(this)
+    this.hideIapModal = this.hideIapModal.bind(this)
+
+    this.state.iapVisible = false
   }
 
   componentDidMount() {
@@ -168,10 +173,19 @@ export default class CollectionHome extends BaseContainer {
     // no-op - to be overridden by subclass
   }
 
+  showIapModal() {
+    this.setState({iapVisible: true})
+  }
+
+  hideIapModal() {
+    this.setState({iapVisible: false})
+  }
+
   render() {
     const navigation = this.props.navigation
     const user = this.props.user
     const ready = this.props.ready
+    const iapVisible = this.state.iapVisible
 
     const collections = this.props.collections ? this.props.collections : {}
     const collectionsKeys = Object.keys(collections).sort().reverse()
@@ -224,6 +238,10 @@ export default class CollectionHome extends BaseContainer {
           ref='_SCROLLVIEW'
         >
           <StatusBar barStyle={S.statusBarStyle} />
+          <IapModal isVisible={iapVisible} 
+            dismissModal={this.hideIapModal}
+            successToast={this.successToast}
+            errorToast={this.errorToast} />
 
           { this._title && headerView }
 
@@ -238,7 +256,8 @@ export default class CollectionHome extends BaseContainer {
                   type={collection.type}
                   collection={collection}
                   onPrefToggle={this.onPrefToggle}
-                  onPress={() => this.onCollectionPress(collection)}>
+                  onPress={() => this.onCollectionPress(collection)}
+                  showIap={this.showIapModal}>
                 </CollectionCard>
               )
             }

@@ -92,12 +92,15 @@
 * Updated to react-native-firebase 4.0.0 API
 * Minor bug fixes
 
-## 1.0.0-beta.3
+## 1.0.1 === 1.0.0-beta.3
 * Authentication bug fixes for react-native-firebase 4.0.0
 
-## <new-version>
+## 1.0.2
 * "New" collections badge
 * Removed "flagging" action for non-admins
+
+## 1.0.3 - 1.0.4
+* Maintenance build
 
 ## 1.0.5
 * Reverse sorting Collections lists
@@ -105,3 +108,10 @@
 
 ## 1.0.6
 * Updated "Pull to Refresh" message
+
+## 1.0.7 - 1.0.9
+* Maintenance build
+
+## 1.1.0
+* Delete Me
+* iOS IAP Dialogs
