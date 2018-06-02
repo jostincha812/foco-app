@@ -79,9 +79,11 @@ export default class ProUpgradeModal extends React.Component {
         { this.state.productsLoaded &&
           <PricingCard
             containerStyle={baseContainerStyle.concat([{paddingTop:S.spacing.large}])}
+            // TODO localise
             title='Professional'
             price={`${product.priceString}`}
             color={T.colors.active}
+            // TODO localise
             info={[`(price shown in ${product.currencyCode})`, 'All Access Upgrade', 'All Collections', 'All Flashcards']}
             button={actionButton}
             onButtonPress={actionButtonPress}
