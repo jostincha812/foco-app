@@ -7,7 +7,7 @@ export default toastStyles = {
     position: -60,
   },
   success: {
-    // backgroundColor: T.colors.success,
+    backgroundColor: T.colors.success,
   },
   error: {
     backgroundColor: T.colors.error,

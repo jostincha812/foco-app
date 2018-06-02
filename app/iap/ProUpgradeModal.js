@@ -40,11 +40,12 @@ export default class ProUpgradeModal extends React.Component {
 
     // TODO localise
     const purchaseButton = this.state.processing ?
-      { title: 'Processing', icon: 'sync', buttonStyle: {marginTop:S.spacing.small} } :
+      { title: 'Purchasing...', icon: 'sync', buttonStyle: {marginTop:S.spacing.small} } :
       { title: 'UPGRADE NOW', icon: 'lock-open', buttonStyle: {marginTop:S.spacing.small} }
 
     const purchaseButtonPress = this.state.processing ? () => {} : () => {
       this.setState({processing: true})
+      props.onAttempt()
       CurrentUser.unlockPremiumAccess({
         productId: product.productId,
         accessType: this.ACCESS_TYPE,
