@@ -174,11 +174,24 @@ export default class BaseCollectionsListContainer extends BaseContainer {
   }
 
   showIapModal() {
+    // TODO log show modal
     this.setState({iapVisible: true})
   }
 
   hideIapModal() {
     this.setState({iapVisible: false})
+  }
+
+  onIapSuccess() {
+    // TODO log IAP success
+    this.successToast('Purchase successful!')
+    this.hideIapModal()
+  }
+
+  onIapError(error) {
+    // TODO log IAP error
+    this.errorToast(error)
+    this.hideIapModal()
   }
 
   render() {
@@ -238,10 +251,11 @@ export default class BaseCollectionsListContainer extends BaseContainer {
           ref='_SCROLLVIEW'
         >
           <StatusBar barStyle={S.statusBarStyle} />
-          <IapModal isVisible={iapVisible} 
-            dismissModal={this.hideIapModal}
-            successToast={this.successToast}
-            errorToast={this.errorToast} />
+          <IapModal
+            isVisible={iapVisible}
+            onDismiss={this.hideIapModal}
+            onSuccess={this.onIapSuccess}
+            onError={this.onIapError} />
 
           { this._title && headerView }
 
@@ -257,6 +271,7 @@ export default class BaseCollectionsListContainer extends BaseContainer {
                   collection={collection}
                   onPrefToggle={this.onPrefToggle}
                   onPress={() => this.onCollectionPress(collection)}
+                  // TODO change to onUnlockPremiumAccess
                   showIap={this.showIapModal}>
                 </CollectionCard>
               )
