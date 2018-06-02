@@ -40,8 +40,10 @@ const AccessManager = {
     return hasAccess
   },
 
-  unlockAccess: ({accessType = null, accessKey = null, onSuccess, onError}) => {
-
+  unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onError}) => {
+    Store.purchaseProduct({
+      productId, onSuccess, onError
+    })
   },
 
   // returns the preferred product identifier available to the user for a given access type

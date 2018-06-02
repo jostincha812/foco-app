@@ -8,18 +8,18 @@ import T from '../T'
 import S from '../styles'
 import LoadingIndicator from '../components/LoadingIndicator'
 import { normalize } from '../lib/utils'
-
 import CurrentUser from '../auth/CurrentUser'
 
 export default class ProUpgradeModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = { productsLoaded: false, processing: false }
+    this.ACCESS_TYPE = C.ACCESS_PREMIUM_COLLECTION
   }
 
   componentDidMount() {
     CurrentUser.getPreferredProductDetailsForType({
-      accessType: C.ACCESS_PREMIUM_COLLECTION,
+      accessType: this.ACCESS_TYPE,
       onSuccess: (details) => {
         this.setState({productsLoaded: true, product: details})
       },
@@ -47,6 +47,8 @@ export default class ProUpgradeModal extends React.Component {
       this.setState({processing: true})
       CurrentUser.unlockPremiumAccess({
         productId: product.productId,
+        accessType: this.ACCESS_TYPE,
+        accessKey: null,
         onSuccess: props.onSuccess,
         onError: (error) => {
           this.setState({processing: false})

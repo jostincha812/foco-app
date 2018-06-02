@@ -25,6 +25,8 @@ export default class BaseCollectionsListContainer extends BaseContainer {
     this.onPrefToggle = this.onPrefToggle.bind(this)
     this.showIapModal = this.showIapModal.bind(this)
     this.hideIapModal = this.hideIapModal.bind(this)
+    this.onIapSuccess = this.onIapSuccess.bind(this)
+    this.onIapError = this.onIapError.bind(this)
 
     this.state.iapVisible = false
   }
@@ -184,14 +186,14 @@ export default class BaseCollectionsListContainer extends BaseContainer {
 
   onIapSuccess() {
     // TODO log IAP success
-    this.successToast('Purchase successful!')
     this.hideIapModal()
+    this.successToast('Purchase successful!')
   }
 
   onIapError(error) {
     // TODO log IAP error
-    this.errorToast(error)
     this.hideIapModal()
+    this.errorToast(error)
   }
 
   render() {

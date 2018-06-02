@@ -82,28 +82,26 @@ const CurrentUser = {
     return AccessManager.hasAccess({purchases, accessType, accessKey})
   },
 
-  unlockPremiumAccess: ({productId, onSuccess, onError}) => {
-    // const purchases = new Set(_profile.purchases)
-    // if (purchases.has(productId)) {
-    //   // TODO localize
-    //   // onError('Item already purchased!')
-    // } else {
-    console.log(`unlockPremiumAccess(${productId})`)
+  unlockPremiumAccess: ({productId, accessType, accessKey, onSuccess, onError}) => {
+    const purchases = new Set(_profile.purchases)
+    if (purchases.has(productId)) {
+      onSuccess()
+    }
 
-      // Store.purchaseProduct({
-      //   productId,
-      //   onSuccess: (transaction) => {
-      //     api.userProfile.upsertUserTransaction(_profile.uid, transaction)
-      //
-      //     purchases.add(productId)
-      //     api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
-      //       _profile.purchases = purchased
-      //       onSuccess()
-      //     })
-      //   },
-      //   onError: (error) => onError(error)
-      // })
-    // }
+    AccessManager.unlockAccess({
+      productId,
+      accessType,
+      accessKey,
+      onSuccess: (transaction) => {
+        purchases.add(productId)
+        api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
+          _profile.purchases = purchased
+          onSuccess()
+        })
+        api.userProfile.upsertUserTransaction(_profile.uid, transaction)
+      },
+      onError: (error) => onError(error)
+    })
   },
 }
 
