@@ -111,3 +111,7 @@
 
 ## 1.0.7 - 1.0.9
 * Maintenance build
+
+## 1.1.0
+* Delete Me
+* iOS IAP Dialogs

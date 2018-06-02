@@ -51,6 +51,8 @@
 
   "roles": {
     "IAP_EARLY_ADOPTER": "Early Adoptor All Access",
+    "IAP_FREE_ACCESS": "Free Access",
+    "IAP_FULL_ACCESS": "Full Access",
     "ROLE_USER": "User",
     "ROLE_EDUCATOR": "Educator",
     "ROLE_ADMIN": "Admin",
@@ -155,5 +157,9 @@
     "pinot_gris": "Pinot Gris",
     "riesling": "Riesling",
     "zinfandel": "Zinfandel",
+  },
+
+  "iap" : {
+    "unlock_now": "Get It Now",
   }
 }

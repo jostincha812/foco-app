@@ -1,5 +1,6 @@
 import T from '../T'
 import spacing from './spacing'
+import { normalize } from '../lib/utils'
 
 export default containerStyles = {
   containers: {
@@ -59,6 +60,7 @@ export default containerStyles = {
       borderColor: T.colors.contentBorder,
       backgroundColor: T.colors.contentBackground,
       borderWidth: 0.5,
+      width: normalize(260),
     },
     raised: {
       shadowColor: T.colors.shadow,
@@ -66,21 +68,20 @@ export default containerStyles = {
         width: 0,
         height: 0,
       },
-      shadowRadius: 1,
+      shadowRadius: 1.15,
       shadowOpacity: 0.25,
     },
     hero: {
-      // aspectRatio: 1,
-      height: 400,
+      width: normalize(300),
+      aspectRatio: 0.9,
     },
     regular: {
-      // aspectRatio: 1,
-      height: 400,
+      width: normalize(300),
+      aspectRatio: 0.9,
     },
     carousel: {
-      height: 200,
-      width: 340,
-      // aspectRatio: 1.7,
+      width: normalize(200),
+      aspectRatio: 0.45,
     },
   },
 

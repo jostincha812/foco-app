@@ -34,6 +34,7 @@
 		8D90563A1F2AAC6300EA000E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */; };
 		8D90563B1F2AAC6300EA000E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */; };
 		8D90563C1F2AAC6300EA000E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9056381F2AAC6300EA000E /* FBSDKShareKit.framework */; };
+		8DB56AC320BE646D00A20369 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB56AC220BE646D00A20369 /* StoreKit.framework */; };
 		8DF126BB1F3040CF0031AE7F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DF126BA1F3040CF0031AE7F /* GoogleService-Info.plist */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B485D08C0E874EC2850E2417 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FCCA8B20094E1D9014C3CE /* libRNSpinkit.a */; };
@@ -413,6 +414,7 @@
 		8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		8D9056381F2AAC6300EA000E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		8DB56AC220BE646D00A20369 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8DF126BA1F3040CF0031AE7F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "FocoApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F3A1E5D28A249E8AA95D632 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		96DF0621CBD141AF99022821 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
+				8DB56AC320BE646D00A20369 /* StoreKit.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -738,6 +741,7 @@
 		8D90563D1F2AAC6B00EA000E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DB56AC220BE646D00A20369 /* StoreKit.framework */,
 				8D9056351F2AAC6300EA000E /* Bolts.framework */,
 				8D9056361F2AAC6300EA000E /* FBSDKCoreKit.framework */,
 				8D9056371F2AAC6300EA000E /* FBSDKLoginKit.framework */,
@@ -853,6 +857,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = JP5Q4987AG;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

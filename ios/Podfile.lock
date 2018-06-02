@@ -86,6 +86,10 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.5.0)
+  - React (0.53.3):
+    - React/Core (= 0.53.3)
+  - react-native-in-app-utils (6.0.0):
+    - React
   - React/Core (0.53.3):
     - yoga (= 0.53.3.React)
   - React/CxxBridge (0.53.3):
@@ -135,6 +139,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - GLog (from `../node_modules/react-native/third-party-podspecs/GLog.podspec`)
+  - react-native-in-app-utils (from `../node_modules/react-native-in-app-utils`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -174,6 +179,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/GLog.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-in-app-utils:
+    :path: "../node_modules/react-native-in-app-utils"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -199,8 +206,9 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   React: af66244a7d630be2aef03b4ddfe3570e4eff39fc
+  react-native-in-app-utils: 655eb59a6ccb31830637cd9b441b91fad35ff7a0
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: 9b6a92c5e7dfdd5fb1b3bb50e2a10dea4897643b
+PODFILE CHECKSUM: 9694cf5b27db180811da036b6b38a65687791388
 
 COCOAPODS: 1.5.0

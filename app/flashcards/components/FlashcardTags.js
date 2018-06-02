@@ -14,7 +14,6 @@ export default class FlashcardTags extends React.Component {
     if (props.tags) {
       props.tags.map(tag => {
         if (VPQTags.isRegionTag(tag) || VPQTags.isCategoryTag(tag)) {
-          console.log('here')
           items.push({key:tag, label:tag})
         }
       })
