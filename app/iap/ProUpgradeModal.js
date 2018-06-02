@@ -7,6 +7,7 @@ import C from '../constants'
 import T from '../T'
 import S from '../styles'
 import LoadingIndicator from '../components/LoadingIndicator'
+import { normalize } from '../lib/utils'
 
 import CurrentUser from '../auth/CurrentUser'
 import Store from './Store'
@@ -57,6 +58,10 @@ export default class ProUpgradeModal extends React.Component {
     }
 
     const backdropDismiss = this.state.processing ? () => {} : props.dismissModal
+    const baseContainerStyle = [
+      S.cards.card, S.cards.raised, S.corners.rounded,
+      { width: normalize(280) }
+    ]
 
     return (
       <Modal
@@ -66,15 +71,14 @@ export default class ProUpgradeModal extends React.Component {
       >
 
         { !this.state.productsLoaded &&
-          <View style={[S.cards.card, S.cards.raised, S.corners.rounded, S.containers.centered,
-                        {aspectRatio:1}]}>
+          <View style={baseContainerStyle.concat([S.containers.centered,{aspectRatio:1}])}>
             <LoadingIndicator />
           </View>
         }
 
         { this.state.productsLoaded &&
           <PricingCard
-            containerStyle={[S.cards.card, S.cards.raised, S.corners.rounded, {paddingTop:S.spacing.xlarge}]}
+            containerStyle={baseContainerStyle.concat([{paddingTop:S.spacing.large}])}
             title='Professional'
             price={`${product.priceString}`}
             color={T.colors.active}
