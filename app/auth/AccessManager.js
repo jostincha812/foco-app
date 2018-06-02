@@ -49,7 +49,7 @@ const AccessManager = {
     switch (accessType) {
       case C.ACCESS_PREMIUM_COLLECTION:
         // TODO load from Firebase Remote Config
-        return C.IAP_PROFESSIONAL_99
+        return C.IAP_PROFESSIONAL_5
       default:
         return null
     }

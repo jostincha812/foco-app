@@ -24,8 +24,7 @@ export default class ProUpgradeModal extends React.Component {
         this.setState({productsLoaded: true, product: details})
       },
       onError: (error) => {
-        // TODO localise
-        this.setState({error: "We're experiencing difficulty loading available in-app purchases for your device."})
+        this.setState({error})
       }
     })
   }
@@ -33,6 +32,11 @@ export default class ProUpgradeModal extends React.Component {
   render() {
     const props = this.props
     const product = this.state.product
+    const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
+    const baseContainerStyle = [
+      S.cards.card, S.cards.raised, S.corners.rounded,
+      { width: normalize(280) }
+    ]
 
     // TODO localise
     const purchaseButton = this.state.processing ?
@@ -51,21 +55,27 @@ export default class ProUpgradeModal extends React.Component {
       })
     }
 
-    const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
-    const baseContainerStyle = [
-      S.cards.card, S.cards.raised, S.corners.rounded,
-      { width: normalize(280) }
-    ]
-
     // TODO localize
+    const iapErrorHeader = "Whoops!"
+    const iapErrorTryAgain = "Please try again later."
+    const iapErrorDismiss = "OK"
+
+    const iapLoadingError = "We're having difficulty loading available in-app purchases for your device."
+
+    // TODO localise
+    const productInfo = product ? [
+      `(price shown in ${product.currencyCode})`,
+      product.description
+    ] : []
+
     const loadingInner = !this.state.error ? <LoadingIndicator /> :
       <View style={S.containers.normal}>
         <View style={{flex:1}}>
-          <Text style={[S.text.header, {marginTop:S.spacing.normal}]}>Uh oh!</Text>
-          <Text style={[S.text.normal, {marginTop:S.spacing.normal}]}>{this.state.error}</Text>
-          <Text style={[S.text.normal, {marginTop:S.spacing.normal}]}>Please try again later.</Text>
+          <Text style={[S.text.header, {marginTop:S.spacing.normal}]}>{iapErrorHeader}</Text>
+          <Text style={[S.text.normal, {marginTop:S.spacing.normal}]}>{iapLoadingError}</Text>
+          <Text style={[S.text.normal, {marginTop:S.spacing.normal}]}>{iapErrorTryAgain}</Text>
         </View>
-        <Button backgroundColor={T.colors.active} title='OK' onPress={props.onDismiss} />
+        <Button backgroundColor={T.colors.active} title={iapErrorDismiss} onPress={props.onDismiss} />
       </View>
 
     return (
@@ -87,8 +97,7 @@ export default class ProUpgradeModal extends React.Component {
             title={product.title}
             price={`${product.priceString}`}
             color={T.colors.active}
-            // TODO localise
-            info={[`(price shown in ${product.currencyCode})`, product.description]}
+            info={productInfo}
             button={purchaseButton}
             onButtonPress={purchaseButtonPress}
           />
