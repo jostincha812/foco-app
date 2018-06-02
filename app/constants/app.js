@@ -11,6 +11,10 @@ export default {
   IAP_EARLY_ADOPTER: 'IAP_EARLY_ADOPTER',
   IAP_FULL_ACCESS: 'IAP_FULL_ACCESS',
   IAP_FREE_ACCESS: 'IAP_FREE_ACCESS',
+  IAP_PROFESSIONAL_5: 'com.vpqlabs.foco.professional.5',
+  IAP_PROFESSIONAL_10: 'com.vpqlabs.foco.professional.10',
+  IAP_PROFESSIONAL_15: 'com.vpqlabs.foco.professional.15',
+  IAP_PROFESSIONAL_20: 'com.vpqlabs.foco.professional.20',
 
   ACCESS_PREMIUM_COLLECTION: 'ACCESS_PREMIUM_COLLECTION',
   ACCESS_PREMIUM_FLASHCARD: 'ACCESS_PREMIUM_FLASHCARD',

@@ -20,3 +20,10 @@ export function upsertUserProfile(uid, profile) {
     payload: api.userProfile.upsertUserProfile(uid, profile)
   }
 }
+
+export function upsertUserPurchases(uid, purchases) {
+  return {
+    type: A.UPSERT_USER_PURCHASES,
+    payload: api.userProfile.upsertUserPurchases(uid, purchases)
+  }
+}

@@ -13,7 +13,7 @@ import {ProUpgradeModal as IapModal} from '../iap'
 
 import { CollectionCard } from '../collections'
 
-export default class CollectionHome extends BaseContainer {
+export default class BaseCollectionsListContainer extends BaseContainer {
   constructor(props) {
     super(props)
     this.state = { ...this.state, showBackToTop: false, reachedEnd: false, stickyTitle: false, stickied: false }
@@ -238,7 +238,10 @@ export default class CollectionHome extends BaseContainer {
           ref='_SCROLLVIEW'
         >
           <StatusBar barStyle={S.statusBarStyle} />
-          <IapModal isVisible={iapVisible} dismissModal={this.hideIapModal}/>
+          <IapModal isVisible={iapVisible} 
+            dismissModal={this.hideIapModal}
+            successToast={this.successToast}
+            errorToast={this.errorToast} />
 
           { this._title && headerView }
 

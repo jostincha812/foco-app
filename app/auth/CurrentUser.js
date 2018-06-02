@@ -3,6 +3,7 @@ import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
 import AccessManager from './AccessManager'
 import api from '../data/api'
+import Store from '../iap/Store'
 
 let _profile = null
 let _unsubscribe = null
@@ -73,8 +74,26 @@ const CurrentUser = {
     FirebaseAuth.logout()
   },
 
-  unlockPremiumAccess: () => {
-    console.log("unlockPremiumAccess()")
+  unlockPremiumAccess: ({productId, onSuccess, onError}) => {
+    const purchases = new Set(_profile.purchases)
+    if (purchases.has(productId)) {
+      // TODO localize
+      onError('Item already purchased!')
+    } else {
+      Store.purchaseProduct({
+        productId,
+        onSuccess: (transaction) => {
+          api.userProfile.upsertUserTransaction(_profile.uid, transaction)
+
+          purchases.add(productId)
+          api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
+            _profile.purchases = purchased
+            onSuccess()
+          })
+        },
+        onError: (error) => onError(error)
+      })
+    }
   },
 }
 
