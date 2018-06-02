@@ -11,6 +11,11 @@ export default events = {
   auth_reset_password: 'auth_reset_password',
   auth_email_verified: 'auth_email_verified',
 
+  iap_modal_displayed: 'iap_modal_displayed',
+  iap_purchase_initiated: 'iap_purchase_initiated',
+  iap_purchase_cancelled: 'iap_purchase_cancelled',
+  iap_purchase_completed: 'iap_purchase_completed',
+
   user_action_collections_scrolled: 'user_action_collections_scrolled',
   user_action_collection_selected: 'user_action_collection_selected',
   user_action_collection_pref_updated: 'user_action_collection_pref_updated',

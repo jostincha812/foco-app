@@ -3,7 +3,6 @@ import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
 import AccessManager from './AccessManager'
 import api from '../data/api'
-import Store from '../iap/Store'
 
 let _profile = null
 let _unsubscribe = null
@@ -65,35 +64,44 @@ const CurrentUser = {
     }
   },
 
+  signOut: () => {
+    FirebaseAuth.logout()
+  },
+
+  getPreferredProductDetailsForType: ({accessType, onSuccess, onError}) => {
+    const productId = AccessManager.preferredProductForType(accessType)
+    return (AccessManager.fetchProductDetails({
+      productId,
+      onSuccess: (details) => onSuccess({ productId, ...details }),
+      onError
+    }))
+  },
+
   hasPremiumAccess: ({accessType, accessKey}) => {
     const purchases = _profile.purchases
     return AccessManager.hasAccess({purchases, accessType, accessKey})
   },
 
-  signOut: () => {
-    FirebaseAuth.logout()
-  },
-
-  unlockPremiumAccess: ({productId, onSuccess, onError}) => {
+  unlockPremiumAccess: ({productId, accessType, accessKey, onSuccess, onError}) => {
     const purchases = new Set(_profile.purchases)
     if (purchases.has(productId)) {
-      // TODO localize
-      onError('Item already purchased!')
-    } else {
-      Store.purchaseProduct({
-        productId,
-        onSuccess: (transaction) => {
-          api.userProfile.upsertUserTransaction(_profile.uid, transaction)
-
-          purchases.add(productId)
-          api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
-            _profile.purchases = purchased
-            onSuccess()
-          })
-        },
-        onError: (error) => onError(error)
-      })
+      onSuccess()
     }
+
+    AccessManager.unlockAccess({
+      productId,
+      accessType,
+      accessKey,
+      onSuccess: (transaction) => {
+        purchases.add(productId)
+        api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
+          _profile.purchases = purchased
+          onSuccess()
+        })
+        api.userProfile.upsertUserTransaction(_profile.uid, transaction)
+      },
+      onError: (error) => onError(error)
+    })
   },
 }
 

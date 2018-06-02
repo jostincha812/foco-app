@@ -1,14 +1,19 @@
 import C from '../constants'
+import Store from '../iap/Store'
 
 const AccessManager = {
-  hasAccess: ({purchases = [], accessType = null, accessKey = null}) => {
-    let hasAccess = false
-
+  // Params:
+  // - accessType - string representing access type required - ie. ACCESS_PREMIUM_COLLECTION, ACCESS_CONSUMERABLE_FLASHCARDS
+  // - accessKey - key string representing content identifier
+  // - purchases - array of product IDs purchased by the user
+  hasAccess: ({accessType = null, accessKey = null, purchases = []}) => {
     const fullAccessSet = new Set([
       C.IAP_EARLY_ADOPTER, C.IAP_FULL_ACCESS,
       C.IAP_PROFESSIONAL_5, C.IAP_PROFESSIONAL_10,
       C.IAP_PROFESSIONAL_15, C.IAP_PROFESSIONAL_20
     ])
+
+    let hasAccess = false
 
     switch (accessType) {
       case C.ACCESS_PREMIUM_COLLECTION:
@@ -33,6 +38,29 @@ const AccessManager = {
     }
 
     return hasAccess
+  },
+
+  unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onError}) => {
+    Store.purchaseProduct({
+      productId, onSuccess, onError
+    })
+  },
+
+  // returns the preferred product identifier available to the user for a given access type
+  preferredProductForType: (accessType = null) => {
+    switch (accessType) {
+      case C.ACCESS_PREMIUM_COLLECTION:
+        // TODO load from Firebase Remote Config
+        return C.IAP_PROFESSIONAL_5
+      default:
+        return null
+    }
+  },
+
+  fetchProductDetails: ({productId, onSuccess, onError}) => {
+    return Store.loadProduct({
+      productId, onSuccess, onError
+    })
   }
 }
 

@@ -25,6 +25,9 @@ export default class BaseCollectionsListContainer extends BaseContainer {
     this.onPrefToggle = this.onPrefToggle.bind(this)
     this.showIapModal = this.showIapModal.bind(this)
     this.hideIapModal = this.hideIapModal.bind(this)
+    this.onIapAttempt = this.onIapAttempt.bind(this)
+    this.onIapSuccess = this.onIapSuccess.bind(this)
+    this.onIapError = this.onIapError.bind(this)
 
     this.state.iapVisible = false
   }
@@ -174,11 +177,46 @@ export default class BaseCollectionsListContainer extends BaseContainer {
   }
 
   showIapModal() {
+    const user = this.props.user
+    this.logEvent(E.iap_modal_displayed, {
+      uid: user.uid,
+      ...this._screen,
+    })
     this.setState({iapVisible: true})
   }
 
   hideIapModal() {
     this.setState({iapVisible: false})
+  }
+
+  onIapAttempt() {
+    const user = this.props.user
+    this.logEvent(E.iap_purchase_initiated, {
+      uid: user.uid,
+      ...this._screen,
+    })
+  }
+
+  onIapSuccess() {
+    const user = this.props.user
+    this.logEvent(E.iap_purchase_completed, {
+      uid: user.uid,
+      ...this._screen,
+    })
+    this.setState({iapVisible: true})
+    this.hideIapModal()
+    this.successToast('Purchase successful!')
+  }
+
+  onIapError(error) {
+    const user = this.props.user
+    this.logEvent(E.iap_purchase_cancelled, {
+      uid: user.uid,
+      ...this._screen,
+    })
+    this.setState({iapVisible: true})
+    this.hideIapModal()
+    this.errorToast(error)
   }
 
   render() {
@@ -238,10 +276,12 @@ export default class BaseCollectionsListContainer extends BaseContainer {
           ref='_SCROLLVIEW'
         >
           <StatusBar barStyle={S.statusBarStyle} />
-          <IapModal isVisible={iapVisible} 
-            dismissModal={this.hideIapModal}
-            successToast={this.successToast}
-            errorToast={this.errorToast} />
+          <IapModal
+            isVisible={iapVisible}
+            onDismiss={this.hideIapModal}
+            onAttempt={this.onIapAttempt}
+            onSuccess={this.onIapSuccess}
+            onError={this.onIapError} />
 
           { this._title && headerView }
 
@@ -257,6 +297,7 @@ export default class BaseCollectionsListContainer extends BaseContainer {
                   collection={collection}
                   onPrefToggle={this.onPrefToggle}
                   onPress={() => this.onCollectionPress(collection)}
+                  // TODO change to onUnlockPremiumAccess
                   showIap={this.showIapModal}>
                 </CollectionCard>
               )
