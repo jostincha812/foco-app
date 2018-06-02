@@ -20,11 +20,13 @@
 {
   NSURL *jsCodeLocation;
 
+#ifdef DEBUG
+  // --- debug build ---
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#else
   //  --- release build ---
   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-  
-  // --- debug build ---
-//  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#endif
 
   [FIRApp configure];
   [[FBSDKApplicationDelegate sharedInstance] application:application
