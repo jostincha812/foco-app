@@ -16,6 +16,7 @@ const AccessManager = {
     let hasAccess = false
 
     switch (accessType) {
+      case C.ACCESS_FULL:
       case C.ACCESS_PREMIUM_COLLECTION:
       case C.ACCESS_PREMIUM_FLASHCARD:
         purchases.map(purchase => {

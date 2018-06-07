@@ -64,6 +64,14 @@ const CurrentUser = {
     }
   },
 
+  get accessLevel() {
+    if (AccessManager.hasAccess({accessType: C.ACCESS_FULL, purchases:_profile.purchases})) {
+      return C.IAP_FULL_ACCESS
+    } else {
+      return _profile.purchases[0]
+    }
+  },
+
   signOut: () => {
     FirebaseAuth.logout()
   },

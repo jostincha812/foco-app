@@ -45,15 +45,15 @@ export default class ProUpgradeModal extends React.Component {
 
     const purchaseButtonPress = this.state.processing ? () => {} : () => {
       this.setState({processing: true})
-      props.onAttempt()
+      props.onAttempt(product.productId)
       CurrentUser.unlockPremiumAccess({
         productId: product.productId,
         accessType: this.ACCESS_TYPE,
         accessKey: null,
-        onSuccess: props.onSuccess,
+        onSuccess: () => props.onSuccess(product.productId),
         onError: (error) => {
           this.setState({processing: false})
-          props.onError(error)
+          props.onError(error, product.productId)
         }
       })
     }

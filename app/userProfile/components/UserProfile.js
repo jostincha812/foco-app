@@ -44,7 +44,7 @@ export default class UserProfile extends React.Component {
       },
       {
         title: localize("profile.access"),
-        value: localize(`roles.${profile.purchases[0]}`),
+        value: localize(`roles.${CurrentUser.accessLevel}`),
       },
       {
         title: localize("profile.authenticationMethod"),
