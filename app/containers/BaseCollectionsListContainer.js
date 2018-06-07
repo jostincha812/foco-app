@@ -189,30 +189,33 @@ export default class BaseCollectionsListContainer extends BaseContainer {
     this.setState({iapVisible: false})
   }
 
-  onIapAttempt() {
+  onIapAttempt(productId) {
     const user = this.props.user
     this.logEvent(E.iap_purchase_initiated, {
       uid: user.uid,
       ...this._screen,
+      productId
     })
   }
 
-  onIapSuccess() {
+  onIapSuccess(productId) {
     const user = this.props.user
     this.logEvent(E.iap_purchase_completed, {
       uid: user.uid,
       ...this._screen,
+      productId
     })
     this.setState({iapVisible: true})
     this.hideIapModal()
     this.successToast('Purchase successful!')
   }
 
-  onIapError(error) {
+  onIapError(error, productId) {
     const user = this.props.user
     this.logEvent(E.iap_purchase_cancelled, {
       uid: user.uid,
       ...this._screen,
+      productId
     })
     this.setState({iapVisible: true})
     this.hideIapModal()
