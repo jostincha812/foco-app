@@ -53,7 +53,8 @@ export default class ProUpgradeModal extends React.Component {
         onSuccess: () => props.onSuccess(product.productId),
         onError: (error) => {
           this.setState({processing: false})
-          props.onError(error, product.productId)
+          // TODO localise
+          props.onError('Purchase cancelled', product.productId)
         }
       })
     }
