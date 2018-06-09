@@ -119,6 +119,6 @@
 * Fixed missing translation for Full Access purchases
 * Added productId to IAP event tracking
 
-## 1.1.2
+## 1.2
 * IAP price testing
 * Unlock from User Profile
