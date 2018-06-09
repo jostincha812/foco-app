@@ -116,5 +116,9 @@
 * iOS IAP Dialogs
 
 ## 1.1.1
-* fixed missing translation for Full Access purchases
-* added productId to IAP event tracking
+* Fixed missing translation for Full Access purchases
+* Added productId to IAP event tracking
+
+## 1.2
+* IAP price testing
+* Unlock from User Profile

@@ -1,5 +1,6 @@
 import C from '../constants'
 import Store from '../iap/Store'
+import RemoteConfig from '../../configureApp'
 
 const AccessManager = {
   // Params:
@@ -51,8 +52,8 @@ const AccessManager = {
   preferredProductForType: (accessType = null) => {
     switch (accessType) {
       case C.ACCESS_PREMIUM_COLLECTION:
-        // TODO load from Firebase Remote Config
-        return C.IAP_PROFESSIONAL_5
+        // load from Firebase Remote Config
+        return RemoteConfig.fullUpgradeProductId
       default:
         return null
     }
