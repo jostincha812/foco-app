@@ -176,12 +176,12 @@ export default class BaseCollectionsListContainer extends BaseContainer {
     // no-op - to be overridden by subclass
   }
 
-  showIapModal(productId) {
+  showIapModal() {
     const user = this.props.user
     this.logEvent(E.iap_modal_displayed, {
       uid: user.uid,
       ...this._screen,
-      productId
+      productId: 'TBD'
     })
     this.setState({iapVisible: true})
   }
