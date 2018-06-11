@@ -10,6 +10,7 @@ import EmptyListScreen from '../components/EmptyListScreen'
 import BackToTopButton from '../components/BackToTopButton'
 import StyledText from '../lib/StyledText'
 import {ProUpgradeModal as IapModal} from '../iap'
+import AccessManager from '../auth/AccessManager'
 
 import { CollectionCard } from '../collections'
 
@@ -177,11 +178,14 @@ export default class BaseCollectionsListContainer extends BaseContainer {
   }
 
   showIapModal() {
+    // TODO fix where productId comes from
+    const productId = AccessManager.preferredProductForType(C.ACCESS_PREMIUM_COLLECTION)
     const user = this.props.user
     this.logEvent(E.iap_modal_displayed, {
       uid: user.uid,
+      email: user.email,
       ...this._screen,
-      productId: 'TBD'
+      productId
     })
     this.setState({iapVisible: true})
   }
@@ -194,6 +198,7 @@ export default class BaseCollectionsListContainer extends BaseContainer {
     const user = this.props.user
     this.logEvent(E.iap_purchase_initiated, {
       uid: user.uid,
+      email: user.email,
       ...this._screen,
       productId
     })
@@ -203,6 +208,7 @@ export default class BaseCollectionsListContainer extends BaseContainer {
     const user = this.props.user
     this.logEvent(E.iap_purchase_completed, {
       uid: user.uid,
+      email: user.email,
       ...this._screen,
       productId
     })
