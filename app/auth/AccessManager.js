@@ -10,6 +10,7 @@ const AccessManager = {
   hasAccess: ({accessType = null, accessKey = null, purchases = []}) => {
     const fullAccessSet = new Set([
       C.IAP_EARLY_ADOPTER, C.IAP_FULL_ACCESS,
+      C.IAP_PROFESSIONAL_3,
       C.IAP_PROFESSIONAL_5, C.IAP_PROFESSIONAL_10,
       C.IAP_PROFESSIONAL_15, C.IAP_PROFESSIONAL_20
     ])

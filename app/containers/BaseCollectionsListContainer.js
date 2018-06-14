@@ -277,6 +277,7 @@ export default class BaseCollectionsListContainer extends BaseContainer {
 
     return (
       <View style={S.containers.screen}>
+        <StatusBar barStyle={S.statusBarStyle} />
         <ScrollView
           contentContainerStyle={S.containers.list}
           refreshControl={refreshControl}
@@ -285,7 +286,6 @@ export default class BaseCollectionsListContainer extends BaseContainer {
           stickyHeaderIndices={this.state.stickyTitle ? [1] : []}
           ref='_SCROLLVIEW'
         >
-          <StatusBar barStyle={S.statusBarStyle} />
           <IapModal
             isVisible={iapVisible}
             onDismiss={this.hideIapModal}
