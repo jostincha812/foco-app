@@ -91,7 +91,9 @@ export default class Flashcard extends React.Component {
           </MarkdownView>
         </TouchableOpacity>
 
-        <PremiumContentContainer
+        {/* TODO - add PremiumContentContainer back in */}
+        {/* <PremiumContentContainer
+          style={styles.inner}
           iconSize={T.icons.xxlargeIcon}
           activeOpacity={1}
           innerOpacity={0.025}
@@ -100,18 +102,25 @@ export default class Flashcard extends React.Component {
           accessKey={props.data.id}
           onPress={() => this.setState({flipped: !this.state.flipped})}
         >
-          <View style={styles.inner}>
+          <View style={styles.inner}> */}
+          <TouchableOpacity
+            style={styles.inner}
+            activeOpacity={1}
+            onPress={() => this.setState({flipped: !this.state.flipped})}
+          >
+
             {flagToggle}
             {starToggle}
-            <MarkdownView styles={markdown}>
+            <MarkdownView style={{}} styles={markdown}>
               {data.back}
             </MarkdownView>
             <FlashcardTags
               style={{position:'absolute', left:S.spacing.large, bottom:S.spacing.small}}
               tags={data.tags}
             />
-          </View>
-        </PremiumContentContainer>
+          </TouchableOpacity>
+          {/* </View>
+        </PremiumContentContainer> */}
       </FlipCard>
     )
   }
