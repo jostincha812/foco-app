@@ -48,7 +48,7 @@ class ProfileHome extends BaseContainer {
       {
         title: localize("profile.support"),
         icon: 'live-help',
-        onPress: () => Linking.openURL(`mailto:support@vpqlabs.com?subject=Foco\:3%20support`)
+        onPress: () => Linking.openURL(`mailto:support@vpqlabs.com?subject=Foco\:3%20support&body=User ID: ${profile.uid}%0D%0%0D%0AAMessage:%0D%0A`)
       },
       {
         title: localize("profile.version"),
