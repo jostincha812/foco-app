@@ -76,6 +76,10 @@ const CurrentUser = {
     FirebaseAuth.logout()
   },
 
+  deleteAccount: () => {
+    FirebaseAuth.delete(() => api.userProfile.deleteUserProfile(_profile.uid))
+  },
+
   getPreferredProductDetailsForType: ({accessType, onSuccess, onError}) => {
     const productId = AccessManager.preferredProductForType(accessType)
     return (AccessManager.fetchProductDetails({

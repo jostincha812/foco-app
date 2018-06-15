@@ -8,6 +8,14 @@ export default JsFbUserProfileAPI = {
     })
   },
 
+  deleteUserProfile: (uid) => {
+    const promises = []
+    promises.push(refs.user(uid).remove())
+    promises.push(refs.userFlashcardPrefs(uid).remove())
+    promises.push(refs.userCollectionPrefs(uid).remove())
+    return Promise.all(promises)
+  },
+
   upsertUserProfile: (uid, profile) => {
     return refs.user(uid).once('value').then(snap => {
       let p = profile

@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { ScrollView, StatusBar, Linking } from 'react-native'
+import { ScrollView, StatusBar, Linking, View, Text } from 'react-native'
 import { List, ListItem, Button } from 'react-native-elements'
+import Modal from 'react-native-modal'
 
 import T from '../T'
 import S from '../styles'
@@ -11,6 +12,7 @@ import { localize } from '../locales'
 
 import BaseContainer from './BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
+import Card from '../lib/Card'
 
 import CurrentUser from '../auth/CurrentUser'
 import { UserProfile } from '../userProfile'
@@ -24,6 +26,7 @@ class ProfileHome extends BaseContainer {
 
   constructor(props) {
     super(props)
+    this.state = { isModalVisible: false }
     this.setScreen({screenName:R.NAV_USER_PROFILE_HOME, className:'ProfileHome'})
   }
 
@@ -53,6 +56,13 @@ class ProfileHome extends BaseContainer {
         label: C.VERSION,
         hideChevron: true,
       },
+      {
+        title: localize("auth.deleteAccount"),
+        color: T.colors.error,
+        icon: 'clear',
+        hideChevron: true,
+        onPress: () => this.setState({isModalVisible: true})
+      },
       // {
       //   title: localize("profile.share"),
       //   icon: 'share',
@@ -64,6 +74,48 @@ class ProfileHome extends BaseContainer {
       // },
     ]
 
+    const deleteModal = (
+      <Modal
+        isVisible={this.state.isModalVisible}
+        onBackdropPress={() => this.setState({isModalVisible: false})}
+        style={S.containers.centered}
+      >
+        <View style={[S.cards.card, S.corners.rounded, {width:300, aspectRatio:0.9}]}>
+          <View style={{flex:1, margin:S.spacing.large}}>
+            <Text style={[S.text.title, {marginBottom:S.spacing.small}]}>
+              Are you sure?
+            </Text>
+            <Text style={S.text.normal}>
+              Your bookmarks, favourites and all data associated with your
+              account will be permanently deleted.
+            </Text>
+          </View>
+
+          <View style={{margin:S.spacing.small}}>
+            <Button
+              key={R.NAV_SIGNOUT}
+              title={localize("auth.confirmDelete")}
+              textStyle={S.text.listTitle}
+              backgroundColor={T.colors.error}
+              onPress={() => {
+                this.setState({isModalVisible: false})
+                CurrentUser.deleteAccount()
+              }}
+            />
+
+            <Button
+              key={R.NAV_SIGNOUT}
+              title={localize("auth.cancelDelete")}
+              textStyle={S.text.listTitle}
+              color={T.colors.normal}
+              transparent={true}
+              onPress={() => this.setState({isModalVisible: false})}
+            />
+          </View>
+        </View>
+      </Modal>
+    )
+
     return (
       <ScrollView
         style={S.containers.screen}
@@ -71,6 +123,8 @@ class ProfileHome extends BaseContainer {
         contentContainerStyle={{flex:1, justifyContent:'flex-start'}}
       >
         <StatusBar barStyle={S.statusBarStyle} />
+        {deleteModal}
+
         <UserProfile style={{flex:1}} profile={profile} />
 
         <List style={{flex:1}}
@@ -81,8 +135,8 @@ class ProfileHome extends BaseContainer {
                 key={i}
                 hideChevron={item.hideChevron}
                 title={item.title}
-                titleStyle={S.text.listTitle}
-                leftIcon={{name: item.icon}}
+                titleStyle={[S.text.listTitle, {color:item.color}]}
+                leftIcon={{name: item.icon, color: item.color}}
                 rightTitle={item.label}
                 rightTitleStyle={S.text.listTitle}
                 onPress={item.onPress}
@@ -99,7 +153,7 @@ class ProfileHome extends BaseContainer {
           iconRight={{name:'exit-to-app'}}
           backgroundColor={T.colors.accent}
           onPress={CurrentUser.signOut}
-          containerViewStyle={{marginVertical:S.spacing.large}}
+          containerViewStyle={{marginBottom:S.spacing.large}}
         />
       </ScrollView>
     )
