@@ -17,7 +17,7 @@ export default class CollectionsListContainer extends BaseListContainer {
     this.onPrefToggle = this.onPrefToggle.bind(this)
   }
 
-  get _scrollEvent() {
+  get _scrollEventName() {
     // to be overridden by subclasses
     return E.user_action_collections_scrolled
   }
@@ -27,9 +27,7 @@ export default class CollectionsListContainer extends BaseListContainer {
   }
 
   get _iapProductId() {
-    // TODO fix where productId comes from
-    // const productId = AccessManager.preferredProductForType(this._iapProductType)
-    const productId = 'com.vpqlabs.foco.professional.3'
+    const productId = AccessManager.preferredProductForType(this._iapProductType)
   }
 
   get _onSelectedRoute() {

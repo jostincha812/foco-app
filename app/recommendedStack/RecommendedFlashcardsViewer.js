@@ -3,16 +3,14 @@ import { connect } from 'react-redux'
 
 import C, { R } from '../constants'
 
+import FlashcardsListContainer from '../containers/FlashcardsListContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
-import BaseFlashcardsListContainer from '../containers/BaseFlashcardsListContainer'
-import LoadingScreen from '../components/LoadingScreen'
-import EmptyListScreen from '../components/EmptyListScreen'
 
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
-class CollectionsFlashcardsViewer extends BaseFlashcardsListContainer {
+class RecommendedFlashcardsViewer extends FlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: null,
@@ -22,7 +20,7 @@ class CollectionsFlashcardsViewer extends BaseFlashcardsListContainer {
 
   constructor(props) {
     super(props)
-    this.setScreen({screenName:R.NAV_COLLECTIONS_FLASHCARDS_VIEWER, className:'CollectionsFlashcardsViewer'})
+    this.setScreen({screenName:R.NAV_RECOMMENDED_FLASHCARDS_VIEWER, className:'RecommendedFlashcardsViewer'})
   }
 
   _fetchData() {
@@ -51,7 +49,7 @@ class CollectionsFlashcardsViewer extends BaseFlashcardsListContainer {
   }
 }
 
-const ns = R.NAV_COLLECTIONS_FLASHCARDS_VIEWER
+const ns = R.NAV_RECOMMENDED_FLASHCARDS_VIEWER
 function mapStateToProps (state) {
   return {
     user: CurrentUser.profile,
@@ -71,4 +69,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CollectionsFlashcardsViewer)
+)(RecommendedFlashcardsViewer)

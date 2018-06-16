@@ -9,7 +9,7 @@ import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as CollectionsActions } from '../collections'
 
-class CollectionsHome extends CollectionsListContainer {
+class BookmarkedHome extends CollectionsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: null,
@@ -19,15 +19,15 @@ class CollectionsHome extends CollectionsListContainer {
 
   constructor(props) {
     super(props)
-    this.setScreen({screenName:R.NAV_COLLECTIONS_HOME, className:'CollectionsHome'})
+    this.setScreen({screenName:R.NAV_BOOKMARKED_HOME, className:'BookmarkedHome'})
   }
 
   get _onSelectedRoute() {
-    return R.NAV_COLLECTIONS_FLASHCARDS_VIEWER
+    return R.NAV_BOOKMARKED_FLASHCARDS_VIEWER
   }
 
   componentWillMount() {
-    this.setTitle(localize("collections.title"))
+    this.setTitle(localize("bookmarked.title"))
   }
 
   _fetchData() {
@@ -49,7 +49,7 @@ class CollectionsHome extends CollectionsListContainer {
   }
 }
 
-const ns = R.NAV_COLLECTIONS_HOME
+const ns = R.NAV_BOOKMARKED_HOME
 function mapStateToProps (state) {
   return {
     user: CurrentUser.profile,
@@ -70,4 +70,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CollectionsHome)
+)(BookmarkedHome)

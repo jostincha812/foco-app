@@ -5,14 +5,14 @@ import { R } from '../constants'
 import S from '../styles'
 import Icons from '../components/Icons'
 
-import Home from './Home'
-import HomeFlashcardsViewer from './HomeFlashcardsViewer'
+import RecommendedHome from './RecommendedHome'
+import RecommendedFlashcardsViewer from './RecommendedFlashcardsViewer'
 
 const STACK = {}
-STACK[R.NAV_HOME] = { screen: Home }
-STACK[R.NAV_HOME_FLASHCARDS_VIEWER] = { screen: HomeFlashcardsViewer }
+STACK[R.NAV_RECOMMENDED_HOME] = { screen: RecommendedHome }
+STACK[R.NAV_RECOMMENDED_FLASHCARDS_VIEWER] = { screen: RecommendedFlashcardsViewer }
 
-const HomeStack = StackNavigator(STACK, {
+const RecommendedStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation.header,
     tabBarIcon: ({ focused, tintColor }) => (
@@ -21,4 +21,4 @@ const HomeStack = StackNavigator(STACK, {
   })
 })
 
-export default HomeStack
+export default RecommendedStack

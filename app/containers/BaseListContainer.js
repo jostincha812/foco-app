@@ -19,7 +19,12 @@ export default class BaseListContainer extends BaseContainer {
     this.onScrollToTopPress = this.onScrollToTopPress.bind(this)
   }
 
-  get _scrollEvent() {
+  get _paging() {
+    // to be overridden by subclasses
+    return false
+  }
+
+  get _scrollEventName() {
     // to be overridden by subclasses
     return E.user_action_list_scrolled
   }
@@ -62,7 +67,7 @@ export default class BaseListContainer extends BaseContainer {
     const passThreshold = yOffset > (this.state.dimensions.height * 1.5)
     if (!this.state.showBackToTop && passThreshold) {
       this.setState({ showBackToTop: true })
-      this.logEvent(this._scrollEvent, {
+      this.logEvent(this._scrollEventName, {
         uid: this.props.user.uid,
         ...this._screen,
       })
@@ -77,7 +82,7 @@ export default class BaseListContainer extends BaseContainer {
     const scrolledToEnd = (windowHeight + yOffset) >= e.nativeEvent.contentSize.height
     if (!this.state.reachedEnd && scrolledToEnd) {
       this.setState({ reachedEnd: true })
-      this.logEvent(this._scrollEvent, {
+      this.logEvent(this._scrollEventName, {
         uid: user.uid,
         location: 'end',
         ...this._screen,
@@ -111,7 +116,7 @@ export default class BaseListContainer extends BaseContainer {
   onScrollToTopPress() {
     const user = this.props.user
     this.refs['_SCROLLVIEW'].scrollTo({x: 0, y: 0, animated: true})
-    this.logEvent(this._scrollEvent, {
+    this.logEvent(this._scrollEventName, {
       uid: user.uid,
       location: 'start',
       ...this._screen,
@@ -181,6 +186,7 @@ export default class BaseListContainer extends BaseContainer {
       <View style={S.containers.screen}>
         <ScrollView
           contentContainerStyle={S.containers.list}
+          pagingEnabled={this._paging}
           refreshControl={refreshControl}
           onScroll={this.onScroll}
           scrollEventThrottle={64}
@@ -188,10 +194,10 @@ export default class BaseListContainer extends BaseContainer {
           ref='_SCROLLVIEW'
         >
           <StatusBar barStyle={S.statusBarStyle} />
+          
+          { this._title && headerView }
 
           { this._renderIapModal(props)}
-
-          { this._title && headerView }
 
           { this._renderList(props) }
         </ScrollView>

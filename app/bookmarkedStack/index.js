@@ -1,9 +1,5 @@
-import CollectionsStack from './CollectionsStack'
-import CollectionsHome from './CollectionsHome'
-import CollectionsFlashcardsViewer from './CollectionsFlashcardsViewer'
+import BookmarkedStack from './BookmarkedStack'
+import BookmarkedHome from './BookmarkedHome'
+import BookmarkedFlashcardsViewer from './BookmarkedFlashcardsViewer'
 
-export default CollectionsStack
-// export {
-//   Home: CollectionsHome,
-//   FlashcardsViewer: CollectionsFlashcardsViewer
-// }
+export default BookmarkedStack

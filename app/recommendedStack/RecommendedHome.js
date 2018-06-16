@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import T from '../T'
 import C, { R } from '../constants'
 import { localize } from '../locales'
-import BaseCollectionsListContainer from '../containers/CollectionsListContainer'
+import CollectionsListContainer from '../containers/CollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as CollectionsActions } from '../collections'
 
-class Home extends BaseCollectionsListContainer {
+class RecommendedHome extends CollectionsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: null,
@@ -20,11 +20,11 @@ class Home extends BaseCollectionsListContainer {
 
   constructor(props) {
     super(props)
-    this.setScreen({screenName:R.NAV_HOME, className:'Home'})
+    this.setScreen({screenName:R.NAV_RECOMMENDED_HOME, className:'RecommendedHome'})
   }
 
   get _onSelectedRoute() {
-    return R.NAV_HOME_FLASHCARDS_VIEWER
+    return R.NAV_RECOMMENDED_FLASHCARDS_VIEWER
   }
 
   componentWillMount() {
@@ -50,7 +50,7 @@ class Home extends BaseCollectionsListContainer {
   }
 }
 
-const ns = R.NAV_HOME
+const ns = R.NAV_RECOMMENDED_HOME
 function mapStateToProps (state) {
   return {
     user: CurrentUser.profile,
@@ -70,4 +70,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home)
+)(RecommendedHome)
