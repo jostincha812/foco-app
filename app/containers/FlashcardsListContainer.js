@@ -32,6 +32,11 @@ export default class FlashcardsListContainer extends BaseListContainer {
     const productId = AccessManager.preferredProductForType(this._iapProductType)
   }
 
+  get _filteredFlashcards() {
+    // to be overridden by subclasses
+    return this.props.flashcards
+  }
+
   onPrefToggle(id, pref) {
     const user = this.props.user
     const flashcard = this.props.flashcards[id]
@@ -63,7 +68,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
 
   _renderList(props) {
     const dimensions = this.state.dimensions
-    const flashcards = props.flashcards
+    const flashcards = this._filteredFlashcards
 
     if (flashcards) {
       return (
