@@ -2,24 +2,23 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Modal from 'react-native-modal'
 import { PricingCard, Button } from 'react-native-elements'
+import { normalize } from '../lib/utils'
 
 import C from '../constants'
 import T from '../T'
 import S from '../styles'
 import LoadingIndicator from '../components/LoadingIndicator'
-import { normalize } from '../lib/utils'
-import CurrentUser from '../auth/CurrentUser'
+import Store from './Store'
 
 export default class ProUpgradeModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = { productsLoaded: false, processing: false }
-    this.ACCESS_TYPE = C.ACCESS_PREMIUM_COLLECTION
   }
 
   componentDidMount() {
-    CurrentUser.getPreferredProductDetailsForType({
-      accessType: this.ACCESS_TYPE,
+    Store.loadProduct({
+      productId: this.props.productId,
       onSuccess: (details) => {
         this.setState({productsLoaded: true, product: details})
       },

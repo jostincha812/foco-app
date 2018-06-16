@@ -3,6 +3,7 @@ import { View, StatusBar } from 'react-native'
 import Toast from 'react-native-root-toast'
 
 import { fbAnalytics } from '../../configureFirebase'
+import { E } from '../constants'
 import S from '../styles'
 
 export default class BaseContainer extends React.Component {
@@ -17,8 +18,13 @@ export default class BaseContainer extends React.Component {
     this.hideToast = this.hideToast.bind(this)
     this.errorToast = this.errorToast.bind(this)
     this.successToast = this.successToast.bind(this)
+    this.showIapModal = this.showIapModal.bind(this)
+    this.hideIapModal = this.hideIapModal.bind(this)
+    this.onIapAttempt = this.onIapAttempt.bind(this)
+    this.onIapSuccess = this.onIapSuccess.bind(this)
+    this.onIapError = this.onIapError.bind(this)
 
-    this.state = { dimensions: undefined, refreshing: false }
+    this.state = { dimensions: undefined, refreshing: false, isIapVisible: false  }
   }
 
   logEvent(event, params) {
@@ -40,7 +46,6 @@ export default class BaseContainer extends React.Component {
     // do nothing by default, subclasses should set state accordingly
     // this.setState({refreshing: true})
   }
-
 
   showToast(message, options) {
     this.toast = Toast.show(message, {
@@ -74,6 +79,57 @@ export default class BaseContainer extends React.Component {
     if (this.toast) {
       Toast.hide(toast)
     }
+  }
+
+  showIapModal(productId) {
+    console.log(productId)
+    const user = this.props.user
+    this.logEvent(E.iap_modal_displayed, {
+      uid: user.uid,
+      email: user.email,
+      ...this._screen,
+      productId
+    })
+    this.setState({isIapVisible: true})
+  }
+
+  hideIapModal() {
+    this.setState({isIapVisible: false})
+  }
+
+  onIapAttempt(productId) {
+    const user = this.props.user
+    this.logEvent(E.iap_purchase_initiated, {
+      uid: user.uid,
+      email: user.email,
+      ...this._screen,
+      productId
+    })
+  }
+
+  onIapSuccess(productId) {
+    const user = this.props.user
+    this.logEvent(E.iap_purchase_completed, {
+      uid: user.uid,
+      email: user.email,
+      ...this._screen,
+      productId
+    })
+    // this.setState({isIapVisible: false})
+    this.hideIapModal()
+    this.successToast('Purchase successful!')
+  }
+
+  onIapError(error, productId) {
+    const user = this.props.user
+    this.logEvent(E.iap_purchase_cancelled, {
+      uid: user.uid,
+      ...this._screen,
+      productId
+    })
+    // this.setState({isIapVisible: false})
+    this.hideIapModal()
+    this.errorToast(error)
   }
 
   render() {

@@ -13,19 +13,27 @@ import AccessManager from '../auth/AccessManager'
 export default class CollectionsListContainer extends BaseListContainer {
   constructor(props) {
     super(props)
-    this.state = { ...this.state, iapVisible: false }
     this.onCollectionPress = this.onCollectionPress.bind(this)
     this.onPrefToggle = this.onPrefToggle.bind(this)
-    this.showIapModal = this.showIapModal.bind(this)
-    this.hideIapModal = this.hideIapModal.bind(this)
-    this.onIapAttempt = this.onIapAttempt.bind(this)
-    this.onIapSuccess = this.onIapSuccess.bind(this)
-    this.onIapError = this.onIapError.bind(this)
   }
 
   get _scrollEvent() {
     // to be overridden by subclasses
     return E.user_action_collections_scrolled
+  }
+
+  get _iapProductType() {
+    return C.ACCESS_PREMIUM_COLLECTION
+  }
+
+  get _iapProductId() {
+    // TODO fix where productId comes from
+    // const productId = AccessManager.preferredProductForType(this._iapProductType)
+    const productId = 'com.vpqlabs.foco.professional.3'
+  }
+
+  get _onSelectedRoute() {
+    // no-op - to be overridden by subclass
   }
 
   onCollectionPress(collection) {
@@ -44,7 +52,7 @@ export default class CollectionsListContainer extends BaseListContainer {
         collectionId: collection.id,
         ...this._screen,
       })
-      navigation.navigate(this._viewerRoute(), {
+      navigation.navigate(this._onSelectedRoute, {
         user, collection
       })
     }
@@ -66,67 +74,12 @@ export default class CollectionsListContainer extends BaseListContainer {
     // no-op - to be overridden by subclass
   }
 
-  _viewerRoute() {
-    // no-op - to be overridden by subclass
-  }
-
-  showIapModal() {
-    // TODO fix where productId comes from
-    const productId = AccessManager.preferredProductForType(C.ACCESS_PREMIUM_COLLECTION)
-    const user = this.props.user
-    this.logEvent(E.iap_modal_displayed, {
-      uid: user.uid,
-      email: user.email,
-      ...this._screen,
-      productId
-    })
-    this.setState({iapVisible: true})
-  }
-
-  hideIapModal() {
-    this.setState({iapVisible: false})
-  }
-
-  onIapAttempt(productId) {
-    const user = this.props.user
-    this.logEvent(E.iap_purchase_initiated, {
-      uid: user.uid,
-      email: user.email,
-      ...this._screen,
-      productId
-    })
-  }
-
-  onIapSuccess(productId) {
-    const user = this.props.user
-    this.logEvent(E.iap_purchase_completed, {
-      uid: user.uid,
-      email: user.email,
-      ...this._screen,
-      productId
-    })
-    this.setState({iapVisible: true})
-    this.hideIapModal()
-    this.successToast('Purchase successful!')
-  }
-
-  onIapError(error, productId) {
-    const user = this.props.user
-    this.logEvent(E.iap_purchase_cancelled, {
-      uid: user.uid,
-      ...this._screen,
-      productId
-    })
-    this.setState({iapVisible: true})
-    this.hideIapModal()
-    this.errorToast(error)
-  }
-
   _renderIapModal(props) {
-    const iapVisible = this.state.iapVisible
+    const isIapVisible = this.state.isIapVisible
     return (
       <IapModal
-        isVisible={iapVisible}
+        productId={this._iapProductId}
+        isVisible={isIapVisible}
         onDismiss={this.hideIapModal}
         onAttempt={this.onIapAttempt}
         onSuccess={this.onIapSuccess}
@@ -145,7 +98,7 @@ export default class CollectionsListContainer extends BaseListContainer {
           collections={collections}
           onSelect={this.onCollectionPress}
           onPrefChange={this.onPrefToggle}
-          onPremiumTrigger={this.showIapModal}
+          onPremiumTrigger={() => this.showIapModal(this._iapProductId)}
         />
       )
     }

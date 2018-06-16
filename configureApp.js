@@ -3,7 +3,7 @@ import C from './app/constants'
 
 const settings = {
   hasExperimentalFeature: false,
-  fullUpgradeProductId: C.IAP_PROFESSIONAL_5,
+  fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
 }
 
 const ConfigKeys = {

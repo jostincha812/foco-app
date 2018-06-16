@@ -23,6 +23,10 @@ class Home extends BaseCollectionsListContainer {
     this.setScreen({screenName:R.NAV_HOME, className:'Home'})
   }
 
+  get _onSelectedRoute() {
+    return R.NAV_HOME_FLASHCARDS_VIEWER
+  }
+
   componentWillMount() {
     this.setTitle(localize("home.title"))
   }
@@ -44,10 +48,6 @@ class Home extends BaseCollectionsListContainer {
       pref,
     )
   }
-
-  _viewerRoute() {
-    return R.NAV_HOME_FLASHCARDS_VIEWER
-  }
 }
 
 const ns = R.NAV_HOME
@@ -62,7 +62,6 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatch,
     fetchCollections: (ownerId, userId) => dispatch(CollectionsActions.fetchCollections(ns, ownerId, userId)),
     upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(UserPrefsActions.upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
