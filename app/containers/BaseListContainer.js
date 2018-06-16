@@ -194,7 +194,7 @@ export default class BaseListContainer extends BaseContainer {
           ref='_SCROLLVIEW'
         >
           <StatusBar barStyle={S.statusBarStyle} />
-          
+
           { this._title && headerView }
 
           { this._renderIapModal(props)}

@@ -123,10 +123,16 @@ class StarredHome extends FlashcardsListContainer {
 
 const ns = R.NAV_STARRED_HOME
 function mapStateToProps (state) {
+  let isEmpty = true
+  if (state.flashcards[ns] && state.flashcards[ns].data) {
+    isEmpty = (Object.keys(state.flashcards[ns].data).length == 0)
+  }
+
   return {
     user: CurrentUser.profile,
     ready: state.flashcards[ns] ? state.flashcards[ns].status === C.FB_FETCHED : null,
     flashcards: state.flashcards[ns] ? state.flashcards[ns].data : null,
+    isEmpty: isEmpty
   }
 }
 
