@@ -4,11 +4,11 @@ import { TabNavigator } from 'react-navigation'
 import { R } from '../constants'
 import S from '../styles'
 
-import HomeStack from './HomeStack'
-import CollectionsStack from './CollectionsStack'
-import StarredStack from './StarredStack'
+import HomeStack from '../homeStack'
+import CollectionsStack from '../bookmarkedStack'
+import StarredStack from '../starredStack'
+import ProfileStack from '../profileStack'
 import SearchStack from './SearchStack'
-import ProfileStack from './ProfileStack'
 
 const TABS = {}
 TABS[R.NAV_HOME_TAB] = { screen: HomeStack }

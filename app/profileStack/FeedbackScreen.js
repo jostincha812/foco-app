@@ -6,7 +6,7 @@ import C, { E, R } from '../constants'
 import S from '../styles'
 import { localize } from '../locales'
 
-import BaseContainer from './BaseContainer'
+import BaseContainer from '../containers/BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 import NavHeaderSendButton from '../components/NavHeaderSendButton'
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import T from '../T'
 import C, { R } from '../constants'
 import { localize } from '../locales'
-import BaseCollectionsListContainer from './BaseCollectionsListContainer'
+import BaseCollectionsListContainer from '../containers/BaseCollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'

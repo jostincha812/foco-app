@@ -5,7 +5,7 @@ import { Map } from 'immutable'
 import C, { E, R } from '../constants'
 import { localize } from '../locales'
 
-import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
+import BaseFlashcardsListContainer from '../containers/BaseFlashcardsListContainer'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import NavHeaderFilterToggleButton from '../components/NavHeaderFilterToggleButton'

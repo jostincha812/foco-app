@@ -3,10 +3,10 @@ import { StackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
-
 import Icons from '../components/Icons'
-import CollectionsHome from '../containers/CollectionsHome'
-import CollectionsFlashcardsViewer from '../containers/CollectionsFlashcardsViewer'
+
+import CollectionsHome from './CollectionsHome'
+import CollectionsFlashcardsViewer from './CollectionsFlashcardsViewer'
 
 const STACK = {}
 STACK[R.NAV_COLLECTIONS_HOME] = { screen: CollectionsHome }

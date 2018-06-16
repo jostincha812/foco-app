@@ -9,7 +9,7 @@ import S from '../styles'
 import { R, C } from '../constants'
 import { localize } from '../locales'
 
-import BaseContainer from './BaseContainer'
+import BaseContainer from '../containers/BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
 
 import CurrentUser from '../auth/CurrentUser'
