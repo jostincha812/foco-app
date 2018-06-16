@@ -11,8 +11,8 @@ import F from '../F'
 import { localize } from '../locales'
 import BaseContainer from '../containers/BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
-import Intro from '../components/Intro'
 import StyledText from '../lib/StyledText'
+import Intro from './Intro'
 
 export default class SignInHome extends BaseContainer {
   static navigationOptions = ({navigation}) => {

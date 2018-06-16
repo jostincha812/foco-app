@@ -12,7 +12,7 @@ import F from '../F'
 import { localize } from '../locales'
 import BaseContainer from '../containers/BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
-import Intro from '../components/Intro'
+import Intro from './Intro'
 // import SignInWithEmailForm from '../components/SignInWithEmailForm'
 
 export default class SignInWithEmail extends BaseContainer {
