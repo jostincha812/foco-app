@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import T from '../T'
 import C, { R } from '../constants'
 import { localize } from '../locales'
-import BaseCollectionsListContainer from '../containers/BaseCollectionsListContainer'
+import BaseCollectionsListContainer from '../containers/CollectionsListContainer'
 
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
@@ -56,6 +56,7 @@ function mapStateToProps (state) {
     user: CurrentUser.profile,
     ready: state.collections[ns] ? state.collections[ns].status === C.FB_FETCHED : false,
     collections: state.collections[ns] ? state.collections[ns].data : {},
+    isEmpty: state.collections[ns] && state.collections[ns].data && (Object.keys(state.collections[ns].data).length == 0)
   }
 }
 
