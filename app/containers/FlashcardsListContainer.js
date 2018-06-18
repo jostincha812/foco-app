@@ -76,7 +76,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
           dimensions={dimensions}
           flashcards={flashcards}
           onPrefToggle={this.onPrefToggle}
-          onPremiumTrigger={() => this.showIapModal(this._iapProductId)}
+          onTriggerIAP={() => this.showIapModal(this._iapProductId)}
         />
       )
     }

@@ -96,7 +96,7 @@ export default class CollectionsListContainer extends BaseListContainer {
           collections={collections}
           onSelect={this.onCollectionPress}
           onPrefChange={this.onPrefToggle}
-          onPremiumTrigger={() => this.showIapModal(this._iapProductId)}
+          onTriggerIAP={() => this.showIapModal(this._iapProductId)}
         />
       )
     }

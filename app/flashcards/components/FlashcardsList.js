@@ -18,12 +18,15 @@ const FlashcardsList = (props) => {
               style={{
                 height: height - 2*S.spacing.normal,
                 marginTop: (index==0) ? 0 : S.spacing.normal,
-                marginBottom: (index==keys.length-1) ? S.spacing.normal*2 : S.spacing.normal
+                marginBottom: (index==keys.length-1) ? S.spacing.normal*2 : S.spacing.normal,
+                marginLeft: S.spacing.normal,
+                marginRight: S.spacing.normal,
               }}
               key={item.id}
               data={item}
               prefs={item.prefs}
               onPrefToggle={props.onPrefToggle}
+              onTriggerIAP={props.onTriggerIAP}
             />
           )
         })

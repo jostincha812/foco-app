@@ -80,7 +80,7 @@ export default class Flashcard extends React.Component {
       >
 
         <TouchableOpacity
-          style={styles.inner}
+          style={styles.cardface}
           activeOpacity={1}
           onPress={() => this.setState({flipped: !this.state.flipped})}
         >
@@ -92,25 +92,26 @@ export default class Flashcard extends React.Component {
         </TouchableOpacity>
 
         <PremiumContentContainer
+          containerStyle={[styles.cardface, {paddingHorizontal:0}]}
+          innerStyle={{justifyContent:'center', paddingHorizontal:S.spacing.large}}
           iconSize={T.icons.xxlargeIcon}
           activeOpacity={1}
-          innerOpacity={0.025}
+          innerOpacity={0.03}
           touchableLockOnly={true}
           accessType={C.ACCESS_CONSUMABLE_FLASHCARD}
           accessKey={props.data.id}
           onPress={() => this.setState({flipped: !this.state.flipped})}
+          onTriggerIAP={props.onTriggerIAP}
         >
-          <View style={styles.inner}>
-            {flagToggle}
-            {starToggle}
-            <MarkdownView styles={markdown}>
-              {data.back}
-            </MarkdownView>
-            <FlashcardTags
-              style={{position:'absolute', left:S.spacing.large, bottom:S.spacing.small}}
-              tags={data.tags}
-            />
-          </View>
+          {flagToggle}
+          {starToggle}
+          <MarkdownView styles={markdown}>
+            {data.back}
+          </MarkdownView>
+          <FlashcardTags
+            style={{position:'absolute', left:S.spacing.large, bottom:S.spacing.small}}
+            tags={data.tags}
+          />
         </PremiumContentContainer>
       </FlipCard>
     )
@@ -124,7 +125,7 @@ const styles = {
     ...S.corners.rounded,
     padding: S.spacing.none,
   },
-  inner: {
+  cardface: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: S.spacing.large,

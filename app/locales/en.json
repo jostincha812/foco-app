@@ -16,7 +16,7 @@
   "bookmarked": {
     "title": "Bookmarked",
   },
-  
+
   "collections": {
     "cards": "Cards",
     "coming_soon": "Coming Soon",
@@ -163,6 +163,6 @@
   },
 
   "iap" : {
-    "unlock_now": "Get It Now",
+    "unlock_now": "Unlock Now",
   }
 }

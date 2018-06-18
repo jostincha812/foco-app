@@ -8,7 +8,7 @@ const CollectionCardsList = (props) => {
   const keys = props.keys
   const onSelect = props.onSelect
   const onPrefChange = props.onPrefChange
-  const onPremiumTrigger = props.onPremiumTrigger
+  const onTriggerIAP = props.onTriggerIAP
 
   return (
     <View style={props.style}>
@@ -24,7 +24,7 @@ const CollectionCardsList = (props) => {
               collection={collection}
               onPrefToggle={onPrefChange}
               onPress={() => onSelect(collection)}
-              onPremiumTrigger={onPremiumTrigger}>
+              onTriggerIAP={onTriggerIAP}>
             </CollectionCard>
           )
         }
