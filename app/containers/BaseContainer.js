@@ -82,7 +82,6 @@ export default class BaseContainer extends React.Component {
   }
 
   showIapModal(productId) {
-    console.log(productId)
     const user = this.props.user
     this.logEvent(E.iap_modal_displayed, {
       uid: user.uid,

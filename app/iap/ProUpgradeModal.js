@@ -8,7 +8,8 @@ import C from '../constants'
 import T from '../T'
 import S from '../styles'
 import LoadingIndicator from '../components/LoadingIndicator'
-import Store from './Store'
+// import Store from './Store'
+import AccessManager from './AccessManager'
 
 export default class ProUpgradeModal extends React.Component {
   constructor(props) {
@@ -17,10 +18,11 @@ export default class ProUpgradeModal extends React.Component {
   }
 
   componentDidMount() {
-    Store.loadProduct({
-      productId: this.props.productId,
+    const productId = this.props.productId
+    AccessManager.fetchProductDetails({
+      productId,
       onSuccess: (details) => {
-        this.setState({productsLoaded: true, product: details})
+        this.setState({productsLoaded: true, product: {productId, ...details}})
       },
       onError: (error) => {
         this.setState({error})
@@ -34,7 +36,7 @@ export default class ProUpgradeModal extends React.Component {
     const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
     const baseContainerStyle = [
       S.cards.card, S.cards.raised, S.corners.rounded,
-      { width: normalize(280) }
+      { width: normalize(260) }
     ]
 
     // TODO localise
@@ -45,7 +47,7 @@ export default class ProUpgradeModal extends React.Component {
     const purchaseButtonPress = this.state.processing ? () => {} : () => {
       this.setState({processing: true})
       props.onAttempt(product.productId)
-      CurrentUser.unlockPremiumAccess({
+      AccessManager.unlockAccess({
         productId: product.productId,
         accessType: this.ACCESS_TYPE,
         accessKey: null,
@@ -53,9 +55,20 @@ export default class ProUpgradeModal extends React.Component {
         onError: (error) => {
           this.setState({processing: false})
           // TODO localise
-          props.onError('Purchase cancelled', product.productId)
+          props.onError(error)
         }
       })
+      // CurrentUser.unlockPremiumAccess({
+      //   productId: product.productId,
+      //   accessType: this.ACCESS_TYPE,
+      //   accessKey: null,
+      //   onSuccess: () => props.onSuccess(product.productId),
+      //   onError: (error) => {
+      //     this.setState({processing: false})
+      //     // TODO localise
+      //     props.onError('Purchase cancelled', product.productId)
+      //   }
+      // })
     }
 
     // TODO localize

@@ -1,15 +1,17 @@
 import C from '../constants'
-import Store from '../iap/Store'
 import RemoteConfig from '../../configureApp'
+import CurrentUser from '../auth/CurrentUser'
+import Store from './Store'
 
 const AccessManager = {
   // Params:
   // - accessType - string representing access type required - ie. ACCESS_PREMIUM_COLLECTION, ACCESS_CONSUMERABLE_FLASHCARDS
   // - accessKey - key string representing content identifier
-  // - purchases - array of product IDs purchased by the user
-  hasAccess: ({accessType = null, accessKey = null, purchases = []}) => {
+  hasAccess: ({accessType = null, accessKey = null}) => {
+    const purchases = CurrentUser.purchases || []
     const fullAccessSet = new Set([
       C.IAP_EARLY_ADOPTER, C.IAP_FULL_ACCESS,
+      C.IAP_PROFESSIONAL_3,
       C.IAP_PROFESSIONAL_5, C.IAP_PROFESSIONAL_10,
       C.IAP_PROFESSIONAL_15, C.IAP_PROFESSIONAL_20
     ])
@@ -43,8 +45,21 @@ const AccessManager = {
   },
 
   unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onError}) => {
+    const purchases = new Set(CurrentUser.purchases)
+    if (purchases.has(productId)) {
+      onSuccess()
+    }
+
     Store.purchaseProduct({
-      productId, onSuccess, onError
+      productId,
+      onSuccess: (transaction) => {
+        CurrentUser.addPurchase({
+          productId,
+          transaction,
+          onComplete: onSuccess
+        })
+      },
+      onError
     })
   },
 

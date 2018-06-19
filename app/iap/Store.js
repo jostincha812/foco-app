@@ -22,11 +22,13 @@ const purchaseProduct = ({productId, onSuccess, onError}) => {
     }
   })
 
+console.log(productId)
   // attempt purchase
   InAppUtils.purchaseProduct(productId, (error, response) => {
     if(response && response.productIdentifier) {
       onSuccess(response)
     } else {
+      console.log(error)
       onError(error.message)
     }
   })

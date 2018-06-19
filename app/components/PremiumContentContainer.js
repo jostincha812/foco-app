@@ -4,8 +4,9 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import T from '../T'
 import S from '../styles'
 import Icons from './Icons'
-import CurrentUser from '../auth/CurrentUser'
+// import CurrentUser from '../auth/CurrentUser'
 import { localize } from '../locales'
+import { AccessManager } from '../iap'
 
 export default class PremiumContentContainer extends React.Component {
   constructor(props) {
@@ -14,17 +15,25 @@ export default class PremiumContentContainer extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ isLocked: !CurrentUser.hasPremiumAccess({
+    this.setState({ isLocked: !AccessManager.hasAccess({
       accessType: this.props.accessType,
       accessKey: this.props.accessKey,
     }) })
+    // this.setState({ isLocked: !CurrentUser.hasPremiumAccess({
+    //   accessType: this.props.accessType,
+    //   accessKey: this.props.accessKey,
+    // }) })
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ isLocked: !CurrentUser.hasPremiumAccess({
+    this.setState({ isLocked: !AccessManager.hasAccess({
       accessType: this.props.accessType,
       accessKey: this.props.accessKey,
     }) })
+    // this.setState({ isLocked: !CurrentUser.hasPremiumAccess({
+    //   accessType: this.props.accessType,
+    //   accessKey: this.props.accessKey,
+    // }) })
   }
 
   render() {

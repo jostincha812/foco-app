@@ -62,6 +62,7 @@ export default class Flashcard extends React.Component {
       style: {position:'absolute', top:S.spacing.small, left:S.spacing.large},
       onPress: () => this.onPrefToggle(C.KEY_PREF_FLAGGED),
     }
+    // TODO move flag into submenu and enable for all users
     const flagToggle = !CurrentUser.isAdmin ? null : (isFlagged ?
       Icons.flag({color:T.colors.app, ...flagToggleOptions}) :
       Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions}))

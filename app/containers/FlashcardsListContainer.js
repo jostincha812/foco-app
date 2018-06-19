@@ -5,9 +5,7 @@ import { Animated, LayoutAnimation } from 'react-native'
 import C, { E } from '../constants'
 import BaseListContainer from './BaseListContainer'
 import { FlashcardsList } from '../flashcards'
-
-import {ProUpgradeModal as IapModal} from '../iap'
-import AccessManager from '../auth/AccessManager'
+import { AccessManager, ProUpgradeModal as IapModal } from '../iap'
 
 export default class FlashcardsListContainer extends BaseListContainer {
   constructor(props) {
@@ -20,7 +18,6 @@ export default class FlashcardsListContainer extends BaseListContainer {
   }
 
   get _scrollEventName() {
-    // to be overridden by subclasses
     return E.user_action_flashcards_scrolled
   }
 
@@ -29,7 +26,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
   }
 
   get _iapProductId() {
-    const productId = AccessManager.preferredProductForType(this._iapProductType)
+    return AccessManager.preferredProductForType(this._iapProductType)
   }
 
   get _filteredFlashcards() {

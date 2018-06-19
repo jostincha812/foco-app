@@ -5,10 +5,7 @@ import { Animated, LayoutAnimation } from 'react-native'
 import C, { E } from '../constants'
 import BaseListContainer from './BaseListContainer'
 import { CollectionCardsList } from '../collections'
-
-import {ProUpgradeModal as IapModal} from '../iap'
-import AccessManager from '../auth/AccessManager'
-
+import { AccessManager, ProUpgradeModal as IapModal } from '../iap'
 
 export default class CollectionsListContainer extends BaseListContainer {
   constructor(props) {
@@ -18,7 +15,6 @@ export default class CollectionsListContainer extends BaseListContainer {
   }
 
   get _scrollEventName() {
-    // to be overridden by subclasses
     return E.user_action_collections_scrolled
   }
 
@@ -27,7 +23,7 @@ export default class CollectionsListContainer extends BaseListContainer {
   }
 
   get _iapProductId() {
-    const productId = AccessManager.preferredProductForType(this._iapProductType)
+    return AccessManager.preferredProductForType(this._iapProductType)
   }
 
   get _onSelectedRoute() {
