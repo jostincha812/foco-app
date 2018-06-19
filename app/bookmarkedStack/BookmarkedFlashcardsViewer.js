@@ -3,16 +3,14 @@ import { connect } from 'react-redux'
 
 import C, { R } from '../constants'
 
+import FlashcardsListContainer from '../containers/FlashcardsListContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
-import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
-import LoadingScreen from '../components/LoadingScreen'
-import EmptyListScreen from '../components/EmptyListScreen'
 
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
-class CollectionsFlashcardsViewer extends BaseFlashcardsListContainer {
+class BookmarkedHomeFlashcardsViewer extends FlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: null,
@@ -71,4 +69,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CollectionsFlashcardsViewer)
+)(BookmarkedHomeFlashcardsViewer)

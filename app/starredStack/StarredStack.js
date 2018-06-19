@@ -3,10 +3,10 @@ import { StackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
-
 import Icons from '../components/Icons'
-import StarredHome from '../containers/StarredHome'
-import StarredFilterConfigurator from '../containers/StarredFilterConfigurator'
+
+import StarredHome from './StarredHome'
+import StarredFilterConfigurator from './StarredFilterConfigurator'
 
 const STACK = {}
 STACK[R.NAV_STARRED_HOME] = { screen: StarredHome }

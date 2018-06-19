@@ -2,7 +2,7 @@
   // Navigation tabs
   "tabs": {
     "home": "Home",
-    "collections": "Bookmarked",
+    "bookmarked": "Bookmarked",
     "starred": "Starred",
     "profile": "Profile",
   },
@@ -12,9 +12,12 @@
     "title": "Recommended",
   },
 
-  // Collections screen
-  "collections": {
+  // Bookmarked screen
+  "bookmarked": {
     "title": "Bookmarked",
+  },
+
+  "collections": {
     "cards": "Cards",
     "coming_soon": "Coming Soon",
   },
@@ -163,6 +166,6 @@
   },
 
   "iap" : {
-    "unlock_now": "Get It Now",
+    "unlock_now": "Unlock Now",
   }
 }

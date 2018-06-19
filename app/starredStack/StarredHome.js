@@ -5,16 +5,14 @@ import { Map } from 'immutable'
 import C, { E, R } from '../constants'
 import { localize } from '../locales'
 
-import BaseFlashcardsListContainer from './BaseFlashcardsListContainer'
-import LoadingScreen from '../components/LoadingScreen'
-import EmptyListScreen from '../components/EmptyListScreen'
+import FlashcardsListContainer from '../containers/FlashcardsListContainer'
 import NavHeaderFilterToggleButton from '../components/NavHeaderFilterToggleButton'
 
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
-class StarredHome extends BaseFlashcardsListContainer {
+class StarredHome extends FlashcardsListContainer {
   static navigationOptions = ({navigation}) => {
     if (navigation.state.params) {
       return ({
@@ -74,21 +72,21 @@ class StarredHome extends BaseFlashcardsListContainer {
     )
   }
 
-  _flashcards() {
+  get _filteredFlashcards() {
     if (this.props.flashcards == null) {
       return null
     }
 
     const flashcards = {}
     Object.keys(this.props.flashcards).map(key => {
-      if (this.passedFilters(this.props.flashcards[key])) {
+      if (this._passedFilters(this.props.flashcards[key])) {
         flashcards[key] = { ...this.props.flashcards[key] }
       }
     })
     return (flashcards)
   }
 
-  passedFilters(flashcard) {
+  _passedFilters(flashcard) {
     if (!this.state.filtered) {
       return true
     }
@@ -125,10 +123,16 @@ class StarredHome extends BaseFlashcardsListContainer {
 
 const ns = R.NAV_STARRED_HOME
 function mapStateToProps (state) {
+  let isEmpty = true
+  if (state.flashcards[ns] && state.flashcards[ns].data) {
+    isEmpty = (Object.keys(state.flashcards[ns].data).length == 0)
+  }
+
   return {
     user: CurrentUser.profile,
     ready: state.flashcards[ns] ? state.flashcards[ns].status === C.FB_FETCHED : null,
     flashcards: state.flashcards[ns] ? state.flashcards[ns].data : null,
+    isEmpty: isEmpty
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import SignInStack from './SignInStack'
+import SignInStack from '../signinStack'
 import AppTabNavigator from './AppTabNavigator'
 
 const RootStackNavigator = StackNavigator({

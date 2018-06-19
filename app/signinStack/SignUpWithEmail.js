@@ -12,7 +12,7 @@ import S from '../styles'
 import T from '../T'
 import F from '../F'
 import { localize } from '../locales'
-import BaseContainer from './BaseContainer'
+import BaseContainer from '../containers/BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 

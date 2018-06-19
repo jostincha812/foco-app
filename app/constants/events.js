@@ -16,6 +16,7 @@ export default events = {
   iap_purchase_cancelled: 'iap_purchase_cancelled',
   iap_purchase_completed: 'iap_purchase_completed',
 
+  user_action_list_scrolled: 'user_action_list_scrolled',
   user_action_collections_scrolled: 'user_action_collections_scrolled',
   user_action_collection_selected: 'user_action_collection_selected',
   user_action_collection_pref_updated: 'user_action_collection_pref_updated',
