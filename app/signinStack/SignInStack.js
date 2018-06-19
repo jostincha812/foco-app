@@ -4,10 +4,10 @@ import { StackNavigator } from 'react-navigation'
 import { R } from '../constants'
 import S from '../styles'
 
-import Splash from '../containers/Splash'
-import SignInHome from '../containers/SignInHome'
-import SignInWithEmail from '../containers/SignInWithEmail'
-import SignUpWithEmail from '../containers/SignUpWithEmail'
+import Splash from './Splash'
+import SignInHome from './SignInHome'
+import SignInWithEmail from './SignInWithEmail'
+import SignUpWithEmail from './SignUpWithEmail'
 
 const STACK = {}
 STACK[R.NAV_USER_SIGNIN] = { screen: Splash }

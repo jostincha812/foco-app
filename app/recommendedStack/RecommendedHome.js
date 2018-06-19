@@ -1,15 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import T from '../T'
 import C, { R } from '../constants'
 import { localize } from '../locales'
+import CollectionsListContainer from '../containers/CollectionsListContainer'
 
-import BaseCollectionsListContainer from './BaseCollectionsListContainer'
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as CollectionsActions } from '../collections'
 
-class CollectionsHome extends BaseCollectionsListContainer {
+class RecommendedHome extends CollectionsListContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: null,
@@ -19,16 +20,20 @@ class CollectionsHome extends BaseCollectionsListContainer {
 
   constructor(props) {
     super(props)
-    this.setScreen({screenName:R.NAV_COLLECTIONS_HOME, className:'CollectionsHome'})
+    this.setScreen({screenName:R.NAV_RECOMMENDED_HOME, className:'RecommendedHome'})
+  }
+
+  get _onSelectedRoute() {
+    return R.NAV_RECOMMENDED_FLASHCARDS_VIEWER
   }
 
   componentWillMount() {
-    this.setTitle(localize("collections.title"))
+    this.setTitle(localize("home.title"))
   }
 
   _fetchData() {
     const user = this.props.user
-    this.props.fetchUserBookmarkedCollections(user.uid)
+    this.props.fetchCollections(user.level, user.uid)
   }
 
   _cancelFetch() {
@@ -43,26 +48,21 @@ class CollectionsHome extends BaseCollectionsListContainer {
       pref,
     )
   }
-
-  _viewerRoute() {
-    return R.NAV_COLLECTIONS_FLASHCARDS_VIEWER
-  }
 }
 
-const ns = R.NAV_COLLECTIONS_HOME
+const ns = R.NAV_RECOMMENDED_HOME
 function mapStateToProps (state) {
   return {
     user: CurrentUser.profile,
     ready: state.collections[ns] ? state.collections[ns].status === C.FB_FETCHED : false,
     collections: state.collections[ns] ? state.collections[ns].data : {},
+    isEmpty: state.collections[ns] && state.collections[ns].data && (Object.keys(state.collections[ns].data).length == 0)
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatch,
-    resetUserCollectionsState: () => dispatch(CollectionsActions.resetUserCollectionsState(ns)),
-    fetchUserBookmarkedCollections: (userId) => dispatch(CollectionsActions.fetchUserBookmarkedCollections(ns, userId)),
+    fetchCollections: (ownerId, userId) => dispatch(CollectionsActions.fetchCollections(ns, ownerId, userId)),
     upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(UserPrefsActions.upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
 }
@@ -70,4 +70,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CollectionsHome)
+)(RecommendedHome)

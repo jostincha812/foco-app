@@ -3,10 +3,10 @@ import { StackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
-
 import Icons from '../components/Icons'
-import ProfileHome from '../containers/ProfileHome'
-import FeedbackScreen from '../containers/FeedbackScreen'
+
+import ProfileHome from './ProfileHome'
+import FeedbackScreen from './FeedbackScreen'
 
 const STACK = {}
 STACK[R.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }

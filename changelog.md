@@ -122,3 +122,4 @@
 ## 1.2
 * IAP price testing
 * Unlock from User Profile
+* Refactored component responsibilities in IAP flow

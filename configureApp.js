@@ -3,7 +3,7 @@ import C from './app/constants'
 
 const settings = {
   hasExperimentalFeature: false,
-  fullUpgradeProductId: C.IAP_PROFESSIONAL_5,
+  fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
 }
 
 const ConfigKeys = {
@@ -20,11 +20,9 @@ let CACHE_DURATION = 43200
 // }
 
 // Set default values
-// SKIPPED - using defaults above
-// firebase.config().setDefaults({
-//   hasExperimentalFeature: settings.hasExperimentalFeature,
-//   fullUpgradeProductId: settings.fullUpgradeProductId
-// });
+const defaults = {}
+defaults[ConfigKeys.fullUpgradeProductId] = settings.fullUpgradeProductId
+firebase.config().setDefaults(defaults);
 
 // Fetch remote config and set accordingly
 firebase.config().fetch(CACHE_DURATION)

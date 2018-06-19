@@ -145,7 +145,7 @@ export default class CollectionCard extends React.Component {
         accessKey={collection.id}
         touchableLockOnly={false}
         onPress={props.onPress}
-        showIap={props.showIap}>
+        onTriggerIAP={props.onTriggerIAP}>
         {card}
       </PremiumContentContainer>
     )

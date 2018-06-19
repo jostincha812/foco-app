@@ -9,7 +9,7 @@ import S from '../styles'
 import { R, C } from '../constants'
 import { localize } from '../locales'
 
-import BaseContainer from './BaseContainer'
+import BaseContainer from '../containers/BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
 
 import CurrentUser from '../auth/CurrentUser'
@@ -45,7 +45,7 @@ class ProfileHome extends BaseContainer {
       {
         title: localize("profile.support"),
         icon: 'live-help',
-        onPress: () => Linking.openURL(`mailto:support@vpqlabs.com?subject=Foco\:3%20support`)
+        onPress: () => Linking.openURL(`mailto:support@vpqlabs.com?subject=Foco\:3%20support&body=User ID: ${profile.uid}%0D%0%0D%0AAMessage:%0D%0A`)
       },
       {
         title: localize("profile.version"),

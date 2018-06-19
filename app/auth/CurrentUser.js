@@ -1,7 +1,7 @@
 import C from '../constants'
 import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
-import AccessManager from './AccessManager'
+import { AccessManager } from '../iap'
 import api from '../data/api'
 
 let _profile = null
@@ -56,6 +56,10 @@ const CurrentUser = {
     return _profile
   },
 
+  get purchases() {
+    return _profile.purchases
+  },
+
   get isAdmin() {
     if (_profile.roles && _profile.roles.includes(C.ROLE_ADMIN)) {
       return true
@@ -76,40 +80,53 @@ const CurrentUser = {
     FirebaseAuth.logout()
   },
 
-  getPreferredProductDetailsForType: ({accessType, onSuccess, onError}) => {
-    const productId = AccessManager.preferredProductForType(accessType)
-    return (AccessManager.fetchProductDetails({
-      productId,
-      onSuccess: (details) => onSuccess({ productId, ...details }),
-      onError
-    }))
-  },
+  // NOT USED
+  // getPreferredProductDetailsForType: ({accessType, onSuccess, onError}) => {
+  //   const productId = AccessManager.preferredProductForType(accessType)
+  //   return (AccessManager.fetchProductDetails({
+  //     productId,
+  //     onSuccess: (details) => onSuccess({ productId, ...details }),
+  //     onError
+  //   }))
+  // },
 
-  hasPremiumAccess: ({accessType, accessKey}) => {
-    const purchases = _profile.purchases
-    return AccessManager.hasAccess({purchases, accessType, accessKey})
-  },
+  // MOVED INTO AccessManager
+  // hasPremiumAccess: ({accessType, accessKey}) => {
+  //   const purchases = _profile.purchases
+  //   return AccessManager.hasAccess({purchases, accessType, accessKey})
+  // },
 
-  unlockPremiumAccess: ({productId, accessType, accessKey, onSuccess, onError}) => {
+  // MOVED INTO AccessManager
+  // unlockPremiumAccess: ({productId, accessType, accessKey, onSuccess, onError}) => {
+  //   const purchases = new Set(_profile.purchases)
+  //   if (purchases.has(productId)) {
+  //     onSuccess()
+  //   }
+  //
+  //   AccessManager.unlockAccess({
+  //     productId,
+  //     accessType,
+  //     accessKey,
+  //     onSuccess: (transaction) => {
+  //       purchases.add(productId)
+  //       api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
+  //         _profile.purchases = purchased
+  //         onSuccess()
+  //       })
+  //       api.userProfile.upsertUserTransaction(_profile.uid, transaction)
+  //     },
+  //     onError: (error) => onError(error)
+  //   })
+  // },
+
+  addPurchase: ({productId, transaction, onComplete}) => {
     const purchases = new Set(_profile.purchases)
-    if (purchases.has(productId)) {
-      onSuccess()
-    }
-
-    AccessManager.unlockAccess({
-      productId,
-      accessType,
-      accessKey,
-      onSuccess: (transaction) => {
-        purchases.add(productId)
-        api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
-          _profile.purchases = purchased
-          onSuccess()
-        })
-        api.userProfile.upsertUserTransaction(_profile.uid, transaction)
-      },
-      onError: (error) => onError(error)
+    purchases.add(productId)
+    api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
+      _profile.purchases = purchased
+      onComplete()
     })
+    api.userProfile.upsertUserTransaction(_profile.uid, transaction)
   },
 }
 

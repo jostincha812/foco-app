@@ -12,7 +12,7 @@ import StyledText from '../lib/StyledText'
 import {ProUpgradeModal as IapModal} from '../iap'
 import AccessManager from '../auth/AccessManager'
 
-import { CollectionCard } from '../collections'
+import { CollectionCardsList, CollectionCard } from '../collections'
 
 export default class BaseCollectionsListContainer extends BaseContainer {
   constructor(props) {
@@ -296,23 +296,14 @@ export default class BaseCollectionsListContainer extends BaseContainer {
           { this._title && headerView }
 
           { collections &&
-            collectionsKeys.map((id, index) => {
-              const collection = {id, ...collections[id]}
-              const lastItem = (index == (collectionsKeys.length-1)) ? S.lists.lastItem : null
-              return (
-                <CollectionCard
-                  style={[S.lists.listItem, lastItem]}
-                  key={collection.id}
-                  type={collection.type}
-                  collection={collection}
-                  onPrefToggle={this.onPrefToggle}
-                  onPress={() => this.onCollectionPress(collection)}
-                  // TODO change to onUnlockPremiumAccess
-                  showIap={this.showIapModal}>
-                </CollectionCard>
-              )
-            }
-          )}
+            <CollectionCardsList
+              collections={collections}
+              keys={collectionsKeys}
+              onSelect={this.onCollectionPress}
+              onPrefChange={this.onPrefToggle}
+              onPremiumTrigger={this.showIapModal}
+            />
+          }
         </ScrollView>
 
         { this.state.showBackToTop && (

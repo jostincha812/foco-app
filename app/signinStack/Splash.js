@@ -5,7 +5,7 @@ import { View, StatusBar } from 'react-native'
 
 import { E, R } from '../constants'
 import S from '../styles'
-import BaseContainer from './BaseContainer'
+import BaseContainer from '../containers/BaseContainer'
 import LoadingIndicator from '../components/LoadingIndicator'
 
 import CurrentUser from '../auth/CurrentUser'
