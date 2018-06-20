@@ -11,7 +11,7 @@ const AccessManager = {
     const purchases = CurrentUser.purchases || []
     const fullAccessSet = new Set([
       C.IAP_EARLY_ADOPTER, C.IAP_FULL_ACCESS,
-      C.IAP_PROFESSIONAL_3,
+      C.IAP_PROFESSIONAL_2, C.IAP_PROFESSIONAL_3,
       C.IAP_PROFESSIONAL_5, C.IAP_PROFESSIONAL_10,
       C.IAP_PROFESSIONAL_15, C.IAP_PROFESSIONAL_20
     ])
@@ -67,6 +67,10 @@ const AccessManager = {
   preferredProductForType: (accessType = null) => {
     switch (accessType) {
       case C.ACCESS_PREMIUM_COLLECTION:
+        if (CurrentUser.profile.email == 'reviewers@vpqlabs.com' ||
+            CurrentUser.profile.email == 'tester+1@vpqlabs.com') {
+          return C.IAP_PROFESSIONAL_2
+        }
         // load from Firebase Remote Config
         return RemoteConfig.fullUpgradeProductId
       default:
