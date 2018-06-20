@@ -81,7 +81,9 @@ export default class ProUpgradeModal extends React.Component {
     // TODO localise
     const productInfo = product ? [
       `(price shown in ${product.currencyCode})`,
-      product.description
+      // product.description
+      'One time FULL upgrade',
+      'Access to all WSET-3 (Advanced)\nCollections and Flashcards'
     ] : []
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :
