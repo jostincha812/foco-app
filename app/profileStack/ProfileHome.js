@@ -56,13 +56,13 @@ class ProfileHome extends BaseContainer {
         label: C.VERSION,
         hideChevron: true,
       },
-      {
-        title: localize("auth.deleteAccount"),
-        color: T.colors.error,
-        icon: 'clear',
-        hideChevron: true,
-        onPress: () => this.setState({isModalVisible: true})
-      },
+      // {
+      //   title: localize("auth.deleteAccount"),
+      //   color: T.colors.error,
+      //   icon: 'clear',
+      //   hideChevron: true,
+      //   onPress: () => this.setState({isModalVisible: true})
+      // },
       // {
       //   title: localize("profile.share"),
       //   icon: 'share',
