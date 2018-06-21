@@ -14,6 +14,7 @@ export default events = {
   iap_modal_displayed: 'iap_modal_displayed',
   iap_purchase_initiated: 'iap_purchase_initiated',
   iap_purchase_cancelled: 'iap_purchase_cancelled',
+  iap_purchase_error: 'iap_purchase_error',
   iap_purchase_completed: 'iap_purchase_completed',
 
   user_action_list_scrolled: 'user_action_list_scrolled',
@@ -22,6 +23,7 @@ export default events = {
   user_action_collection_pref_updated: 'user_action_collection_pref_updated',
   user_action_collection_coming_soon: 'user_action_collection_coming_soon',
   user_action_flashcards_scrolled: 'user_action_flashcards_scrolled',
+  user_action_flashcard_flipped: 'user_action_flashcard_flipped',
   user_action_flashcard_selected: 'user_action_flashcard_selected',
   user_action_flashcard_pref_updated: 'user_action_flashcard_pref_updated',
 

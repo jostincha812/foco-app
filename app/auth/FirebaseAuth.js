@@ -66,6 +66,12 @@ const FirebaseAuth = class {
     firebase.auth().signOut();
   }
 
+  delete = (onComplete) => {
+    const _user = this.user
+    this.logout()
+    _user.delete().then(onComplete);
+  }
+
   loginWithFacebook = () => {
     Providers.Facebook.login(['public_profile', 'email', 'user_friends'])
       .then((token) => (

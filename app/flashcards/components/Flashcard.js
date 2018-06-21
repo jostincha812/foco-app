@@ -20,6 +20,7 @@ export default class Flashcard extends React.Component {
     this.state[C.KEY_PREF_FLAGGED] = false
 
     this.onPrefToggle = this.onPrefToggle.bind(this)
+    this.onCardPress = this.onCardPress.bind(this)
   }
 
   componentWillMount() {
@@ -42,6 +43,12 @@ export default class Flashcard extends React.Component {
     state[key] = !this.state[key]
     this.setState(state)
     this.props.onPrefToggle(id, state)
+  }
+
+  onCardPress() {
+    const id = this.props.data.id
+    this.setState({flipped: !this.state.flipped})
+    this.props.onCardFlip && this.props.onCardFlip(id)
   }
 
   render() {
@@ -83,7 +90,7 @@ export default class Flashcard extends React.Component {
         <TouchableOpacity
           style={styles.cardface}
           activeOpacity={1}
-          onPress={() => this.setState({flipped: !this.state.flipped})}
+          onPress={this.onCardPress}
         >
           {flagToggle}
           {starToggle}
@@ -101,7 +108,7 @@ export default class Flashcard extends React.Component {
           touchableLockOnly={true}
           accessType={C.ACCESS_CONSUMABLE_FLASHCARD}
           accessKey={props.data.id}
-          onPress={() => this.setState({flipped: !this.state.flipped})}
+          onPress={this.onCardPress}
           onTriggerIAP={props.onTriggerIAP}
         >
           {flagToggle}

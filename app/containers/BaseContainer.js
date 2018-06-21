@@ -21,6 +21,7 @@ export default class BaseContainer extends React.Component {
     this.showIapModal = this.showIapModal.bind(this)
     this.hideIapModal = this.hideIapModal.bind(this)
     this.onIapAttempt = this.onIapAttempt.bind(this)
+    this.onIapCancelled = this.onIapCancelled.bind(this)
     this.onIapSuccess = this.onIapSuccess.bind(this)
     this.onIapError = this.onIapError.bind(this)
 
@@ -106,7 +107,19 @@ export default class BaseContainer extends React.Component {
     })
   }
 
-  onIapSuccess(productId) {
+  onIapCancelled(productId, message) {
+    const user = this.props.user
+    this.logEvent(E.iap_purchase_cancelled, {
+      uid: user.uid,
+      ...this._screen,
+      productId
+    })
+    this.hideIapModal()
+    this.errorToast(message)
+  }
+
+  // TODO: localise
+  onIapSuccess(productId, message) {
     const user = this.props.user
     this.logEvent(E.iap_purchase_completed, {
       uid: user.uid,
@@ -114,21 +127,19 @@ export default class BaseContainer extends React.Component {
       ...this._screen,
       productId
     })
-    // this.setState({isIapVisible: false})
     this.hideIapModal()
-    this.successToast('Purchase successful!')
+    this.successToast(message)
   }
 
-  onIapError(error, productId) {
+  onIapError(productId, message) {
     const user = this.props.user
-    this.logEvent(E.iap_purchase_cancelled, {
+    this.logEvent(E.iap_purchase_error, {
       uid: user.uid,
       ...this._screen,
       productId
     })
-    // this.setState({isIapVisible: false})
     this.hideIapModal()
-    this.errorToast(error)
+    this.errorToast(message)
   }
 
   render() {

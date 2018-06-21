@@ -76,6 +76,7 @@ export default class CollectionsListContainer extends BaseListContainer {
         isVisible={isIapVisible}
         onDismiss={this.hideIapModal}
         onAttempt={this.onIapAttempt}
+        onCancel={this.onIapCancelled}
         onSuccess={this.onIapSuccess}
         onError={this.onIapError} />
     )

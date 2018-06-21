@@ -44,18 +44,25 @@ export default class ProUpgradeModal extends React.Component {
       { title: 'Purchasing...', icon: 'sync', buttonStyle: {marginTop:S.spacing.small} } :
       { title: 'UPGRADE NOW', icon: 'lock-open', buttonStyle: {marginTop:S.spacing.small} }
 
+    const productId = product ? product.productId : null
     const purchaseButtonPress = this.state.processing ? () => {} : () => {
       this.setState({processing: true})
-      props.onAttempt(product.productId)
+      props.onAttempt(productId)
       AccessManager.unlockAccess({
-        productId: product.productId,
+        productId: productId,
         accessType: this.ACCESS_TYPE,
         accessKey: null,
-        onSuccess: () => props.onSuccess(product.productId),
-        onError: (error) => {
+        onSuccess: (message) => {
           this.setState({processing: false})
-          // TODO localise
-          props.onError(error)
+          props.onSuccess(productId, message)
+        },
+        onCancel: (message) => {
+          this.setState({processing: false})
+          props.onCancel(productId, message)
+        },
+        onError: (message) => {
+          this.setState({processing: false})
+          props.onError(productId, message)
         }
       })
       // CurrentUser.unlockPremiumAccess({
@@ -81,7 +88,9 @@ export default class ProUpgradeModal extends React.Component {
     // TODO localise
     const productInfo = product ? [
       `(price shown in ${product.currencyCode})`,
-      product.description
+      // product.description
+      'One time FULL upgrade',
+      'Access to all WSET-3 (Advanced)\nCollections and Flashcards'
     ] : []
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :

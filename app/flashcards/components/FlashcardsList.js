@@ -26,6 +26,7 @@ const FlashcardsList = (props) => {
               data={item}
               prefs={item.prefs}
               onPrefToggle={props.onPrefToggle}
+              onCardFlip={props.onCardFlip}
               onTriggerIAP={props.onTriggerIAP}
             />
           )

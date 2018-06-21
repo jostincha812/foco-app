@@ -33,7 +33,7 @@ export default class UserProfile extends React.Component {
   }
 
   render() {
-    const profile = this.props.profile
+    const profile = this.props.profile || {}
     const style = this.props.style
     const hasPhoto = profile.photoURL ? true : false
 
