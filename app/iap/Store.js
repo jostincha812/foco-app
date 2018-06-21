@@ -12,7 +12,7 @@ const loadProduct = ({productId, onSuccess, onError}) => {
   })
 }
 
-const purchaseProduct = ({productId, onSuccess, onError}) => {
+const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
   // test to see if user is allowed to make purchases first
   InAppUtils.canMakePayments((canMakePayments) => {
     if(!canMakePayments) {
@@ -22,14 +22,49 @@ const purchaseProduct = ({productId, onSuccess, onError}) => {
     }
   })
 
-console.log(productId)
+  // Mapping from error codes returned by In-App-Utils to Apple's StoreKit errors.
+  // See: https://developer.apple.com/documentation/storekit/skerror.code
+  // NOTE: RCTJSErrorFromNSError prepends ESKERRORDOMAIN to make errors unique across
+  //       iOS domains.
+  var STORE_KIT_ERRORS = {
+    ESKERRORDOMAIN0: 'unknown',
+    ESKERRORDOMAIN1: 'client_invalid',
+    ESKERRORDOMAIN2: 'payment_canceled',
+    ESKERRORDOMAIN3: 'payment_invalid',
+    ESKERRORDOMAIN4: 'payment_not_allowed',
+    ESKERRORDOMAIN5: 'store_product_not_available',
+    ESKERRORDOMAIN6: 'cloud_service_permission_denied',
+    ESKERRORDOMAIN7: 'cloud_service_network_connection_failed',
+    ESKERRORDOMAIN8: 'unknown'
+  };
+
   // attempt purchase
   InAppUtils.purchaseProduct(productId, (error, response) => {
     if(response && response.productIdentifier) {
-      onSuccess(response)
+      // TODO: localise
+      onSuccess('Purchase successful!')
     } else {
+      console.log(`Error purchasing product ${productId}`)
       console.log(error)
-      onError(error.message)
+      const { code, message } = error
+      switch (STORE_KIT_ERRORS[code]) {
+        case STORE_KIT_ERRORS.ESKERRORDOMAIN2:
+          // TODO: localise
+          onCancel('Transaction cancelled')
+          break;
+        case STORE_KIT_ERRORS.ESKERRORDOMAIN3:
+        case STORE_KIT_ERRORS.ESKERRORDOMAIN4:
+          // TODO: localise
+          onError('Payment not accepted by App Store')
+          break;
+        case STORE_KIT_ERRORS.ESKERRORDOMAIN5:
+          // TODO: localise
+          onError('Error loading product from App Store')
+          break;
+        default:
+          // TODO: localise
+          onError(message)
+      }
     }
   })
 }

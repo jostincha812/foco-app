@@ -44,7 +44,7 @@ const AccessManager = {
     return hasAccess
   },
 
-  unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onError}) => {
+  unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onCancel, onError}) => {
     const purchases = new Set(CurrentUser.purchases)
     if (purchases.has(productId)) {
       onSuccess()
@@ -59,6 +59,7 @@ const AccessManager = {
           onComplete: onSuccess
         })
       },
+      onCancel,
       onError
     })
   },
