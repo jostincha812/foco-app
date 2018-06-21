@@ -122,4 +122,6 @@
 ## 1.2
 * IAP price testing
 * Unlock from User Profile
-* Refactored component responsibilities in IAP flow
+* (1.2.41) Refactored component responsibilities in IAP flow
+* (1.2.42) Logging flashcard flips
+* (1.2.42) Showing IAP cancel and error messages separately
