@@ -11,6 +11,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
   constructor(props) {
     super(props)
     this.onPrefToggle = this.onPrefToggle.bind(this)
+    this.onCardFlip = this.onCardFlip.bind(this)
   }
 
   get _paging() {
@@ -46,6 +47,15 @@ export default class FlashcardsListContainer extends BaseListContainer {
     })
   }
 
+  onCardFlip(flashcardId) {
+    const user = this.props.user
+    this.logEvent(E.user_action_flashcard_flipped, {
+      uid: user.uid,
+      flashcardId,
+      ...this._screen,
+    })
+  }
+
   _updatePref(options) {
     // no-op - to be overridden by subclass
   }
@@ -73,6 +83,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
           dimensions={dimensions}
           flashcards={flashcards}
           onPrefToggle={this.onPrefToggle}
+          onCardFlip={this.onCardFlip}
           onTriggerIAP={() => this.showIapModal(this._iapProductId)}
         />
       )
