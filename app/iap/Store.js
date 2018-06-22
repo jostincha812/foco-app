@@ -42,7 +42,7 @@ const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
   InAppUtils.purchaseProduct(productId, (error, response) => {
     if(response && response.productIdentifier) {
       // TODO: localise
-      onSuccess('Purchase successful!')
+      onSuccess(response, 'Purchase successful!')
     } else {
       console.log(`Error purchasing product ${productId}`)
       console.log(error)

@@ -32,7 +32,7 @@ class ProfileHome extends BaseContainer {
 
   render() {
     const props = this.props
-    const profile = CurrentUser.profile
+    const profile = props.profile
 
     const list = [
       // {
@@ -162,6 +162,7 @@ class ProfileHome extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
+    profile: CurrentUser.profile,
   }
 }
 

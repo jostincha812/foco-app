@@ -52,11 +52,11 @@ const AccessManager = {
 
     Store.purchaseProduct({
       productId,
-      onSuccess: (transaction) => {
+      onSuccess: (transaction, message) => {
         CurrentUser.addPurchase({
           productId,
           transaction,
-          onComplete: onSuccess
+          onComplete: () => onSuccess(message)
         })
       },
       onCancel,
