@@ -118,7 +118,6 @@ export default class BaseContainer extends React.Component {
     this.errorToast(message)
   }
 
-  // TODO: localise
   onIapSuccess(productId, message) {
     const user = this.props.user
     this.logEvent(E.iap_purchase_completed, {
