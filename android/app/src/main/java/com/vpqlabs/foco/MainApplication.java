@@ -1,4 +1,4 @@
-package com.vpqlabs.focoapp;
+package com.vpqlabs.foco;
 
 import android.app.Application;
 
