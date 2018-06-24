@@ -137,50 +137,22 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-i18n')
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
-    compile project(':react-native-facebook-login')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-i18n')
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
-    compile project(':react-native-facebook-login')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-i18n')
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
-    compile project(':react-native-facebook-login')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-i18n')
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
-    compile project(':react-native-facebook-login')
-    compile project(':react-native-i18n')
-    compile project(':react-native-facebook-login')
     // Google dependencies
-    compile 'com.google.android.gms:play-services-base:11.4.2'
-    compile 'com.google.android.gms:play-services-auth:11.4.2'
-    compile 'com.google.android.gms:play-services-analytics:11.4.2'
-    compile 'com.google.android.gms:play-services-ads:11.4.2'
+    compile 'com.google.android.gms:play-services-base:11.8.0'
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
+    compile 'com.google.android.gms:play-services-analytics:11.8.0'
+    compile 'com.google.android.gms:play-services-ads:11.8.0'
     // Firebase dependencies
-    compile 'com.google.firebase:firebase-core:11.4.2'
-    compile 'com.google.firebase:firebase-config:11.4.2'
-    compile 'com.google.firebase:firebase-database:11.4.2'
-    compile 'com.google.firebase:firebase-auth:11.4.2'
-    compile 'com.google.firebase:firebase-crash:11.4.2'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-config:11.8.0'
+    compile 'com.google.firebase:firebase-database:11.8.0'
+    compile 'com.google.firebase:firebase-auth:11.8.0'
+    compile 'com.google.firebase:firebase-crash:11.8.0'
     // React Native dependencies
+    compile project(':react-native-facebook-login')
     compile project(':react-native-vector-icons')
     compile project(':react-native-spinkit')
+    compile project(':react-native-i18n')
     compile(project(':react-native-firebase')) {
         transitive = false
     }
