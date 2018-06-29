@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'react-native'
 import { Animated, LayoutAnimation } from 'react-native'
+import { Platform } from 'react-native'
 
 import { E } from '../constants'
 import S from '../styles'
@@ -151,10 +152,15 @@ export default class BaseListContainer extends BaseContainer {
       />
     )
 
+    let stickiedStyle = S.navigation.stickiedHeader
+    if (Platform.OS == 'android') {
+      stickiedStyle = { ...S.navigation.stickiedHeader, ...S.navigation.stickiedHeaderAndroid }
+    }
+
     const headerView = (
       <Animated.View
         onLayout={this.onTitleLayout}
-        style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
+        style={[S.containers.header, this.state.stickied ? stickiedStyle : S.navigation.floatingHeader]}
       >
         <View style={{flex:1, justifyContent:'flex-end'}}>
           <Text style={this.state.stickied ? S.navigation.stickiedHeaderTextStyle : S.navigation.floatingHeaderTextStyle}>

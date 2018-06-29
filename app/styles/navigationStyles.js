@@ -50,6 +50,11 @@ export default navigationStyles = {
     ...containers.cards.raised,
   },
 
+  stickiedHeaderAndroid: {
+    alignItems: 'flex-start',
+    paddingLeft: spacing.normal,
+  },
+
   stickiedHeaderTextStyle: {
     fontWeight: F.weights.hero,
     fontSize: F.sizes.normal,
