@@ -22,15 +22,15 @@ const AppTabNavigator = TabNavigator(TABS, {
   animationEnabled: false,
   tabBarPosition: 'bottom',
   tabBarComponent: TabBarBottom,
-  navigationOptions: ({navigation}) => ({
-    tabBarVisible: true,
-    gesturesEnabled: false,
-  }),
   tabBarOptions: {
     showIcon: true,
     showLabel: false,
     ...S.navigation.tabBarOptions,
   },
+  navigationOptions: ({navigation}) => ({
+    tabBarVisible: true,
+    gesturesEnabled: false,
+  }),
 })
 
 export default AppTabNavigator

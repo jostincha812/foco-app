@@ -1,8 +1,10 @@
 import React from 'react'
+import { Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { Map } from 'immutable'
 
 import C, { E, R } from '../constants'
+import S from '../styles'
 import { localize } from '../locales'
 
 import FlashcardsListContainer from '../containers/FlashcardsListContainer'
@@ -17,6 +19,9 @@ class StarredHome extends FlashcardsListContainer {
     if (navigation.state.params) {
       return ({
         title: localize("starred.title"),
+        headerStyle: {
+          paddingLeft: Platform.OS === 'ios' ? 0 : S.spacing.small,
+        },
         headerRight: (
           <NavHeaderFilterToggleButton
             toggled={navigation.state.params.filtered}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Platform } from 'react-native'
 import { connect } from 'react-redux'
 
 import { ScrollView, StatusBar, Linking, View, Text } from 'react-native'
@@ -21,6 +22,9 @@ class ProfileHome extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: localize("profile.title"),
+      headerStyle: {
+        paddingLeft: Platform.OS === 'ios' ? 0 : S.spacing.small,
+      },
     })
   }
 
