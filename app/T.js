@@ -34,6 +34,7 @@ export default FocoTheme = {
     ghostWhite: '#ffffff66',
     translucentBlack: '#00000033',
     translucentWhite: '#ffffffdd',
+    translucentBackground: '#ECEFF1dd', // blue grey 50
 
     facebook: '#3b5998',
     google: '#4285F4',

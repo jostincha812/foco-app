@@ -41,6 +41,7 @@ export default class FeedbackForm extends React.Component {
           </Text>
           <TextInput
             style={S.form.input}
+            underlineColorAndroid="transparent"
             value={this.state.name}
             onChangeText={(text) => this.onInputTextChange('name', text)}
             ref={(r) => { this._name = r }}
@@ -55,6 +56,7 @@ export default class FeedbackForm extends React.Component {
           </Text>
           <TextInput
             style={S.form.input}
+            underlineColorAndroid="transparent"
             value={this.state.email}
             keyboardType='email-address'
             onChangeText={(text) => this.onInputTextChange('email', text)}
@@ -70,6 +72,7 @@ export default class FeedbackForm extends React.Component {
           </Text>
           <TextInput
             style={S.form.input}
+            underlineColorAndroid="transparent"
             value={this.state.feedback}
             onChangeText={(text) => this.onInputTextChange('feedback', text)}
             multiline={true}

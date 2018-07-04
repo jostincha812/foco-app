@@ -1,5 +1,5 @@
 import React from 'react'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, TabBarBottom } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -20,15 +20,17 @@ const AppTabNavigator = TabNavigator(TABS, {
   lazy: true,
   swipeEnabled: false,
   animationEnabled: false,
-  navigationOptions: ({navigation}) => ({
-    tabBarVisible: true,
-    gesturesEnabled: false,
-  }),
+  tabBarPosition: 'bottom',
+  tabBarComponent: TabBarBottom,
   tabBarOptions: {
     showIcon: true,
     showLabel: false,
     ...S.navigation.tabBarOptions,
   },
+  navigationOptions: ({navigation}) => ({
+    tabBarVisible: true,
+    gesturesEnabled: false,
+  }),
 })
 
 export default AppTabNavigator

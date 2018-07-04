@@ -34,11 +34,13 @@ export default navigationStyles = {
     height: Header.HEIGHT,
     backgroundColor: T.colors.containerBackground,
     borderBottomWidth: 0,
+    justifyContent: 'flex-end',
   },
 
   floatingHeaderTextStyle: {
     fontWeight: F.weights.hero,
     fontSize: F.sizes.large,
+    color: T.colors.normal,
   },
 
   stickiedHeader: {
@@ -46,13 +48,21 @@ export default navigationStyles = {
     backgroundColor: T.colors.containerBackground,
     borderBottomColor: T.colors.headerBorder,
     borderBottomWidth: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
     ...containers.cards.raised,
+  },
+
+  stickiedHeaderAndroid: {
+    alignItems: 'flex-start',
+    paddingLeft: spacing.normal,
+    backgroundColor: T.colors.translucentBackground,
   },
 
   stickiedHeaderTextStyle: {
     fontWeight: F.weights.hero,
     fontSize: F.sizes.normal,
+    color: T.colors.normal,
   },
 
   // navigation header styles

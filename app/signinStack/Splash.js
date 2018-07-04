@@ -6,9 +6,8 @@ import { View, StatusBar } from 'react-native'
 import { E, R } from '../constants'
 import S from '../styles'
 import BaseContainer from '../containers/BaseContainer'
-import LoadingIndicator from '../components/LoadingIndicator'
-
 import CurrentUser from '../auth/CurrentUser'
+import SplashInner from './SplashInner'
 
 class Splash extends BaseContainer {
   static navigationOptions = ({navigation}) => {
@@ -70,10 +69,11 @@ class Splash extends BaseContainer {
   }
 
   render() {
+    var { dimensions } = this.state
     return (
       <View style={[S.containers.screen, S.containers.centered, S.containers.splashScreen]}>
          <StatusBar barStyle={S.statusBarStyle} />
-         <LoadingIndicator large={true} inverse={true} />
+         <SplashInner style={{}} dimensions={dimensions} />
       </View>
     )
   }

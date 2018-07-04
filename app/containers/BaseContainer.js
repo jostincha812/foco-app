@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StatusBar } from 'react-native'
+import { Platform } from 'react-native'
 import Toast from 'react-native-root-toast'
 
 import { fbAnalytics } from '../../configureFirebase'
@@ -29,7 +29,7 @@ export default class BaseContainer extends React.Component {
   }
 
   logEvent(event, params) {
-    fbAnalytics.logEvent(event, { ...this._screen, ...params })
+    fbAnalytics.logEvent(event, { platform:Platform.OS, ...this._screen, ...params })
   }
 
   setScreen({ screenName, className }) {
