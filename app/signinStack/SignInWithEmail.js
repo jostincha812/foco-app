@@ -73,6 +73,7 @@ export default class SignInWithEmail extends BaseContainer {
 
                 <TextInput
                   style={S.form.input}
+                  underlineColorAndroid="transparent"
                   autoCapitalize='none'
                   autoCorrect={false}
                   keyboardType='email-address'
@@ -84,6 +85,7 @@ export default class SignInWithEmail extends BaseContainer {
                 />
                 <TextInput
                   style={S.form.input}
+                  underlineColorAndroid="transparent"
                   autoCapitalize='none'
                   autoCorrect={false}
                   keyboardType='default'
