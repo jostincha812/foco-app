@@ -11,6 +11,7 @@ import com.react.rnspinkit.RNSpinkitPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.magus.fblogin.FacebookLoginPackage;
 import com.facebook.soloader.SoLoader;
+import com.idehub.Billing.InAppBillingBridgePackage;
 
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
           new MainReactPackage(),
+          new InAppBillingBridgePackage(),
           new RNFirebasePackage(),
           new RNFirebaseAnalyticsPackage(),
           new RNFirebaseAuthPackage(),
