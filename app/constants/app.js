@@ -2,7 +2,7 @@ export default {
   FOCO: 'Foco:3',
   VPQLABS: 'by VPQLabs',
   // TODO update after android IAP is sorted
-  VERSION: '1.0.0',
+  VERSION: '10.0.0',
   WSET3: 'WSET3',
   WSET2: 'WSET2',
 
