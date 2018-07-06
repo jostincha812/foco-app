@@ -55,8 +55,11 @@ export default navigationStyles = {
 
   stickiedHeaderAndroid: {
     alignItems: 'flex-start',
-    paddingLeft: spacing.normal,
-    backgroundColor: T.colors.translucentBackground,
+    paddingLeft: spacing.normal + 8,
+    paddingBottom: 10,
+    backgroundColor: T.colors.contentBackground,
+    elevation: 4,
+    marginBottom: 6
   },
 
   stickiedHeaderTextStyle: {
@@ -80,7 +83,7 @@ export default navigationStyles = {
       backgroundColor: T.colors.containerBackground,
       borderBottomWidth: 1,
       borderBottomColor: T.colors.headerBorder,
-      elevation: 0,
+      elevation: 4,
       ...containers.cards.raised,
     },
   },

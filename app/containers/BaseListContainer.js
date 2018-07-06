@@ -93,9 +93,9 @@ export default class BaseListContainer extends BaseContainer {
       this.setState({ reachedEnd: false })
     }
 
-    if (!this.state.stickied && yOffset > this._titleLoc) {
+    if (!this.state.stickied && yOffset > this._titleLoc + 10) {
       this.setState({stickied: true})
-    } else if (this.state.stickied && yOffset < this._titleLoc - 1) {
+    } else if (this.state.stickied && yOffset < this._titleLoc + 10) {
       this.setState({stickied: false})
     }
   }
