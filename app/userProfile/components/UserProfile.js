@@ -44,7 +44,9 @@ export default class UserProfile extends React.Component {
       },
       {
         title: localize("profile.access"),
-        value: localize(`roles.${CurrentUser.accessLevel}`),
+        // TODO revert after Google IAP
+        value: localize(`roles.${'IAP_EARLY_ADOPTER'}`),
+        // value: localize(`roles.${CurrentUser.accessLevel}`),
       },
       {
         title: localize("profile.authenticationMethod"),

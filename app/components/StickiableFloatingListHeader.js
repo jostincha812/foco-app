@@ -15,6 +15,8 @@ class StickyListHeader extends React.Component {
     const duration = 450
 
     if (nextProps.isStickied != this.props.isStickied) {
+      this.setState({ isStickied: nextProps.isStickied })
+
       const toValue = nextProps.isStickied ? 0.05 : 1
       Animated.timing(
         this.animation,
@@ -41,18 +43,25 @@ class StickyListHeader extends React.Component {
   render() {
     const props = this.props
     const { isStickied } = this.state
+    const { onLayout, headerText, actionComponent } = props
 
     const containerStyle = S.navigation.floatingHeader
     let stickiedContainerStyle = S.navigation.stickiedHeader
     if (Platform.OS == 'android') {
       stickiedContainerStyle = Object.assign(stickiedContainerStyle, S.navigation.stickiedHeaderAndroid)
     }
+    const backgroundColor = this.animation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [stickiedContainerStyle.backgroundColor, containerStyle.backgroundColor]
+    });
+    const paddingLeft = this.animation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [stickiedContainerStyle.paddingLeft, S.containers.header.paddingLeft]
+    });
+    const style = [props.style, S.containers.header, isStickied ? stickiedContainerStyle : containerStyle, {backgroundColor, paddingLeft}]
 
     const headerStyle = S.navigation.floatingHeaderTextStyle
     const stickiedHeaderStyle = S.navigation.stickiedHeaderTextStyle
-
-    const { onLayout, headerText, actionComponent } = props
-    const style = [props.style, S.containers.header, isStickied ? stickiedContainerStyle : containerStyle]
     const textStyle = isStickied ? stickiedHeaderStyle : headerStyle
 
     const fontSize = this.animation.interpolate({

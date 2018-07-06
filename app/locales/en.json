@@ -53,7 +53,7 @@
   },
 
   "roles": {
-    "IAP_EARLY_ADOPTER": "Early Adoptor All Access",
+    "IAP_EARLY_ADOPTER": "Early Adopter",
     "IAP_FREE_ACCESS": "Free Access",
     "IAP_FULL_ACCESS": "Full Access",
     "ROLE_USER": "User",

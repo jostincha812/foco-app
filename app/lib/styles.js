@@ -115,6 +115,17 @@ export default styles = {
       color: DefaultTheme.color,
       backgroundColor: 'transparent',
     },
+    tagline: {
+      fontWeight: weights.light,
+      fontSize: sizes.large,
+      color: DefaultTheme.color,
+    },
+    taglineLarge: {
+      fontWeight: weights.light,
+      fontSize: sizes.xlarge,
+      fontStyle: 'italic',
+      color: DefaultTheme.color,
+    },
     title: {
       fontWeight: weights.bold,
       fontSize: sizes.large,

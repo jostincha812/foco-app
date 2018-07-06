@@ -18,9 +18,12 @@ const SplashInner = (props) => {
         padding:S.spacing.xxlarge, paddingBottom:0,
         justifyContent:'center'}}
       >
-        <StyledText textAlign="center" textStyle="subtitle" color={T.colors.inverse}>
-          {/* TODO localise */}
-          Are you ready for your exam?
+        {/* TODO localise */}
+        <StyledText textAlign="center" textStyle="tagline" color={T.colors.inverse}>
+          Are you ready for your
+        </StyledText>
+        <StyledText textAlign="center" textStyle="taglineLarge" color={T.colors.inverse}>
+          WSET3 exam?
         </StyledText>
       </View>
     </View>
