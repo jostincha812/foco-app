@@ -57,7 +57,8 @@ class ProfileHome extends BaseContainer {
       {
         title: localize("profile.version"),
         icon: 'info',
-        label: C.VERSION,
+        // TODO go back to C.VERSION after Google IAP
+        label: '1.0.0',
         hideChevron: true,
       },
       // {
