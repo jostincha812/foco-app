@@ -86,6 +86,12 @@ export default class CollectionsListContainer extends BaseListContainer {
     const collections = props.collections ? props.collections : {}
     const keys = Object.keys(collections).sort().reverse()
 
+    // TODO refactor out
+    const user = props.user
+    const onTriggerIAP = (user.email === 'reviewers@vpqlabs.com') ?
+      () => this.showReviewerIap() :
+      () => this.showIapModal(this._iapProductId)
+
     if (collections) {
       return (
         <CollectionCardsList
@@ -93,7 +99,7 @@ export default class CollectionsListContainer extends BaseListContainer {
           collections={collections}
           onSelect={this.onCollectionPress}
           onPrefChange={this.onPrefToggle}
-          onTriggerIAP={() => this.showIapModal(this._iapProductId)}
+          onTriggerIAP={onTriggerIAP}
         />
       )
     }

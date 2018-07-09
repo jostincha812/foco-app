@@ -16,7 +16,7 @@ let CACHE_DURATION = 43200
 // TODO remove from production with flag
 // if (__DEV__) {
   firebase.config().enableDeveloperMode();
-  CACHE_DURATION = 5
+  CACHE_DURATION = 0
 // }
 
 // Set default values

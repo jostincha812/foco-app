@@ -24,6 +24,7 @@ export default class BaseContainer extends React.Component {
     this.onIapCancelled = this.onIapCancelled.bind(this)
     this.onIapSuccess = this.onIapSuccess.bind(this)
     this.onIapError = this.onIapError.bind(this)
+    this.showReviewerIap = this.showReviewerIap.bind(this)
 
     this.state = { dimensions: undefined, refreshing: false, isIapVisible: false  }
   }
@@ -139,6 +140,10 @@ export default class BaseContainer extends React.Component {
     })
     this.hideIapModal()
     this.errorToast(message)
+  }
+
+  showReviewerIap() {
+    console.log('Showing Reviewer IAP')
   }
 
   render() {

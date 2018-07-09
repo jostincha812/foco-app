@@ -48,6 +48,10 @@ class RecommendedHome extends CollectionsListContainer {
       pref,
     )
   }
+
+  showReviewerIap() {
+    this.props.navigation.navigate(R.NAV_RECOMMENDED_GO_PREMIUM)
+  }
 }
 
 const ns = R.NAV_RECOMMENDED_HOME

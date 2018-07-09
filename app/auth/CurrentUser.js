@@ -68,6 +68,15 @@ const CurrentUser = {
     }
   },
 
+  get isReviewer() {
+    // TODO use dev flag
+    if (_profile.email == 'reviewers@vpqlabs.com') {
+      return true
+    } else {
+      return false
+    }
+  },
+
   get accessLevel() {
     if (AccessManager.hasAccess({accessType: C.ACCESS_FULL, purchases:_profile.purchases})) {
       return C.IAP_FULL_ACCESS
@@ -79,45 +88,6 @@ const CurrentUser = {
   signOut: () => {
     FirebaseAuth.logout()
   },
-
-  // NOT USED
-  // getPreferredProductDetailsForType: ({accessType, onSuccess, onError}) => {
-  //   const productId = AccessManager.preferredProductForType(accessType)
-  //   return (AccessManager.fetchProductDetails({
-  //     productId,
-  //     onSuccess: (details) => onSuccess({ productId, ...details }),
-  //     onError
-  //   }))
-  // },
-
-  // MOVED INTO AccessManager
-  // hasPremiumAccess: ({accessType, accessKey}) => {
-  //   const purchases = _profile.purchases
-  //   return AccessManager.hasAccess({purchases, accessType, accessKey})
-  // },
-
-  // MOVED INTO AccessManager
-  // unlockPremiumAccess: ({productId, accessType, accessKey, onSuccess, onError}) => {
-  //   const purchases = new Set(_profile.purchases)
-  //   if (purchases.has(productId)) {
-  //     onSuccess()
-  //   }
-  //
-  //   AccessManager.unlockAccess({
-  //     productId,
-  //     accessType,
-  //     accessKey,
-  //     onSuccess: (transaction) => {
-  //       purchases.add(productId)
-  //       api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
-  //         _profile.purchases = purchased
-  //         onSuccess()
-  //       })
-  //       api.userProfile.upsertUserTransaction(_profile.uid, transaction)
-  //     },
-  //     onError: (error) => onError(error)
-  //   })
-  // },
 
   addPurchase: ({productId, transaction, onComplete}) => {
     const purchases = new Set(_profile.purchases)
