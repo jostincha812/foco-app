@@ -30,9 +30,15 @@ class ProfileHome extends BaseContainer {
     this.setScreen({screenName:R.NAV_USER_PROFILE_HOME, className:'ProfileHome'})
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.user !== prevProps.user) {
+      this.setState({user: this.props.user})
+    }
+  }
+
   render() {
     const props = this.props
-    const profile = props.profile
+    const profile = props.user
 
     const list = [
       {
@@ -167,7 +173,7 @@ class ProfileHome extends BaseContainer {
 
 function mapStateToProps (state) {
   return {
-    profile: CurrentUser.profile,
+    user: state.userProfile.data ? state.userProfile.data : null,
   }
 }
 

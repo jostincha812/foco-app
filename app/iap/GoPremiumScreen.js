@@ -7,6 +7,7 @@ import S from '../styles'
 import T from '../T'
 import { localize } from '../locales'
 import { normalize } from '../lib/utils'
+import { actions as UserProfileActions } from '../userProfile'
 
 import BaseContainer from '../containers/BaseContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
@@ -43,14 +44,11 @@ class GoPremiumScreen extends BaseContainer {
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-  }
-
   onSelectOption(productId) {
     AccessManager.unlockAccess({productId,
       onSuccess: (message) => {
         this.setState({updated: true})
+        this.props.fetchUserProfile()
         this.successToast(`Success: ${message}`)
       },
       onError: (error) => this.errorToast(`Error: ${error}`)
@@ -148,13 +146,14 @@ const styles = {
 
 function mapStateToProps (state) {
   return {
-    profile: CurrentUser.profile,
+    user: state.userProfile.data ? state.userProfile.data : {},
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     dispatch,
+    fetchUserProfile: () => dispatch(UserProfileActions.fetchUserProfile(CurrentUser.profile.uid)),
   }
 }
 

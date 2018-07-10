@@ -19,6 +19,10 @@ export default class UserProfile extends React.Component {
   }
 
   authMethod(profile) {
+    if (!profile.providerData) {
+      return null
+    }
+    
     const providerId = profile.providerData[0].providerId
     if (providerId == 'facebook.com') {
       return 'Facebook'

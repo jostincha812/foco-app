@@ -37,8 +37,14 @@ export default class BaseListContainer extends BaseContainer {
     this._cancelFetch()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.ready && !this.props.ready) {
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.ready && !this.props.ready) {
+  //     this.setState({refreshing: false})
+  //   }
+  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.ready && !prevProps.ready) {
       this.setState({refreshing: false})
     }
   }
@@ -50,7 +56,7 @@ export default class BaseListContainer extends BaseContainer {
   setTitle(title) {
     this._title = title
     if (title) {
-      this.setState({stickyTitle:true})
+      this.state.stickyTitle = true
     }
   }
 

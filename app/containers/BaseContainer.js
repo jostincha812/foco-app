@@ -29,6 +29,11 @@ export default class BaseContainer extends React.Component {
     this.state = { dimensions: undefined, refreshing: false, isIapVisible: false  }
   }
 
+  get user() {
+    // no-op - to be overridden by subclass
+    return {}
+  }
+
   logEvent(event, params) {
     fbAnalytics.logEvent(event, { platform:Platform.OS, ...this._screen, ...params })
   }
@@ -84,7 +89,7 @@ export default class BaseContainer extends React.Component {
   }
 
   showIapModal(productId) {
-    const user = this.props.user
+    const user = this.user
     this.logEvent(E.iap_modal_displayed, {
       uid: user.uid,
       email: user.email,
@@ -99,7 +104,7 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapAttempt(productId) {
-    const user = this.props.user
+    const user = this.user
     this.logEvent(E.iap_purchase_initiated, {
       uid: user.uid,
       email: user.email,
@@ -109,7 +114,7 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapCancelled(productId, message) {
-    const user = this.props.user
+    const user = this.user
     this.logEvent(E.iap_purchase_cancelled, {
       uid: user.uid,
       ...this._screen,
@@ -120,7 +125,7 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapSuccess(productId, message) {
-    const user = this.props.user
+    const user = this.user
     this.logEvent(E.iap_purchase_completed, {
       uid: user.uid,
       email: user.email,
@@ -132,7 +137,7 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapError(productId, message) {
-    const user = this.props.user
+    const user = this.user
     this.logEvent(E.iap_purchase_error, {
       uid: user.uid,
       ...this._screen,
@@ -143,7 +148,7 @@ export default class BaseContainer extends React.Component {
   }
 
   showReviewerIap() {
-    console.log('Showing Reviewer IAP')
+    // no-op - to be overridden by subclass
   }
 
   render() {

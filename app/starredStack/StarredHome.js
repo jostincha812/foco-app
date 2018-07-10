@@ -52,6 +52,10 @@ class StarredHome extends FlashcardsListContainer {
     })
   }
 
+  get user() {
+    return this.props.user || {}
+  }
+
   _fetchData() {
     const user = this.props.user
     this.setState({refreshing: true})
@@ -129,7 +133,7 @@ function mapStateToProps (state) {
   }
 
   return {
-    user: CurrentUser.profile,
+    user: state.userProfile.data ? state.userProfile.data : null,
     ready: state.flashcards[ns] ? state.flashcards[ns].status === C.FB_FETCHED : null,
     flashcards: state.flashcards[ns] ? state.flashcards[ns].data : null,
     isEmpty: isEmpty

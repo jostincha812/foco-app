@@ -20,20 +20,29 @@ class RecommendedHome extends CollectionsListContainer {
 
   constructor(props) {
     super(props)
+    this.setTitle(localize("home.title"))
     this.setScreen({screenName:R.NAV_RECOMMENDED_HOME, className:'RecommendedHome'})
+  }
+
+  get user() {
+    return this.props.user || {}
   }
 
   get _onSelectedRoute() {
     return R.NAV_RECOMMENDED_FLASHCARDS_VIEWER
   }
 
-  componentWillMount() {
-    this.setTitle(localize("home.title"))
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.user && this.props.user !== prevProps.user) {
+      this._fetchData()
+    }
   }
 
   _fetchData() {
     const user = this.props.user
-    this.props.fetchCollections(user.level, user.uid)
+    if (user) {
+      this.props.fetchCollections(user.level, user.uid)
+    }
   }
 
   _cancelFetch() {
@@ -57,7 +66,7 @@ class RecommendedHome extends CollectionsListContainer {
 const ns = R.NAV_RECOMMENDED_HOME
 function mapStateToProps (state) {
   return {
-    user: CurrentUser.profile,
+    user: state.userProfile.data ? state.userProfile.data : null,
     ready: state.collections[ns] ? state.collections[ns].status === C.FB_FETCHED : false,
     collections: state.collections[ns] ? state.collections[ns].data : {},
     isEmpty: state.collections[ns] && state.collections[ns].data && (Object.keys(state.collections[ns].data).length == 0)

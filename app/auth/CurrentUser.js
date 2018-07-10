@@ -1,10 +1,13 @@
 import C from '../constants'
-import firebase from '../../configureFirebase'
+// import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
 import { AccessManager } from '../iap'
 import api from '../data/api'
 
-let _profile = null
+import store from '../../configureStore'
+import { actions as UserProfileActions } from '../userProfile'
+
+// let profile = null
 let _unsubscribe = null
 
 const CurrentUser = {
@@ -16,16 +19,17 @@ const CurrentUser = {
       }
 
       api.userProfile.upsertUserProfile(user.uid, p).then(() => {
-        api.userProfile.getUserProfile(user.uid).then(profile => {
-          _profile = profile
+        store.dispatch(UserProfileActions.fetchUserProfile(user.uid))
+        // api.userProfile.getUserProfile(user.uid).then(profile => {
+          // profile = profile
           onInitialize && onInitialize()
           onLogin && onLogin(user)
-        })
+        // })
       })
     }
 
     const _onLogout = (user) => {
-      _profile = null
+      profile = null
       onLogout && onLogout(user)
     }
 
@@ -44,59 +48,67 @@ const CurrentUser = {
     _unsubscribe && _unsubscribe()
   },
 
+  signOut: () => {
+    FirebaseAuth.logout()
+  },
+
   get initialized() {
     return FirebaseAuth.initialized
   },
 
   get authenticated() {
-    return _profile ? true : false
+    return store.getState().userProfile ? true : false
+    // return profile ? true : false
   },
 
   get profile() {
-    return _profile
+    return store.getState().userProfile.data ? store.getState().userProfile.data : null
   },
 
   get purchases() {
-    return _profile.purchases
+    const profile = CurrentUser.profile
+    return profile ? profile.purchases : []
   },
 
   get isAdmin() {
-    if (_profile.roles && _profile.roles.includes(C.ROLE_ADMIN)) {
+    const profile = CurrentUser.profile
+    if (profile && profile.roles && profile.roles.includes(C.ROLE_ADMIN)) {
       return true
-    } else {
-      return false
     }
+    return false
   },
 
   get isReviewer() {
     // TODO use dev flag
-    if (_profile.email == 'reviewers@vpqlabs.com') {
+    const profile = CurrentUser.profile
+    if (profile && profile.email == 'reviewers@vpqlabs.com') {
       return true
-    } else {
-      return false
     }
+    return false
   },
 
   get accessLevel() {
-    if (AccessManager.hasAccess({accessType: C.ACCESS_FULL, purchases:_profile.purchases})) {
+    const profile = CurrentUser.profile
+    if (profile == null) {
+      return C.IAP_FREE_ACCESS
+    }
+
+    if (AccessManager.hasAccess({accessType: C.ACCESS_FULL, purchases:profile.purchases})) {
       return C.IAP_FULL_ACCESS
     } else {
-      return _profile.purchases[0]
+      return profile.purchases[0]
     }
   },
 
-  signOut: () => {
-    FirebaseAuth.logout()
-  },
-
   addPurchase: ({productId, transaction, onComplete}) => {
-    const purchases = new Set(_profile.purchases)
+    const profile = CurrentUser.profile
+    const purchases = new Set(profile.purchases)
     purchases.add(productId)
-    api.userProfile.upsertUserPurchases(_profile.uid, Array.from(purchases)).then(purchased => {
-      _profile.purchases = purchased
+    api.userProfile.upsertUserPurchases(profile.uid, Array.from(purchases)).then(purchased => {
+      profile.purchases = purchased
       onComplete()
     })
-    api.userProfile.upsertUserTransaction(_profile.uid, transaction)
+    api.userProfile.upsertUserTransaction(profile.uid, transaction)
   },
 }
 
