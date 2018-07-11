@@ -46,6 +46,7 @@ export default class Flashcard extends React.Component {
   }
 
   onCardPress() {
+    console.log(`${!this.state.flipped ? 'front' : 'back'} pressed`)
     const id = this.props.data.id
     this.setState({flipped: !this.state.flipped})
     this.props.onCardFlip && this.props.onCardFlip(id)
@@ -82,9 +83,10 @@ export default class Flashcard extends React.Component {
         flipHorizontal={true}
         flipVertical={false}
         flip={this.state.flipped}
-        clickable={true}
-        alignHeight={true}
-        alignWidth={true}
+        clickable={false}
+        // BUG alignHeight and alignWidth causing front side to be hidden initially
+        // alignHeight={true}
+        // alignWidth={true}
       >
 
         <TouchableOpacity
