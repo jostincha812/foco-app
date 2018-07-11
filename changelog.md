@@ -122,3 +122,7 @@
 ## 1.2
 * IAP price testing
 * Unlock from User Profile
+
+## 1.3
+* Using redux store for CurrentUser
+* Added _reviewers only_ GoPremiumScreen
