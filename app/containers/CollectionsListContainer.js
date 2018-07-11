@@ -32,36 +32,27 @@ export default class CollectionsListContainer extends BaseListContainer {
 
   onCollectionPress(collection) {
     const navigation = this.props.navigation
-    // const user = this.user
 
     if (collection.status == C.STATUS_COMING_SOON) {
       this.logEvent(E.user_action_collection_coming_soon, {
-        // uid: user.uid,
         collectionId: collection.id,
-        // ...this._screen,
       })
     } else {
       this.logEvent(E.user_action_collection_selected, {
-        // uid: user.uid,
         collectionId: collection.id,
-        // ...this._screen,
       })
       navigation.navigate(this._onSelectedRoute, {
-        // user, 
         collection
       })
     }
   }
 
   onPrefToggle(collectionId, pref) {
-    // const user = this.user
     const collection = {id:collectionId, ...this.props.collections[collectionId]}
     this._updatePref({user, collection, pref})
     this.logEvent(E.user_action_collection_pref_updated, {
-      // uid: user.uid,
       collectionId: collection.id,
       pref,
-      // ...this._screen,
     })
   }
 
@@ -88,7 +79,6 @@ export default class CollectionsListContainer extends BaseListContainer {
     const keys = Object.keys(collections).sort().reverse()
 
     const user = this.user
-    // const onTriggerIAP = (user.email === 'reviewers@vpqlabs.com') ?
     const onTriggerIAP = (user.isReviewer) ?
       () => this.showReviewerIap() :
       () => this.showIapModal(this._iapProductId)

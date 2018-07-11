@@ -46,7 +46,6 @@ export default class Flashcard extends React.Component {
   }
 
   onCardPress() {
-    console.log(`${!this.state.flipped ? 'front' : 'back'} pressed`)
     const id = this.props.data.id
     this.setState({flipped: !this.state.flipped})
     this.props.onCardFlip && this.props.onCardFlip(id)

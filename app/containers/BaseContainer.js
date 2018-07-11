@@ -58,8 +58,8 @@ export default class BaseContainer extends React.Component {
   }
 
   onRefresh() {
-    // do nothing by default, subclasses should set state accordingly
-    // this.setState({refreshing: true})
+    // no-op - to be overridden by subclass
+    // ie. this.setState({refreshing: true})
   }
 
   showToast(message, options) {
@@ -97,11 +97,7 @@ export default class BaseContainer extends React.Component {
   }
 
   showIapModal(productId) {
-    // const user = this.user
     this.logEvent(E.iap_modal_displayed, {
-      // uid: user.uid,
-      // email: user.email,
-      // ...this._screen,
       productId
     })
     this.setState({isIapVisible: true})
@@ -112,20 +108,13 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapAttempt(productId) {
-    // const user = this.user
     this.logEvent(E.iap_purchase_initiated, {
-      // uid: user.uid,
-      // email: user.email,
-      // ...this._screen,
       productId
     })
   }
 
   onIapCancelled(productId, message) {
-    // const user = this.user
     this.logEvent(E.iap_purchase_cancelled, {
-      // uid: user.uid,
-      // ...this._screen,
       productId
     })
     this.hideIapModal()
@@ -133,11 +122,7 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapSuccess(productId, message) {
-    // const user = this.user
     this.logEvent(E.iap_purchase_completed, {
-      // uid: user.uid,
-      // email: user.email,
-      // ...this._screen,
       productId
     })
     this.hideIapModal()
@@ -145,10 +130,7 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapError(productId, message) {
-    // const user = this.user
     this.logEvent(E.iap_purchase_error, {
-      // uid: user.uid,
-      // ...this._screen,
       productId
     })
     this.hideIapModal()

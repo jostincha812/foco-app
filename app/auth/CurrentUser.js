@@ -1,5 +1,4 @@
 import C from '../constants'
-// import firebase from '../../configureFirebase'
 import FirebaseAuth from './FirebaseAuth'
 import { AccessManager } from '../iap'
 import api from '../data/api'
@@ -7,7 +6,6 @@ import api from '../data/api'
 import store from '../../configureStore'
 import { actions as UserProfileActions } from '../userProfile'
 
-// let profile = null
 let _unsubscribe = null
 
 const CurrentUser = {
@@ -20,11 +18,8 @@ const CurrentUser = {
 
       api.userProfile.upsertUserProfile(user.uid, p).then(() => {
         store.dispatch(UserProfileActions.fetchUserProfile(user.uid))
-        // api.userProfile.getUserProfile(user.uid).then(profile => {
-          // profile = profile
-          onInitialize && onInitialize()
-          onLogin && onLogin(user)
-        // })
+        onInitialize && onInitialize()
+        onLogin && onLogin(user)
       })
     }
 
@@ -91,8 +86,8 @@ const CurrentUser = {
     // TODO use dev flag
     const profile = CurrentUser.profile
     if (profile &&
-      profile.email == 'reviewers@vpqlabs.com' ||
-      profile.email == 'flyflyerson@gmail.com'
+      (profile.email == 'reviewers@vpqlabs.com' ||
+      profile.email == 'flyflyerson@gmail.com')
     ) {
       return true
     }
