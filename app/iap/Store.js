@@ -12,6 +12,16 @@ const loadProduct = ({productId, onSuccess, onError}) => {
   })
 }
 
+const loadProducts = ({products, onSuccess, onError}) => {
+  InAppUtils.loadProducts(products, (error, response) => {
+    if (error) {
+      onError(error.message)
+    } else {
+      onSuccess(response)
+    }
+  })
+}
+
 const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
   // test to see if user is allowed to make purchases first
   InAppUtils.canMakePayments((canMakePayments) => {
@@ -71,5 +81,6 @@ const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
 
 export default {
   loadProduct,
+  loadProducts,
   purchaseProduct,
 }

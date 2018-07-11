@@ -125,3 +125,7 @@
 * (1.2.41) Refactored component responsibilities in IAP flow
 * (1.2.43) Logging flashcard flips
 * (1.2.43) Showing IAP cancel and error messages separately
+
+## 1.3
+* Using redux store for CurrentUser
+* Added _reviewers only_ GoPremiumScreen

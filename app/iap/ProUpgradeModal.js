@@ -2,13 +2,14 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Modal from 'react-native-modal'
 import { PricingCard, Button } from 'react-native-elements'
+
 import { normalize } from '../lib/utils'
+import StyledText from '../lib/StyledText'
 
 import C from '../constants'
 import T from '../T'
 import S from '../styles'
 import LoadingIndicator from '../components/LoadingIndicator'
-// import Store from './Store'
 import AccessManager from './AccessManager'
 
 export default class ProUpgradeModal extends React.Component {
@@ -19,10 +20,15 @@ export default class ProUpgradeModal extends React.Component {
 
   componentDidMount() {
     const productId = this.props.productId
-    AccessManager.fetchProductDetails({
-      productId,
+    const refId = C.IAP_PROFESSIONAL_2
+    AccessManager.fetchProducts({
+      products: [productId, refId],
       onSuccess: (details) => {
-        this.setState({productsLoaded: true, product: {productId, ...details}})
+        const index = details[0].identifier == productId ? 0 : 1
+        this.setState({productsLoaded: true,
+          product: {productId, ...details[index]},
+          reference: {refId, ...details[index ? 0 : 1]},
+        })
       },
       onError: (error) => {
         this.setState({error})
@@ -33,6 +39,7 @@ export default class ProUpgradeModal extends React.Component {
   render() {
     const props = this.props
     const product = this.state.product
+    const refProduct = this.state.reference
     const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
     const baseContainerStyle = [
       S.cards.card, S.cards.raised, S.corners.rounded,
@@ -65,17 +72,6 @@ export default class ProUpgradeModal extends React.Component {
           props.onError(productId, message)
         }
       })
-      // CurrentUser.unlockPremiumAccess({
-      //   productId: product.productId,
-      //   accessType: this.ACCESS_TYPE,
-      //   accessKey: null,
-      //   onSuccess: () => props.onSuccess(product.productId),
-      //   onError: (error) => {
-      //     this.setState({processing: false})
-      //     // TODO localise
-      //     props.onError('Purchase cancelled', product.productId)
-      //   }
-      // })
     }
 
     // TODO localize
@@ -85,12 +81,26 @@ export default class ProUpgradeModal extends React.Component {
 
     const iapLoadingError = "We're having difficulty loading available in-app purchases for your device."
 
+    let extra = null
+    switch (productId) {
+      case C.IAP_PROFESSIONAL_2:
+      case C.IAP_PROFESSIONAL_5:
+        extra = `Summer Sale\n60% Off`
+        break
+      case C.IAP_PROFESSIONAL_3:
+        extra = `Summer Sale\n40% Off`
+        break
+      default:
+    }
+
     // TODO localise
     const productInfo = product ? [
-      `(price shown in ${product.currencyCode})`,
-      // product.description
-      'One time FULL upgrade',
-      'Access to all WSET-3 (Advanced)\nCollections and Flashcards'
+      `(Regular price ${refProduct.priceString})`,
+      product.title,
+      // `(price shown in ${product.currencyCode})`,
+      // 'One time FULL upgrade',
+      'Access to all WSET-3 (Advanced)\nCollections and Flashcards',
+      'Sale ends July 31, 2018',
     ] : []
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :
@@ -117,15 +127,17 @@ export default class ProUpgradeModal extends React.Component {
         }
 
         { this.state.productsLoaded &&
-          <PricingCard
-            containerStyle={baseContainerStyle.concat([{paddingTop:S.spacing.large}])}
-            title={product.title}
-            price={`${product.priceString}`}
-            color={T.colors.active}
-            info={productInfo}
-            button={purchaseButton}
-            onButtonPress={purchaseButtonPress}
-          />
+          <View>
+            <PricingCard
+              containerStyle={baseContainerStyle.concat([{paddingTop:S.spacing.large}])}
+              title={extra}
+              price={`${product.priceString}`}
+              color={T.colors.active}
+              info={productInfo}
+              button={purchaseButton}
+              onButtonPress={purchaseButtonPress}
+            />
+          </View>
         }
       </Modal>
     )

@@ -82,9 +82,10 @@ export default class Flashcard extends React.Component {
         flipHorizontal={true}
         flipVertical={false}
         flip={this.state.flipped}
-        clickable={true}
-        alignHeight={true}
-        alignWidth={true}
+        clickable={false}
+        // BUG alignHeight and alignWidth causing front side to be hidden initially
+        // alignHeight={true}
+        // alignWidth={true}
       >
 
         <TouchableOpacity
