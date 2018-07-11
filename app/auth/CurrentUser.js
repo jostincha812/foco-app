@@ -58,11 +58,20 @@ const CurrentUser = {
 
   get authenticated() {
     return store.getState().userProfile ? true : false
-    // return profile ? true : false
   },
 
   get profile() {
     return store.getState().userProfile.data ? store.getState().userProfile.data : null
+  },
+
+  get uid() {
+    const profile = CurrentUser.profile
+    return profile ? profile.uid : null
+  },
+
+  get email() {
+    const profile = CurrentUser.profile
+    return profile ? profile.email : null
   },
 
   get purchases() {
@@ -81,7 +90,10 @@ const CurrentUser = {
   get isReviewer() {
     // TODO use dev flag
     const profile = CurrentUser.profile
-    if (profile && profile.email == 'reviewers@vpqlabs.com') {
+    if (profile &&
+      profile.email == 'reviewers@vpqlabs.com' ||
+      profile.email == 'flyflyerson@gmail.com'
+    ) {
       return true
     }
     return false

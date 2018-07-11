@@ -29,7 +29,7 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
       return null
     }
 
-    const user = this.props.user
+    const user = this.user
     this.setState({refreshing: true})
     this.props.fetchFlashcards(navigation.state.params.collection.flashcards, user.uid)
   }

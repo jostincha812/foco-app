@@ -19,7 +19,7 @@ export default class UserProfile extends React.Component {
   }
 
   authMethod(profile) {
-    if (!profile.providerData) {
+    if (!profile || !profile.providerData) {
       return null
     }
     
@@ -37,8 +37,8 @@ export default class UserProfile extends React.Component {
   }
 
   render() {
-    const profile = this.props.profile || {}
     const style = this.props.style
+    const profile = this.props.profile || {}
     const hasPhoto = profile.photoURL ? true : false
 
     const list = [

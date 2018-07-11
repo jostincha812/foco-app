@@ -146,7 +146,7 @@ const styles = {
 
 function mapStateToProps (state) {
   return {
-    user: state.userProfile.data ? state.userProfile.data : {},
+    profile: CurrentUser.profile,
   }
 }
 

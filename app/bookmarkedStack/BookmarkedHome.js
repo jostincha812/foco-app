@@ -23,7 +23,7 @@ class BookmarkedHome extends CollectionsListContainer {
   }
 
   get user() {
-    return this.props.user || {}
+    return CurrentUser
   }
 
   get _onSelectedRoute() {
@@ -35,8 +35,8 @@ class BookmarkedHome extends CollectionsListContainer {
   }
 
   _fetchData() {
-    const user = this.props.user
-    this.props.fetchUserBookmarkedCollections(user.uid)
+    const profile = this.props.profile
+    this.props.fetchUserBookmarkedCollections(profile.uid)
   }
 
   _cancelFetch() {
@@ -56,7 +56,7 @@ class BookmarkedHome extends CollectionsListContainer {
 const ns = R.NAV_BOOKMARKED_HOME
 function mapStateToProps (state) {
   return {
-    user: state.userProfile.data ? state.userProfile.data : null,
+    profile: CurrentUser.profile,
     ready: state.collections[ns] ? state.collections[ns].status === C.FB_FETCHED : false,
     collections: state.collections[ns] ? state.collections[ns].data : {},
     isEmpty: state.collections[ns] && state.collections[ns].data && (Object.keys(state.collections[ns].data).length == 0)

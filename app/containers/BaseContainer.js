@@ -35,7 +35,15 @@ export default class BaseContainer extends React.Component {
   }
 
   logEvent(event, params) {
-    fbAnalytics.logEvent(event, { platform:Platform.OS, ...this._screen, ...params })
+    const user = this.user
+    const data = {
+      platform: Platform.OS,
+      uid: user.uid,
+      email: user.email,
+      ...this._screen,
+      ...params
+    }
+    fbAnalytics.logEvent(event, data)
   }
 
   setScreen({ screenName, className }) {
@@ -89,11 +97,11 @@ export default class BaseContainer extends React.Component {
   }
 
   showIapModal(productId) {
-    const user = this.user
+    // const user = this.user
     this.logEvent(E.iap_modal_displayed, {
-      uid: user.uid,
-      email: user.email,
-      ...this._screen,
+      // uid: user.uid,
+      // email: user.email,
+      // ...this._screen,
       productId
     })
     this.setState({isIapVisible: true})
@@ -104,20 +112,20 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapAttempt(productId) {
-    const user = this.user
+    // const user = this.user
     this.logEvent(E.iap_purchase_initiated, {
-      uid: user.uid,
-      email: user.email,
-      ...this._screen,
+      // uid: user.uid,
+      // email: user.email,
+      // ...this._screen,
       productId
     })
   }
 
   onIapCancelled(productId, message) {
-    const user = this.user
+    // const user = this.user
     this.logEvent(E.iap_purchase_cancelled, {
-      uid: user.uid,
-      ...this._screen,
+      // uid: user.uid,
+      // ...this._screen,
       productId
     })
     this.hideIapModal()
@@ -125,11 +133,11 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapSuccess(productId, message) {
-    const user = this.user
+    // const user = this.user
     this.logEvent(E.iap_purchase_completed, {
-      uid: user.uid,
-      email: user.email,
-      ...this._screen,
+      // uid: user.uid,
+      // email: user.email,
+      // ...this._screen,
       productId
     })
     this.hideIapModal()
@@ -137,10 +145,10 @@ export default class BaseContainer extends React.Component {
   }
 
   onIapError(productId, message) {
-    const user = this.user
+    // const user = this.user
     this.logEvent(E.iap_purchase_error, {
-      uid: user.uid,
-      ...this._screen,
+      // uid: user.uid,
+      // ...this._screen,
       productId
     })
     this.hideIapModal()
