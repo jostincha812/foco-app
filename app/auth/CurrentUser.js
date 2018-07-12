@@ -54,12 +54,7 @@ const CurrentUser = {
   },
 
   get authenticated() {
-<<<<<<< HEAD
-    const authenticated = store.getState().userProfile.data ? true : false
-    return authenticated
-=======
     return _authenticated
->>>>>>> next
   },
 
   get profile() {
