@@ -7,6 +7,7 @@ import store from '../../configureStore'
 import { actions as UserProfileActions } from '../userProfile'
 
 let _unsubscribe = null
+let _authenticated = false
 
 const CurrentUser = {
   setup: (onInitialize, onLogin, onLogout, onError, onEmailVerified) => {
@@ -18,13 +19,13 @@ const CurrentUser = {
 
       api.userProfile.upsertUserProfile(user.uid, p).then(() => {
         store.dispatch(UserProfileActions.fetchUserProfile(user.uid))
-        onInitialize && onInitialize()
+        _authenticated = true
         onLogin && onLogin(user)
       })
     }
 
     const _onLogout = (user) => {
-      profile = null
+      _authenticated = false
       onLogout && onLogout(user)
     }
 
@@ -48,15 +49,17 @@ const CurrentUser = {
   },
 
   get initialized() {
-    return FirebaseAuth.initialized
+    const initialized = FirebaseAuth.initialized
+    return initialized
   },
 
   get authenticated() {
-    return store.getState().userProfile ? true : false
+    return _authenticated
   },
 
   get profile() {
-    return store.getState().userProfile.data ? store.getState().userProfile.data : null
+    const profile = store.getState().userProfile.data ? store.getState().userProfile.data : null
+    return profile
   },
 
   get uid() {
