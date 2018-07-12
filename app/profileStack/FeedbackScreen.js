@@ -32,7 +32,7 @@ class FeedbackScreen extends BaseContainer {
     this.state.form = { name:'', email:'', feedback:'' }
     this.onFormChange = this.onFormChange.bind(this)
     this.onSubmitFeedback = this.onSubmitFeedback.bind(this)
-    this.setScreen({screenName:R.NAV_USER_PROFILE_SEND_FEEDBACK, className:'FeedbackContainer'})
+    this.setScreen({screenName:R.NAV_USER_PROFILE_SEND_FEEDBACK, className:'FeedbackScreen'})
   }
 
   componentDidMount() {

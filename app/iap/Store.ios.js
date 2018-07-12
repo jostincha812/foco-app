@@ -14,6 +14,16 @@ const loadProduct = ({productId, onSuccess, onError}) => {
   })
 }
 
+const loadProducts = ({products, onSuccess, onError}) => {
+  InAppUtils.loadProducts(products, (error, response) => {
+    if (error) {
+      onError(error.message)
+    } else {
+      onSuccess(response)
+    }
+  })
+}
+
 const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
   console.log(`>>>>> App Store::purchasing ${productId}`)
 
@@ -73,5 +83,6 @@ const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
 
 export default {
   loadProduct,
+  loadProducts,
   purchaseProduct,
 }

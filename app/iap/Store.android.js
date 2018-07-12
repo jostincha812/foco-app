@@ -18,6 +18,22 @@ const loadProduct = ({XproductId, onSuccess, onError}) => {
     });
 }
 
+const loadProducts = ({products, onSuccess, onError}) => {
+  console.log(`>>>>> Google Play::loading products ${products}`)
+  InAppBilling.open()
+    .then(() => InAppBilling.getProductDetailsArray(products))
+    .then(details => {
+      console.log(details);
+      onSuccess(details)
+      return InAppBilling.close();
+    })
+    .catch(error => {
+      console.log(error);
+      onError(error)
+      return InAppBilling.close();
+    });
+}
+
 const purchaseProduct = ({XproductId, onSuccess, onCancel, onError}) => {
   const productId = 'android.test.purchased'
   console.log(`>>>>> Google Play::purchasing ${productId}`)
@@ -41,5 +57,6 @@ const purchaseProduct = ({XproductId, onSuccess, onCancel, onError}) => {
 
 export default {
   loadProduct,
+  loadProducts,
   purchaseProduct,
 }

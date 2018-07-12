@@ -9,21 +9,32 @@ const AccessManager = {
   // - accessKey - key string representing content identifier
   hasAccess: ({accessType = null, accessKey = null}) => {
     const purchases = CurrentUser.purchases || []
-    const fullAccessSet = new Set([
+    const wset3Set = new Set([
       C.IAP_EARLY_ADOPTER, C.IAP_FULL_ACCESS,
       C.IAP_PROFESSIONAL_2, C.IAP_PROFESSIONAL_3,
       C.IAP_PROFESSIONAL_5, C.IAP_PROFESSIONAL_10,
       C.IAP_PROFESSIONAL_15, C.IAP_PROFESSIONAL_20
     ])
 
-    let hasAccess = false
+    const wset2Set = new Set([
+      C.IAP_PROFESSIONAL_2
+    ])
 
+    let hasAccess = false
     switch (accessType) {
       case C.ACCESS_FULL:
       case C.ACCESS_PREMIUM_COLLECTION:
       case C.ACCESS_PREMIUM_FLASHCARD:
         purchases.map(purchase => {
-          if (fullAccessSet.has(purchase)) {
+          if (wset3Set.has(purchase)) {
+            hasAccess = true
+          }
+        })
+        break
+
+      case C.ACCESS_PREMIUM_COLLECTION_WSET2:
+        purchases.map(purchase => {
+          if (wset2Set.has(purchase)) {
             hasAccess = true
           }
         })
@@ -45,6 +56,14 @@ const AccessManager = {
   },
 
   unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onCancel, onError}) => {
+    // --- SIMULATOR ONLY ---
+    // CurrentUser.addPurchase({
+    //   productId,
+    //   transaction: {},
+    //   onComplete: () => onSuccess('dev success')
+    // })
+    // --- SIMULATOR ONLY ---
+
     const purchases = new Set(CurrentUser.purchases)
     if (purchases.has(productId)) {
       onSuccess()
@@ -68,10 +87,6 @@ const AccessManager = {
   preferredProductForType: (accessType = null) => {
     switch (accessType) {
       case C.ACCESS_PREMIUM_COLLECTION:
-        if (CurrentUser.profile.email == 'reviewers@vpqlabs.com' ||
-            CurrentUser.profile.email == 'tester+1@vpqlabs.com') {
-          return C.IAP_PROFESSIONAL_2
-        }
         // load from Firebase Remote Config
         return RemoteConfig.fullUpgradeProductId
       default:
@@ -83,7 +98,13 @@ const AccessManager = {
     return Store.loadProduct({
       productId, onSuccess, onError
     })
-  }
+  },
+
+  fetchProducts: ({products, onSuccess, onError}) => {
+    return Store.loadProducts({
+      products, onSuccess, onError
+    })
+  },
 }
 
 Object.freeze(AccessManager)
