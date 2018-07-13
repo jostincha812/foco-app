@@ -54,8 +54,6 @@ const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
       // TODO: localise
       onSuccess(response, 'Purchase successful!')
     } else {
-      console.log(`Error purchasing product ${productId}`)
-      console.log(error)
       const { code, message } = error
       switch (STORE_KIT_ERRORS[code]) {
         case STORE_KIT_ERRORS.ESKERRORDOMAIN2:
