@@ -76,7 +76,6 @@ class ProfileHome extends BaseContainer {
       // },
     ]
 
-    // if (CurrentUser.isReviewer) {
     if (RemoteConfig.inReview) {
       list.unshift(
         {

@@ -79,14 +79,9 @@ export default class CollectionsListContainer extends BaseListContainer {
     const collections = props.collections ? props.collections : {}
     const keys = Object.keys(collections).sort().reverse()
 
-    // const user = this.user
-    // const onTriggerIAP = (user.isReviewer) ?
-    //   () => this.showReviewerIap() :
-    //   () => this.showIapModal(this._iapProductId)
-
     const onTriggerIAP = (RemoteConfig.inReview) ?
-    () => this.showReviewerIap() :
-    () => this.showIapModal(this._iapProductId)
+      () => this.showReviewerIap() :
+      () => this.showIapModal(this._iapProductId)
 
     if (collections) {
       return (

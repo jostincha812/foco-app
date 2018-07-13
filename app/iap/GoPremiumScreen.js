@@ -64,12 +64,12 @@ class GoPremiumScreen extends BaseContainer {
         <Component style={styles.option} onPress={onPress}>
           { selected ? Icons.yesCircled({size:32, color:T.colors.yesActive}) : Icons.radioBlankOutline({size:32, color:T.colors.inactive}) }
           <View style={{paddingLeft:S.spacing.small,marginRight:S.spacing.small}}>
-            { extra &&
-              <StyledText textStyle="title" color={T.colors.active}>{extra}</StyledText>
-            }
             <StyledText textStyle="header">{title}</StyledText>
             <StyledText textStyle="subheader">{description}</StyledText>
             <StyledText style={{marginTop:S.spacing.xsmall}} textStyle="title">{price}</StyledText>
+            { extra &&
+              <StyledText textStyle="subheader" color={T.colors.active}>{extra}</StyledText>
+            }
           </View>
         </Component>
       )
@@ -77,8 +77,12 @@ class GoPremiumScreen extends BaseContainer {
 
     const hasPurchase = (productId) => {
       return (
-        CurrentUser.purchases.indexOf(C.IAP_PROFESSIONAL_2) >= 0 ||
-        CurrentUser.purchases.indexOf(productId) >= 0
+        CurrentUser.purchases.indexOf(C.IAP_PROFESSIONAL_5) >= 0 ||
+        CurrentUser.purchases.indexOf(productId) >= 0 ||
+        (productId == C.IAP_PROFESSIONAL_5 &&
+          CurrentUser.purchases.indexOf(C.IAP_PROFESSIONAL_3) >= 0 &&
+          CurrentUser.purchases.indexOf(C.IAP_PROFESSIONAL_2) >= 0
+        )
       )
     }
 
@@ -93,11 +97,12 @@ class GoPremiumScreen extends BaseContainer {
         { (this.state.products.length > 0) &&
           <View>
             <Option
-              productId='com.vpqlabs.foco.professional.2'
+              productId='com.vpqlabs.foco.professional.5'
               title='All Access'
-              price={`${this.state.products[0].priceString} ${this.state.products[0].currencyCode}`}
+              price={`${this.state.products[2].priceString} ${this.state.products[2].currencyCode}`}
               description='Unlock all WSET-2 and WSET-3 flashcards'
-              selected={hasPurchase('com.vpqlabs.foco.professional.2')}
+              extra='Summer Sale - 60% off!'
+              selected={hasPurchase('com.vpqlabs.foco.professional.5')}
             />
 
             <Option
@@ -109,12 +114,11 @@ class GoPremiumScreen extends BaseContainer {
             />
 
             <Option
-              productId='com.vpqlabs.foco.professional.5'
-              title='Sparkling Wines'
-              price={`${this.state.products[2].priceString} ${this.state.products[2].currencyCode} (33% off)`}
-              description={`Summertime favourites!\nGet deep into Sparkling wines`}
-              extra='Summer Sale!'
-              selected={hasPurchase('com.vpqlabs.foco.professional.5')}
+              productId='com.vpqlabs.foco.professional.2'
+              title='WSET-2 Full Access'
+              price={`${this.state.products[0].priceString} ${this.state.products[0].currencyCode}`}
+              description={`Unlock WSET-2 flashcards`}
+              selected={hasPurchase('com.vpqlabs.foco.professional.2')}
             />
           </View>
         }
