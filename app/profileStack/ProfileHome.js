@@ -16,6 +16,7 @@ import Card from '../lib/Card'
 
 import CurrentUser from '../auth/CurrentUser'
 import { UserProfile } from '../userProfile'
+import RemoteConfig from '../../configureApp'
 
 class ProfileHome extends BaseContainer {
   static navigationOptions = ({navigation}) => {
@@ -75,7 +76,8 @@ class ProfileHome extends BaseContainer {
       // },
     ]
 
-    if (CurrentUser.isReviewer) {
+    // if (CurrentUser.isReviewer) {
+    if (RemoteConfig.inReview) {
       list.unshift(
         {
           title: localize("profile.upgrade"),
