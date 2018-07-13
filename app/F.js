@@ -17,5 +17,3 @@ export default FontStyles = {
     hero: '900',
   },
 }
-
-console.log(FontStyles.sizes)

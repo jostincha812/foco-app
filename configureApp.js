@@ -42,6 +42,7 @@ firebase.config().fetch(CACHE_DURATION)
     settings.inReview = settings.reviewerMode && (settings.reviewerVersion == C.VERSION)
    // continue booting app
   })
+  // TODO log error on Crashlytics
   .catch((error) => console.log(`Error processing config: ${error}`))
 
 export default RemoteConfig = settings
