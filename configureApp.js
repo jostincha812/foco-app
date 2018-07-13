@@ -2,11 +2,15 @@ import firebase from './configureFirebase'
 import C from './app/constants'
 
 const settings = {
-  hasExperimentalFeature: false,
+  inReview: false,
+  reviewerMode: false,
+  reviewerVersion: C.VERSION,
   fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
 }
 
 const ConfigKeys = {
+  reviewerMode: 'reviewer_mode',
+  reviewerVersion: 'reviewer_version',
   fullUpgradeProductId: 'full_upgrade_product_id',
 }
 
@@ -22,18 +26,22 @@ let CACHE_DURATION = 43200
 // Set default values
 const defaults = {}
 defaults[ConfigKeys.fullUpgradeProductId] = settings.fullUpgradeProductId
-firebase.config().setDefaults(defaults);
+defaults[ConfigKeys.reviewerMode] = settings.reviewerMode
+defaults[ConfigKeys.reviewerVersion] = settings.reviewerVersion
+firebase.config().setDefaults(defaults)
 
 // Fetch remote config and set accordingly
 firebase.config().fetch(CACHE_DURATION)
   .then(() => firebase.config().activateFetched())
-  .then(() => firebase.config().getValue(ConfigKeys.fullUpgradeProductId))
-  .then((snapshot) => {
-   settings.fullUpgradeProductId = snapshot.val();
-   settings.hasExperimentalFeature = false;
-   // console.log(`RemoteConfig activated with fullUpgradeProductId=${settings.fullUpgradeProductId}`)
+  .then(() => firebase.config().getValues(Object.values(ConfigKeys)))
+  .then((objects) => {
+    Object.keys(ConfigKeys).forEach((key) => {
+      settings[key] = objects[ConfigKeys[key]].val()
+    })
+
+    settings.inReview = settings.reviewerMode && (settings.reviewerVersion == C.VERSION)
    // continue booting app
   })
-  .catch((error) => console.log(`Error processing config: ${error}`));
+  .catch((error) => console.log(`Error processing config: ${error}`))
 
-export default RemoteConfig = settings;
+export default RemoteConfig = settings
