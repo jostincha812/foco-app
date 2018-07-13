@@ -3,8 +3,8 @@ import { normalize } from './lib/utils'
 export default FontStyles = {
   sizes: {
     xsmall: normalize(10),
-    small: normalize(14),
-    normal: normalize(18),
+    small: normalize(12),
+    normal: normalize(16),
     large: normalize(24),
     xlarge: normalize(38),
   },
