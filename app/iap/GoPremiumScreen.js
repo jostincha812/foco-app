@@ -45,13 +45,19 @@ class GoPremiumScreen extends BaseContainer {
   }
 
   onSelectOption(productId) {
-    AccessManager.unlockAccess({productId,
+    AccessManager.unlockAccess({
+      productId,
       onSuccess: (message) => {
         this.setState({updated: true})
         this.props.fetchUserProfile()
         this.successToast(`Success: ${message}`)
       },
-      onError: (error) => this.errorToast(`Error: ${error}`)
+      onCancel: (message) => {
+        this.errorToast(`Cancelled: ${message}`)
+      },
+      onError: (error) => {
+        this.errorToast(`Error: ${error}`)
+      }
     })
   }
 
