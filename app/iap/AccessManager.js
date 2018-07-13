@@ -12,12 +12,15 @@ const AccessManager = {
     const wset3Set = new Set([
       C.IAP_EARLY_ADOPTER, C.IAP_FULL_ACCESS,
       C.IAP_PROFESSIONAL_2, C.IAP_PROFESSIONAL_3,
-      C.IAP_PROFESSIONAL_5, C.IAP_PROFESSIONAL_10,
-      C.IAP_PROFESSIONAL_15, C.IAP_PROFESSIONAL_20
+      C.IAP_PROFESSIONAL_5
     ])
 
+    if (RemoteConfig.inReview) {
+      wset3Set.delete(C.IAP_PROFESSIONAL_2)
+    }
+
     const wset2Set = new Set([
-      C.IAP_PROFESSIONAL_2
+      C.IAP_PROFESSIONAL_5, C.IAP_PROFESSIONAL_2
     ])
 
     let hasAccess = false
@@ -57,30 +60,30 @@ const AccessManager = {
 
   unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onCancel, onError}) => {
     // --- SIMULATOR ONLY ---
-    // CurrentUser.addPurchase({
-    //   productId,
-    //   transaction: {},
-    //   onComplete: () => onSuccess('dev success')
-    // })
+    CurrentUser.addPurchase({
+      productId,
+      transaction: {},
+      onComplete: () => onSuccess('dev success')
+    })
     // --- SIMULATOR ONLY ---
 
-    const purchases = new Set(CurrentUser.purchases)
-    if (purchases.has(productId)) {
-      onSuccess()
-    }
-
-    Store.purchaseProduct({
-      productId,
-      onSuccess: (transaction, message) => {
-        CurrentUser.addPurchase({
-          productId,
-          transaction,
-          onComplete: () => onSuccess(message)
-        })
-      },
-      onCancel,
-      onError
-    })
+    // const purchases = new Set(CurrentUser.purchases)
+    // if (purchases.has(productId)) {
+    //   onSuccess()
+    // }
+    //
+    // Store.purchaseProduct({
+    //   productId,
+    //   onSuccess: (transaction, message) => {
+    //     CurrentUser.addPurchase({
+    //       productId,
+    //       transaction,
+    //       onComplete: () => onSuccess(message)
+    //     })
+    //   },
+    //   onCancel,
+    //   onError
+    // })
   },
 
   // returns the preferred product identifier available to the user for a given access type

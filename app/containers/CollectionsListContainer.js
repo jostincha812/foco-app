@@ -6,6 +6,7 @@ import C, { E } from '../constants'
 import BaseListContainer from './BaseListContainer'
 import { CollectionCardsList } from '../collections'
 import { AccessManager, ProUpgradeModal as IapModal } from '../iap'
+import RemoteConfig from '../../configureApp'
 
 export default class CollectionsListContainer extends BaseListContainer {
   constructor(props) {
@@ -78,8 +79,7 @@ export default class CollectionsListContainer extends BaseListContainer {
     const collections = props.collections ? props.collections : {}
     const keys = Object.keys(collections).sort().reverse()
 
-    const user = this.user
-    const onTriggerIAP = (user.isReviewer) ?
+    const onTriggerIAP = (RemoteConfig.inReview) ?
       () => this.showReviewerIap() :
       () => this.showIapModal(this._iapProductId)
 
