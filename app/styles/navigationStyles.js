@@ -37,6 +37,10 @@ export default navigationStyles = {
     justifyContent: 'flex-end',
   },
 
+  floatingHeaderAndroid: {
+    paddingLeft: spacing.normal + 8,
+  },
+
   floatingHeaderTextStyle: {
     fontWeight: F.weights.hero,
     fontSize: F.sizes.large,

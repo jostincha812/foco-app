@@ -1,6 +1,7 @@
 import React from 'react'
 import { Animated, LayoutAnimation, Easing } from 'react-native'
 import { Platform } from 'react-native'
+import * as Animatable from 'react-native-animatable'
 
 import S from '../styles'
 
@@ -45,35 +46,28 @@ class StickyListHeader extends React.Component {
     const { isStickied } = this.state
     const { onLayout, headerText, actionComponent } = props
 
-    const containerStyle = S.navigation.floatingHeader
+    let floatingContainerStyle = Object.assign(S.containers.header, S.navigation.floatingHeader)
     let stickiedContainerStyle = S.navigation.stickiedHeader
     if (Platform.OS == 'android') {
+      floatingContainerStyle = Object.assign(floatingContainerStyle, S.navigation.floatingHeaderAndroid)
       stickiedContainerStyle = Object.assign(stickiedContainerStyle, S.navigation.stickiedHeaderAndroid)
     }
     const backgroundColor = this.animation.interpolate({
       inputRange: [0, 1],
-      outputRange: [stickiedContainerStyle.backgroundColor, containerStyle.backgroundColor]
+      outputRange: [stickiedContainerStyle.backgroundColor, floatingContainerStyle.backgroundColor]
     });
-    const paddingLeft = this.animation.interpolate({
-      inputRange: [0, 1],
-      outputRange: [stickiedContainerStyle.paddingLeft, S.containers.header.paddingLeft]
-    });
-    const style = [props.style, S.containers.header, isStickied ? stickiedContainerStyle : containerStyle, {backgroundColor, paddingLeft}]
+    const containerStyle = [props.style, S.containers.header, isStickied ? stickiedContainerStyle : floatingContainerStyle, {backgroundColor}]
 
-    const headerStyle = S.navigation.floatingHeaderTextStyle
-    const stickiedHeaderStyle = S.navigation.stickiedHeaderTextStyle
-    const textStyle = isStickied ? stickiedHeaderStyle : headerStyle
-
-    const fontSize = this.animation.interpolate({
-      inputRange: [0, 1],
-      outputRange: [stickiedHeaderStyle.fontSize, headerStyle.fontSize]
-    });
+    const headerTextStyle = S.navigation.floatingHeaderTextStyle
+    const stickiedHeaderTextStyle = S.navigation.stickiedHeaderTextStyle
+    const textStyle = isStickied ? stickiedHeaderTextStyle : headerTextStyle
+    const fontSize = isStickied ? stickiedHeaderTextStyle.fontSize : headerTextStyle.fontSize
 
     return (
-      <Animated.View onLayout={onLayout} style={style}>
-        <Animated.Text style={[textStyle, {fontSize:fontSize}]}>
+      <Animated.View onLayout={onLayout} style={containerStyle}>
+        <Animatable.Text transition="fontSize" style={[textStyle, {fontSize}]}>
           {headerText}
-        </Animated.Text>
+        </Animatable.Text>
       </Animated.View>
     )
   }
