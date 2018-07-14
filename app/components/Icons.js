@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import T from '../T.js';
@@ -108,7 +108,10 @@ export default {
   tune: (options = {}) => AppIcon('tune', options),
   inbox: (options = {}) => AppIcon('inbox', options),
   new: (options = {}) => AppIcon('new-box', options),
-  back: (options = {}) => AppIcon('chevron-left', options),
+  back: Platform.select({
+    ios: (options = {}) => AppIcon('chevron-left', options),
+    android: (options = {}) => AppIcon('arrow-left', options),
+  }),
   forward: (options = {}) => AppIcon('chevron-right', options),
   lock: (options = {}) => AppIcon('lock', options),
 

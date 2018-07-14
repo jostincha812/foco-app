@@ -1,6 +1,7 @@
 import { FBLoginManager } from 'react-native-facebook-login'
 // import GoogleSignIn from 'react-native-google-sign-in'
 
+FBLoginManager.setLoginBehavior(FBLoginManager.LoginBehaviors.Native);
 const Facebook = {
   login: (permissions) => {
     return new Promise((resolve, reject) => {

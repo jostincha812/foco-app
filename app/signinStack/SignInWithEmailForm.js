@@ -29,6 +29,7 @@ export default class SignInWithEmailForm extends React.Component {
       >
         <TextInput
           style={[S.form.input, {marginTop:S.spacing.large}]}
+          underlineColorAndroid="transparent"
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='email-address'
@@ -40,6 +41,7 @@ export default class SignInWithEmailForm extends React.Component {
         />
         <TextInput
           style={S.form.input}
+          underlineColorAndroid="transparent"
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='default'

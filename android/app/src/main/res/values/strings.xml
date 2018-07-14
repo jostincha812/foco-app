@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Foco:3</string>
+    <string name="facebook_app_id">412570818937440</string>
+    <string name="fb_login_protocol_scheme">fb412570818937440</string>
+    <string name="RNB_GOOGLE_PLAY_LICENSE_KEY">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7ZQRAe3RpPwagrXiRLQkabRhfEFcszmE3gLPYOaeQI3tNp92jE3y+uixu9sO6tbD2ZJaOJjugj+Qz3ctNrSby/UJy2HO7G14v5kFYWgLP0wRGrgiOWAJ7fD0lEZJV6wOH/WBDH5J+RxOOZvkZGHRPQVXpLKe/+SzIiGWczc7TWqTvq0qNfWbcUQNm1yFpLxwddDvmRfry24Beq5GKH72go+ySxUowVYDa/3XUM4UXM5n0gUyyGYTCr7yKyjSzW2samlwxB8IGOhwegY4JP8QLKJU6wjt/dA3cdhmALXEBn368KnltQUcs3NfAN7bot0GwQFHeKEV0a2ubnog6sO4twIDAQAB</string>
 </resources>

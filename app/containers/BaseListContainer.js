@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'react-native'
 import { Animated, LayoutAnimation } from 'react-native'
+import { Platform } from 'react-native'
 
 import { E } from '../constants'
 import S from '../styles'
@@ -8,6 +9,7 @@ import BaseContainer from './BaseContainer'
 import LoadingScreen from '../components/LoadingScreen'
 import EmptyListScreen from '../components/EmptyListScreen'
 import BackToTopButton from '../components/BackToTopButton'
+import StickiableFloatingListHeader from '../components/StickiableFloatingListHeader'
 
 export default class BaseListContainer extends BaseContainer {
   constructor(props) {
@@ -87,24 +89,9 @@ export default class BaseListContainer extends BaseContainer {
       this.setState({ reachedEnd: false })
     }
 
-    // LayoutAnimation.Presets.linear == 500ms duration
-    // Linear with easing
-    const CustomLayoutLinear = {
-      duration: 200,
-      create: {
-        type: LayoutAnimation.Types.linear,
-        property: LayoutAnimation.Properties.opacity,
-      },
-      update: {
-        type: LayoutAnimation.Types.easeInEaseOut,
-      },
-    }
-
-    if (!this.state.stickied && yOffset > this._titleLoc) {
-      LayoutAnimation.configureNext(CustomLayoutLinear)
+    if (!this.state.stickied && yOffset > this._titleLoc + 10) {
       this.setState({stickied: true})
-    } else if (this.state.stickied && yOffset < this._titleLoc - 1) {
-      LayoutAnimation.configureNext(CustomLayoutLinear)
+    } else if (this.state.stickied && yOffset < this._titleLoc + 10) {
       this.setState({stickied: false})
     }
   }
@@ -145,16 +132,11 @@ export default class BaseListContainer extends BaseContainer {
     )
 
     const headerView = (
-      <Animated.View
+      <StickiableFloatingListHeader
         onLayout={this.onTitleLayout}
-        style={[S.containers.header, this.state.stickied ? S.navigation.stickiedHeader : S.navigation.floatingHeader]}
-      >
-        <View style={{flex:1, justifyContent:'flex-end'}}>
-          <Text style={this.state.stickied ? S.navigation.stickiedHeaderTextStyle : S.navigation.floatingHeaderTextStyle}>
-            {this._title}
-          </Text>
-        </View>
-      </Animated.View>
+        isStickied={this.state.stickied}
+        headerText={this._title}
+      />
     )
 
     if (!ready || !this.state.dimensions) {

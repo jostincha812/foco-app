@@ -80,6 +80,7 @@ class SignUpWithEmail extends BaseContainer {
             </Text>
             <TextInput
               style={S.form.input}
+              underlineColorAndroid="transparent"
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'
@@ -91,6 +92,7 @@ class SignUpWithEmail extends BaseContainer {
             />
             <TextInput
               style={S.form.input}
+              underlineColorAndroid="transparent"
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='email-address'
@@ -105,6 +107,7 @@ class SignUpWithEmail extends BaseContainer {
           <View style={S.form.group}>
             <TextInput
               style={S.form.input}
+              underlineColorAndroid="transparent"
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'
@@ -117,6 +120,7 @@ class SignUpWithEmail extends BaseContainer {
             />
             <TextInput
               style={S.form.input}
+              underlineColorAndroid="transparent"
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='default'

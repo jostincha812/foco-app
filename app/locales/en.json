@@ -9,7 +9,7 @@
 
   // Home screen
   "home": {
-    "title": "Recommended",
+    "title": "Essentials",
   },
 
   // Bookmarked screen
@@ -53,7 +53,7 @@
   },
 
   "roles": {
-    "IAP_EARLY_ADOPTER": "Early Adoptor All Access",
+    "IAP_EARLY_ADOPTER": "Early Adopter",
     "IAP_FREE_ACCESS": "Free Access",
     "IAP_FULL_ACCESS": "Full Access",
     "ROLE_USER": "User",
@@ -79,8 +79,7 @@
     "signOut": "Sign Out",
     "signUp": "Sign Up",
     "signUpAs": "Sign up as",
-    "createAccount": "Create an account",
-    "createAccount": "Create your account",
+    "createAccount": "Create account",
     "deleteAccount": "Delete me",
     "confirmDelete": "Yes, delete me!",
     "cancelDelete": "No, I changed my mind.",

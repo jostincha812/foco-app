@@ -9,6 +9,7 @@ import S from '../styles'
 import T from '../T'
 import F from '../F'
 import { localize } from '../locales'
+import { normalize } from '../lib/utils'
 import BaseContainer from '../containers/BaseContainer'
 import FirebaseAuth from '../auth/FirebaseAuth'
 import StyledText from '../lib/StyledText'
@@ -44,8 +45,8 @@ export default class SignInHome extends BaseContainer {
               title={localize("auth.signInWithFacebook")}
               button={true}
               type='facebook'
-              style={{width:300, marginBottom:S.spacing.xsmall}}
-              fontStyle={{fontSize: F.sizes.small, fontWeight: F.weights.normal}}
+              style={{width:normalize(260), marginBottom:S.spacing.xsmall}}
+              fontStyle={{fontSize: F.sizes.normal, fontWeight: F.weights.normal}}
               onPress={() => {
                 this.logEvent(E.auth_signing_in, { provider: 'facebook' })
                 FirebaseAuth.loginWithFacebook()
@@ -58,7 +59,7 @@ export default class SignInHome extends BaseContainer {
 
             <Button
               title={localize("auth.signInWithEmail")}
-              fontSize={F.sizes.small}
+              fontSize={F.sizes.normal}
               fontWeight={F.weights.light}
               color={T.colors.inactiveText}
               backgroundColor={T.colors.transparent}

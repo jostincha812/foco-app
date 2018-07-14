@@ -48,7 +48,6 @@ export default JsFbFlashcardsAPI = {
 
   getFlashcardsWithTags: (level, tags1, tags2) => {
     // TODO check for levels
-    // console.log(level)
     const promises1 = []
 
     if (tags1) {

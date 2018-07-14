@@ -22,7 +22,7 @@ export default class UserProfile extends React.Component {
     if (!profile || !profile.providerData) {
       return null
     }
-    
+
     const providerId = profile.providerData[0].providerId
     if (providerId == 'facebook.com') {
       return 'Facebook'

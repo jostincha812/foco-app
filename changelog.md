@@ -129,3 +129,4 @@
 ## 1.3
 * Using redux store for CurrentUser
 * Added _reviewers only_ GoPremiumScreen
+* (1.3.47) Improved readability on iPhoneSE devices
