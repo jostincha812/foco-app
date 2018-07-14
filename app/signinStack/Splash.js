@@ -50,7 +50,7 @@ class Splash extends BaseContainer {
   }
 
   onLogin(user) {
-    this.logEvent(E.auth_signed_in, {uid: user.uid, provider: user.providerId})
+    this.logEvent(E.auth_signed_in, {uid: user.uid, provider: user.providerId, date: user.lastActive})
     this.props.navigation.navigate(R.NAV_HOME_TAB)
   }
 

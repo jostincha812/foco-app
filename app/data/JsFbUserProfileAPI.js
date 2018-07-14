@@ -29,6 +29,18 @@ export default JsFbUserProfileAPI = {
     })
   },
 
+  incrementUserSessionsCount: (uid) => {
+    return refs.user(uid).child('sessions').transaction((count) => {
+      return (count || 0) + 1
+    })
+  },
+
+  incrementUserActionsCounter: (uid) => {
+    return refs.user(uid).child('userActions').transaction((count) => {
+      return (count || 0) + 1
+    })
+  },
+
   upsertUserPurchases: (uid, purchases) => {
     return refs.user(uid).once('value').then(snap => {
       return refs.user(uid).child('purchases').set(purchases).then(() => {

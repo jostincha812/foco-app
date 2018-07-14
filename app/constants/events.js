@@ -1,6 +1,9 @@
 export default events = {
   firebase_error: 'firebase_error',
 
+  activation_signin_no2: 'activation_signin_no2',
+  activation_signin_no3: 'activation_signin_no3',
+
   auth_signin_bounce: 'auth_signin_bounce',
   auth_signup_bounce: 'auth_signup_bounce',
   auth_signing_in: 'auth_signing_in',
