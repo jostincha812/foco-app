@@ -2,11 +2,11 @@ import { normalize } from './lib/utils'
 
 export default FontStyles = {
   sizes: {
-    xsmall: normalize(10),
+    xsmall: normalize(11),
     small: normalize(14),
     normal: normalize(18),
-    large: normalize(24),
-    xlarge: normalize(38),
+    large: normalize(28),
+    xlarge: normalize(36),
   },
 
   weights: {

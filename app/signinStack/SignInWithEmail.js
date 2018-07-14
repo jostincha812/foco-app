@@ -58,7 +58,7 @@ export default class SignInWithEmail extends BaseContainer {
             <View style={{height:height/2, paddingBottom:S.spacing.xsmall, justifyContent:'flex-end'}}>
               <View style={[S.form.container, S.form.group]}>
                 <Button
-                  containerViewStyle={{marginBottom:S.spacing.large}}
+                  containerViewStyle={{marginBottom:0}}
                   icon={{name:'chevron-left', color:T.colors.facebook}}
                   title={localize("auth.signInWithFacebook")}
                   fontSize={F.sizes.small}

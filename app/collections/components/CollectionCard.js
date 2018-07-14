@@ -137,11 +137,6 @@ export default class CollectionCard extends React.Component {
         )
     }
 
-    // TODO remove after android IAP is sorted
-    if (collection.accessType === C.ACCESS_PREMIUM_COLLECTION) {
-      return null
-    }
-
     return (
       <PremiumContentContainer
         innerOpacity={0.25}

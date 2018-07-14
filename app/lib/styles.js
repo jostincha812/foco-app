@@ -117,13 +117,13 @@ export default styles = {
     },
     tagline: {
       fontWeight: weights.light,
-      fontSize: sizes.large,
+      fontSize: sizes.large - 4,
+      fontStyle: 'italic',
       color: DefaultTheme.color,
     },
     taglineLarge: {
       fontWeight: weights.light,
-      fontSize: sizes.xlarge,
-      fontStyle: 'italic',
+      fontSize: sizes.large + 6,
       color: DefaultTheme.color,
     },
     title: {

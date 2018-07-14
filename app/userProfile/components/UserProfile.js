@@ -19,6 +19,10 @@ export default class UserProfile extends React.Component {
   }
 
   authMethod(profile) {
+    if (!profile || !profile.providerData) {
+      return null
+    }
+
     const providerId = profile.providerData[0].providerId
     if (providerId == 'facebook.com') {
       return 'Facebook'
@@ -33,8 +37,8 @@ export default class UserProfile extends React.Component {
   }
 
   render() {
-    const profile = this.props.profile || {}
     const style = this.props.style
+    const profile = this.props.profile || {}
     const hasPhoto = profile.photoURL ? true : false
 
     const list = [
@@ -44,9 +48,7 @@ export default class UserProfile extends React.Component {
       },
       {
         title: localize("profile.access"),
-        // TODO revert after Google IAP
-        value: localize(`roles.${'IAP_EARLY_ADOPTER'}`),
-        // value: localize(`roles.${CurrentUser.accessLevel}`),
+        value: localize(`roles.${CurrentUser.accessLevel}`),
       },
       {
         title: localize("profile.authenticationMethod"),

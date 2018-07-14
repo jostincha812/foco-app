@@ -3,8 +3,6 @@ const { InAppUtils } = NativeModules
 
 const loadProduct = ({productId, onSuccess, onError}) => {
   const products = [productId]
-  console.log(`>>>>> App Store::loading ${productId}`)
-
   InAppUtils.loadProducts(products, (error, response) => {
     if (error) {
       onError(error.message)
@@ -14,9 +12,17 @@ const loadProduct = ({productId, onSuccess, onError}) => {
   })
 }
 
-const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
-  console.log(`>>>>> App Store::purchasing ${productId}`)
+const loadProducts = ({products, onSuccess, onError}) => {
+  InAppUtils.loadProducts(products, (error, response) => {
+    if (error) {
+      onError(error.message)
+    } else {
+      onSuccess(response)
+    }
+  })
+}
 
+const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
   // test to see if user is allowed to make purchases first
   InAppUtils.canMakePayments((canMakePayments) => {
     if(!canMakePayments) {
@@ -73,5 +79,6 @@ const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
 
 export default {
   loadProduct,
+  loadProducts,
   purchaseProduct,
 }

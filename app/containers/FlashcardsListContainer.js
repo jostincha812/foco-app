@@ -36,23 +36,19 @@ export default class FlashcardsListContainer extends BaseListContainer {
   }
 
   onPrefToggle(id, pref) {
-    const user = this.props.user
+    // TODO move user into _updatePref?
+    const user = this.user
     const flashcard = this.props.flashcards[id]
     this._updatePref({user, flashcard, pref})
     this.logEvent(E.user_action_flashcard_pref_updated, {
-      uid: user.uid,
       flashcardId: flashcard.id,
       pref,
-      ...this._screen,
     })
   }
 
   onCardFlip(flashcardId) {
-    const user = this.props.user
     this.logEvent(E.user_action_flashcard_flipped, {
-      uid: user.uid,
       flashcardId,
-      ...this._screen,
     })
   }
 

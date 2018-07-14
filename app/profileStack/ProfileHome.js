@@ -17,6 +17,7 @@ import Card from '../lib/Card'
 
 import CurrentUser from '../auth/CurrentUser'
 import { UserProfile } from '../userProfile'
+import RemoteConfig from '../../configureApp'
 
 class ProfileHome extends BaseContainer {
   static navigationOptions = ({navigation}) => {
@@ -34,16 +35,17 @@ class ProfileHome extends BaseContainer {
     this.setScreen({screenName:R.NAV_USER_PROFILE_HOME, className:'ProfileHome'})
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.user !== prevProps.user) {
+      this.setState({user: this.props.user})
+    }
+  }
+
   render() {
     const props = this.props
     const profile = props.profile
 
     const list = [
-      // {
-      //   title: localize("profile.upgrade"),
-      //   icon: 'beenhere',
-      //   onPress: () => console.log('Go premium')
-      // },
       {
         title: localize("profile.feedback"),
         icon: 'rate-review',
@@ -57,17 +59,9 @@ class ProfileHome extends BaseContainer {
       {
         title: localize("profile.version"),
         icon: 'info',
-        // TODO go back to C.VERSION after Google IAP
-        label: '1.0.0',
+        label: C.VERSION,
         hideChevron: true,
       },
-      // {
-      //   title: localize("auth.deleteAccount"),
-      //   color: T.colors.error,
-      //   icon: 'clear',
-      //   hideChevron: true,
-      //   onPress: () => this.setState({isModalVisible: true})
-      // },
       // {
       //   title: localize("profile.share"),
       //   icon: 'share',
@@ -77,7 +71,24 @@ class ProfileHome extends BaseContainer {
       //     console.log('Share with Friends')
       //   }
       // },
+      // {
+      //   title: localize("auth.deleteAccount"),
+      //   color: T.colors.error,
+      //   icon: 'clear',
+      //   hideChevron: true,
+      //   onPress: () => this.setState({isModalVisible: true})
+      // },
     ]
+
+    if (RemoteConfig.inReview) {
+      list.unshift(
+        {
+          title: localize("profile.upgrade"),
+          icon: 'beenhere',
+          onPress: () => props.navigation.navigate(R.NAV_USER_PROFILE_GO_PREMIUM)
+        }
+      )
+    }
 
     const deleteModal = (
       <Modal
@@ -125,7 +136,7 @@ class ProfileHome extends BaseContainer {
       <ScrollView
         style={S.containers.screen}
         bounces={false}
-        contentContainerStyle={{flex:1, justifyContent:'flex-start'}}
+        contentContainerStyle={{justifyContent:'flex-start'}}
       >
         <StatusBar barStyle={S.statusBarStyle} />
         {deleteModal}

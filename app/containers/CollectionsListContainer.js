@@ -6,6 +6,7 @@ import C, { E } from '../constants'
 import BaseListContainer from './BaseListContainer'
 import { CollectionCardsList } from '../collections'
 import { AccessManager, ProUpgradeModal as IapModal } from '../iap'
+import RemoteConfig from '../../configureApp'
 
 export default class CollectionsListContainer extends BaseListContainer {
   constructor(props) {
@@ -32,35 +33,27 @@ export default class CollectionsListContainer extends BaseListContainer {
 
   onCollectionPress(collection) {
     const navigation = this.props.navigation
-    const user = this.props.user
 
     if (collection.status == C.STATUS_COMING_SOON) {
       this.logEvent(E.user_action_collection_coming_soon, {
-        uid: user.uid,
         collectionId: collection.id,
-        ...this._screen,
       })
     } else {
       this.logEvent(E.user_action_collection_selected, {
-        uid: user.uid,
         collectionId: collection.id,
-        ...this._screen,
       })
       navigation.navigate(this._onSelectedRoute, {
-        user, collection
+        collection
       })
     }
   }
 
   onPrefToggle(collectionId, pref) {
-    const user = this.props.user
     const collection = {id:collectionId, ...this.props.collections[collectionId]}
     this._updatePref({user, collection, pref})
     this.logEvent(E.user_action_collection_pref_updated, {
-      uid: user.uid,
       collectionId: collection.id,
       pref,
-      ...this._screen,
     })
   }
 
@@ -86,6 +79,10 @@ export default class CollectionsListContainer extends BaseListContainer {
     const collections = props.collections ? props.collections : {}
     const keys = Object.keys(collections).sort().reverse()
 
+    const onTriggerIAP = (RemoteConfig.inReview) ?
+      () => this.showReviewerIap() :
+      () => this.showIapModal(this._iapProductId)
+
     if (collections) {
       return (
         <CollectionCardsList
@@ -93,7 +90,7 @@ export default class CollectionsListContainer extends BaseListContainer {
           collections={collections}
           onSelect={this.onCollectionPress}
           onPrefChange={this.onPrefToggle}
-          onTriggerIAP={() => this.showIapModal(this._iapProductId)}
+          onTriggerIAP={onTriggerIAP}
         />
       )
     }

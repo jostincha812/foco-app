@@ -91,6 +91,7 @@ export default {
   filter: (options = {}) => AppIcon('filter', options),
   filterOutline: (options = {}) => AppIcon('filter-outline', options),
   send: (options = {}) => AppIcon('send', options),
+  radioBlankOutline: (options = {}) => AppIcon('radiobox-blank', options),
 
   // app icons
   about: (options = {}) => AppIcon('information', options),

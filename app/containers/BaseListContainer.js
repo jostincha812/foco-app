@@ -39,8 +39,8 @@ export default class BaseListContainer extends BaseContainer {
     this._cancelFetch()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.ready && !this.props.ready) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.ready && !prevProps.ready) {
       this.setState({refreshing: false})
     }
   }
@@ -52,7 +52,7 @@ export default class BaseListContainer extends BaseContainer {
   setTitle(title) {
     this._title = title
     if (title) {
-      this.setState({stickyTitle:true})
+      this.state.stickyTitle = true
     }
   }
 
@@ -70,8 +70,7 @@ export default class BaseListContainer extends BaseContainer {
     if (!this.state.showBackToTop && passThreshold) {
       this.setState({ showBackToTop: true })
       this.logEvent(this._scrollEventName, {
-        uid: this.props.user.uid,
-        ...this._screen,
+        location: 'middle'
       })
     }
 
@@ -79,15 +78,12 @@ export default class BaseListContainer extends BaseContainer {
       this.setState({ showBackToTop: false })
     }
 
-    const user = this.props.user
     const windowHeight = Dimensions.get('window').height
     const scrolledToEnd = (windowHeight + yOffset) >= e.nativeEvent.contentSize.height
     if (!this.state.reachedEnd && scrolledToEnd) {
       this.setState({ reachedEnd: true })
       this.logEvent(this._scrollEventName, {
-        uid: user.uid,
         location: 'end',
-        ...this._screen,
       })
     } else if (this.state.reachedEnd && !scrolledToEnd) {
       this.setState({ reachedEnd: false })
@@ -101,12 +97,9 @@ export default class BaseListContainer extends BaseContainer {
   }
 
   onScrollToTopPress() {
-    const user = this.props.user
     this.refs['_SCROLLVIEW'].scrollTo({x: 0, y: 0, animated: true})
     this.logEvent(this._scrollEventName, {
-      uid: user.uid,
       location: 'start',
-      ...this._screen,
     })
   }
 

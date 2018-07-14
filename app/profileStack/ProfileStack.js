@@ -7,10 +7,12 @@ import Icons from '../components/Icons'
 
 import ProfileHome from './ProfileHome'
 import FeedbackScreen from './FeedbackScreen'
+import GoPremiumScreen from '../iap/GoPremiumScreen'
 
 const STACK = {}
 STACK[R.NAV_USER_PROFILE_HOME] = { screen: ProfileHome }
 STACK[R.NAV_USER_PROFILE_SEND_FEEDBACK] = { screen: FeedbackScreen }
+STACK[R.NAV_USER_PROFILE_GO_PREMIUM] = { screen: GoPremiumScreen }
 
 const ProfileStack = StackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
