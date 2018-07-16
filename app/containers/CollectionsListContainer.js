@@ -49,6 +49,7 @@ export default class CollectionsListContainer extends BaseListContainer {
   }
 
   onPrefToggle(collectionId, pref) {
+    const user = this.user
     const collection = {id:collectionId, ...this.props.collections[collectionId]}
     this._updatePref({user, collection, pref})
     this.logEvent(E.user_action_collection_pref_updated, {
