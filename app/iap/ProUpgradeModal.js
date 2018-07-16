@@ -85,10 +85,10 @@ export default class ProUpgradeModal extends React.Component {
     switch (productId) {
       case C.IAP_PROFESSIONAL_2:
       case C.IAP_PROFESSIONAL_5:
-        extra = `Summer Sale\n60% Off`
+        extra = `Summer Sale\n50% Off`
         break
       case C.IAP_PROFESSIONAL_3:
-        extra = `Summer Sale\n40% Off`
+        extra = `Summer Sale\n25% Off`
         break
       default:
     }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import Toast from 'react-native-root-toast'
 
 import { fbAnalytics } from '../../configureFirebase'
 import { E } from '../constants'
 import S from '../styles'
+import T from '../T'
 import CurrentUser from '../auth/CurrentUser'
 
 export default class BaseContainer extends React.Component {
@@ -14,9 +14,7 @@ export default class BaseContainer extends React.Component {
     this.setScreen = this.setScreen.bind(this)
     this.onLayout = this.onLayout.bind(this)
     this.onRefresh = this.onRefresh.bind(this)
-    this.toast = null
     this.showToast = this.showToast.bind(this)
-    this.hideToast = this.hideToast.bind(this)
     this.errorToast = this.errorToast.bind(this)
     this.successToast = this.successToast.bind(this)
     this.showIapModal = this.showIapModal.bind(this)
@@ -27,7 +25,7 @@ export default class BaseContainer extends React.Component {
     this.onIapError = this.onIapError.bind(this)
     this.showReviewerIap = this.showReviewerIap.bind(this)
 
-    this.state = { dimensions: undefined, refreshing: false, isIapVisible: false  }
+    this.state = { dimensions: undefined, refreshing: false, isIapVisible: false, notificationColor: T.colors.normal }
   }
 
   get user() {
@@ -65,15 +63,12 @@ export default class BaseContainer extends React.Component {
   }
 
   showToast(message, options) {
-    this.toast = Toast.show(message, {
-      duration: 2000,
-      shadow: false,
-      animation: true,
-      hideOnPress: true,
-      delay: 0,
-      opacity: 0.9,
-      ...S.toasts.toast,
-      ...options,
+    this.setState({
+      notificationColor: options.backgroundColor || T.colors.normal,
+    })
+    this.notification && this.notification.show({
+      title: '',
+      message: message,
     })
   }
 
@@ -90,12 +85,6 @@ export default class BaseContainer extends React.Component {
       ...S.toasts.success,
       ...options,
     })
-  }
-
-  hideToast() {
-    if (this.toast) {
-      Toast.hide(toast)
-    }
   }
 
   showIapModal(productId) {
@@ -156,6 +145,7 @@ export default class BaseContainer extends React.Component {
     // return (
     //   <View style={{flex:1}} onLayout={this.onLayout}>
     //     <StatusBar barStyle={S.statusBarStyle} />
+    //     <Notification ref={(ref) => { this.notification = ref; }} />
     //   </View>
     // )
   }
