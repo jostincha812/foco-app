@@ -3,25 +3,41 @@ import FirebaseAuth from './FirebaseAuth'
 import { AccessManager } from '../iap'
 import api from '../data/api'
 
+import { fbAnalytics } from '../../configureFirebase'
 import store from '../../configureStore'
 import { actions as UserProfileActions } from '../userProfile'
+import { E } from '../constants'
 
 let _unsubscribe = null
 let _authenticated = false
+let _currentSessionUserActionsCounter = 0
 
 const CurrentUser = {
   setup: (onInitialize, onLogin, onLogout, onError, onEmailVerified) => {
     const _onLogin = (user) => {
       const p = {
+        ...user,
         lastActive: new Date().toUTCString(),
-        ...user
       }
 
-      api.userProfile.upsertUserProfile(user.uid, p).then(() => {
-        store.dispatch(UserProfileActions.fetchUserProfile(user.uid))
-        _authenticated = true
-        onLogin && onLogin(user)
-      })
+      api.userProfile.upsertUserProfile(user.uid, p)
+        .then(api.userProfile.incrementUserSessionsCount(user.uid).then(
+          ({committed, snapshot}) => {
+            const count = snapshot.val()
+            if (committed && count == 2) {
+              fbAnalytics.logEvent(E.activation_signin_no2,
+                { uid: user.uid, date: p.lastActive })
+            }
+            if (committed && count == 3) {
+              fbAnalytics.logEvent(E.activation_signin_no3,
+                { uid: user.uid, date: p.lastActive })
+            }
+          }))
+        .then(() => {
+          store.dispatch(UserProfileActions.fetchUserProfile(user.uid))
+          _authenticated = true
+          onLogin && onLogin(user)
+        })
     }
 
     const _onLogout = (user) => {
@@ -77,6 +93,11 @@ const CurrentUser = {
     return profile ? profile.purchases : []
   },
 
+  get sessions() {
+    const profile = CurrentUser.profile
+    return profile ? profile.sessions : 1
+  },
+
   get isAdmin() {
     const profile = CurrentUser.profile
     if (profile && profile.roles && profile.roles.includes(C.ROLE_ADMIN)) {
@@ -119,6 +140,17 @@ const CurrentUser = {
       onComplete()
     })
     api.userProfile.upsertUserTransaction(profile.uid, transaction)
+  },
+
+  incrementSessionUserActionsCounter: () => {
+    const uid = CurrentUser.uid
+    if (uid) {
+      _currentSessionUserActionsCounter += 1
+      api.userProfile.incrementUserActionsCounter(uid)
+      if (_currentSessionUserActionsCounter % 12 == 0) {
+        console.log('trigger prompt')
+      }
+    }
   },
 }
 

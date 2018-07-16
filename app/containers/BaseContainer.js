@@ -5,6 +5,7 @@ import Toast from 'react-native-root-toast'
 import { fbAnalytics } from '../../configureFirebase'
 import { E } from '../constants'
 import S from '../styles'
+import CurrentUser from '../auth/CurrentUser'
 
 export default class BaseContainer extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ export default class BaseContainer extends React.Component {
       ...params
     }
     fbAnalytics.logEvent(event, data)
+    CurrentUser.incrementSessionUserActionsCounter()
   }
 
   setScreen({ screenName, className }) {
