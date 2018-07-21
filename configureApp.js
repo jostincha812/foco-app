@@ -6,12 +6,14 @@ const settings = {
   reviewerMode: false,
   reviewerVersion: C.VERSION,
   fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
+  premiumCollectionsIAPType: C.CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH,
 }
 
 const ConfigKeys = {
   reviewerMode: 'reviewer_mode',
   reviewerVersion: 'reviewer_version',
   fullUpgradeProductId: 'full_upgrade_product_id',
+  premiumCollectionsIAPType: 'premium_collections_iap_type'
 }
 
 // default of 12 hours
@@ -28,6 +30,7 @@ const defaults = {}
 defaults[ConfigKeys.fullUpgradeProductId] = settings.fullUpgradeProductId
 defaults[ConfigKeys.reviewerMode] = settings.reviewerMode
 defaults[ConfigKeys.reviewerVersion] = settings.reviewerVersion
+defaults[ConfigKeys.premiumCollectionsIAPType] = settings.premiumCollectionsIAPType
 firebase.config().setDefaults(defaults)
 
 // Fetch remote config and set accordingly
