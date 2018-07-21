@@ -15,9 +15,10 @@ export default {
   IAP_PROFESSIONAL_3: 'com.vpqlabs.foco.professional.3',
   IAP_PROFESSIONAL_4: 'com.vpqlabs.foco.professional.4',
   IAP_PROFESSIONAL_5: 'com.vpqlabs.foco.professional.5',
-  IAP_PROFESSIONAL_10: 'com.vpqlabs.foco.professional.10_2',
-  IAP_PROFESSIONAL_15: 'com.vpqlabs.foco.professional.15_2',
-  IAP_PROFESSIONAL_20: 'com.vpqlabs.foco.professional.20_2',
+
+  CONFIG_IAP_PREMIUM_COLLECTIONS_LOCK: 'config_iap_premium_collections_lock',
+  CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH: 'config_iap_premium_collections_flow_through',
+  CONFIG_IAP_PREMIUM_COLLECTIONS_TRIAL: 'config_iap_premium_collections_trial',
 
   ACCESS_FULL: 'ACCESS_FULL',
   ACCESS_PREMIUM_COLLECTION: 'ACCESS_PREMIUM_COLLECTION',
