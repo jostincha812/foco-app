@@ -72,12 +72,14 @@ export default class FlashcardsListContainer extends BaseListContainer {
   _renderList(props) {
     const dimensions = this.state.dimensions
     const flashcards = this._filteredFlashcards
+    const locked = this.state.locked
 
     if (flashcards) {
       return (
         <FlashcardsList
           dimensions={dimensions}
           flashcards={flashcards}
+          locked={locked}
           onPrefToggle={this.onPrefToggle}
           onCardFlip={this.onCardFlip}
           onTriggerIAP={() => this.showIapModal(this._iapProductId)}

@@ -7,6 +7,7 @@ import FlashcardsListContainer from '../containers/FlashcardsListContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 
 import CurrentUser from '../auth/CurrentUser'
+import { AccessManager } from '../iap'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
@@ -23,6 +24,20 @@ class BookmarkedHomeFlashcardsViewer extends FlashcardsListContainer {
     this.setScreen({screenName:R.NAV_COLLECTIONS_FLASHCARDS_VIEWER, className:'CollectionsFlashcardsViewer'})
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    super(prevProps, prevState)
+
+    const navigation = this.props.navigation
+    if (navigation) {
+      const accessType = navigation.state.params.collection.accessType
+
+    }
+  }
+
+  get _iapProductType() {
+    return C.ACCESS_PREMIUM_COLLECTION
+  }
+
   _fetchData() {
     const navigation = this.props.navigation
     if (!navigation) {
@@ -30,7 +45,7 @@ class BookmarkedHomeFlashcardsViewer extends FlashcardsListContainer {
     }
 
     const user = this.props.user
-    this.setState({refreshing: true})
+    this.setState({refreshing: true })   // , locked: navigation.state.params.locked})
     this.props.fetchFlashcards(navigation.state.params.collection.flashcards, user.uid)
   }
 

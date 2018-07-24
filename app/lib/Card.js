@@ -4,24 +4,31 @@ import { View, Image, TouchableOpacity } from 'react-native'
 import styles, { sizes, themes, DefaultTheme } from './styles'
 import StyledText from './StyledText'
 import StyledDivider from './StyledDivider'
+import Pill from './Pill'
 
 export default class Card extends React.Component {
   renderInner(props) {
     const theme = themes[props.theme] ? themes[props.theme] : DefaultTheme
     const headerBackground = props.backgroundImage ? theme.headerBackground : 'transparent'
     const innerStyle = props.innerStyle
-    const showTextShadow = (props.backgroundImage)
-    const showDivider = (props.divider)
+    const showTextShadow = props.backgroundImage
+    const showDivider = props.divider
+    const badge = props.badge
 
     return (
       <View style={{ flex:1, backgroundColor:'transparent', overflow:'hidden' }}>
         { props.title &&
           <View style={[styles.containers.header, {backgroundColor: headerBackground}]}>
-            { props.subtitle &&
-              <StyledText textStyle='subtitle' theme={theme} textShadow={showTextShadow} numberOfLines={1}>
-                {props.subtitle}
-              </StyledText>
-            }
+            <View style={{flexDirection: 'row'}}>
+              { props.subtitle &&
+                <StyledText textStyle='subtitle' theme={theme} textShadow={showTextShadow} numberOfLines={1}>
+                  {props.subtitle}
+                </StyledText>
+              }
+              { props.badge &&
+                <Pill style={{marginLeft: 6, bottom: 1}} label={props.badge.label} backgroundColor={props.badge.color} />
+              }
+            </View>
             { props.title &&
               <StyledText textStyle='title' theme={theme} textShadow={showTextShadow} numberOfLines={1}>
                 {props.title}

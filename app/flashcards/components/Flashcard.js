@@ -107,6 +107,7 @@ export default class Flashcard extends React.Component {
           activeOpacity={1}
           innerOpacity={0.03}
           touchableLockOnly={true}
+          locked={props.locked}
           accessType={C.ACCESS_CONSUMABLE_FLASHCARD}
           accessKey={props.data.id}
           onPress={this.onCardPress}

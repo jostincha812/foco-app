@@ -3,8 +3,9 @@ import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'r
 import { Animated, LayoutAnimation } from 'react-native'
 
 import C, { E } from '../constants'
+import S from '../styles'
 import BaseListContainer from './BaseListContainer'
-import { CollectionCardsList } from '../collections'
+import { CollectionCard } from '../collections'
 import { AccessManager, ProUpgradeModal as IapModal } from '../iap'
 import RemoteConfig from '../../configureApp'
 
@@ -31,7 +32,7 @@ export default class CollectionsListContainer extends BaseListContainer {
     // no-op - to be overridden by subclass
   }
 
-  onCollectionPress(collection) {
+  onCollectionPress(collection, locked) {
     const navigation = this.props.navigation
 
     if (collection.status == C.STATUS_COMING_SOON) {
@@ -43,7 +44,8 @@ export default class CollectionsListContainer extends BaseListContainer {
         collectionId: collection.id,
       })
       navigation.navigate(this._onSelectedRoute, {
-        collection
+        collection,
+        locked
       })
     }
   }
@@ -84,16 +86,25 @@ export default class CollectionsListContainer extends BaseListContainer {
       () => this.showReviewerIap() :
       () => this.showIapModal(this._iapProductId)
 
-    if (collections) {
+    return keys.map((id, index) => {
+      const collection = {id, ...collections[id]}
+      const locked = !AccessManager.hasAccess({
+        accessType: collection.accessType,
+        accessKey: collection.id
+      })
+      const lastItem = (index == (keys.length-1)) ? S.lists.lastItem : null
       return (
-        <CollectionCardsList
-          keys={keys}
-          collections={collections}
-          onSelect={this.onCollectionPress}
-          onPrefChange={this.onPrefToggle}
-          onTriggerIAP={onTriggerIAP}
-        />
+        <CollectionCard
+          style={[S.lists.listItem, lastItem]}
+          key={collection.id}
+          type={collection.type}
+          collection={collection}
+          locked={locked}
+          onPrefToggle={this.onPrefToggle}
+          onPress={() => this.onCollectionPress(collection, locked)}
+          onTriggerIAP={onTriggerIAP}>
+        </CollectionCard>
       )
-    }
+    })
   }
 }

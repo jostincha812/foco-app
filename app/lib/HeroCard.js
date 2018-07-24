@@ -5,6 +5,7 @@ import styles, { sizes, themes, DefaultTheme } from './styles'
 import Card from './Card'
 import StyledText from './StyledText'
 import StyledDivider from './StyledDivider'
+import Pill from './Pill'
 
 export default class HeroCard extends Card {
   renderInner(props) {
@@ -43,11 +44,16 @@ export default class HeroCard extends Card {
               </StyledText>
             }
 
-            {props.subtitle && (
-              <StyledText textStyle='subtitle' theme={theme} textShadow={textShadow} numberOfLines={1}>
-                {props.subtitle}
-              </StyledText>
-            )}
+            <View style={{flexDirection:'row'}}>
+              {props.subtitle && (
+                <StyledText textStyle='subtitle' theme={theme} textShadow={textShadow} numberOfLines={1}>
+                  {props.subtitle}
+                </StyledText>
+              )}
+              { props.badge &&
+                <Pill style={{marginLeft: 6, bottom: 1}} label={props.badge.label} backgroundColor={props.badge.color} />
+              }
+            </View>
           </View>
         )}
       </View>

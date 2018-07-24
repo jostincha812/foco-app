@@ -23,6 +23,15 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
     this.setScreen({screenName:R.NAV_RECOMMENDED_FLASHCARDS_VIEWER, className:'RecommendedFlashcardsViewer'})
   }
 
+
+  componentDidUpdate(prevProps, prevState) {
+    super(prevProps, prevState)
+  }
+
+  get _iapProductType() {
+    return C.ACCESS_PREMIUM_COLLECTION
+  }
+
   _fetchData() {
     const navigation = this.props.navigation
     if (!navigation) {
@@ -30,7 +39,7 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
     }
 
     const user = this.user
-    this.setState({refreshing: true})
+    this.setState({refreshing: true, locked: navigation.state.params.locked})
     this.props.fetchFlashcards(navigation.state.params.collection.flashcards, user.uid)
   }
 
