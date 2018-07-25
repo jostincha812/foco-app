@@ -49,7 +49,7 @@ export default JsFbUserProfileAPI = {
     })
   },
 
-  upsertUserTransaction: (uid, transaction) => {
+  insertUserTransaction: (uid, transaction) => {
     return refs.user(uid).once('value').then(snap => {
       return refs.user(uid).child('transactions').push(transaction).then(() => {
         return transaction
