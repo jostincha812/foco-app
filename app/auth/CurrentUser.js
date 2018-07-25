@@ -135,11 +135,16 @@ const CurrentUser = {
     const profile = CurrentUser.profile
     const purchases = new Set(profile.purchases)
     purchases.add(productId)
-    api.userProfile.upsertUserPurchases(profile.uid, Array.from(purchases)).then(purchased => {
-      profile.purchases = purchased
-      onComplete()
-    })
-    api.userProfile.upsertUserTransaction(profile.uid, transaction)
+    store.dispatch(UserProfileActions.upsertUserPurchases(profile.uid, Array.from(purchases)))
+      .then(() => store.dispatch(UserProfileActions.insertUserTransaction(profile.uid, transaction)))
+      .then(() => store.dispatch(UserProfileActions.fetchUserProfile(profile.uid)))
+      .then(() => onComplete())
+
+    // api.userProfile.upsertUserPurchases(profile.uid, Array.from(purchases)).then(purchased => {
+    //   profile.purchases = purchased
+    //   onComplete()
+    // })
+    // api.userProfile.upsertUserTransaction(profile.uid, transaction)
   },
 
   incrementSessionUserActionsCounter: () => {

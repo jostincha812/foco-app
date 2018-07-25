@@ -132,3 +132,4 @@
 * (1.3.47) Improved readability on iPhoneSE devices
 * (1.3.48) Using rn-in-app-notification in place of rn-root-toast
 * (1.3.49) Fixed null user error in bookmarking collection action
+* (1.3.50) Fixing IAP unlocking flow issue by forcing redux UserProfile fetch post purchase
