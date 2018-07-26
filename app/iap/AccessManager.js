@@ -60,30 +60,30 @@ const AccessManager = {
 
   unlockAccess: ({productId, accessType = null, accessKey = null, onSuccess, onCancel, onError}) => {
     // --- SIMULATOR ONLY ---
-    CurrentUser.addPurchase({
-      productId,
-      transaction: {},
-      onComplete: () => onSuccess('dev success')
-    })
+    // CurrentUser.addPurchase({
+    //   productId,
+    //   transaction: {},
+    //   onComplete: () => onSuccess('dev success')
+    // })
     // --- SIMULATOR ONLY ---
 
-    // const purchases = new Set(CurrentUser.purchases)
-    // if (purchases.has(productId)) {
-    //   onSuccess()
-    // }
-    //
-    // Store.purchaseProduct({
-    //   productId,
-    //   onSuccess: (transaction, message) => {
-    //     CurrentUser.addPurchase({
-    //       productId,
-    //       transaction,
-    //       onComplete: () => onSuccess(message)
-    //     })
-    //   },
-    //   onCancel,
-    //   onError
-    // })
+    const purchases = new Set(CurrentUser.purchases)
+    if (purchases.has(productId)) {
+      onSuccess()
+    }
+
+    Store.purchaseProduct({
+      productId,
+      onSuccess: (transaction, message) => {
+        CurrentUser.addPurchase({
+          productId,
+          transaction,
+          onComplete: () => onSuccess(message)
+        })
+      },
+      onCancel,
+      onError
+    })
   },
 
   // returns the preferred product identifier available to the user for a given access type
