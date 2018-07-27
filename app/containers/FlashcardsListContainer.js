@@ -22,12 +22,20 @@ export default class FlashcardsListContainer extends BaseListContainer {
     return E.user_action_flashcards_scrolled
   }
 
-  get _iapProductType() {
+  get _iapAccessRequired() {
     return C.ACCESS_CONSUMABLE_FLASHCARD
   }
 
   get _iapProductId() {
-    return AccessManager.preferredProductForType(this._iapProductType)
+    return AccessManager.preferredProductForType(this._iapAccessRequired)
+  }
+
+  get _contentType() {
+    return C.CONTENT_FLASHCARD
+  }
+
+  get _contentKey() {
+    return null
   }
 
   get _filteredFlashcards() {
@@ -72,7 +80,12 @@ export default class FlashcardsListContainer extends BaseListContainer {
   _renderList(props) {
     const dimensions = this.state.dimensions
     const flashcards = this._filteredFlashcards
-    const locked = this.state.locked
+    const locked = !AccessManager.hasAccess({
+      config: RemoteConfig.IAPFlowConfig,
+      accessRequired: this._iapAccessRequired,
+      contentType: this._contentType,
+      contentKey: this._contentKey
+    })
 
     if (flashcards) {
       return (

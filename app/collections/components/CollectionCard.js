@@ -50,7 +50,7 @@ export default class CollectionCard extends React.Component {
 
     let locked = props.locked
     let badge = null
-    switch (RemoteConfig.premiumCollectionsIAPType) {
+    switch (RemoteConfig.IAPFlowConfig) {
       case C.CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH:
       case C.CONFIG_IAP_PREMIUM_COLLECTIONS_TRIAL:
         locked = false

@@ -23,13 +23,28 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
     this.setScreen({screenName:R.NAV_RECOMMENDED_FLASHCARDS_VIEWER, className:'RecommendedFlashcardsViewer'})
   }
 
-
-  componentDidUpdate(prevProps, prevState) {
-    super(prevProps, prevState)
+  get _iapAccessRequired() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.accessRequired
+    } catch (e) {
+      return null
+    }
   }
 
-  get _iapProductType() {
-    return C.ACCESS_PREMIUM_COLLECTION
+  get _contentType() {
+    return C.CONTENT_FLASHCARD
+  }
+
+  get _contentKey() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.id
+    } catch (e) {
+      return null
+    }
   }
 
   _fetchData() {
@@ -39,7 +54,7 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
     }
 
     const user = this.user
-    this.setState({refreshing: true, locked: navigation.state.params.locked})
+    this.setState({refreshing: true})
     this.props.fetchFlashcards(navigation.state.params.collection.flashcards, user.uid)
   }
 

@@ -25,8 +25,6 @@ class BookmarkedHomeFlashcardsViewer extends FlashcardsListContainer {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    super(prevProps, prevState)
-
     const navigation = this.props.navigation
     if (navigation) {
       const accessType = navigation.state.params.collection.accessType

@@ -142,6 +142,21 @@ const CurrentUser = {
     api.userProfile.upsertUserTransaction(profile.uid, transaction)
   },
 
+  hasPurchasedProduct: (product) => {
+    const purchases = CurrentUser.purchases
+    return (purchases.indexOf(product) >= 0)
+  },
+
+  hasPurchasedProducts: (products) => {
+    let purchased = false
+    products.map(product => {
+      if (CurrentUser.hasPurchasedProduct(product)) {
+        purchased = true
+      }
+    })
+    return purchased
+  },
+
   incrementSessionUserActionsCounter: () => {
     const uid = CurrentUser.uid
     if (uid) {

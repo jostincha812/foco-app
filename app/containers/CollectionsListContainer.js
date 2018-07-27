@@ -20,34 +20,34 @@ export default class CollectionsListContainer extends BaseListContainer {
     return E.user_action_collections_scrolled
   }
 
-  get _iapProductType() {
+  get _iapAccessRequired() {
     return C.ACCESS_PREMIUM_COLLECTION
   }
 
   get _iapProductId() {
-    return AccessManager.preferredProductForType(this._iapProductType)
+    return AccessManager.preferredProductForType(this._iapAccessRequired)
+  }
+
+  get _contentType() {
+    return C.CONTENT_COLLECTION
+  }
+
+  get _contentKey() {
+    return null
   }
 
   get _onSelectedRoute() {
     // no-op - to be overridden by subclass
   }
 
-  onCollectionPress(collection, locked) {
+  onCollectionPress(collection) {
     const navigation = this.props.navigation
-
-    if (collection.status == C.STATUS_COMING_SOON) {
-      this.logEvent(E.user_action_collection_coming_soon, {
-        collectionId: collection.id,
-      })
-    } else {
-      this.logEvent(E.user_action_collection_selected, {
-        collectionId: collection.id,
-      })
-      navigation.navigate(this._onSelectedRoute, {
-        collection,
-        locked
-      })
-    }
+    this.logEvent(E.user_action_collection_selected, {
+      collectionId: collection.id,
+    })
+    navigation.navigate(this._onSelectedRoute, {
+      collection
+    })
   }
 
   onPrefToggle(collectionId, pref) {
@@ -89,8 +89,10 @@ export default class CollectionsListContainer extends BaseListContainer {
     return keys.map((id, index) => {
       const collection = {id, ...collections[id]}
       const locked = !AccessManager.hasAccess({
-        accessType: collection.accessType,
-        accessKey: collection.id
+        config: RemoteConfig.IAPFlowConfig,
+        accessRequired: collection.accessRequired,
+        contentType: this._contentType,
+        contentKey: collection.id
       })
       const lastItem = (index == (keys.length-1)) ? S.lists.lastItem : null
       return (
@@ -101,7 +103,7 @@ export default class CollectionsListContainer extends BaseListContainer {
           collection={collection}
           locked={locked}
           onPrefToggle={this.onPrefToggle}
-          onPress={() => this.onCollectionPress(collection, locked)}
+          onPress={() => this.onCollectionPress(collection)}
           onTriggerIAP={onTriggerIAP}>
         </CollectionCard>
       )
