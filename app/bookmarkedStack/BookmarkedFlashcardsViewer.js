@@ -55,7 +55,7 @@ class BookmarkedHomeFlashcardsViewer extends FlashcardsListContainer {
     }
 
     const user = this.props.user
-    this.setState({refreshing: true })   // , locked: navigation.state.params.locked})
+    this.setState({refreshing: true})
     this.props.fetchFlashcards(navigation.state.params.collection.flashcards, user.uid)
   }
 

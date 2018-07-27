@@ -97,15 +97,6 @@ export default class CollectionCard extends React.Component {
       // onPress: props.onPress,
     }
 
-    if (collection.category == C.STATUS_COMING_SOON) {
-      // params.backgroundColor = T.colors.inactive
-      // params.theme = 'dark'
-      collection.subtitle = collection.title
-      collection.title = localize("collections.coming_soon")
-      params.toggle = null
-      type = 'hero'
-    }
-
     if (collection.type == 'featured') {
       params.theme = 'dark'
       params.category = 'featured'

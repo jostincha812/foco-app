@@ -17,7 +17,7 @@ const wset2products = [
 
 const hasLockAccess = ({config, accessRequired, contentType = null, contentKey = null}) => {
   if (RemoteConfig.inReview) {
-    // TODO update purchase sets to whatever reviewers should see
+    // TODO update product sets to whatever reviewers should see
   }
 
   let hasAccess = false
@@ -40,6 +40,10 @@ const hasLockAccess = ({config, accessRequired, contentType = null, contentKey =
 }
 
 const hasFlowThroughAccess = ({config, accessRequired, contentType = null, contentKey = null}) => {
+  if (RemoteConfig.inReview) {
+    // TODO update product sets to whatever reviewers should see
+  }
+
   let hasAccess = false
   switch (accessRequired) {
     case C.ACCESS_PREMIUM_COLLECTION:
@@ -76,6 +80,8 @@ const hasAccess = (options) => {
 }
 
 const unlockAccess = ({productId, accessType = null, accessKey = null, onSuccess, onCancel, onError}) => {
+  // TODO remove from production with flag
+  // if (__DEV__) {
   // --- SIMULATOR ONLY ---
   CurrentUser.addPurchase({
     productId,
@@ -83,7 +89,7 @@ const unlockAccess = ({productId, accessType = null, accessKey = null, onSuccess
     onComplete: () => onSuccess('*** Simulated purchase successfully completed ***')
   })
   // --- SIMULATOR ONLY ---
-
+  // } else {
   // const purchases = new Set(CurrentUser.purchases)
   // if (purchases.has(productId)) {
   //   onSuccess()
@@ -101,6 +107,7 @@ const unlockAccess = ({productId, accessType = null, accessKey = null, onSuccess
   //   onCancel,
   //   onError
   // })
+  // }
 }
 
 // returns the preferred product identifier available to the user for a given access type

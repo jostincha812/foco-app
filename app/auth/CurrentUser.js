@@ -107,12 +107,9 @@ const CurrentUser = {
   },
 
   get isReviewer() {
-    // TODO use dev flag
-    const profile = CurrentUser.profile
-    if (profile &&
-      (profile.email == 'reviewers@vpqlabs.com' ||
-      profile.email == 'flyflyerson@gmail.com')
-    ) {
+    const profile = CurrentUser.profile || {}
+    if (profile.email == 'reviewers@vpqlabs.com' ||
+        profile.email == 'flyflyerson@gmail.com') {
       return true
     }
     return false
