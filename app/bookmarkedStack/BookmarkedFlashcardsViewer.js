@@ -24,16 +24,28 @@ class BookmarkedHomeFlashcardsViewer extends FlashcardsListContainer {
     this.setScreen({screenName:R.NAV_COLLECTIONS_FLASHCARDS_VIEWER, className:'CollectionsFlashcardsViewer'})
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const navigation = this.props.navigation
-    if (navigation) {
-      const accessType = navigation.state.params.collection.accessType
-
+  get _iapAccessRequired() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.accessRequired
+    } catch (e) {
+      return null
     }
   }
 
-  get _iapProductType() {
-    return C.ACCESS_PREMIUM_COLLECTION
+  get _contentType() {
+    return C.CONTENT_FLASHCARD
+  }
+
+  get _contentKey() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.id
+    } catch (e) {
+      return null
+    }
   }
 
   _fetchData() {
