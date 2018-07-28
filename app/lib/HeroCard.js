@@ -33,25 +33,25 @@ export default class HeroCard extends Card {
         </View>
 
         {(props.title || props.subtitle) && (
-          <View style={[styles.containers.header, {paddingTop:8, backgroundColor: headerBackground}]}>
+          <View style={[styles.containers.header, {paddingTop:10, backgroundColor: headerBackground}]}>
             {showDivider && (
               <StyledDivider location='top' theme={theme} />
             )}
 
-            {props.title &&
-              <StyledText textStyle='title' theme={theme} textShadow={textShadow} numberOfLines={1}>
-                {props.title}
+            {props.subtitle && (
+              <StyledText textStyle='tagline' theme={theme} textShadow={textShadow} numberOfLines={1}>
+                {props.subtitle}
               </StyledText>
-            }
+            )}
 
-            <View style={{flexDirection:'row'}}>
-              {props.subtitle && (
-                <StyledText textStyle='subtitle' theme={theme} textShadow={textShadow} numberOfLines={1}>
-                  {props.subtitle}
+            <View style={{flexDirection:'row', marginTop:sizes.spacer}}>
+              {props.title &&
+                <StyledText textStyle='header' theme={theme} textShadow={textShadow} numberOfLines={1}>
+                  {props.title}
                 </StyledText>
-              )}
+              }
               { props.badge &&
-                <Pill style={{marginLeft: 6, bottom: 1}} label={props.badge.label} backgroundColor={props.badge.color} />
+                <Pill style={{marginLeft: 6, bottom:1}} small={true} label={props.badge.label} backgroundColor={props.badge.color} />
               }
             </View>
           </View>

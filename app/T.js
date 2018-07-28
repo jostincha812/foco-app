@@ -5,7 +5,8 @@ export default FocoTheme = {
     headerBackground: '#F5F5F5', // grey 100
     headerBorder: '#E0E0E0',
     tabNavBackground: '#F5F5F5',
-    containerBackground: '#ECEFF1', // blue grey 50
+    // containerBackground: '#ECEFF1', // blue grey 50
+    containerBackground: '#FFF', // blue grey 50
     contentBackground: '#FFF',
     contentBorder: '#E0E0E0',   // grey 300
 
@@ -46,7 +47,7 @@ export default FocoTheme = {
 
     featured: '#000',
     coming_soon: '#ADADAD',
-    key_facts: '#1E88E5',
+    key_facts: '#000',
     obscure_facts: '#757D75',
     climate: '#2196F3',   // blue 500
     geography: '#00897B', // teal 600

@@ -1,5 +1,6 @@
 export const sizes = {
   hairline: 0.5,
+  spacer: 4,
   xxsmall: 8,
   xsmall: 10,
   small: 12,
@@ -27,7 +28,7 @@ export const themes = {
     dividerColor: '#95a5a6',
     shadowColor: '#7f8c8d',
     color: '#000',
-    headerBackground: '#FFFFFFcc',
+    headerBackground: '#FFFFFFdd',
     textShadow: {
       textShadowColor: '#FFF',
       textShadowOffset: {
@@ -45,7 +46,7 @@ export const themes = {
     dividerColor: '#ffffffaa',
     shadowColor: '#7f8c8d',
     color: '#FFF',
-    headerBackground: '#CCCCCCcc',
+    headerBackground: '#3E3E3Edd',
     textShadow: {
       textShadowColor: '#000',
       textShadowOffset: {
@@ -62,6 +63,7 @@ export default styles = {
   containers: {
     normal: {
       padding: sizes.normal,
+      backgroundColor: 'transparent',
     },
     header: {
       paddingTop: sizes.small,
@@ -87,11 +89,11 @@ export default styles = {
     raised: {
       shadowColor: DefaultTheme.shadowColor,
       shadowOffset: {
-        width: sizes.none,
-        height: sizes.xsmall/2,
+        width: 1,
+        height: 3,
       },
-      shadowRadius: sizes.xsmall/2,
-      shadowOpacity: sizes.hairline/2,
+      shadowRadius: 2,
+      shadowOpacity: 0.75,
     },
   },
 
@@ -116,7 +118,7 @@ export default styles = {
       backgroundColor: 'transparent',
     },
     tagline: {
-      fontWeight: weights.light,
+      fontWeight: weights.bold,
       fontSize: sizes.large - 4,
       fontStyle: 'italic',
       color: DefaultTheme.color,
@@ -134,10 +136,11 @@ export default styles = {
     subtitle: {
       fontWeight: weights.semibold,
       fontSize: sizes.normal,
+      fontStyle: 'italic',
       color: DefaultTheme.color,
     },
     header: {
-      fontWeight: weights.heavy,
+      fontWeight: weights.normal,
       fontSize: sizes.normal,
       color: DefaultTheme.color,
     },

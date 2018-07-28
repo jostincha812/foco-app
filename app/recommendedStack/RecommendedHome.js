@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import T from '../T'
 import C, { R } from '../constants'
 import { localize } from '../locales'
-import CollectionsListContainer from '../containers/CollectionsListContainer'
 
+import CollectionsListContainer from '../containers/CollectionsListContainer'
 import CurrentUser from '../auth/CurrentUser'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as CollectionsActions } from '../collections'

@@ -12,7 +12,7 @@ import markdown from './markdown'
 
 export { markdown }
 
-export default styles = {
+const styles = {
   statusBarStyle: 'dark-content',
   inverseStatusBarStyle: 'light-content',
 
@@ -46,3 +46,5 @@ export default styles = {
     }
   },
 }
+Object.freeze(styles)
+export default styles

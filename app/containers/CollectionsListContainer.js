@@ -94,10 +94,12 @@ export default class CollectionsListContainer extends BaseListContainer {
         contentType: this._contentType,
         contentKey: collection.id
       })
-      const lastItem = (index == (keys.length-1)) ? S.lists.lastItem : null
+      const lastItem = (index == (keys.length-1)) ? Object.assign({}, S.lists.lastItem) : null
+      const item = Object.assign({}, S.lists.listItem)
+
       return (
         <CollectionCard
-          style={[S.lists.listItem, lastItem]}
+          style={[item, lastItem]}
           key={collection.id}
           type={collection.type}
           collection={collection}

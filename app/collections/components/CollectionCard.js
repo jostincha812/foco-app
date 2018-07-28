@@ -113,8 +113,8 @@ export default class CollectionCard extends React.Component {
       case 'hero':
       case 'featured':
         params.hero = collection.title
-        params.title = collection.subtitle
-        params.subtitle = numberOfCards
+        params.title = numberOfCards
+        params.subtitle = collection.subtitle ? collection.subtitle.toUpperCase() : null
         card = (
           <HeroCard containerStyle={[S.cards.hero, props.style]} {...params}>
             {props.children}
