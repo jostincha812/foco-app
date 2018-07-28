@@ -10,6 +10,7 @@ import C from '../constants'
 import T from '../T'
 import S from '../styles'
 import LoadingIndicator from '../components/LoadingIndicator'
+import Icons from '../components/Icons'
 import AccessManager from './AccessManager'
 
 export default class ProUpgradeModal extends React.Component {
@@ -40,7 +41,8 @@ export default class ProUpgradeModal extends React.Component {
     const props = this.props
     const product = this.state.product
     const refProduct = this.state.reference
-    const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
+    // const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
+    const backdropDismiss = () => {}
     const baseContainerStyle = [
       S.cards.card, S.cards.raised, S.corners.rounded,
       { width: normalize(260) }
@@ -94,6 +96,7 @@ export default class ProUpgradeModal extends React.Component {
     }
 
     // TODO localise
+    const iapCancel = 'Maybe later'
     const productInfo = product ? [
       `(Regular price ${refProduct.priceString})`,
       product.title,
@@ -139,6 +142,8 @@ export default class ProUpgradeModal extends React.Component {
             />
           </View>
         }
+
+        <Button icon={{name:'cancel',color:T.colors.inverse,size:S.spacing.xlarge}} backgroundColor={T.colors.transparent} onPress={props.onDismiss} />
       </Modal>
     )
   }

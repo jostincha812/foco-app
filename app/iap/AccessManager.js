@@ -83,11 +83,12 @@ const unlockAccess = ({productId, accessType = null, accessKey = null, onSuccess
   // TODO remove from production with flag
   // if (__DEV__) {
   // --- SIMULATOR ONLY ---
-  CurrentUser.addPurchase({
+  setTimeout(() => CurrentUser.addPurchase({
     productId,
     transaction: {},
     onComplete: () => onSuccess('*** Simulated purchase successfully completed ***')
-  })
+  }), 1200)
+
   // --- SIMULATOR ONLY ---
   // } else {
   // const purchases = new Set(CurrentUser.purchases)
