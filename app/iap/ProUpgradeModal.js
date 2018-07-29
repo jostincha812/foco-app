@@ -44,7 +44,7 @@ export default class ProUpgradeModal extends React.Component {
     // const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
     const backdropDismiss = () => {}
     const baseContainerStyle = [
-      S.cards.card, S.cards.raised, S.corners.rounded,
+      S.cards.card, S.corners.rounded,
       { width: normalize(260) }
     ]
 

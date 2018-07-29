@@ -23,6 +23,10 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
     this.setScreen({screenName:R.NAV_RECOMMENDED_FLASHCARDS_VIEWER, className:'RecommendedFlashcardsViewer'})
   }
 
+  get user() {
+    return CurrentUser
+  }
+
   get _iapAccessRequired() {
     try {
       const navigation = this.props.navigation

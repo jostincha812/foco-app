@@ -48,14 +48,22 @@ export default class FlashcardsListContainer extends BaseListContainer {
   }
 
   onPrefToggle(id, pref) {
-    // TODO move user into _updatePref?
-    const user = this.user
-    const flashcard = this.props.flashcards[id]
-    this._updatePref({user, flashcard, pref})
-    this.logEvent(E.user_action_flashcard_pref_updated, {
-      flashcardId: flashcard.id,
-      pref,
+    const locked = !AccessManager.hasAccess({
+      config: RemoteConfig.IAPFlowConfig,
+      accessRequired: this._iapAccessRequired,
+      contentType: this._contentType,
+      contentKey: this._contentKey
     })
+
+    if (!locked) {
+      const user = this.user
+      const flashcard = this.props.flashcards[id]
+      this._updatePref({user, flashcard, pref})
+      this.logEvent(E.user_action_flashcard_pref_updated, {
+        flashcardId: flashcard.id,
+        pref,
+      })
+    }
   }
 
   onCardFlip(flashcardId) {
