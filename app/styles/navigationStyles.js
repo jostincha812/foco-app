@@ -61,8 +61,8 @@ export default navigationStyles = {
       width: 0,
       height: 0,
     },
-    shadowRadius: 2,
-    shadowOpacity: 0.6,
+    shadowRadius: 3,
+    shadowOpacity: 0.65,
   },
 
   stickiedHeaderAndroid: {
@@ -94,9 +94,9 @@ export default navigationStyles = {
     headerStyle: {
       paddingLeft: Platform.OS === 'ios' ? 0 : S.spacing.small,
       backgroundColor: T.colors.headerBackground,
-      borderBottomWidth: 0,
+      borderBottomWidth: 1,
       borderBottomColor: T.colors.headerBorder,
-      elevation: 2,
+      elevation: 4,
       ...containers.cards.raised,
     },
   },
