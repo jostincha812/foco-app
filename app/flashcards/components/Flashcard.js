@@ -55,6 +55,14 @@ export default class Flashcard extends React.Component {
     const props = this.props
     const data = this.props.data
 
+    const tags = data.tags || []
+    let cardfaceColor = null
+    tags.map(tag => {
+      if (cardfaceColor) { return }
+      if (T.colors[tag]) { cardfaceColor = T.colors[tag] }
+    })
+    const mdStyle = cardfaceColor ? markdownInverse : markdown
+
     const isStarred = this.state[C.KEY_PREF_STARRED]
     const starToggleOptions = {
       style: {position:'absolute', top:S.spacing.small, right:S.spacing.small},
@@ -73,14 +81,6 @@ export default class Flashcard extends React.Component {
     const flagToggle = !CurrentUser.isAdmin ? null : (isFlagged ?
       Icons.flag({color:T.colors.app, ...flagToggleOptions}) :
       Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions}))
-
-    const tags = data.tags || []
-    let cardfaceColor = null
-    tags.map(tag => {
-      if (cardfaceColor) { return }
-      if (T.colors[tag]) { cardfaceColor = T.colors[tag]}
-    })
-    const mdStyle = cardfaceColor ? markdownInverse : markdown
 
     return (
       <FlipCard
