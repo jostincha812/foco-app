@@ -1,3 +1,5 @@
+import { Platform } from 'react-native'
+
 import T from '../T'
 import F from '../F'
 import spacing from './spacing'
@@ -54,7 +56,13 @@ export default navigationStyles = {
     borderBottomWidth: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    ...containers.cards.raised,
+    shadowColor: T.colors.shadowColor,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.6,
   },
 
   stickiedHeaderAndroid: {
@@ -84,10 +92,11 @@ export default navigationStyles = {
       top: 2,
     },
     headerStyle: {
-      backgroundColor: T.colors.containerBackground,
-      borderBottomWidth: 1,
+      paddingLeft: Platform.OS === 'ios' ? 0 : S.spacing.small,
+      backgroundColor: T.colors.headerBackground,
+      borderBottomWidth: 0,
       borderBottomColor: T.colors.headerBorder,
-      elevation: 4,
+      elevation: 2,
       ...containers.cards.raised,
     },
   },

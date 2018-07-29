@@ -126,3 +126,4 @@
 ## 1.3
 * Using redux store for CurrentUser
 * Added _reviewers only_ GoPremiumScreen
+* (1.3.x) Fixing IAP unlocking flow issue by forcing redux UserProfile fetch post purchase

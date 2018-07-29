@@ -19,9 +19,6 @@ class StarredHome extends FlashcardsListContainer {
     if (navigation.state.params) {
       return ({
         title: localize("starred.title"),
-        headerStyle: {
-          paddingLeft: Platform.OS === 'ios' ? 0 : S.spacing.small,
-        },
         headerRight: (
           <NavHeaderFilterToggleButton
             toggled={navigation.state.params.filtered}

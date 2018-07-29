@@ -6,6 +6,7 @@ const settings = {
   reviewerMode: false,
   reviewerVersion: C.VERSION,
   fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
+  refUpgradeProductId: C.IAP_PROFESSIONAL_2,
   IAPFlowConfig: C.CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH,
 }
 
@@ -13,6 +14,7 @@ const ConfigKeys = {
   reviewerMode: 'reviewer_mode',
   reviewerVersion: 'reviewer_version',
   fullUpgradeProductId: 'full_upgrade_product_id',
+  refUpgradeProductId: 'ref_upgrade_product_id',
   IAPFlowConfig: 'iap_flow_config'
 }
 
@@ -28,6 +30,7 @@ let CACHE_DURATION = 43200
 // Set default values
 const defaults = {}
 defaults[ConfigKeys.fullUpgradeProductId] = settings.fullUpgradeProductId
+defaults[ConfigKeys.refUpgradeProductId] = settings.refUpgradeProductId
 defaults[ConfigKeys.reviewerMode] = settings.reviewerMode
 defaults[ConfigKeys.reviewerVersion] = settings.reviewerVersion
 defaults[ConfigKeys.IAPFlowConfig] = settings.IAPFlowConfig

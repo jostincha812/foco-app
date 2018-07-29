@@ -21,7 +21,7 @@ export default class ProUpgradeModal extends React.Component {
 
   componentDidMount() {
     const productId = this.props.productId
-    const refId = C.IAP_PROFESSIONAL_2
+    const refId = this.props.refProductId
     AccessManager.fetchProducts({
       products: [productId, refId],
       onSuccess: (details) => {
@@ -86,8 +86,9 @@ export default class ProUpgradeModal extends React.Component {
     let extra = null
     switch (productId) {
       case C.IAP_PROFESSIONAL_2:
+        extra = `Summer Sale\n20% Off`
+        break
       case C.IAP_PROFESSIONAL_5:
-        extra = `Summer Sale\n50% Off`
         break
       case C.IAP_PROFESSIONAL_3:
         extra = `Summer Sale\n25% Off`

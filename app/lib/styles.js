@@ -90,7 +90,7 @@ export default styles = {
       shadowColor: DefaultTheme.shadowColor,
       shadowOffset: {
         width: 1,
-        height: 3,
+        height: 2,
       },
       shadowRadius: 2,
       shadowOpacity: 0.75,

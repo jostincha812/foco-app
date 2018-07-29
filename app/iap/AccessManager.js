@@ -122,6 +122,16 @@ const preferredProductForType = (accessType = null) => {
   }
 }
 
+const referenceProductForType = (accessType = null) => {
+  switch (accessType) {
+    case C.ACCESS_PREMIUM_COLLECTION:
+      // load from Firebase Remote Config
+      return RemoteConfig.refUpgradeProductId
+    default:
+      return null
+  }
+}
+
 const fetchProductDetails = ({productId, onSuccess, onError}) => {
   return Store.loadProduct({
     productId, onSuccess, onError
@@ -138,6 +148,7 @@ const AccessManager = {
   hasAccess,
   unlockAccess,
   preferredProductForType,
+  referenceProductForType,
   fetchProducts,
   fetchProductDetails
 }

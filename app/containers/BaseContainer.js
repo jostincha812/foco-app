@@ -116,6 +116,7 @@ export default class BaseContainer extends React.Component {
     this.logEvent(E.iap_purchase_completed, {
       productId
     })
+
     this.hideIapModal()
     this.successToast(message)
   }

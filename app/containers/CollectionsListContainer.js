@@ -36,6 +36,10 @@ export default class CollectionsListContainer extends BaseListContainer {
     return null
   }
 
+  get _refProductId() {
+    return AccessManager.referenceProductForType(this._iapProductType)
+  }
+
   get _onSelectedRoute() {
     // no-op - to be overridden by subclass
   }
@@ -69,6 +73,7 @@ export default class CollectionsListContainer extends BaseListContainer {
     return (
       <IapModal
         productId={this._iapProductId}
+        refProductId={this._refProductId}
         isVisible={isIapVisible}
         onDismiss={this.hideIapModal}
         onAttempt={this.onIapAttempt}
