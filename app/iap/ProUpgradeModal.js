@@ -22,8 +22,6 @@ export default class ProUpgradeModal extends React.Component {
   componentDidMount() {
     const productId = this.props.productId
     const refId = this.props.refProductId
-    console.log(this.props)
-    console.log(refId)
     AccessManager.fetchProducts({
       products: [productId, refId],
       onSuccess: (details) => {

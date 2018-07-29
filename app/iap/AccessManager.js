@@ -123,7 +123,6 @@ const preferredProductForType = (accessType = null) => {
 }
 
 const referenceProductForType = (accessType = null) => {
-  console.log(accessType)
   switch (accessType) {
     case C.ACCESS_PREMIUM_COLLECTION:
       // load from Firebase Remote Config
