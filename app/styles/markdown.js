@@ -5,7 +5,7 @@ import spacing from './spacing'
 import text from './textStyles'
 // import S from './styles'
 
-export default markdown = {
+const markdown = {
   codeBlock: {
     fontFamily: 'Courier',
     fontWeight: F.weights.bold,
@@ -58,7 +58,8 @@ export default markdown = {
   },
   text: {
     ...text.normal,
-    fontSize: F.sizes.small,
+    fontWeight: F.weights.normal,
+    fontSize: F.sizes.normal,
   },
   strong: {
     fontWeight: F.weights.bold,
@@ -74,3 +75,33 @@ export default markdown = {
     fontWeight: F.weights.bold,
   },
 }
+
+const markdownInverse = {
+  ...markdown,
+  text: {
+    ...text.normal,
+    fontWeight: F.weights.normal,
+    fontSize: F.sizes.normal,
+    color: T.colors.inverse
+  }
+}
+
+const markdownSmall = {
+  ...markdown,
+  text: {
+    ...markdown.text,
+    fontWeight: F.weights.light,
+    fontSize: F.sizes.small
+  }
+}
+const markdownSmallInverse = {
+  ...markdownInverse,
+  text: {
+    ...markdownInverse.text,
+    fontWeight: F.weights.light,
+    fontSize: F.sizes.small
+  }
+}
+
+export default markdown
+export { markdown, markdownInverse, markdownSmall, markdownSmallInverse }

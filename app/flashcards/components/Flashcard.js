@@ -5,7 +5,7 @@ import FlipCard from 'react-native-flip-card'
 
 import C from '../../constants'
 import T from '../../T'
-import S, { markdown } from '../../styles'
+import S, { markdown, markdownInverse, markdownSmall } from '../../styles'
 
 import CurrentUser from '../../auth/CurrentUser'
 import FlashcardTags from './FlashcardTags'
@@ -74,6 +74,14 @@ export default class Flashcard extends React.Component {
       Icons.flag({color:T.colors.app, ...flagToggleOptions}) :
       Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions}))
 
+    const tags = data.tags || []
+    let cardfaceColor = null
+    tags.map(tag => {
+      if (cardfaceColor) { return }
+      if (T.colors[tag]) { cardfaceColor = T.colors[tag]}
+    })
+    const mdStyle = cardfaceColor ? markdownInverse : markdown
+
     return (
       <FlipCard
         style={[styles.container, props.style]}
@@ -93,11 +101,13 @@ export default class Flashcard extends React.Component {
           activeOpacity={1}
           onPress={this.onCardPress}
         >
-          {flagToggle}
-          {starToggle}
-          <MarkdownView styles={markdown}>
-            {data.front}
-          </MarkdownView>
+          <View style={[styles.cardfaceInner, {backgroundColor: cardfaceColor}]}>
+            {flagToggle}
+            {starToggle}
+            <MarkdownView styles={mdStyle}>
+              {data.front}
+            </MarkdownView>
+          </View>
         </TouchableOpacity>
 
         <PremiumContentContainer
@@ -115,7 +125,7 @@ export default class Flashcard extends React.Component {
         >
           {flagToggle}
           {starToggle}
-          <MarkdownView styles={markdown}>
+          <MarkdownView styles={markdownSmall}>
             {data.back}
           </MarkdownView>
           <FlashcardTags
@@ -135,10 +145,14 @@ const styles = {
     ...S.corners.rounded,
     padding: S.spacing.none,
   },
-  cardface: {
+  cardfaceInner: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: S.spacing.large,
-    overflow: 'hidden',
   },
+  cardface: {
+    flex: 1,
+    overflow: 'hidden',
+    ...S.corners.rounded,
+  }
 }

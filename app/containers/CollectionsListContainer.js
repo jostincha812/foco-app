@@ -28,16 +28,16 @@ export default class CollectionsListContainer extends BaseListContainer {
     return AccessManager.preferredProductForType(this._iapAccessRequired)
   }
 
+  get _refProductId() {
+    return AccessManager.referenceProductForType(this._iapAccessRequired)
+  }
+
   get _contentType() {
     return C.CONTENT_COLLECTION
   }
 
   get _contentKey() {
     return null
-  }
-
-  get _refProductId() {
-    return AccessManager.referenceProductForType(this._iapProductType)
   }
 
   get _onSelectedRoute() {

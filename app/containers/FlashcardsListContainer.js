@@ -30,6 +30,10 @@ export default class FlashcardsListContainer extends BaseListContainer {
     return AccessManager.preferredProductForType(this._iapAccessRequired)
   }
 
+  get _refProductId() {
+    return AccessManager.referenceProductForType(this._iapAccessRequired)
+  }
+
   get _contentType() {
     return C.CONTENT_FLASHCARD
   }
@@ -69,6 +73,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
     return (
       <IapModal
         productId={this._iapProductId}
+        refProductId={this._refProductId}
         isVisible={isIapVisible}
         onDismiss={this.hideIapModal}
         onAttempt={this.onIapAttempt}

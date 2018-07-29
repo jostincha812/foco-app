@@ -22,6 +22,8 @@ export default class ProUpgradeModal extends React.Component {
   componentDidMount() {
     const productId = this.props.productId
     const refId = this.props.refProductId
+    console.log(this.props)
+    console.log(refId)
     AccessManager.fetchProducts({
       products: [productId, refId],
       onSuccess: (details) => {
@@ -80,8 +82,8 @@ export default class ProUpgradeModal extends React.Component {
     const iapErrorHeader = "Whoops!"
     const iapErrorTryAgain = "Please try again later."
     const iapErrorDismiss = "OK"
-
-    const iapLoadingError = "We're having difficulty loading available in-app purchases for your device."
+    // const iapLoadingError = "We're having difficulty loading available in-app purchases for your device."
+    const iapLoadingError = this.state.error
 
     let extra = null
     switch (productId) {
@@ -104,7 +106,7 @@ export default class ProUpgradeModal extends React.Component {
       // `(price shown in ${product.currencyCode})`,
       // 'One time FULL upgrade',
       'Access to all WSET-3 (Advanced)\nCollections and Flashcards',
-      'Sale ends July 31, 2018',
+      'Sale ends Aug 18, 2018',
     ] : []
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :

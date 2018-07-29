@@ -54,7 +54,7 @@ export default FocoTheme = {
     terroir: '#5D4037',   // brown 700
     law: '#424242',       // grey 800
     varietals: '#1B5E20',  // green 900
-    vinification: '#BF360C',  // deep orange 900
+    viniculture: '#BF360C',  // deep orange 900
     viticulture: '#7B1FA2', // purple 700
     winestyle: '#8F1D21', // true red - http://bootflat.github.io/color-picker.html
     sparkling: '#FFD600', // yellow A700

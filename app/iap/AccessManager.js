@@ -118,17 +118,18 @@ const preferredProductForType = (accessType = null) => {
       // load from Firebase Remote Config
       return RemoteConfig.fullUpgradeProductId
     default:
-      return null
+      return C.IAP_PROFESSIONAL_3
   }
 }
 
 const referenceProductForType = (accessType = null) => {
+  console.log(accessType)
   switch (accessType) {
     case C.ACCESS_PREMIUM_COLLECTION:
       // load from Firebase Remote Config
       return RemoteConfig.refUpgradeProductId
     default:
-      return null
+      return C.IAP_PROFESSIONAL_3
   }
 }
 
