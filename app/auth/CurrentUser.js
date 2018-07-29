@@ -121,7 +121,7 @@ const CurrentUser = {
       return C.IAP_FREE_ACCESS
     }
 
-    if (AccessManager.hasAccess({accessType: C.ACCESS_FULL, purchases:profile.purchases})) {
+    if (AccessManager.hasAccess({accessRequired: C.ACCESS_FULL})) {
       return C.IAP_FULL_ACCESS
     } else {
       return profile.purchases[0]
