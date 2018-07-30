@@ -117,7 +117,7 @@ const CurrentUser = {
 
   get accessLevel() {
     const profile = CurrentUser.profile
-    if (profile == null) {
+    if (!profile || !profile.purchases) {
       return C.IAP_FREE_ACCESS
     }
 
