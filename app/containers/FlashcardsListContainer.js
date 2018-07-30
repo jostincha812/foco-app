@@ -85,6 +85,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
         isVisible={isIapVisible}
         onDismiss={this.hideIapModal}
         onAttempt={this.onIapAttempt}
+        onCancel={this.onIapCancelled}
         onSuccess={this.onIapSuccess}
         onError={this.onIapError} />
     )
