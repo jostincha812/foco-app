@@ -104,7 +104,7 @@ export default class ProUpgradeModal extends React.Component {
       // `(price shown in ${product.currencyCode})`,
       // 'One time FULL upgrade',
       'Access to all WSET-3 (Advanced)\nCollections and Flashcards',
-      'Sale ends Aug 18, 2018',
+      'Sale ends Aug 15, 2018',
     ] : []
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :
