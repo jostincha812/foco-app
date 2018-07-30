@@ -145,7 +145,7 @@ const CurrentUser = {
   },
 
   hasPurchasedProduct: (product) => {
-    const purchases = CurrentUser.purchases
+    const purchases = CurrentUser.purchases || []
     return (purchases.indexOf(product) >= 0)
   },
 

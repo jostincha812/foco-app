@@ -134,3 +134,9 @@
 * (1.3.49) Fixed null user error in bookmarking collection action
 * (1.3.50) Fixing IAP unlocking flow issue by forcing redux UserProfile fetch post purchase
 * (1.3.51) Turning off IAP dev purchasing flow
+* (1.3.x) Fixing IAP unlocking flow issue by forcing redux UserProfile fetch post purchase
+
+## 1.4
+* Remote configurable IAP flows
+* IAP flow with premium pass-through to FlashcardsViewer
+* Colorful flashcards
