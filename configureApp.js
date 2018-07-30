@@ -7,6 +7,7 @@ const settings = {
   reviewerVersion: C.VERSION,
   fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
   refUpgradeProductId: C.IAP_PROFESSIONAL_2,
+  IAPFlowConfig: C.CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH,
 }
 
 const ConfigKeys = {
@@ -14,6 +15,7 @@ const ConfigKeys = {
   reviewerVersion: 'reviewer_version',
   fullUpgradeProductId: 'full_upgrade_product_id',
   refUpgradeProductId: 'ref_upgrade_product_id',
+  IAPFlowConfig: 'iap_flow_config'
 }
 
 // default of 12 hours
@@ -31,6 +33,7 @@ defaults[ConfigKeys.fullUpgradeProductId] = settings.fullUpgradeProductId
 defaults[ConfigKeys.refUpgradeProductId] = settings.refUpgradeProductId
 defaults[ConfigKeys.reviewerMode] = settings.reviewerMode
 defaults[ConfigKeys.reviewerVersion] = settings.reviewerVersion
+defaults[ConfigKeys.IAPFlowConfig] = settings.IAPFlowConfig
 firebase.config().setDefaults(defaults)
 
 // Fetch remote config and set accordingly
@@ -43,7 +46,6 @@ firebase.config().fetch(CACHE_DURATION)
     })
 
     settings.inReview = settings.reviewerMode && (settings.reviewerVersion == C.VERSION)
-   // continue booting app
   })
   // TODO log error on Crashlytics
   .catch((error) => console.log(`Error processing config: ${error}`))

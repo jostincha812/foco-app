@@ -7,6 +7,7 @@ import FlashcardsListContainer from '../containers/FlashcardsListContainer'
 import NavHeaderBackButton from '../components/NavHeaderBackButton'
 
 import CurrentUser from '../auth/CurrentUser'
+import { AccessManager } from '../iap'
 import { actions as UserPrefsActions } from '../userPrefs'
 import { actions as FlashcardActions, FlashcardsList } from '../flashcards'
 
@@ -21,6 +22,34 @@ class BookmarkedHomeFlashcardsViewer extends FlashcardsListContainer {
   constructor(props) {
     super(props)
     this.setScreen({screenName:R.NAV_COLLECTIONS_FLASHCARDS_VIEWER, className:'CollectionsFlashcardsViewer'})
+  }
+
+  get user() {
+    return CurrentUser
+  }
+
+  get _iapAccessRequired() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.accessRequired
+    } catch (e) {
+      return null
+    }
+  }
+
+  get _contentType() {
+    return C.CONTENT_FLASHCARD
+  }
+
+  get _contentKey() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.id
+    } catch (e) {
+      return null
+    }
   }
 
   _fetchData() {

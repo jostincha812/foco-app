@@ -22,12 +22,24 @@ export default class FlashcardsListContainer extends BaseListContainer {
     return E.user_action_flashcards_scrolled
   }
 
-  get _iapProductType() {
+  get _iapAccessRequired() {
     return C.ACCESS_CONSUMABLE_FLASHCARD
   }
 
   get _iapProductId() {
-    return AccessManager.preferredProductForType(this._iapProductType)
+    return AccessManager.preferredProductForType(this._iapAccessRequired)
+  }
+
+  get _refProductId() {
+    return AccessManager.referenceProductForType(this._iapAccessRequired)
+  }
+
+  get _contentType() {
+    return C.CONTENT_FLASHCARD
+  }
+
+  get _contentKey() {
+    return null
   }
 
   get _filteredFlashcards() {
@@ -36,14 +48,22 @@ export default class FlashcardsListContainer extends BaseListContainer {
   }
 
   onPrefToggle(id, pref) {
-    // TODO move user into _updatePref?
-    const user = this.user
-    const flashcard = this.props.flashcards[id]
-    this._updatePref({user, flashcard, pref})
-    this.logEvent(E.user_action_flashcard_pref_updated, {
-      flashcardId: flashcard.id,
-      pref,
+    const locked = !AccessManager.hasAccess({
+      config: RemoteConfig.IAPFlowConfig,
+      accessRequired: this._iapAccessRequired,
+      contentType: this._contentType,
+      contentKey: this._contentKey
     })
+
+    if (!locked) {
+      const user = this.user
+      const flashcard = this.props.flashcards[id]
+      this._updatePref({user, flashcard, pref})
+      this.logEvent(E.user_action_flashcard_pref_updated, {
+        flashcardId: flashcard.id,
+        pref,
+      })
+    }
   }
 
   onCardFlip(flashcardId) {
@@ -61,6 +81,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
     return (
       <IapModal
         productId={this._iapProductId}
+        refProductId={this._refProductId}
         isVisible={isIapVisible}
         onDismiss={this.hideIapModal}
         onAttempt={this.onIapAttempt}
@@ -72,12 +93,19 @@ export default class FlashcardsListContainer extends BaseListContainer {
   _renderList(props) {
     const dimensions = this.state.dimensions
     const flashcards = this._filteredFlashcards
+    const locked = !AccessManager.hasAccess({
+      config: RemoteConfig.IAPFlowConfig,
+      accessRequired: this._iapAccessRequired,
+      contentType: this._contentType,
+      contentKey: this._contentKey
+    })
 
     if (flashcards) {
       return (
         <FlashcardsList
           dimensions={dimensions}
           flashcards={flashcards}
+          locked={locked}
           onPrefToggle={this.onPrefToggle}
           onCardFlip={this.onCardFlip}
           onTriggerIAP={() => this.showIapModal(this._iapProductId)}

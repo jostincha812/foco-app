@@ -23,6 +23,34 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
     this.setScreen({screenName:R.NAV_RECOMMENDED_FLASHCARDS_VIEWER, className:'RecommendedFlashcardsViewer'})
   }
 
+  get user() {
+    return CurrentUser
+  }
+
+  get _iapAccessRequired() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.accessRequired
+    } catch (e) {
+      return null
+    }
+  }
+
+  get _contentType() {
+    return C.CONTENT_FLASHCARD
+  }
+
+  get _contentKey() {
+    try {
+      const navigation = this.props.navigation
+      const collection = navigation.state.params.collection
+      return collection.id
+    } catch (e) {
+      return null
+    }
+  }
+
   _fetchData() {
     const navigation = this.props.navigation
     if (!navigation) {

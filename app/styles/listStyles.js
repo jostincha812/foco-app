@@ -1,6 +1,6 @@
 import spacing from './spacing'
 
-export default listStyles = {
+const listStyles = {
   listItem: {
     margin: spacing.normal,
     marginTop: 0,
@@ -23,5 +23,7 @@ export default listStyles = {
     zIndex: 10001,
     right: spacing.xxsmall,
     bottom: spacing.xxsmall
-  }
+  },
 }
+Object.freeze(listStyles)
+export default listStyles

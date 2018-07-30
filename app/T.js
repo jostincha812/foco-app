@@ -2,10 +2,11 @@ export default FocoTheme = {
   // colors - http://www.material-ui.com/#/customization/colors
   colors: {
     app: '#F78316',   // orange 800
-    headerBackground: '#F5F5F5', // grey 100
-    headerBorder: '#E0E0E0',
+    headerBackground: '#FFF', // grey 100
+    headerBorder: '#DCDCDC',
     tabNavBackground: '#F5F5F5',
-    containerBackground: '#ECEFF1', // blue grey 50
+    // containerBackground: '#ECEFF1', // blue grey 50
+    containerBackground: '#FFF', // blue grey 50
     contentBackground: '#FFF',
     contentBorder: '#E0E0E0',   // grey 300
 
@@ -44,20 +45,21 @@ export default FocoTheme = {
     advanced: '#E53935', // red 600
     expert: '#000', // black
 
+
     featured: '#000',
     coming_soon: '#ADADAD',
-    key_facts: '#1E88E5',
+    key_facts: '#000',
     obscure_facts: '#757D75',
     climate: '#2196F3',   // blue 500
-    geography: '#00897B', // teal 600
+    geography: '#5D4037', // brown 700
     terroir: '#5D4037',   // brown 700
-    law: '#424242',       // grey 800
-    varietals: '#1B5E20',  // green 900
-    vinification: '#BF360C',  // deep orange 900
-    viticulture: '#7B1FA2', // purple 700
+    law: '#22313F',       // ebony gray - http://www.flatuicolorpicker.com/
+    varietals: '#1E824C',  // salem - http://www.flatuicolorpicker.com/
+    viniculture: '#913D88',  // plum - http://www.flatuicolorpicker.com/
+    viticulture: '#013243', // sherpa blue - http://www.flatuicolorpicker.com/
     winestyle: '#8F1D21', // true red - http://bootflat.github.io/color-picker.html
-    sparkling: '#FFD600', // yellow A700
-    fortified: '#FF6F00', // amber 900
+    sparkling: '#F39C12', // butter cup - http://www.flatuicolorpicker.com/
+    fortified: '#96281B', // old brick - http://www.flatuicolorpicker.com/
   },
 
   icons: {

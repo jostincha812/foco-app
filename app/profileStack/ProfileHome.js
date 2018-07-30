@@ -23,9 +23,6 @@ class ProfileHome extends BaseContainer {
   static navigationOptions = ({navigation}) => {
     return ({
       title: localize("profile.title"),
-      headerStyle: {
-        paddingLeft: Platform.OS === 'ios' ? 0 : S.spacing.small,
-      },
     })
   }
 

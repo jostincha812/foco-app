@@ -7,6 +7,7 @@ export default class Pill extends React.Component {
     const props = this.props
     const label = props.label ? props.label.toUpperCase() : null
     const large = props.large ? styles.large : null
+    const small = props.small ? styles.small : null
     const color = props.color ? props.color : styles.normal.color
     const backgroundColor = props.backgroundColor ? props.backgroundColor : styles.normal.backgroundColor
     const borderColor = props.borderColor ? props.borderColor : styles.normal.borderColor
@@ -43,7 +44,7 @@ export default class Pill extends React.Component {
           {borderColor:colors.borderColor, backgroundColor:colors.backgroundColor},
           this.props.style
       ]}>
-        <Text style={[styles.label, {color:colors.color}, large]}>{label}</Text>
+        <Text style={[styles.label, {color:colors.color}, large, small]}>{label}</Text>
       </View>
     )
 
@@ -70,12 +71,16 @@ const styles = {
   },
   label: {
     fontSize: normalize(12),
-    fontWeight: '500',
+    fontWeight: '400',
     paddingTop: 1,
   },
   large: {
     fontSize: normalize(16),
     paddingTop: 0,
+  },
+  small: {
+    fontSize: normalize(10),
+    paddingTop: 1,
   },
   normal: {
     color: '#FFF',

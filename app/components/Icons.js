@@ -73,7 +73,6 @@ export default {
   lock: (options = {}) => AppIcon('lock', options),
   unlock: (options = {}) => AppIcon('lock-open-outline', options),
   pullDown: (options = {}) => AppIcon('download', options),
-
   add: (options = {}) => AppIcon('plus', options),
   addOutline: (options = {}) => AppIcon('plus-circle-outline', options),
   remove: (options = {}) => AppIcon('minus', options),
@@ -81,6 +80,8 @@ export default {
   edit: (options = {}) => AppIcon('pencil', options),
   delete: (options = {}) => AppIcon('delete', options),
   share: (options = {}) => AppIcon('share', options),
+  close: (options = {}) => AppIcon('close-cicle', options),
+  cancel: (options = {}) => AppIcon('cancel', options),
   check: (options = {}) => AppIcon('check', options),
   checkOutline: (options = {}) => AppIcon('check-circle-outline', options),
   archive: (options = {}) => AppIcon('archive', options),

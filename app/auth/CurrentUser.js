@@ -107,12 +107,9 @@ const CurrentUser = {
   },
 
   get isReviewer() {
-    // TODO use dev flag
-    const profile = CurrentUser.profile
-    if (profile &&
-      (profile.email == 'reviewers@vpqlabs.com' ||
-      profile.email == 'flyflyerson@gmail.com')
-    ) {
+    const profile = CurrentUser.profile || {}
+    if (profile.email == 'reviewers@vpqlabs.com' ||
+        profile.email == 'flyflyerson@gmail.com') {
       return true
     }
     return false
@@ -124,7 +121,7 @@ const CurrentUser = {
       return C.IAP_FREE_ACCESS
     }
 
-    if (AccessManager.hasAccess({accessType: C.ACCESS_FULL, purchases:profile.purchases})) {
+    if (AccessManager.hasAccess({accessRequired: C.ACCESS_FULL})) {
       return C.IAP_FULL_ACCESS
     } else {
       return profile.purchases[0]
@@ -145,6 +142,21 @@ const CurrentUser = {
     //   onComplete()
     // })
     // api.userProfile.upsertUserTransaction(profile.uid, transaction)
+  },
+
+  hasPurchasedProduct: (product) => {
+    const purchases = CurrentUser.purchases
+    return (purchases.indexOf(product) >= 0)
+  },
+
+  hasPurchasedProducts: (products) => {
+    let purchased = false
+    products.map(product => {
+      if (CurrentUser.hasPurchasedProduct(product)) {
+        purchased = true
+      }
+    })
+    return purchased
   },
 
   incrementSessionUserActionsCounter: () => {

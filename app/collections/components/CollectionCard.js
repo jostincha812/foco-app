@@ -5,6 +5,7 @@ import C from '../../constants'
 import T from '../../T'
 import S from '../../styles'
 import { localize } from '../../locales'
+import RemoteConfig from '../../../configureApp'
 
 import Icons from '../../components/Icons'
 import DifficultyPill from '../../components/DifficultyPill'
@@ -47,6 +48,26 @@ export default class CollectionCard extends React.Component {
     let type = props.type
     const collection = props.collection
 
+    let locked = props.locked
+    let badge = null
+    switch (RemoteConfig.IAPFlowConfig) {
+      case C.CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH:
+      case C.CONFIG_IAP_PREMIUM_COLLECTIONS_TRIAL:
+        locked = false
+        if (props.locked) {
+          badge = {
+            // TODO localize
+            label: 'Premium',
+            color: T.colors.accent,
+          }
+        }
+        break
+      case C.CONFIG_IAP_PREMIUM_COLLECTIONS_LOCK:
+      default:
+        // do nothing
+        // locked = props.locked
+    }
+
     const backgroundColor = collection.backgroundColor ? collection.backgroundColor : T.colors[collection.category]
     const theme = collection.theme ? collection.theme : (backgroundColor ? 'dark' : 'light')
     const icon = collection.icon
@@ -71,17 +92,9 @@ export default class CollectionCard extends React.Component {
       icon: icon,
       toggle: bookmarkToggle,
       max: props.max,
+      badge: badge,
       // *** moved onPress into PremiumContentContainer
       // onPress: props.onPress,
-    }
-
-    if (collection.category == C.STATUS_COMING_SOON) {
-      // params.backgroundColor = T.colors.inactive
-      // params.theme = 'dark'
-      collection.subtitle = collection.title
-      collection.title = localize("collections.coming_soon")
-      params.toggle = null
-      type = 'hero'
     }
 
     if (collection.type == 'featured') {
@@ -100,8 +113,8 @@ export default class CollectionCard extends React.Component {
       case 'hero':
       case 'featured':
         params.hero = collection.title
-        params.title = collection.subtitle
-        params.subtitle = numberOfCards
+        params.title = numberOfCards
+        params.subtitle = collection.subtitle ? collection.subtitle.toUpperCase() : null
         card = (
           <HeroCard containerStyle={[S.cards.hero, props.style]} {...params}>
             {props.children}
@@ -141,8 +154,7 @@ export default class CollectionCard extends React.Component {
       <PremiumContentContainer
         innerOpacity={0.25}
         iconSize={96}
-        accessType={collection.accessType}
-        accessKey={collection.id}
+        locked={locked}
         touchableLockOnly={false}
         onPress={props.onPress}
         onTriggerIAP={props.onTriggerIAP}>

@@ -3,8 +3,9 @@ import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'r
 import { Animated, LayoutAnimation } from 'react-native'
 
 import C, { E } from '../constants'
+import S from '../styles'
 import BaseListContainer from './BaseListContainer'
-import { CollectionCardsList } from '../collections'
+import { CollectionCard } from '../collections'
 import { AccessManager, ProUpgradeModal as IapModal } from '../iap'
 import RemoteConfig from '../../configureApp'
 
@@ -19,16 +20,24 @@ export default class CollectionsListContainer extends BaseListContainer {
     return E.user_action_collections_scrolled
   }
 
-  get _iapProductType() {
+  get _iapAccessRequired() {
     return C.ACCESS_PREMIUM_COLLECTION
   }
 
   get _iapProductId() {
-    return AccessManager.preferredProductForType(this._iapProductType)
+    return AccessManager.preferredProductForType(this._iapAccessRequired)
   }
 
   get _refProductId() {
-    return AccessManager.referenceProductForType(this._iapProductType)
+    return AccessManager.referenceProductForType(this._iapAccessRequired)
+  }
+
+  get _contentType() {
+    return C.CONTENT_COLLECTION
+  }
+
+  get _contentKey() {
+    return null
   }
 
   get _onSelectedRoute() {
@@ -37,19 +46,12 @@ export default class CollectionsListContainer extends BaseListContainer {
 
   onCollectionPress(collection) {
     const navigation = this.props.navigation
-
-    if (collection.status == C.STATUS_COMING_SOON) {
-      this.logEvent(E.user_action_collection_coming_soon, {
-        collectionId: collection.id,
-      })
-    } else {
-      this.logEvent(E.user_action_collection_selected, {
-        collectionId: collection.id,
-      })
-      navigation.navigate(this._onSelectedRoute, {
-        collection
-      })
-    }
+    this.logEvent(E.user_action_collection_selected, {
+      collectionId: collection.id,
+    })
+    navigation.navigate(this._onSelectedRoute, {
+      collection
+    })
   }
 
   onPrefToggle(collectionId, pref) {
@@ -89,16 +91,29 @@ export default class CollectionsListContainer extends BaseListContainer {
       () => this.showReviewerIap() :
       () => this.showIapModal(this._iapProductId)
 
-    if (collections) {
+    return keys.map((id, index) => {
+      const collection = {id, ...collections[id]}
+      const locked = !AccessManager.hasAccess({
+        config: RemoteConfig.IAPFlowConfig,
+        accessRequired: collection.accessRequired,
+        contentType: this._contentType,
+        contentKey: collection.id
+      })
+      const lastItem = (index == (keys.length-1)) ? Object.assign({}, S.lists.lastItem) : null
+      const item = Object.assign({}, S.lists.listItem)
+
       return (
-        <CollectionCardsList
-          keys={keys}
-          collections={collections}
-          onSelect={this.onCollectionPress}
-          onPrefChange={this.onPrefToggle}
-          onTriggerIAP={onTriggerIAP}
-        />
+        <CollectionCard
+          style={[item, lastItem]}
+          key={collection.id}
+          type={collection.type}
+          collection={collection}
+          locked={locked}
+          onPrefToggle={this.onPrefToggle}
+          onPress={() => this.onCollectionPress(collection)}
+          onTriggerIAP={onTriggerIAP}>
+        </CollectionCard>
       )
-    }
+    })
   }
 }

@@ -8,11 +8,11 @@ import textStyles from './textStyles'
 import toastStyles from './toastStyles'
 import navigationStyles from './navigationStyles'
 import formStyles from './formStyles'
-import markdown from './markdown'
+import { markdown, markdownInverse, markdownSmall, markdownSmallInverse } from './markdown'
 
-export { markdown }
+export { markdown, markdownInverse, markdownSmall, markdownSmallInverse }
 
-export default styles = {
+const styles = {
   statusBarStyle: 'dark-content',
   inverseStatusBarStyle: 'light-content',
 
@@ -46,3 +46,5 @@ export default styles = {
     }
   },
 }
+Object.freeze(styles)
+export default styles

@@ -25,6 +25,7 @@ const FlashcardsList = (props) => {
               key={item.id}
               data={item}
               prefs={item.prefs}
+              locked={props.locked}
               onPrefToggle={props.onPrefToggle}
               onCardFlip={props.onCardFlip}
               onTriggerIAP={props.onTriggerIAP}

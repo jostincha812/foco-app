@@ -19,6 +19,7 @@ class BookmarkedHome extends CollectionsListContainer {
 
   constructor(props) {
     super(props)
+    this.setTitle(localize("bookmarked.title"))
     this.setScreen({screenName:R.NAV_BOOKMARKED_HOME, className:'BookmarkedHome'})
   }
 
@@ -30,13 +31,11 @@ class BookmarkedHome extends CollectionsListContainer {
     return R.NAV_BOOKMARKED_FLASHCARDS_VIEWER
   }
 
-  componentWillMount() {
-    this.setTitle(localize("bookmarked.title"))
-  }
-
   _fetchData() {
     const profile = this.props.profile
-    this.props.fetchUserBookmarkedCollections(profile.uid)
+    if (profile) {
+      this.props.fetchUserBookmarkedCollections(profile.uid)
+    }
   }
 
   _cancelFetch() {
@@ -50,6 +49,10 @@ class BookmarkedHome extends CollectionsListContainer {
       collection.id,
       pref,
     )
+  }
+
+  showReviewerIap() {
+    this.props.navigation.navigate(R.NAV_RECOMMENDED_GO_PREMIUM)
   }
 }
 
@@ -65,7 +68,6 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    resetUserCollectionsState: () => dispatch(CollectionsActions.resetUserCollectionsState(ns)),
     fetchUserBookmarkedCollections: (userId) => dispatch(CollectionsActions.fetchUserBookmarkedCollections(ns, userId)),
     upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(UserPrefsActions.upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
