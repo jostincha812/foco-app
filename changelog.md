@@ -127,3 +127,8 @@
 * Using redux store for CurrentUser
 * Added _reviewers only_ GoPremiumScreen
 * (1.3.x) Fixing IAP unlocking flow issue by forcing redux UserProfile fetch post purchase
+
+## 1.4
+* Remote configurable IAP flows
+* IAP flow with premium pass-through to FlashcardsViewer
+* Colorful flashcards
