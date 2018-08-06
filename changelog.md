@@ -140,3 +140,6 @@
 * Remote configurable IAP flows
 * IAP flow with premium pass-through to FlashcardsViewer
 * Colorful flashcards
+
+## 1.5
+* Implemented app store review prompt

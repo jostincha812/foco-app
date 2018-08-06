@@ -1,8 +1,9 @@
 import React from 'react'
 import { Platform } from 'react-native'
+import Rate, { AndroidMarket } from 'react-native-rate'
 
 import { fbAnalytics } from '../../configureFirebase'
-import { E } from '../constants'
+import C, { E } from '../constants'
 import S from '../styles'
 import T from '../T'
 import CurrentUser from '../auth/CurrentUser'
@@ -24,6 +25,7 @@ export default class BaseContainer extends React.Component {
     this.onIapSuccess = this.onIapSuccess.bind(this)
     this.onIapError = this.onIapError.bind(this)
     this.showReviewerIap = this.showReviewerIap.bind(this)
+    this.requestReview = this.requestReview.bind(this)
 
     this.state = { dimensions: undefined, refreshing: false, isIapVisible: false, notificationColor: T.colors.normal }
   }
@@ -43,7 +45,10 @@ export default class BaseContainer extends React.Component {
       ...params
     }
     fbAnalytics.logEvent(event, data)
-    CurrentUser.incrementSessionUserActionsCounter()
+    if (event != E.user_feedback_store_review_activated) {
+      CurrentUser.incrementSessionUserActionsCounter()
+      this.requestReview()
+    }
   }
 
   setScreen({ screenName, className }) {
@@ -131,6 +136,26 @@ export default class BaseContainer extends React.Component {
 
   showReviewerIap() {
     // no-op - to be overridden by subclass
+  }
+
+  requestReview() {
+    if (!CurrentUser.shouldRequestReview) {
+      return null
+    }
+    const options = {
+      AppleAppID: C.AppleAppID,
+      GooglePackageName: C.GooglePackageName,
+      preferredAndroidMarket: AndroidMarket.Google,
+      preferInApp:true,
+      openAppStoreIfInAppFails:true,
+      fallbackPlatformURL:"https://vpqlabs.com/",
+    }
+    Rate.rate(options, (success)=>{
+      if (success) {
+        // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
+        this.logEvent(E.user_feedback_store_review_activated)
+      }
+    })
   }
 
   render() {

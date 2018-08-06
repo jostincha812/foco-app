@@ -19,6 +19,7 @@ const CurrentUser = {
         ...user,
         lastActive: new Date().toUTCString(),
       }
+      _currentSessionUserActionsCounter = 0
 
       api.userProfile.upsertUserProfile(user.uid, p)
         .then(api.userProfile.incrementUserSessionsCount(user.uid).then(
@@ -128,6 +129,18 @@ const CurrentUser = {
     }
   },
 
+  get shouldRequestReview() {
+    let shouldRequest = false
+    const sessions = CurrentUser.sessions
+    let mod = 31
+
+    if ((sessions > 1) && ((_currentSessionUserActionsCounter % mod) == 0)) {
+      shouldRequest = true
+    }
+
+    return shouldRequest
+  },
+
   addPurchase: ({productId, transaction, onComplete}) => {
     const profile = CurrentUser.profile
     const purchases = new Set(profile.purchases)
@@ -164,9 +177,6 @@ const CurrentUser = {
     if (uid) {
       _currentSessionUserActionsCounter += 1
       api.userProfile.incrementUserActionsCounter(uid)
-      if (_currentSessionUserActionsCounter % 12 == 0) {
-        console.log('trigger prompt')
-      }
     }
   },
 }
