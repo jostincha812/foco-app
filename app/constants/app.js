@@ -1,9 +1,12 @@
 export default {
   FOCO: 'Foco:3',
   VPQLABS: 'by VPQLabs',
-  VERSION: '1.3.46',
+  VERSION: '1.5.66',
   WSET3: 'WSET3',
   WSET2: 'WSET2',
+
+  AppleAppID:"1099654796",
+  GooglePackageName:"com.vpqlabs.foco",
 
   ROLE_ADMIN: 'ROLE_ADMIN',
   ROLE_USER: 'ROLE_USER',

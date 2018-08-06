@@ -31,4 +31,5 @@ export default events = {
   user_action_flashcard_pref_updated: 'user_action_flashcard_pref_updated',
 
   user_feedback_submitted: 'user_feedback_submitted',
+  user_feedback_store_review_activated: 'user_feedback_store_review_activated',
 }
