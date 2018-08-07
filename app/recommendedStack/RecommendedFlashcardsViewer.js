@@ -74,6 +74,7 @@ class RecommendedFlashcardsViewer extends FlashcardsListContainer {
       flashcard.id,
       pref,
     )
+    this.successToast('pref updated')
   }
 }
 

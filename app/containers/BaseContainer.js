@@ -142,7 +142,6 @@ export default class BaseContainer extends React.Component {
     if (!CurrentUser.shouldRequestReview) {
       return null
     }
-    console.log('requesting review')
     const options = {
       AppleAppID: C.AppleAppID,
       GooglePackageName: C.GooglePackageName,
@@ -155,7 +154,6 @@ export default class BaseContainer extends React.Component {
       if (success) {
         // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
         this.logEvent(E.user_feedback_store_review_activated)
-        console.log(E.user_feedback_store_review_activated)
       }
     })
   }
