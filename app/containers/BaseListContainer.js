@@ -3,9 +3,6 @@ import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'r
 import { Animated, LayoutAnimation } from 'react-native'
 import { Platform } from 'react-native'
 
-import T from '../T'
-import Notification from 'react-native-in-app-notification'
-
 import { E } from '../constants'
 import S from '../styles'
 import BaseContainer from './BaseContainer'
@@ -186,11 +183,6 @@ export default class BaseListContainer extends BaseContainer {
             onPress={this.onScrollToTopPress}
           />
         )}
-
-        <Notification ref={(ref) => { this.notification = ref; }}
-          height={60}
-          backgroundColour={this.state.notificationColor}
-        />
       </View>
     )
   }

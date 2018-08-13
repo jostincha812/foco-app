@@ -72,8 +72,8 @@ PODS:
   - Folly (2016.09.26.00):
     - boost-for-react-native
     - DoubleConversion
-    - GLog
-  - GLog (0.3.4)
+    - glog
+  - glog (0.3.4)
   - GoogleAppMeasurement (5.1.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
     - GoogleUtilities/MethodSwizzler (~> 5.2.0)
@@ -108,46 +108,46 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.0)
-  - React (0.53.3):
-    - React/Core (= 0.53.3)
+  - React (0.55.4):
+    - React/Core (= 0.55.4)
   - react-native-in-app-utils (6.0.0):
     - React
-  - React/Core (0.53.3):
-    - yoga (= 0.53.3.React)
-  - React/CxxBridge (0.53.3):
+  - React/Core (0.55.4):
+    - yoga (= 0.55.4.React)
+  - React/CxxBridge (0.55.4):
     - Folly (= 2016.09.26.00)
     - React/Core
     - React/cxxreact
-  - React/cxxreact (0.53.3):
+  - React/cxxreact (0.55.4):
     - boost-for-react-native (= 1.63.0)
     - Folly (= 2016.09.26.00)
     - React/jschelpers
     - React/jsinspector
-  - React/DevSupport (0.53.3):
+  - React/DevSupport (0.55.4):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.53.3)
-  - React/jschelpers (0.53.3):
+  - React/fishhook (0.55.4)
+  - React/jschelpers (0.55.4):
     - Folly (= 2016.09.26.00)
     - React/PrivateDatabase
-  - React/jsinspector (0.53.3)
-  - React/PrivateDatabase (0.53.3)
-  - React/RCTAnimation (0.53.3):
+  - React/jsinspector (0.55.4)
+  - React/PrivateDatabase (0.55.4)
+  - React/RCTAnimation (0.55.4):
     - React/Core
-  - React/RCTBlob (0.53.3):
+  - React/RCTBlob (0.55.4):
     - React/Core
-  - React/RCTImage (0.53.3):
+  - React/RCTImage (0.55.4):
     - React/Core
     - React/RCTNetwork
-  - React/RCTNetwork (0.53.3):
+  - React/RCTNetwork (0.55.4):
     - React/Core
-  - React/RCTText (0.53.3):
+  - React/RCTText (0.55.4):
     - React/Core
-  - React/RCTWebSocket (0.53.3):
+  - React/RCTWebSocket (0.55.4):
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - yoga (0.53.3.React)
+  - yoga (0.55.4.React)
 
 DEPENDENCIES:
   - boost-for-react-native
@@ -160,7 +160,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - Firebase/Storage
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
-  - GLog (from `../node_modules/react-native/third-party-podspecs/GLog.podspec`)
+  - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - react-native-in-app-utils (from `../node_modules/react-native-in-app-utils`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -200,8 +200,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
-  GLog:
-    :podspec: "../node_modules/react-native/third-party-podspecs/GLog.podspec"
+  glog:
+    :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
   react-native-in-app-utils:
@@ -211,7 +211,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  DoubleConversion: ebb6747c5b66026ad4f97b789c3ceac6f18e57a6
+  DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
   Firebase: 8c957f9cb3852b519180fb378801b7eeeba4d288
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: d4a260c114aec0d765ab5b9c404ac63de1d29381
@@ -224,8 +224,8 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 8cd2c6cfe7b9ab65ce7e248f6da7f26f6775b9be
   FirebaseRemoteConfig: 7b6d675dfb11f0e0e638caee00908b06af150d56
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
-  Folly: 0e765a0b56a1bf180dcbd51ee178cd3a1e2ab986
-  GLog: ed471a3ad6ad53eefb343a530f15dad283e5ef51
+  Folly: 211775e49d8da0ca658aebc8eab89d642935755c
+  glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
   GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GoogleUtilities: 8d9fa00248c475b606fd20b562242060a20117a2
@@ -233,10 +233,10 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
-  React: af66244a7d630be2aef03b4ddfe3570e4eff39fc
+  React: aa2040dbb6f317b95314968021bd2888816e03d5
   react-native-in-app-utils: 655eb59a6ccb31830637cd9b441b91fad35ff7a0
-  yoga: 55da126afc384965b96bff46652464373b330add
+  yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 9694cf5b27db180811da036b6b38a65687791388
+PODFILE CHECKSUM: 29eb6381f197f9b4458d5f6a4be71a8b98db9068
 
 COCOAPODS: 1.5.0

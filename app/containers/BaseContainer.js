@@ -5,7 +5,6 @@ import Rate, { AndroidMarket } from 'react-native-rate'
 import { fbAnalytics } from '../../configureFirebase'
 import C, { E } from '../constants'
 import S from '../styles'
-import T from '../T'
 import CurrentUser from '../auth/CurrentUser'
 
 export default class BaseContainer extends React.Component {
@@ -27,7 +26,7 @@ export default class BaseContainer extends React.Component {
     this.showReviewerIap = this.showReviewerIap.bind(this)
     this.requestReview = this.requestReview.bind(this)
 
-    this.state = { dimensions: undefined, refreshing: false, isIapVisible: false, notificationColor: T.colors.normal }
+    this.state = { dimensions: undefined, refreshing: false, isIapVisible: false }
   }
 
   get user() {
@@ -68,13 +67,8 @@ export default class BaseContainer extends React.Component {
   }
 
   showToast(message, options) {
-    this.setState({
-      notificationColor: options.backgroundColor || T.colors.normal,
-    })
-    this.notification && this.notification.show({
-      title: '',
-      message: message,
-    })
+    const showNotification = this.props.screenProps && this.props.screenProps.showNotification
+    showNotification && showNotification(message, options)
   }
 
   errorToast(message, options) {
