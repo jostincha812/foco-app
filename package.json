@@ -1,6 +1,6 @@
 {
   "name": "FocoApp",
-  "version": "1.6.69",
+  "version": "1.6.70",
   "private": true,
   "scripts": {
     "_note": "https://github.com/oblador/react-native-vector-icons/issues/626#issuecomment-358018994",
@@ -28,7 +28,7 @@
     "react-native-rate": "^1.1.2",
     "react-native-spinkit": "^1.1.1",
     "react-native-vector-icons": "^4.4.2",
-    "react-navigation": "^1.5.11",
+    "react-navigation": "^2.11.2",
     "react-redux": "~5.0.3",
     "redux": "~3.6.0",
     "redux-logger": "~3.0.1",

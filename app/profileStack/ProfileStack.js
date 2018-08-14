@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -25,7 +25,7 @@ class ProfileStack extends React.Component {
   }
 
   render() {
-    const ProfileNavigator = StackNavigator(STACK, {})
+    const ProfileNavigator = createStackNavigator(STACK, {})
     return (
       <NotificationContext.Consumer>
         { notification => <ProfileNavigator screenProps={notification}/> }

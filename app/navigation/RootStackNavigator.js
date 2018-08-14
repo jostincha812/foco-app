@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 import Notification from 'react-native-in-app-notification'
 
 import T from '../T'
@@ -24,7 +24,7 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    const RootStack = StackNavigator({
+    const RootStack = createStackNavigator({
       SignInStack: { screen: SignInStack },
       AppTabNavigator: { screen: AppTabNavigator },
     }, {

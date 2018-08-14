@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -15,7 +15,7 @@ STACK[R.NAV_USER_SIGNIN_HOME] = { screen: SignInHome }
 STACK[R.NAV_USER_SIGNIN_WITH_EMAIL] = { screen: SignInWithEmail }
 STACK[R.NAV_USER_SIGNUP_WITH_EMAIL] = { screen: SignUpWithEmail }
 
-const SignInStack = StackNavigator(STACK,  {
+const SignInStack = createStackNavigator(STACK,  {
   swipeEnabled: false,
   animationEnabled: false,
   navigationOptions: ({navigation}) => ({

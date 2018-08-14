@@ -56,13 +56,13 @@ export default navigationStyles = {
     borderBottomWidth: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    shadowColor: T.colors.shadowColor,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 4,
-    shadowOpacity: 0.25,
+    // shadowColor: T.colors.shadowColor,
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowRadius: 4,
+    // shadowOpacity: 0.25,
   },
 
   stickiedHeaderAndroid: {
@@ -92,7 +92,6 @@ export default navigationStyles = {
       top: 2,
     },
     headerStyle: {
-      paddingLeft: Platform.OS === 'ios' ? 0 : S.spacing.small,
       backgroundColor: T.colors.headerBackground,
       borderBottomColor: T.colors.headerBorder,
       borderBottomWidth: 1,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import NotificationContext from '../navigation/NotificationContext'
 
@@ -27,7 +27,7 @@ class RecommendedStack extends React.Component {
   }
 
   render() {
-    const RecommendedNavigator = StackNavigator(STACK, {})
+    const RecommendedNavigator = createStackNavigator(STACK, {})
     return (
       <NotificationContext.Consumer>
         { notification => <RecommendedNavigator screenProps={notification}/> }

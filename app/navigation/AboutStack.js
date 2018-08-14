@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, Image } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -11,7 +11,7 @@ import IconsHome from '../containers/IconsHome'
 const STACK = {}
 STACK[R.NAV_ABOUT_APP_ICONS] = { screen: IconsHome }
 
-const AboutStack = StackNavigator(STACK, {
+const AboutStack = createStackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation.header,
     tabBarIcon: ({ focused, tintColor }) => (

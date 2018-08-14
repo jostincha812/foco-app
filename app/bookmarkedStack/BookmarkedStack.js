@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -23,7 +23,7 @@ class BookmarkedStack extends React.Component {
   }
 
   render() {
-    const BookmarkedNavigator = StackNavigator(STACK, {})
+    const BookmarkedNavigator = createStackNavigator(STACK, {})
     return (
       <NotificationContext.Consumer>
         { notification => <BookmarkedNavigator screenProps={notification}/> }

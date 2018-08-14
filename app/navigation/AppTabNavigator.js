@@ -1,5 +1,5 @@
 import React from 'react'
-import { TabNavigator, TabBarBottom } from 'react-navigation'
+import { createBottomTabNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -16,12 +16,11 @@ TABS[R.NAV_BOOKMARKED_TAB] = { screen: BookmarkedStack }
 TABS[R.NAV_STARRED_TAB] = { screen: StarredStack }
 TABS[R.NAV_PROFILE_TAB] = { screen: ProfileStack }
 
-const AppTabNavigator = TabNavigator(TABS, {
+const AppTabNavigator = createBottomTabNavigator(TABS, {
   lazy: true,
   swipeEnabled: false,
   animationEnabled: false,
   tabBarPosition: 'bottom',
-  tabBarComponent: TabBarBottom,
   tabBarOptions: {
     showIcon: true,
     showLabel: false,

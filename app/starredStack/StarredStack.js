@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -23,7 +23,7 @@ class StarredStack extends React.Component {
   }
 
   render() {
-    const StarredNavigator = StackNavigator(STACK, {})
+    const StarredNavigator = createStackNavigator(STACK, {})
     return (
       <NotificationContext.Consumer>
         { notification => <StarredNavigator screenProps={notification}/> }

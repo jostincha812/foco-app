@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -11,7 +11,7 @@ import IconsExample from '../containers/IconsExample'
 const STACK = {}
 STACK[R.NAV_ABOUT_APP_ICONS] = { screen: IconsExample }
 
-const SearchStack = StackNavigator(STACK, {
+const SearchStack = createStackNavigator(STACK, {
   navigationOptions: ({navigation}) => ({
     ...S.navigation.header,
     tabBarIcon: ({ focused, tintColor }) => (
