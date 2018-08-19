@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -12,13 +12,24 @@ const STACK = {}
 STACK[R.NAV_BOOKMARKED_HOME] = { screen: BookmarkedHome }
 STACK[R.NAV_BOOKMARKED_FLASHCARDS_VIEWER] = { screen: BookmarkedFlashcardsViewer }
 
-const BookmarkedStack = StackNavigator(STACK, {
-  navigationOptions: ({navigation}) => ({
-    ...S.navigation.header,
-    tabBarIcon: ({ focused, tintColor }) => (
-      Icons.bookmark({ focused, color:tintColor, ...S.navigation.tabBarIcon })
-    ),
-  })
-})
+class BookmarkedStack extends React.Component {
+  static navigationOptions({navigation}) {
+    return {
+      ...S.navigation.header,
+      tabBarIcon: ({ focused, tintColor }) => (
+        Icons.bookmark({ focused, color:tintColor, ...S.navigation.tabBarIcon })
+      ),
+    }
+  }
+
+  render() {
+    const BookmarkedNavigator = createStackNavigator(STACK, {})
+    return (
+      <NotificationContext.Consumer>
+        { notification => <BookmarkedNavigator screenProps={notification}/> }
+      </NotificationContext.Consumer>
+    )
+  }
+}
 
 export default BookmarkedStack

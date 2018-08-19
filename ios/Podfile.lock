@@ -108,46 +108,46 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.0)
-  - React (0.53.3):
-    - React/Core (= 0.53.3)
+  - React (0.55.4):
+    - React/Core (= 0.55.4)
   - react-native-in-app-utils (6.0.0):
     - React
-  - React/Core (0.53.3):
-    - yoga (= 0.53.3.React)
-  - React/CxxBridge (0.53.3):
+  - React/Core (0.55.4):
+    - yoga (= 0.55.4.React)
+  - React/CxxBridge (0.55.4):
     - Folly (= 2016.09.26.00)
     - React/Core
     - React/cxxreact
-  - React/cxxreact (0.53.3):
+  - React/cxxreact (0.55.4):
     - boost-for-react-native (= 1.63.0)
     - Folly (= 2016.09.26.00)
     - React/jschelpers
     - React/jsinspector
-  - React/DevSupport (0.53.3):
+  - React/DevSupport (0.55.4):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.53.3)
-  - React/jschelpers (0.53.3):
+  - React/fishhook (0.55.4)
+  - React/jschelpers (0.55.4):
     - Folly (= 2016.09.26.00)
     - React/PrivateDatabase
-  - React/jsinspector (0.53.3)
-  - React/PrivateDatabase (0.53.3)
-  - React/RCTAnimation (0.53.3):
+  - React/jsinspector (0.55.4)
+  - React/PrivateDatabase (0.55.4)
+  - React/RCTAnimation (0.55.4):
     - React/Core
-  - React/RCTBlob (0.53.3):
+  - React/RCTBlob (0.55.4):
     - React/Core
-  - React/RCTImage (0.53.3):
+  - React/RCTImage (0.55.4):
     - React/Core
     - React/RCTNetwork
-  - React/RCTNetwork (0.53.3):
+  - React/RCTNetwork (0.55.4):
     - React/Core
-  - React/RCTText (0.53.3):
+  - React/RCTText (0.55.4):
     - React/Core
-  - React/RCTWebSocket (0.53.3):
+  - React/RCTWebSocket (0.55.4):
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - yoga (0.53.3.React)
+  - yoga (0.55.4.React)
 
 DEPENDENCIES:
   - boost-for-react-native
@@ -233,9 +233,9 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
-  React: af66244a7d630be2aef03b4ddfe3570e4eff39fc
+  React: aa2040dbb6f317b95314968021bd2888816e03d5
   react-native-in-app-utils: 655eb59a6ccb31830637cd9b441b91fad35ff7a0
-  yoga: 55da126afc384965b96bff46652464373b330add
+  yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
 PODFILE CHECKSUM: 29eb6381f197f9b4458d5f6a4be71a8b98db9068
 

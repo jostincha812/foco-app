@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 
 import { R } from '../constants'
 import S from '../styles'
@@ -12,13 +12,24 @@ const STACK = {}
 STACK[R.NAV_STARRED_HOME] = { screen: StarredHome }
 STACK[R.NAV_STARRED_FILTER_CONFIGURATOR] = { screen: StarredFilterConfigurator }
 
-const StarredStack = StackNavigator(STACK, {
-  navigationOptions: ({navigation}) => ({
-    ...S.navigation.header,
-    tabBarIcon: ({ focused, tintColor }) => (
-      Icons.star({ focused, color:tintColor, ...S.navigation.tabBarIcon })
-    ),
-  })
-})
+class StarredStack extends React.Component {
+  static navigationOptions({navigation}) {
+    return {
+      ...S.navigation.header,
+      tabBarIcon: ({ focused, tintColor }) => (
+        Icons.star({ focused, color:tintColor, ...S.navigation.tabBarIcon })
+      ),
+    }
+  }
+
+  render() {
+    const StarredNavigator = createStackNavigator(STACK, {})
+    return (
+      <NotificationContext.Consumer>
+        { notification => <StarredNavigator screenProps={notification}/> }
+      </NotificationContext.Consumer>
+    )
+  }
+}
 
 export default StarredStack

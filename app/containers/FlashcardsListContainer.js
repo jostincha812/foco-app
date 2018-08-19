@@ -63,7 +63,7 @@ export default class FlashcardsListContainer extends BaseListContainer {
         flashcardId: flashcard.id,
         pref,
       })
-    }
+    }    
   }
 
   onCardFlip(flashcardId) {

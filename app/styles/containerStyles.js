@@ -17,7 +17,7 @@ export default containerStyles = {
       margin: 0,
       paddingHorizontal: 0,
       paddingTop: spacing.normal,
-      paddingBottom: spacing.normal - spacing.xsmall,
+      // paddingBottom: spacing.normal - spacing.xsmall,
     },
     carousel: {
       margin: 0,
@@ -71,11 +71,11 @@ export default containerStyles = {
       shadowOpacity: 0.75,
     },
     hero: {
-      width: normalize(300),
+      width: normalize(280),
       aspectRatio: 0.9,
     },
     regular: {
-      width: normalize(300),
+      width: normalize(280),
       aspectRatio: 0.9,
     },
     carousel: {

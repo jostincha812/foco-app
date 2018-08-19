@@ -3,9 +3,6 @@ import { Dimensions, StatusBar, Text, View, ScrollView, RefreshControl } from 'r
 import { Animated, LayoutAnimation } from 'react-native'
 import { Platform } from 'react-native'
 
-import T from '../T'
-import Notification from 'react-native-in-app-notification'
-
 import { E } from '../constants'
 import S from '../styles'
 import BaseContainer from './BaseContainer'
@@ -122,10 +119,9 @@ export default class BaseListContainer extends BaseContainer {
     // no-op - to be overridden by subclass
   }
 
-  render() {
-    const props = this.props
-    const navigation = this.props.navigation
-    const ready = this.props.ready
+  _renderInner(props) {
+    const navigation = props.navigation
+    const ready = props.ready
 
     const refreshControl = (
       <RefreshControl
@@ -161,18 +157,16 @@ export default class BaseListContainer extends BaseContainer {
     }
 
     return (
-      <View style={S.containers.screen}>
+      <View style={{flex:1}}>
         <ScrollView
           contentContainerStyle={S.containers.list}
           pagingEnabled={this._paging}
           refreshControl={refreshControl}
           onScroll={this.onScroll}
           scrollEventThrottle={64}
-          stickyHeaderIndices={this.state.stickyTitle ? [1] : []}
+          stickyHeaderIndices={this.state.stickyTitle ? [0] : []}
           ref='_SCROLLVIEW'
         >
-          <StatusBar barStyle={S.statusBarStyle} />
-
           { this._title && headerView }
 
           { this._renderIapModal(props)}
@@ -186,11 +180,6 @@ export default class BaseListContainer extends BaseContainer {
             onPress={this.onScrollToTopPress}
           />
         )}
-
-        <Notification ref={(ref) => { this.notification = ref; }}
-          height={60}
-          backgroundColour={this.state.notificationColor}
-        />
       </View>
     )
   }
