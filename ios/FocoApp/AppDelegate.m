@@ -12,6 +12,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h> // NEW
 #import <Firebase.h>
 
 @implementation AppDelegate
@@ -29,8 +30,8 @@
 #endif
 
   [FIRApp configure];
-  [[FBSDKApplicationDelegate sharedInstance] application:application
-                           didFinishLaunchingWithOptions:launchOptions];
+  // [[FBSDKApplicationDelegate sharedInstance] application:application
+  //                          didFinishLaunchingWithOptions:launchOptions];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"FocoApp"
@@ -43,13 +44,16 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
+
   // --- keep splash up during transition to RN ---
   UIView* launchScreenView = [[[NSBundle mainBundle] loadNibNamed:@"LaunchScreen" owner:self options:nil] objectAtIndex:0];
   launchScreenView.frame = self.window.bounds;
   rootView.loadingView = launchScreenView;
-  
-  return YES;
+
+  // https://github.com/magus/react-native-facebook-login
+  // return YES;
+  return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                    didFinishLaunchingWithOptions:launchOptions];
 }
 
 // FB SDK
@@ -59,12 +63,15 @@
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-  return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                        openURL:url
-                                              sourceApplication:sourceApplication
-                                                     annotation:annotation];
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+
+  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+    openURL:url
+    sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+    annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+  ];
+  // Add any custom logic here.
+  return handled;
 }
-  
+
 @end

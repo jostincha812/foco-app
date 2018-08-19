@@ -100,11 +100,10 @@ export default class ProUpgradeModal extends React.Component {
     const iapCancel = 'Maybe later'
     const productInfo = product ? [
       `(Regular price ${refProduct.priceString})`,
-      product.title,
-      // `(price shown in ${product.currencyCode})`,
-      // 'One time FULL upgrade',
+      // product.title,
       'Access to all WSET-3 (Advanced)\nCollections and Flashcards',
-      'Sale ends Aug 15, 2018',
+      'Final sale extension!',
+      'Sale ends Aug 31, 2018',
     ] : []
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :

@@ -145,6 +145,12 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-spinkit')
+    compile project(':react-native-i18n')
+    compile project(':react-native-firebase')
+    compile project(':react-native-facebook-login')
+    compile project(':react-native-billing')
     // Google dependencies
     implementation 'com.google.android.gms:play-services-base:11.8.0'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'

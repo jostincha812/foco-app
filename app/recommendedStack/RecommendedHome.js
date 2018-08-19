@@ -74,6 +74,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    resetCollectionsState: () => dispatch(CollectionsActions.resetCollectionsState(ns)),
     fetchCollections: (ownerId, userId) => dispatch(CollectionsActions.fetchCollections(ns, ownerId, userId)),
     upsertUserCollectionPrefs: (userId, collectionId, prefs) => dispatch(UserPrefsActions.upsertUserCollectionPrefs(userId, collectionId, prefs)),
   }
