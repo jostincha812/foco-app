@@ -1,11 +1,13 @@
 import React from 'react'
-import { Platform } from 'react-native'
+import { View, StatusBar, Platform } from 'react-native'
 import Rate, { AndroidMarket } from 'react-native-rate'
 
 import { fbAnalytics } from '../../configureFirebase'
 import C, { E } from '../constants'
 import S from '../styles'
 import CurrentUser from '../auth/CurrentUser'
+import NotificationContext from '../navigation/NotificationContext'
+import LoadingScreen from '../components/LoadingScreen'
 
 export default class BaseContainer extends React.Component {
   constructor(props) {
@@ -67,7 +69,8 @@ export default class BaseContainer extends React.Component {
   }
 
   showToast(message, options) {
-    const showNotification = this.props.screenProps && this.props.screenProps.showNotification
+    // const showNotification = this.props.screenProps && this.props.screenProps.showNotification
+    const showNotification = this.props.notification && this.props.notification.showNotification
     showNotification && showNotification(message, options)
   }
 
@@ -152,6 +155,10 @@ export default class BaseContainer extends React.Component {
     })
   }
 
+  _renderInner(props) {
+    return null
+  }
+
   render() {
     // If dimensions is defined, render the real view otherwise the dummy view
     // if (this.state.dimensions) {
@@ -168,5 +175,19 @@ export default class BaseContainer extends React.Component {
     //     <Notification ref={(ref) => { this.notification = ref; }} />
     //   </View>
     // )
+    const props = this.props
+
+    if (!this.state.dimensions) {
+      return (
+        <LoadingScreen onLayout={this.onLayout} />
+      )
+    }
+
+    return (
+      <View style={S.containers.screen}>
+        <StatusBar barStyle={S.statusBarStyle} />
+        { this._renderInner(props) }
+      </View>
+    )
   }
 }

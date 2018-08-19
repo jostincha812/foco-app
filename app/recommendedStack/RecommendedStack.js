@@ -16,6 +16,16 @@ STACK[R.NAV_RECOMMENDED_HOME] = { screen: RecommendedHome }
 STACK[R.NAV_RECOMMENDED_FLASHCARDS_VIEWER] = { screen: RecommendedFlashcardsViewer }
 STACK[R.NAV_RECOMMENDED_GO_PREMIUM] = { screen: GoPremiumScreen }
 
+// const RecommendedStack = createStackNavigator(STACK, {
+//   navigationOptions: ({navigation}) => ({
+//     ...S.navigation.header,
+//     tabBarIcon: ({ focused, tintColor }) => (
+//       Icons.foco({ focused, color:tintColor, ...S.navigation.tabBarIcon })
+//     ),
+//   })
+// })
+//
+// export default RecommendedStack
 class RecommendedStack extends React.Component {
   static navigationOptions({navigation}) {
     return {

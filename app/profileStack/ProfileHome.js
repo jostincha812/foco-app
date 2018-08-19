@@ -38,7 +38,7 @@ class ProfileHome extends BaseContainer {
     }
   }
 
-  render() {
+  _renderInner() {
     const props = this.props
     const profile = props.profile
 
@@ -135,7 +135,6 @@ class ProfileHome extends BaseContainer {
         bounces={false}
         contentContainerStyle={{justifyContent:'flex-start'}}
       >
-        <StatusBar barStyle={S.statusBarStyle} />
         {deleteModal}
 
         <UserProfile style={{flex:1}} profile={profile} />
