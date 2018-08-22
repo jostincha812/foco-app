@@ -140,3 +140,4 @@
 * Upgraded to react@16.4.1
 * Facebook login uses native app by default
 * Moved in-app notification to root navigation controller
+* (1.6.74) Google Play in-app purchases

@@ -9,6 +9,9 @@
 
 # Add any project specific keep options here:
 
+# Keep Google Play billing services
+-keep class com.android.vending.billing.**
+
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
