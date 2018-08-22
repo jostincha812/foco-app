@@ -97,9 +97,7 @@ android {
     signingConfigs {
         DevSigning {
             keyAlias 'key0'
-            keyPassword 'f1gh7cLu8'
             storeFile file('/Volumes/VLO/apps/focoapp/foco-android.keystore')
-            storePassword 'f1gh7cLu8'
         }
     }
     compileSdkVersion 27
@@ -145,12 +143,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-i18n')
-    compile project(':react-native-firebase')
-    compile project(':react-native-facebook-login')
-    compile project(':react-native-billing')
     // Google dependencies
     implementation 'com.google.android.gms:play-services-base:11.8.0'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
