@@ -35,7 +35,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
           new MainReactPackage(),
-          new InAppBillingBridgePackage(),
+          // TODO dev testing only
+          new InAppBillingBridgePackage(null),
+          // new InAppBillingBridgePackage(),
           new RNFirebasePackage(),
           new RNFirebaseAnalyticsPackage(),
           new RNFirebaseAuthPackage(),
