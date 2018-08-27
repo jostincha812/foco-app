@@ -29,18 +29,6 @@ export default JsFbUserProfileAPI = {
     })
   },
 
-  incrementUserSessionsCount: (uid) => {
-    return refs.user(uid).child('sessions').transaction((count) => {
-      return (count || 0) + 1
-    })
-  },
-
-  incrementUserActionsCounter: (uid) => {
-    return refs.user(uid).child('userActions').transaction((count) => {
-      return (count || 0) + 1
-    })
-  },
-
   upsertUserPurchases: (uid, purchases) => {
     return refs.user(uid).once('value').then(snap => {
       return refs.user(uid).child('purchases').set(purchases).then(() => {
@@ -55,5 +43,38 @@ export default JsFbUserProfileAPI = {
         return transaction
       })
     })
-  }
+  },
+
+  fetchUserCounters: (uid) => {
+    return refs.userCounters(uid).once('value').then(snap => {
+      return snap.val()
+    })
+  },
+
+  incrementUserSessionsCounter: (uid) => {
+    return refs.userCounters(uid).child('sessions').transaction((count) => {
+      return (count || 0) + 1
+    })
+    .then(({snapshot}) => {
+      return {sessions: snapshot.val()}
+    })
+  },
+
+  incrementUserActionsCounter: (uid) => {
+    return refs.userCounters(uid).child('actions').transaction((count) => {
+      return (count || 0) + 1
+    })
+    .then(({snapshot}) => {
+      return {actions: snapshot.val()}
+    })
+  },
+
+  upsertUserPromptCounters: (uid, counters) => {
+    return refs.userCounters(uid).transaction((data) => {
+      return Object.assign({}, data, {...counters})
+    })
+    .then(({snapshot}) => {
+      return snapshot.val()
+    })
+  },
 }
