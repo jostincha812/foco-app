@@ -148,3 +148,7 @@
 * Upgraded to react@16.4.1
 * Facebook login uses native app by default
 * Moved in-app notification to root navigation controller
+
+## 1.7
+* Drastically reduced the number of times users get prompted for reviews
+* Remote configure IAP promotional sale

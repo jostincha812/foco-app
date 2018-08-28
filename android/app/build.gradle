@@ -108,8 +108,8 @@ android {
         applicationId "com.vpqlabs.foco"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 123
-        versionName "1.0.0"
+        versionCode 1773
+        versionName "1.7.73"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
