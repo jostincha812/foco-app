@@ -12,6 +12,7 @@ import S from '../styles'
 import LoadingIndicator from '../components/LoadingIndicator'
 import Icons from '../components/Icons'
 import AccessManager from './AccessManager'
+import RemoteConfig from '../../configureApp'
 
 export default class ProUpgradeModal extends React.Component {
   constructor(props) {
@@ -83,28 +84,30 @@ export default class ProUpgradeModal extends React.Component {
     // const iapLoadingError = "We're having difficulty loading available in-app purchases for your device."
     const iapLoadingError = this.state.error
 
-    let extra = null
-    switch (productId) {
-      case C.IAP_PROFESSIONAL_2:
-        extra = `Summer Sale\n20% Off`
-        break
-      case C.IAP_PROFESSIONAL_5:
-        break
-      case C.IAP_PROFESSIONAL_3:
-        extra = `Summer Sale\n25% Off`
-        break
-      default:
-    }
+    // let extra = null
+    // switch (productId) {
+    //   case C.IAP_PROFESSIONAL_2:
+    //     extra = `Summer Sale\n20% Off`
+    //     break
+    //   case C.IAP_PROFESSIONAL_5:
+    //     break
+    //   case C.IAP_PROFESSIONAL_3:
+    //     extra = `Summer Sale\n25% Off`
+    //     break
+    //   default:
+    // }
+    const extra = RemoteConfig.promoHeadline
+    const regPrice = product && RemoteConfig.promoEnabled ? `(Regular price ${refProduct.priceString})` : null
+    const endDate = RemoteConfig.promoEnabled ? `Sale ends ${RemoteConfig.promoEndDate}` : null
 
     // TODO localise
     const iapCancel = 'Maybe later'
-    const productInfo = product ? [
-      `(Regular price ${refProduct.priceString})`,
-      // product.title,
+    const productInfo = [
+      regPrice,
+      'One-time upgrade',
       'Access to all WSET-3 (Advanced)\nCollections and Flashcards',
-      'Final sale extension!',
-      'Sale ends Aug 31, 2018',
-    ] : []
+      endDate
+    ].filter(line => line != null)
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :
       <View style={S.containers.normal}>
