@@ -6,4 +6,5 @@ git branch -m release/temp_$(git rev-parse --short HEAD^) release/$PACKAGE_VERSI
 
 # Push branch and tags
 git push --set-upstream origin release/$PACKAGE_VERSION
-git push origin --tags
+# git push origin --tags
+git tag -d v$PACKAGE_VERSION
