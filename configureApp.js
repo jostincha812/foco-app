@@ -8,6 +8,9 @@ const settings = {
   fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
   refUpgradeProductId: C.IAP_PROFESSIONAL_2,
   IAPFlowConfig: C.CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH,
+  promoEnabled: false,
+  promoEndDate: 'Aug 31, 2018',
+  promoHeadline: 'WSET-3 Unlock'
 }
 
 const ConfigKeys = {
@@ -15,7 +18,10 @@ const ConfigKeys = {
   reviewerVersion: 'reviewer_version',
   fullUpgradeProductId: 'full_upgrade_product_id',
   refUpgradeProductId: 'ref_upgrade_product_id',
-  IAPFlowConfig: 'iap_flow_config'
+  IAPFlowConfig: 'iap_flow_config',
+  promoEnabled: 'promo_enabled',
+  promoEndDate: 'promo_end_date',
+  promoHeadline: 'promo_headline',
 }
 
 // default of 12 hours
@@ -34,6 +40,9 @@ defaults[ConfigKeys.refUpgradeProductId] = settings.refUpgradeProductId
 defaults[ConfigKeys.reviewerMode] = settings.reviewerMode
 defaults[ConfigKeys.reviewerVersion] = settings.reviewerVersion
 defaults[ConfigKeys.IAPFlowConfig] = settings.IAPFlowConfig
+defaults[ConfigKeys.promoEnabled] = settings.promoEnabled
+defaults[ConfigKeys.promoEndDate] = settings.promoEndDate
+defaults[ConfigKeys.promoHeadline] = settings.promoHeadline
 firebase.config().setDefaults(defaults)
 
 // Fetch remote config and set accordingly

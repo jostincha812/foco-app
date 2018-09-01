@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import C from '../constants'
 import FirebaseAuth from './FirebaseAuth'
 import { AccessManager } from '../iap'
@@ -6,6 +8,7 @@ import api from '../data/api'
 import { fbAnalytics } from '../../configureFirebase'
 import store from '../../configureStore'
 import { actions as UserProfileActions } from '../userProfile'
+import { actions as UserCountersActions } from '../userCounters'
 import { E } from '../constants'
 
 let _unsubscribe = null
@@ -22,19 +25,18 @@ const CurrentUser = {
       _currentSessionUserActionsCounter = 0
 
       api.userProfile.upsertUserProfile(user.uid, p)
-        .then(api.userProfile.incrementUserSessionsCount(user.uid).then(
-          ({committed, snapshot}) => {
-            const count = snapshot.val()
-            if (committed && count == 2) {
-              fbAnalytics.logEvent(E.activation_signin_no2,
-                { uid: user.uid, date: p.lastActive })
-            }
-            if (committed && count == 3) {
-              fbAnalytics.logEvent(E.activation_signin_no3,
-                { uid: user.uid, date: p.lastActive })
-            }
-          }))
         .then(() => {
+          // TODO find a place to log these
+          //     if (committed && count == 2) {
+          //       fbAnalytics.logEvent(E.activation_signin_no2,
+          //         { uid: user.uid, date: p.lastActive })
+          //     }
+          //     if (committed && count == 3) {
+          //       fbAnalytics.logEvent(E.activation_signin_no3,
+          //         { uid: user.uid, date: p.lastActive })
+          //     }
+          store.dispatch(UserCountersActions.incrementUserSessionsCounter(user.uid))
+          store.dispatch(UserCountersActions.fetchUserCounters(user.uid))
           store.dispatch(UserProfileActions.fetchUserProfile(user.uid))
           _authenticated = true
           onLogin && onLogin(user)
@@ -94,11 +96,6 @@ const CurrentUser = {
     return profile ? profile.purchases : []
   },
 
-  get sessions() {
-    const profile = CurrentUser.profile
-    return profile ? profile.sessions : 1
-  },
-
   get isAdmin() {
     const profile = CurrentUser.profile
     if (profile && profile.roles && profile.roles.includes(C.ROLE_ADMIN)) {
@@ -129,13 +126,61 @@ const CurrentUser = {
     }
   },
 
-  get shouldRequestReview() {
-    let shouldRequest = false
-    const sessions = CurrentUser.sessions
-    let mod = 31
+  get counters() {
+    const counters = store.getState().userCounters.data ? store.getState().userCounters.data : {}
+    return counters
+  },
 
-    if ((sessions > 1) && ((_currentSessionUserActionsCounter % mod) == 0)) {
-      shouldRequest = true
+  get sessionsCount() {
+    const counters = CurrentUser.counters
+    return counters.sessions ? counters.sessions : 1
+  },
+
+  get actionsCount() {
+    const counters = CurrentUser.counters
+    return counters.actions ? counters.actions : 0
+  },
+
+  get shouldRequestReview() {
+    const profile = CurrentUser.profile
+    const counters = CurrentUser.counters
+    let shouldRequest = false
+
+    const firstSession = 2
+    const firstActions = 35
+    const minDays = 12
+    const minSessions = 25
+    const minActions = 275
+
+    if (profile) {
+      if ((CurrentUser.sessions == firstSession) && (_currentSessionUserActionsCounter == firstActions)) {
+        shouldRequest = true
+      }
+
+      let nextPromptDate = moment(counters.next_prompt_date) || moment().add(minDays, 'days')
+      let nextPromptSession = counters.next_prompt_session || CurrentUser.sessionsCount + minSessions
+      let nextPromptAction = counters.next_prompt_action || CurrentUser.actionsCount + minActions
+      const days = nextPromptDate.diff(moment(), 'days')
+      const sessions = nextPromptSession - CurrentUser.sessionsCount
+      const actions = nextPromptAction - CurrentUser.actionsCount
+      if (days <= 0 && sessions <= 0 && actions <= 0) {
+        shouldRequest = true
+      }
+
+      if (shouldRequest ||
+          !counters.next_prompt_date ||
+          !counters.next_prompt_session ||
+          !counters.next_prompt_action) {
+        nextPromptDate = moment().add(minDays, 'days')
+        nextPromptSession = CurrentUser.sessionsCount + minSessions
+        nextPromptAction = CurrentUser.actionsCount + minActions
+
+        store.dispatch(UserCountersActions.upsertPromptCounters(profile.uid, {
+          next_prompt_date: nextPromptDate.format('YYYY-MM-DD'),
+          next_prompt_session: nextPromptSession,
+          next_prompt_action: nextPromptAction
+        }))
+      }
     }
 
     return shouldRequest
@@ -149,12 +194,6 @@ const CurrentUser = {
       .then(() => store.dispatch(UserProfileActions.insertUserTransaction(profile.uid, transaction)))
       .then(() => store.dispatch(UserProfileActions.fetchUserProfile(profile.uid)))
       .then(() => onComplete())
-
-    // api.userProfile.upsertUserPurchases(profile.uid, Array.from(purchases)).then(purchased => {
-    //   profile.purchases = purchased
-    //   onComplete()
-    // })
-    // api.userProfile.upsertUserTransaction(profile.uid, transaction)
   },
 
   hasPurchasedProduct: (product) => {
@@ -176,7 +215,7 @@ const CurrentUser = {
     const uid = CurrentUser.uid
     if (uid) {
       _currentSessionUserActionsCounter += 1
-      api.userProfile.incrementUserActionsCounter(uid)
+      store.dispatch(UserCountersActions.incrementUserActionsCounter(uid))
     }
   },
 }
