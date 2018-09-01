@@ -149,3 +149,7 @@
 * Facebook login uses native app by default
 * Moved in-app notification to root navigation controller
 * (1.6.74) Google Play in-app purchases
+
+## 1.7
+* Drastically reduced the number of times users get prompted for reviews
+* Remote configure IAP promotional sale
