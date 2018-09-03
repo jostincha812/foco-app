@@ -104,6 +104,7 @@ const CurrentUser = {
     return false
   },
 
+  // TODO remove
   get isReviewer() {
     const profile = CurrentUser.profile || {}
     if (profile.email == 'reviewers@vpqlabs.com' ||
