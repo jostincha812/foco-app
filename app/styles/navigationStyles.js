@@ -17,12 +17,18 @@ export default navigationStyles = {
       marginBottom: 4,
     },
 
-    // prod tab bar
-    activeTintColor: T.colors.active,
-    inactiveTintColor: T.colors.inactive,
+    activeTintColor: __DEV__ ? T.colors.inverse : T.colors.active,
+    inactiveTintColor: __DEV__ ? T.colors.normal : T.colors.inactive,
     style: {
-      backgroundColor: T.colors.tabNavBackground,
+      backgroundColor: __DEV__ ? T.colors.translucentBlack : T.colors.tabNavBackground,
     },
+
+    // prod tab bar
+    // activeTintColor: T.colors.active,
+    // inactiveTintColor: T.colors.inactive,
+    // style: {
+    //   backgroundColor: T.colors.tabNavBackground,
+    // },
 
     // dev tab bar
     // activeTintColor: T.colors.inverse,
