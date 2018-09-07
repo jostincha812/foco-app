@@ -17,6 +17,12 @@ export default navigationStyles = {
       marginBottom: 4,
     },
 
+    activeTintColor: __DEV__ ? T.colors.inverse : T.colors.active,
+    inactiveTintColor: __DEV__ ? T.colors.normal : T.colors.inactive,
+    style: {
+      backgroundColor: __DEV__ ? T.colors.translucentBlack : T.colors.tabNavBackground,
+    },
+
     // prod tab bar
     // activeTintColor: T.colors.active,
     // inactiveTintColor: T.colors.inactive,
@@ -25,11 +31,11 @@ export default navigationStyles = {
     // },
 
     // dev tab bar
-    activeTintColor: T.colors.inverse,
-    inactiveTintColor: T.colors.normal,
-    style: {
-      backgroundColor: T.colors.translucentBlack,
-    },
+    // activeTintColor: T.colors.inverse,
+    // inactiveTintColor: T.colors.normal,
+    // style: {
+    //   backgroundColor: T.colors.translucentBlack,
+    // },
   },
 
   floatingHeader: {

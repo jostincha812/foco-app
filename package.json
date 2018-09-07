@@ -1,12 +1,15 @@
 {
   "name": "FocoApp",
-  "version": "1.7.74",
+  "version": "1.7.78",
   "private": true,
   "scripts": {
     "_note": "https://github.com/oblador/react-native-vector-icons/issues/626#issuecomment-358018994",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "_postinstall": "rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json"
+    "_postinstall": "rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json",
+    "preversion": "./npm-version/pre-version.sh",
+    "version": "./npm-version/version-ios.sh",
+    "postversion": "./npm-version/post-version.sh"
   },
   "dependencies": {
     "immutable": "^3.8.2",
