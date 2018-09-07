@@ -26,12 +26,10 @@ const ConfigKeys = {
 
 // default of 12 hours
 let CACHE_DURATION = 43200
-
-// TODO remove from production with flag
-// if (__DEV__) {
-//   firebase.config().enableDeveloperMode();
-//   CACHE_DURATION = 0
-// }
+if (__DEV__) {
+  firebase.config().enableDeveloperMode()
+  CACHE_DURATION = 0
+}
 
 // Set default values
 const defaults = {}

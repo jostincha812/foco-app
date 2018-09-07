@@ -80,34 +80,33 @@ const hasAccess = (options) => {
 }
 
 const unlockAccess = ({productId, accessType = null, accessKey = null, onSuccess, onCancel, onError}) => {
-  // TODO remove from production with flag
-  // if (__DEV__) {
-  // --- SIMULATOR ONLY ---
-  // setTimeout(() => CurrentUser.addPurchase({
-  //   productId,
-  //   transaction: {},
-  //   onComplete: () => onSuccess('*** Simulated purchase successfully completed ***')
-  // }), 1200)
-  // --- SIMULATOR ONLY ---
-  // } else {
-  const purchases = new Set(CurrentUser.purchases)
-  if (purchases.has(productId)) {
-    onSuccess()
-  }
+  if (__DEV__) {
+    // --- development --- //
+    setTimeout(() => CurrentUser.addPurchase({
+      productId,
+      transaction: {},
+      onComplete: () => onSuccess('*** Simulated purchase successfully completed ***')
+    }), 1200)
+    // --- development --- //
+  } else {
+    const purchases = new Set(CurrentUser.purchases)
+    if (purchases.has(productId)) {
+      onSuccess()
+    }
 
-  Store.purchaseProduct({
-    productId,
-    onSuccess: (transaction, message) => {
-      CurrentUser.addPurchase({
-        productId,
-        transaction,
-        onComplete: () => onSuccess(message)
-      })
-    },
-    onCancel,
-    onError
-  })
-  // }
+    Store.purchaseProduct({
+      productId,
+      onSuccess: (transaction, message) => {
+        CurrentUser.addPurchase({
+          productId,
+          transaction,
+          onComplete: () => onSuccess(message)
+        })
+      },
+      onCancel,
+      onError
+    })
+  }
 }
 
 // returns the preferred product identifier available to the user for a given access type

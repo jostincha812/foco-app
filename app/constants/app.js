@@ -1,7 +1,9 @@
+import Package from '../../package.json'
+
 export default {
   FOCO: 'Foco:3',
   VPQLABS: 'by VPQLabs',
-  VERSION: '1.7.74',
+  VERSION: Package.version,
   WSET3: 'WSET3',
   WSET2: 'WSET2',
 

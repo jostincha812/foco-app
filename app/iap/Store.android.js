@@ -37,7 +37,9 @@ const loadProducts = ({products, onSuccess, onError}) => {
 
 const purchaseProduct = ({productId, onSuccess, onCancel, onError}) => {
   // TODO dev testing only
-  // productId = 'android.test.purchased'
+  if (__DEV__) {
+    productId = 'android.test.purchased'
+  }
   InAppBilling.open()
     .then(() => InAppBilling.isPurchased(productId))
     .then(purchased => {
