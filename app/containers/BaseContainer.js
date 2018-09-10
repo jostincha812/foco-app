@@ -183,9 +183,12 @@ export default class BaseContainer extends React.Component {
       )
     }
 
+
+    const statusBarStyle = Platform.OS === 'ios' ? S.statusBarStyle : S.inverseStatusBarStyle
+
     return (
       <View style={S.containers.screen}>
-        <StatusBar barStyle={S.statusBarStyle} />
+        <StatusBar barStyle={statusBarStyle} />
         { this._renderInner(props) }
       </View>
     )

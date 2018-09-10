@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation'
 import Notification from 'react-native-in-app-notification'
 
 import T from '../T'
+import S from '../styles'
 import NotificationContext from './NotificationContext'
 import SignInStack from '../signinStack'
 import AppTabNavigator from './AppTabNavigator'
