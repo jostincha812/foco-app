@@ -147,12 +147,16 @@ export default class BaseContainer extends React.Component {
       openAppStoreIfInAppFails:true,
       fallbackPlatformURL:"https://vpqlabs.com/",
     }
-    Rate.rate(options, (success)=>{
-      if (success) {
-        // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
-        this.logEvent(E.user_feedback_store_review_activated)
-      }
-    })
+    // TODO trigger on Android
+    if (Platform.OS === 'ios') {
+      Rate.rate(options, (success)=>{
+        if (success) {
+          // this technically only tells us if the user successfully went to the
+          // Review Page. Whether they actually did anything, we do not know.
+          this.logEvent(E.user_feedback_store_review_activated)
+        }
+      })
+    }
   }
 
   _renderInner(props) {
@@ -183,9 +187,12 @@ export default class BaseContainer extends React.Component {
       )
     }
 
+
+    const statusBarStyle = Platform.OS === 'ios' ? S.statusBarStyle : S.inverseStatusBarStyle
+
     return (
       <View style={S.containers.screen}>
-        <StatusBar barStyle={S.statusBarStyle} />
+        <StatusBar barStyle={statusBarStyle} />
         { this._renderInner(props) }
       </View>
     )

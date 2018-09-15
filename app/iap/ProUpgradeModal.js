@@ -23,13 +23,15 @@ export default class ProUpgradeModal extends React.Component {
   componentDidMount() {
     const productId = this.props.productId
     const refId = this.props.refProductId
+
     AccessManager.fetchProducts({
       products: [productId, refId],
       onSuccess: (details) => {
-        const index = details[0].identifier == productId ? 0 : 1
+        const pid = details[0].identifier == productId ? 0 : 1
+        const rid = details[1].identifier == refId ? 1 : 0
         this.setState({productsLoaded: true,
-          product: {productId, ...details[index]},
-          reference: {refId, ...details[index ? 0 : 1]},
+          product: {productId, ...details[pid]},
+          reference: {refId, ...details[rid]},
         })
       },
       onError: (error) => {

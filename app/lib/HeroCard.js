@@ -51,7 +51,7 @@ export default class HeroCard extends Card {
                 </StyledText>
               }
               { props.badge &&
-                <Pill style={{marginLeft: 6, bottom:1}} small={true} label={props.badge.label} backgroundColor={props.badge.color} />
+                <Pill style={{marginLeft: 6, bottom:1}} label={props.badge.label} backgroundColor={props.badge.color} />
               }
             </View>
           </View>

@@ -82,6 +82,11 @@ export default class Flashcard extends React.Component {
       Icons.flag({color:T.colors.app, ...flagToggleOptions}) :
       Icons.flagOutline({color:T.colors.inactive, ...flagToggleOptions}))
 
+    // TODO fix flip card animation in /node_modules/react-native-flip-card
+    // https://stackoverflow.com/questions/47817314/flash-of-content-before-after-rotate-transform-animation-flip-card-animation
+    // inputRange: [0,0.01,0.01,0.99,0.99,1],
+    // outputRange: ['0deg', '0deg', '0.4deg', '179.5deg', '180deg', '180deg']
+
     return (
       <FlipCard
         style={[styles.container, props.style]}

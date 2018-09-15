@@ -122,10 +122,18 @@
 ## 1.2
 * IAP price testing
 * Unlock from User Profile
+* (1.2.41) Refactored component responsibilities in IAP flow
+* (1.2.43) Logging flashcard flips
+* (1.2.43) Showing IAP cancel and error messages separately
 
 ## 1.3
 * Using redux store for CurrentUser
 * Added _reviewers only_ GoPremiumScreen
+* (1.3.47) Improved readability on iPhoneSE devices
+* (1.3.48) Using rn-in-app-notification in place of rn-root-toast
+* (1.3.49) Fixed null user error in bookmarking collection action
+* (1.3.50) Fixing IAP unlocking flow issue by forcing redux UserProfile fetch post purchase
+* (1.3.51) Turning off IAP dev purchasing flow
 * (1.3.x) Fixing IAP unlocking flow issue by forcing redux UserProfile fetch post purchase
 
 ## 1.4
@@ -140,6 +148,7 @@
 * Upgraded to react@16.4.1
 * Facebook login uses native app by default
 * Moved in-app notification to root navigation controller
+* (1.6.74) Google Play in-app purchases
 
 ## 1.7
 * Drastically reduced the number of times users get prompted for reviews

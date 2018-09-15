@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -235,6 +234,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		8D25D0E3211908F40030FFC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E485827927CE4DBEB9C0C445 /* RNRate.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNRate;
+		};
 		8D30EB3020293C6000579FF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C1051D7612147A1BF0F6FDE /* RNI18n.xcodeproj */;
@@ -248,13 +254,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 6476C4051EEAA69700B10F51;
 			remoteInfo = "RNI18n-tvOS";
-		};
-		8D8036E621193497000D2CF1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E485827927CE4DBEB9C0C445 /* RNRate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNRate;
 		};
 		8D84955B1F392CA800A09F11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -715,19 +714,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8D25D0E0211908F40030FFC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D25D0E4211908F40030FFC5 /* libRNRate.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8D30EB0920293C6000579FF2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				8D30EB3120293C6000579FF2 /* libRNI18n.a */,
 				8D30EB3320293C6000579FF2 /* libRNI18n-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8D8036E321193497000D2CF1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8D8036E721193497000D2CF1 /* libRNRate.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -958,7 +957,7 @@
 					ProjectRef = 2C1051D7612147A1BF0F6FDE /* RNI18n.xcodeproj */;
 				},
 				{
-					ProductGroup = 8D8036E321193497000D2CF1 /* Products */;
+					ProductGroup = 8D25D0E0211908F40030FFC5 /* Products */;
 					ProjectRef = E485827927CE4DBEB9C0C445 /* RNRate.xcodeproj */;
 				},
 				{
@@ -1203,6 +1202,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8D25D0E4211908F40030FFC5 /* libRNRate.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNRate.a;
+			remoteRef = 8D25D0E3211908F40030FFC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		8D30EB3120293C6000579FF2 /* libRNI18n.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1215,13 +1221,6 @@
 			fileType = archive.ar;
 			path = "libRNI18n-tvOS.a";
 			remoteRef = 8D30EB3220293C6000579FF2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8D8036E721193497000D2CF1 /* libRNRate.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNRate.a;
-			remoteRef = 8D8036E621193497000D2CF1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		8D84955C1F392CA800A09F11 /* libthird-party.a */ = {
