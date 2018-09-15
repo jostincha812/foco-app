@@ -1,5 +1,5 @@
 import React from 'react'
-import { Animated, LayoutAnimation, Easing } from 'react-native'
+import { View, Animated, LayoutAnimation, Easing } from 'react-native'
 import { Platform } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
@@ -64,11 +64,13 @@ class StickyListHeader extends React.Component {
     const fontSize = isStickied ? stickiedHeaderTextStyle.fontSize : headerTextStyle.fontSize
 
     return (
-      <Animated.View onLayout={onLayout} style={containerStyle}>
-        <Animatable.Text transition="fontSize" style={[textStyle, {fontSize}]}>
-          {headerText}
-        </Animatable.Text>
-      </Animated.View>
+      <View style={{paddingBottom:4}}>
+        <Animated.View onLayout={onLayout} style={containerStyle}>
+          <Animatable.Text transition="fontSize" style={[textStyle, {fontSize}]}>
+            {headerText}
+          </Animatable.Text>
+        </Animated.View>
+      </View>
     )
   }
 }
