@@ -38,6 +38,9 @@ target 'FocoApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
 
+  pod 'Fabric', '~> 1.7.5'
+  pod 'Crashlytics', '~> 3.10.4'
+
   # fix duplicate symbols issue - https://stackoverflow.com/questions/42021796/react-native-xcode-project-product-archive-fails-with-duplicate-symbols-for-arch
   pod 'react-native-in-app-utils', :path => '../node_modules/react-native-in-app-utils'
 

@@ -23,8 +23,9 @@ import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.config.RNFirebaseRemoteConfigPackage;
-import io.invertase.firebase.crash.RNFirebaseCrashPackage;
+//import io.invertase.firebase.crash.RNFirebaseCrashPackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
+import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,9 +46,10 @@ public class MainApplication extends Application implements ReactApplication {
           new RNFirebasePackage(),
           new RNFirebaseAnalyticsPackage(),
           new RNFirebaseAuthPackage(),
-          new RNFirebaseCrashPackage(),
+//          new RNFirebaseCrashPackage(),
           new RNFirebaseDatabasePackage(),
           new RNFirebaseRemoteConfigPackage(),
+          new RNFirebaseCrashlyticsPackage(),
           new VectorIconsPackage(),
           new RNSpinkitPackage(),
           new RNI18nPackage(),

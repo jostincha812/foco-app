@@ -6,7 +6,7 @@ const settings = {
   reviewerMode: false,
   reviewerVersion: C.VERSION,
   fullUpgradeProductId: C.IAP_PROFESSIONAL_3,
-  refUpgradeProductId: C.IAP_PROFESSIONAL_2,
+  refUpgradeProductId: C.IAP_PROFESSIONAL_5,
   IAPFlowConfig: C.CONFIG_IAP_PREMIUM_COLLECTIONS_FLOW_THROUGH,
   promoEnabled: false,
   promoEndDate: 'Aug 31, 2018',
