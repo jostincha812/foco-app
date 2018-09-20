@@ -158,6 +158,8 @@ dependencies {
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true
     }
+    // Facebook SDK
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     // React Native dependencies
     implementation project(':react-native-billing')
     implementation project(':react-native-facebook-login')
