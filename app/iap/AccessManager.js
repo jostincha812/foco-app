@@ -126,7 +126,7 @@ const referenceProductForType = (accessType = null) => {
       // load from Firebase Remote Config
       return RemoteConfig.refUpgradeProductId
     default:
-      return C.IAP_PROFESSIONAL_3
+      return C.IAP_PROFESSIONAL_5
   }
 }
 
