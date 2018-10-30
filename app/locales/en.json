@@ -52,6 +52,11 @@
     "about": "About",
   },
 
+  "level": {
+    "WSET3": "Advanced (level 3)",
+    "WSET2": "Intermediate (level 2)",
+  },
+
   "roles": {
     "IAP_EARLY_ADOPTER": "Early Adopter",
     "IAP_FREE_ACCESS": "Free Access",
