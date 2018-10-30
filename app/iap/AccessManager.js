@@ -114,9 +114,9 @@ const preferredProductForType = (accessType = null) => {
   switch (accessType) {
     case C.ACCESS_PREMIUM_COLLECTION:
       // load from Firebase Remote Config
-      return RemoteConfig.fullUpgradeProductId
+      return RemoteConfig.wset3UpgradeProductId
     default:
-      return C.IAP_PROFESSIONAL_3
+      return C.IAP_PROFESSIONAL_5
   }
 }
 
@@ -124,9 +124,9 @@ const referenceProductForType = (accessType = null) => {
   switch (accessType) {
     case C.ACCESS_PREMIUM_COLLECTION:
       // load from Firebase Remote Config
-      return RemoteConfig.refUpgradeProductId
+      return RemoteConfig.wset3UpgradeProductId
     default:
-      return C.IAP_PROFESSIONAL_3
+      return C.IAP_PROFESSIONAL_5
   }
 }
 

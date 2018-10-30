@@ -1,7 +1,9 @@
 import AccessManager from './AccessManager'
-import ProUpgradeModal from './ProUpgradeModal'
+import ProUpgradeModal from './UpgradeModal'
+import UpgradeSaleModal from './UpgradeSaleModal'
 
 export {
   AccessManager,
-  ProUpgradeModal
+  ProUpgradeModal,
+  UpgradeSaleModal
 }
