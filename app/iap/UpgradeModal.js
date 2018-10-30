@@ -26,7 +26,6 @@ export default class UpgradeModal extends React.Component {
     AccessManager.fetchProducts({
       products: [productId],
       onSuccess: (details) => {
-        console.log(details)
         const pid = details[0].identifier == productId ? 0 : 1
         this.setState({productsLoaded: true,
           product: {productId, ...details[pid]},
@@ -50,7 +49,7 @@ export default class UpgradeModal extends React.Component {
     // TODO localise
     const purchaseButton = this.state.processing ?
       { title: 'Purchasing...', icon: 'sync', buttonStyle: {marginTop:S.spacing.small} } :
-      { title: 'UPGRADE NOW', icon: 'lock-open', buttonStyle: {marginTop:S.spacing.small} }
+      { title: 'UNLOCK NOW', icon: 'lock-open', buttonStyle: {marginTop:S.spacing.small} }
 
     const productId = product ? product.productId : null
     const purchaseButtonPress = this.state.processing ? () => {} : () => {
@@ -83,6 +82,8 @@ export default class UpgradeModal extends React.Component {
 
     // TODO localise
     const iapCancel = 'Maybe later'
+
+    // TODO move into access manager
     const productTitle = RemoteConfig.wset3UpgradeHeadline
     const productDesc = RemoteConfig.wset3UpgradeDescription
     const productInfo = [

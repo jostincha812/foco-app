@@ -13,7 +13,7 @@ const settings = {
   // promoHeadline: 'WSET-3 Unlock',
   wset3UpgradeHeadline: '',
   wset3UpgradeDescription: '',
-  wset3UpgradeProductId: 'C.IAP_PROFESSIONAL_5',
+  wset3UpgradeProductId: C.IAP_PROFESSIONAL_5,
 }
 
 const ConfigKeys = {
