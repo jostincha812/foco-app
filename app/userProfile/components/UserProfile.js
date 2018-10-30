@@ -44,7 +44,7 @@ export default class UserProfile extends React.Component {
     const list = [
       {
         title: localize("profile.level"),
-        value: profile.level,
+        value: localize(`level.${profile.level}`),
       },
       {
         title: localize("profile.access"),
