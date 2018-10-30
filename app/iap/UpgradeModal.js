@@ -14,7 +14,7 @@ import Icons from '../components/Icons'
 import AccessManager from './AccessManager'
 import RemoteConfig from '../../configureApp'
 
-export default class ProUpgradeModal extends React.Component {
+export default class UpgradeModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = { productsLoaded: false, processing: false }
@@ -22,16 +22,13 @@ export default class ProUpgradeModal extends React.Component {
 
   componentDidMount() {
     const productId = this.props.productId
-    const refId = this.props.refProductId
 
     AccessManager.fetchProducts({
-      products: [productId, refId],
+      products: [productId],
       onSuccess: (details) => {
         const pid = details[0].identifier == productId ? 0 : 1
-        const rid = details[1].identifier == refId ? 1 : 0
         this.setState({productsLoaded: true,
           product: {productId, ...details[pid]},
-          reference: {refId, ...details[rid]},
         })
       },
       onError: (error) => {
@@ -43,8 +40,6 @@ export default class ProUpgradeModal extends React.Component {
   render() {
     const props = this.props
     const product = this.state.product
-    const refProduct = this.state.reference
-    // const backdropDismiss = this.state.processing ? () => {} : props.onDismiss
     const backdropDismiss = () => {}
     const baseContainerStyle = [
       S.cards.card, S.corners.rounded,
@@ -54,7 +49,7 @@ export default class ProUpgradeModal extends React.Component {
     // TODO localise
     const purchaseButton = this.state.processing ?
       { title: 'Purchasing...', icon: 'sync', buttonStyle: {marginTop:S.spacing.small} } :
-      { title: 'UPGRADE NOW', icon: 'lock-open', buttonStyle: {marginTop:S.spacing.small} }
+      { title: 'UNLOCK NOW', icon: 'lock-open', buttonStyle: {marginTop:S.spacing.small} }
 
     const productId = product ? product.productId : null
     const purchaseButtonPress = this.state.processing ? () => {} : () => {
@@ -83,32 +78,17 @@ export default class ProUpgradeModal extends React.Component {
     const iapErrorHeader = "Whoops!"
     const iapErrorTryAgain = "Please try again later."
     const iapErrorDismiss = "OK"
-    // const iapLoadingError = "We're having difficulty loading available in-app purchases for your device."
     const iapLoadingError = this.state.error
-
-    // let extra = null
-    // switch (productId) {
-    //   case C.IAP_PROFESSIONAL_2:
-    //     extra = `Summer Sale\n20% Off`
-    //     break
-    //   case C.IAP_PROFESSIONAL_5:
-    //     break
-    //   case C.IAP_PROFESSIONAL_3:
-    //     extra = `Summer Sale\n25% Off`
-    //     break
-    //   default:
-    // }
-    const extra = RemoteConfig.promoHeadline
-    const regPrice = product && RemoteConfig.promoEnabled ? `(Regular price ${refProduct.priceString})` : null
-    const endDate = RemoteConfig.promoEnabled ? `Sale ends ${RemoteConfig.promoEndDate}` : null
 
     // TODO localise
     const iapCancel = 'Maybe later'
+
+    // TODO move into access manager
+    const productTitle = RemoteConfig.wset3UpgradeHeadline
+    const productDesc = RemoteConfig.wset3UpgradeDescription
     const productInfo = [
-      regPrice,
       'One-time upgrade',
-      'Access to all WSET-3 (Advanced)\nCollections and Flashcards',
-      endDate
+      productDesc,
     ].filter(line => line != null)
 
     const loadingInner = !this.state.error ? <LoadingIndicator /> :
@@ -138,7 +118,7 @@ export default class ProUpgradeModal extends React.Component {
           <View>
             <PricingCard
               containerStyle={baseContainerStyle.concat([{paddingTop:S.spacing.large}])}
-              title={extra}
+              title={productTitle}
               price={`${product.priceString}`}
               color={T.colors.active}
               info={productInfo}

@@ -23,7 +23,7 @@ const SplashInner = (props) => {
           Are you ready for your
         </StyledText>
         <StyledText textAlign="center" textStyle="taglineLarge" color={T.colors.inverse}>
-          WSET3 exam?
+          wine exam?
         </StyledText>
       </View>
     </View>
